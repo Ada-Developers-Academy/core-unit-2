@@ -117,7 +117,29 @@ VALUES (
 
 ### Getting Default Value for Generated ID
 
-What happens when we need to create a record, but we 
+What happens when we need to create a record and the table has an `id` column? For example, look at the `???` in the following code:
+
+```sql
+INSERT INTO authors (author_name, author_id)
+VALUES ('Octavia E. Butler', ???);
+```
+
+What do we put as the value of `author_id`?
+
+We have a few options:
+
+1. Exclude the id column from the column list (much like the examples above)
+1. Use the SQL keyword `DEFAULT`, which will pick the next appropriate value
+
+For example, these statements will accomplish the same thing:
+
+```sql
+INSERT INTO authors (author_name, author_id)
+VALUES ('Octavia E. Butler', DEFAULT);
+
+INSERT INTO authors (author_name)
+VALUES ('Octavia E. Butler');
+```
 
 ## Check for Understanding: `INSERT`
 

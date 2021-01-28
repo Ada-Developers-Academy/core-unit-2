@@ -22,7 +22,21 @@ There are a lot of opinions about column names. For this curriculum, it really d
 
 There are 237842389 different ways to designate a primary key
 
-This curriculum will simply teach one: Make a column with the `PRIMARY KEY` constraint on the same line as the column definition
+This curriculum will simply teach one: Make an `INT` column with the `PRIMARY KEY` constraint on the same line as the column definition, and also add `GENERATED ALWAYS AS IDENTITY`
+
+### !callout-warning
+
+## Primary Key: `SERIAL` vs `INT` `GENERATED ALWAYS AS IDENTITY`
+
+From my research, `SERIAL` is the dominant old way of making a primary key in Postgres. <br/>
+
+`GENERATED ALWAYS AS IDENTITY` is the new way of making it. Introduced in Postgres 10. This style is "SQL-Compliant" aka it looks way more like what you do in mySQL, SQLite, etc.
+
+- [Random blog post #1](https://www.2ndquadrant.com/en/blog/postgresql-10-identity-columns/)
+- [StackOverflow: serial vs identity](https://stackoverflow.com/questions/55300370/postgresql-serial-vs-identity)
+
+### !end-callout
+
 There are 238907423 naming recommendations for a primary key
 
 
