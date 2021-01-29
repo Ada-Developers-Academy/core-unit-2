@@ -1,4 +1,4 @@
-# Adding and Retrieving Records
+# Adding New Records
 
 ## Learning Goals
 
