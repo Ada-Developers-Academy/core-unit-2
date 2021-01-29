@@ -38,10 +38,10 @@ The format of this lesson is as follows:
 
 ## Adding Records With `INSERT`
 
-When we add a record to a table, we should first determine:
+Before we add a record to a table, we should first determine:
 
-- which table we're adding to
-- what the columns of that table are
+- Which table we're adding to
+- What the columns of that table are
 
 To add a record, we use the following SQL syntax:
 
@@ -58,7 +58,7 @@ VALUES (value1, value2, value3, ...);
 | `column1, column2, column3, ...` | **Replace this** with a list of the column names in the table. Column names should be comma-separated.                              |
 | `VALUES`                         | A SQL keyword that indicates the values to insert into a new record                                                                 |
 | `( ... );`                       | Contains a list of the values to insert into a new record. Remember the semicolon at the end to finish the statement!               |
-| `value1, value2, value3, ...`    | **Replace this** with the values for the new record. The order of values **must** exactly match the order of columns listed before. |
+| `value1, value2, value3, ...`;   | **Replace this** with the values for the new record. The order of values **must** exactly match the order of columns listed before. |
 
 The order of values listed **must** exactly match the order of columns listed. In this example, `value1` is the value for `column1` because they're both listed first, and `value3` is the value for `column3` because they're both listed third.
 
