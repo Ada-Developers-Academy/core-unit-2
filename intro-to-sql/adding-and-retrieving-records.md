@@ -141,6 +141,48 @@ INSERT INTO authors (author_name)
 VALUES ('Octavia E. Butler');
 ```
 
+## When `INSERT` Fails
+
+Sometimes, our `INSERT` statement will fail, and we are _unsuccessful_ at adding a new record.
+
+When our `INSERT` statement fails, we should observe:
+
+- No new records are added to the table
+- An error message with details prints out
+
+Imagine an `authors` table, where the `author_id` column has the constraint `GENERATED ALWAYS`. This constraint doesn't allow us to specify a value for `author_id`.
+
+When we run this statement:
+
+```sql
+INSERT INTO authors (author_id, author_name)
+VALUES (777777, NULL);
+```
+
+We should observe this output:
+
+```
+ERROR:  cannot insert into column "author_id"
+DETAIL:  Column "author_id" is an identity column defined as GENERATED ALWAYS.
+HINT:  Use OVERRIDING SYSTEM VALUE to override.
+```
+
+This output means:
+
+1. The error is caused by attempting to insert into column `author_id`, but we cannot
+2. A detailed explanation is that the `author_id` is an identity column defined as `GENERATED ALWAYS`
+3. Postgres gives a suggestion. If you truly want to override this constraint, you can research and use `OVERRIDING SYSTEM VALUE`.
+
+To move past this, we should debug the logic and syntax of our `INSERT` statement, and retry it. A failed `INSERT` in this context shouldn't have any other consequences to concerned about.
+
+### !callout-secondary
+
+## What if We Inserted the Wrong Values?
+
+What happens if we successfully inserted a record, but it has the wrong data?! There is no "undo," we should remedy this by updating the record, or deleting and adding a new record. This syntax is covered in other lessons, but follow your curiosity!
+
+### !end-callout
+
 ## Check for Understanding: `INSERT`
 
 <!-- Question 1 -->
