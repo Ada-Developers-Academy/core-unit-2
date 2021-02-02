@@ -19,11 +19,11 @@ By focusing on this kind of table, we will be set up for recognizing patterns co
 
 ## Vocabulary and Synonyms
 
-| Vocab | Definition | Synonyms | How to Use in a Sentence |
-| ----- | ---------- | -------- | ------------------------ |
-Record | A single set of related data | row, data item, item | "In the table of student contact information, there is a record for each student," "We should find the record for the student Medha to get all of Medha's information."
-Attribute | A property of a record. A record can have one or more properties. | column, data field, field | "In the students table, every student has a name and birthday, so they have the attributes "name" and "birthdate"," "For Medha's record, the "name" attribute has the value "Medha", and the "birthdate" has the value "01/01/1980"."
-Reading | Getting the value of something | getting, querying, selecting | "We need to read through the students table to get Medha's record," "We need to read through Medha's record to get Medha's birthdate."
+| Vocab     | Definition                                                        | Synonyms                     | How to Use in a Sentence                                                                                                                                                                                                              |
+| --------- | ----------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Record    | A single set of related data                                      | row, data item, item         | "In the table of student contact information, there is a record for each student," "We should find the record for the student Medha to get all of Medha's information."                                                               |
+| Attribute | A property of a record. A record can have one or more properties. | column, data field, field    | "In the students table, every student has a name and birthday, so they have the attributes "name" and "birthdate"," "For Medha's record, the "name" attribute has the value "Medha", and the "birthdate" has the value "01/01/1980"." |
+| Reading   | Getting the value of something                                    | getting, querying, selecting | "We need to read through the students table to get Medha's record," "We need to read through Medha's record to get Medha's birthdate."                                                                                                |
 
 ## Tables Hold and Describe Data
 
@@ -52,10 +52,10 @@ In this example table of new hobbies to try:
 
 - Each _record_ is one hobby
 - Each record has the following _attributes_:
-    - Description
-    - Minimum Number of Hours
-    - Resources Needed
-    - Will My Friend Milly Join Me?
+  - Description
+  - Minimum Number of Hours
+  - Resources Needed
+  - Will My Friend Milly Join Me?
 - The _attributes_ are labeled in the header row
 
 ## Using Tables Like a Computer Scientist
@@ -98,10 +98,10 @@ In very discrete steps, we can imagine getting Milly's resource with this proces
 1. Get all of the hobbies where "Yes" is the value for the attribute "Will My Friend Milly Join Me?"
 1. Only gather the values in the attribute "Resources Needed"
 1. Only list the resources needed:
-    - Juggling props
-    - Class fee
-    - Rubik's cube
-    - Good weather, two kites, transportation
+   - Juggling props
+   - Class fee
+   - Rubik's cube
+   - Good weather, two kites, transportation
 
 ### !callout-info
 
@@ -116,3 +116,21 @@ Updating records is a common action we do. What does it mean to update or modify
 
 ## Check for Understanding
 
+<!-- Question Takeaway -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: paragraph
+* id: PvvBpf
+* title: NameOfLesson
+##### !question
+
+What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+
+##### !end-question
+##### !placeholder
+
+My biggest takeaway from this lesson is...
+
+##### !end-placeholder
+### !end-challenge
+<!-- prettier-ignore-end -->
