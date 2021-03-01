@@ -3,10 +3,11 @@
 ## Learning Goals
 
 - Define SQL as a language to query SQL databases
+- Define primary key
 
 ## Introduction
 
-In Python projects, data is either temporarily stored onto a machine, or it's saved and _written_ to a machine. However, what does that look like? Does my computer look like someone else's computer? The following questions pop up:
+In Python projects, data is either temporarily stored onto a machine, or it's saved and _persisted_ on a machine. However, what does that look like? The following questions pop up:
 
 - How and where does the data get stored?
   - How is the data organized?
@@ -18,24 +19,31 @@ Using and managing a _database_ to organize and store data is one great answer t
 
 ## Vocabulary and Synonyms
 
-| Vocab | Definition | Synonyms | How to Use in a Sentence |
-| ----- | ---------- | -------- | ------------------------ |
+| Vocab           | Definition                                                                                                            | Synonyms             | How to Use in a Sentence                                                                                                                                                                                                                              |
+| --------------- | --------------------------------------------------------------------------------------------------------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Database        | An organized collection of stored and persisted data                                                                  | db                   | "My project stores all user data, such as name, email, and their content, in a database," "I used to keep my data all in a spreadsheet, but my app will be better if I use a database"                                                                |
+| SQL             | A query language specifically designed to talk to relational databases                                                | -                    | "I added 50 new records to the database using SQL statements," "I forgot the SQL syntax to create a database and create a table in that database"                                                                                                     |
+| Postgres        | A specific kind of relational database                                                                                | PostgreSQL, psql, pg | "I heard that postgres is a database that's a little different from mySQL, but not very different and I could learn both," "When talking to my database, I got an error saying that the psql connection was bad, so I restarted my Postgres services" |
+| Database entity | A single concept that needs to be stored in a table and database, such as a kind of person, product, thing, or object | -                    | "When I started my project, I considered all of the database entities I needed to store, such as users, posts, and comments."                                                                                                                         |
+| Primary key     | An attribute dedicated to being a unique identifier for each row in a table                                           | PK                   | "Even though two rows had the same name, they had different primary keys," "I was able to retrieve the correct row each time because I queried using primary keys."                                                                                   |
 
-- Database
-- SQL
-- Postgres
-- Database entities
-- Primary key
-
-## A Database Can Be Anywhere Wi
+## A Database Can Be Installed on Any Machine
 
 A **database** (or db for short) is an organized collection of stored and persisted data. Databases are responsible for storing data, organized in ways that are useful to us programmers.
 
-The method and system of organization depends on the database type. The location of the database depends on the machine that we choose to put it on.
+_Where_ are databases? Databases are stored on any compatible machine, whether it's a dedicated database server, or even on our own laptops.
 
-**Here's a metaphor**: Imagine that our program is a school classroom, that runs a bunch of processes, activities, and workshops. Imagine that our workshops use a lot of data, like supplies. We could put the supplies in the classroom, but it could get really messy. Instead, we can store our supplies in a supply closet, like a database. How we organize the supply closet, what kind of bins, boxes, and labels are in the supply closet, and how we get to the supply is up to us.
+Using a db effectively means considering how data is structured and represented in our database, and how to get existing data, and add new data.
 
-Therefore, the interesting challenge for us is learning how to make Python code _talk_ with a database. When working with databases, we should ask ourselves:
+### Databases Hold and Organize Data
+
+Different database types will specify different methods and systems of organizing the data.
+
+**Here's a metaphor**: Imagine that a webapp we're building is a school classroom which runs a bunch of instructions, activities, and workshops. Imagine that our workshops use a lot of supplies, which is the data. We could choose to only use disposable supplies, and put those supplies in the classroom. This is like keeping data around only in working memory. Over time, our classroom could get really messy, and create a lot of waste.
+
+Instead, we can store our supplies in a supply closet, which is our database. How we organize the supply closet, what kind of bins, boxes, and labels are in the supply closet, and how we get to the supply closet is up to the type of database we're using and the decisions we make.
+
+When working with databases, we should ask ourselves:
 
 1. How do we structure data in the database? What rules does the database need to follow?
 1. How do we communicate the db and retrieve or modify data?
@@ -44,7 +52,7 @@ When we talk with a database, we'll be able to create, read, update, or delete t
 
 ## SQL Communicates With Relational Databases
 
-Databases are ways to organize and store data. After a database is setup, we can talk with it. But how?
+After a database is setup, we can talk with it. But how?
 
 **SQL** is a query _language_. It's a programming language specifically designed to talk to _relational databases_.
 
@@ -86,7 +94,7 @@ Relational databases are unique because they are strong at expressing _relations
 
 ### This Curriculum Uses Postgres
 
-PostgreSQL, also known as **Postgres** (and sometimes seen as `psql`), is a free and open-source relational db system.
+PostgreSQL, also known as **Postgres** (and often seen as `psql`), is a free and open-source relational db system.
 
 This curriculum will use PostgreSQL for the following reasons:
 
@@ -104,9 +112,9 @@ For the remainder of lessons, this curriculum may use the phrases "relational da
 
 ## Parts of a Database
 
-The purpose of a database is to structure and store data. Usually data that is related to one or more projects.
+Databases structure and store data that is related to one or more projects.
 
-One database can store database for _many_ different **database entities**. A _database entity_ is any single concept that needs to be stored, usually a single person, product, thing, or object. For example, imagine a micro-loan system. One single db for this webapp could have the entities "Borrower," "Lender," "Loan," "Loan Request," and "Repayment."
+One database can store data for many different **database entities**. A _database entity_ is any single concept that needs to be stored, usually a kind of person, product, thing, or object. For example, imagine a micro-loan system. One single db for this webapp could have the entities "Borrower," "Lender," "Loan," "Loan Request," and "Repayment."
 
 There are several components of a database. The following is an overview of a few key concepts:
 
@@ -130,12 +138,7 @@ The schema usually defines:
 
 SQL dbs enforce data types and other constraints on columns on tables.
 
-The following is a list of some data types available in Postgres. Refer to official documentation for a full list and their details:
-
-- `boolean`
-- `varchar` (A string that must be under a provided maximum length)
-- `integer`
-- `text` (A string that does not need a specificed maximum length)
+The following is a list of some data types available in Postgres. Refer to [official psql documentation](https://www.postgresql.org/docs/9.5/datatype.html) for a full list and their details:
 
 | Data Type   | Notes                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
@@ -153,15 +156,9 @@ Constraints are rules on a column or table that can reject invalid data from eve
 - Integers must be greater than 0
 - A value must be unique compared to the other values in the same column and table
 
-### !callout-warning
-
-## Constraints Are Constraining
-
-When we write Python code, we often encounter `TypeError`. In a similar idea, databases are _very_ explicit and strict about what data can be stored. This is security and safety feature; storing unsafe and unexpected data could compromise one table or a whole database.
-
-### !end-callout
-
 ### Tables
+
+<!-- Instructor note: This builds off on the "Data in Tables" topic, so going into depth about how to read a table, and how columns represent attributes and rows represent instances isn't necessary -->
 
 Databases can have one more tables. Each table usually represents one _entity_.
 

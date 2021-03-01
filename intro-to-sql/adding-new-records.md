@@ -127,12 +127,18 @@ INSERT INTO authors (author_name)
 VALUES ('Octavia E. Butler');
 ```
 
+- The name of the table is `authors`
+- For the column `author_name`, the inserted value is`'Octavia E. Butler'`
+
 2.
 
 ```sql
 INSERT INTO drivers (vin, is_available)
 VALUES ('11112222333344445', false);
 ```
+
+- The name of the table is `drivers`
+- For the column `vin`, the inserted value is `false`
 
 3.
 

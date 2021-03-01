@@ -80,9 +80,11 @@ When we need to pull information from one record, we need to ask the following c
 
 ### Example: Milly's Resources
 
-Imagine that our friend Milly is ready to try a select few new hobbies with us. What resources does Milly need?
+Imagine that our friend Milly is ready to try a select few new hobbies with us.
 
-Consider the following table. Then consider all of the steps we need to take in order to get our answer.
+What resources does Milly need? How do we find out what resources Milly needs?
+
+Consider the following table. Then, consider all of the steps we need to take in order to get our answer.
 
 | Description                    | Minimum Number of Hours | Resources Needed                                     | Will My Friend Milly Join Me? |
 | ------------------------------ | ----------------------- | ---------------------------------------------------- | ----------------------------- |

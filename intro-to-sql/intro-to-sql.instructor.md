@@ -1,10 +1,57 @@
-# Instructor: Intro to SQL Overall
+# Instructor: Intro to SQL
 
 This curriculum teaches like, one syntax for each concept.
 
 Everything else is valid and probably just as efficient/easy/straightforward. **The reason why we teach one syntax is for simplicity on our end**.
 
 Students researching and using other syntaxes is a-ok! Nothing really dangerous about it.
+
+## Big Ole Debugging Tips
+
+### `psql: could not connect to server: No such file or directory`
+
+When running `$ psql`
+
+```
+psql: error: could not connect to server: No such file or directory
+	Is the server running locally and accepting
+	connections on Unix domain socket "/tmp/.s.PGSQL.5432"?
+```
+
+Try
+
+```
+$ rm /usr/local/var/postgres/postmaster.pid
+$ brew services restart postgresql
+```
+
+If that does nothing, run this command for logs/details:
+
+```
+$ postgres -D /usr/local/var/postgres
+```
+
+If you get `not compatible with this version 13.1.`, run:
+
+```
+$ brew postgresql-upgrade-database
+```
+
+### `psql: error: FATAL: database "STUDENT NAME" does not exist`
+
+They didn't specify logging in as user `postgres`! By default, postgres makes a user that is the machine (user) name.
+
+They should start psql with
+
+```
+$ psql -U postgres
+```
+
+If they don't have a `postgres` user, make one with
+
+```
+$ createuser -s postgres
+```
 
 ## Naming Conventions
 
@@ -39,8 +86,8 @@ From my research, `SERIAL` is the dominant old way of making a primary key in Po
 
 There are 238907423 naming recommendations for a primary key
 
-
 Besides `id`, the other common pattern is:
+
 1. Make a column named `entity_pk` (the emphasis on the `_pk` bit)
 1. designate it as a primary key following one other column
 

@@ -2,11 +2,11 @@
 
 ## Goal
 
-The goal of this lesson is to give clear instructions about how to setup your work environment so you can
+The goal of this lesson is to give clear instructions about how to setup your work environment so you can read and write SQL and work with Postgres dbs.
 
-This lesson should work as both a checklist of steps to follow once.
+This lesson should be read as a checklist of steps to follow once.
 
-Afterwards, this lesson may be helpful as a reference for some SQL syntax.
+Afterwards, this lesson can be helpful resource.
 
 ## Learning Goals
 
@@ -34,6 +34,10 @@ Most tutorials will use these credentials, too. They are a good default for us u
 1. In any directory, run `$ brew install postgresql`
 1. Run this command to make postgresql start at login: `$ brew services start postgresql`
 1. Verify that it gives a success message
+
+## Create the Postgres User
+
+After installing Postgres, create the user named `postgres` with the command `$ createuser -s postgres`.
 
 ## Tools
 
@@ -106,6 +110,7 @@ This will list databases by name. Here is an example listing:
                Name               |  Owner   | Encoding | Collate | Ctype | Access privileges
 ----------------------------------+----------+----------+---------+-------+-------------------
  postgres                         | postgres | UTF8     | C       | C     |
+ media_ranker_development         | postgres | UTF8     | C       | C     |
 ```
 
 ## Creating a Database
@@ -133,6 +138,7 @@ CREATE DATABASE simons_example_db;
                Name               |  Owner   | Encoding | Collate | Ctype | Access privileges
 ----------------------------------+----------+----------+---------+-------+-------------------
  postgres                         | postgres | UTF8     | C       | C     |
+ media_ranker_development         | postgres | UTF8     | C       | C     |
  simons_example_db                | postgres | UTF8     | C       | C     |
 ```
 
@@ -245,13 +251,13 @@ There isn't a fixed naming convention for naming databases, tables, and columns,
 
 We've learned that a common pattern is to have an ID column in each table, which will help uniquely identify each record. This column is usually the table's primary key. However, we'll learn that, when adding new records, keeping track of the next unique ID number is hard work.
 
-As a helpful pattern, we'll see in the `CREATE TABLE` examples below the syntax `id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY`.
+As a helpful pattern, we'll see in the `CREATE TABLE` examples below the line `id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY`.
 
 - `id INT` says that there is a column named `id` of the data type integer
 - `PRIMARY KEY` designates that this column `id` is the primary key of the table
 - `GENERATED ALWAYS AS IDENTITY` designates that Postgres should always generate this id for us
 
-Postgres is great at managing
+Postgres is great at managing what the next best ID and primary key is. Ideally, we will never need to _set_ any primary keys.
 
 ### Examples on Creating Tables
 
@@ -272,6 +278,12 @@ CREATE TABLE authors (
 );
 ```
 
+- The name of the table is `authors`
+- There are two columns:
+  - `author_name` with the data type `VARCHAR`
+  - `author_id` with the data type `INT`
+- `author_id` is the primary key column
+
 2.
 
 ```sql
@@ -281,6 +293,13 @@ CREATE TABLE drivers (
   is_available BOOLEAN
 );
 ```
+
+- The name of the table is `drivers`
+- There are three columns:
+  - `id` with the data type `INT`
+  - `vin` with the data type `VARCHAR`
+  - `is_available` with the data type `BOOLEAN`
+- `id` is the primary key column
 
 3.
 
@@ -294,6 +313,16 @@ CREATE TABLE media (
   description_text TEXT
 );
 ```
+
+- The name of the table is `media`
+- There are six columns:
+  - `id` with the data type `INT`
+  - `category` with the data type `VARCHAR`
+  - `title` with the data type `VARCHAR`
+  - `creator` with the data type `TEXT`
+  - `publication_year` with the data type `VARHCAR`
+  - `description_text` with the data type `TEXT`
+- `id` is the primary key column
 
 ### Feedback on Creating Tables
 
@@ -372,6 +401,8 @@ Here is an out-of-context list of debugging strategies that could come up during
   - This is another great way to restart Postgres
 - List users with `\du`
   - This has information on user names, roles (permissions), and groups
+- Copy and paste error messages and search on the Internet frequently, and specify macOS
+  - Postgres is 30 years old; there is a lot of great advice out there!
 
 ## Summary: Get to an Empty Database and Table
 

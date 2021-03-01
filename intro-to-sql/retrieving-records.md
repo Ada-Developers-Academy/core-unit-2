@@ -33,12 +33,12 @@ To retrieve the values of specific columns from **all** records within a specifi
 SELECT column1, column2, column3, ... FROM table_name;
 ```
 
-| Piece of Code                    | Notes                                                                                                                                                   |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `SELECT`                         | A SQL keyword to indicate retrieving records                                                                                                            |
-| `column1, column2, column3, ...` | **Replace this** with a comma-separated list of columns to retrieve, or another expression (such as `*` described below)                                |
-| `FROM`                           | A SQL keyword to indicate that these records are from some set of tables                                                                                |
-| `table_name;`                    | **Replace this** with the name of the table being searched. This could be a comma-separated list of multiple tables. Don't forget the ending semicolon. |
+| <div style="min-width:200px;"> Piece of Code </div> | Notes                                                                                                                                                   |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `SELECT`                                            | A SQL keyword to indicate retrieving records                                                                                                            |
+| `column1, column2, column3, ...`                    | **Replace this** with a comma-separated list of columns to retrieve, or another expression (such as `*` described below)                                |
+| `FROM`                                              | A SQL keyword to indicate that these records are from some set of tables                                                                                |
+| `table_name;`                                       | **Replace this** with the name of the table being searched. This could be a comma-separated list of multiple tables. Don't forget the ending semicolon. |
 
 ### `*`
 
@@ -52,12 +52,14 @@ SELECT * FROM table_name;
 
 Imagine the following table named `media` with these columns and four records.
 
-| `media_id` | `category` | `title`             | `creator`        | `publication_year` | `description_text`                     |
-| ---------- | ---------- | ------------------- | ---------------- | ------------------ | -------------------------------------- |
-| 1          | book       | Red Java            | Jewel Koss       | 1971               | Nisi ducimus reprehenderit molestiae.  |
-| 2          | book       | Postmodern Been     | Glen Senger      | 1929               | Dolore repellendus doloribus maiores.  |
-| 3          | movie      | American Select     | Xuan Pouros      | 1997               | Corporis id voluptatem fuga.           |
-| 4          | movie      | Wake-up Utopia      | Buena Shanahan   | 1930               | Fuga corrupti ducimus animi.           |
+| `media_id` | `category` | `title`         | `creator`      | `publication_year` | `description_text`                    |
+| ---------- | ---------- | --------------- | -------------- | ------------------ | ------------------------------------- |
+| 1          | book       | Red Java        | Jewel Koss     | 1971               | Nisi ducimus reprehenderit molestiae. |
+| 2          | book       | Postmodern Been | Glen Senger    | 1929               | Dolore repellendus doloribus maiores. |
+| 3          | movie      | American Select | Xuan Pouros    | 1997               | Corporis id voluptatem fuga.          |
+| 4          | movie      | Wake-up Utopia  | Buena Shanahan | 1930               | Fuga corrupti ducimus animi.          |
+
+#### Selecting One Column
 
 This SQL statement
 
@@ -76,6 +78,28 @@ produces this output:
  Wake-up Utopia
 (4 rows)
 ```
+
+#### Selecting Multiple Columns
+
+This SQL statement
+
+```sql
+SELECT media_id, title FROM media;
+```
+
+produces this output:
+
+```
+ media_id |      title
+----------+-----------------
+        1 | Red Java
+        2 | Postmodern Been
+        3 | American Select
+        4 | Wake-up Utopia
+(4 rows)
+```
+
+#### Selecting All Columns
 
 This SQL statement
 
@@ -106,13 +130,19 @@ Read through these example SQL statements. For each example, read the code and a
 SELECT author_name FROM authors;
 ```
 
+This statement selects the `author_name` column in the `authors` table.
+
 ```sql
 SELECT * FROM drivers;
 ```
 
+This selects all columns in the `drivers` table.
+
 ```sql
 SELECT id, category, title FROM media;
 ```
+
+This selects the `id`, `category`, and `title` columns in the `media` table.
 
 ```sql
 SELECT * FROM media;
@@ -199,12 +229,12 @@ We can use `=`, `>=`, `<=`, `>`, and `<` to compare the value of a column to ano
 
 Imagine the following table named `media` and its columns and four records.
 
-| `media_id` | `category` | `title`             | `creator`        | `publication_year` | `description_text`                     |
-| ---------- | ---------- | ------------------- | ---------------- | ------------------ | -------------------------------------- |
-| 1          | book       | Red Java            | Jewel Koss       | 1971               | Nisi ducimus reprehenderit molestiae.  |
-| 2          | book       | Postmodern Been     | Glen Senger      | 1929               | Dolore repellendus doloribus maiores.  |
-| 3          | movie      | American Select     | Xuan Pouros      | 1997               | Corporis id voluptatem fuga.           |
-| 4          | movie      | Wake-up Utopia      | Buena Shanahan   | 1930               | Fuga corrupti ducimus animi.           |
+| `media_id` | `category` | `title`         | `creator`      | `publication_year` | `description_text`                    |
+| ---------- | ---------- | --------------- | -------------- | ------------------ | ------------------------------------- |
+| 1          | book       | Red Java        | Jewel Koss     | 1971               | Nisi ducimus reprehenderit molestiae. |
+| 2          | book       | Postmodern Been | Glen Senger    | 1929               | Dolore repellendus doloribus maiores. |
+| 3          | movie      | American Select | Xuan Pouros    | 1997               | Corporis id voluptatem fuga.          |
+| 4          | movie      | Wake-up Utopia  | Buena Shanahan | 1930               | Fuga corrupti ducimus animi.          |
 
 This SQL statement
 

@@ -36,7 +36,7 @@ INSERT INTO media (category, title, creator, publication_year, description_text)
 Answers
 
 ```sql
--- How many albums are there? 
+-- How many albums are there?
 -- Using COUNT is valid too
 SELECT * FROM media WHERE CATEGORY = 'album';
 
