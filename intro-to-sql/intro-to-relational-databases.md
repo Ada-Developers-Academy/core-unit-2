@@ -4,6 +4,7 @@
 
 - Define SQL as a language to query SQL databases
 - Define primary key
+<!-- NOTE:  I feel like there should be a LG around explaining how relational databases organize data -->
 
 ## Introduction
 
@@ -22,7 +23,7 @@ Using and managing a _database_ to organize and store data is one great answer t
 | Vocab           | Definition                                                                                                            | Synonyms             | How to Use in a Sentence                                                                                                                                                                                                                              |
 | --------------- | --------------------------------------------------------------------------------------------------------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Database        | An organized collection of stored and persisted data                                                                  | db                   | "My project stores all user data, such as name, email, and their content, in a database," "I used to keep my data all in a spreadsheet, but my app will be better if I use a database"                                                                |
-| SQL             | A query language specifically designed to talk to relational databases                                                | -                    | "I added 50 new records to the database using SQL statements," "I forgot the SQL syntax to create a database and create a table in that database"                                                                                                     |
+| SQL             | A query language specifically designed to talk to relational databases                                                | "Sequel"                    | "I added 50 new records to the database using SQL statements," "I forgot the SQL syntax to create a database and create a table in that database"                                                                                                     |
 | Postgres        | A specific kind of relational database                                                                                | PostgreSQL, psql, pg | "I heard that postgres is a database that's a little different from mySQL, but not very different and I could learn both," "When talking to my database, I got an error saying that the psql connection was bad, so I restarted my Postgres services" |
 | Database entity | A single concept that needs to be stored in a table and database, such as a kind of person, product, thing, or object | -                    | "When I started my project, I considered all of the database entities I needed to store, such as users, posts, and comments."                                                                                                                         |
 | Primary key     | An attribute dedicated to being a unique identifier for each row in a table                                           | PK                   | "Even though two rows had the same name, they had different primary keys," "I was able to retrieve the correct row each time because I queried using primary keys."                                                                                   |
@@ -39,7 +40,7 @@ Using a db effectively means considering how data is structured and represented 
 
 Different database types will specify different methods and systems of organizing the data.
 
-**Here's a metaphor**: Imagine that a webapp we're building is a school classroom which runs a bunch of instructions, activities, and workshops. Imagine that our workshops use a lot of supplies, which is the data. We could choose to only use disposable supplies, and put those supplies in the classroom. This is like keeping data around only in working memory. Over time, our classroom could get really messy, and create a lot of waste.
+**Here's a metaphor**: Imagine that you are running a series of children's art and crafts workshops.  These workshops would consume a lot of supplies (paint, paper, brushes, etc) which represents our data.  We could just use disposible supplies, keep them on the floor of our classroom and throw them out after each workshop.  Over time, our classroom could get really messy, and create a lot of waste.
 
 Instead, we can store our supplies in a supply closet, which is our database. How we organize the supply closet, what kind of bins, boxes, and labels are in the supply closet, and how we get to the supply closet is up to the type of database we're using and the decisions we make.
 
