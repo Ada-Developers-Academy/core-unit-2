@@ -114,6 +114,8 @@ Updating records is a common action we do. What does it mean to update or modify
 - Adding and deleting rows is equivalent to adding and deleting records
 - Adding and deleting columns is painful; when we add a column, we'll need to go through each row and fill it in with some value. Deleting a column also means going through and modifying every record.
 
+<!-- TODO:  Add image illustrating the difficulties of adding or deleting a column -->
+
 ### !end-callout
 
 ## Check for Understanding
