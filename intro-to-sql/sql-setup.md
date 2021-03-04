@@ -215,7 +215,7 @@ CREATE TABLE example_table_name (
 );
 ```
 
-| Piece of Code        | Notes                                                                                                                               |
+| <div style="width:100px;">Piece of Code</div>    | Notes                                                                                                                               |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `CREATE TABLE`       | SQL command to create a table                                                                                                       |
 | `example_table_name` | **Replace this** with the name of the new table                                                                                     |
