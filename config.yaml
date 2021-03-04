@@ -40,7 +40,11 @@ Standards:
       -
         Type: Lesson
         UID: bf845a0d8d9b36277b4a65ad5a323ec6
-        Path: /intro-to-sql/intro-to-relational-databases.md      
+        Path: /intro-to-sql/intro-to-relational-databases.md
+      -
+        Type: Lesson
+        UID: 9f6237c34cd80959b46a2a6b197e04f5
+        Path: /intro-to-sql/sql-setup.md
       -
         Type: Instructor
         UID: 431e288ed7b0fa2b88b7599ae09a3543
@@ -48,7 +52,7 @@ Standards:
       -
         Type: Lesson
         UID: 1ccd31d7b789d74e78d94c236193bb8d
-        Path: /intro-to-sql/activity-intro-to-sql.md
+        Path: /intro-to-sql/activity-intro-to-sql.md 
       -
         Type: Lesson
         UID: 5166b21899f0663aace050ca240e65c4
@@ -61,10 +65,6 @@ Standards:
         Type: Lesson
         UID: 9bd533be21a9cc9981797c67b9991514
         Path: /intro-to-sql/retrieving-records.md
-      -
-        Type: Lesson
-        UID: 9f6237c34cd80959b46a2a6b197e04f5
-        Path: /intro-to-sql/sql-setup.md
       -
         Type: Lesson
         UID: 17054b670dbade2badeca1263766c075
