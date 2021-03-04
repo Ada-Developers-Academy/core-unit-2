@@ -141,7 +141,7 @@ SQL dbs enforce data types and other constraints on columns on tables.
 
 The following is a list of some data types available in Postgres. Refer to [official psql documentation](https://www.postgresql.org/docs/9.5/datatype.html) for a full list and their details:
 
-| Data Type   | Notes                                                                                                                          |
+| <div style="width:100px;">Data Type</div>   | Notes                                                                                                                          |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------ |
 | `boolean`   |
 | `varchar`   | Text. The user defines a maximum length.                                                                                       |
