@@ -101,7 +101,7 @@ This curriculum will use PostgreSQL for the following reasons:
 
 - Free and open-source
 - Built-in compatibility with Heroku, a popular platform used often for free Flask app deployment
-- It comes installed on macOS
+- It is easy to install on macOS
 
 ### !callout-secondary
 
