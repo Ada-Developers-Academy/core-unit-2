@@ -9,11 +9,15 @@
 Standards:
   -
     Title: Data In Tables
-    Description: Data In Tables
+    Description: "Activity: Data in tables, Data in tables"
     UID: f7c302282a7e78968f846372a19f50ef
     SuccessCriteria:
       - success criteria
     ContentFiles:
+      -
+        Type: Instructor
+        UID: 62c24181bff87815cf3039e30c8c32b2
+        Path: /data-in-tables/instructor-activity-data-in-tables.md      
       -
         Type: Lesson
         UID: a5d0460ebba87354036cecef3e810940
@@ -26,13 +30,9 @@ Standards:
         Type: Lesson
         UID: 0e1f2fc10fdeffcb430193b38662480e
         Path: /data-in-tables/data-in-tables.md
-      -
-        Type: Instructor
-        UID: 62c24181bff87815cf3039e30c8c32b2
-        Path: /data-in-tables/instructor-activity-data-in-tables.md
   -
     Title: Intro To Sql
-    Description: Intro To Sql
+    Description: Intro to SQL, Adding new records, Retrieving records, Updating records, Deleting records
     UID: 3211fc3d75369f96b537a4535fcbba6d
     SuccessCriteria:
       - success criteria
