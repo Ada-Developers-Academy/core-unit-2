@@ -32,11 +32,15 @@ Standards:
         Path: /data-in-tables/data-in-tables.md
   -
     Title: Intro To Sql
-    Description: Intro to SQL, Adding new records, Retrieving records, Updating records, Deleting records
+    Description: Intro to SQL, Adding new records, Retrieving records, Updating ecords, Deleting records
     UID: 3211fc3d75369f96b537a4535fcbba6d
     SuccessCriteria:
       - success criteria
     ContentFiles:
+      -
+        Type: Lesson
+        UID: bf845a0d8d9b36277b4a65ad5a323ec6
+        Path: /intro-to-sql/intro-to-relational-databases.md      
       -
         Type: Instructor
         UID: 431e288ed7b0fa2b88b7599ae09a3543
@@ -49,10 +53,6 @@ Standards:
         Type: Lesson
         UID: 5166b21899f0663aace050ca240e65c4
         Path: /intro-to-sql/adding-new-records.md
-      -
-        Type: Lesson
-        UID: bf845a0d8d9b36277b4a65ad5a323ec6
-        Path: /intro-to-sql/intro-to-relational-databases.md
       -
         Type: Instructor
         UID: d208cde984a0236f321a3a2216132286
