@@ -209,6 +209,105 @@ An example of the `borrowers` table with a primary key column named `id` could l
 
 ## Check for Understanding
 
+
+<!-- prettier-ignore-start -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: checkbox
+* id: 0da73b13-bf8e-42d1-a29f-bb44794e2272
+* title: Primary Keys and Data types
+* points: 1
+* topics: sql
+
+##### !question
+
+Given the table: 
+
+| `id` (`int`, `PRIMARY KEY`) | `full_name` (`varchar`) | `address` (`varchar`)                          |
+| --------------------------- | ----------------------- | ---------------------------------------------- |
+| `97`                        | `Sabrina C. Hunter`     | `4654 Leisure Lane, San Luis Obispo, CA 93401` |
+| `98`                        | `Sabrina C. Hunter`     | `615 Radio Park Drive, Augusta, GA 30901`      |
+
+Which values could be inserted into a row without an error?
+
+##### !end-question
+
+##### !options
+
+* id: "99", full_name: "Ray Rosa", address: "123 Elm St, Seattle, WA 98121"
+* id: 1, full_name: "Ray Rosa", address: "123 Elm St, Seattle, WA 98121"
+* id: 99, full_name: "Ray Rosa", address: "123 Elm St, Seattle, WA 98121"
+* id: 99, full_name: 123, address: "123 Elm St, Seattle, WA 98121"
+
+##### !end-options
+
+##### !answer
+
+* id: 1, full_name: "Ray Rosa", address: "123 Elm St, Seattle, WA 98121"
+* id: 99, full_name: "Ray Rosa", address: "123 Elm St, Seattle, WA 98121"
+
+##### !end-answer
+
+<!-- other optional sections -->
+<!-- !hint - !end-hint (markdown, hidden, students click to view) -->
+<!-- !rubric - !end-rubric (markdown, instructors can see while scoring a checkpoint) -->
+<!-- !explanation - !end-explanation (markdown, students can see after answering correctly) -->
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: short-answer
+* id: df6e79cc-78ca-4d8d-b711-c08f3d4b8415
+* title: Schema 
+* points: 1
+* topics: sql
+
+##### !question
+
+In your own words explain what a schema is.
+
+##### !end-question
+
+##### !placeholder
+
+What is a schema?
+
+##### !end-placeholder
+
+##### !answer
+
+/.+/
+
+##### !end-answer
+
+<!-- other optional sections -->
+<!-- !hint - !end-hint (markdown, hidden, students click to view) -->
+<!-- !rubric - !end-rubric (markdown, instructors can see while scoring a checkpoint) -->
+##### !explanation
+
+The database's *schema* provides **structure** for the database, establishing which tables exist, their attributes, the data type of each attribute and any constraints on them.  The schema does **not** include the data within each table.
+
+You can think of a schema as like a bunch of classes.  They determine the structure of the data, without having values of specific instances of it.  A class determines what methods and attributes instances get, but isn't a specific instance of that type.
+
+##### !end-explanation
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+<!-- prettier-ignore-end -->
+
 <!-- Question Takeaway -->
 <!-- prettier-ignore-start -->
 ### !challenge
