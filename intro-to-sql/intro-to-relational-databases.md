@@ -47,7 +47,7 @@ Instead, we can store our supplies in a supply closet, which is our database. Ho
 When working with databases, we should ask ourselves:
 
 1. How do we structure data in the database? What rules does the database need to follow?
-1. How do we communicate the db and retrieve or modify data?
+1. How do we communicate with the db to retrieve or modify data?
 
 When we talk with a database, we'll be able to create, read, update, or delete the specific data we need.
 
