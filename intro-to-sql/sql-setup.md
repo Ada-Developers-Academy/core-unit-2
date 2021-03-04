@@ -387,8 +387,8 @@ We cannot undo dropping a database. We will practice dropping databases and tabl
 
 | Error Description                             | What It Could Mean                                                                                       |
 | --------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ERROR: table "example_table" does not exist` | Check if there is a table in the connected database with the name `example_table` and check for spelling |
-| `FATAL: database "example_db" does not exist` | Check databases                                                                                          |
+| `ERROR: table "example_table" does not exist` | Check if there is a table in the connected database with the name `example_table` and check for spelling.  You can use `\dt` to list the tables in the connected database. |
+| `FATAL: database "example_db" does not exist` | Check databases with `\l`                                                                                         |
 | `ERROR: syntax error at or near "COMMAND"`    | Some statement has incorrect syntax. **Check that the statement ends with a semicolon (`;`)**.           |
 
 ## Random Debugging
