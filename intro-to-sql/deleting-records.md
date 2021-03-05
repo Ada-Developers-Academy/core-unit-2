@@ -8,7 +8,7 @@
 
 Zahra is a user of a chat app, which allows her to add and manage her different contacts. She can select a contact and talk with them, categorize her contacts, and update contact information.
 
-Unfortunately Zahra realizes that she put in two entries for a particular friend.  She only needs the one entry and so she wants to remove the duplicate entry.
+Unfortunately Zahra finds two entries for the same friend.  She only needs the one entry and so she wants to cleanup her contacts and remove the duplicate entry.
 
 Consider this feature:
 
