@@ -69,3 +69,7 @@ Standards:
         Type: Lesson
         UID: 17054b670dbade2badeca1263766c075
         Path: /intro-to-sql/updating-records.md
+      -
+        Type: Lesson
+        UID: 66c659ae-9887-4e01-a059-a73b22847a5d
+        Path: /intro-to-sql/deleting-records.md
