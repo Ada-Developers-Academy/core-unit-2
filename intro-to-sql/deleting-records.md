@@ -39,7 +39,7 @@ Before we delete a record in a table, we should first determine:
 
 ## Can Delete Multiple Records At Once
 
-Postgres, and all relational databases support deleting one or multiple records at once.  This can be **dangerous** because a mistake could cause unintentional deletions!
+All relational databases including Postgres support deleting one or multiple records at once.  This can be **dangerous** because a mistake could cause unintentional deletions!
 
 ### !end-callout
 
