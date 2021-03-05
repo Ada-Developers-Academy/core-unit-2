@@ -161,25 +161,20 @@ WHERE license_expires = '2020'
 1. All records with a license_expires field equal to '2020' will be deleted.
 </details>
 
-A successful update will print out `UPDATE #`, where `#` is the number of records updated.
+### Feedback on DELETING Records
 
-For example, an update of 3 records will print out `UPDATE 3`.
+A successful deletion will print out `DELETE #`, where `#` is the number of records deleted.
 
-An _invalid_ `UPDATE` statement will produce an error, and nothing will be updated.
+For example, a delete of 3 records will print out `DELETE 3`.
 
-For example, what happens if we try to update an ID column that has the constraint `GENERATED ALWAYS`?
+For example when we attempt to delete when **no** records match the `WHERE` condition.
 
 ```sql
-UPDATE media
-SET media_id = 800;
+DELETE FROM media
+WHERE publication_year > 2100;
 ```
 
-We would get output similar to:
-
-```
-ERROR:  column "media_id" can only be updated to DEFAULT
-DETAIL:  Column "media_id" is an identity column defined as GENERATED ALWAYS.
-```
+generates the result `DELETE 0`
 
 ## Check for Understanding
 
