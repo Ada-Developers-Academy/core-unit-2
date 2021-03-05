@@ -52,7 +52,7 @@ WHERE condition;
 
 | Piece of Code                             | Notes                                                                                   |
 | ----------------------------------------- | --------------------------------------------------------------------------------------- |
-| `DELETE`                                  | Keyword that begins an deletion statement                                                 |
+| `DELETE FROM`                                  | Keywords that begin an deletion statement                                                 |
 | `table_name`                              | **Replace this** with the name of the correct table                                     |
 | `WHERE`                                   | Keyword that begins a where-clause, where you determine what gets deleted               |
 | `condition;`                              | **Replace this** with a condition that must be **true** in order for a record to be deleted |
