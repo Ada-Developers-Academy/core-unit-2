@@ -104,7 +104,7 @@ our `media` table will look like this:
 | `media_id` | `category` | `title`         | `creator`      | `publication_year` | `description_text` |
 | ---------- | ---------- | --------------- | -------------- | ------------------ | ------------------ |
 
-**All records are removed!**
+The table is now empty.  **All records are removed!**
 
 ### Examples on Deleting Records
 
@@ -126,7 +126,7 @@ DELETE FROM authors
 </details>
 
 ```sql
-DELETE drivers
+DELETE FROM drivers
 WHERE id = 2;
 ```
 
@@ -167,7 +167,7 @@ A successful deletion will print out `DELETE #`, where `#` is the number of reco
 
 For example, a delete of 3 records will print out `DELETE 3`.
 
-For example when we attempt to delete when **no** records match the `WHERE` condition.
+Further when we attempt to delete and **no** records match the `WHERE` condition.
 
 ```sql
 DELETE FROM media
