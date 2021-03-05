@@ -111,41 +111,55 @@ our `media` table will look like this:
 Read through these example SQL statements. For each example, read the code and answer:
 
 1. What is the name of the table?
-1. For each column-value pair, what is the column and what is the value?
-1. What kinds of record(s) will be updated?
-
-1. Update all records to have an `author_name` value `"(No Author)"`
+1. Which record(s) will be removed?
 
 ```sql
-UPDATE authors
-SET author_name = '(No Author)';
+DELETE FROM authors
 ```
 
-2. Update the record with `id` `2` so the `is_available` attribute is `false`. (Update Driver #2 to be unavailable.)
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. This statement impacts the `authors` table.
+1. All records in this table will be deleted.
+
+</details>
 
 ```sql
-UPDATE drivers
-SET is_available = false
+DELETE drivers
 WHERE id = 2;
 ```
 
-3. Update the record with `id` `1` so `publication_year` is `"1990"` _and_ `description_text` is `NULL`. (Update Media #1 with a new publication year and empty description.)
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. This statement impacts the `drivers` table.
+1. This statement deletes the record with an `id` column equal to 2.
+</details>
 
 ```sql
-UPDATE media
-SET publication_year = '1990', description_text = NULL
-WHERE media_id = 1;
+DELETE FROM presidents
+WHERE id > 44;
 ```
 
-4. Update all records with the category `"album"` to the category `"Album"`. (Rename category `"album"` to `"Album"`.)
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. This statement impacts the presidents table.
+1.  All records with id values greater than 44 will be deleted.
+</details>
 
 ```sql
-UPDATE media
-SET category = 'Album'
-WHERE category = 'album';
+DELETE FROM drivers
+WHERE license_expires = '2020'
 ```
 
-### Feedback on Updating Records
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. This statement impacts the drivers table.
+1. All records with a license_expires field equal to '2020' will be deleted.
+</details>
 
 A successful update will print out `UPDATE #`, where `#` is the number of records updated.
 
