@@ -31,8 +31,8 @@ Imagine you're a programmer on this chat app. How would you accomplish changing 
 
 Before we delete a record in a table, we should first determine:
 
-- Which table contains the data we need to update
-- Which record(s) we need to update
+- Which table contains the data we need to delete
+- Which record(s) need to be removed
   - How can we determine how to accurately find these records, and only these records?
 
 ### !callout-danger
