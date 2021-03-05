@@ -416,7 +416,7 @@ The inverse of this concept also works. We can use `IS NULL` to only retrieve re
 * title: Retrieving Records
 ##### !question
 
-Imagine building a feature where a user can manage a list of guests. The user wants to find all of the guest IDs who do not have an email address.
+Imagine building a feature where a user can manage a list of guests. The user wants to find all of the guest IDs who do **not** have an email address.
 
 Arrange the following syntax into a valid statement.
 
@@ -430,7 +430,6 @@ Arrange the following syntax into a valid statement.
 1. `WHERE`
 1. `email_address`
 1. `IS`
-1. `NOT`
 1. `NULL`
 1. `;`
 
