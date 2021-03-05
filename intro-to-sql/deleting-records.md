@@ -46,7 +46,7 @@ Postgres, and all relational databases support deleting one or multiple records 
 To delete a record(s), we use the following SQL syntax:
 
 ```sql
-DELETE table_name
+DELETE FROM table_name
 WHERE condition;
 ```
 
@@ -57,13 +57,13 @@ WHERE condition;
 | `WHERE`                                   | Keyword that begins a where-clause, where you determine what gets deleted               |
 | `condition;`                              | **Replace this** with a condition that must be **true** in order for a record to be deleted |
 
-_The `WHERE` clause is optional_. Without a `WHERE` clause, all records within the table will be removed!
+_The `WHERE` clause is optional_. Without a `WHERE` clause, all records within the table will be removed!.
 
 ### !callout-danger
 
-## Without `WHERE`, All Are Updated
+## Without `WHERE`, All Are Deleted
 
-If you omit the WHERE clause, ALL records will be updated!
+If you omit the WHERE clause, ALL records will be deleted!
 
 ### !end-callout
 
@@ -81,8 +81,7 @@ Imagine the following table named `media` with these columns and four records.
 After running this SQL statement...
 
 ```sql
-UPDATE media
-SET title = '🍀'
+DELETE FROM media
 WHERE id = 3;
 ```
 
