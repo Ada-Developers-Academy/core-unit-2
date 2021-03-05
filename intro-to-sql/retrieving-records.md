@@ -40,9 +40,9 @@ SELECT column1, column2, column3, ... FROM table_name;
 | `FROM`                                              | A SQL keyword to indicate that these records are from some set of tables                                                                                |
 | `table_name;`                                       | **Replace this** with the name of the table being searched. This could be a comma-separated list of multiple tables. Don't forget the ending semicolon. |
 
-### `*`
+### The `*` Character
 
-The `*` character means all columns. We can use `*` instead of listing all columns. This means we can use the following syntax to **get all columns and all records from one table**.
+The `*` character means all columns. We can use `*` instead of listing each column. This means we can use the following syntax to **get all columns and all records from one table**.
 
 ```sql
 SELECT * FROM table_name;
