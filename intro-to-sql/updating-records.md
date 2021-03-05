@@ -63,7 +63,7 @@ WHERE condition;
 | `WHERE`                                   | Keyword that begins a where-clause, where you determine what gets updated               |
 | `condition;`                              | **Replace this** with a condition that must be true in order for a record to be updated |
 
-_The `WHERE` clause is optional_. Without a `WHERE` clause, all records within the table will be expected.
+_The `WHERE` clause is optional_. Without a `WHERE` clause, all records within the table will be updated.
 
 ### !callout-danger
 
