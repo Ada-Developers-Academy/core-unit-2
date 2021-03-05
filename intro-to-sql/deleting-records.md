@@ -91,26 +91,22 @@ our `media` table will look like this:
 | ---------- | ---------- | --------------- | -------------- | ------------------ | ------------------------------------- |
 | 1          | book       | Red Java        | Jewel Koss     | 1971               | Nisi ducimus reprehenderit molestiae. |
 | 2          | book       | Postmodern Been | Glen Senger    | 1929               | Dolore repellendus doloribus maiores. |
-| 3          | movie      | 🍀              | Xuan Pouros    | 1997               | Corporis id voluptatem fuga.          |
 | 4          | movie      | Wake-up Utopia  | Buena Shanahan | 1930               | Fuga corrupti ducimus animi.          |
 
 After running this SQL statement...
 
 ```sql
-UPDATE media
-SET description_text = '🍀';
+DELETE FROM media;
 ```
 
 our `media` table will look like this:
 
 | `media_id` | `category` | `title`         | `creator`      | `publication_year` | `description_text` |
 | ---------- | ---------- | --------------- | -------------- | ------------------ | ------------------ |
-| 1          | book       | Red Java        | Jewel Koss     | 1971               | 🍀                 |
-| 2          | book       | Postmodern Been | Glen Senger    | 1929               | 🍀                 |
-| 3          | movie      | 🍀              | Xuan Pouros    | 1997               | 🍀                 |
-| 4          | movie      | Wake-up Utopia  | Buena Shanahan | 1930               | 🍀                 |
 
-### Examples on Updating Records
+**All records are removed!**
+
+### Examples on Deleting Records
 
 Read through these example SQL statements. For each example, read the code and answer:
 
