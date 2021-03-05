@@ -182,8 +182,8 @@ generates the result `DELETE 0`
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: ordering
-* id: g9JMGK
-* title: Updating Records
+* id: 2bb3f20b-4483-49a3-9b14-1a92bbbb5ea7
+* title: DELETING Records
 ##### !question
 
 Arrange the following syntax.
@@ -201,20 +201,15 @@ CREATE TABLE hotel_guests (
 ##### !end-question
 ##### !answer
 
-1. `UPDATE`
+1. `DELETE`
+1. `FROM`
 1. `hotel_guests`
-1. `SET`
-1. `is_checked_in = true`
 1. `WHERE`
-1. `guest_id = 47`
+1. `guest_id <= 47`
 1. `;`
 
 ##### !end-answer
-##### !hint
 
-Because the `guest_id` column is `GENERATED ALWAYS`, we can assume that this statement is _not_ updating and setting the `guest_id = 47`.
-
-##### !end-hint
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -222,7 +217,7 @@ Because the `guest_id` column is `GENERATED ALWAYS`, we can assume that this sta
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: paragraph
-* id: KAmRKV
+* id: 30f01d85-fdbf-49b9-bdd1-afcbe2a3e7ef
 * title: Updating Records
 ##### !question
 
