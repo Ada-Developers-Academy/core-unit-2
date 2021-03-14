@@ -284,10 +284,147 @@ VALUES (
   'Semiautobiographical story of a young man raised in a strict evangelical tradition.');
 -->
 
-<!-- 
-In the drivers table Cade O'Moore misspelled their name as Coade OMoore.  Write an SQL query to change all drivers with the name "Coade OMoore" to "Cade O'Moore".
+### !end-challenge
 
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: paragraph
+* id: a34660df-2b46-44e1-91a6-4721a586a3c0
+* title: Updating Users
+* points: 1
+* topics: sql, sql-update
+
+##### !question
+
+You have a table named users created with:
+
+```sql
+CREATE TABLE users (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  first_name VARCHAR(32),
+  last_name VARCHAR(32),
+  email VARCHAR(32)
+);
+```
+
+In the users table Cade O'Moore misspelled their name as "Coade OMoore".  Write an SQL query to change all drivers with the name "Coade OMoore" to "Cade O'Moore".
+
+**How can you include an apostrophe (') in the last_name of your SQL query?**  Research a solution.
+
+When you finish, try your solution by running the following in psql and then verify that the row appears with the following SQL query:
+
+```sql
+CREATE TABLE users (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  first_name VARCHAR(32),
+  last_name VARCHAR(32)
+);
+INSERT INTO users (
+  first_name,
+  last_name
+)
+VALUES ('Coade', 'OMoore');
+
+/* Insert your code here */
+
+/* Test your query with the following
+It should return with:
+*/
+
+SELECT * FROM users WHERE first_name = 'Cade';
+
+/* Should result with:
+ id | first_name | last_name |         email         
+----+------------+-----------+-----------------------
+  8 | Cade       | O'Moore   | cade.omoore@gmail.com
+(1 row)
+*/
+SELECT * FROM users
+WHERE first_name = 'Cade'
+```
+
+##### !end-question
+
+##### !placeholder
+
+INSERT ...
+
+##### !end-placeholder
+
+<!-- Sample answer:
+UPDATE users
+SET first_name='Cade',
+last_name = 'O''Moore'
+WHERE first_name = 'Coade' AND last_name='OMoore';
 -->
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: code-snippet
+* language: sql
+* id: e33ac2ce-1d31-4188-8e80-1f62960fe179
+* title: SELECT products with publisher_id 3
+* data_path: /intro-to-sql/sql-fixtures/create-products-table.sql
+* points: 1
+* topics: sql-select
+
+##### !question
+
+Given the table created by this code:
+
+```sql
+CREATE TABLE products (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(32),
+  description TEXT,
+  publisher_id INT
+);
+```
+
+Write a SELECT statement to retrieve only the names of products who's publisher_id is 3
+
+##### !end-question
+
+##### !placeholder
+
+```sql
+-- write a statement to select...
+```
+
+##### !end-placeholder
+
+##### !tests
+
+```sql
+SELECT name
+FROM products
+WHERE publisher_id = 3;
+```
+
+##### !end-tests
+
+<!-- other optional sections -->
+<!-- !hint - !end-hint (markdown, hidden, students click to view) -->
+<!-- !rubric - !end-rubric (markdown, instructors can see while scoring a checkpoint) -->
+<!-- !explanation - !end-explanation (markdown, students can see after answering correctly) -->
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
 
 <!-- 
 Write a query to retrieve the full_name field of all the drivers with 1 or 2 digit ids (1-99).  You can assume all ids are positive.
