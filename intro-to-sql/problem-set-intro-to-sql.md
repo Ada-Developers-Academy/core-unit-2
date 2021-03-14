@@ -212,18 +212,76 @@ INSERT INTO publishers (name, address)
 VALUES ('Dark Pony Gaming', '315 5th Ave S Suite 200, Seattle, WA 98104');
 -->
 
-<!-- Question on Adding New Records
+### !end-challenge
 
-You have a table drivers with:
+<!-- ======================= END CHALLENGE ======================= -->
 
-| id | full_name | vin | 
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: paragraph
+* id: 7e148b35-e9e0-462d-bc21-decbab39296f
+* title: Inserting New Products
+* points: 1
+* topics: sql, sql-insert
+
+##### !question
+
+You have a table named products with:
+
+| id | name | publisher_id | description  | 
+|--- |--- |--- |--- |
+| 1  | Nimona | 1 | Wonderful comic by Noelle |
+| 2 |  Watchmen | 2 | Dark, very dark |
+
+The table was created with:
+
+```sql
+CREATE TABLE products (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(32),
+  publisher_id INT,
+  description TEXT
+);
+```
+
+Write an SQL query to add the following product to the table.  The id is omitted.
+
+| name | publisher_id | description |
 |--- |--- |--- |
-| 1  | Armaan Salinas | AACC32171121 |
-| 2 | Mitchell Irwin  | BCE118831AB1 |
-| 3 | Cade O'Moore |    BDD198112137 |
+| Jimmy Corrigan | 3  | The smartest kid on earth. |
 
-Insert a new entry for the driver "Oluwatobiloba Knott" and the VIN number "EDA118132136"
+When you finish, try your solution by creating the table and running your SQL statement in PSQL and then verify that the row appears with the following SQL query:
 
+```sql
+/* Should result with:
+ id |      name      | publisher_id |        description         
+----+----------------+--------------+----------------------------
+  8 | Jimmy Corrigan |            3 | The smartest kid on earth.
+(1 row)
+
+*/
+SELECT * FROM products 
+WHERE name = 'Jimmy Corrigan';
+```
+
+##### !end-question
+
+##### !placeholder
+
+INSERT ...
+
+##### !end-placeholder
+
+<!-- Sample answer:
+INSERT INTO products (name, publisher_id, description)
+VALUES (
+  'Blankets', 
+  3, 
+  'Semiautobiographical story of a young man raised in a strict evangelical tradition.');
 -->
 
 <!-- 
