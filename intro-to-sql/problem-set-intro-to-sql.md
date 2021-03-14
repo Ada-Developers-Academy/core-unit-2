@@ -35,7 +35,51 @@ You can then access the sample database under psql with the command `\c intro_to
 
 ## Answer the Following Questions
 
-<!-- Question on CREATE TABLE 
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: paragraph
+* id: 615ead30-fb6f-43f0-ab55-4072dd34bf5c
+* title: Create Reviews Table
+* points: 1
+* topics: sql, sql-create
+
+##### !question
+
+Write the SQL statement to create a `reviews` table with the following fields:
+
+* id - INT, primary key and auto-incrementing
+* title - VARCHAR(32)
+* product_id - INT
+* body - TEXT
+* creator_id - INT
+* stars - INT
+
+When you finish run the statement in psql and verify that it worked with the SQL code below.
+
+```sql
+/* Insert your code here */
+
+/* Should output: 
+ exists 
+--------
+ t
+(1 row)
+*/
+SELECT EXISTS(  SELECT * FROM information_schema.tables WHERE table_schema='public' AND table_name='reviews');
+
+/* Should output:
+INSERT 0 1
+*/
+INSERT INTO reviews (title, product_id, body, creator_id, stars)
+VALUES('The greatest book ever!', 3, 'This comic was so inspring!', 4, 5);
+```
+
+##### !end-question
+
+##### !placeholder
 
 - Create a drivers table with the following fields:
   - full_name - VARCHAR(32)
