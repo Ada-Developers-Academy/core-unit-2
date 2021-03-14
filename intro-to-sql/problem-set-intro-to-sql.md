@@ -1,5 +1,38 @@
 # Problem Set:  Intro to SQL
 
+In the following exercise, Amazdun books is a new startup founded to sell ecomics and self-published Zines online.  We are contracted you to construct a number of queries.
+
+## Import Sample Database
+
+We are providing a sample database to use as you practice writing SQL queries. 
+
+To use the sample database, first download the following SQL file by right-clicking on the file and saving it to your computer.
+
+* [Starting Database]() - TODO ADD LINK
+
+Then import the file:
+
+```bash
+$ psql -u postgres
+psql (13.2)
+Type "help" for help.
+
+postgres=> CREATE DATABASE intro_to_sql_problem_set;
+CREATE DATABASE
+postgres=> exit
+
+$  psql -U postgres -d intro_to_sql_problem_set < intro-to-sql-problemset.sql
+CREATE TABLE
+ALTER TABLE
+CREATE TABLE
+ALTER TABLE
+COPY 7
+COPY 7
+ALTER TABLE
+```
+
+You can then access the sample database under psql with the command `\c intro_to_sql_problem_set`
+
 ## Answer the Following Questions
 
 <!-- Question on CREATE TABLE 
