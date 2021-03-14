@@ -81,11 +81,19 @@ VALUES('The greatest book ever!', 3, 'This comic was so inspring!', 4, 5);
 
 ##### !placeholder
 
-- Create a drivers table with the following fields:
-  - full_name - VARCHAR(32)
-  - id  - PRIMARY KEY INT (auto-incremented)
-  - VIN - VARCHAR(32)
+CREATE TABLE ...
 
+##### !end-placeholder
+
+<!-- Sample solution 
+CREATE TABLE reviews (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  title VARCHAR(32),
+  product_id INT,
+  body TEXT,
+  creator_id INT,
+  stars INT
+);
 -->
 
 <!-- Question on DROP TABLE
