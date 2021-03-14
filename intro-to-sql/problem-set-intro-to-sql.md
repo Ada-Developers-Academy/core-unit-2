@@ -96,10 +96,120 @@ CREATE TABLE reviews (
 );
 -->
 
-<!-- Question on DROP TABLE
+### !end-challenge
 
-You have a table named drivers, write the code to remove that table from the database.
+<!-- ======================= END CHALLENGE ======================= -->
 
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: paragraph
+* id: 8d615f33-c3de-4dcd-a437-b41f2b5e5d31
+* title: Drop Books Table
+* points: 1
+* topics: sql, sql-drop
+
+##### !question
+
+A teammate Rosie Rivet created a `books` table, but requirements have changed and the schema no longer needs that table.  Write SQL code to remove that table.
+
+When you finish write this code into PSQL and then run your solution to verify that it works.
+
+```sql
+/* Paste in your code here. */
+
+/* Your code should output:  
+DROP TABLE 
+*/
+
+
+/* 
+To verify the table is gone run the following.
+
+Should output (notice the "f"): 
+ exists 
+--------
+ f
+(1 row)
+*/
+SELECT EXISTS(  SELECT * FROM information_schema.tables WHERE table_schema='public' AND table_name='books');
+```
+
+##### !end-question
+
+##### !placeholder
+
+##### !end-placeholder
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: paragraph
+* id: c2058335-b551-4420-a664-ec30594bf47d
+* title: Inserting New Publishers
+* points: 1
+* topics: sql, sql-insert
+
+##### !question
+
+You have a table named publishers with:
+
+| id | name | address | 
+|--- |--- |--- |
+| 1  | Glasgow Publishers | 123 Elm Street, Glasgow, Scotland, 10358  |
+| 2 | Spring Rabbits Comics  | P.O. Box 11234, Tuscon, AZ 85487 |
+| 3 | Ahmed Enriquez |    P.O. Box 98111, Los Angeles, CA 98774 |
+
+The table was created with:
+
+```sql
+CREATE TABLE publishers (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(32),
+  address VARCHAR(64)
+);
+```
+
+Write an SQL query to add the following publisher to the table.
+
+| name | address | 
+|--- |--- |
+| Dark Pony Gaming | 315 5th Ave S Suite 200, Seattle, WA 98104  |
+
+When you finish, try your solution by creating the table and running your SQL statement in PSQL and then verify that the row appears with:
+
+```sql
+/* Should result with:
+ id |       name        |                  address                   
+----+-------------------+--------------------------------------------
+  6 | Dark Pony Gaming | 315 5th Ave S Suite 200, Seattle, WA 98104
+(1 row)
+*/
+SELECT * FROM publishers 
+WHERE name = 'Dark Pony Gaming';
+```
+
+##### !end-question
+
+##### !placeholder
+
+INSERT ...
+
+##### !end-placeholder
+
+<!-- Sample answer:
+INSERT INTO publishers (name, address)
+VALUES ('Dark Pony Gaming', '315 5th Ave S Suite 200, Seattle, WA 98104');
 -->
 
 <!-- Question on Adding New Records
