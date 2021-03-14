@@ -431,11 +431,122 @@ Write a query to retrieve the full_name field of all the drivers with 1 or 2 dig
 
 -->
 
-<!--
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
 
-The Driver "Armaan Salinas" has retired.  Write an SQL statement to remove them from the drivers table.
+### !challenge
 
+* type: code-snippet
+* language: sql
+* id: fe6f2b05-bf48-42c7-892c-e62000d66fed
+* title: Select products with publishers ids between 0 and 100
+* data_path: /intro-to-sql/sql-fixtures/create-products-table.sql
+* points: 1
+* topics: sql, sql-select
+
+##### !question
+
+Given the table created by this code:
+
+```sql
+CREATE TABLE products (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  name VARCHAR(32),
+  description TEXT,
+  publisher_id INT
+);
+```
+
+Write a SELECT statement to retrieve the names and descriptions of products who's publisher_id is a 1 or 2 digit number.
+
+##### !end-question
+
+##### !placeholder
+
+```sql
+-- write a statement to select...
+```
+
+##### !end-placeholder
+
+##### !tests
+
+```sql
+SELECT name, description
+FROM products
+WHERE publisher_id >= 1 and publisher_id < 100;
+```
+
+##### !end-tests
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: paragraph
+* id: 8d615f33-c3de-4dcd-a437-b41f2b5e5d31
+* title: Drop Books Table
+* points: 1
+* topics: sql, sql-drop
+
+##### !question
+
+Given the table created with:
+
+```sql
+CREATE TABLE users (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  first_name VARCHAR(32),
+  last_name VARCHAR(32)
+);
+```
+
+The user "Auster Alexandra" has retired.  Write an SQL statement to remove them from the users table.
+
+```sql
+/* Then paste in your code here. */
+
+/* Your code should output:  
+DELETE 1 
+*/
+
+
+/* 
+To verify the table is gone run the following.
+
+Should output:
+ id | first_name | last_name | email 
+----+------------+-----------+-------
+(0 rows)
+*/
+SELECT * 
+FROM users 
+WHERE first_name = 'Auster' AND last_name = 'Alexandra';
+```
+
+##### !end-question
+
+##### !placeholder
+
+
+
+##### !end-placeholder
+
+<!-- 
+Sample Solution
+DELETE FROM users
+WHERE first_name = 'Auster' and last_name = 'Alexandra';
 -->
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
 
 
 
