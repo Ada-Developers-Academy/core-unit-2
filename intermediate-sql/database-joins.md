@@ -3,7 +3,7 @@
 
 <!-- TODO:  Remove this note
 
-Note:  I'm uncertain if I should separate ERD diagrams and this lesson, but ERD diagrams are great at illustrating relationships so...
+I'm only teaching Inner Joins here just to teach the concept.  
 
  -->
 
@@ -20,6 +20,7 @@ Note:  I'm uncertain if I should separate ERD diagrams and this lesson, but ERD 
 ## Revisiting SELECT
 
 ## Joins
+
 
 ## Check for Understanding
 
