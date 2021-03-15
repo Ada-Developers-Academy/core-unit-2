@@ -88,6 +88,41 @@ So in the diagram above each row in the authors table is connected to one and on
 
 ### One to Many
 
+A more common type of relationship is called one to many.  In a one to many relationship each record in one table can relate to zero, one or many records in the other table.  We often call this type of relationship a *has-many* relationship.
+
+For example an author can have (write) many books, and we can illustrate that relationship with the following diagram.
+
+[One to many relationship between books and authors](intermediate-sql__database-relationships__books-authors.svg)
+*Fig. A one to many relationship between books and authors.*
+
+In a one to many relationship the table, called the child table contains a field which references the primary key of the other table, called the parent.  Each row in the child table references one row in the parent table, but each row in the parent table may be referenced multiple times.
+
+Notice the "crow's feet" where the line connects to the `books` table.
+
+![So called crow's feet indicating many in an ERD diagram](../assets/intermediate-sql__database-relationships__crows-feet.png)
+
+This indicates "many" in the relationship.  So one author in this relationship can connect to many different books.
+
+We can see this illustrated in an example with the following tables.
+
+| id | first_name | last_name | bio | 
+|--- |--- |--- |---
+| 1  | Maayan | Ramesha | ... |
+| 2  | Dinah  | Banu    | ... |
+
+*Fig. Authors Table*
+
+| id | title | description | isbn | author_id |
+|--- |--- |--- |--- |--- |
+| 1  | Tree Of Dawn | ... | ... | 1 |
+| 2  | Faction Of The Night | ... | ... | 2 |
+| 3  | Delaying The Dungeons | ... | ... | 2 |
+| 4  | Signs At The Future | ... | ... | 2 |
+
+*Fig. Books Table*
+
+In the above two tables Maayan Ramesha has one book, and Dinah Banu has three books.
+
 ### Many to Many
 
 ## Check for Understanding
