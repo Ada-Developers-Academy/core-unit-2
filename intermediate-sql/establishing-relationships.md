@@ -74,7 +74,7 @@ CREATE TABLE books (
 );
 ```
 
-Now the `books` table has a column named `author_id`.  We created with the constraint `FOREIGN KEY (author_id) REFERENCES authors(id)`.  
+The `books` table has a column named `author_id`.  We created `author_id` with the constraint `FOREIGN KEY (author_id) REFERENCES authors(id)`.  
 
 This tells Postgres that every `author_id` value in the books table *must* reference an existing `id` value in the `authors` table.  Further the referenced column (id) is also a primary key in the authors table.
 
@@ -97,7 +97,7 @@ Because this row in the books table has an `author_id` (14) matching Michell Oba
 
 ## The Foreign Key Must Exist In The Referenced Table
 
-When we designate a column as a forien key with `REFERENCES`, any rows inserted into the table **must** include a value for that column, in this case `author_id` and that value must exist in the referenced table.
+When we designate a column as a foreign key in this manner, any rows inserted into the table **must** include a value for that column, in this case `author_id` and that value must exist in the referenced table.
 
 Databases enforce this constraint to prevent an entry in one table from referencing a row which does not exist in the other table.
 
@@ -111,9 +111,12 @@ VALUES ('book title', 'book description', '1', 1);
 Will result in:
 
 ```bash
-ERROR:  insert or update on table "books" violates foreign key constraint "books_author_id_fkey"
+ERROR:  insert or update on table "books" violates 
+foreign key constraint "books_author_id_fkey"
 DETAIL:  Key (author_id)=(1) is not present in table "authors".
 ```
+
+There are methods of creating optional foreign keys and ways to allow a foreign key field to be NULL.  Feel free to research this syntax.
 
 ### !end-callout
 
