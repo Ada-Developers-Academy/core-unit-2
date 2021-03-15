@@ -115,6 +115,30 @@ To build a many to many relationship requires a table called a JOIN Table.  For 
 ![Many to Many ERD diagram between books and genres](../assets/intermediate-sql__establishing-relationships__many-to-many.svg)
 *Fig. Many to many relationship between books and genres*
 
+We create the join table with the following SQL.
+
+<!-- 
+Note: Should we continue the pattern by adding an id field to the join table?
+--->
+
+```sql
+CREATE TABLE booksgenres (
+  book_id INT,
+  FOREIGN KEY (book_id) REFERENCES books(id),
+  genre_id INT,
+  FOREIGN KEY (genre_id) REFERENCES genres(id),
+  PRIMARY KEY (book_id, genre_id)
+);
+```
+
+This SQL creates a join table connecting the books and genres tables.  This table is different from prior tables in a few ways.
+
+1.  The table lacks an `id` field as the primary key.
+1.  The table **only** has two foreign key fields.
+1.  The `booksgenres` table uses a combination of **two** columns as a primary key.
+    *  This means that no two rows can exist with identical `book_id` and `genre_id` values.
+
+We could have created the `booksgenres` table with an `id` primary key, but using a two-field primary key has a key advantage.  Using the combination of `book_id` and `genre_id` prevents duplicate entries.  In this case no book can be listed in the same genre twice.  A book can be in multiple different genres and a genre can have multiple different books, but only one entry can link an individual book to the same genre twice.
 
 ## Check for Understanding
 
