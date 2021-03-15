@@ -4,29 +4,10 @@
 ## Goals
 
 - Create tables with columns linked to other tables.
-- Add columns to previously existing tables
 
 ## Introduction
 
-Databases such as Postgres are termed *relational databases*.  This is because we can establish relationships between tabes in our database.  This allows developers to selectively pull related information out of our datastore with specially crafted `SELECT` statements.
-
-We have created database tables like the following.
-
-| id | title | author | price | isbn |
-|--- |--- |--- |--- |--- |
-| 37 | Becoming | Michelle Obama. | 9.99 | '978-3-16-148410-0' |
-
-*Fig. books table*
-
-| id | first_name | last_name | bio |
-|--- |--- |--- |--- |
-| 14 | Michelle | Obama | Becoming is the memoir of former First Lady of the United States Michelle Oba... |
-
-*Fig. authors table*
-
-With these tables users can access information about books and about authors, but they cannot directly access the biographical information about the author from a particular book.
-
-By establishing a relationship between the tables relational databases can provide that functionality.
+In SQL we can create columns as foreign key fields at table creation, by adding new columns to existing tables or by modifying existing columns.  In this lesson we will learn the SQL syntax to create tables with foreign keys connecting them to other tables.
 
 ## Vocabulary and Synonyms
 
@@ -97,9 +78,9 @@ Because this row in the books table has an `author_id` (14) matching Michell Oba
 
 ## The Foreign Key Must Exist In The Referenced Table
 
-When we designate a column as a foreign key in this manner, any rows inserted into the table **must** include a value for that column, in this case `author_id` and that value must exist in the referenced table.
+When we designate a column as a foreign key in this manner, any rows inserted into the table **must** include a value for that column and that value must exist in the referenced table.
 
-Databases enforce this constraint to prevent an entry in one table from referencing a row which does not exist in the other table.
+Databases enforce this constraint to prevent an entry in one table from referencing a row which does not exist in the other table.  This is usually the best practice with regard to foreign keys.
 
 If the author_id 1 does not exist in the authors table the following query.
 
@@ -116,9 +97,24 @@ foreign key constraint "books_author_id_fkey"
 DETAIL:  Key (author_id)=(1) is not present in table "authors".
 ```
 
+### !end-callout
+
+### !callout-info
+
+## Other Methods To Create Foreign Keys
+
 There are methods of creating optional foreign keys and ways to allow a foreign key field to be NULL.  Feel free to research this syntax.
 
 ### !end-callout
+
+## Many To Many Relationships
+
+To build a many to many relationship requires a table called a JOIN Table.  For example a book can have many genres and each genre can have many books.  To create a relationship like this:
+
+
+![Many to Many ERD diagram between books and genres](../assets/intermediate-sql__establishing-relationships__many-to-many.svg)
+*Fig. Many to many relationship between books and genres*
+
 
 ## Check for Understanding
 
