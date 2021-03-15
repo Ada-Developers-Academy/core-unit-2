@@ -125,6 +125,58 @@ In the above two tables Maayan Ramesha has one book, and Dinah Banu has three bo
 
 ### Many to Many
 
+The one to many relationship works in many situations.  However there are scenarios where each row in one table is related to many rows in another and the reverse is also true.  However a column in a table can reference at most one row in another table.  To support a many to many relationship we need to create a special kind of table called a join table. 
+
+![Many to Many Relationship](../assets/intermediate-sql__establishing-relationships__many-to-many.svg)
+*Fig. Many to many relationship*
+
+In the above diagram each row in the `books` table is related to 0 to many rows in the `genres` table *through* the `booksgenres` table.  This connecting table is a join table.  This table contains the two common fields from the `books` and `genres` tables and so each table has a one to many relationship with the join table.
+
+We can see this relationship with the following tables.
+
+| id | title                   | description | isbn |
+|----|-------------------------|-------------|------|
+| 1  | Raven Of The River      | ...         | ...  |
+| 2  | Cat Of Rainbows         | ...         | ...  |
+| 3  | Criminals Without Glory | ...         | ...  |
+| 4  | Gods Without Direction  | ...         | ...  |
+| 5  | Agents And Priests      | ...         | ...  |
+
+*Fig. Books Table*
+
+| id | name       |
+|----|------------|
+| 1  | Sci-Fi     |
+| 2  | Fiction    |
+| 3  | Fantasy    |
+| 4  | Suspense   |
+| 5  | Nonfiction |
+
+*Fig. Genres Table*
+
+| book_id | genre_id |
+|---------|----------|
+| 1       | 3        |
+| 1       | 2        |
+| 2       | 5        |
+| 3       | 1        |
+| 3       | 2        |
+| 4       | 5        |
+| 5       | 3        |
+| 5       | 2        |
+| 5       | 4        |
+
+*Fig. BooksGenres Table*
+
+By stepping through the `BooksGenres` table we can find all the genres a particular book belongs to.
+
+### ERD Connection Symbols
+
+The following are the connection symbols used to indicate the relationships between tables in an ERD diagram.
+
+![ERD Connection Symbols](../intermediate-sql__database-relationships__erd-connection-symbols.png)
+*Fig. ERD Connection Symbols*
+
 ## Check for Understanding
 
 <!-- TODO:  Question on foreign keys -->
