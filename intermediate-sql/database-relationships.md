@@ -179,8 +179,100 @@ The following are the connection symbols used to indicate the relationships betw
 
 ## Check for Understanding
 
-<!-- TODO:  Question on foreign keys -->
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
 
-<!-- TODO:  Question on what type of relationship is being illustrated -->
+### !challenge
 
-<!-- TODO:  Question on key takeaway -->
+* type: multiple-choice
+* id: bc02aab5-24ee-4e00-8198-ec82146100bd
+* title: Types of relationships
+* points: 1
+* topics: sql, sql-relationships
+
+##### !question
+
+What type of relationship does this ERD illustrate?
+
+![Diagram](../assets/intermediate-sql__database-relationships__client-to-rentals.svg)
+
+##### !end-question
+
+##### !options
+
+* One to One
+* Many to Many
+* One to Many
+
+##### !end-options
+
+##### !answer
+
+* One to Many
+
+##### !end-answer
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: multiple-choice
+* id: e8f8ebe7-c598-4d39-8465-fdcb63f34028
+* title: Types of relationships
+* points: 1
+* topics: sql, sql-relationships
+
+##### !question
+
+What type of relationship does this ERD illustrate between rentals and books?
+
+![Diagram](../assets/intermediate-sql__database-relationships__books-rentals.svg)
+
+##### !end-question
+
+##### !options
+
+* One to One
+* Many to Many
+* One to Many
+
+##### !end-options
+
+##### !answer
+
+* Many to Many
+
+##### !end-answer
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: paragraph
+* id: d4f57998-2aef-404d-98fa-c7237784c100
+* title: Key takeaway
+
+##### !question
+
+Describe your key takeaway from this lesson.
+##### !end-question
+
+##### !placeholder
+
+Key takeaway
+
+##### !end-placeholder
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
