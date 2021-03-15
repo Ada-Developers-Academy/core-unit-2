@@ -22,7 +22,7 @@ We have created database tables like the following.
 |--- |--- |--- |--- |
 | 14 | Michelle | Obama | Becoming is the memoir of former First Lady of the United States Michelle Oba... |
 
-* Fig. authors table*
+*Fig. authors table*
 
 With these tables users can access information about books and about authors, but they cannot directly access the biographical information about the author from a particular book.
 
