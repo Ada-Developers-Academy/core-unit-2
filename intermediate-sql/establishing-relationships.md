@@ -119,8 +119,72 @@ DETAIL:  Key (author_id)=(1) is not present in table "authors".
 
 ## Check for Understanding
 
-<!-- TODO:  Reorder question with CREATE TABLE -->
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
 
-<!-- TODO:  Reorder question with ALTER TABLE -->
+### !challenge
 
-<!-- TODO:  Question on key takeaway -->
+* type: multiple-choice
+* id: fdcbaaaa-06ea-4f29-b260-780adfa91bbe
+* title: Creating a table with a foreign key
+* points: 1
+* topics: sql, sql-create, sql-foreign-key
+
+##### !question
+
+We are trying to write an SQL query to create a `students` table which references the student's advisor.  Which is the correct line to add to the sql code below.
+
+```sql
+CREATE TABLE students (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  first_name VARCHAR(32),
+  last_name VARCHAR(32),
+  /* What goes here? */
+);
+```
+
+##### !end-question
+
+##### !options
+
+* `FOREIGN KEY advisors(id)`
+* `FOREIGN KEY (author_id) REFERENCES authors(id)`
+* `REFERENCES (author_id) FOREIGN KEY authors(id)`
+* `FOREIGN KEY REFERENCES authors(id)`
+
+##### !end-options
+
+##### !answer
+
+* `FOREIGN KEY (author_id) REFERENCES authors(id)`
+
+##### !end-answer
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: paragraph
+* id: 01d7747d-ab3a-4525-bf13-1e0ad060d666
+* title: What is your key takeaway?
+
+##### !question
+
+What is your key takeaway from this lesson?
+
+##### !end-question
+
+##### !placeholder
+
+Your key takeaway...
+
+##### !end-placeholder
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
