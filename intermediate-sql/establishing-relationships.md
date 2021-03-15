@@ -40,7 +40,82 @@ By establishing a relationship between the tables relational databases can provi
 
 ## Creating Tables With Foreign Keys
 
-## Adding Columns To Existing Tables
+<!--  Note could also teach Foreign key creation with 
+  author_id INT REFERENCES authors(id)
+
+  This way is more explicit... maybe.
+
+  We could teach adding columns to tables to establish new foreign keys, but... they can just drop and recreate the table for now.  Students can research to to modify a table.
+ -->
+
+We have created tables with primary key columns in this fashion.
+
+```sql
+CREATE TABLE authors (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  first_name VARCHAR(32),
+  last_name VARCHAR(32),
+  bio TEXT
+);
+```
+
+In this example the `id` column is called the *primary key* values in this column uniquely identify a particular row.  We can use this feature of relational databases to connect a row in one table with one or many rows in another.
+
+Consider this `books` table.
+
+```sql
+CREATE TABLE books (
+  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  title VARCHAR(32),
+  description TEXT,
+  isbn VARCHAR(32),
+  author_id INT,
+  FOREIGN KEY (author_id) REFERENCES authors(id)
+);
+```
+
+Now the `books` table has a column named `author_id`.  We created with the constraint `FOREIGN KEY (author_id) REFERENCES authors(id)`.  
+
+This tells Postgres that every `author_id` value in the books table *must* reference an existing `id` value in the `authors` table.  Further the referenced column (id) is also a primary key in the authors table.
+
+Given the following authors table.
+
+| id | first_name | last_name | bio |
+|--- |--- |--- |--- |
+| 14 | Michelle | Obama | Becoming is the memoir of former First Lady of the United States Michelle Oba... |
+
+We can now create a book related to this author with the following SQL query.
+
+```sql
+INSERT INTO books (title, description, isbn, author_id)
+VALUES ('Becoming', 'Becoming is the memoir of...', '978-3-16-148410-0', 14);
+```
+
+Because this row in the books table has an `author_id` (14) matching Michell Obama's `id` field the two entries are related.
+
+### !callout-warning
+
+## The Foreign Key Must Exist In The Referenced Table
+
+When we designate a column as a forien key with `REFERENCES`, any rows inserted into the table **must** include a value for that column, in this case `author_id` and that value must exist in the referenced table.
+
+Databases enforce this constraint to prevent an entry in one table from referencing a row which does not exist in the other table.
+
+If the author_id 1 does not exist in the authors table the following query.
+
+```sql
+INSERT INTO books (title, description, isbn, author_id)
+VALUES ('book title', 'book description', '1', 1);
+```
+
+Will result in:
+
+```bash
+ERROR:  insert or update on table "books" violates foreign key constraint "books_author_id_fkey"
+DETAIL:  Key (author_id)=(1) is not present in table "authors".
+```
+
+### !end-callout
 
 ## Check for Understanding
 
