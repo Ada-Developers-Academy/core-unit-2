@@ -74,6 +74,18 @@ We can illustrate the relationship with this diagram.
 
 ### One to One
 
+In a one to one relationship each record in one table, Table A, can relate to at most one record in another, Table B, and each record in Table B can relate to at most one record in Table A.  One example of a one to one relationship is an author to a royalty account, or an employee to their company 401K retirement account.  Each author would likely have one account to deposity royalty payments and an employee at a company would have one and only one retirement account.
+
+[Author related 1-1 with a royalty account](intermediate-sql__database-relationships__author-to-royalty-account.svg)
+*Fig. Author to royalty account*
+
+We indicate the number of rows involved in the relationship with the following symbols
+
+[ERD 1-1 connection symbols](intermediate-sql__database-relationships__erd-connection-symbols.png)
+*Fig. 1-1 ERD Symbols*
+
+So in the diagram above each row in the authors table is connected to one and only one row in the royalty account.
+
 ### One to Many
 
 ### Many to Many
