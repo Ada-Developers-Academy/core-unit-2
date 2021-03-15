@@ -46,6 +46,21 @@ By establishing a relationship between the tables relational databases can provi
 | Entity Relationship Diagram        | a graphical representation of a data model using entities, their attributes and relationships between those entities. It has a form of a diagram.           |      Database Diagram              | "I can't make sense of this SQL text.  I need to draw an entity relationship diagram."                                                                |
 ## ERD Diagrams
 
+Staring at hundreds of lines of SQL code or textual tables of data can confuse and frustrate the hardiest of database administrator.  To make a database schema, or design easier to understand we use a type of diagram known as an *entity relationship diagram (ERD)*.  
+
+An ERD diagram consists of rectangles representing each table in the database; listing each column optionally including information about each field such as data types as well as indicating special characteristics like the primary key.
+
+
+![Example table of books](../assets/intermediate-sql__database-relationships__books-table.svg)
+*Fig. Books Table*
+
+The **PK** indicates the primary key.  We may also often see ERD diagrams including each column's data type.
+
+![ERD with Data Types](../assets/intermediate-sql__database-relationships__books-with-data-types.svg)
+*Fig. Books Table with Data Types*
+
+As we examine the types of relationships possible in relational databases we will illustrate each type of relationship with ERD diagrams.
+
 ## Establishing Relationships With Foreign Keys
 
 ## Types of Relationships
