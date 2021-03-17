@@ -76,12 +76,12 @@ We can illustrate the relationship with this diagram.
 
 In a one to one relationship each record in one table, Table A, can relate to at most one record in another, Table B, and each record in Table B can relate to at most one record in Table A.  One example of a one to one relationship is an author to a royalty account, or an employee to their company 401K retirement account.  Each author would likely have one account to deposity royalty payments and an employee at a company would have one and only one retirement account.
 
-[Author related 1-1 with a royalty account](intermediate-sql__database-relationships__author-to-royalty-account.svg)
+![Author related 1-1 with a royalty account](../assets/intermediate-sql__database-relationships__author-to-royalty-account.svg)
 *Fig. Author to royalty account*
 
 We indicate the number of rows involved in the relationship with the following symbols
 
-[ERD 1-1 connection symbols](intermediate-sql__database-relationships__erd-connection-symbols.png)
+![ERD 1-1 connection symbols](../assets/intermediate-sql__database-relationships__erd-connection-symbols.png)
 *Fig. 1-1 ERD Symbols*
 
 So in the diagram above each row in the authors table is connected to one and only one row in the royalty account.
@@ -92,7 +92,7 @@ A more common type of relationship is called one to many.  In a one to many rela
 
 For example an author can have (write) many books, and we can illustrate that relationship with the following diagram.
 
-[One to many relationship between books and authors](intermediate-sql__database-relationships__books-authors.svg)
+![One to many relationship between books and authors](../assets/intermediate-sql__database-relationships__books-authors.svg)
 *Fig. A one to many relationship between books and authors.*
 
 In a one to many relationship the table, called the child table contains a field which references the primary key of the other table, called the parent.  Each row in the child table references one row in the parent table, but each row in the parent table may be referenced multiple times.
