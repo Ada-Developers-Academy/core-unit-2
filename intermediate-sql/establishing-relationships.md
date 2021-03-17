@@ -57,7 +57,7 @@ CREATE TABLE books (
 
 The `books` table has a column named `author_id`.  We created `author_id` with the constraint `FOREIGN KEY (author_id) REFERENCES authors(id)`.  
 
-This tells Postgres that every `author_id` value in the books table *must* reference an existing `id` value in the `authors` table.  Further the referenced column (id) is also a primary key in the authors table.
+This tells Postgres that every `author_id` value in the books table *must* reference an existing `id` value in the `authors` table.  Further, the referenced column (id) is also a primary key in the authors table.
 
 Given the following authors table.
 
@@ -73,6 +73,8 @@ VALUES ('Becoming', 'Becoming is the memoir of...', '978-3-16-148410-0', 14);
 ```
 
 Because this row in the books table has an `author_id` (14) matching Michell Obama's `id` field the two entries are related.
+
+This also applies to deleting rows in the table with the primary key.  If we tried to delete Michelle Obama, Postgres would return an error because there are existing books referencing that row in the authors table.
 
 ### !callout-warning
 
