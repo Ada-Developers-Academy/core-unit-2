@@ -139,6 +139,9 @@ This SQL creates a join table connecting the books and genres tables.  This tabl
 1.  The table **only** has two foreign key fields.
 1.  The `booksgenres` table uses a combination of **two** columns as a primary key.
     *  This means that no two rows can exist with identical `book_id` and `genre_id` values.
+1.  We *choose* to name the join table `booksgenres` a combination of the two parent table names.  This is simply a convention we will follow at Ada, to combine the table names for a join table with the names sorted alphabetically.
+
+### Two Column Primary Keys
 
 We could have created the `booksgenres` table with an `id` primary key, but using a two-field primary key has a key advantage.  Using the combination of `book_id` and `genre_id` prevents duplicate entries.  In this case no book can be listed in the same genre twice.  A book can be in multiple different genres and a genre can have multiple different books, but only one entry can link an individual book to the same genre twice.
 
