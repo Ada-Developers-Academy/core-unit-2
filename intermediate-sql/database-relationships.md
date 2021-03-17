@@ -174,7 +174,7 @@ By stepping through the `BooksGenres` table we can find all the genres a particu
 
 The following are the connection symbols used to indicate the relationships between tables in an ERD diagram.
 
-![ERD Connection Symbols](../intermediate-sql__database-relationships__erd-connection-symbols.png)
+![ERD Connection Symbols](../assets/intermediate-sql__database-relationships__erd-connection-symbols.png)
 *Fig. ERD Connection Symbols*
 
 ## Check for Understanding
