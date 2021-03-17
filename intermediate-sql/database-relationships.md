@@ -105,7 +105,7 @@ Notice the "crow's feet" where the line connects to the `books` table.
 
 ![So called crow's feet indicating many in an ERD diagram](../assets/intermediate-sql__database-relationships__crows-feet.png)
 
-This indicates "many" in the relationship.  So one author in this relationship can connect to many different books.
+This indicates "many" in the relationship.  So one author in this relationship can be related to many different books.
 
 We can see this illustrated in an example with the following tables.
 
@@ -129,12 +129,12 @@ In the above two tables Maayan Ramesha has one book, and Dinah Banu has three bo
 
 ### Many to Many
 
-The one to many relationship works in many situations.  However there are scenarios where each row in one table is related to many rows in another and the reverse is also true.  However a column in a table can reference at most one row in another table.  To support a many to many relationship we need to create a special kind of table called a join table. 
+The one to many relationship works in many situations.  However there are scenarios where each row in one table is related to many rows in another and the reverse is also true.  However a column in a table can reference at most one row in another table.  To support a many to many relationship we need to create a special kind of table called a *join table*.
 
 ![Many to Many Relationship](../assets/intermediate-sql__establishing-relationships__many-to-many.svg)
 *Fig. Many to many relationship*
 
-In the above diagram each row in the `books` table is related to 0 to many rows in the `genres` table *through* the `booksgenres` table.  This connecting table is a join table.  This table contains the two common fields from the `books` and `genres` tables and so each table has a one to many relationship with the join table.
+In the above diagram each row in the `books` table is related to 0 to many rows in the `genres` table *through* the `booksgenres` table.  This connecting table is the join table.  This table contains the two common fields from the `books` and `genres` establishing a one to many relationship between each of our primary tables and the join table.
 
 We can see this relationship with the following tables.
 
@@ -173,13 +173,6 @@ We can see this relationship with the following tables.
 *Fig. BooksGenres Table*
 
 By stepping through the `BooksGenres` table we can find all the genres a particular book belongs to.
-
-### ERD Connection Symbols
-
-The following are the connection symbols used to indicate the relationships between tables in an ERD diagram.
-
-![ERD Connection Symbols](../assets/intermediate-sql__database-relationships__erd-connection-symbols.png)
-*Fig. ERD Connection Symbols*
 
 ## Check for Understanding
 
