@@ -332,8 +332,10 @@ Arrange the following syntax into a valid statement.
 1. `FROM`
 1. `hotel_guests`
 1. `WHERE`
-1. `age < 18`
-2. `;`
+1. `age`
+1. `<`
+1. `18`
+1. `;`
 
 ##### !end-answer
 ### !end-challenge
