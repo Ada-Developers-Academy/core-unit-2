@@ -13,9 +13,6 @@ In SQL we can create columns as foreign key fields at table creation, by adding 
 
 | Vocab           | Definition                                                                                                            | Synonyms             | How to Use in a Sentence                                                                                                                                                                                                                              |
 | --------------- | --------------------------------------------------------------------------------------------------------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| One to Many Relationship        | A relationship between two tables in a database where one record in a table can be associated with one or more records in another table                                                     |                    | "Because each student has many advisors and each advisor my support multiple students, I established a one to many relationship between the two tables."                                                                |
-| Many to Many Relationship        | A relationship between two tables in a database where one record in either table can relate to many records in the other table.                                                    |                    | "Because each student can take multiple classes and each class has many students I established a many to many relationship in the database."                                                                |
-| One to One Relationship        | A relationship between two tables in a database where one record in either table can relate to at most one row in the other table.                                                    |                    | "Because each student can only have at most one school computer account, the user_accounts and students table have a one to one relationship."                                                                |
 | Foreign Key        | A column in a database table that comes from another table (also known as the referenced table) who's value is either a primary key or another unique key in the referenced table.                                                    |      Referencing Key              | "The books table has an author_id column which references the primary key of the authors table."                                                                |
 
 
@@ -88,7 +85,7 @@ If the author_id 1 does not exist in the authors table the following query.
 
 ```sql
 INSERT INTO books (title, description, isbn, author_id)
-VALUES ('book title', 'book description', '1', 1);
+VALUES ('book title', 'book description', '1-111-1111', 1);
 ```
 
 Will result in:
@@ -111,7 +108,7 @@ There are methods of creating optional foreign keys and ways to allow a foreign 
 
 ## Many To Many Relationships
 
-To build a many to many relationship requires a table called a JOIN Table.  For example a book can have many genres and each genre can have many books.  To create a relationship like this:
+To build a many to many relationship requires a table called a JOIN Table.  For example a book can be a part of many genres and each genre will have many books in it.  To create a relationship like this:
 
 
 ![Many to Many ERD diagram between books and genres](../assets/intermediate-sql__establishing-relationships__many-to-many.svg)
@@ -124,7 +121,7 @@ Note: Should we continue the pattern by adding an id field to the join table?
 --->
 
 ```sql
-CREATE TABLE booksgenres (
+CREATE TABLE booksGenres (
   book_id INT,
   FOREIGN KEY (book_id) REFERENCES books(id),
   genre_id INT,
@@ -139,11 +136,27 @@ This SQL creates a join table connecting the books and genres tables.  This tabl
 1.  The table **only** has two foreign key fields.
 1.  The `booksgenres` table uses a combination of **two** columns as a primary key.
     *  This means that no two rows can exist with identical `book_id` and `genre_id` values.
-1.  We *choose* to name the join table `booksgenres` a combination of the two parent table names.  This is simply a convention we will follow at Ada, to combine the table names for a join table with the names sorted alphabetically.
+1.  We *choose* to name the join table `booksGenres` a combination of the two parent table names.  SQL does not require any particular name.  This is simply a convention we will follow at Ada, to combine the table names for a join table alphabetically.
 
 ### Two Column Primary Keys
 
-We could have created the `booksgenres` table with an `id` primary key, but using a two-field primary key has a key advantage.  Using the combination of `book_id` and `genre_id` prevents duplicate entries.  In this case no book can be listed in the same genre twice.  A book can be in multiple different genres and a genre can have multiple different books, but only one entry can link an individual book to the same genre twice.
+We could have created the `booksgenres` table with an `id` primary key, but using a two-field primary key has an advantage.  Using the combination of `book_id` and `genre_id` prevents duplicate entries.  In this case no book can be listed in the same genre twice.  A book can be in multiple different genres and a genre can have multiple different books, but only one entry can link an individual book to a particular genre.
+
+If our `booksGenres` table contained these entries:
+
+| book_id | genre_id |
+|--- |--- |
+| 1  | 1  |
+| 2  | 1  |
+
+The following SQL code would generate this error.
+
+```sql
+INSERT INTO booksGenres (book_id, genre_id)
+VALUES(1, 1);
+ERROR:  duplicate key value violates unique constraint "ordersproducts_pkey"
+DETAIL:  Key (book_id, genre_id)=(1, 1) already exists.
+```
 
 ## Check for Understanding
 
