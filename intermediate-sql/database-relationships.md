@@ -25,11 +25,13 @@ We have created database tables like the following.
 | id | title | author | price | isbn |
 |--- |--- |--- |--- |--- |
 | 37 | Becoming | Michelle Obama. | 9.99 | '978-3-16-148410-0' |
+*Fig. Books Table*
 
 
 | id | first_name | last_name | bio |
 |--- |--- |--- |--- |
 | 14 | Michelle | Obama | Becoming is the memoir of former First Lady of the United States Michelle Oba... |
+*Fig. Authors Table*
 
 With these tables users can access information about books and about authors, but they cannot directly access the biographical information about the author from a particular book.
 
@@ -43,7 +45,7 @@ By establishing a relationship between the tables relational databases can provi
 | Many to Many Relationship        | A relationship between two tables in a database where one record in either table can relate to many records in the other table.                                                    |                    | "Because each student can take multiple classes and each class has many students I established a many to many relationship in the database."                                                                |
 | One to One Relationship        | A relationship between two tables in a database where one record in either table can relate to at most one row in the other table.                                                    |                    | "Because each student can only have at most one school computer account, the user_accounts and students table have a one to one relationship."                                                                |
 | Join Table        | A table used to connect two other tables in order to establish a many to many relationship.                                                    |                   | "Each product can be in multiple orders and each order can have multiple products so our shopping cart needs a join table called `orderproducts`."                                                                |
-| Entity Relationship Diagram        | a graphical representation of a data model using entities, their attributes and relationships between those entities. It has a form of a diagram.           |      Database Diagram              | "I can't make sense of this SQL text.  I need to draw an entity relationship diagram."                                                                |
+| Entity Relationship Diagram        | A graphical representation of a data model using entities, their attributes and relationships between those entities. It has a form of a diagram.           |      Database Diagram              | "I can't make sense of this SQL text.  I need to draw an entity relationship diagram."                                                                |
 ## ERD Diagrams
 
 Staring at hundreds of lines of SQL code or textual tables of data can confuse and frustrate the hardiest of database administrator.  To make a database schema, or design easier to understand we use a type of diagram known as an *entity relationship diagram (ERD)*.  
