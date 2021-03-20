@@ -70,7 +70,7 @@ What does this mean?
 
 What kind of relationship is illustrated by the following ERD diagram?
 
-![ERD Diagram](../assets/intermediate-sql__database-relationships__problemset-one-to-many.svg)
+![ERD Diagram](../assets/intermediate-sql__database-relationships__problemset-1-to-many.svg)
 
 ##### !end-question
 
