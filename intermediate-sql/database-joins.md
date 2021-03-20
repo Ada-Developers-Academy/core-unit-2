@@ -250,6 +250,88 @@ Then our above query will generate:
 
 <!-- TODO:  Reorder question with a SELECT-Join -->
 
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: ordering
+* id: 640d100c-e24f-41b6-ae70-41411711e709
+* title: SQL SELECT JOIN Reordering
+* points: 1
+* topics: sql, sql-join, sql-select
+
+##### !question
+
+The following are lines in an SQL SELECT query with a JOIN clause.  Put them in the proper order.
+
+##### !end-question
+
+##### !answer
+
+1. SELECT employees.name
+2. FROM employees
+3. INNER JOIN departments
+4.   ON departments.id = employees.department_id
+5. WHERE departments.name = 'Accounting';
+
+##### !end-answer
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
+
 <!-- TODO:  SQL Question involving a SELECT-Join -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: code-snippet
+* language: sql
+* id: ae7b2f5b-1baf-4711-929d-fe0d6355ce20
+* title: 
+* data_path: /intermediate-sql/sql/database-joins.sql
+<!-- * points: [1] (optional, the number of points for scoring as a checkpoint) -->
+<!-- * topics: [python, pandas] (optional the topics for analyzing points) -->
+
+##### !question
+
+[markdown, your question]
+
+##### !end-question
+
+##### !placeholder
+
+[the code below is the starting code in the web editor]
+```sql
+-- write a statement to select...
+```
+
+##### !end-placeholder
+
+##### !tests
+
+[the code below is the sql statement that returns the correct answer]
+```sql
+SELECT these
+FROM that
+JOIN other
+WHERE this
+GROUP BY logic
+ORDER BY something
+```
+
+##### !end-tests
+
+<!-- other optional sections -->
+<!-- !hint - !end-hint (markdown, hidden, students click to view) -->
+<!-- !rubric - !end-rubric (markdown, instructors can see while scoring a checkpoint) -->
+<!-- !explanation - !end-explanation (markdown, students can see after answering correctly) -->
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
 
 <!-- TODO:  Question on key takeaway -->
