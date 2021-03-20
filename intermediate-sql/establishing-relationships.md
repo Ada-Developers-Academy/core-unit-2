@@ -167,6 +167,7 @@ CREATE TABLE students (
   id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   first_name VARCHAR(32),
   last_name VARCHAR(32),
+  author_id INT,
   /* What goes here? */
 );
 ```
