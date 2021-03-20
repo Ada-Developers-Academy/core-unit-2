@@ -250,7 +250,7 @@ WHERE products.price < 20
 
 ##### !hint
 
-If we look the `products` table has a foreign key, `vendor_id`.  Could you use that in the join clause.  Can you use a `where` clause to limit the returned list to vendors with products costing less than 20.0.
+If we look the `products` table has a foreign key, `vendor_id`.  Could you use that in the join clause?  Can you also use a `where` clause to limit the returned list to vendors with products costing less than 20.0?
 
 ##### !end-hint
 
@@ -274,7 +274,7 @@ If we look the `products` table has a foreign key, `vendor_id`.  Could you use t
 
 ##### !question
 
-You have the following database.  Write a SELECT statement which uses a JOIN clause to list all the order ids for all the orders which include the product named `'Widget Tsunami'`.
+You have the following database.  Write a SELECT statement which uses a JOIN clause to list the order ids for all the orders which include the product named `'Widget Tsunami'`.
 
 ![Database ERD](../assets/intermediate-sql__database-relationships__problemset-products-orders-erd.svg)
 
