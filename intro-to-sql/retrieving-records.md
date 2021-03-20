@@ -14,6 +14,13 @@ Now, he wants to build features to help users explore it. His features will show
 - Which records were published before 1990?
 - Which records are missing a description?
 
+## Vocabulary and Synonyms
+
+| Vocab | Definition | Synonym | How to Use in a Sentence |
+|---    |---         |---      |--- |
+| Result Set | A set of rows from a database, as well as metadata about the query such as the column names, and the types and sizes of each column. | | My query returned a result set with 1000 rows. | 
+| Query | A request to access data from a database |  | I wrote a query to find the most popular books in the library. |
+
 ## Retrieving Records With `SELECT`
 
 We can retrieve records from a database using `SELECT`.
