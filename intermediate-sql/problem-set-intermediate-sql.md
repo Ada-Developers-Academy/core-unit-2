@@ -164,6 +164,7 @@ SQL Question on Select with Join
 
 You have the following database.  Write a SELECT statement which uses a JOIN clause to combines the vendors and products tables.
 
+![Database ERD](../assets/intermediate-sql__database-relationships__problemset-products-orders-erd.svg)
 
 
 ##### !end-question
@@ -219,6 +220,9 @@ SQL Question on Select with Join and where
 ##### !question
 
 You have the following database.  Write a SELECT statement which uses a JOIN clause to find the name of vendors who have products which cost less than 20.0.
+
+![Database ERD](../assets/intermediate-sql__database-relationships__problemset-products-orders-erd.svg)
+
 
 ##### !end-question
 
