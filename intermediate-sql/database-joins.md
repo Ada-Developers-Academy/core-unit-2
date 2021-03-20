@@ -291,20 +291,27 @@ The following are lines in an SQL SELECT query with a JOIN clause.  Put them in 
 * type: code-snippet
 * language: sql
 * id: ae7b2f5b-1baf-4711-929d-fe0d6355ce20
-* title: 
+* title: SQL Join Practice
 * data_path: /intermediate-sql/sql/database-joins.sql
-<!-- * points: [1] (optional, the number of points for scoring as a checkpoint) -->
-<!-- * topics: [python, pandas] (optional the topics for analyzing points) -->
+* points: 1
+* topics: sql, sql-select, sql-join
 
 ##### !question
 
-[markdown, your question]
+Given the tables above select from the employee table:
+
+* first_name
+* last_name 
+
+From all employees in the department named 'Accounting'.
+
+![ERD with one department connected to many employees](../assets/intermediate-sql__database-joins__learning-comp-employees-depts.svg)
 
 ##### !end-question
 
 ##### !placeholder
 
-[the code below is the starting code in the web editor]
+
 ```sql
 -- write a statement to select...
 ```
@@ -313,25 +320,48 @@ The following are lines in an SQL SELECT query with a JOIN clause.  Put them in 
 
 ##### !tests
 
-[the code below is the sql statement that returns the correct answer]
+
 ```sql
-SELECT these
-FROM that
-JOIN other
-WHERE this
-GROUP BY logic
-ORDER BY something
+SELECT first_name, last_name
+FROM employees
+INNER JOIN departments
+    ON departments.id = employees.department_id
+WHERE departments.name = 'Accounting';
 ```
 
 ##### !end-tests
 
 <!-- other optional sections -->
-<!-- !hint - !end-hint (markdown, hidden, students click to view) -->
-<!-- !rubric - !end-rubric (markdown, instructors can see while scoring a checkpoint) -->
-<!-- !explanation - !end-explanation (markdown, students can see after answering correctly) -->
+##### !hint
+
+How are the `employees` table and `departments` table connected?
+
+##### !end-hint
+
 
 ### !end-challenge
 
 <!-- ======================= END CHALLENGE ======================= -->
 
-<!-- TODO:  Question on key takeaway -->
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
+
+### !challenge
+
+* type: paragraph
+* id: 5ccd897b-a0ab-4959-9a30-cef8702fe6de
+* title: Key takeaway
+
+##### !question
+
+What is your key takeaway from this lesson?
+
+##### !end-question
+
+##### !placeholder
+
+##### !end-placeholder
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
