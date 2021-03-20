@@ -23,7 +23,7 @@ In SQL we can create columns as foreign key fields at table creation, by adding 
 
   This way is more explicit... maybe.
 
-  We could teach adding columns to tables to establish new foreign keys, but... they can just drop and recreate the table for now.  Students can research to to modify a table.
+  We could also teach adding columns to tables to establish new foreign keys, but... they can just drop and recreate the table for now.  Students can research to to modify a table.
  -->
 
 We have created tables with primary key columns in this fashion.
@@ -116,10 +116,6 @@ To build a many to many relationship requires a table called a JOIN Table.  For 
 
 We create the join table with the following SQL.
 
-<!-- 
-Note: Should we continue the pattern by adding an id field to the join table?
---->
-
 ```sql
 CREATE TABLE booksGenres (
   book_id INT,
@@ -180,7 +176,7 @@ CREATE TABLE students (
   id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   first_name VARCHAR(32),
   last_name VARCHAR(32),
-  author_id INT,
+  advisor_id INT,
   /* What goes here? */
 );
 ```
@@ -190,21 +186,23 @@ CREATE TABLE students (
 ##### !options
 
 * `FOREIGN KEY advisors(id)`
-* `FOREIGN KEY (author_id) REFERENCES authors(id)`
-* `REFERENCES (author_id) FOREIGN KEY authors(id)`
-* `FOREIGN KEY REFERENCES authors(id)`
+* `FOREIGN KEY (advisor_id) REFERENCES advisors(id)`
+* `REFERENCES (advisor_id) FOREIGN KEY advisors(id)`
+* `FOREIGN KEY REFERENCES advisors(id)`
 
 ##### !end-options
 
 ##### !answer
 
-* `FOREIGN KEY (author_id) REFERENCES authors(id)`
+* `FOREIGN KEY (advisor_id) REFERENCES advisors(id)`
 
 ##### !end-answer
 
 ### !end-challenge
 
 <!-- ======================= END CHALLENGE ======================= -->
+
+
 
 <!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
 <!-- Replace everything in square brackets [] and remove brackets  -->
