@@ -353,7 +353,7 @@ Imagine building a feature where a user can look at the profiles of each guest. 
 
 Arrange the following syntax into a valid statement.
 
-Note: For this question, if the order of something seems ambiguous, try both ways.
+**Note:** For this question, if the order of something seems ambiguous, try **both** ways.
 
 ##### !end-question
 ##### !answer
