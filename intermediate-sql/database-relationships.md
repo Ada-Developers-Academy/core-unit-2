@@ -74,7 +74,7 @@ We can illustrate the relationship with this diagram.
 ![Books and authors connected by the author_id field](../assets/intermediate-sql__database-relationships__books-authors.svg)
 *Fig. Books and authors connected by the `author_id` field*
 
-The lines connecting the tables link the matching columns.  We will further explain notation of the diagram later in this lesson.
+The lines connecting the tables link the matching columns.
 
 ## Types of Relationships
 
@@ -174,7 +174,11 @@ We can see this relationship with the following tables.
 
 *Fig. BooksGenres Table*
 
-By stepping through the `BooksGenres` table we can find all the genres a particular book belongs to.
+By stepping through the `BooksGenres` table we can find all the genres a particular book belongs to.  
+
+For example `Raven Of The River` has id 1 and the first two entries in the `BooksGenres` table which tie the book to the genres with ids 2 and 3.  So `Raven Of The River` has the genres `Fiction` and `Fantasy`.
+
+The `Fiction` genre with `id` 2 is connected to books with ids 1, 3, 5.  So the fiction genre has the books `Raven Of The River`, `Criminals Without Glory` and `Agents And Priests`.
 
 ## Check for Understanding
 
