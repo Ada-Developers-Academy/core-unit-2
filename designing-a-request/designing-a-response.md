@@ -35,7 +35,7 @@ Assuming a RESTful API design, let's list the considerations for each endpoint b
 | What is the response for reading the details of a resource?                    | Read   | `GET`          | `/resources/1`                | -                                                                 |
 | What is the response for reading the details of a resource that doesn't exist? | Read   | `GET`          | `/resources/08342tacocat2341` | -                                                                 |
 | What is the response for updating a resource successfully?                     | Update | `PUT`          | `/resources/1`                | Valid resource data                                               |
-| What is the response for updating a resource _successfully_?                   | Update | `PUT`          | `/resources/1`                | _Invalid_ resource data, such as violating a data type constraint |
+| What is the response for updating a resource _unsuccessfully_?                 | Update | `PUT`          | `/resources/1`                | _Invalid_ resource data, such as violating a data type constraint |
 | What is the response for updating a resource that doesn't exist?               | Update | `PUT`          | `/resources/08342tacocat2341` | Valid resource data                                               |
 | What is the response for deleting a resource successfully?                     | Delete | `DELETE`       | `/resources/1`                | -                                                                 |
 | What is the response for deleting a resource that doesn't exist?               | Delete | `DELETE`       | `/resources/08342tacocat2341` | Valid resource data                                               |
@@ -78,20 +78,240 @@ Here is a list of the most common HTTP status codes.
 | `404`       | `Not Found`             | The server can not find the requested resource, whether the URL is invalid, or that the resource doesn't exist. |
 | `500`       | `Internal Server Error` | The server has encountered a situation it doesn't know how to handle                                            |
 
-## Meaningful Response Bodies in JSON
+## The Shape of the JSON Response Body
 
-HTTP response bodies could potentially be a JSON data structure.
+When we consider creating a JSON response body, we should ask these questions about the client needs:
 
-### The Shape of the JSON Response Body
+- What is the client expecting?
+- What does the client need to know?
+- What's the best way to structure what the client needs to know?
 
-When we consider creating a JSON response body, we'll ask ourselves the question:
+Once we understand the client's needs, then we'll ask these questions about structure:
 
 - What data structure should this response be? Should it be a list or a dictionary?
 - If it's a dictionary, what keys exist? What are their values?
 - If it's a list, then what data structure is each item?
 
-## Conventional Outcomes
+After considering all of these things, it is up to our creativity to determine the best JSON response body.
 
-## Examples
+### Example: `GET` `/students/66`
+
+In Eryn's educational podcast app, there is the resource, students. Eryn's app stores every student's name, contact information, courses that they're enrolled in, and classes that they attend.
+
+The student table looks like this:
+
+| `student_id` | `full_name`      | `email_address`      |
+| ------------ | ---------------- | -------------------- |
+| `66`         | `"Imaani Moyer"` | `"imaani@moyer.com"` |
+
+There is a join table between students and courses named `courses_students`:
+
+| `course_id` | `student_id` |
+| ----------- | ------------ |
+| `14`        | `66`         |
+| `15`        | `66`         |
+
+There is a join table between students and courses named `classes_students`:
+
+| `class_id` | `student_id` |
+| ---------- | ------------ |
+| `436`      | `66`         |
+| `437`      | `66`         |
+| `502`      | `66`         |
+
+Imagine a client sending this HTTP request to Eryn's API:
+
+- `GET` `/students/66`
+
+The client only needs to know the student's name, contact info, and courses they're enrolled in.
+
+From RESTful routes, let's answer the questions from above:
+
+| Considerations                                                                    | Notes                                                                                                                                                 |
+| --------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| What is the client expecting?                                                     | JSON response body about a single student with the id `66`                                                                                            |
+| What does the client need to know?                                                | The student's name, contact info, and a list of courses they're enrolled in.                                                                          |
+| What's the best way to structure what the client needs to know?                   | key-value pairs                                                                                                                                       |
+| What data structure should this response be? Should it be a list or a dictionary? | Dictionary                                                                                                                                            |
+| If it's a dictionary, what keys exist? What are their values?                     | `"name"` should be the student's `full_name`, `"contact_info"` should be the student's `email_address`, `"course_ids"` should be a list of course IDs |
+| If it's a list, then what data structure is each item?                            | -                                                                                                                                                     |
+
+From this information, Eryn may represent the student data like this:
+
+```json
+{
+  "name": "Imaani Moyer",
+  "contact_info": "imaani@moyer.com",
+  "course_ids": [14, 15]
+}
+```
+
+Or even this:
+
+```json
+{
+  "full_name": "Imaani Moyer",
+  "email_address": "imaani@moyer.com",
+  "course_ids": [14, 15]
+}
+```
+
+### Example: `GET` `/students/08342tacocat2341` Not Found
+
+What should the web API return when the client requests a student resource, but that student doesn't exist? Imagine a client sending this request:
+
+- `GET` `/students/08342tacocat2341`
+
+What should the response body be? Eryn has at least two meaningful options:
+
+1. JSON that holds details about the error, and delivers the message to the client that the student isn't found
+1. Don't send back a response body
+
+If Eryn pursues the first option, she might pick a dictionary whose key-value pairs describe the error:
+
+```json
+{
+  "error": "The student was not found"
+}
+```
+
+Depending on what she anticipates her client's needs are, she might add more details. She will need to do research and make assumptions in order to figure out what's best:
+
+```json
+{
+  "success": false,
+  "msg": "Student not found"
+}
+```
+
+Or, of course, Eryn could choose to not send back any data besides a status code.
+
+### !callout-info
+
+## Response Bodies Are Optional
+
+RESTful APIs send back self-descriptive responses. Sometimes, an HTTP status code and message is all you need!
+
+### !end-callout
+
+## Example Outcomes
+
+We can combine meaningful HTTP statuses and intentional response bodies to create an example pattern.
+
+**How a RESTful API ultimately implements it is based on the context of the API**. This table is not industry-standard at all, but only an example.
+
+| Description                                                                    | Request Body                                                      | Response Status   | Response Body                                 |
+| ------------------------------------------------------------------------------ | ----------------------------------------------------------------- | ----------------- | --------------------------------------------- |
+| What is the response for successfully creating a new resource?                 | Valid resource data                                               | `201 Created`     | JSON with the new resource                    |
+| What is the response for _unsuccessfully_ creating a new resource?             | _Invalid_ resource data, such as missing a required attribute     | `200 OK`          | JSON with details about the missing attribute |
+| What is the response for reading the details of a resource?                    | -                                                                 | `200 OK`          | JSON with the resource                        |
+| What is the response for reading the details of a resource that doesn't exist? | -                                                                 | `404 Not Found`   | -                                             |
+| What is the response for updating a resource successfully?                     | Valid resource data                                               | `200 OK`          | -                                             |
+| What is the response for updating a resource _unsuccessfully_?                 | _Invalid_ resource data, such as violating a data type constraint | `400 Bad Request` | JSON with details about the error             |
+| What is the response for updating a resource that doesn't exist?               | Valid resource data                                               | `404 Not Found`   | -                                             |
+| What is the response for deleting a resource successfully?                     | -                                                                 | `200 OK`          | -                                             |
+| What is the response for deleting a resource that doesn't exist?               | Valid resource data                                               | `404 Not Found`   | -                                             |
+
+## Examples: Slack Web API
+
+Let's consider what the [Slack Web API](https://api.slack.com/web) responds with. Slack describes their web API like so:
+
+> The Slack Web API is an interface for querying information from and enacting change in a Slack workspace.
+
+We can look at the documentation for the different endpoints in the [Slack API Methods Documentation](https://api.slack.com/methods).
+
+Let's consider these two endpoints in the Slack API:
+
+1. [`chat.postMessage`](https://api.slack.com/methods/chat.postMessage)
+2. [`chat.delete`](https://api.slack.com/methods/chat.delete)
+
+For these two endpoints, we should use the documentation to answer these four questions:
+
+1. What is the situation for a successful response?
+2. What is the response for a successful response?
+3. What is the situation for an unsuccessful response?
+4. What is the response for an unsuccessful response?
+
+_Note: Written in March 2021._
+
+### `chat.postMessage` Successful and Unsuccessful Responses
+
+This endpoint's responsibility is to "post a message to a public channel, private channel, or direct message/IM channel."
+
+The situation for a successful response is when the request successfully posts a message. The example response that the documentation lists is:
+
+```json
+{
+  "ok": true,
+  "channel": "C1H9RESGL",
+  "ts": "1503435956.000247",
+  "message": {
+    "text": "Here's a message for you",
+    "username": "ecto1",
+    "bot_id": "B19LU7CSY",
+    "attachments": [
+      {
+        "text": "This is an attachment",
+        "id": 1,
+        "fallback": "This is an attachment's fallback"
+      }
+    ],
+    "type": "message",
+    "subtype": "bot_message",
+    "ts": "1503435956.000247"
+  }
+}
+```
+
+An example situation for an unsuccessful response is when there are too many attachments included. The example response that the documentation lists is:
+
+```json
+{
+  "ok": false,
+  "error": "too_many_attachments"
+}
+```
+
+### `chat.delete` Successful and Unsuccessful Responses
+
+This endpoint's responsibility is to "delete a message from a conversation."
+
+The situation for a successful response is when the request successfully deletes a message. The example response that the documentation lists is:
+
+```json
+{
+  "ok": true,
+  "channel": "C024BE91L",
+  "ts": "1401383885.000061"
+}
+```
+
+An example situation for an unsuccessful response is when the message isn't found. The example response that the documentation lists is:
+
+```json
+{
+  "error": "message_not_found",
+  "ok": false
+}
+```
 
 ## Check for Understanding
+
+<!-- Question Takeaway -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: paragraph
+* id: LUCeiR
+* title: Designing a Response
+##### !question
+
+What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+
+##### !end-question
+##### !placeholder
+
+My biggest takeaway from this lesson is...
+
+##### !end-placeholder
+### !end-challenge
+<!-- prettier-ignore-end -->
