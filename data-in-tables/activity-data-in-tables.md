@@ -2,7 +2,7 @@
 
 ## Goal
 
-Our goal is to practice imagining how tables are useful in software. We will reach this goal through small group exploration and discussion. Coming up with small, imperfect ideas collaboratively and quickly will expose our brains to consider a lot of different tables. Be sure to **spend no more than 15 minutes in each section.**
+Our goal is to practice imagining how tables of data are useful in software. We will reach this goal through small group exploration and discussion. Coming up with small, imperfect ideas collaboratively and quickly will expose our brains to consider a lot of different tables. Be sure to **spend no more than 15 minutes in each section.**
 
 ## Activity Instructions
 
@@ -116,7 +116,7 @@ Come up with...
 
 ## How to Review
 
-1. In Part 2, did the columns for a post in "services" differ from the columsn for a post in "for sale"? In what ways?
+1. In Part 2, did the columns for a post in "services" differ from the columns for a post in "for sale"? In what ways?
 1. In Part 3, what was your favorite feature that you came up with?
 1. In Part 4, what was your favorite feature that you came up with?
 1. Considering the entire activity, which happened more frequently: getting all of the records from a table, or getting a specific set of records from a table?

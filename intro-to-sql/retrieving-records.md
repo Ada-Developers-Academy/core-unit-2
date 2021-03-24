@@ -14,6 +14,13 @@ Now, he wants to build features to help users explore it. His features will show
 - Which records were published before 1990?
 - Which records are missing a description?
 
+## Vocabulary and Synonyms
+
+| Vocab | Definition | Synonym | How to Use in a Sentence |
+|---    |---         |---      |--- |
+| Result Set | A set of rows from a database, as well as metadata about the query such as the column names, and the types and sizes of each column. | | My query returned a result set with 1000 rows. | 
+| Query | A request to access data from a database |  | I wrote a query to find the most popular books in the library. |
+
 ## Retrieving Records With `SELECT`
 
 We can retrieve records from a database using `SELECT`.
@@ -40,9 +47,9 @@ SELECT column1, column2, column3, ... FROM table_name;
 | `FROM`                                              | A SQL keyword to indicate that these records are from some set of tables                                                                                |
 | `table_name;`                                       | **Replace this** with the name of the table being searched. This could be a comma-separated list of multiple tables. Don't forget the ending semicolon. |
 
-### `*`
+### The `*` Character
 
-The `*` character means all columns. We can use `*` instead of listing all columns. This means we can use the following syntax to **get all columns and all records from one table**.
+The `*` character means all columns. We can use `*` instead of listing each column. This means we can use the following syntax to **get all columns and all records from one table**.
 
 ```sql
 SELECT * FROM table_name;
@@ -416,7 +423,7 @@ The inverse of this concept also works. We can use `IS NULL` to only retrieve re
 * title: Retrieving Records
 ##### !question
 
-Imagine building a feature where a user can manage a list of guests. The user wants to find all of the guest IDs who do not have an email address.
+Imagine building a feature where a user can manage a list of guests. The user wants to find all of the guest IDs who do **not** have an email address.
 
 Arrange the following syntax into a valid statement.
 
@@ -430,7 +437,6 @@ Arrange the following syntax into a valid statement.
 1. `WHERE`
 1. `email_address`
 1. `IS`
-1. `NOT`
 1. `NULL`
 1. `;`
 

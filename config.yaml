@@ -1,0 +1,91 @@
+---
+Standards:
+  -
+    Title: Data In Tables
+    Description: "Activity: Data in tables, Data in tables"
+    UID: f7c302282a7e78968f846372a19f50ef
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: 62c24181bff87815cf3039e30c8c32b2
+        Path: /data-in-tables/instructor-activity-data-in-tables.md      
+      -
+        Type: Lesson
+        UID: a5d0460ebba87354036cecef3e810940
+        Path: /data-in-tables/activity-data-in-tables.md
+      -
+        Type: Instructor
+        UID: 50c412213820ae1e7ffd5a432f8a2fb7
+        Path: /data-in-tables/data-in-tables.instructor.md
+      -
+        Type: Lesson
+        UID: 0e1f2fc10fdeffcb430193b38662480e
+        Path: /data-in-tables/data-in-tables.md
+  -
+    Title: Intro To Sql
+    Description: Intro to SQL, Adding new records, Retrieving records, Updating ecords, Deleting records
+    UID: 3211fc3d75369f96b537a4535fcbba6d
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: bf845a0d8d9b36277b4a65ad5a323ec6
+        Path: /intro-to-sql/intro-to-relational-databases.md
+      -
+        Type: Lesson
+        UID: 9f6237c34cd80959b46a2a6b197e04f5
+        Path: /intro-to-sql/sql-setup.md
+      -
+        Type: Instructor
+        UID: 431e288ed7b0fa2b88b7599ae09a3543
+        Path: /intro-to-sql/activity-intro-to-sql.instructor.md
+      -
+        Type: Lesson
+        UID: 1ccd31d7b789d74e78d94c236193bb8d
+        Path: /intro-to-sql/activity-intro-to-sql.md 
+      -
+        Type: Lesson
+        UID: 5166b21899f0663aace050ca240e65c4
+        Path: /intro-to-sql/adding-new-records.md
+      -
+        Type: Instructor
+        UID: d208cde984a0236f321a3a2216132286
+        Path: /intro-to-sql/intro-to-sql.instructor.md
+      -
+        Type: Lesson
+        UID: 9bd533be21a9cc9981797c67b9991514
+        Path: /intro-to-sql/retrieving-records.md
+      -
+        Type: Lesson
+        UID: 17054b670dbade2badeca1263766c075
+        Path: /intro-to-sql/updating-records.md
+      -
+        Type: Lesson
+        UID: 66c659ae-9887-4e01-a059-a73b22847a5d
+        Path: /intro-to-sql/deleting-records.md
+  -
+    Title: Intermediate SQL
+    Description: "Database Relationships, Activty: drawing relationships, Establishing Relationships, Database Joins"
+    UID: 11a8027f-bd04-4c47-b4d3-36209af1068d
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: c8e5656f-6fd9-43fa-8c30-164c4da593b8
+        Path: /intermediate-sql/database-relationships.md
+      - 
+        Type: Lesson
+        UID: a00c1cf2-cb0c-440b-bb5b-188ab64628ea
+        Path: /intermediate-sql/establishing-relationships.md
+      -
+        Type: Lesson
+        UID: d23c9ef5-1e99-4057-93ef-8863f33be45f
+        Path: /intermediate-sql/database-joins.md
+      -
+        Type: Lesson
+        UID: cbd53d1c-3374-4a55-804b-85defb26bd4b
+        Path: /intermediate-sql/problem-set-intermediate-sql.md
