@@ -31,9 +31,9 @@ For this lesson, let's assume that our APIs will always return JSON-formatted HT
 - Response Body
 - HTTP Status Code
 
-## Anticipating Possible Outcomes
+## Anticipating Possible Outcomes Lets Us Gracefully Handle Errors
 
-A client calling an API wants to always receive a meaningful HTTP response. This includes anticipating different kinds of situations. We can ask ourselves for every endpoint, what is the best HTTP response based on the HTTP response?
+A client calling an API wants to always receive a meaningful HTTP response. We can ask ourselves for every HTTP request, what is the best HTTP response?
 
 Assuming a RESTful API design, let's list the considerations for each endpoint based around a resource.
 
@@ -56,13 +56,15 @@ For a more advanced web API, we can also consider the following questions:
 
 ## Meaningful Status Codes
 
-The first way to design HTTP responses so they are full of valuable meaning is to use meaningful status codes.
+Great HTTP responses have meaningful status codes that describe the result of the HTTP request.
 
-Recall that status codes are three digit numbers. The numbers indicate the kind of response it is. We can use these status codes to indicate to the client if:
+We can use these status codes to indicate to the client if:
 
 - Their HTTP request was successfully handled in our API
 - Their HTTP request requested something that our server doesn't understand how to handle
 - Their HTTP request requested something that raised an error or caused a problem on our server
+
+For every situation, it's a good idea to check the [list of standard HTTP status codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) to decide the most appropriate one.
 
 | Status Code Range | Indicates...                                                                                                                     |
 | ----------------- | -------------------------------------------------------------------------------------------------------------------------------- |
@@ -72,9 +74,7 @@ Recall that status codes are three digit numbers. The numbers indicate the kind 
 | 400-499           | Client errors; the request itself that the client sent has some sort of problem for some reason                                  |
 | 500-599           | Server errors; the server received the request, but it ran into an error and cannot create a successful response for some reason |
 
-There is a number of pre-defined HTTP status codes and status messages. [MDN has a full list of all HTTP status codes and messages](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status). We should feel great about looking through this list and picking and choosing the best pre-defined HTTP status code.
-
-#### Common HTTP Status Codes
+### Common HTTP Status Codes
 
 Here is a list of the most common HTTP status codes.
 
@@ -173,7 +173,7 @@ What should the web API return when the client requests a student resource, but 
 
 What should the response body be? Eryn has at least two meaningful options:
 
-1. JSON that holds details about the error, and delivers the message to the client that the student isn't found
+1. JSON that holds details about the error: the student isn't found
 1. Don't send back a response body
 
 If Eryn pursues the first option, she might pick a dictionary whose key-value pairs describe the error:
@@ -184,7 +184,7 @@ If Eryn pursues the first option, she might pick a dictionary whose key-value pa
 }
 ```
 
-Depending on what she anticipates her client's needs are, she might add more details. She will need to do research and make assumptions in order to figure out what's best:
+Depending on what she anticipates her clients' needs are, she might add more details. She will need to do research and make assumptions in order to figure out what's best:
 
 ```json
 {
