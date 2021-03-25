@@ -1,6 +1,15 @@
-# Designing a Response
+# Designing Responses
 
-## Learning Goals
+## Goals
+
+The goal for this lesson is to:
+
+- combine knowledge about RESTful APIs and HTTP responses
+- emphasize that specific HTTP responses should be anticipated and sent for various different edge cases, such as not finding a resource
+- gain more familiarity with designing and shaping JSON
+- see real examples of different HTTP responses from different web APIs
+
+There aren't specific rules, patterns, or best practices to teach about designing API responses. However, comfort and practice with HTTP responses, especially in edge-case scenarios, will make us stronger developers.
 
 ## Introduction
 

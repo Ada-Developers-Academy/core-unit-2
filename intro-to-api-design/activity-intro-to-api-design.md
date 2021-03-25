@@ -1,4 +1,4 @@
-# Activity: Designing a Request
+# Activity: Intro to API Design
 
 ## Goal
 

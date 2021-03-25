@@ -1,4 +1,4 @@
-# Designing a Request
+# Designing Endpoints
 
 ## Learning Goals
 

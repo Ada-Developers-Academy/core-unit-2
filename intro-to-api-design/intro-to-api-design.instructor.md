@@ -1,4 +1,4 @@
-# Instructor: Designing a Request
+# Instructor: Intro to API Design
 
 ## Designing JSON Body Responses
 
