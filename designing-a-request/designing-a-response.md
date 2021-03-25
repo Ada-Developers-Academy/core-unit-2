@@ -26,19 +26,19 @@ For this lesson, let's assume that our APIs will always return JSON-formatted HT
 
 A client calling an API wants to always receive a meaningful HTTP response. This includes anticipating different kinds of situations. We can ask ourselves for every endpoint, what is the best HTTP response based on the HTTP response?
 
-Assuming a RESTful API design, let's list the considerations for each endpoint based around a resource named Resource.
+Assuming a RESTful API design, let's list the considerations for each endpoint based around a resource.
 
-| Description                                                                    | CRUD   | Request Method | Path                          | Request Body                                                      |
-| ------------------------------------------------------------------------------ | ------ | -------------- | ----------------------------- | ----------------------------------------------------------------- |
-| What is the response for successfully creating a new resource?                 | Create | `POST`         | `/resources`                  | Valid resource data                                               |
-| What is the response for _unsuccessfully_ creating a new resource?             | Create | `POST`         | `/resources`                  | _Invalid_ resource data, such as missing a required attribute     |
-| What is the response for reading the details of a resource?                    | Read   | `GET`          | `/resources/1`                | -                                                                 |
-| What is the response for reading the details of a resource that doesn't exist? | Read   | `GET`          | `/resources/08342tacocat2341` | -                                                                 |
-| What is the response for updating a resource successfully?                     | Update | `PUT`          | `/resources/1`                | Valid resource data                                               |
-| What is the response for updating a resource _unsuccessfully_?                 | Update | `PUT`          | `/resources/1`                | _Invalid_ resource data, such as violating a data type constraint |
-| What is the response for updating a resource that doesn't exist?               | Update | `PUT`          | `/resources/08342tacocat2341` | Valid resource data                                               |
-| What is the response for deleting a resource successfully?                     | Delete | `DELETE`       | `/resources/1`                | -                                                                 |
-| What is the response for deleting a resource that doesn't exist?               | Delete | `DELETE`       | `/resources/08342tacocat2341` | Valid resource data                                               |
+| CRUD   | **_What is the response for..._**                     |
+| ------ | ----------------------------------------------------- |
+| Create | successfully creating a new resource?                 |
+| Create | **_unsuccessfully_** creating a new resource?         |
+| Read   | reading the details of a resource?                    |
+| Read   | reading the details of a resource that doesn't exist? |
+| Update | updating a resource successfully?                     |
+| Update | updating a resource **_unsuccessfully_**?             |
+| Update | updating a resource that doesn't exist?               |
+| Delete | deleting a resource successfully?                     |
+| Delete | deleting a resource that doesn't exist?               |
 
 For a more advanced web API, we can also consider the following questions:
 
