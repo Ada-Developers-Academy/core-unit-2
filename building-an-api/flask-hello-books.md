@@ -87,6 +87,38 @@ $ source venv/bin/activate
 (venv) $ pip install -r requirements.txt
 ```
 
+### !callout-warning
+
+## Common Debugging: Need to `$ pip install --upgrade pip`
+
+A common installation error may be solved by executing `$ pip install --upgrade pip`. Afterwards, attempt `$ pip install -r requirements.txt` again. _(Note: Written March 2021.)_
+
+### !end-callout
+
+### !callout-warning
+
+## Common Debugging: Need to `$ brew install openssl`
+
+A common installation error may be solved by executing `$ brew install openssl`. Afterwards, attempt `$ pip install -r requirements.txt` again. _(Note: Written March 2021.)_
+
+### !end-callout
+
+### !callout-warning
+
+## Common Debugging: Need to `$ xcode-select --install`
+
+A common installation error may be solved by executing `$ xcode-select --install`. Afterwards, attempt `$ pip install -r requirements.txt` again. _(Note: Written March 2021.)_
+
+### !end-callout
+
+### !callout-warning
+
+## Common Debugging: Need to `$ pip install psycopg2-binary`
+
+A common installation error may be solved by executing `$ pip install psycopg2-binary`. This package isn't compatible with Python 3.9 at the time of writing, so downgrading Python might be necessary. Afterwards, attempt `$ pip install -r requirements.txt` again. _(Note: Written March 2021.)_
+
+### !end-callout
+
 ## Defining Endpoints with Blueprint
 
 Our code will import and use something named `Blueprint` from `flask`. In `routes.py`, let's add this import line.
