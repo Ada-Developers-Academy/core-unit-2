@@ -21,7 +21,7 @@ Groups will be making diagrams together during this time. Folks should prepare t
 
 - Physical supplies, such as paper, markers, pens, scissors, glue, etc.
 - Screen sharing tools
-- Diagram-making tools
+- Diagram-making tools and digital drawing tools, such as canva.com, sketch.io, lucidchart.com, etc.
 
 ### !callout-success
 
