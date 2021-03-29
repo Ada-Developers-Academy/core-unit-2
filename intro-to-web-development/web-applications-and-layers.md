@@ -2,12 +2,12 @@
 
 ## Learning Goals
 
-- Compare front-end, back-end, and full-stack
+- Compare the difference between front-end, back-end, and full-stack programming
 - Define API
 
 ## Introduction
 
-Take thirty seconds to close your eyes, and picture logging into a social media site. What actions did you take?What did you need to click or tap? What kind of form shows up? When does the page change? Why did it change, and how did you know you were logged in?
+Take thirty seconds to close your eyes, and picture logging into a social media site. What actions did you take? What did you need to click or tap? What kind of form shows up? When does the page change? Why did it change, and how did you know you were logged in?
 
 Keep picturing this social media site, and imagine browsing your profile and your friend's profile. What pieces of data is shown for every user? What pages show your username? What pages show your email address? What pages show your profile picture? What data must change when you add a friend? What data must change when your friend changes their name?
 
@@ -18,7 +18,7 @@ Let's ponder one more time. What _is_ a web application? What are all of the pie
 | Vocab     | Definition                                                                                     | Synonyms                                    | How to Use in a Sentence                                                                                                                                                   |
 | --------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Web App   | Application software that runs on a web server                                                 | Dynamic site, web site, site, app           | "I need to log onto that web app because it has all of my health insurance information," "My banking web app is slow, but I can pay my bills there"                        |
-| End-user  | the person who actually uses a particular product                                              | User                                        | "This app is designed for an end-user who needs to organize their calendar," "This app needs to ultimately serve the end-user, so we should consider the end-user's needs" |
+| End-user  | the person who actually uses a particular product                                              | User, client, customer                                        | "This app is designed for an end-user who needs to organize their calendar," "This app needs to ultimately serve the end-user, so we should consider the end-user's needs" |
 | Front-end | a part of the system concerned with dealing with user interaction                              | "frontend," "front end," presentation layer |
 | Back-end  | a part of the system concerned with running application logic and storing application data     | "backend," "back end," data access layer    |
 | Web APIs  | Software built to translate messages between a user (often another program) and a _web server_ | API                                         | "If we use the Yelp API, we're able to query data that the Yelp databases store," "Yelp has an API that allows users to search for restaurants in a specific city"         |
@@ -93,7 +93,7 @@ Let's consider different web APIs. These web APIs are part of a web app's back-e
 | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [Yelp's Fusion API](https://www.yelp.com/fusion)                       | Within Yelp's databases, search for businesses by keyword, location, category, price level; get reviews for a specific business; get autocomplete suggestions for a business |
 | [The Movie Database API](https://www.themoviedb.org/documentation/api) | Within TMDB's databases, get data or images about movies, TV shows, or actors                                                                                                |
-| [Twitter API](https://developer.twitter.com/en/docs/twitter-api)       | Within Twitter's dabases, get tweets from a specific user, look at analytics for a search topic or keyword, or measure tweet performance                                     |
+| [Twitter API](https://developer.twitter.com/en/docs/twitter-api)       | Within Twitter's databases, get tweets from a specific user, look at analytics for a search topic or keyword, or measure tweet performance                                     |
 
 ## Front-end
 
@@ -108,7 +108,7 @@ The front-end layer determines:
 Here's a list of responsibilities that a front-end could have:
 
 - Where is the "sign up" button, and what information does the user need to fill and send?
-- After a user purchases a product, what do they see? Do they see a "success" message, or an "error" message? Do they go back to their home, or back to shopping?
+- After a user purchases a product, what do they see? Do they see a "success" message or an "error" message? Do they go back to their home, or back to shopping?
 - When a user reviews a product, do they see five stars to click? Or do they see a dropdown menu? Or do they type their review completely?
 - When a user is browsing products, do products show up in a row, or a grid? How many show up at one time?
 
