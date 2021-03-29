@@ -135,15 +135,15 @@ We can use the server logs to debug our server code. Any error messages that our
 
 The server logs update in real-time. These are the logs immediately after receiving a `GET` request to `localhost:5000/`, which produced a `200` response.
 
-![](../assets/building-an-api_flask-setup_server-logs-200.png)
+![Screenshot of Terminal after running the command "flask run". Details show server startup and request/response of GET to slash.](../assets/building-an-api/flask-setup_server-logs-200.png)
 
 These are the logs immediately after a `GET` request to `localhost:5000/i-didnt-define-this-endpoint-in-my-server-code`, which produced a `404` response.
 
-![](../assets/building-an-api_flask-setup_server-logs-404.png)
+![Screenshot of Terminal, which includes Flask sever startup messages, and output for request/response of a 404 error](../assets/building-an-api/flask-setup_server-logs-404.png)
 
 These are the logs immediately after a `GET` request to `localhost:5000/broken-endpoint-with-broken-server-code`, which raised an error in our server code.
 
-![](../assets/building-an-api_flask-setup_server-logs-500.png)
+![Screenshot of Terminal, which includes Flask sever startup messages, and output for request/response of a 500 error, with error logs](../assets/building-an-api/flask-setup_server-logs-500.png)
 
 We can focus on the error message at the bottom here to trace our error:
 

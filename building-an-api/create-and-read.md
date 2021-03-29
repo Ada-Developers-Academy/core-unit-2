@@ -226,7 +226,7 @@ Our entire development process throughout this should use Postman heavily, rapid
 - Set the request URL to `localhost:5000/books`
 - Configure an HTTP response body to `raw` and `JSON`
 
-![Screenshot of using Postman to send a POST request to create a Book](../assets/building-an-api_create-postman.png)
+![Screenshot of using Postman to send a POST request to create a Book](../assets/building-an-api/create-and-read_create-postman.png)
 
 Lastly, don't forget to exercise patience! It takes patience to discover how to debug with so many tools, windows, and screens.
 
@@ -387,7 +387,7 @@ Let's test this request:
 - Set the method to `GET`
 - Keep the request URL at `localhost:5000/books`
 
-![Screenshot of using Postman to send a POST request to create a Book](../assets/building-an-api_get-books-postman.png)
+![Screenshot of using Postman to send a POST request to create a Book](../assets/building-an-api/create-and-read_get-books-postman.png)
 
 ### !callout-info
 
