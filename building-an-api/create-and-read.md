@@ -224,7 +224,7 @@ Our entire development process throughout this should use Postman heavily, rapid
 
 - Set the method to `POST`
 - Set the request URL to `localhost:5000/books`
-- Configure an HTTP response body to `raw` and `JSON`
+- Configure an HTTP response body to `raw` and `JSON`, and add in the sample request body
 
 ![Screenshot of using Postman to send a POST request to create a Book](../assets/building-an-api/create-and-read_create-postman.png)
 
