@@ -202,7 +202,11 @@ _While the Flask server is running_, we can use Postman to send a `GET` request 
 
 Hopefully, we see our HTTP response `200 OK` and `"Hello, World!"`!
 
+![Screenshot of Postman after making a GET request to /hello-world with a 200 OK response](../assets/building-an-api/flask-hello-books_hello-world-postman.png)
+
 Instead of using Postman, we can alternatively use our browser to make a `GET` request to `localhost:5000/hello-world`.
+
+![Screenshot of a browser pointing to localhost:5000/hello-world with the text "Hello, World!"](../assets/building-an-api/flask-hello-books_hello-world-browser.png)
 
 ## Check the Server Logs
 
@@ -261,9 +265,15 @@ def hello_json():
 
 Confirm that you can send a request and get a response back with Postman.
 
-Confirm that you can send a request and get a response back in the browser.
+![Screenshot of Postman after making a GET request to /hello/JSON with a 200 OK response](../assets/building-an-api/flask-hello-books_hello-json-postman.png)
+
+Confirm that you can send a request and get a response back in the browser. This screenshot showcases a browser using a Google Chrome browser extension for viewing JSON.
+
+![Screenshot of a web browser after making a GET request to /hello/JSON with a JSON response body](../assets/building-an-api/flask-hello-books_hello-json-browser.png)
 
 Confirm that you can also see server log output.
+
+![Screenshot of the terminal with the server log output showing that a GET request to /hello/JSON was made](../assets/building-an-api/flask-hello-books_hello-json-server.png)
 
 ### !callout-success
 
@@ -292,15 +302,21 @@ def broken_endpoint():
 
 When we make a `GET` request to `/broken-endpoint-with-broken-server-code`, we will get a `500 Internal Server Error` response.
 
+![Screenshot of Postman after making a GET request to /broken-endpoint-with-broken-server-code with a 500 Internal Server Error response](../assets/building-an-api/flask-hello-books_hello-error-postman.png)
+
 ### Use Your Debugging Strategies
 
 Use a combination of Postman, the browser, server logs, the Internet, and your peers. Fix this endpoint so it no longer sends back a `500` response, and instead sends back a `200` response.
 
 Flask's error responses show up nicely formatted in the browser.
 
+![Screenshot of the browser with Flask error messages](../assets/building-an-api/flask-hello-books_hello-error-browser.png)
+
 ### Fix the Endpoint
 
-The error `TypeError: can only concatenate list (not "str") to list` should help us refactor our code to get a `200 Success`.
+The error `TypeError: can only concatenate list (not "str") to list` should help us refactor our code to get a `200 OK`.
+
+![Screenshot of Postman after making a GET request to /broken-endpoint-with-broken-server-code with a 200 OK response](../assets/building-an-api/flask-hello-books_hello-error-postman-fixed.png)
 
 ### !callout-success
 
