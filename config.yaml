@@ -2,7 +2,7 @@
 Standards:
   -
     Title: Update And Delete
-    Description: "Update and Delete"
+    Description: "Update and Delete, 404s and More Queries"
     UID: c806ada4c97ac6c20ee838c607c979d7
     SuccessCriteria:
       - success criteria
