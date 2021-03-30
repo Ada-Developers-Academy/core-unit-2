@@ -10,7 +10,7 @@ Complete all questions below.
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
-* id: 
+* id: QIPeo7
 * title: Sorting Algorithms
 ##### !question
 
@@ -57,7 +57,7 @@ Read through the code. Which of these kinds of sorts does this function implemen
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
-* id: 
+* id: ZcDOYz
 * title: Sorting Algorithms
 ##### !question
 
@@ -101,7 +101,7 @@ Read through the code. Which of these kinds of sorts does this function implemen
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: multiple-choice
-* id: 
+* id: n5d5zh
 * title: Sorting Algorithms
 ##### !question
 
@@ -144,7 +144,7 @@ Read through the code. Which of these kinds of sorts does this function implemen
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: paragraph
-* id: 
+* id: rNnJPu
 * title: Sorting Algorithms
 ##### !question
 
@@ -169,7 +169,7 @@ The bubble sort algorithm is unique because...
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: paragraph
-* id: 
+* id: ZjpcQX
 * title: Sorting Algorithms
 ##### !question
 
@@ -194,7 +194,7 @@ The selection sort algorithm is unique because...
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: paragraph
-* id: 
+* id: fN9PLJ
 * title: Sorting Algorithms
 ##### !question
 
@@ -219,7 +219,7 @@ The insertion sort algorithm is unique because...
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: paragraph
-* id: 
+* id: oIbAq4
 * title: Sorting Algorithms
 ##### !question
 
