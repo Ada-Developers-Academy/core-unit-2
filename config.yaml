@@ -15,3 +15,7 @@ Standards:
         Type: Lesson
         UID: Fm5rbb
         Path: /update-and-delete/404s-and-more-queries.md
+      -
+        Type: Lesson
+        UID: syrMq6
+        Path: /update-and-delete/problem-set-update-and-delete.md
