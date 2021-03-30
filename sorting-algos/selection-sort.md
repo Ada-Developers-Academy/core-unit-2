@@ -1,14 +1,52 @@
-## Selection Sort
+# Selection Sort
+
+## Learning Goals
+
+- Describe selection sort and its efficiency
+
+## Overview
 
 The selection sort works by selecting the smallest unsorted item in the list and swapping it with index 0, then finding the next smallest and placing it into index 1 and so on.
 
-The selection sort works as follows: you look through the entire array for the smallest element. Once you find it, you swap this smallest element found with the first element of the array. Then you look for the smallest element in the remaining array (the sub-array without the first element) and swap this element found with the second element. Then you look for the smallest element in the remaining array (the sub-array without the first and second elements) and swap that element with the third element, and so on.
+### Detailed Explanation
 
-Here's an example:
+![Selection Sort Example](../assets/sorting-algos/selection-sort.png)
 
-![Selection Sort Example](images/selection-sort.png)
+Here is a more detailed explanation of the bubble sort algorithm:
 
-**Example implementation:**
+1. You look through the entire array for the smallest element.
+1. Once you find it, you swap this smallest element found with the first element of the array.
+1. Then you look for the smallest element in the remaining array (the sub-array without the first element) and swap this element found with the second element.
+1. Then you look for the smallest element in the remaining array (the sub-array without the first and second elements) and swap that element with the third element, and so on.
+
+## Example
+
+Consider the initial unsorted array `[99, 45, 35, 40, 16, 50, 11, 7, 90]`. Here's what it looks like before and after each iteration of the outer loop.
+
+- `i` is the index that starts at 0, and increments until the length of the array.
+- `min_index` is a variable that holds the index of the smallest element in the sub-array.
+
+| Iteration | Array                                       | i     | min_index     |
+| --------- | ------------------------------------------- | ----- | ------------- |
+| 1.        | [**99**, 45, 35, 40, 16, 50, 11, **7**, 90] | _i=0_ | _min_index=7_ |
+| 2.        | [7, **45**, 35, 40, 16, 50, **11**, 99, 90] | _i=1_ | _min_index=6_ |
+| 3.        | [7, 11, **35**, 40, **16**, 50, 45, 99, 90] | _i=2_ | _min_index=4_ |
+| 4.        | [7, 11, 16, **40**, **35**, 50, 45, 99, 90] | _i=3_ | _min_index=4_ |
+| 5.        | [7, 11, 16, 35, **40**, 50, 45, 99, 90]     | _i=4_ | _min_index=4_ |
+| 6.        | [7, 11, 16, 35, 40, **50**, **45**, 99, 90] | _i=5_ | _min_index=6_ |
+| 7.        | [7, 11, 16, 35, 40, 45, **50**, 99, 90]     | _i=6_ | _min_index=6_ |
+| 8.        | [7, 11, 16, 35, 40, 45, 50, **99**, **90**] | _i=7_ | _min_index=8_ |
+| 9.        | [7, 11, 16, 35, 40, 45, 50, 90, 99]         | -     |               |
+
+## Big(O) Complexity
+
+The time complexity of Selection sort is _O(n<sup>2</sup>)_.
+
+Each of the nested loops has an upper bound defined by the count of elements, _n_ in the list to be sorted.
+
+## Example Implementation
+
+Consider this example implementation of selection sort.
 
 ```python
 def selection_sort(array):
@@ -28,40 +66,32 @@ def selection_sort(array):
     return array
 ```
 
-```ruby
-def selection_sort(array, length)
-  i = 0
-  while i < length-1
-    min_index = i
-    j = i+1
-    while j < length
-      if array[j] < array[min_index]
-        min_index = j
-      end
-      j += 1
-    end
-    if min_index != i
-      temp = array[min_index]
-      array[min_index] = array[i]
-      array[i] = temp
-    end
-    i += 1
-  end
-end
-```
+Compare this code with this detailed explanation of the algorithm:
 
-**Example:** Consider the initial unsorted array [99, 45, 35, 40, 16, 50, 11, 7, 90]. Here's what it looks like before and after each iteration of the outer loop.
+- Finds the smallest element in the range of `i` and `min_index`
+- Sets `min_index` to the index of the smallest item
+- If `i` and `min_index` are not the same, then
+  - Swap the elements at index `i` and index `min_index`
+- Increases `i`
+- Do this until `i` reaches the end of the list
 
-| Iteration | Array                                       | i                  | min_index     |
-| --------- | ------------------------------------------- | ------------------ | ------------- |
-| 1.        | [**99**, 45, 35, 40, 16, 50, 11, **7**, 90] | _i=0_              | _min_index=7_ |
-| 2.        | [7, **45**, 35, 40, 16, 50, **11**, 99, 90] | _i=1_              | min_index=6\* |
-| 3.        | [7, 11, **35**, 40, **16**, 50, 45, 99, 90] | _i=2_              | _min_index=4_ |
-| 4.        | [7, 11, 16, **40**, **35**, 50, 45, 99, 90] | _i=3_              | _min_index=4_ |
-| 5.        | [7, 11, 16, 35, **40**, 50, 45, 99, 90]     | _i=4_              | _min_index=4_ |
-| 6.        | [7, 11, 16, 35, 40, **50**, **45**, 99, 90] | _i=5_              | _min_index=6_ |
-| 7.        | [7, 11, 16, 35, 40, 45, **50**, 99, 90]     | _i=6_              | _min_index=6_ |
-| 8.        | [7, 11, 16, 35, 40, 45, 50, **99**, **90**] | _i=7_              | _min_index=8_ |
-| 9.        | [7, 11, 16, 35, 40, 45, 50, 90, 99]         | _sorting complete_ |               |
+## Check for Understanding
 
-**Analysis:** The time complexity of Selection sort is _O(n<sup>2</sup>)_. Each of the nested loops has an upper bound defined by the count of elements, _n_ in the list to be sorted.
+<!-- Question Takeaway -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: paragraph
+* id: WcmHej
+* title: Selection Sort
+##### !question
+
+What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+
+##### !end-question
+##### !placeholder
+
+My biggest takeaway from this lesson is...
+
+##### !end-placeholder
+### !end-challenge
+<!-- prettier-ignore-end -->
