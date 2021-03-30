@@ -1,13 +1,15 @@
 # Sorting Algorithms
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=a4668a63-9fb8-4778-b0a4-aaca006b34c8&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+## Goals
 
-## Learning Goals
+The goal for this lesson is to introduce sorting algorithms.
 
-- Describe bubble sort and its efficiency
-- Describe selection sort and its efficiency
-- Describe insertion sort and its efficiency
-- Describe merge sort and its efficiency
+Sorting algorithms:
+
+- improve our algorithmic problem-solving skills
+- improve our code reading skills
+- practice our ability to think abstractly
+- practice our ability to explain algorithms
 
 ## Vocabulary and Synonyms
 
@@ -25,17 +27,45 @@
 
 ## Introduction
 
-In our last lesson on [Arrays](https://github.com/Ada-Developers-Academy/textbook-curriculum/blob/master/04-cs-fundamentals/classroom/Arrays.md), we saw how having the data set sorted improved the algorithms we could use. e.g. **Finding an element with minimum or maximum value** went from a _O(n)_ algorithm for unsorted array to an _O(1)_ algorithm for a sorted array. Similarly, **binary search** which is possible on sorted data set is an _O(log n)_ algorithm as compared to _O(n)_ **linear search** algorithm. There are also other everday examples where we expect the data set to be sorted e.g. last names sorted from 'a' through 'z', words in a dictionary, test scores sorted in descending order, employee ids sorted in ascending order etc.
+Imagine a stack of index cards, where each index card has the numbers 1 through 100. Imagine that these cards are shuffled in a random, unknowable order.
+
+If you're given the task to sort these index cards in ascending order, what would you do?
+
+Picture yourself. Do you scan through the pile over and over again, slowly changing the order until it's all sorted? Do you use a table and make two separate piles? Do you compare the card you're looking at always to the next card in the pile?
+
+If you take two people and ask them to sort the same pile of cards, they will likely have different methods.
+
+Machines need to think through these questions too, but with less index cards and more variables. The strategy to sort an array of values is a _sorting algorithm_.
+
+## Sorting Algorithms
+
+Often, sorting will be part of an application feature we build, such as:
+
+- Sorting last names alphabetically
+- Listing sports game scores in descending order
+- Sorting employees by ID in an ascending order
+
+Also, various algorithms improve when working with a sorted array! Recall these examples:
+
+- Finding an element with a minimum or maximum value
+    - Unsorted array: O(n)
+    - Sorted array: O(1)
+- Searching for an element in an array
+    - Unsorted array with linear search: O(n)
+    - Sorted array with binary search: O(log n)
+
+For each sorting algorithm, we should:
+
+1. Define and describe the sorting strategy
+1. Visualize at least one example of this algorithm
+1. Learn the Big(O) complexity of this algorithm
+1. Practice reading the code of an example implementation
 
 Sorting is ordering a list of elements. We can distinguish two types of sorting. If the number of elements is small enough to fit in the main memory, sorting is called _internal sorting_. There are times when the number of elements is larger than can fit in the main memory, some of them will stay in the external storage while the sorting algorithm works and is called _external sorting_. We'll scope our conversation to a few internal sorting algorithms.
-
-
 
 ## O(n<sup>2</sup>) Algorithms
 
 The sorting algorithms above have a time complexity of O(n<sup>2</sup>). These algorithms are fine when the array length, _n_, is small, but quickly cease to be useful as the size of the array increases. They **do** have the advantage of being relatively easy to implement and bubble sort and insertion sort can perform well in the best case, but they do not scale well. This brings in an overview of our first fairly performant sorting algorithm **Merge Sort**.
-
-
 
 ## Summary
 
