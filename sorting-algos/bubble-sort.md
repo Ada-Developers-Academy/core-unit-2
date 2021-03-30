@@ -6,7 +6,7 @@
 
 ## Overview
 
-The bubble sort algorithm is one of the most straightforward sorting algorithms.
+The bubble sort algorithm might look like how a lot of people sort things.
 
 Bubble sort...
 

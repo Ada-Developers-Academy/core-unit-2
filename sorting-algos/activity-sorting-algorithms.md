@@ -25,6 +25,8 @@ Research Round groups:
 | Olivia           | Corinne          | Briana           |
 | Annie            | India            | Jayden           |
 
+Teaching Round groups:
+
 | Teaching Group A | Teaching Group B |
 | ---------------- | ---------------- |
 | Olivia           | Annie            |
