@@ -10,6 +10,24 @@ Here's an example:
 
 **Example implementation:**
 
+```python
+def selection_sort(array):
+    i = 0
+    while i < len(array) - 1:
+        min_index = i
+        j = i + 1
+        while j < len(array):
+            if array[j] < array[min_index]:
+                min_index = j
+            j += 1
+        if min_index != i:
+            temp = array[min_index]
+            array[min_index] = array[i]
+            array[i] = temp
+        i += 1
+    return array
+```
+
 ```ruby
 def selection_sort(array, length)
   i = 0

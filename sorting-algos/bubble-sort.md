@@ -4,6 +4,21 @@ The bubble sort algorithm is a simple sorting algorithm that repeatedly steps th
 
 **Example implementation:**
 
+```python
+def bubble_sort(array):
+    i = 0
+    while i < len(array) - 1:
+        j = 0
+        while j < (len(array) - i - 1):
+            if array[j] > array[j+1]:
+                temp = array[j]
+                array[j] = array[j+1]
+                array[j + 1] = temp
+            j += 1
+        i += 1
+    return array
+```
+
 ```ruby
 def bubble_sort(array, length)
   i = 0
@@ -48,6 +63,21 @@ Overall, the inner loop runs _n-1_ times during the first iteration of the outer
 
 - **Note 1**: The mathematical proof is out of scope for our discussion. For those curious, see [step 4 on wikihow](http://www.wikihow.com/Sum-the-Integers-from-1-to-N)</br>
 - **Note 2**: The best case time complexity for Bubble sort can be improved to be _O(n)_ (for already sorted arrays) by optimizing this algorithm as below.
+
+```python
+def bubble_sort(array):
+    i = 0
+    while i < len(array) - 1:
+        j = 0
+        while j < (len(array) - i - 1):
+            if array[j] > array[j+1]:
+                temp = array[j]
+                array[j] = array[j+1]
+                array[j + 1] = temp
+            j += 1
+        i += 1
+    return array
+```
 
 ```ruby
 def bubble_sort(array, length)
