@@ -2,7 +2,7 @@
 
 ## Goals
 
-- Practice defining routes that modify/command in an API
+- Practice defining routes that modify data in an API
 - Modify a database record from the back-end layer
 
 ## Format
@@ -31,10 +31,10 @@ It may be better to think about this lesson as a resource to be familiar with, r
 
 ### Before This Lesson
 
-The Hello Books API should have:
+This lesson uses the Hello Books API. Before beginning this lesson, the Hello Books API should have:
 
-- A `hello_books` database
-- A `books` table defined
+- A `hello_books_development` database
+- A `book` table defined
 - A `Book` model defined
 - Endpoints defined for these RESTful routes:
   - `GET` to `/books`
@@ -43,6 +43,7 @@ The Hello Books API should have:
 
 The `Book` model and table should have the following columns:
 
+- `id`
 - `title`
 - `description`
 
