@@ -109,9 +109,36 @@ After writing this code, we can use Postman to test it. Let's make a `GET` reque
 
 We should see a `404` status and an empty response body.
 
+## Countless Possible Refactorings
+
+Handling a missing book and sending back a 404 happens to be the same response we want for all three endpoints:
+
+- `GET` `/books/<book_id>`
+- `PUT` `/books/<book_id>`
+- `DELETE` `/books/<book_id>`
+
+We can consider refactoring and then testing our API to this code:
+
+```python
+@books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
+def book(book_id):
+    book = Book.query.get(book_id)
+    if book == None:
+        return Response("", status=404)
+
+    if request.method == "GET":
+        return {
+            "id": book.id,
+            "title": book.title,
+            "description": book.description
+        }
+    # ... existing code for updating a single book
+    # ... existing code for deleting a single book
+```
+
 ### !callout-info
 
-## Countless Possible Refactorings
+## Even More Refactoring
 
 We could refactor our code to a number of different solutions that are more elegant. Feel free to refactor!
 
@@ -134,6 +161,8 @@ Check off all the topics that we've briefly touched on so far.
 * Checked if `Book.query.get()` returned `None`
 * Sent back a response
 * Tested this request in Postman
+* Applied this to the "Update Book" functionality
+* Applied this to the "Delete Book" functionality
 
 ##### !end-options
 ##### !answer
@@ -141,6 +170,8 @@ Check off all the topics that we've briefly touched on so far.
 * Checked if `Book.query.get()` returned `None`
 * Sent back a response
 * Tested this request in Postman
+* Applied this to the "Update Book" functionality
+* Applied this to the "Delete Book" functionality
 
 ##### !end-answer
 ### !end-challenge
