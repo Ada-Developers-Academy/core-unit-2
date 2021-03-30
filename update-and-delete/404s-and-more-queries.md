@@ -42,7 +42,7 @@ The `Book` model and table should have the following columns:
 
 Let's consider how to accomplish this feature:
 
-> As a client, I want to send a request trying to get one invalid book and get a 404 response, so I know that the book resource was not found.
+> As a client, I want to send a request trying to get one non-existing book and get a 404 response, so I know that the book resource was not found.
 
 ### Predict HTTP Requests, Responses, and Logic
 

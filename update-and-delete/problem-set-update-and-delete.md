@@ -21,6 +21,6 @@ As a client, I want to send a request...
 
 1. ... with valid book data to update one existing book and get a success response, so that I know the API updated the book data.
 1. ... to delete one existing book and get a success response, so that I know the API deleted the book data.
-1. ... trying to get one invalid book and get a 404 response, so I know that the book resource was not found.
-1. ... trying to update one invalid book and get a 404 response, so I know that the book resource was not found.
-1. ... trying to delete one invalid book and get a 404 response, so I know that the book resource was not found.
+1. ... trying to get one non-existing book and get a 404 response, so I know that the book resource was not found.
+1. ... trying to update one non-existing book and get a 404 response, so I know that the book resource was not found.
+1. ... trying to delete one non-existing book and get a 404 response, so I know that the book resource was not found.
