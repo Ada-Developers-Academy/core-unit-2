@@ -34,12 +34,13 @@ It may be better to think about this lesson as a resource to be familiar with, r
 
 The Hello Books API should have:
 
-- A `hello_books` database
-- A `books` table defined
+- A `hello_books_development` database
+- A `book` table defined
 - A `Book` model defined
 
 The model and table should have the following columns:
 
+- `id`
 - `title`
 - `description`
 
@@ -47,7 +48,7 @@ The model and table should have the following columns:
 
 We want to build our Hello Books API to fulfill these features:
 
-1. As a client, I want to send a request with new valid book data and get a success response, so that I know the API saved the book data
+1. As a client, I want to send a request with new valid book data and get a success response, so that I know the API saved the book data.
 1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
 1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
 
@@ -76,9 +77,9 @@ Request body:
 
 And the response we'll want to send back is:
 
-| Response Status | Response Body |
-| --------------- | ------------- |
-| `201 Created`   | -             |
+| Response Status | Response Body                                    |
+| --------------- | ------------------------------------------------ |
+| `201 Created`   | `Book Fictional Book Title successfully created` |
 
 During this method, we will need to:
 
@@ -471,8 +472,9 @@ We want to send back a single JSON object (dictionary) with `id`, `title`, and `
 
 During this method, we will need to:
 
-1. Retrieve all of the books from the db
-1. Format the books data into the appropriate structure (a single dictionary with `id`, `title`, and `description`)
+1. Read the `book_id` in the request path
+1. Retrieve the book with the matching `book_id` from the db
+1. Format the book data into the appropriate structure (a single dictionary with `id`, `title`, and `description`)
 1. Send back a response
 
 ## Getting a Single Book Endpoint: Code
@@ -551,3 +553,11 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
+
+### !callout-warning
+
+## What About Error Handling?
+
+There are many cases that weren't covered in this lesson, even though they are relevant to creating and reading `Book`s. For example, what happens if we make a `GET` request to `/books/this-book-doesnt-exist`? We are intentionally not covering these cases at the moment, to limit this lesson. However, hypothesize and research how to handle erroneous HTTP requests. Follow your curiosity!
+
+### !end-callout
