@@ -11,3 +11,7 @@ Standards:
         Type: Lesson
         UID: eebc0514b2efcba42ff925c17aa17fde
         Path: /update-and-delete/update-and-delete.md
+      -
+        Type: Lesson
+        UID: Fm5rbb
+        Path: /update-and-delete/404s-and-more-queries.md
