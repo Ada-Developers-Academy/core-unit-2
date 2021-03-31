@@ -39,7 +39,8 @@ We can use `LIMIT` to retrieve the first *x* rows from a select, but what if we 
 
 We can add an offset to the `LIMIT` clause to retrieve records bypassing the first *x* records.
 
-```SELECT title
+```sql
+SELECT title
 FROM books
 WHERE genre = 'sci-fi'
 LIMIT 10 OFFSET 11;
