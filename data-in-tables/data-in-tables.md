@@ -29,9 +29,9 @@ By focusing on this kind of table, we will be set up for recognizing patterns co
 
 Tables are made of rows and columns.
 
-The first row is devoted to labeling the columns. This row can be called the _header row_.
+It's useful to begin a table with a section that labels the columns. We call this section the _header_, or the _header row_.
 
-After the header row, each row is a **record**, or a representation of _one_ entity that fits in this table.
+After the header comes the rows. Each row is a **record** that represents _one_ entity recorded in this table.
 
 Columns, on the other hand, represent **attributes**. Each column holds the value of one _attribute_ of one _record_.
 
@@ -56,7 +56,7 @@ In this example table of new hobbies to try:
   - Minimum Number of Hours
   - Resources Needed
   - Will My Friend Milly Join Me?
-- The _attributes_ are labeled in the header row
+- The _attributes_ are labeled in the header
 
 ## Using Tables Like a Computer Scientist
 
@@ -114,7 +114,6 @@ Updating records is a common action we do. What does it mean to update or modify
 - Adding and deleting rows is equivalent to adding and deleting records
 - Adding and deleting columns is painful; when we add a column, we'll need to go through each row and fill it in with some value. Deleting a column also means going through and modifying every record.
 
-<!-- TODO:  Add image illustrating the difficulties of adding or deleting a column -->
 
 ### !end-callout
 
@@ -125,7 +124,7 @@ Updating records is a common action we do. What does it mean to update or modify
 ### !challenge
 * type: paragraph
 * id: PvvBpf
-* title: NameOfLesson
+* title: Data in Tables
 ##### !question
 
 What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
