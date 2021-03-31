@@ -16,7 +16,7 @@ Sequence diagrams are a kind of diagram that depict one scenario or event. For o
 
 For example, let's consider this diagram that describes the process of logging into a web app.
 
-![Sequence Diagram showing the process of logging in. There are four vertical columns: User, Login Screen, ValidateUser, and Database. There are the following horizontal arrows: 1. Arrow from User to Login Screen labeled "clicks on Login." 2. Arrow from Login Screen to ValidateUser labeled "validateUser(userId,password)." 3. Arrow from ValidateUser to Database labeled "checkUserDetails." 4. Arrow from Database to ValidateUser labeled "UserDetails." 5. Arrow from ValidateUser to ValidateUser labeled "validateUser()." 6. Arrow from ValidateUser to Login Screen labeled "result." 7. Arrow from Login Screen to User labeled "showMessage." ](../assets/sequence-diagram_login-example.png)
+![Sequence Diagram showing the process of logging in. There are four vertical columns: User, Login Screen, ValidateUser, and Database. There are the following horizontal arrows: 1. Arrow from User to Login Screen labeled "clicks on Login." 2. Arrow from Login Screen to ValidateUser labeled "validateUser(userId,password)." 3. Arrow from ValidateUser to Database labeled "checkUserDetails." 4. Arrow from Database to ValidateUser labeled "UserDetails." 5. Arrow from ValidateUser to ValidateUser labeled "validateUser()." 6. Arrow from ValidateUser to Login Screen labeled "result." 7. Arrow from Login Screen to User labeled "showMessage." ](../assets/sequence-diagrams_login-example.png)
 
 In this diagram, the objects and actors involved are:
 
