@@ -1,0 +1,41 @@
+---
+Standards:
+  -
+    Title: Sorting Algos
+    Description: "Sorting Algorithms, Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Problem Set: Sorting Algorithms, Activity: Sorting Algorithms"
+    UID: 184d8af4792d6c2f80c90b27919caa10
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 32b0bd4445f66fd2663288c634432c2e
+        Path: /sorting-algos/sorting-algorithms.md
+      -
+        Type: Lesson
+        UID: 0806cdb2d0a4b885790d3793999db841
+        Path: /sorting-algos/bubble-sort.md
+      -
+        Type: Lesson
+        UID: 1dc3ffdcda584ccb3a445105b67bf21f
+        Path: /sorting-algos/selection-sort.md
+      -
+        Type: Lesson
+        UID: 04c103dab4d7e24b3e0922fba11ab2e7
+        Path: /sorting-algos/insertion-sort.md
+      -
+        Type: Lesson
+        UID: 64b3cc9b8ee0c4d4d7d0dadbaa0d618d
+        Path: /sorting-algos/merge-sort.md
+      -
+        Type: Lesson
+        UID: c9b2bfb4d03e343ecb78b69068f83e91
+        Path: /sorting-algos/comparing-beyond-numbers.md
+      -
+        Type: Lesson
+        UID: 383253988f7afc58dd4fe867d42d7cad
+        Path: /sorting-algos/problem-set-sorting-algorithms.md
+      -
+        Type: Lesson
+        UID: 70acaebba6da64c98fef0d184cd40e5b
+        Path: /sorting-algos/activity-sorting-algorithms.md
