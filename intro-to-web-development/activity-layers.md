@@ -33,7 +33,9 @@ This activity is about how people interpret different processes. There is no per
 
 ## Prompts
 
-1. Consider craigslist.com.
+Consider craigslist.com.
+
+### User Sees All Free Stuff for Sale
 
 Imagine a user who wants to find all free-stuff for sale that has been posted today. (Consider this [page](https://seattle.craigslist.org/search/zip?postedToday=1) for Seattle's craiglist.)
 
@@ -43,7 +45,7 @@ Create a sequence diagram to describe what the user will do and see. Use the fol
 1. Client (the end-user's browser)
 1. Craigslist.com's web servers
 
-1. Consider craigslist.com.
+### User Searches for All Deliverable Books
 
 Imagine a user who wants to find all books that have delivery available. (Consider this [page](https://seattle.craigslist.org/search/bka?purveyor-input=all&delivery_available=1) for Seattle's craiglist.)
 
@@ -54,7 +56,9 @@ Create a sequence diagram to describe what the user will do and see. Use the fol
 1. Craigslist.com back-end
 1. Craigslist.com databases
 
-1. With your pair, create a fictional e-commerce online store. Pick something along the lines of "an online store for books about plants," or "an online store for antique/historical armor," or "an online store for pet clothes." Give this fictional online store a name.
+### User Reviews a Fictional Product: Client-Server
+
+With your pair, create a fictional e-commerce online store. Pick something along the lines of "an online store for books about plants," or "an online store for antique/historical armor," or "an online store for pet clothes." Give this fictional online store a name.
 
 Then, imagine a user who wants to write a review for a product.
 
@@ -64,7 +68,9 @@ Create a sequence diagram to describe what the user will do and see. Use the fol
 1. Client (the end-user's browser)
 1. Your online store's web servers
 
-1. Continue to use the same fictional e-commerce store.
+### User Reviews a Fictional Product: Application Layers
+
+Continue to use the same fictional e-commerce store.
 
 Continue to imagine a user who wants to write a review for a product.
 
