@@ -112,3 +112,30 @@ Standards:
         Type: Lesson
         UID: af18e4ef-18aa-432c-9f34-0375f4dbb82a
         Path: /more-selecting-in-sql/grouping.md
+  -
+    Title: Intro To Web Development
+    Description: "Web Applications and Layers, Intro to Clients, Servers, HTTP, Sequence Diagrams, Activity: Layers"
+    UID: 87ee542387da94693acb5efb099b7f58
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:    
+      -
+        Type: Lesson
+        UID: c674f6dd20d7be77cfb94798b04ba3b7
+        Path: /intro-to-web-development/intro-to-web-development.instructor.md
+      -
+        Type: Lesson
+        UID: fb82af67544ea4e47867dacf14422750
+        Path: /intro-to-web-development/web-applications-and-layers.md
+      -
+        Type: Lesson
+        UID: 3b85293903e714dbf08ba517f828ac88
+        Path: /intro-to-web-development/intro-to-clients-servers-http.md
+      -
+        Type: Lesson
+        UID: 0cb41fed41e0e32dfb1adbd4b5d61c9a
+        Path: /intro-to-web-development/sequence-diagrams.md
+      -
+        Type: Lesson
+        UID: 50ce8362260e6524b31d9c6a8c990c2c
+        Path: /intro-to-web-development/activity-layers.md
