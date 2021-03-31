@@ -6,7 +6,7 @@ The goal of this lesson is to introduce a tool called _the sequence diagram_. Th
 
 Sequence diagrams are useful and commonly taught, but in practicality, they're not a skill that is used daily.
 
-Formal sequence diagrams are usually very detailed and use a formal diagram syntax. This lesson will deprioritize those skills, and instead apply sequence diagrams on a higher, more abstract level.
+Formal sequence diagrams are usually very detailed and use a formal diagram syntax. This lesson will deprioritize those skills, and instead focus on sequence diagrams at a higher, more abstract level.
 
 ## Sequence Diagrams Show Communication Over Time
 
@@ -48,7 +48,7 @@ Because this curriculum encourages using sequence diagrams in the informal, abst
 
 ## Horizontal Lines Are Messages Passed Inbetween
 
-In sequence diagrams, each horizontal line is usually an arrow that represents a message being sent. **Message** is a generic term to mean one discrete piece of communication. Messages can likely be an HTTP request or HTTP response. However, messages could also be a function call, or an abstract message.
+In sequence diagrams, each horizontal line is usually an arrow that represents a message being sent. **Message** is a generic term to mean one discrete piece of communication. Messages are often an HTTP request or HTTP response. However, messages can also be a function call, or an abstract message.
 
 Here are some example messages we may see:
 

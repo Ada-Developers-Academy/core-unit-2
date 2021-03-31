@@ -86,7 +86,7 @@ The client-server model is the model that a lot of communication over the Intern
 
 When applied to many Internet interactions:
 
-- The **client** is a user and their _web browser_, such as Mozilla Firefox, Google Chrome, or Safari
+- The **client** is a user's _web browser_ (such as Mozilla Firefox, Google Chrome, or Safari)
 - The **web server** is a server that hosts a website, such as Facebook.com or Instagram.com, and all of its server data and logic
 - The client sends requests to the web server about getting data or changing data on the website
 - The web server sends responses to the client about the requested data or the requested change
@@ -113,7 +113,7 @@ Does this even have to happen over notes? Could Meghan text or call Francis, or 
 
 Meghan and Francis need a _protocol_. A _protocol_ is a set of rules that define the format of data exchange.
 
-When Meghan and Francis establish a protocol, they'll know the exact rules of communication between them, so Meghan can say what she needs to say and be heard (and so can Francis, too).
+When Meghan and Francis establish a protocol, they'll know the exact rules of communication between them, so Meghan can say what she needs to say and be heard, and so can Francis.
 
 ## The Protocol of the Web
 
@@ -121,13 +121,13 @@ When Meghan and Francis establish a protocol, they'll know the exact rules of co
 
 HTTP is a protocol that always assumes the _client-server model_. Again, this means that the client is usually a user's _web browser_, and the server is a _web server_.
 
-HTTP defines the exact technical ways about:
+HTTP defines the exact technical ways that:
 
-- How a client opens a network connection to a web server
-- How a request looks and behaves
-- How a response looks and behaves
+- A client opens a network connection to a web server
+- A request looks and behaves
+- A response looks and behaves
 
-A request that follows HTTP rules is called an HTTP request. A response that follows HTTP is called an HTTP response.
+A request that follows HTTP rules is called an HTTP request. A response that follows HTTP rules is called an HTTP response.
 
 ## Example: Clients, Servers, and HTTP
 
@@ -150,7 +150,7 @@ An hour later, Meghan wants to update her status.
 
 ## HTTPS
 
-HTTPS, or Hypertext Transfer Protocol Secure, is an extension of HTTPS. Many implementations of HTTP (particularly early ones) did not have the best security. Because HTTP deals with how data travels between computers, data can be breached during that process. HTTPS's technical details address a lot of security concerns. This curriculum will not go into any more details, except give the tip to always prefer HTTPS when possible.
+HTTPS, or Hypertext Transfer Protocol Secure, is an extension of HTTP. Many implementations of HTTP (particularly early ones) did not have the best security. Because HTTP deals with how data travels between computers, data can be breached during that process. HTTPS's technical details address a lot of security concerns. This curriculum will not go into any more details, except give the tip to always prefer HTTPS when possible.
 
 ### !end-callout
 
