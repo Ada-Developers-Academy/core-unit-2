@@ -1,5 +1,11 @@
 # Sorting Results
 
+<!-- 
+
+Note:  The beind the curtain is maybe something we don't keep, on the other hand having something in the lessons about the order Postgres evaluates SQL is maybe something that should be added.
+
+-->
+
 ## Goals
 
 - Explain how `SELECT` statements can be used with `ORDER BY` to change the order of the resultset
@@ -21,6 +27,7 @@ SELECT
 	columns_desired
 FROM
 	table_name
+[Optional Clauses]
 ORDER BY
 	sort_expression1 [ASC | DESC],
 	sort_expression2 [ASC | DESC];
@@ -88,7 +95,7 @@ ORDER BY price ASC;
 
 ## ORDER BY and NULL
 
-Sometimes we may have rows with a value of `NULL` for the column being sorted.  How can we handle this?  We can specify how to treat null values.
+Sometimes we may have rows with a value of `NULL` for the column being sorted.  How can we handle this?  We can specify how to treat null values in the sort results.
 
 ```sql
 SELECT title, price
