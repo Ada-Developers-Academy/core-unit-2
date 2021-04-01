@@ -13,9 +13,20 @@ Standards:
         Path: /update-and-delete/update-and-delete.md
       -
         Type: Lesson
-        UID: Fm5rbb
-        Path: /update-and-delete/404s-and-more-queries.md
-      -
-        Type: Lesson
         UID: syrMq6
         Path: /update-and-delete/problem-set-update-and-delete.md
+  -
+    Title: More Flask Queries
+    Description: "404s and More Queries, Query Params"
+    UID: OkfzUG
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: Fm5rbb
+        Path: /more-flask-queries/404s-and-more-queries.md
+      -
+        Type: Lesson
+        UID: HfbxKc
+        Path: /more-flask-queries/query-params.md
