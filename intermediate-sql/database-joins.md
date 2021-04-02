@@ -17,7 +17,7 @@ We have database tables connected through foreign keys.  Now we need to use this
 
 What if, using this erd, for example we need to retrieve Book titles and the names of their authors?
 
-![ERD Diagram](../assets/intermediate-sql__database-relationships__books-authors.svg)
+![ERD Diagram](../assets/intermediate-sql_database-relationships_books-authors.svg)
 
 To do this we need to *join* the table rows based on the matching columns.  In this lesson we will learn to use `SELECT` statements with `JOIN` clauses to combine data from multiple tables.
 
@@ -39,7 +39,7 @@ WHERE author_id = 42;
 
 However tables can be related through foreign key fields.  We often want to get related information which resides in disparate tables.
 
-![ERD Diagram](../assets/intermediate-sql__database-relationships__books-authors.svg)
+![ERD Diagram](../assets/intermediate-sql_database-relationships_books-authors.svg)
 
 For example given the above ERD, we might want to get the titles of all books written by Kaja Howell.  We could get information on Kaja with:
 
@@ -88,7 +88,7 @@ In this query we performed an *inner join*.  An inner join will combine (join) a
 
 You can picture it like this.
 
-![Venn Diagram on Inner Join between books and authors](../assets/intermediate-sql__database-relationships__books-authors-inner-join.svg)
+![Venn Diagram on Inner Join between books and authors](../assets/intermediate-sql_database-relationships_books-authors-inner-join.png)
 *Fig. Venn Diagram illustrating Inner Join*
 
 If we wanted to narrow this down further and limit the query to books written by Kaja Howell we can add a `WHERE` clause. 
@@ -104,7 +104,7 @@ WHERE authors.first_name = 'Kaja' and
 
 This kind of query works for one to one relationships and one to many relationships.
 
-![ERD Diagram between clients and rentals](../assets/intermediate-sql__database-relationships__client-to-rentals.svg)
+![ERD Diagram between clients and rentals](../assets/intermediate-sql_database-relationships_client-to-rentals.svg)
 
 We could also write a query to get all the clients and their check in dates with the following query.
 
@@ -182,7 +182,7 @@ Yes there are other kinds of joins including *outer joins*, *left joins* and *ri
 We combined columns from two tables with a `SELECT` using a single `JOIN` clause.  If we wanted to combine rows of two tables in a many to many relationship like the one below we can use a `SELECT` statement with two `JOIN` clauses.
 
 
-![many to many relationship ERD](../assets/intermediate-sql__establishing-relationships__many-to-many.svg)
+![many to many relationship ERD](../assets/intermediate-sql_establishing-relationships_many-to-many.svg)
 
 ```sql
 SELECT books.title, genres.name
@@ -305,7 +305,7 @@ Given the tables above select from the employee table:
 
 From all employees in the department named 'Accounting'.
 
-![ERD with one department connected to many employees](../assets/intermediate-sql__database-joins__learning-comp-employees-depts.svg)
+![ERD with one department connected to many employees](../assets/intermediate-sql_database-joins_learning-comp-employees-depts.svg)
 
 ##### !end-question
 

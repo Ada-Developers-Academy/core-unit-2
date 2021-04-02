@@ -111,7 +111,7 @@ There are methods of creating optional foreign keys and ways to allow a foreign 
 To build a many to many relationship requires a table called a JOIN Table.  For example a book can be a part of many genres and each genre will have many books in it.  To create a relationship like this:
 
 
-![Many to Many ERD diagram between books and genres](../assets/intermediate-sql__establishing-relationships__many-to-many.svg)
+![Many to Many ERD diagram between books and genres](../assets/intermediate-sql_establishing-relationships_many-to-many.svg)
 *Fig. Many to many relationship between books and genres*
 
 We create the join table with the following SQL.

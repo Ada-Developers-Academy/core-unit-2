@@ -53,12 +53,12 @@ Staring at hundreds of lines of SQL code or textual tables of data can confuse a
 An ERD diagram consists of rectangles representing each table in the database; listing each column optionally including information about each field such as data types as well as indicating special characteristics like the primary key.
 
 
-![Example table of books](../assets/intermediate-sql__database-relationships__books-table.svg)
+![Example table of books](../assets/intermediate-sql_database-relationships_books-table.svg)
 *Fig. Books Table*
 
 The **PK** indicates the primary key.  We may also often see ERD diagrams including each column's data type.
 
-![ERD with Data Types](../assets/intermediate-sql__database-relationships__books-with-data-types.svg)
+![ERD with Data Types](../assets/intermediate-sql_database-relationships_books-with-data-types.svg)
 *Fig. Books Table with Data Types*
 
 As we examine the types of relationships possible in relational databases we will illustrate each type of relationship with ERD diagrams.
@@ -71,7 +71,7 @@ Similarly we can find all the books written by a specific author by finding all 
 
 We can illustrate the relationship with this diagram.
 
-![Books and authors connected by the author_id field](../assets/intermediate-sql__database-relationships__books-authors.svg)
+![Books and authors connected by the author_id field](../assets/intermediate-sql_database-relationships_books-authors.svg)
 *Fig. Books and authors connected by the `author_id` field*
 
 The lines connecting the tables link the matching columns.
@@ -82,12 +82,12 @@ The lines connecting the tables link the matching columns.
 
 In a one to one relationship each record in one table, Table A, can relate to at most one record in another, Table B, and each record in Table B can relate to at most one record in Table A.  One example of a one to one relationship is an author to a royalty account, or an employee to their company 401K retirement account.  Each author would likely have one account to deposity royalty payments and an employee at a company would have one and only one retirement account.
 
-![Author related 1-1 with a royalty account](../assets/intermediate-sql__database-relationships__author-to-royalty-account.svg)
+![Author related 1-1 with a royalty account](../assets/intermediate-sql_database-relationships_author-to-royalty-account.svg)
 *Fig. Author to royalty account*
 
 We indicate the number of rows involved in the relationship with the following symbols
 
-![ERD 1-1 connection symbols](../assets/intermediate-sql__database-relationships__erd-connection-symbols.png)
+![ERD 1-1 connection symbols](../assets/intermediate-sql_database-relationships_erd-connection-symbols.png)
 *Fig. 1-1 ERD Symbols*
 
 So in the diagram above each row in the authors table is connected to one and only one row in the royalty account.
@@ -98,14 +98,14 @@ A more common type of relationship is called one to many.  In a one to many rela
 
 For example an author can have (write) many books, and we can illustrate that relationship with the following diagram.
 
-![One to many relationship between books and authors](../assets/intermediate-sql__database-relationships__books-authors.svg)
+![One to many relationship between books and authors](../assets/intermediate-sql_database-relationships_books-authors.svg)
 *Fig. A one to many relationship between books and authors.*
 
 In a one to many relationship the table, called the child table contains a field which references the primary key of the other table, called the parent.  Each row in the child table references one row in the parent table, but each row in the parent table may be referenced multiple times.
 
 Notice the "crow's feet" where the line connects to the `books` table.
 
-![So called crow's feet indicating many in an ERD diagram](../assets/intermediate-sql__database-relationships__crows-feet.png)
+![So called crow's feet indicating many in an ERD diagram](../assets/intermediate-sql_database-relationships_crows-feet.png)
 
 This indicates "many" in the relationship.  So one author in this relationship can be related to many different books.
 
@@ -133,7 +133,7 @@ In the above two tables Maayan Ramesha has one book, and Dinah Banu has three bo
 
 The one to many relationship works in many situations.  However there are scenarios where each row in one table is related to many rows in another and the reverse is also true.  However a column in a table can reference at most one row in another table.  To support a many to many relationship we need to create a special kind of table called a *join table*.
 
-![Many to Many Relationship](../assets/intermediate-sql__establishing-relationships__many-to-many.svg)
+![Many to Many Relationship](../assets/intermediate-sql_establishing-relationships_many-to-many.svg)
 *Fig. Many to many relationship*
 
 In the above diagram each row in the `books` table is related to 0 to many rows in the `genres` table *through* the `booksgenres` table.  This connecting table is the join table.  This table contains the two common fields from the `books` and `genres` establishing a one to many relationship between each of our primary tables and the join table.
@@ -197,7 +197,7 @@ The `Fiction` genre with `id` 2 is connected to books with ids 1, 3, 5.  So the 
 
 What type of relationship does this ERD illustrate?
 
-![Diagram](../assets/intermediate-sql__database-relationships__client-to-rentals.svg)
+![Diagram](../assets/intermediate-sql_database-relationships_client-to-rentals.svg)
 
 ##### !end-question
 
@@ -234,7 +234,7 @@ What type of relationship does this ERD illustrate?
 
 What type of relationship does this ERD illustrate between rentals and books?
 
-![Diagram](../assets/intermediate-sql__database-relationships__books-rentals.svg)
+![Diagram](../assets/intermediate-sql_database-relationships_books-rentals.svg)
 
 ##### !end-question
 

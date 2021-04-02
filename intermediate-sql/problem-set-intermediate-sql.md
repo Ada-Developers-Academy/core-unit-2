@@ -25,7 +25,7 @@ MC:  Question on 1-1 Relationship with ERD Diagram
 
 What kind of relationship is illustrated by the following ERD diagram?
 
-![ERD Diagram](../assets/intermediate-sql__database-relationships__problemset-1-to-1.svg)
+![ERD Diagram](../assets/intermediate-sql_database-relationships_problemset-1-to-1.svg)
 
 ##### !end-question
 
@@ -47,7 +47,7 @@ What kind of relationship is illustrated by the following ERD diagram?
 
 What does this mean?
 
-![Many](../assets/![Many](../assets/intermediate-sql__database-relationships__erd-cconnection-many-no-text.png))
+![Many](../assets/![Many](../assets/intermediate-sql_database-relationships_erd-cconnection-many-no-text.png))
 
 ##### !end-hint
 
@@ -70,7 +70,7 @@ What does this mean?
 
 What kind of relationship is illustrated by the following ERD diagram?
 
-![ERD Diagram](../assets/intermediate-sql__database-relationships__problemset-1-to-many.svg)
+![ERD Diagram](../assets/intermediate-sql_database-relationships_problemset-1-to-many.svg)
 
 ##### !end-question
 
@@ -114,7 +114,7 @@ What purpose does the table in the middle serve?
 
 What kind of relationship is illustrated by the following ERD diagram?
 
-![ERD Diagram](../assets/intermediate-sql__database-relationships__problemset-many-to-many.svg)
+![ERD Diagram](../assets/intermediate-sql_database-relationships_problemset-many-to-many.svg)
 
 ##### !end-question
 
@@ -164,7 +164,7 @@ SQL Question on Select with Join
 
 You have the following database.  Write a SELECT statement which uses a JOIN clause to combines the vendors and products tables.
 
-![Database ERD](../assets/intermediate-sql__database-relationships__problemset-products-orders-erd.svg)
+![Database ERD](../assets/intermediate-sql_database-relationships_problemset-products-orders-erd.svg)
 
 
 ##### !end-question
@@ -221,7 +221,7 @@ SQL Question on Select with Join and where
 
 You have the following database.  Write a SELECT statement which uses a JOIN clause to find the name of vendors who have products which cost less than 20.0.
 
-![Database ERD](../assets/intermediate-sql__database-relationships__problemset-products-orders-erd.svg)
+![Database ERD](../assets/intermediate-sql_database-relationships_problemset-products-orders-erd.svg)
 
 
 ##### !end-question
@@ -276,7 +276,7 @@ If we look the `products` table has a foreign key, `vendor_id`.  Could you use t
 
 You have the following database.  Write a SELECT statement which uses a JOIN clause to list the order ids for all the orders which include the product named `'Widget Tsunami'`.
 
-![Database ERD](../assets/intermediate-sql__database-relationships__problemset-products-orders-erd.svg)
+![Database ERD](../assets/intermediate-sql_database-relationships_problemset-products-orders-erd.svg)
 
 ##### !end-question
 
