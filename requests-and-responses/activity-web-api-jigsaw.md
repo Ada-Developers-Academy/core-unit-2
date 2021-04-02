@@ -16,7 +16,7 @@ In the teaching round, your research round group will disseminate and you will g
 
 Small groups should be prepared. In the teaching round, small groups should consist of one person from each research group.
 
-Example:
+### Example
 
 Research Round groups:
 
@@ -24,6 +24,8 @@ Research Round groups:
 | ---------------- | ---------------- | ---------------- |
 | Olivia           | Corinne          | Briana           |
 | Annie            | India            | Jayden           |
+
+Teaching Round groups:
 
 | Teaching Group A | Teaching Group B |
 | ---------------- | ---------------- |
@@ -40,6 +42,15 @@ Spend 20 minutes with your research group in the research round. Then, spend the
 Each research group will be assigned an API to research.
 
 You will be learning and teaching each other about other APIs, what they do, what they can't do, and how to read the documentation.
+
+### APIs
+
+1. [Instagram's Graph API](https://developers.facebook.com/products/instagram/)
+1. [Yelp's Fusion API](https://www.yelp.com/fusion)
+1. [OpenWeather's API](https://openweathermap.org/api)
+1. [Wolfram Alpha's Simple API (and other pre-built APIs)](http://products.wolframalpha.com/api/)
+1. [Open Bank Project](https://www.openbankproject.com)'s API (Direct link to their [API Explorer here](https://apiexplorer.openbankproject.com/)) (Note from the Instructors: This is the weirdest API to read because it relies a lot of domain knowledge about banking. Work on finding an answer, not necessarily a correct answer. 🙂)
+1. [The Color API](https://www.thecolorapi.com) and [TMDb's API](https://www.themoviedb.org/documentation/api)
 
 ### Where to Start
 
@@ -58,15 +69,6 @@ You will want to start the official documentation for the API, any "getting star
 1. What is the most hidden secret that you can discover in this API? For example, using the Github API, you can find out when a user's birthday is. Is there something surprising, humorous, or strange that you can get from this API?
 1. What is something you would predict you could do with this API, but (as far as you can tell) you _can't_ do?
 1. Is this API open-source? What does that mean in this case?
-
-### APIs
-
-1. [Instagram's Graph API](https://developers.facebook.com/products/instagram/)
-1. [Yelp's Fusion API](https://www.yelp.com/fusion)
-1. [OpenWeather's API](https://openweathermap.org/api)
-1. [Wolfram Alpha's Simple API (and other pre-built APIs)](http://products.wolframalpha.com/api/)
-1. [Open Bank Project](https://www.openbankproject.com)'s API (Direct link to their [API Explorer here](https://apiexplorer.openbankproject.com/)) (Note from the Instructors: This is the weirdest API to read because it relies a lot of domain knowledge about banking. Work on finding an answer, not necessarily a correct answer. 🙂)
-1. [The Color API](https://www.thecolorapi.com) and [TMDb's API](https://www.themoviedb.org/documentation/api)
 
 ### Teaching Round
 
