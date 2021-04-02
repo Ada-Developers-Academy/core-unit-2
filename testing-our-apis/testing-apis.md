@@ -245,9 +245,70 @@ def test_get_one_book(client):
     }
 ```
 
-However, this test isn't complete yet. We have only empty strings to expect for our response body's id, title, and description.
+However, this test isn't complete yet...
 
-What _do_ we expect the book with `id` `1` to be? If we run this test right now, we actually get a 404! To answer this question, let's see one way to populate the test database.
+If we run this test right now, we actually get a 404!
+
+![Screenshot of pytest test result: test_get_one_book fails because of AssertionError, which checks if 404 is equal to 200](../assets/testing-apis/testing-apis_404-get-books-1.png)
+
+Why would we get a `404` response?
+
+<details>
+    <summary>
+        Expand this section to follow a debugging interlude!
+    </summary>
+
+Why would we get a `404` response?
+
+Let's follow these debugging steps:
+
+1. First, let's confirm we understand what the test is doing:
+
+```python
+def test_get_one_book(client):
+    response = client.get("/books/1")
+```
+
+Our test made a `GET` request to `/books/1`. A `GET` to `/books/1` can only mean that our test made a request to our `book()` route.
+
+2. Let's visit our `book()` route:
+
+```python
+@books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
+def book(book_id):
+    book = Book.query.get(book_id)
+    if book == None:
+        return Response("", status=404)
+    # ... rest of our route
+```
+
+Our `book()` route returns a `404` response if `book` is `None`.
+
+3. Let's consider why `book` might have a value of `None`.
+   1. What is the most line of code that most recently affected `book`?
+   1. `book` is assigned a value in the line before, `book = Book.query.get(book_id)`.
+   1. `Book.query.get(book_id)` must have returned `None`.
+
+Why would `Book.query.get(book_id)` return `None`? What are the reasons it behaved that way?
+
+4. Let's dive into `Book.query.get(book_id)`.
+   1. The responsibility of this method is to return an instance of `Book` that has the primary key of `book_id`.
+   1. This method returns `None` when no `Book` with that id was found!
+
+Our debugging questions can continue in this line of thought:
+
+1. Why is there no book that was found?
+1. Where is the test looking for books?
+1. Is the test (and the `app` object made in `create_app()`) set to look at the correct database?
+1. Are our environment variables accessed and set correctly?
+1. Can we access our test database and check the contents of it in `psql`?
+1. Is what we see inside our test database consistent with the test error?
+
+At this point, we should see that our test database has no book records inside of it.
+
+</details>
+
+To address our test failure, let's see one way to populate the test database.
 
 ### Adding Test Data with Fixtures
 
