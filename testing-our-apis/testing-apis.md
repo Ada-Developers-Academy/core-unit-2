@@ -192,7 +192,7 @@ To run the tests, we use:
 
 We should see this already-implemented route pass!
 
-![]()
+![Screenshot of pytest test result: 1 test passed](../assets/testing-apis/testing-apis_passing-get-books.png)
 
 Notice that we do _not_ need to run the Flask server to run the tests!
 
@@ -212,7 +212,7 @@ def books():
 
 Let's confirm that our test now fails:
 
-![]()
+![Screenshot of pytest test result: test_get_one_book fails because of AssertionError, which checks if 418 is equal to 200](../assets/testing-apis/testing-apis_broken-get-books.png)
 
 The test fails! We can read through these test failures and see that our test _expected_ a status code of `200`, but _actually_ got status `418`.
 
@@ -313,11 +313,7 @@ E         {'description': 'watr 4evr'} != {'description': ''}
 E         Use -v to get the full diff
 ```
 
-We can follow the test's recommendation to get even more details (and the full diff of the test failure) with:
-
-```bash
-(venv) $ pytest -v
-```
+![Screenshot of pytest test result: test_get_one_book failed because of AssertionError between two book dictionaries](../assets/testing-apis/testing-apis_failing-fixture-comparison.png)
 
 We should conclude that we need to update our test itself, finally!
 
@@ -341,6 +337,8 @@ def test_get_one_book(client, two_saved_books):
 Success! We passed this test. Congratulations! 🎉
 
 ### !end-callout
+
+![Screenshot of pytest test result: 2 tests in tests/test_routes.py passed](../assets/testing-apis/testing-apis_passing-get-books-1.png)
 
 ## Check for Understanding
 
