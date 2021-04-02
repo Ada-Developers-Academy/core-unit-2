@@ -47,7 +47,7 @@ What kind of relationship is illustrated by the following ERD diagram?
 
 What does this mean?
 
-![Many](../assets/![Many](../assets/intermediate-sql_database-relationships_erd-cconnection-many-no-text.png))
+![Many](../assets/intermediate-sql_database-relationships_erd-connection-many-no-text.png)
 
 ##### !end-hint
 
