@@ -56,11 +56,6 @@ The `Book` model and table should have the following columns:
 
 </details>
 
-## Vocabulary and Synonyms
-
-| Vocab | Definition | Synonyms | How to Use in a Sentence |
-| ----- | ---------- | -------- | ------------------------ |
-
 ## Navigating Our New `tests` Folder
 
 Create a `tests` folder, and the following files:
@@ -76,17 +71,17 @@ We can do so with the following commands:
 (venv) $ touch tests/__init__.py tests/conftest.py tests/test_routes.py
 ```
 
-Let's consider what these will do:
+Let's consider what these files will do:
 
-| File             | Responsibility of this file                                                                                 |
-| ---------------- | ----------------------------------------------------------------------------------------------------------- |
-| `__init__.py`    | Establishes our `tests` package, so it can be properly connected with the rest of the app folders and files |
-| `conftest.py`    | A conventional Flask file that will hold test configurations and common test helper functions               |
-| `test_routes.py` | This file will hold the tests for the code in our `app/routes.py` file.                                     |
+| <div style="min-width:250px;">File</div> | Responsibility of this file                                                                                                                   |
+| ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `__init__.py`                            | Establishes our `tests` package, so it can be properly connected with the rest of the app folders and files. We will probably leave it empty. |
+| `conftest.py`                            | A conventional Flask file that will hold test configurations and common test helper functions                                                 |
+| `test_routes.py`                         | This file will hold the tests for the code in our `app/routes.py` file.                                                                       |
 
-### `conftest.py`
+## `conftest.py`
 
-Let's briefly cover the contents of a `conftest.py` file, and then copy the contents of it into our own project.
+Let's briefly cover the contents of a `tests/conftest.py` file, and then copy the contents of it into our own project.
 
 ```python
 import pytest
@@ -117,11 +112,12 @@ def client(app):
 | `@pytest.fixture`                                   | We'll create and use a pytest fixture named `app`, which will be used in our `client` fixtured (defined below)                                                                                              |
 | `app = create_app( ... )`                           | When we run our tests, this line will run and create an `app` object. It's using the same `create_app` function defined in our `app/__init__.py` file!                                                      |
 | `{"TESTING": True}`                                 | Here, we're passing in a dictionary to represent a "test config" object. If we check the current implementation of `create_app()` in `app/__init__.py`, it uses this argument only to check if it's truthy. |
-| `with app.app_context():`                           | This syntax designates that the following code should have an _application context_, or in this case, have access to utilities such as `db`.                                                                |
+| `with app.app_context():`                           | This syntax designates that the following code should have an _application context_, or in this case, have access to objects such as `db`.                                                                  |
 | `yield app`                                         | This is pytest fixture syntax which executes the actual test at this moment. `yield app` finishes executing once the test has actually be run.                                                              |
 | `with app....: db.drop_all()`                       | After the test runs, this code specifies that we should clear our test database from any data that was saved inside our test.                                                                               |
 | `@pytest.fixture`                                   | We're setting up a second test fixture...                                                                                                                                                                   |
-| `def client(app):`                                  | This fixture is named `client`. It will request the existing `app` fixture to run, first. It will be responsible for making a test client, which will be able to simulate a client making HTTP requests.    |
+| `def client(app):`                                  | This fixture is named `client`. It will request the existing `app` fixture to run, first.                                                                                                                   |
+| `return app.test_client()`                          | The responsibility of this fixture is to make a _test client_, which is an object able to _simulate_ a client making HTTP requests.                                                                         |
 
 ### !callout-secondary
 
@@ -134,33 +130,35 @@ Understanding how to read this code is more valuable than learning how to write 
 
 ### !end-callout
 
+### The `client` Fixture
+
+The majority of our tests will use the `client` fixture that was defined in `tests/conftest.py`.
+
+Here are a few ways we'll use `client`:
+
+| Example Usage                      | Description                                                                         |
+| ---------------------------------- | ----------------------------------------------------------------------------------- |
+| `client.get("my request path")`    | Sends a `GET` request to `"my request path"`. Returns the HTTP response.            |
+| `client.post("my request path")`   | Sends a `POST` request to `"my request path"`. Returns the HTTP response.           |
+| `client.put("my request path")`    | Sends a `PUT` request to `"my request path"`. Returns the HTTP response.            |
+| `client.delete("my request path")` | Sends a `DELETE` request to `"my request path"`. Returns the HTTP response.         |
+| `client.put(... , json={ ... })`   | The keyword argument `json` sends the attached dictionary as the HTTP request body. |
+
+The `json` keyword argument is accepted in each of the previously mentioned methods, which is pretty great!
+
 ## Reading Tests
 
-Let's reframe the anatomy of a test for our Flask API:
+Let's get to reading some test code! Let's reframe the three sections of a test for our Flask API:
 
-| Step    | Description                                                                                                                                                                                                                    |
+| Section | Description                                                                                                                                                                                                                    |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Arrange | Arrange all required conditions for the test. If we need test data in the test database, we should save them here.                                                                                                             |
 | Act     | We need to send an HTTP request to our Flask API, so we should determine the HTTP method, path, request body, and any query params here.                                                                                       |
 | Assert  | At the minimum, we should check that the HTTP response's status code is what we expect, and the shape of the HTTP response body. We could also check the details of the response body, and also the database if it's relevant. |
 
-### The `client` Fixture
-
-We will use the `client` fixture defined in `tests/conftest.py` in all tests that need to make an HTTP request.
-
-Here are a few ways we'll use `client`:
-
-| Example Usage                      | Description                                                                        |
-| ---------------------------------- | ---------------------------------------------------------------------------------- |
-| `client.get("my request path")`    | Sends a `GET` request to `"my request path"`. Returns the HTTP response.           |
-| `client.post("my request path")`   | Sends a `POST` request to `"my request path"`. Returns the HTTP response.          |
-| `client.put("my request path")`    | Sends a `PUT` request to `"my request path"`. Returns the HTTP response.           |
-| `client.delete("my request path")` | Sends a `DELETE` request to `"my request path"`. Returns the HTTP response.        |
-| `client.put(... , json={ ... })`   | The keyword argument `json` sends the attached dictionary as the HTTP request body |
-
 ### Syntax
 
-Let's read through this test we can use for our Hello Books API.
+Let's read through this test we can use in our `tests/test_routes.py`.
 
 ```python
 def test_get_all_books_with_no_records(client):
