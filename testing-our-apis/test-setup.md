@@ -1,9 +1,5 @@
 # Test Setup
 
-## Goals
-
-Our goal is to 
-
 ## Introduction
 
 We can continue to use tests and pytest to test our Flask APIs! Reading, writing, and using pytest for a Flask API isn't very different from using pytest outside a Flask API.
@@ -11,8 +7,6 @@ We can continue to use tests and pytest to test our Flask APIs! Reading, writing
 One main difference is the test setup. In this lesson, we'll configure our Flask projects to use pytest and a test database.
 
 ## Hello Books API
-
-### Before This Lesson
 
 This lesson uses the Hello Books API.
 

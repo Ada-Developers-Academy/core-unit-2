@@ -116,7 +116,7 @@ If we run this test right now, we actually get a 404!
 
 Why would we get a `404` response?
 
-<details>
+<details style="max-width: 700px; margin: auto;">
     <summary>
         Expand this section to follow a debugging interlude!
     </summary>
@@ -125,7 +125,13 @@ Why would we get a `404` response?
 
 Let's follow these debugging steps:
 
-1. First, let's confirm we understand what the test is doing:
+<!--
+    These bullets aren't numbered lists because
+    Galvanize Learn doesn't keep their formatting,
+    even if we manually number them.
+ -->
+
+- First, let's confirm we understand what the test is doing:
 
 ```python
 def test_get_one_book(client):
@@ -134,7 +140,7 @@ def test_get_one_book(client):
 
 Our test made a `GET` request to `/books/1`. A `GET` to `/books/1` can only mean that our test made a request to our `book()` route.
 
-2. Let's visit our `book()` route:
+- Let's visit our `book()` route:
 
 ```python
 @books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
@@ -147,16 +153,16 @@ def book(book_id):
 
 Our `book()` route returns a `404` response if `book` is `None`.
 
-3. Let's consider why `book` might have a value of `None`.
-   1. What is the most line of code that most recently affected `book`?
-   1. `book` is assigned a value in the line before, `book = Book.query.get(book_id)`.
-   1. `Book.query.get(book_id)` must have returned `None`.
+- Let's consider why `book` might have a value of `None`.
+  1.  What is the most line of code that most recently affected `book`?
+  1.  `book` is assigned a value in the line before, `book = Book.query.get(book_id)`.
+  1.  `Book.query.get(book_id)` must have returned `None`.
 
 Why would `Book.query.get(book_id)` return `None`? What are the reasons it behaved that way?
 
-4. Let's dive into `Book.query.get(book_id)`.
-   1. The responsibility of this method is to return an instance of `Book` that has the primary key of `book_id`.
-   1. This method returns `None` when no `Book` with that id was found!
+- Let's dive into `Book.query.get(book_id)`.
+  1.  The responsibility of this method is to return an instance of `Book` that has the primary key of `book_id`.
+  1.  This method returns `None` when no `Book` with that id was found!
 
 Our debugging questions can continue in this line of thought:
 
@@ -173,16 +179,21 @@ At this point, we should see that our test database has no book records inside o
 
 To address our test failure, let's see one way to populate the test database.
 
-### Adding Test Data with Fixtures
+## Adding Test Data with Fixtures
 
-In our "Arrange" step of each step, we should set up its test data. pytest's test fixture feature will help us create test data. With fixtures, we can:
+We'll define parts of our "Arrange" sections inside of pytest fixtures.
 
-1. Define fixture functions that describe what is saved in the test database in `conftest.py`
-1. "Request" as many fixtures as we need per test
+Let's consider how we'll use fixtures to add test data:
+
+| Question              | Answer                                                                                                                                         |
+| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| What are fixtures?    | Each pytest fixture we define will describe something we want to happen before the test, such as saving test data.                             |
+| Where do fixtures go? | The fixtures can be defined in any file (such as `tests/test_routes.py`), but we will define most of our routes inside of `tests/conftest.py`. |
+| Who uses them?        | Each test will state which fixtures they want to use, and each test can use multiple fixtures!                                                 |
 
 ### Example Fixture: Creating Two Books
 
-Many of our features may benefit from having two books saved into the database. Inside of `tests/conftest.py`, we can make a fixture that expresses saving two books to the database:
+A lot of our tests need at least one book defined in our database. Inside of `tests/conftest.py`, we can make a fixture that saves two books to the database:
 
 ```python
 @pytest.fixture
@@ -221,11 +232,11 @@ def test_get_one_book(client, two_saved_books):
     # ...
 ```
 
-We must add the `two_saved_books` fixture to our test. We can comma-separate as many fixtures as this single test needs.
+We must add the `two_saved_books` fixture to our test's parameters. We can comma-separate as many fixtures as this single test needs.
 
 #### Completing Our Test
 
-Our test still fails!
+We've set up tests, we've created a test fixture, and we've made sure our tests used the test fixture. But our test still fails!
 
 We get this test failure:
 
@@ -240,7 +251,7 @@ E         Use -v to get the full diff
 
 ![Screenshot of pytest test result: test_get_one_book failed because of AssertionError between two book dictionaries](../assets/testing-apis/testing-apis_failing-fixture-comparison.png)
 
-We should conclude that we need to update our test itself, finally!
+We should conclude that we need to update our test itself, finally! Let's fill in the expected test dictionary back in `tests/test_routes.py`. It should be consistent with whatever data we put in our fixture.
 
 ```python
 def test_get_one_book(client, two_saved_books):
