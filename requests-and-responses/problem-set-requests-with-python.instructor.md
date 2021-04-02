@@ -2,7 +2,7 @@
 
 This isn't autograded for these reasons:
 
-1. Seven Wonders has been tricky in the past, and this is supposed to take one evening. The current format allows students to rely on single requests in Python and/or Postman if they need to, and then asks them to challenge themselves
+1. Seven Wonders has been tricky in the past, and this is supposed to take one evening. The current format allows students to rely on single requests in Python and/or Postman if they need to and then asks them to challenge themselves
 1. I didn't put in the work of making a custom snippet that installs `requests`
 1. I haven't written in how to do unit testing with API calls (mocking calls)
 

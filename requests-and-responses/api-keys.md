@@ -2,7 +2,7 @@
 
 ## Goals
 
-Most web APIs require the use of API keys. The goal of this lesson is to learn about API keys for the purpose of working with existing web APIs meaningfully.
+Most web APIs require the use of API keys. The goal of this lesson is to learn about API keys to work with existing web APIs meaningfully.
 
 We should walk away from this lesson:
 
@@ -213,7 +213,7 @@ If you're getting a `401 Unauthorized` error, we suggest beginning to debug by:
 
 ## API Rate Limits
 
-APIs have rate limits. A rate limit is the number of HTTP requests that an app is allowed make within a given time period. API services don't want apps and users to call an API too often.
+APIs have rate limits. A **rate limit** is the number of HTTP requests that an app is allowed to make within a given time period. API services don't want apps and users to call an API too often.
 
 Example API limits include:
 

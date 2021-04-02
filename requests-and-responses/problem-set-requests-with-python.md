@@ -8,7 +8,7 @@ Once you found the answers, input them into the answers prompt below.
 
 ## Preparation: LocationIQ Forward Geocoding API
 
-Use the [LocationIQ's Forward Geocoding API](https://locationiq.com/geocoding). Before starting this problem prompt,
+Use the [LocationIQ's Forward Geocoding API](https://locationiq.com/geocoding). Before starting this problem prompt:
 
 1. Obtain an API key for LocationIQ's Forward Geocoding API
 1. Familiarize yourself with the LocationIQ API Documentation

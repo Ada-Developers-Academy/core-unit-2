@@ -2,17 +2,17 @@
 
 ## Goal
 
-Our goal is to learn and teach each other about other web APIs, what they do, what they can't do, and how to read the documentation.
+Our goal is to learn and teach each other about web APIs, what they do, what they can't do, and how to read the documentation.
 
 We should come out of this activity seeing the breadth and diversity of different web APIs. Web APIs have the potential to be about any subject and any data. Their functionalities can differ greatly. The way that their documentation is structured can differ greatly.
 
 ## Preparation and Format
 
-In this activity, we will be learning and then teaching each other, in the format of two rounds: the research round and the teaching round.
+In this activity, we will be learning and then teaching each other. We will have two rounds: the research round and the teaching round.
 
 In the research round, you will meet with your first assigned group to learn about an assigned topic.
 
-In the teaching round, your research round group will disseminate and you will go into your a second assigned group. It is your responsibility to teach this group about that topic.
+In the teaching round, your research round group will disseminate and you will go into your second assigned group. It is your responsibility to teach this group about that topic.
 
 Small groups should be prepared. In the teaching round, small groups should consist of one person from each research group.
 
