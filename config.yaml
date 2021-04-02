@@ -22,4 +22,8 @@ Standards:
       -
         Type: Lesson
         UID: ae6d7749089a176f86e664172c9c3102
-        Path: /testing-our-apis/testing-apis.md
+        Path: /testing-our-apis/test-setup.md
+      -
+        Type: Lesson
+        UID: MAKii1
+        Path: /testing-our-apis/using-tests.md
