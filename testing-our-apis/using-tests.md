@@ -7,6 +7,54 @@ Our goals for this lesson are to:
 - Describe the pytest syntax used to define automated tests in Flask
 - Practice running automated tests in Flask with pytest
 
+## Hello Books API
+
+This lesson uses the Hello Books API.
+
+<details style="max-width: 700px; margin: auto;">
+    <summary>
+        Before beginning this lesson, the Hello Books API should have the following.
+    </summary>
+
+- A `hello_books_development` database
+- A `hello_books_test` database
+- A `book` table defined in both databases
+- A `Book` model defined
+
+An `.env` file that contains:
+
+```
+SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
+SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_test
+```
+
+Endpoints defined for these RESTful routes. They handle missing books:
+
+- `GET` to `/books`
+- `POST` to `/books`
+- `GET` to `/books/<book_id>`
+- `PUT` to `/books/<book_id>`
+- `DELETE` to `/books/<book_id>`
+
+The `Book` model and table should have the following columns:
+
+- `id`
+- `title`
+- `description`
+
+A `tests` directory that contains `__init__.py`, `conftest.py`, and `test_routes.py`. The `conftest.py` is populated.
+
+</details>
+
+
+### !callout-danger
+
+## Read-through First, Repeat Second
+
+We **highly suggest** reading or watching through this lesson fully, before repeating on your own machine.
+
+### !end-callout
+
 ## Reading Code
 
 Let's get to reading some test code! Let's reframe the three sections of a test for our Flask API:

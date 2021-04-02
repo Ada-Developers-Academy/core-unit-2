@@ -6,9 +6,38 @@ This lesson should serve as a walkthrough for how to refactor our code using dot
 
 These actions will allow us to practice testing, which in turn creates more high-quality software.
 
+## Hello Books API
+
+This lesson uses the Hello Books API.
+
+<details style="max-width: 700px; margin: auto;">
+    <summary>
+        Before beginning this lesson, the Hello Books API should have the following.
+    </summary>
+
+- A `hello_books_development` database
+- A `book` table defined in both databases
+- A `Book` model defined
+
+Endpoints defined for these RESTful routes. They handle missing books:
+
+- `GET` to `/books`
+- `POST` to `/books`
+- `GET` to `/books/<book_id>`
+- `PUT` to `/books/<book_id>`
+- `DELETE` to `/books/<book_id>`
+
+The `Book` model and table should have the following columns:
+
+- `id`
+- `title`
+- `description`
+
+</details>
+
 ## Format
 
-We should:
+This lesson will go through the following steps:
 
 1. Ensure that `python-dotenv` is installed
 1. Create a `.env` file

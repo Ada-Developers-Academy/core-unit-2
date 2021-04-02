@@ -43,6 +43,22 @@ The `Book` model and table should have the following columns:
 
 </details>
 
+### !callout-danger
+
+## Read-through First, Repeat Second
+
+We **highly suggest** reading or watching through this lesson fully, before repeating on your own machine.
+
+### !end-callout
+
+### !callout-danger
+
+## Prioritize Familiarity
+
+It may be better to think about this lesson as a resource to be familiar with, rather than commit all new knowledge to memory at once.
+
+### !end-callout
+
 ## Navigating Our New `tests` Folder
 
 Create a `tests` folder, and the following files:
