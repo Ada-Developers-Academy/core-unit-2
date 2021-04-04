@@ -35,7 +35,7 @@ LIMIT 10;
 
 We can use `LIMIT` to retrieve the first *x* rows from a select, but what if we want to retrieve the 11th through 20th records.  We can see this if we look at websites which perform pagination presenting a subset of data with buttons to select the next *x* records. 
 
-![pagination example](../assets/more-selecting-in-sql__limit__pagination.png)
+![pagination example](../assets/more-selecting-in-sql_limit_pagination.png)
 
 We can add an offset to the `LIMIT` clause to retrieve records bypassing the first *x* records.
 

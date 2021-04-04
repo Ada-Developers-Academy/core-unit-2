@@ -104,7 +104,7 @@ We could also write a query to find the number of alumni at Ada by state.
 
 If our `alumni` table had the following schema.
 
-![Alumni Table](../assets/more-selecting-in-sql__grouping__alumni-table.svg)
+![Alumni Table](../assets/more-selecting-in-sql_grouping_alumni-table.svg)
 *Fig. Ada Alumni Table*
 
 We could find the number of alumni from each state with:
