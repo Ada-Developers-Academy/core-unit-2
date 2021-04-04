@@ -7,14 +7,14 @@
 
 ## Introduction
 
-Databases can store many millions of records.  Often on a specific query, you only want to retrieve a small subset of the returned rows from a query.  To do so we can use the `limit` clause.  By limiting our queries to only the number of records we want to retrieve we can speed up our applications and reduce demand on the database.
+Databases can store many millions of records. Often on a specific query, you only want to retrieve a small subset of the returned rows from a query. To do so we can use the `limit` clause. By limiting our queries to only the number of records we want to retrieve we can speed up our applications and reduce demand on the database.
 
 ## Limiting Syntax
 
 The syntax of the `limit` clause looks like this:
 
 ```sql
-SELECT columns_desired 
+SELECT columns_desired
 FROM table_name
 [Optional clauses]
 LIMIT row_count;
@@ -33,11 +33,11 @@ LIMIT 10;
 
 ## Offset
 
-We can use `LIMIT` to retrieve the first *x* rows from a select, but what if we want to retrieve the 11th through 20th records.  We can see this if we look at websites which perform pagination presenting a subset of data with buttons to select the next *x* records. 
+We can use `LIMIT` to retrieve the first _x_ rows from a select, but what if we want to retrieve the 11th through 20th records. We can see this if we look at websites which perform pagination presenting a subset of data with buttons to select the next _x_ records.
 
 ![pagination example](../assets/more-selecting-in-sql_limit_pagination.png)
 
-We can add an offset to the `LIMIT` clause to retrieve records bypassing the first *x* records.
+We can add an offset to the `LIMIT` clause to retrieve records bypassing the first _x_ records.
 
 ```sql
 SELECT title
@@ -49,4 +49,3 @@ LIMIT 10 OFFSET 11;
 The above query selects rows 11-20.
 
 ## Check for Understanding
-
