@@ -67,6 +67,33 @@ Standards:
         UID: 66c659ae-9887-4e01-a059-a73b22847a5d
         Path: /intro-to-sql/deleting-records.md
   -
+    Title: More Selecting In SQL
+    Description: "Compound Conditions, Limiting Results, Ordering Results, Aggregate Functions and Grouping"
+    UID: 29f75f91-0453-468c-a724-d6b90a045e6a
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 0cbd2906-19c9-4983-83b0-d1e8620ed879
+        Path: /more-selecting-in-sql/compound-conditions.md
+      -
+        Type: Lesson
+        UID: f17bddc5-338d-4077-b4fe-5e9764000b87
+        Path: /more-selecting-in-sql/limit.md
+      -
+        Type: Lesson
+        UID: ec61db9d-17e7-4aff-ae18-904c13cdb8cd
+        Path: /more-selecting-in-sql/ordering.md
+      -
+        Type: Lesson
+        UID: 7b23e0bb-64ea-4f55-aca4-4502d9f8e7fb
+        Path: /more-selecting-in-sql/aggregate-functions.md
+      -
+        Type: Lesson
+        UID: af18e4ef-18aa-432c-9f34-0375f4dbb82a
+        Path: /more-selecting-in-sql/grouping.md
+  -
     Title: Intermediate SQL
     Description: "Database Relationships, Activty: drawing relationships, Establishing Relationships, Database Joins"
     UID: 11a8027f-bd04-4c47-b4d3-36209af1068d
@@ -89,29 +116,6 @@ Standards:
         Type: Lesson
         UID: cbd53d1c-3374-4a55-804b-85defb26bd4b
         Path: /intermediate-sql/problem-set-intermediate-sql.md
-  -
-    Title: More Selecting In SQL
-    Description: "Limiting Results, Ordering Results, Aggregate Functions and Grouping"
-    UID: 29f75f91-0453-468c-a724-d6b90a045e6a
-    SuccessCriteria:
-      - success criteria
-    ContentFiles:
-      -
-        Type: Lesson
-        UID: f17bddc5-338d-4077-b4fe-5e9764000b87
-        Path: /more-selecting-in-sql/limit.md
-      -
-        Type: Lesson
-        UID: ec61db9d-17e7-4aff-ae18-904c13cdb8cd
-        Path: /more-selecting-in-sql/ordering.md
-      -
-        Type: Lesson
-        UID: 7b23e0bb-64ea-4f55-aca4-4502d9f8e7fb
-        Path: /more-selecting-in-sql/aggregate-functions.md
-      -
-        Type: Lesson
-        UID: af18e4ef-18aa-432c-9f34-0375f4dbb82a
-        Path: /more-selecting-in-sql/grouping.md
   -
     Title: Intro To Web Development
     Description: "Web Applications and Layers, Intro to Clients, Servers, HTTP, Sequence Diagrams, Activity: Layers"
