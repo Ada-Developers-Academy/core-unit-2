@@ -121,7 +121,10 @@ In very discrete steps, we can imagine getting Milly's resource with this proces
 Updating records is a common action we do. What does it mean to update or modify the table itself? What would it mean to add a row, add a column, delete a row, or delete a column? Consider for a brief moment the following observations:
 
 - Adding and deleting rows is equivalent to adding and deleting records
-- Adding and deleting columns is painful; when we add a column, we'll need to go through each row and fill it in with some value. Deleting a column also means going through and modifying every record.
+- Adding and deleting columns is painful
+    - When we add a column, we'll need to go through each row and fill it in with some value.
+    - Deleting a column also means going through and modifying every record.
+    - Modifying the data for hundreds or thousands of rows (or more!) is _a lot_ of work!
 
 
 ### !end-callout
