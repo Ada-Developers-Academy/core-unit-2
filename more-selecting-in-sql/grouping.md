@@ -17,7 +17,7 @@ A `GROUP BY` query when used alone will retrieve a resultset of distinct rows by
 
 Consider this Ada Alumni table:
 
-![Alumni Table](../assets/more-selecting-in-sql__grouping__alumni-table.svg)
+![Alumni Table](../assets/more-selecting-in-sql_grouping_alumni-table.svg)
 _Fig. Ada Alumni Table_
 
 We could retrieve a list of distinct cohort names with:
