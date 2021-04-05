@@ -78,7 +78,7 @@ As programmers, we are particularly interested with interacting with tables by:
 
 ### Reading Records From a Table
 
-Consider in slow motion what it means to read a record from a table.
+Consider in slow motion what it means to read a record from a table. 🦥
 
 When we need to pull information from one record, we need to ask the following clarifying questions:
 
