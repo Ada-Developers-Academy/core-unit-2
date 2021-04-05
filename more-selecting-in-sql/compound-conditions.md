@@ -132,7 +132,7 @@ We just wrote a query that gave us the books by Madie McClure and Tim McDermott.
 
 From the data, we know that there are three authors, and so if we want the books by two of them, that's the same as looking for the books _not_ by the third author.
 
-Using the `NOT` logical operator, we can invert to which records our conditions apply.
+Using the `NOT` logical operator, we can invert the records to which our conditions apply.
 
 ```sql
 SELECT * from books
