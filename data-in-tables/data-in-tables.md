@@ -6,10 +6,19 @@
 
 ## Introduction
 
-Let's take our brains away from programming for this lesson, and only consider data and life. Take one minute to visualize the last spreadsheet you opened and used, or take a minute to imagine a spreadsheet you would use to track a budget for a vacation.
+Let's take our brains away from programming for this lesson, and only consider data in our daily life. Take one minute to imagine a spreadsheet you could use to track a budget for a vacation.
 
-What was the spreadsheet for? Was it for chores, or video games, or a job, or something else? How did you use it?
-What data do you need? What are the labels for this data? How many different tables of data are needed?
+How could you use a spreadsheet to keep track of:
+
+- How much money is in your budget?
+- How much money is spent?
+- What did you spend the money on?
+- When did you spend the money?
+
+In your imagination, also imagine:
+
+- How would you label the data?
+- Are there are pieces of information you'd like to keep track of in this spreadsheet? What are they?
 
 Broadly, tables can be configured into an infinite number of shapes, and an infinite number of ways to use them.
 
