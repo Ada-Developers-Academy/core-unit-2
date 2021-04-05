@@ -1,4 +1,4 @@
-# Selecting With Compound Conditions
+# Compound Conditions
 
 ## Goals
 
