@@ -2,21 +2,21 @@
 
 ## Goal
 
-Our goal is to practice imagining how tables of data are useful in software. We will reach this goal through small group exploration and discussion. Coming up with small, imperfect ideas collaboratively and quickly will expose our brains to consider a lot of different tables. Be sure to **spend no more than 15 minutes in each section.**
+Our goal is to practice imagining how tables of data are useful in software. We will reach this goal through small group exploration and discussion. Coming up with small, imperfect ideas collaboratively and quickly will expose our brains to lots of different possible tables. Be sure to **spend no more than 15 minutes in each section.**
 
 ## Activity Instructions
 
-Ideally, split into small groups. Follow the prompts below, recording your answers in your own notes. **Spend no more than 15 minutes in each section.**
+Split into small groups. Follow the prompts below, recording your answers in your own notes. **Spend no more than 15 minutes in each section.**
 
 If you and your group haven't finished a section within 15 minutes, move on to the next section.
 
 ## Part 1: Explore craigslist
 
-Explore [craigslist](http://craigslist.com/), a classified advertisements web app. craiglist has sections that allow users to make posts about jobs, housing, items for sale and services.
+Explore [craigslist](http://craigslist.com/), a classified advertisements web app. craigslist has sections that allow users to make posts about jobs, housing, items for sale, and services.
 
-Spend ten minutes getting familiar with craigslist with your group. Your group's goal is to get familiar enough with the features that you could describe them on a high-level. Notice what kind of data is required or optional for different features.
+Spend ten minutes getting familiar with craigslist with your group. Your group's goal is to get familiar enough with the features that you could describe them from a high-level perspective. Notice what kind of data is required or optional for different features.
 
-In your exploration, be sure to check the following features.
+In your exploration, be sure to try out the following features.
 
 As a casual shopper on craigslist, I want to...
 
@@ -37,7 +37,7 @@ Even though we are not developers for craigslist, let's use craigslist to imagin
 
 ## Simplify!
 
-For all of these prompts, we _**encourage**_ you to simplify your ideas and make assumptions, instead of going for 100% detailed accuracy. This is a limited activity, and our learning goals will be met without striving for perfection. :)
+For all of these prompts, we _**encourage**_ you to simplify your ideas and make assumptions, instead of going for 100% detailed accuracy. This is a limited activity, and our learning goals will be met without striving for perfection. 🙂
 
 ### !end-callout
 
@@ -47,21 +47,13 @@ Imagine a table that holds data about posts, and this post is one record inside 
 
 Make a list of the columns that this table might have. Also, for each column, decide if it holds a number, text, boolean, image, or a date or time.
 
-### !callout-secondary
-
-## Foreshadowing: Noticing URLs
-
-For fun, notice the URL of each page you look through. Read through it. Do you see any patterns? We won't do anything with that pattern right now, but maybe these patterns will inspire us in web development.
-
-### !end-callout
-
 2. Together as a group, pull up one post inside of the "For Sale" category and "Computer" subcategory. You will use this post as an example.
 
 Imagine a table that holds data about posts, and this post is one record inside that table.
 
 Make a list of the columns that this table might have. Also, for each column, decide if it holds a number, text, boolean, image, or a date or time.
 
-3. Together as a group, pull up the _listing_ page for the "For Sale" category and "Antiques" subcategory.
+3. Together as a group, pull up the _listing_ page for the "For Sale" category and "Antiques" subcategory. Do _not_ click through to an actual item.
 
 Imagine a table that holds data about posts, where each record is a post.
 
@@ -77,12 +69,11 @@ Here is an example prompt and several example responses:
 
 - List/display all subcategories under one category on the front page
 - Include the subcategories while searching for posts under one category
-- When making a new post, a dropdown that includes all subcategories for that category to choose from
+- When making a new post, display a dropdown that includes all subcategories for that category to choose from
 
 ### Prompts
 
 1. Get 120 posts ordered by creation date, with the newest posts first
-1. Get 10 usernames
 1. Get data from one user with a specific ID
 1. Get the location of one post
 1. Get the number of how many people have "favorited" a post
@@ -91,7 +82,7 @@ Here is an example prompt and several example responses:
 
 ## Part 4: Consider Any App
 
-For the following prompts, let your creativity think about _any_ app that could exist.
+For the following prompts, let your creativity run free and think about _any_ app that could exist.
 
 Some example apps to consider:
 

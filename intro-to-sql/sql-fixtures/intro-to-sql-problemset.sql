@@ -22,6 +22,10 @@ SET default_tablespace = '';
 
 SET default_table_access_method = heap;
 
+-- Exists just to be deleted
+CREATE TABLE public.books();
+ALTER TABLE public.books OWNER TO postgres;
+
 --
 -- TOC entry 200 (class 1259 OID 16663)
 -- Name: products; Type: TABLE; Schema: public; Owner: postgres

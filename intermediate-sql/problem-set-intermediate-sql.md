@@ -1,4 +1,4 @@
-# Problem Set:  Intermediate SQL
+# Problem Set: Intermediate SQL
 
 ## Answer the following Questions
 
@@ -17,7 +17,7 @@ MC:  Question on 1-1 Relationship with ERD Diagram
 
 * type: multiple-choice
 * id: 6dd59fbf-a760-45cf-ac67-84f28e732c10
-* title: Relationships & ERDs #1
+* title: Intermediate SQL
 * points: 1
 * topics: sql, erd
 
@@ -25,7 +25,7 @@ MC:  Question on 1-1 Relationship with ERD Diagram
 
 What kind of relationship is illustrated by the following ERD diagram?
 
-![ERD Diagram](../assets/intermediate-sql__database-relationships__problemset-1-to-1.svg)
+![ERD Diagram](../assets/intermediate-sql_database-relationships_problemset-1-to-1.svg)
 
 ##### !end-question
 
@@ -47,7 +47,7 @@ What kind of relationship is illustrated by the following ERD diagram?
 
 What does this mean?
 
-![Many](../assets/![Many](../assets/intermediate-sql__database-relationships__erd-cconnection-many-no-text.png))
+![One](../assets/intermediate-sql_database-relationships_erd-connection-one-no-text.png)
 
 ##### !end-hint
 
@@ -62,7 +62,7 @@ What does this mean?
 
 * type: multiple-choice
 * id: 25047b64-ddf1-46ca-840e-ebb3aaea30b9
-* title: Relationships & ERDs #2
+* title: Intermediate SQL
 * points: 1
 * topics: sql, erd
 
@@ -70,7 +70,7 @@ What does this mean?
 
 What kind of relationship is illustrated by the following ERD diagram?
 
-![ERD Diagram](../assets/intermediate-sql__database-relationships__problemset-1-to-many.svg)
+![ERD Diagram](../assets/intermediate-sql_database-relationships_problemset-1-to-many.svg)
 
 ##### !end-question
 
@@ -90,7 +90,9 @@ What kind of relationship is illustrated by the following ERD diagram?
 
 ##### !hint
 
-What purpose does the table in the middle serve?
+What does this mean?
+
+![Many](../assets/intermediate-sql_database-relationships_erd-connection-many-no-text.png)
 
 ##### !end-hint
 
@@ -106,7 +108,7 @@ What purpose does the table in the middle serve?
 
 * type: multiple-choice
 * id: 009d4a6f-ad48-4bd1-aeec-4c207f79e93c
-* title: Relationships & ERDs #3
+* title: Intermediate SQL
 * points: 1
 * topics: sql, erd
 
@@ -114,7 +116,7 @@ What purpose does the table in the middle serve?
 
 What kind of relationship is illustrated by the following ERD diagram?
 
-![ERD Diagram](../assets/intermediate-sql__database-relationships__problemset-many-to-many.svg)
+![ERD Diagram](../assets/intermediate-sql_database-relationships_problemset-many-to-many.svg)
 
 ##### !end-question
 
@@ -183,16 +185,16 @@ We want to select credit card number and expiration dates for a customer named "
 * type: code-snippet
 * language: sql
 * id: 3a3158ed-032e-4d53-b27e-c0351003c67a
-* title: Join Question #1
+* title: Intermediate SQL
 * data_path: /intermediate-sql/sql/problem-set.sql
 * points: 1
 * topics: sql, sql-select, sql-join
 
 ##### !question
 
-You have the following database.  Write a SELECT statement which uses a JOIN clause to combines the vendors and products tables.
+We have the following database.  Write a `SELECT` statement which uses a `JOIN` clause that combines the `vendors` and `products` tables.
 
-![Database ERD](../assets/intermediate-sql__database-relationships__problemset-products-orders-erd.svg)
+![Database ERD](../assets/intermediate-sql_database-relationships_problemset-products-orders-erd.svg)
 
 
 ##### !end-question
@@ -220,7 +222,7 @@ ON products.vendor_id = vendors.id
 
 ##### !hint
 
-If we look the `products` table has a foreign key, `vendor_id`.  Could you use that in the join clause.
+Notice that the `products` table has a foreign key, `vendor_id`.  Can we use that in the join clause?
 ##### !end-hint
 
 ### !end-challenge
@@ -240,16 +242,16 @@ SQL Question on Select with Join and where
 * type: code-snippet
 * language: sql
 * id: 9f961b35-f00b-4718-bb7c-32dadd803236
-* title: Join Question #2
+* title: Intermediate SQL
 * data_path: /intermediate-sql/sql/problem-set.sql
 * points: 1
 * topics: sql, sql-select, sql-join
 
 ##### !question
 
-You have the following database.  Write a SELECT statement which uses a JOIN clause to find the name of vendors who have products which cost less than 20.0.
+We have the following database.  Write a `SELECT` statement which uses a `JOIN` clause to find the name of vendors who have products with a cost less than 20.
 
-![Database ERD](../assets/intermediate-sql__database-relationships__problemset-products-orders-erd.svg)
+![Database ERD](../assets/intermediate-sql_database-relationships_problemset-products-orders-erd.svg)
 
 
 ##### !end-question
@@ -295,16 +297,16 @@ If we look the `products` table has a foreign key, `vendor_id`.  Could you use t
 * type: code-snippet
 * language: sql
 * id: c4d98bad-cfa8-4dfc-ab52-45d38da44488
-* title: Join Question #3
+* title: Intermediate SQL
 * data_path: /intermediate-sql/sql/problem-set.sql
 * points: 1
 * topics: sql, sql-select, sql-join
 
 ##### !question
 
-You have the following database.  Write a SELECT statement which uses a JOIN clause to list the order ids for all the orders which include the product named `'Widget Tsunami'`.
+We have the following database.  Write a `SELECT` statement which uses a `JOIN` clause to list the order ids for all the orders which include the product named `'Widget Tsunami'`.
 
-![Database ERD](../assets/intermediate-sql__database-relationships__problemset-products-orders-erd.svg)
+![Database ERD](../assets/intermediate-sql_database-relationships_problemset-products-orders-erd.svg)
 
 ##### !end-question
 
@@ -323,10 +325,10 @@ You have the following database.  Write a SELECT statement which uses a JOIN cla
 ```sql
 SELECT orders.id
 FROM products
-INNER JOIN ordersProducts
-ON products.id = ordersProducts.product_id
+INNER JOIN orders_products
+ON products.id = orders_products.product_id
 INNER JOIN orders
-ON ordersProducts.order_id = orders.id
+ON orders_products.order_id = orders.id
 WHERE products.name = 'Widget Tsunami';
 ```
 
@@ -334,11 +336,10 @@ WHERE products.name = 'Widget Tsunami';
 
 ##### !hint
 
-The database listed here has a join table `ordersProducts`.  Take a look at the section in [database joins](./database-joins.md) which gives an example of a many-to-many relationship.
+The database listed here has a join table `orders_products`.  Take a look at the section in [database joins](./database-joins.md) which gives an example of a many-to-many relationship.
 
 ##### !end-hint
 
 ### !end-challenge
 
 <!-- ======================= END CHALLENGE ======================= -->
-

@@ -110,7 +110,7 @@ VALUES (
   '87 New Deal St'
 );
 
-CREATE TABLE ordersProducts (
+CREATE TABLE orders_products (
   order_id INT,
   FOREIGN KEY (order_id) REFERENCES orders(id),
   product_id INT,
@@ -119,7 +119,7 @@ CREATE TABLE ordersProducts (
   PRIMARY KEY (order_id, product_id)
 );
 
-INSERT INTO ordersProducts (
+INSERT INTO orders_products (
   order_id,
   product_id,
   quantity
@@ -129,7 +129,7 @@ INSERT INTO ordersProducts (
   3
 );
 
-INSERT INTO ordersProducts (
+INSERT INTO orders_products (
   order_id,
   product_id,
   quantity
@@ -140,7 +140,7 @@ INSERT INTO ordersProducts (
 );
 
 
-INSERT INTO ordersProducts (
+INSERT INTO orders_products (
   order_id,
   product_id,
   quantity
@@ -150,7 +150,7 @@ INSERT INTO ordersProducts (
   2
 );
 
-INSERT INTO ordersProducts (
+INSERT INTO orders_products (
   order_id,
   product_id,
   quantity
@@ -160,7 +160,7 @@ INSERT INTO ordersProducts (
   1
 );
 
-INSERT INTO ordersProducts (
+INSERT INTO orders_products (
   order_id,
   product_id,
   quantity
@@ -169,4 +169,3 @@ INSERT INTO ordersProducts (
   2,
   5
 );
-

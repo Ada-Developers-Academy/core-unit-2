@@ -8,11 +8,11 @@
 
 Zahra is a user of a chat app, which allows her to add and manage her different contacts. She can select a contact and talk with them, and categorize her contacts too.
 
-However, one day, Zahra's friend tells her that they've changed their name. Zahra needs to update her friend's contact information. While she does that, she realizes that she made a category named "Best Freinds," typo and all. She wants to fix the category name to "Best Friends."
+However, one day, Zahra's friend tells her that they've changed their name. Zahra needs to update her friend's contact information. While she does that, she realizes that she made a category named "Best Freinds," misspelling and all. She wants to fix the category name to "Best Friends."
 
 Consider these features:
 
-1. As a user, I should be able to update my contacts's names, so I can keep my contact information up-to-date
+1. As a user, I should be able to update my contacts' names, so I can keep my contact information up-to-date
 1. As a user, I should be able to rename the categories I put my contacts in, so I can find my contacts by the correct category name
 
 Now, imagine that this chat app had a database and table like this:
@@ -21,7 +21,7 @@ Now, imagine that this chat app had a database and table like this:
 
 | `contact_id` (`INT`) | `name` (`VARCHAR(100)`) | `category` (`VARCHAR(50)`) |
 | -------------------- | ----------------------- | -------------------------- |
-| `278`                | `'Cheyenne O''Brien'`   | `'Best Freinds'`           |
+| `278`                | `'Cheyenne O'Brien'`    | `'Best Freinds'`           |
 | `279`                | `'Adina Lennon'`        | `'Best Freinds'`           |
 | `280`                | `'Jett Sargent'`        | `NULL`                     |
 | `281`                | `'Eliot Giles'`         | `'Adies'`                  |
@@ -34,19 +34,19 @@ Before we update a record in a table, we should first determine:
 
 - Which table contains the data we need to update
 - Which record(s) we need to update
-  - How can we determine how to accurately find these records, and only these records?
+  - How can we accurately find these records, and only these records?
 - What column(s) we need to update
 - The new value(s) for these column(s)
 
 ### !callout-info
 
-## Can Update Multiple Records and Columns at Once
+## We Can Update Multiple Records and Columns at Once
 
 Postgres supports updating one or multiple records at once. It also supports updating one or multiple columns of those records at once.
 
 ### !end-callout
 
-To update a record(s), we use the following SQL syntax:
+To update one or more records, we use the following SQL syntax:
 
 ```sql
 UPDATE table_name
@@ -58,9 +58,9 @@ WHERE condition;
 | ----------------------------------------- | --------------------------------------------------------------------------------------- |
 | `UPDATE`                                  | Keyword that begins an update statement                                                 |
 | `table_name`                              | **Replace this** with the name of the correct table                                     |
-| `SET`                                     | Keyword that begins a set-clause, where you determine what and how gets updated         |
+| `SET`                                     | Keyword that begins a set-clause, where we determine what gets updated and how          |
 | `column1 = value1, column2 = value2, ...` | **Replace this** with a comma-separated list of column names `=` to their new values    |
-| `WHERE`                                   | Keyword that begins a where-clause, where you determine what gets updated               |
+| `WHERE`                                   | Keyword that begins a where-clause, where we determine what gets updated                |
 | `condition;`                              | **Replace this** with a condition that must be true in order for a record to be updated |
 
 _The `WHERE` clause is optional_. Without a `WHERE` clause, all records within the table will be updated.
@@ -69,7 +69,7 @@ _The `WHERE` clause is optional_. Without a `WHERE` clause, all records within t
 
 ## Without `WHERE`, All Are Updated
 
-If you omit the WHERE clause, ALL records will be updated!
+If we omit the WHERE clause, ALL records will be updated!
 
 ### !end-callout
 
@@ -77,12 +77,61 @@ If you omit the WHERE clause, ALL records will be updated!
 
 Imagine the following table named `media` with these columns and four records.
 
+<!--
+
+Table in markdown for our convenience:
+
 | `media_id` | `category` | `title`         | `creator`      | `publication_year` | `description_text`                    |
 | ---------- | ---------- | --------------- | -------------- | ------------------ | ------------------------------------- |
 | 1          | book       | Red Java        | Jewel Koss     | 1971               | Nisi ducimus reprehenderit molestiae. |
 | 2          | book       | Postmodern Been | Glen Senger    | 1929               | Dolore repellendus doloribus maiores. |
 | 3          | movie      | American Select | Xuan Pouros    | 1997               | Corporis id voluptatem fuga.          |
 | 4          | movie      | Wake-up Utopia  | Buena Shanahan | 1930               | Fuga corrupti ducimus animi.          |
+ -->
+
+<table class="table table-bordered table-striped table-condensed table-hover" style="font-size:.7em;"><thead>
+<tr>
+<th><div style="min-width:70px"><code tabindex="0">media_id</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">category</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">title</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">creator</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">publication_year</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">description_text</code><div></div></div></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>book</td>
+<td>Red Java</td>
+<td>Jewel Koss</td>
+<td>1971</td>
+<td>Nisi ducimus reprehenderit molestiae.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>book</td>
+<td>Postmodern Been</td>
+<td>Glen Senger</td>
+<td>1929</td>
+<td>Dolore repellendus doloribus maiores.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>movie</td>
+<td>American Select</td>
+<td>Xuan Pouros</td>
+<td>1997</td>
+<td>Corporis id voluptatem fuga.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>movie</td>
+<td>Wake-up Utopia</td>
+<td>Buena Shanahan</td>
+<td>1930</td>
+<td>Fuga corrupti ducimus animi.</td>
+</tr>
+</tbody></table>
 
 After running this SQL statement...
 
@@ -94,12 +143,61 @@ WHERE id = 3;
 
 our `media` table will look like this:
 
+<!--
+
+Table in markdown for our convenience:
+
 | `media_id` | `category` | `title`         | `creator`      | `publication_year` | `description_text`                    |
 | ---------- | ---------- | --------------- | -------------- | ------------------ | ------------------------------------- |
 | 1          | book       | Red Java        | Jewel Koss     | 1971               | Nisi ducimus reprehenderit molestiae. |
 | 2          | book       | Postmodern Been | Glen Senger    | 1929               | Dolore repellendus doloribus maiores. |
 | 3          | movie      | 🍀              | Xuan Pouros    | 1997               | Corporis id voluptatem fuga.          |
 | 4          | movie      | Wake-up Utopia  | Buena Shanahan | 1930               | Fuga corrupti ducimus animi.          |
+ -->
+
+<table class="table table-bordered table-striped table-condensed table-hover" style="font-size:.7em;"><thead>
+<tr>
+<th><div style="min-width:70px"><code tabindex="0">media_id</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">category</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">title</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">creator</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">publication_year</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">description_text</code><div></div></div></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>book</td>
+<td>Red Java</td>
+<td>Jewel Koss</td>
+<td>1971</td>
+<td>Nisi ducimus reprehenderit molestiae.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>book</td>
+<td>Postmodern Been</td>
+<td>Glen Senger</td>
+<td>1929</td>
+<td>Dolore repellendus doloribus maiores.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>movie</td>
+<td>🍀</td>
+<td>Xuan Pouros</td>
+<td>1997</td>
+<td>Corporis id voluptatem fuga.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>movie</td>
+<td>Wake-up Utopia</td>
+<td>Buena Shanahan</td>
+<td>1930</td>
+<td>Fuga corrupti ducimus animi.</td>
+</tr>
+</tbody></table>
 
 After running this SQL statement...
 
@@ -110,14 +208,63 @@ SET description_text = '🍀';
 
 our `media` table will look like this:
 
+<!--
+
+Table in markdown for our convenience:
+
 | `media_id` | `category` | `title`         | `creator`      | `publication_year` | `description_text` |
 | ---------- | ---------- | --------------- | -------------- | ------------------ | ------------------ |
 | 1          | book       | Red Java        | Jewel Koss     | 1971               | 🍀                 |
 | 2          | book       | Postmodern Been | Glen Senger    | 1929               | 🍀                 |
 | 3          | movie      | 🍀              | Xuan Pouros    | 1997               | 🍀                 |
 | 4          | movie      | Wake-up Utopia  | Buena Shanahan | 1930               | 🍀                 |
+ -->
 
-### Examples on Updating Records
+<table class="table table-bordered table-striped table-condensed table-hover" style="font-size:.7em;"><thead>
+<tr>
+<th><div style="min-width:70px"><code tabindex="0">media_id</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">category</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">title</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">creator</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">publication_year</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">description_text</code><div></div></div></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>book</td>
+<td>Red Java</td>
+<td>Jewel Koss</td>
+<td>1971</td>
+<td>🍀</td>
+</tr>
+<tr>
+<td>2</td>
+<td>book</td>
+<td>Postmodern Been</td>
+<td>Glen Senger</td>
+<td>1929</td>
+<td>🍀</td>
+</tr>
+<tr>
+<td>3</td>
+<td>movie</td>
+<td>🍀</td>
+<td>Xuan Pouros</td>
+<td>1997</td>
+<td>🍀</td>
+</tr>
+<tr>
+<td>4</td>
+<td>movie</td>
+<td>Wake-up Utopia</td>
+<td>Buena Shanahan</td>
+<td>1930</td>
+<td>🍀</td>
+</tr>
+</tbody></table>
+
+### Examples of Updating Records
 
 Read through these example SQL statements. For each example, read the code and answer:
 
@@ -125,14 +272,19 @@ Read through these example SQL statements. For each example, read the code and a
 1. For each column-value pair, what is the column and what is the value?
 1. What kinds of record(s) will be updated?
 
-1. Update all records to have an `author_name` value `"(No Author)"`
-
 ```sql
 UPDATE authors
 SET author_name = '(No Author)';
 ```
 
-2. Update the record with `id` `2` so the `is_available` attribute is `false`. (Update Driver #2 to be unavailable.)
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `authors`
+1. For the column `author_name`, the updated value is `'(No Author)'`
+1. All records in the table will be updated
+
+</details>
 
 ```sql
 UPDATE drivers
@@ -140,7 +292,16 @@ SET is_available = false
 WHERE id = 2;
 ```
 
-3. Update the record with `id` `1` so `publication_year` is `"1990"` _and_ `description_text` is `NULL`. (Update Media #1 with a new publication year and empty description.)
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+This query makes Driver #2 unavailable.
+
+1. The name of the table is `drivers`
+1. For the column `is_available`, the updated value is `false`
+1. The record with `id` `2` will be updated
+
+</details>
 
 ```sql
 UPDATE media
@@ -148,13 +309,35 @@ SET publication_year = '1990', description_text = NULL
 WHERE media_id = 1;
 ```
 
-4. Update all records with the category `"album"` to the category `"Album"`. (Rename category `"album"` to `"Album"`.)
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+This query gives Media #1 a new publication year and empty description.
+
+1. The name of the table is `media`
+1. We update 2 columns:
+   1. For the column `publication_year`, the updated value is `'1990'`
+   1. For the column `description_text`, the updated value is `NULL`
+1. The record with `media_id` `1` will be updated
+
+</details>
 
 ```sql
 UPDATE media
 SET category = 'Album'
 WHERE category = 'album';
 ```
+
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+This query renames category `'album'` to `'Album'`.
+
+1. The name of the table is `media`
+1. For the column `category`, the updated value is `'Album'`
+1. Any record with `category` `'album'` will be updated
+
+</details>
 
 ### Feedback on Updating Records
 

@@ -1,31 +1,28 @@
 # Database Joins
 
-<!-- TODO:  Remove this note
-
-I'm only teaching Inner Joins here just to teach the concept.  
-
- -->
-
 ## Goals
 
 - Explain how `SELECT` statements with joins retrieve related data
-- Write `SELECT` Statements with joins to combine data from different, related tables
+- Write `SELECT` statements with joins to combine data from different, related tables
 
 ## Introduction
 
-We have database tables connected through foreign keys.  Now we need to use this connection to pull information using that connection.
+We have seen how to establish connections between tables using foreign keys. Using those connections, we have also manually answered questions about entities in our database with related data. Now we would like to write SQL queries using those connections to retrieve that related data for us!
 
-What if, using this erd, for example we need to retrieve Book titles and the names of their authors?
+Let's revisit our example database that has a relationship between authors and their books.
 
-![ERD Diagram](../assets/intermediate-sql__database-relationships__books-authors.svg)
+![ERD Diagram](../assets/intermediate-sql_database-relationships_books-authors.svg)  
+*Fig. Books and authors connected by the `author_id` field*
+
+What if we need to retrieve the titles of our books, along with the full name of the related author.
 
 To do this we need to *join* the table rows based on the matching columns.  In this lesson we will learn to use `SELECT` statements with `JOIN` clauses to combine data from multiple tables.
 
 ## Vocabulary and Synonyms
 
-| Vocab           | Definition                                                                                                            | Synonyms             | How to Use in a Sentence                                                                                                                                                                                                                              |
-| --------------- | --------------------------------------------------------------------------------------------------------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Join | A *join* is an SQL operation which combines columns from one or more tables in a relational database.  It creates a set that can be saved as a table or returned to the requestor.  | | I needed to get a information particular student and all of their classrooms, so I wrote a *join* query. |
+| Vocab | Definition                                                                               | How to Use in a Sentence                                                                                   |
+| ----- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Join  | A SQL operation which combines columns from one or more tables in a relational database. | I needed to get information for particular student and all of their classrooms, so I wrote a *join* query. |
 
 ## Revisiting SELECT
 
@@ -37,11 +34,11 @@ FROM books
 WHERE author_id = 42;
 ```
 
-However tables can be related through foreign key fields.  We often want to get related information which resides in disparate tables.
+However, needing to know an author's id in order to look up their books is a little inconvenient. It's usually easier for us to refer to an author by their name.
 
-![ERD Diagram](../assets/intermediate-sql__database-relationships__books-authors.svg)
+![ERD Diagram](../assets/intermediate-sql_database-relationships_books-authors.svg)
 
-For example given the above ERD, we might want to get the titles of all books written by Kaja Howell.  We could get information on Kaja with:
+Returning to our books and authors ERD, we might want to get the titles of all books written by Kaja Howell.  We can get information about Kaja with:
 
 ```sql
 SELECT * 
@@ -56,26 +53,32 @@ SELECT title
 FROM books;
 ```
 
-We need a way to combine or *join* the queries.
+What we need is a way to combine or *join* the queries.
 
 ### SELECT With Join
 
-To write a select which joins two tables together our SQL looks like this replacing content inside [] with the names of our tables and columns:
+To write a `SELECT` which joins two tables together we use the following syntax:
 
 ```sql
-SELECT [fields]
-FROM [table_a]
-INNER JOIN [table_b]
-  ON [table_a.column_name] = [table_b.column_name]
+SELECT field1, field2, field3, ...
+FROM table_name_a
+INNER JOIN table_name_b
+  ON condition
 /* Optional WHERE clause */
 ```
 
-In the query:
+| <div style="min-width:200px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `SELECT`                                            | The same SQL keyword that we use to start regular data retrieval commands                                                                                                                                                            |
+| `field1, field2, field3, ...`                       | **Replace this** with a list of the desired field names. Field names should be comma-separated, and often take the form of `table_name.column_name` to help us tell which table and column are providing a particular piece of data. |
+| `FROM`                                              | The same SQL keyword used in regular data retrieval commands to name the starting table of the query                                                                                                                                 |
+| `table_name_a`                                      | **Replace this** with the name of the correct starting table for the query                                                                                                                                                           |
+| `INNER JOIN`                                        | A SQL keyword that indicates how we would like to combine our tables. There are a number of other options, mentioned later in this lesson.                                                                                           |
+| `table_name_b`                                      | **Replace this** with the name of the correct table to which we want to join the starting table                                                                                                                                      |
+| `ON`                                                | A SQL keyword that marks the start of the join condition                                                                                                                                                                             |
+| `condition`                                         | **Replace this** with an expression that specifies the field(s) to use to combine the two tables                                                                                                                                     |
 
-* `INNER JOIN [Table Name]` - Specifies which table is being combined with the table in the `FROM` clause
-* `ON [condition]`  - Specifies which field(s) to use in combining the two tables
-
-Using this template to combine information in the books and authors tables, we can find all the book titles by Kaja Howell with the following query:
+We can use this style of query to retrieve the combined information from both the `books` and `authors` tables.
 
 ```sql
 SELECT books.title, authors.first_name, authors.last_name
@@ -84,12 +87,12 @@ INNER JOIN authors
   ON books.author_id = authors.id;
 ```
 
-In this query we performed an *inner join*.  An inner join will combine (join) and return all the rows in both tables which possess matching keys.  In this case we will get all the books and their authors by combining rows from the two tables when the `author_id` in the `books` table matches the `id` field in the `authors` table.
+In this `SELECT` query we use `INNER JOIN` to combine (join) and return all the rows in both tables which possess matching keys. Here, the `INNER JOIN` combines the `books` and `authors` tables by comparing the `author_id` in the `books` table to the `id` in the `authors` table. From the combined data, we specifically retrieve the title of each book, and the first and last names of each book's author.
 
-You can picture it like this.
+We can picture it like this.
 
-![Venn Diagram on Inner Join between books and authors](../assets/intermediate-sql__database-relationships__books-authors-inner-join.svg)
-*Fig. Venn Diagram illustrating Inner Join*
+![Venn Diagram on Inner Join between books and authors](../assets/intermediate-sql_database-relationships_books-authors-inner-join.png)  
+*Fig. Venn diagram illustrating `INNER JOIN`*
 
 If we wanted to narrow this down further and limit the query to books written by Kaja Howell we can add a `WHERE` clause. 
 
@@ -99,14 +102,17 @@ FROM books
 INNER JOIN authors
   ON books.author_id = authors.id
 WHERE authors.first_name = 'Kaja' and
-  last_name = 'Howell';
+  authors.last_name = 'Howell';
 ```
 
 This kind of query works for one to one relationships and one to many relationships.
 
-![ERD Diagram between clients and rentals](../assets/intermediate-sql__database-relationships__client-to-rentals.svg)
+Let's consider another small example.
 
-We could also write a query to get all the clients and their check in dates with the following query.
+![ERD Diagram between clients and rentals](../assets/intermediate-sql_database-relationships_client-to-rentals.svg)  
+*Fig. Diagram describing the relationship between a client and their outstanding rentals.*
+
+With this data layout, we could write a query that gets all the clients and their check in dates with the following SQL.
 
 ```sql
 SELECT clients.name, rentals.check_in_date
@@ -118,9 +124,9 @@ INNER JOIN rentals
 <!-- available callout types: info, success, warning, danger, secondary  -->
 ### !callout-info
 
-## TABLE_NAME.COLUMN_NAME Syntax
+## `table_name.column_name` Syntax
 
-We are using the syntax TABLE_NAME.COLUMN_NAME to differentiate between columns in the `clients` table and columns in the `rentals` table.  In cases where the column names do not conflict, this is optional, but explicitly refering the table is more readable.
+We are using the syntax `table_name.column_name` to differentiate between columns in the `clients` table and columns in the `rentals` table. In cases where the column names do not conflict, this is optional, but explicitly referring to the table can help remind us what the source of the data is.
 
 ### !end-callout
 
@@ -128,7 +134,7 @@ We are using the syntax TABLE_NAME.COLUMN_NAME to differentiate between columns 
 
 ### Example With Data
 
-If we had the following data:
+If we have the following data:
 
 | id | first_name | last_name | bio |
 |--- |--- |--- |--- |
@@ -136,7 +142,8 @@ If we had the following data:
 | 2  | Kaja | Howell | ... |
 | 3  | Josef | Cannon | ... |
 | 4  | Avery | Lim | ... |
-*Fig. Authors Table Data*
+
+*Fig. `authors` table*
 
 | id | title | description | isbn | author_id |
 |--- |--- |--- |--- |--- |
@@ -144,11 +151,12 @@ If we had the following data:
 | 2  | Sign of the Absent Hand | ... | ... | 1 |
 | 3  | Before the Storm | ... | ... | 2 | 
 | 4  | Case of the Webbed Baboon | ... | ... | 3 |
-| 1  | Blade of Dawn | ... | ... | 2 |
-| 1  | Electric Touch | ... | ... | 1 |
-*Fig. Books Table Data*
+| 5  | Blade of Dawn | ... | ... | 2 |
+| 6  | Electric Touch | ... | ... | 1 |
 
-The following SQL Query:
+*Fig. `books` table*
+
+The following SQL query:
 
 ```sql
 SELECT books.title, authors.first_name, authors.last_name
@@ -165,7 +173,6 @@ Results in:
 |--- |--- |--- |
 | Before the Storm | Kaja | Howell |
 | Blade of Dawn | Kaja | Howell |
-*Table: Result of Query*
 
 
 
@@ -173,24 +180,33 @@ Results in:
 
 ## Outer Joins
 
-Yes there are other kinds of joins including *outer joins*, *left joins* and *right joins*.  However we will not need these queries at Ada, but students are welcome to research them independently.
+There are other kinds of joins including *[full] outer joins*, *left [outer] joins* and *right [outer] joins*. We won't cover them here, but they can be useful in certain situations. Follow your curiosity!
 
 ### !end-callout
 
-### Many to many Join
+### Using `JOIN` With Many to Many Relationships
 
-We combined columns from two tables with a `SELECT` using a single `JOIN` clause.  If we wanted to combine rows of two tables in a many to many relationship like the one below we can use a `SELECT` statement with two `JOIN` clauses.
+We have seen how we can use `INNER JOIN` in a `SELECT` query to combine the rows of two tables into a single result. But we also know that describing a many to many relationship requires three tables.
+
+Consider the following many to many relationship:
 
 
-![many to many relationship ERD](../assets/intermediate-sql__establishing-relationships__many-to-many.svg)
+![many to many relationship ERD](../assets/intermediate-sql_establishing-relationships_many-to-many.svg)  
+*Fig. A many to many relationship involving books and genres. Three tables are required to express this.*
+
+If we want to retrieve a list of all books and the genres in which they are classified, we need to involve three tables. How can we do this?
+
+We can include more than one `INNER JOIN` clause in our `SELECT` query! The first combines `books` with `books_genres`, while the second combines `books_genres` to `genres`. Putting it all together walks us all the way from `books` to `genres`.
+
+Consider the following query.
 
 ```sql
 SELECT books.title, genres.name
 FROM books
-INNER JOIN booksgenres
-  ON booksgenres.book_id = books.id
+INNER JOIN books_genres
+  ON books_genres.book_id = books.id
 INNER JOIN genres
-  ON booksgenres.genre_id = genres.id;
+  ON books_genres.genre_id = genres.id;
 ```
 
 If the data in our tables is:
@@ -203,7 +219,7 @@ If the data in our tables is:
 | 4  | Gods Without Direction  | ...         | ...  |
 | 5  | Agents And Priests      | ...         | ...  |
 
-*Fig. Books Table*
+*Fig. `books` table*
 
 | id | name       |
 |----|------------|
@@ -213,7 +229,7 @@ If the data in our tables is:
 | 4  | Suspense   |
 | 5  | Nonfiction |
 
-*Fig. Genres Table*
+*Fig. `genres` table*
 
 | book_id | genre_id |
 |---------|----------|
@@ -227,14 +243,14 @@ If the data in our tables is:
 | 5       | 2        |
 | 5       | 4        |
 
-*Fig. BooksGenres Table*
+*Fig. books_genres table*
 
-Then our above query will generate:
+Then our above query will generate the following result.
 
 | title | name |
 |---------|----------|
 | Raven Of The River        | Fantasy       |
-| Raven Of The River        | Suspense      |
+| Raven Of The River        | Fiction      |
 | Cat Of Rainbows           | Nonfiction    |
 | Criminals Without Glory   | Sci-Fi        |
 | Criminals Without Glory   | Fiction       |
@@ -243,7 +259,6 @@ Then our above query will generate:
 | Agents And Priests        | Fiction       |
 | Agents And Priests        | Suspense      |
 
-*Fig. Result of Multi-join query*
 
 
 ## Check for Understanding
@@ -257,7 +272,7 @@ Then our above query will generate:
 
 * type: ordering
 * id: 640d100c-e24f-41b6-ae70-41411711e709
-* title: SQL SELECT JOIN Reordering
+* title: Database Joins
 * points: 1
 * topics: sql, sql-join, sql-select
 
@@ -291,21 +306,21 @@ The following are lines in an SQL SELECT query with a JOIN clause.  Put them in 
 * type: code-snippet
 * language: sql
 * id: ae7b2f5b-1baf-4711-929d-fe0d6355ce20
-* title: SQL Join Practice
+* title: Database Joins
 * data_path: /intermediate-sql/sql/database-joins.sql
 * points: 1
 * topics: sql, sql-select, sql-join
 
 ##### !question
 
-Given the tables above select from the employee table:
+Given the table relationship shown below, select from the employee table:
 
 * first_name
 * last_name 
 
-From all employees in the department named 'Accounting'.
+for all employees in the department named 'Accounting'.
 
-![ERD with one department connected to many employees](../assets/intermediate-sql__database-joins__learning-comp-employees-depts.svg)
+![ERD with one department connected to many employees](../assets/intermediate-sql_database-joins_learning-comp-employees-depts.svg)
 
 ##### !end-question
 
@@ -350,18 +365,18 @@ How are the `employees` table and `departments` table connected?
 
 * type: paragraph
 * id: 5ccd897b-a0ab-4959-9a30-cef8702fe6de
-* title: Key takeaway
+* title: Database Joins
 
 ##### !question
 
-What is your key takeaway from this lesson?
+What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
 
 ##### !end-question
-
 ##### !placeholder
 
-##### !end-placeholder
+My biggest takeaway from this lesson is...
 
+##### !end-placeholder
 ### !end-challenge
 
 <!-- ======================= END CHALLENGE ======================= -->

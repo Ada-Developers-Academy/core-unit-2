@@ -15,7 +15,7 @@ In Kenan's webapp, he knows that he wants to add hundreds of books, albums, and 
 
 ## In SQL, Strings Use Single Quotes (`'`) Only
 
-Before we begin diving into SQL syntax, let's call out one new syntax rule that is very different from Python. In SQL, a string is a sequence of characters **within single quotes (`'`)**. For example, valid strings include `'Hello, World!'` and `'This text is between single-quotes.'`. We can include a single-quote inside of a string by using two single quotes. For example, `'Isn''t Ada''s code so clever?'` will correctly mean "Isn't Ada's code so clever?".
+Before we begin diving into SQL syntax, let's call out one new syntax rule that is very different from Python. In SQL, a string is a sequence of characters **within single quotes (`'`)**. For example, valid strings include `'Hello, World!'` and `'This text is between single-quotes.'`. We can include a single-quote inside of a string by using two single quotes. For example, `'Isn''t Ada''s code so clever?'` will be interpreted as "Isn't Ada's code so clever?".
 
 ### !end-callout
 
@@ -55,17 +55,42 @@ Without this list, the values are inserted beginning at the table's first (leftm
 
 ### Constraints Still Apply
 
-If the `INSERT` statement violates any table or column constraints, then the `INSERT` statement will fail. More details aer below.
+If the `INSERT` statement violates any table or column constraints, then the `INSERT` statement will fail. More details are below.
 
-When we have a column that is `GENERATED AS IDENTITY`, we **do not** need to supply a value for this column. If the column is `GENERATED ALWAYS AS IDENTITY`, we should either exclude the column and value from the `INSERT` statement, or use a default value. More details are below.
+When we have a column that is `GENERATED ALWAYS AS IDENTITY`, we should either exclude the column and value from the `INSERT` statement, or use a default value. More details are below.
 
 ### Example and Output
 
 Imagine the following table named `media` with these columns and one record.
 
+<!--
+
+Table in markdown for our convenience:
+
 | `media_id` | `category` | `title`  | `creator`  | `publication_year` | `description_text`                    |
 | ---------- | ---------- | -------- | ---------- | ------------------ | ------------------------------------- |
 | 1          | book       | Red Java | Jewel Koss | 1971               | Nisi ducimus reprehenderit molestiae. |
+ -->
+
+<table class="table table-bordered table-striped table-condensed table-hover" style="font-size:.7em;"><thead>
+<tr>
+<th><div style="min-width:70px"><code tabindex="0">media_id</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">category</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">title</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">creator</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">publication_year</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">description_text</code><div></div></div></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>book</td>
+<td>Red Java</td>
+<td>Jewel Koss</td>
+<td>1971</td>
+<td>Nisi ducimus reprehenderit molestiae.</td>
+</tr>
+</tbody></table>
 
 After running this SQL statement...
 
@@ -76,10 +101,44 @@ VALUES ('book', 'Postmodern Been', 'Glen Senger', '1929', 'Dolore repellendus do
 
 our `media` table will look like this:
 
+<!--
+
+Table in markdown for our convenience:
+
 | `media_id` | `category` | `title`         | `creator`   | `publication_year` | `description_text`                    |
 | ---------- | ---------- | --------------- | ----------- | ------------------ | ------------------------------------- |
 | 1          | book       | Red Java        | Jewel Koss  | 1971               | Nisi ducimus reprehenderit molestiae. |
 | 2          | book       | Postmodern Been | Glen Senger | 1929               | Dolore repellendus doloribus maiores. |
+
+-->
+
+<table class="table table-bordered table-striped table-condensed table-hover" style="font-size:.7em;"><thead>
+<tr>
+<th><div style="min-width:70px"><code tabindex="0">media_id</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">category</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">title</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">creator</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">publication_year</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">description_text</code><div></div></div></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>book</td>
+<td>Red Java</td>
+<td>Jewel Koss</td>
+<td>1971</td>
+<td>Nisi ducimus reprehenderit molestiae.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>book</td>
+<td>Postmodern Been</td>
+<td>Glen Senger</td>
+<td>1929</td>
+<td>Dolore repellendus doloribus maiores.</td>
+</tr>
+</tbody></table>
 
 After running this SQL statement...
 
@@ -90,11 +149,52 @@ VALUES ('1997', 'movie', 'American Select', 'Xuan Pouros');
 
 our `media` table will look like this:
 
+<!--
+
+Table in markdown for our convenience:
+
 | `media_id` | `category` | `title`         | `creator`   | `publication_year` | `description_text`                    |
 | ---------- | ---------- | --------------- | ----------- | ------------------ | ------------------------------------- |
 | 1          | book       | Red Java        | Jewel Koss  | 1971               | Nisi ducimus reprehenderit molestiae. |
 | 2          | book       | Postmodern Been | Glen Senger | 1929               | Dolore repellendus doloribus maiores. |
 | 3          | movie      | American Select | Xuan Pouros | 1997               | `NULL` (Note: Appears as empty text)  |
+ -->
+
+<table class="table table-bordered table-striped table-condensed table-hover" style="font-size:.7em;"><thead>
+<tr>
+<th><div style="min-width:70px"><code tabindex="0">media_id</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">category</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">title</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">creator</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">publication_year</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">description_text</code><div></div></div></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>book</td>
+<td>Red Java</td>
+<td>Jewel Koss</td>
+<td>1971</td>
+<td>Nisi ducimus reprehenderit molestiae.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>book</td>
+<td>Postmodern Been</td>
+<td>Glen Senger</td>
+<td>1929</td>
+<td>Dolore repellendus doloribus maiores.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>movie</td>
+<td>American Select</td>
+<td>Xuan Pouros</td>
+<td>1997</td>
+<td><code tabindex="0">NULL</code> (Note: Appears as empty text)</td>
+</tr>
+</tbody></table>
 
 ### !callout-info
 
@@ -108,11 +208,11 @@ SQL syntax does not require certain spaces, line breaks, or indentation. All SQL
 
 ## SQL Keywords Are Not Case-Sensitive
 
-SQL keywords are not required to be in ALL CAPS. For example, it's valid SQL syntax to use `INSERT`, `INTO`, `VALUES`, `insert`, `into`, and `values`. Most people prefer to follow the style of capitalizing SQL keywords.
+SQL keywords are not required to be in ALL CAPS. For example, it's valid SQL syntax to use `INSERT`, `INTO`, and `VALUES`; or `insert`, `into`, and `values` in any combination or capitalization. For largely historical reasons, many developers are used to seeing SQL keywords written in all caps, and so continue to follow the style of capitalizing them. The best choice is to adapt our style to the codebase we are working in!
 
 ### !end-callout
 
-### Examples on Inserting Records
+### Examples of Inserting Records
 
 Read through these example SQL statements. For each example, read the code and answer:
 
@@ -120,27 +220,33 @@ Read through these example SQL statements. For each example, read the code and a
 1. For each column-value pair, what is the column and what is the value?
 1. Which pieces of syntax are unfamiliar?
 
-1.
-
 ```sql
 INSERT INTO authors (author_name)
 VALUES ('Octavia E. Butler');
 ```
 
-- The name of the table is `authors`
-- For the column `author_name`, the inserted value is`'Octavia E. Butler'`
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
 
-2.
+1. The name of the table is `authors`
+1. For the column `author_name`, the inserted value is `'Octavia E. Butler'`
+
+</details>
 
 ```sql
 INSERT INTO drivers (vin, is_available)
 VALUES ('11112222333344445', false);
 ```
 
-- The name of the table is `drivers`
-- For the column `vin`, the inserted value is `false`
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
 
-3.
+1. The name of the table is `drivers`
+1. We insert 2 values:
+   1. For the column `vin`, the inserted value is `'11112222333344445'`
+   1. For the column `is_available`, the inserted value is `false`
+
+</details>
 
 ```sql
 INSERT INTO media (category, title, creator, publication_year, description_text)
@@ -152,6 +258,19 @@ VALUES (
     'Lorem ipsum dolor sit amet'
 );
 ```
+
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `media`
+1. We insert 5 values:
+   1. For the column `category`, the inserted value is `'album'`
+   1. For the column `title`, the inserted value is `'Blue Breaker'`
+   1. For the column `creator`, the inserted value is `'Dr. Sarai Langosh'`
+   1. For the column `publication_year`, the inserted value is `'1949'`
+   1. For the column `description_text`, the inserted value is `'Lorem ipsum dolor sit amet'`
+
+</details>
 
 <!-- Question 1 -->
 <!-- prettier-ignore-start -->
@@ -176,9 +295,9 @@ VALUES ('Phillippa Short', false);
 ##### !end-question
 ##### !options
 
-* One statement adds suggests what the columns are in the `hotel_guests` table. The other statement relies on SQL to guess and assume which values go in which columns based on context.
+* One statement suggests what the columns are in the `hotel_guests` table. The other statement relies on SQL to guess and assume which values go in which columns based on context.
 * One statement specifies the columns that the new inserted values go into, and in what order. The other statement assumes that the values go into the first two columns of the table.
-* One statement forces the names of the columns in `hotel_guests` are `guest_name` and `is_checked_in`. The other statement does not force these column names.
+* One statement forces the names of the columns in `hotel_guests` to be `guest_name` and `is_checked_in`. The other statement does not force these column names.
 
 ##### !end-options
 ##### !answer
@@ -205,9 +324,9 @@ Arrange the following syntax.
 1. `INSERT`
 1. `INTO`
 1. `hotel_guests`
-1. `(id, is_checked_in)`
+1. `(guest_name, is_checked_in)`
 1. `VALUES`
-1. `(777, true)`
+1. `('Zoey Thorne', true)`
 1. `;`
 
 ##### !end-answer
@@ -257,7 +376,7 @@ CREATE TABLE hotel_guests (
     guest_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     guest_name VARCHAR(200),
     is_checked_in BOOLEAN
-)
+);
 ```
 
 ##### !end-question
@@ -269,12 +388,14 @@ CREATE TABLE hotel_guests (
 * `INSERT INTO hotel_guests (guest_name, is_checked_in) VALUES (DEFAULT, 'Shirley Lim', false);`
 * `INSERT INTO hotel_guests VALUES (DEFAULT, 'Shirley Lim', false);`
 * `INSERT INTO hotel_guests VALUES ('Shirley Lim', false);`
+* `INSERT INTO hotel_guests (guest_name, is_checked_in) VALUES ('Shirley Lim', false);`
 
 ##### !end-options
 ##### !answer
 
 * `INSERT INTO hotel_guests (guest_id, guest_name, is_checked_in) VALUES (DEFAULT, 'Shirley Lim', false);`
 * `INSERT INTO hotel_guests VALUES (DEFAULT, 'Shirley Lim', false);`
+* `INSERT INTO hotel_guests (guest_name, is_checked_in) VALUES ('Shirley Lim', false);`
 
 ##### !end-answer
 ##### !explanation
@@ -285,6 +406,7 @@ CREATE TABLE hotel_guests (
 1. `INSERT INTO hotel_guests (guest_name, is_checked_in) VALUES (DEFAULT, 'Shirley Lim', false);` Unmatching number of columns and values listed
 1. `INSERT INTO hotel_guests VALUES (DEFAULT, 'Shirley Lim', false);` Valid
 1. `INSERT INTO hotel_guests VALUES ('Shirley Lim', false);` Assumes `'Shirley Lim'` is the value for the first column `guest_id`, which is type `INT`
+1. `INSERT INTO hotel_guests (guest_name, is_checked_in) VALUES ('Shirley Lim', false);` Valid
 
 ##### !end-explanation
 ### !end-challenge
@@ -328,13 +450,13 @@ This output means:
 2. A detailed explanation is that the `author_id` is an identity column defined as `GENERATED ALWAYS`
 3. Postgres gives a suggestion. If you truly want to override this constraint, you can research and use `OVERRIDING SYSTEM VALUE`.
 
-To move past this, we should debug the logic and syntax of our `INSERT` statement, and retry it. A failed `INSERT` in this context shouldn't have any other consequences to concerned about.
+To move past this, we should debug the logic and syntax of our `INSERT` statement, and retry it. A failed `INSERT` in this context shouldn't have any other consequences to be concerned about.
 
 ### !callout-secondary
 
 ## What if We Inserted the Wrong Values?
 
-What happens if we successfully inserted a record, but it has the wrong data?! There is no "undo," we should remedy this by updating the record, or deleting and adding a new record. This syntax is covered in other lessons, but follow your curiosity!
+What happens if we successfully inserted a record, but it has the wrong data?! There is no "undo." We should remedy this by updating the record, or deleting and adding a new record. This syntax is covered in other lessons, but follow your curiosity!
 
 ### !end-callout
 
@@ -345,7 +467,7 @@ What happens if we successfully inserted a record, but it has the wrong data?! T
 ### !challenge
 * type: paragraph
 * id: sM7OWh
-* title: NameOfLesson
+* title: Adding New Records
 ##### !question
 
 What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.

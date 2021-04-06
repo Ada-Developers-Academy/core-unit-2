@@ -6,10 +6,19 @@
 
 ## Introduction
 
-Let's take our brains away from programming for this lesson, and only consider data and life. Take one minute to visualize the last spreadsheet you opened and used, or take a minute to imagine a spreadsheet you would use to track a budget for a vacation.
+Let's take our brains away from programming for this lesson, and only consider data in our daily life. Take one minute to imagine a spreadsheet you could use to track a budget for a vacation.
 
-What was the spreadsheet for? Was it for chores, or video games, or a job, or something else? How did you use it?
-What data do you need? What are the labels for this data? How many different tables of data are needed?
+How could you use a spreadsheet to keep track of:
+
+- How much money is in your budget?
+- How much money is spent?
+- What did you spend the money on?
+- When did you spend the money?
+
+In your imagination, also imagine:
+
+- How would you label the data?
+- Are there are pieces of information you'd like to keep track of in this spreadsheet? What are they?
 
 Broadly, tables can be configured into an infinite number of shapes, and an infinite number of ways to use them.
 
@@ -29,9 +38,9 @@ By focusing on this kind of table, we will be set up for recognizing patterns co
 
 Tables are made of rows and columns.
 
-The first row is devoted to labeling the columns. This row can be called the _header row_.
+It's useful to begin a table with a section that labels the columns. We call this section the _header_, or the _header row_.
 
-After the header row, each row is a **record**, or a representation of _one_ entity that fits in this table.
+After the header comes the rows. Each row is a **record** that represents _one_ entity recorded in this table.
 
 Columns, on the other hand, represent **attributes**. Each column holds the value of one _attribute_ of one _record_.
 
@@ -56,7 +65,7 @@ In this example table of new hobbies to try:
   - Minimum Number of Hours
   - Resources Needed
   - Will My Friend Milly Join Me?
-- The _attributes_ are labeled in the header row
+- The _attributes_ are labeled in the header
 
 ## Using Tables Like a Computer Scientist
 
@@ -66,10 +75,10 @@ As programmers, we are particularly interested with interacting with tables by:
 - Reading records
 - Updating records
 - Deleting records
-
+Data storage systems typically implement these operations at minimum. We can remember these foundational operations as "CRUD."
 ### Reading Records From a Table
 
-Consider in slow motion what it means to read a record from a table.
+Consider in slow motion what it means to read a record from a table. 🦥
 
 When we need to pull information from one record, we need to ask the following clarifying questions:
 
@@ -112,9 +121,11 @@ In very discrete steps, we can imagine getting Milly's resource with this proces
 Updating records is a common action we do. What does it mean to update or modify the table itself? What would it mean to add a row, add a column, delete a row, or delete a column? Consider for a brief moment the following observations:
 
 - Adding and deleting rows is equivalent to adding and deleting records
-- Adding and deleting columns is painful; when we add a column, we'll need to go through each row and fill it in with some value. Deleting a column also means going through and modifying every record.
+- Adding and deleting columns is painful
+    - When we add a column, we'll need to go through each row and fill it in with some value.
+    - Deleting a column also means going through and modifying every record.
+    - Modifying the data for hundreds or thousands of rows (or more!) is _a lot_ of work!
 
-<!-- TODO:  Add image illustrating the difficulties of adding or deleting a column -->
 
 ### !end-callout
 
@@ -125,7 +136,7 @@ Updating records is a common action we do. What does it mean to update or modify
 ### !challenge
 * type: paragraph
 * id: PvvBpf
-* title: NameOfLesson
+* title: Data in Tables
 ##### !question
 
 What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
