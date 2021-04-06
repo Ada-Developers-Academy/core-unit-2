@@ -164,6 +164,7 @@ Like in other languages, these three operators have an order of precedence. For 
 - `OR`
 
 Rather than relying on the precedence ordering, we can also be explicit about how we want our condition to be evaluated by using parentheses.
+#### Example
 
 Let's try getting all the Intrigue genre books by either Madie McClure or Tim McDermott. We can start with either of our previous queries which returned the books by Madie McClure or Tim McDermott, and make a small modification to add the extra genre restriction.
 
