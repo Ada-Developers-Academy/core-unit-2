@@ -37,9 +37,12 @@ FROM books;
 
 Will return:
 
-| max   |
-| ----- |
-| 20.00 |
+```
+ max
+-------
+ 20.00
+(1 row)
+```
 
 The `MAX` function takes the entire group of data selected and reduces it to a single value.
 
@@ -50,9 +53,12 @@ SELECT MIN(title)
 FROM books;
 ```
 
-| min                      |
-| ------------------------ |
-| Clue of the Burt Cottage |
+```
+ min
+--------------------------
+ Clue of the Burt Cottage
+(1 row)
+```
 
 ### Subqueries
 
@@ -75,9 +81,12 @@ Because the `MAX` function returns a single value, in this case the most expensi
 
 Given the data above, this query would return:
 
-| title                         |
-| ----------------------------- |
-| The Heirs of the Plant People |
+```
+ title
+-------------------------------
+ The Heirs of the Plant People
+(1 row)
+```
 
 ## SUM, COUNT and AVG
 
@@ -92,9 +101,17 @@ SELECT SUM(price)
 FROM books;
 ```
 
-The above query would return the total price for all books in the table. If we wanted to total the price for all books by a specific author we could add a `WHERE` clause.
+This query would return the total price for all books in the table.
+
+```
+ sum
+-------
+ 67.84
+(1 row)
+```
 
 If we wanted to total the price for all books by a specific author we could add a `WHERE` clause.
+
 ```sql
 SELECT SUM(price)
 FROM books
@@ -113,9 +130,12 @@ WHERE price > 15;
 
 This will return the count of records with a price greater than 15.
 
-| count |
-| ----- |
-| 3     |
+```
+ count
+-------
+     3
+(1 row)
+```
 
 This tells us that there are three books in the table with prices greater than 15.
 
@@ -128,6 +148,14 @@ SELECT AVG(price)
 FROM books;
 ```
 
+This query calculates the average price of the books in our table.
+
+```
+ avg
+-------
+ 16.96
+(1 row)
+```
 
 As we did in the earlier `MAX` example, we can use the aggregated result within a subquery.
 
@@ -142,6 +170,6 @@ WHERE price > (
 
 This query retrieves the `title` field from any row in the `books` table where its price is greater than the average price for all rows in the `books` table.
 
-## Check for Understanding
+<!-- ## Check for Understanding -->
 
 <!-- Question on how many rows SELECT statements with aggregate queries return  -->
