@@ -21,7 +21,7 @@ Now, imagine that this chat app had a database and table like this:
 
 | `contact_id` (`INT`) | `name` (`VARCHAR(100)`) | `category` (`VARCHAR(50)`) |
 | -------------------- | ----------------------- | -------------------------- |
-| `278`                | `'Cheyenne O'Brien'`   | `'Best Freinds'`           |
+| `278`                | `'Cheyenne O'Brien'`    | `'Best Freinds'`           |
 | `279`                | `'Adina Lennon'`        | `'Best Freinds'`           |
 | `280`                | `'Jett Sargent'`        | `NULL`                     |
 | `281`                | `'Eliot Giles'`         | `'Adies'`                  |
@@ -268,22 +268,23 @@ Table in markdown for our convenience:
 
 Read through these example SQL statements. For each example, read the code and answer:
 
-- What is the name of the table?
-- For each column-value pair, what is the column and what is the value?
-- What kinds of record(s) will be updated?
-
-#### Example 1
-
-Update all records to have an `author_name` value `"(No Author)"`
+1. What is the name of the table?
+1. For each column-value pair, what is the column and what is the value?
+1. What kinds of record(s) will be updated?
 
 ```sql
 UPDATE authors
 SET author_name = '(No Author)';
 ```
 
-#### Example 2
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
 
-Update the record with `id` `2` so the `is_available` attribute is `false`. (Update Driver #2 to be unavailable.)
+1. The name of the table is `authors`
+1. For the column `author_name`, the updated value is `'(No Author)'`
+1. All records in the table will be updated
+
+</details>
 
 ```sql
 UPDATE drivers
@@ -291,9 +292,16 @@ SET is_available = false
 WHERE id = 2;
 ```
 
-#### Example 3
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
 
-Update the record with `id` `1` so `publication_year` is `"1990"` _and_ `description_text` is `NULL`. (Update Media #1 with a new publication year and empty description.)
+This query makes Driver #2 unavailable.
+
+1. The name of the table is `drivers`
+1. For the column `is_available`, the updated value is `false`
+1. The record with `id` `2` will be updated
+
+</details>
 
 ```sql
 UPDATE media
@@ -301,15 +309,35 @@ SET publication_year = '1990', description_text = NULL
 WHERE media_id = 1;
 ```
 
-#### Example 4
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
 
-Update all records with the category `"album"` to the category `"Album"`. (Rename category `"album"` to `"Album"`.)
+This query gives Media #1 a new publication year and empty description.
+
+1. The name of the table is `media`
+1. We update 2 columns:
+   1. For the column `publication_year`, the updated value is `'1990'`
+   1. For the column `description_text`, the updated value is `NULL`
+1. The record with `media_id` `1` will be updated
+
+</details>
 
 ```sql
 UPDATE media
 SET category = 'Album'
 WHERE category = 'album';
 ```
+
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+This query renames category `'album'` to `'Album'`.
+
+1. The name of the table is `media`
+1. For the column `category`, the updated value is `'Album'`
+1. Any record with `category` `'album'` will be updated
+
+</details>
 
 ### Feedback on Updating Records
 
