@@ -297,10 +297,10 @@ We have the following database.  Write a `SELECT` statement which uses a `JOIN` 
 ```sql
 SELECT orders.id
 FROM products
-INNER JOIN ordersProducts
-ON products.id = ordersProducts.product_id
+INNER JOIN orders_products
+ON products.id = orders_products.product_id
 INNER JOIN orders
-ON ordersProducts.order_id = orders.id
+ON orders_products.order_id = orders.id
 WHERE products.name = 'Widget Tsunami';
 ```
 

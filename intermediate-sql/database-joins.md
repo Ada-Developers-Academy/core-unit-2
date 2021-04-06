@@ -377,5 +377,6 @@ What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sent
 My biggest takeaway from this lesson is...
 
 ##### !end-placeholder
+### !end-challenge
 
 <!-- ======================= END CHALLENGE ======================= -->
