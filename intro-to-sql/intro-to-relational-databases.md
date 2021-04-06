@@ -4,6 +4,7 @@
 
 - Define SQL as a language to query SQL databases
 - Define primary key
+
 <!-- NOTE:  I feel like there should be a LG around explaining how relational databases organize data -->
 
 ## Introduction
@@ -59,7 +60,9 @@ A lot of people pronounce "SQL" as "Ess Cue El." A lot of other people pronounce
 ## Declarative and Imperative Languages
 
 We read that SQL is a _declarative_ programming language. Essentially, this means we use the language to express _what_ we would like to have done, but not _how_ to do it. We can ask a database for all kinds of data with SQL, but we will _never_ have to tell it _how_ to iterate over a table, or _how_ to find a certain row. On the other hand, Python is considered an _imperative_ language. We have to tell it how to do _everything_! If we want to find an item in a list, we have to write the exact steps of how to do that!
+
 <br />
+
 By creating programming languages that represent higher level concepts, language designers can move more of the details of _how_ to accomplish a task into the inner workings of the language itself, so that programmers can think about problems more closely related to their projects.
 
 ### !end-callout
@@ -106,7 +109,9 @@ This curriculum will use PostgreSQL for the following reasons:
 ## "Database" in This Curriculum
 
 For the remaining lessons, this curriculum may use the phrases "relational database," "relational db system," and "database" interchangeably. We may define a concept that is only relevant to relational databases, and only say "database." Or we may say that we have a Postgres database, even though more fully we mean, "We are using PostgreSQL as our database management system."
+
 <br />
+
 This ambiguity usually comes as a result of talking about databases over a long period time. As with any topic we and our teammates become familiar with, we often drop into shorthand communication for convenience. Context will help us understand the meaning. If there are times when the context is unclear, never hesitate to reach out for support and additional clarification!
 
 ### !end-callout
@@ -175,7 +180,7 @@ This could be an example table for Borrowers named `borrowers`.
 | -------------------- | ------------------ |
 | -                    | -                  |
 
-### !callout-secondary
+### !callout-info
 
 ## `text` vs. `varchar`
 
