@@ -286,3 +286,10 @@ TO isbn;
 The `intl_no` column in the `books` table will be renamed to `isbn`.
 
 </details>
+
+## Summary
+
+There are just as many, if not more, ways to modify columns in a database table as there are ways to create the columns to begin with! We should feel confident attempting to modify our tables, but sometimes it can be easier to recreate them from scratch if we run into difficulty.
+
+We looked at how to add, remove, and modify our columns. Each command we explored has many options that we did not discuss, so we should view this lesson as a starting point for further investigation into modifying our table columns.
+
