@@ -137,30 +137,6 @@ FROM books
 ORDER BY price NULLS LAST;
 ```
 
-## Combining ORDER BY and LIMIT
-
-We can combine `ORDER BY` and `LIMIT` to sort our records and then retrieve a subset of those sorted records.
-
-For example:
-
-```sql
-SELECT title, price
-FROM books
-ORDER BY price DESC
-LIMIT 5;
-```
-
-The above query will retrieve the 5 **most** expensive books.
-
-Similarly we could find the first 10 book titles alphabetically.
-
-```sql
-SELECT title
-FROM books
-ORDER BY title
-LIMIT 10;
-```
-
 ## Check for Understanding
 
 <!-- ORDERING Question with ORDER BY -->
