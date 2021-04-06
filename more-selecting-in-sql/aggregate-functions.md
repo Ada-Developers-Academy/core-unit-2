@@ -2,18 +2,22 @@
 
 ## Goals
 
-- Explain how `SELECT` statements can be used with `max`, `min`, `sum` and `avg` to perform calculations on a resultset
-- Write `SELECT` Statements with aggregate functions to perform calculations on a resultset.
+- Explain how `SELECT` statements can be used with `max`, `min`, `sum` and `avg` to perform calculations on a query result
+- Write `SELECT` statements with aggregate functions to perform calculations on a query result.
 
 ## Introduction
 
-When working with data, often we will ask questions of our data in aggregate. This means we want to combine data into a whole. For example we might want to know how many books were written by a specific author, or the average price of a book. Most relational databases provides a number of aggregate functions we can use in querying our data.
+Aggregating data involves gathering or collecting individual data points into a whole group. There are certain kinds of questions that make more sense to ask about groups of records than individual records. For instance, it's not very interesting to ask for the average of a single value, or the minimum or maximum either! These concepts are more useful when asked about a group of records.
+
+When we perform a `SELECT` query, we are gathering a group of records. Maybe we'd like to get all the books by a particular author and find out how many there are. Maybe we'd like to get a list of books in a certain genre, and then the average price of that list.
+
+Most relational databases provide a number of aggregate functions that we can apply to situations like these.
 
 ## MAX and MIN
 
-The `MAX` and `MIN` functions calculate and return the largest and smallest value from a given query.
+The `MAX` function calculates and returns the largest value from a given query.
 
-For example given the following data
+For example given the following data:
 
 | title                         | price |
 | ----------------------------- | ----- |
@@ -22,7 +26,7 @@ For example given the following data
 | The Mannequin in the Fog      | 16.25 |
 | Imagine Us in Heaven          | 14.99 |
 
-_Fig. books table_
+_Fig. A small `books` table_
 
 This query:
 
@@ -37,11 +41,9 @@ Will return:
 | ----- |
 | 20.00 |
 
-_Fig. Max Result_
-
 The `MAX` function takes the entire group of data selected and reduces it to a single value.
 
-We can also use the `MIN` function to find the minimum value. We could find the first title (alphabetically) with the following query.
+The `MIN` function lets us find the minimum value in a given query. We could find the first title (alphabetically) with the following query.
 
 ```sql
 SELECT MIN(title)
@@ -52,11 +54,13 @@ FROM books;
 | ------------------------ |
 | Clue of the Burt Cottage |
 
-_Fig. Min Result_
-
 ### Subqueries
 
-We can combine aggregate functions with our `WHERE` clause to select records with the minimum and maximum values. To do so we use a subquery.
+In both these examples, using `MAX` and `MIN` resulted in reducing the entire query result down to a single value.
+
+It can be useful to use this single value as part of a `WHERE` condition. This would allow us to retrieve all the records that share that maximum or minimum value.
+
+We can do this by nesting our aggregate query within a condition of the `WHERE` clause as shown below.
 
 ```sql
 SELECT title
@@ -75,15 +79,13 @@ Given the data above, this query would return:
 | ----------------------------- |
 | The Heirs of the Plant People |
 
-_Fig. Title with the max price_
-
 ## SUM, COUNT and AVG
 
-`MAX` and `MIN` find the largest and smallest value in a resultset, but we can also calculate sum, average of numeric columns and count the number of rows returned by a specific query.
+SQL also provides functions to calculate the sum and average of numeric columns, and to count the number of rows returned by a specific query.
 
 ### SUM
 
-The `SUM` function allows us to query the database for the total of all values in a specific query.
+The `SUM` function allows us to ask the database for the total of all values in a specific column of a query.
 
 ```sql
 SELECT SUM(price)
@@ -92,15 +94,16 @@ FROM books;
 
 The above query would return the total price for all books in the table. If we wanted to total the price for all books by a specific author we could add a `WHERE` clause.
 
+If we wanted to total the price for all books by a specific author we could add a `WHERE` clause.
 ```sql
 SELECT SUM(price)
 FROM books
 WHERE author_id = 3;
 ```
 
-### Count
+### COUNT
 
-We could also count the number of matching rows to a specific query with the `COUNT` function.
+We can use the `COUNT` function to retrieve the number of rows matching a specific query.
 
 ```
 SELECT COUNT(*)
@@ -108,24 +111,25 @@ FROM books
 WHERE price > 15;
 ```
 
+This will return the count of records with a price greater than 15.
+
 | count |
 | ----- |
 | 3     |
 
-_Fig. Number of books with price > 15_
-
-The result to the above query would tell us that there are 3 books in the table with prices greater than 15.
+This tells us that there are three books in the table with prices greater than 15.
 
 ### AVG
 
-We can also use the AVG function to calculate the average or mean of a column in a `SELECT` query.
+The `AVG` function calculates the average, or arithmetic mean, of a column in a `SELECT` query.
 
 ```sql
 SELECT AVG(price)
 FROM books;
 ```
 
-We could combine this to find books with above-average prices using a subquery.
+
+As we did in the earlier `MAX` example, we can use the aggregated result within a subquery.
 
 ```sql
 SELECT title
@@ -136,7 +140,7 @@ WHERE price > (
 );
 ```
 
-This query retrieves the title field from the books table and only returns rows where the price field is greater than the average price for all rows in the books table.
+This query retrieves the `title` field from any row in the `books` table where its price is greater than the average price for all rows in the `books` table.
 
 ## Check for Understanding
 
