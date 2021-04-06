@@ -76,7 +76,7 @@ Standards:
         Path: /intro-to-sql/activity-intro-to-sql.md 
   -
     Title: More Selecting In SQL
-    Description: "Compound Conditions, Limit, Ordering, Aggregate Functions, Grouping"
+    Description: "Compound Conditions, Ordering, Limit, Optional: Aggregate Functions, Optional: Grouping"
     UID: 29f75f91-0453-468c-a724-d6b90a045e6a
     SuccessCriteria:
       - success criteria
@@ -87,20 +87,20 @@ Standards:
         Path: /more-selecting-in-sql/compound-conditions.md
       -
         Type: Lesson
-        UID: f17bddc5-338d-4077-b4fe-5e9764000b87
-        Path: /more-selecting-in-sql/limit.md
-      -
-        Type: Lesson
         UID: ec61db9d-17e7-4aff-ae18-904c13cdb8cd
         Path: /more-selecting-in-sql/ordering.md
       -
         Type: Lesson
+        UID: f17bddc5-338d-4077-b4fe-5e9764000b87
+        Path: /more-selecting-in-sql/limit.md
+      -
+        Type: Lesson
         UID: 7b23e0bb-64ea-4f55-aca4-4502d9f8e7fb
-        Path: /more-selecting-in-sql/aggregate-functions.md
+        Path: /more-selecting-in-sql/optional-aggregate-functions.md
       -
         Type: Lesson
         UID: af18e4ef-18aa-432c-9f34-0375f4dbb82a
-        Path: /more-selecting-in-sql/grouping.md
+        Path: /more-selecting-in-sql/optional-grouping.md
   -
     Title: Intermediate SQL
     Description: "Database Relationships, Establishing Relationships, Database Joins, Problem Set: Intermediate SQL"
