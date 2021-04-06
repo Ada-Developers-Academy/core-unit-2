@@ -44,7 +44,7 @@ ADD COLUMN column_name data_type constraint_name;
 
 Adding a column affects every row in the table. By default, the value for the new column in each record will be `NULL`. The optional `DEFAULT` constraint can be used to modify this behavior, as shown later in this lesson.
 
-### Examples on Adding Columns
+### Examples of Adding Columns
 
 Read through these example SQL statements. For each example, read the code and answer:
 
@@ -106,7 +106,7 @@ DROP COLUMN column_name;
 | `column_name`                                 | **Replace this** with the name of the column to remove                                                                                     |
 | `;`                                           | End the command with a `;` |
 
-### Examples on Removing Columns
+### Examples of Removing Columns
 
 Read through these example SQL statements. For each example, read the code and answer:
 
@@ -141,5 +141,80 @@ DROP COLUMN author_name;
 1. We are removing the column `author_name`
 
 The `author_name` column will be removed from the `books` table. We might do this after restructuring our data so that the author information is stored elsewhere. This will be discussed further in the upcoming lesson on Database Relationships.
+
+</details>
+
+## Modifying the Data Type of a Column
+
+Using `ALTER TABLE`, we can modify the data type of a column.
+
+```sql
+ALTER TABLE table_name
+ALTER COLUMN column_name
+TYPE new_data_type
+USING conversion_expr;
+```
+
+| <div style="width:200px;">Piece of Code</div> | Notes                                                                                                                               |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `ALTER TABLE`                                | SQL command to modify an existing table                                                                                                       |
+| `table_name`                          | **Replace this** with the name of the table to modify                                                                                    |
+| `ALTER COLUMN`                                    | SQL keywords indicating how we would like to modify the table. In this case, we want to modify a column.                                |
+| `column_name`                                 | **Replace this** with the name of the column to modify                                                                                     |
+| `TYPE`                                    | SQL keyword indicating we are changing the column type                                |
+| `new_data_type`                                 | **Replace this** with the new data type for the column                                                                                     |
+| `USING`                                    | SQL keyword indicating the start of an **optional** clause with information about how to convert existing data to the new data type                                |
+| `conversion_expr`                                 | **Replace this** with information that Postgres can use to more accurately convert existing data to the new data type                                                                                     |
+| `;`                                           | End the command with a `;` |
+
+Modifying the data types of columns is not always easy. It's not unusual for Postgres to return an error on our first attempt, sometimes with a possible fix. This will usually take the form of a `USING` clause.
+
+Further discussion of the `USING` clause is beyond the scope of this lesson. We should understand that it may be necessary, and that Postgres will usually recommend the correct `USING` clause to supply when needed.
+
+If Postgres is unable to change the column even after following the suggested command, then we may need to do additional research, or consider recreating the table from scratch.
+
+### Examples of Modifying Columns
+
+Read through these example SQL statements. For each example, read the code and answer:
+
+1. What is the name of the table?
+1. What column is being changed and to what data type?
+1. What conversion expressions are provided, if any?
+1. Which pieces of syntax are unfamiliar?
+
+```sql
+ALTER TABLE books
+ALTER COLUMN nyt_weeks
+TYPE BOOLEAN
+USING nyt_weeks::boolean;
+```
+
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `books`
+1. We are changing the `nyt_weeks` column to data type `BOOLEAN`
+1. We provided the `boolean` conversion expression as `nyt_weeks::boolean`
+
+Depending on the data that was already in the `nyt_weeks` column, Postgres may or may not be able to covert the column type automatically.
+
+In our case, we tried to run the modification without the `USING` clause, and Postgres failed. It recommended running the command again with the `nyt_weeks::boolean` conversion expression.
+
+</details>
+
+```sql
+ALTER TABLE users
+ALTER COLUMN github_uid
+TYPE TEXT;
+```
+
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `users`
+1. We are changing the `github_uid` column to data type `TEXT`
+1. No conversion expressions were supplied.
+
+This modification relaxes the length limit the column had in the previous example where it was defined as a `VARCHAR(64)`. The change succeeded without issue.
 
 </details>
