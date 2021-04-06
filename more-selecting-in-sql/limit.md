@@ -1,4 +1,4 @@
-# Selecting With Limit
+# Limit
 
 ## Goals
 

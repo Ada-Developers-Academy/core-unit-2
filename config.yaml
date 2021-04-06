@@ -76,7 +76,7 @@ Standards:
         Path: /intro-to-sql/activity-intro-to-sql.md 
   -
     Title: More Selecting In SQL
-    Description: "Compound Conditions, Limiting Results, Ordering Results, Aggregate Functions and Grouping"
+    Description: "Compound Conditions, Limit, Ordering, Aggregate Functions, Grouping"
     UID: 29f75f91-0453-468c-a724-d6b90a045e6a
     SuccessCriteria:
       - success criteria
