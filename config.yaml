@@ -24,8 +24,8 @@ Standards:
         UID: a5d0460ebba87354036cecef3e810940
         Path: /data-in-tables/activity-data-in-tables.md
   -
-    Title: Intro To Sql
-    Description: "Intro to SQL, Adding New Records, Retrieving Records, Updating Records, Deleting Records, Problem Set: Intro to SQL, Activity: Intro to SQL"
+    Title: Intro To SQL
+    Description: "Intro to Relational Databases, SQL Setup, Adding New Records, Retrieving Records, Updating Records, Deleting Records, Problem Set: Intro to SQL, Activity: Intro to SQL"
     UID: 3211fc3d75369f96b537a4535fcbba6d
     SuccessCriteria:
       - success criteria
@@ -97,3 +97,69 @@ Standards:
         Type: Lesson
         UID: cbd53d1c-3374-4a55-804b-85defb26bd4b
         Path: /intermediate-sql/problem-set-intermediate-sql.md
+  -
+    Title: Intro To Web Development
+    Description: "Web Applications and Layers, Intro to Clients, Servers, HTTP, Sequence Diagrams, Activity: Layers"
+    UID: 87ee542387da94693acb5efb099b7f58
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: c674f6dd20d7be77cfb94798b04ba3b7
+        Path: /intro-to-web-development/intro-to-web-development.instructor.md
+      -
+        Type: Lesson
+        UID: fb82af67544ea4e47867dacf14422750
+        Path: /intro-to-web-development/web-applications-and-layers.md
+      -
+        Type: Lesson
+        UID: 3b85293903e714dbf08ba517f828ac88
+        Path: /intro-to-web-development/intro-to-clients-servers-http.md
+      -
+        Type: Lesson
+        UID: 0cb41fed41e0e32dfb1adbd4b5d61c9a
+        Path: /intro-to-web-development/sequence-diagrams.md
+      -
+        Type: Lesson
+        UID: 50ce8362260e6524b31d9c6a8c990c2c
+        Path: /intro-to-web-development/activity-layers.md
+  -
+    Title: Requests And Responses
+    Description: "Request-Response Cycle, Sending Requests from Postman, API Keys, Sending Requests With Python, Problem Set: Requests With Python, Activity: Web API Jigsaw"
+    UID: b33d004935f89cb3dc27032aed9a1971
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: f8718b982976e86f238c9e3b0af77636
+        Path: /requests-and-responses/requests-and-responses.instructor.md
+      -
+        Type: Lesson
+        UID: 725ecafa914bb1b7bd4f47a305398ae8
+        Path: /requests-and-responses/request-response-cycle.md
+      -
+        Type: Lesson
+        UID: 36352066c1e128d38ee834fb0db51513
+        Path: /requests-and-responses/sending-requests-from-postman.md
+      -
+        Type: Lesson
+        UID: 0bf2679dc61b68a5d8683c021f5e5621
+        Path: /requests-and-responses/api-keys.md
+      -
+        Type: Lesson
+        UID: 3ce410c74f7c810715f9982420878886
+        Path: /requests-and-responses/sending-requests-with-python.md
+      -
+        Type: Instructor
+        UID: 4e147331c0920ff789c815744d162587
+        Path: /requests-and-responses/problem-set-requests-with-python.instructor.md
+      -
+        Type: Lesson
+        UID: 3c6844408261fe7c7d50f7dc4dc2c447
+        Path: /requests-and-responses/problem-set-requests-with-python.md
+      -
+        Type: Lesson
+        UID: 2f8f732d3d523c2302f4568e519bcbff
+        Path: /requests-and-responses/activity-web-api-jigsaw.md
