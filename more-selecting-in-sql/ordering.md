@@ -97,12 +97,15 @@ ORDER BY price DESC;
 
 Applying the query to the sample data above, the results could look like this.
 
-| title                         | price |
-| ----------------------------- | ----- |
-| The Heirs of the Plant People | 20.00 |
-| Clue of the Burt Cottage      | 16.60 |
-| The Mannequin in the Fog      | 16.25 |
-| Imagine Us in Heaven          | 14.99 |
+```
+ title                         | price
+-------------------------------+-------
+ The Heirs of the Plant People | 20.00
+ Clue of the Burt Cottage      | 16.60
+ The Mannequin in the Fog      | 16.25
+ Imagine Us in Heaven          | 14.99
+(4 rows)
+```
 
 The `ASC` keyword can be explicitly supplied to `ORDER BY` to sort data in ascending order. Since this is the default behavior, we generally omit `ASC` except in cases where explicitly including it might improve the clarity of a complex query.
 
