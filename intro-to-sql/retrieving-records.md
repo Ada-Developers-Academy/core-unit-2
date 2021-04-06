@@ -16,18 +16,18 @@ Now, he wants to build features to help users explore it. His features will show
 
 ## Vocabulary and Synonyms
 
-| Vocab | Definition | Synonym | How to Use in a Sentence |
-|---    |---         |---      |--- |
-| Result Set | A set of rows from a database, as well as metadata about the query such as the column names, and the types and sizes of each column. | | My query returned a result set with 1000 rows. | 
-| Query | A request to access data from a database |  | I wrote a query to find the most popular books in the library. |
+| Vocab      | Definition                                                                                                                           | How to Use in a Sentence                                       |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------- |
+| Result Set | A set of rows from a database, as well as metadata about the query such as the column names, and the types and sizes of each column. | My query returned a result set with 1000 rows.                 |
+| Query      | A request to access data from a database                                                                                             | I wrote a query to find the most popular books in the library. |
 
 ## Retrieving Records With `SELECT`
 
 We can retrieve records from a database using `SELECT`.
 
-When we use `SELECT`, we get back a _result set_. Most importantly, we get back a table of the data, printed in our terminal.
+When we use `SELECT`, we get back a _result set_. From within `psql`, the result set is displayed as a table of data printed in our terminal.
 
-How do we use this result set? Future technologies will help us use the result set in Python code. For now, we should look forward to seeing printed tables.
+What else can we do with this result set? Later topics will discuss how to use the result set in Python code. But for now, seeing the printed tables will be enough for our purposes.
 
 When we retrieve data from a table, we should first determine:
 
@@ -40,12 +40,12 @@ To retrieve the values of specific columns from **all** records within a specifi
 SELECT column1, column2, column3, ... FROM table_name;
 ```
 
-| <div style="min-width:200px;"> Piece of Code </div> | Notes                                                                                                                                                   |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `SELECT`                                            | A SQL keyword to indicate retrieving records                                                                                                            |
-| `column1, column2, column3, ...`                    | **Replace this** with a comma-separated list of columns to retrieve, or another expression (such as `*` described below)                                |
-| `FROM`                                              | A SQL keyword to indicate that these records are from some set of tables                                                                                |
-| `table_name;`                                       | **Replace this** with the name of the table being searched. This could be a comma-separated list of multiple tables. Don't forget the ending semicolon. |
+| <div style="min-width:200px;"> Piece of Code </div> | Notes                                                                                                                    |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `SELECT`                                            | A SQL keyword to indicate retrieving records                                                                             |
+| `column1, column2, column3, ...`                    | **Replace this** with a comma-separated list of columns to retrieve, or another expression (such as `*` described below) |
+| `FROM`                                              | A SQL keyword to indicate that these records are from some set of tables                                                 |
+| `table_name;`                                       | **Replace this** with the name of the table being searched. Don't forget the ending semicolon.                           |
 
 ### The `*` Character
 
@@ -214,9 +214,9 @@ Arrange the following syntax into a valid statement.
 
 ## Combining `SELECT` with `WHERE`
 
-Kenan is building a webapp that organizes his media library. However, he wants to build search and filter features for his media library. How can Kenan get the records that have the category "book," or records that are missing a description?
+Kenan is building a webapp that organizes his media library. However, he wants to build search and filter features for his media library. How can Kenan get the media records that have the category "book"? Or how could he find the records that are missing a description?
 
-SQL has a lot of ways we can make a `SELECT` statement more specific. Combining `WHERE` with a `SELECT` statement is a great method.
+SQL has a lot of ways we can make a `SELECT` statement more specific. One of the most common is to add a `WHERE` clause to our `SELECT` statement.
 
 ```sql
 SELECT column1, column2 FROM table_name WHERE condition;
@@ -231,6 +231,14 @@ SELECT column1, column2 FROM table_name WHERE condition;
 ### Using `WHERE` with `=`, `>=`, `<=`, `>`, `<` Operators
 
 We can use `=`, `>=`, `<=`, `>`, and `<` to compare the value of a column to another value.
+
+### !callout-info
+
+## `WHERE` Also Supports Not Equal To
+
+We can also check for not equal to in our where clauses. Postgres supports writing not equal to either as the familiar `!=` operator, or as the `<>` operator.
+
+### !end-callout
 
 ### `WHERE` Example With Output
 
@@ -280,18 +288,25 @@ produces this output:
 Consider the following examples.
 
 1. Retrieve all records where `author_name` is equal to `'Octavia E. Butler'`
+
    ```sql
    SELECT * FROM authors WHERE author_name = 'Octavia E. Butler';
    ```
+
 1. Retrieve all records where `is_available` is `true`
+
    ```sql
    SELECT * FROM drivers WHERE is_available = true;
    ```
+
 1. Retrieve all records where `publication_year` is less than `'1990'`
+
    ```sql
    SELECT * FROM media WHERE publication_year < '1990';
    ```
+
 1. Retrieve all records where the length of `description_text` is greater than or equal to `10`
+
    ```sql
    SELECT * FROM media WHERE length(description_text) >= 10;
    ```
@@ -300,7 +315,7 @@ Consider the following examples.
 
 ## Comparing Strings
 
-SQL can compare strings. Follow your curiosity and look up SQL's rules for comparing strings.
+SQL can compare strings. Follow your curiosity and look up SQL's rules for string comparison.
 
 ### !end-callout
 
@@ -379,7 +394,8 @@ SELECT * FROM hotel_guests WHERE id = 872645;
 ```sql
 SELECT * FROM hotel_guests WHERE 872645 = id;
 ```
-For this problem, we said `id = 872645` is preferable because it the logic ordering is more readable.
+
+But typically, we write comparisons in the order: `column operator value`. Here, that would be `id = 872645`.
 
 ##### !end-explanation
 ### !end-challenge
@@ -391,27 +407,39 @@ We can use `IS NOT NULL` as a condition to only retrieve records with a non-null
 
 Consider the following examples:
 
-1. Retrieve all records where `vin` is not null, and has a value
+1. Retrieve all records where `vin` is not null. That is, it has a value.
+
    ```sql
    SELECT * FROM drivers WHERE vin IS NOT NULL;
    ```
-1. Retrieve all records where `description_text` is not null, and has a value
+
+1. Retrieve all records where `description_text` is not null, meaning it has a value.
+
    ```sql
    SELECT * FROM media WHERE description_text IS NOT NULL;
    ```
 
 The inverse of this concept also works. We can use `IS NULL` to only retrieve records with a null value for a certain column.
 
-1. Retrieve all records where `description_text` is null, and has no value
+1. Retrieve all records where `description_text` is null. When it's null, it has no value.
+
    ```sql
    SELECT * FROM media WHERE description_text IS NULL;
    ```
+
+### !callout-info
+
+## We Must Use `IS NULL` and `IS NOT NULL`
+
+When we want to compare with `NULL`, we must use either `IS` or `IS NOT`. Any other comparison with `NULL` will always evaluate to `false`.
+
+### !end-callout
 
 ### !callout-success
 
 ## Foreshadowing: More Ways to Select
 
-`SELECT` and `WHERE` seem pretty cool, but can we get more specific? `SELECT` supports a _countless_ number of ways to be more specific. Examples include defining multiple `WHERE` conditions, sorting the retrieved data, finding unique records, and finding records related to other records. A few of these concepts will be covered in future lessons. To expand your breadth, depth, and power in your `SELECT` skills, follow your curiosity!
+`SELECT` and `WHERE` seem pretty cool, but can we get even more specific? `SELECT` supports _countless_ ways to do so. Examples include defining multiple conditions in the `WHERE` clause, sorting the retrieved data, finding unique records, and finding records related to other records. A few of these concepts will be covered in future lessons. To expand your breadth, depth, and power in your `SELECT` skills, follow your curiosity!
 
 ### !end-callout
 
@@ -446,7 +474,7 @@ Arrange the following syntax into a valid statement.
 
 ## When `SELECT` "Fails"
 
-A `SELECT` statement that with a syntax error will fail. For example, we may see error input such as this:
+A `SELECT` statement that has a syntax error will fail. For example, we may see error output like this:
 
 ```
 SELECT * FROM media WHERE title NOT NULL;
@@ -455,10 +483,10 @@ LINE 1: SELECT * FROM media WHERE title NOT NULL;
                                         ^
 ```
 
-A `SELECT` statement without a syntax error but retrieves zero matching records is still a successful `SELECT` statement! Sometimes life just comes back with nothing, and that's fine. For example:
+A `SELECT` statement without a syntax error, but which retrieves zero matching records, is still a successful `SELECT` statement! Sometimes life just comes back with nothing, and that's fine. For example:
 
 ```
-SELECT * FROM media WHERE title IS  NULL;
+SELECT * FROM media WHERE title IS NULL;
  media_id | category | title | creator | publication_year | description_text
 ----------+----------+-------+---------+------------------+------------------
 (0 rows)
