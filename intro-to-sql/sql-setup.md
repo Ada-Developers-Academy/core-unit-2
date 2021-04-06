@@ -2,7 +2,7 @@
 
 ## Goal
 
-The goal of this lesson is to give clear instructions about how to setup your work environment so you can read and write SQL and work with Postgres dbs.
+The goal of this lesson is to give clear instructions about how to setup your work environment so you can read and write SQL and work with Postgres databases.
 
 This lesson should be read as a checklist of steps to follow once.
 
@@ -49,10 +49,10 @@ Besides installing Postgres, we need to be able to:
 
 We can accomplish this using:
 
-1. A db viewer tool
+1. A database viewer tool
 2. The `psql` interactive terminal
 
-This lesson will focus on using the `psql` interactive terminal. However, for eyes weary of CLIs and looking for a software solution, we can recommend the following free tools:
+This lesson will focus on using the `psql` interactive terminal. However, for eyes weary of command line interfaces (CLIs) and looking for a software solution, we can recommend the following free tools:
 
 - [pgAdmin](https://www.pgadmin.org/) (highly recommended)
 - [Beekeeper Studio](https://www.beekeeperstudio.io/)
@@ -65,7 +65,11 @@ To open the Postgres interactive terminal with a Postgres user named `postgres`,
 psql -U postgres
 ```
 
-The `psql -U postgres` command transforms our terminal window, and in this mode it only accepts valid SQL statements. We know this because each line begins with `postgres=#`
+The `psql` command starts a command line interface (CLI) that will let use type SQL statements and other postgres directives. Our regular terminal commands won't be accepted until we exit the CLI.
+
+This is similar to how when we run `python` from the command line, it starts a command line interface that lets us enter Python statements. Many developer tools and utilities have similar command line interfaces.
+
+By providing the option `-U postgres`, we tell `psql` that we want to start as the `postgres` user, which we just created. By default, `psql` will try to connect to a database with the same name as the user. It shows us the database name as part of the prompt `postgres=# `. We're now ready to start entering SQL commands and postgres directives!
 
 ```
 psql (12.2)
@@ -115,7 +119,11 @@ This will list databases by name. Here is an example listing:
 
 ## Creating a Database
 
-To create a database with the name `db_name`, we use the command `CREATE DATABASE db_name;`.
+To create a database with the name db_name, we use the following command:
+
+```sql
+CREATE DATABASE db_name;
+```
 
 ### !callout-info
 
@@ -125,9 +133,9 @@ This is our first line of proper SQL! SQL _requires_ semicolons (`;`) at the end
 
 ### !end-callout
 
-For example, we can run the following command
+For example, we can run the following command.
 
-```
+```sql
 CREATE DATABASE simons_example_db;
 ```
 
@@ -154,13 +162,13 @@ If this is your first time following this lesson, try making a database using yo
 
 We must connect to the one database we want to communicate with.
 
-To connect to a database by name, we use `\c db_name`, where `db_name` is the name of the db.
+To connect to a database by name, we use `\c db_name`, where `db_name` is the name of the database.
 
 ```
 postgres=# \c db_name
 ```
 
-We should get the feedback `You are now connected to database "db_name" as user "postgres".` Our Postgres terminal prompt may also change now too:
+We should get the feedback `You are now connected to database "db_name" as user "postgres".` Our Postgres terminal prompt should also change.
 
 ```
 postgres=# \c simons_example_db
@@ -170,21 +178,21 @@ simons_example_db=#
 
 ### !callout-success
 
-## Try It: Connect to Your DB
+## Try It: Connect to Your Database
 
-Connect to your new DB now before moving on to make view, create, and drop tables.
+Connect to your new database now before moving on to make view, create, and drop tables.
 
 ### !end-callout
 
 ## Viewing Tables
 
-View all tables that are within the connected database using `\dt`
+We can view a list of all tables that are within the connected database using the `\dt` command.
 
 ```
 simons_example_db=# \dt
 ```
 
-If no tables within this db exist (which is usually true for newly created dbs), we will get the feedback `Did not find any relations.`
+If no tables within this database exist (which is usually true for newly created databases), we will get the feedback `Did not find any relations.`
 
 Otherwise, this will list databases by name. Here is an example listing:
 
@@ -204,7 +212,7 @@ Before we create a table, we should determine:
 - Any column constraints
 - Which column is the primary key
 
-All of these properties can change (and columns can be added and removed). Only the name is required.
+All of these properties can be changed (and columns can be added and removed). Only the name is required.
 
 This is the SQL syntax for creating a table:
 
@@ -215,15 +223,15 @@ CREATE TABLE example_table_name (
 );
 ```
 
-| <div style="width:100px;">Piece of Code</div>    | Notes                                                                                                                               |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `CREATE TABLE`       | SQL command to create a table                                                                                                       |
-| `example_table_name` | **Replace this** with the name of the new table                                                                                     |
-| `( ... );`           | The inside of the `()` will contain details about the table. **This statement ends in a semicolon**.                                |
-| `column_name`        | **Replace this** with the name of a new column                                                                                      |
-| `data_type`          | **Replace this** with the data type of the new column                                                                               |
-| `constraint_name`    | **Replace this** with any constraints                                                                                               |
-| `,`                  | In `CREATE TABLE`, column definitions are comma-separated. We can define multiple columns in this command by comma-separating them. |
+| <div style="width:200px;">Piece of Code</div> | Notes                                                                                                                               |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `CREATE TABLE`                                | SQL command to create a table                                                                                                       |
+| `example_table_name`                          | **Replace this** with the name of the new table                                                                                     |
+| `( ... );`                                    | The inside of the `()` will contain details about the table. **This statement ends in a semicolon**.                                |
+| `column_name`                                 | **Replace this** with the name of a new column                                                                                      |
+| `data_type`                                   | **Replace this** with the data type of the new column                                                                               |
+| `constraint_name`                             | **Replace this** with any constraints                                                                                               |
+| `,`                                           | In `CREATE TABLE`, column definitions are comma-separated. We can define multiple columns in this command by comma-separating them. |
 
 To create a table with columns and a primary key, we can add `PRIMARY KEY` next to the column definition.
 
@@ -240,7 +248,7 @@ There are many ways to designate the primary key, so follow your curiosity for m
 
 ## Naming Conventions for Tables and Columns
 
-There isn't a fixed naming convention for naming databases, tables, and columns, so it's always best to defer to whatever the team is using. Names may be lower_snake_case or PascalCase. Table names may be singular or plural. This curriculum will arbitrarily prefer:
+There isn't a fixed naming convention for naming databases, tables, and columns, so it's always best to defer to whatever the team is using. Names could be lower_snake_case, PascalCase, or something else entirely. Table names could be singular or plural. This curriculum will arbitrarily prefer:
 
 - lower_snake_case for database, table, and column names
 - plural table names
@@ -249,9 +257,11 @@ There isn't a fixed naming convention for naming databases, tables, and columns,
 
 ### An ID Should Auto-Increment
 
-We've learned that a common pattern is to have an ID column in each table, which will help uniquely identify each record. This column is usually the table's primary key. However, we'll learn that, when adding new records, keeping track of the next unique ID number is hard work.
+We've learned that a common pattern is to have an ID column in each table, which will help uniquely identify each record. This column is usually the table's primary key. But it turns out that keeping track of the next unique ID number is harder than we might expect.
 
-As a helpful pattern, we'll see in the `CREATE TABLE` examples below the line `id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY`.
+Fortunately, Postgres provides a way for the database to track this _for_ us.
+
+Watch for the line `id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY` in the `CREATE TABLE` examples below.
 
 - `id INT` says that there is a column named `id` of the data type integer
 - `PRIMARY KEY` designates that this column `id` is the primary key of the table
@@ -269,7 +279,7 @@ Read through these example SQL statements. For each example, read the code and a
 1. Which column is the _primary key_?
 1. Which pieces of syntax are unfamiliar?
 
-1.
+#### 1. Representing Authors
 
 ```sql
 CREATE TABLE authors (
@@ -280,11 +290,11 @@ CREATE TABLE authors (
 
 - The name of the table is `authors`
 - There are two columns:
-  - `author_name` with the data type `VARCHAR`
+  - `author_name` with the data type `VARCHAR(100)`
   - `author_id` with the data type `INT`
 - `author_id` is the primary key column
 
-2.
+#### 2. Representing Drivers
 
 ```sql
 CREATE TABLE drivers (
@@ -297,11 +307,11 @@ CREATE TABLE drivers (
 - The name of the table is `drivers`
 - There are three columns:
   - `id` with the data type `INT`
-  - `vin` with the data type `VARCHAR`
+  - `vin` with the data type `VARCHAR(50)`
   - `is_available` with the data type `BOOLEAN`
 - `id` is the primary key column
 
-3.
+#### 3. Representing Assorted Media
 
 ```sql
 CREATE TABLE media (
@@ -317,16 +327,16 @@ CREATE TABLE media (
 - The name of the table is `media`
 - There are six columns:
   - `id` with the data type `INT`
-  - `category` with the data type `VARCHAR`
-  - `title` with the data type `VARCHAR`
+  - `category` with the data type `VARCHAR(50)`
+  - `title` with the data type `VARCHAR(200)`
   - `creator` with the data type `TEXT`
-  - `publication_year` with the data type `VARHCAR`
+  - `publication_year` with the data type `VARCHAR(10)`
   - `description_text` with the data type `TEXT`
 - `id` is the primary key column
 
 ### Feedback on Creating Tables
 
-Successfully running the `CREATE TABLE` command will give us the feedback `CREATE TABLE`. We can confirm our table is created by listing all tables again with `\dt`.
+Successfully running the `CREATE TABLE` command will give us the feedback `CREATE TABLE`. We can confirm our table is created by listing all tables again with the `\dt` command.
 
 Here is an example of creating a table and its output:
 
@@ -338,14 +348,14 @@ simons_example_db=# \dt
  Schema |         Name         | Type  |  Owner
 --------+----------------------+-------+----------
  public | simons_example_table | table | postgres
-(2 rows)
+(1 row)
 ```
 
 ### !callout-success
 
 ## Try It: Create a Table
 
-If this is your first time going through this lesson, try to create a new table in your connected db. Then, list the tables using `\dt`.
+If this is your first time going through this lesson, try to create a new table in your connected database. Then, list the tables using the `\dt` command.
 
 ### !end-callout
 
@@ -357,7 +367,7 @@ To delete, or _drop_ a table by name, observe the following syntax, where `examp
 DROP TABLE example_table_name;
 ```
 
-When successful, this command should give us the feedback `DROP TABLE`. After listing all tables with `\dt`, we should confirm that our deleted table is not there.
+When successful, this command should give us the feedback `DROP TABLE`. After listing all tables with the `\dt` command, we should confirm that our deleted table is not there.
 
 ## Dropping Databases
 
@@ -379,17 +389,18 @@ If this is your first time going through this lesson, try to drop a table. Then,
 
 ## Dropped Databases are Irrecoverable
 
-We cannot undo dropping a database. We will practice dropping databases and tables on our local machines for practice because there are fewer consequences for lost data. However, dropping databases is undoable, so exercise caution.
+We cannot undo dropping a database. We will practice dropping databases and tables on our local machines for practice because there are fewer consequences for lost data. However, dropping databases cannot be undone, so exercise caution.
 
 ### !end-callout
 
 ## Debugging Creating/Dropping Databases and Tables
 
-| Error Description                             | What It Could Mean                                                                                       |
-| --------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| `ERROR: table "example_table" does not exist` | Check if there is a table in the connected database with the name `example_table` and check for spelling.  You can use `\dt` to list the tables in the connected database. |
-| `FATAL: database "example_db" does not exist` | Check databases with `\l`                                                                                         |
-| `ERROR: syntax error at or near "COMMAND"`    | Some statement has incorrect syntax. **Check that the statement ends with a semicolon (`;`)**.           |
+| <div style="width:210px;">Error Description</div> | What It Could Mean                                                                                                                                                        |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `ERROR: table "example_table" does not exist`     | Check if there is a table in the connected database with the name `example_table` and check for spelling. You can use `\dt` to list the tables in the connected database. |
+| `FATAL: database "example_db" does not exist`     | Check databases with `\l`                                                                                                                                                 |
+| `ERROR: syntax error at or near "COMMAND"`        | Some statement has incorrect syntax. **Check that the statement ends with a semicolon (`;`)**.                                                                            |
+| `Nothing happens when I try to run a command`     | Most likely there is a semicolon missing, and the prompt is waiting for you to keep typing. Try just entering `;` on its own.                                             |
 
 ## Random Debugging
 
@@ -419,8 +430,8 @@ While doing the SQL setup for the first time, use this checklist to make sure yo
 ##### !end-question
 ##### !options
 
-* Installed PostgreSQL
-* Opened the Postgres terminal as user `postgres` with `$ psql -U postgres`
+* Install PostgreSQL
+* Open the Postgres terminal as user `postgres` with `$ psql -U postgres`
 * List all databases with `\l`
 * Create a database with `CREATE DATABASE db_name;`
 * Connect to a database with `\c db_name`
@@ -431,8 +442,8 @@ While doing the SQL setup for the first time, use this checklist to make sure yo
 ##### !end-options
 ##### !answer
 
-* Installed PostgreSQL
-* Opened the Postgres terminal as user `postgres` with `$ psql -U postgres`
+* Install PostgreSQL
+* Open the Postgres terminal as user `postgres` with `$ psql -U postgres`
 * List all databases with `\l`
 * Create a database with `CREATE DATABASE db_name;`
 * Connect to a database with `\c db_name`
