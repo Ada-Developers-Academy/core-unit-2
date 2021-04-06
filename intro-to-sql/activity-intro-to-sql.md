@@ -10,13 +10,13 @@ Our goal is to:
 
 ## Activity Instructions
 
-Arrange into pairs or small groups if possible. The pair or small group members will help each other be accountable as they move forward. 
+Arrange into pairs or small groups if possible. The pair or small group members will help each other be accountable as they move forward.
 
-Use your notes, collaborate with your group members, and look things up on the Internet. 
+Use your notes, collaborate with your group members, and look things up on the Internet.
 
 Part 1 is a guided set of directions. Everyone should follow along with each other and help each other. Part 1 is accomplished when everyone in the group has finished all the steps.
 
-Limit Part 1 to 20 minutes. If there is an individual issue that prevents an individual from completing Part 1, the group should move to Part 2, and the individual should follow along with someone else. However, if the majority of a group haven't finished Part 1 due to computer issues, continue on Part 1 together, help each other, and be sure to ask for help.
+Limit Part 1 to 20 minutes. If there is an individual issue that prevents a group member from completing Part 1, the group should move to Part 2, and the individual should follow along with someone else. However, if the majority of a group haven't finished Part 1 due to setup or other computer issues, continue on Part 1 together, help each other, and be sure to ask for help.
 
 Part 2 is a set of information and a set of questions. The goal is to recreate that information within a database, and answer the questions by writing SQL statements. Keep your answers in your own notes.
 
@@ -62,7 +62,7 @@ Create a database named `ride-share_development` with a SQL statement.
 (0 rows)
 ```
 
-- [ ] Add a new valid record to the `passengers` table. Please make up the data.
+- [ ] Add a new valid record to the `passengers` table. Use whatever data brings you joy!
 
 ### !callout-info
 
@@ -83,9 +83,9 @@ DETAIL:  Failing row contains (2, null, X XXX XXX XXXX).
 
 - [ ] Confirm that your table still has 1 record with a `SELECT` statement.
 
-- [ ] Update the record. Use the record's `id` value to find this record. Update the record's `passenger_name` value to: `'Once my group has finished this step, we''re done with Part 1!'`.
+- [ ] Update the record. Use the record's `id` value to find this record. Update the record's `passenger_name` value to: "Once my group has finished this step, we're done with Part 1!".
 
-- [ ] Confirm that your record has been updated. :)
+- [ ] Confirm that your record has been updated. 🙂
 
 ## Part 2
 
@@ -94,14 +94,16 @@ Your goal is to recreate a table of data in Postgres. You will need to make assu
 Follow these steps:
 
 - Take 1 minute to read through the table below.
-- With your group, make a plan
+- With your group, make a plan.
   - How many columns are there?
   - What are their names?
   - What are their data types?
 - With your group, recall the steps you need to take, from creating the database to inserting records.
 - There is a CSV file provided. With your group, briefly discuss how this CSV file may help.
 
-**Database**: `media_ranker`
+<!-- Intentional double space on next line to break them -->
+
+**Database**: `media_ranker`  
 **Table**: `media`
 
 | Category | Title               | Creator          | Publication Year | Description                            |
@@ -134,7 +136,7 @@ It's likely that, for this activity, inserting ten records one by one is more ef
 
 ### !end-callout
 
-Now, determine SQL statements that can answer the following questions:
+Now, come up with SQL statements that can answer the following questions:
 
 - How many albums are there?
 - What are the titles and creators of all media published before 1970?
