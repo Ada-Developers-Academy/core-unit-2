@@ -59,12 +59,61 @@ SELECT * FROM table_name;
 
 Imagine the following table named `media` with these columns and four records.
 
+<!--
+
+Table in markdown for our convenience:
+
 | `media_id` | `category` | `title`         | `creator`      | `publication_year` | `description_text`                    |
 | ---------- | ---------- | --------------- | -------------- | ------------------ | ------------------------------------- |
 | 1          | book       | Red Java        | Jewel Koss     | 1971               | Nisi ducimus reprehenderit molestiae. |
 | 2          | book       | Postmodern Been | Glen Senger    | 1929               | Dolore repellendus doloribus maiores. |
 | 3          | movie      | American Select | Xuan Pouros    | 1997               | Corporis id voluptatem fuga.          |
 | 4          | movie      | Wake-up Utopia  | Buena Shanahan | 1930               | Fuga corrupti ducimus animi.          |
+ -->
+
+<table class="table table-bordered table-striped table-condensed table-hover" style="font-size:.7em;"><thead>
+<tr>
+<th><div style="min-width:70px"><code tabindex="0">media_id</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">category</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">title</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">creator</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">publication_year</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">description_text</code><div></div></div></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>book</td>
+<td>Red Java</td>
+<td>Jewel Koss</td>
+<td>1971</td>
+<td>Nisi ducimus reprehenderit molestiae.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>book</td>
+<td>Postmodern Been</td>
+<td>Glen Senger</td>
+<td>1929</td>
+<td>Dolore repellendus doloribus maiores.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>movie</td>
+<td>American Select</td>
+<td>Xuan Pouros</td>
+<td>1997</td>
+<td>Corporis id voluptatem fuga.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>movie</td>
+<td>Wake-up Utopia</td>
+<td>Buena Shanahan</td>
+<td>1930</td>
+<td>Fuga corrupti ducimus animi.</td>
+</tr>
+</tbody></table>
 
 #### Selecting One Column
 
@@ -244,12 +293,62 @@ We can also check for not equal to in our where clauses. Postgres supports writi
 
 Imagine the following table named `media` and its columns and four records.
 
+<!--
+
+Table in markdown for our convenience:
+
 | `media_id` | `category` | `title`         | `creator`      | `publication_year` | `description_text`                    |
 | ---------- | ---------- | --------------- | -------------- | ------------------ | ------------------------------------- |
 | 1          | book       | Red Java        | Jewel Koss     | 1971               | Nisi ducimus reprehenderit molestiae. |
 | 2          | book       | Postmodern Been | Glen Senger    | 1929               | Dolore repellendus doloribus maiores. |
 | 3          | movie      | American Select | Xuan Pouros    | 1997               | Corporis id voluptatem fuga.          |
 | 4          | movie      | Wake-up Utopia  | Buena Shanahan | 1930               | Fuga corrupti ducimus animi.          |
+
+-->
+
+<table class="table table-bordered table-striped table-condensed table-hover" style="font-size:.7em;"><thead>
+<tr>
+<th><div style="min-width:70px"><code tabindex="0">media_id</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">category</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">title</code><div></div></div></th>
+<th><div style="min-width:70px"><code tabindex="0">creator</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">publication_year</code><div></div></div></th>
+<th><div style="min-width:120px"><code tabindex="0">description_text</code><div></div></div></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>book</td>
+<td>Red Java</td>
+<td>Jewel Koss</td>
+<td>1971</td>
+<td>Nisi ducimus reprehenderit molestiae.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>book</td>
+<td>Postmodern Been</td>
+<td>Glen Senger</td>
+<td>1929</td>
+<td>Dolore repellendus doloribus maiores.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>movie</td>
+<td>American Select</td>
+<td>Xuan Pouros</td>
+<td>1997</td>
+<td>Corporis id voluptatem fuga.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>movie</td>
+<td>Wake-up Utopia</td>
+<td>Buena Shanahan</td>
+<td>1930</td>
+<td>Fuga corrupti ducimus animi.</td>
+</tr>
+</tbody></table>
 
 This SQL statement
 
