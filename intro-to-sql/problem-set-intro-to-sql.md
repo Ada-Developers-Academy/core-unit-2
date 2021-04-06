@@ -79,8 +79,11 @@ INSERT 0 1
 CREATE TABLE ...
 
 ##### !end-placeholder
+##### !rubric
 
-<!-- Sample solution
+This is an example solution:
+
+```sql
 CREATE TABLE reviews (
   id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   title VARCHAR(32),
@@ -89,8 +92,16 @@ CREATE TABLE reviews (
   creator_id INT,
   stars INT
 );
--->
+```
 
+Check for:
+
+- Spelling
+- Semicolon at the end
+- Correct table name
+- Correct column names and data types
+
+##### !end-rubric
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -131,6 +142,21 @@ Should output (notice the "f"):
 ```
 
 ##### !end-question
+##### !rubric
+
+This is an example solution:
+
+```sql
+DROP TABLE books;
+```
+
+Check for:
+
+- Spelling
+- Semicolon at the end
+- Correct table name
+
+##### !end-rubric
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -188,12 +214,23 @@ WHERE name = 'Dark Pony Gaming';
 INSERT ...
 
 ##### !end-placeholder
+##### !rubric
 
-<!-- Sample answer:
+This is an example solution:
+
+```sql
 INSERT INTO publishers (name, address)
 VALUES ('Dark Pony Gaming', '315 5th Ave S Suite 200, Seattle, WA 98104');
--->
+```
 
+Check for:
+
+- Spelling
+- Semicolon at the end
+- Correct table name
+- Correct order of columns and inserted values
+
+##### !end-rubric
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -252,12 +289,23 @@ WHERE name = 'Jimmy Corrigan';
 INSERT ...
 
 ##### !end-placeholder
+##### !rubric
 
-<!-- Sample answer:
+This is an example solution:
+
+```sql
 INSERT INTO products (name, publisher_id, description)
 VALUES ('Jimmy Corrigan', 3, 'The smartest kid on earth.');
--->
+```
 
+Check for:
+
+- Spelling
+- Semicolon at the end
+- Correct table name
+- Correct order of columns and inserted values
+
+##### !end-rubric
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -309,14 +357,34 @@ WHERE first_name = 'Cade';
 UPDATE ...
 
 ##### !end-placeholder
+##### !rubric
 
-<!-- Sample answer:
+The original record is:
+
+```
+ id | first_name | last_name |             email
+----+------------+-----------+-------------------------------
+  8 | Coade      | OMoore    | cade.omoore@gmail.com
+```
+
+This is an example solution:
+
+```sql
 UPDATE users
 SET first_name='Cade',
 last_name = 'O''Moore'
 WHERE first_name = 'Coade' AND last_name='OMoore';
--->
+```
 
+Check for:
+
+- Spelling
+- Semicolon at the end
+- Correct table name
+- Uses `''` to escape apostrophe in "O'Moore" correctly
+- Uses `WHERE` clause to select correct record
+
+##### !end-rubric
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -461,12 +529,30 @@ Should output:
 ```
 
 ##### !end-question
+##### !rubric
 
-<!--
-Sample Solution
+The original record is:
+
+```
+ id | first_name | last_name |            email
+----+------------+-----------+------------------------------
+  6 | Auster     | Alexandra | auster.alexandra@safemail.com
+```
+
+This is an example solution:
+
+```sql
 DELETE FROM users
 WHERE first_name = 'Auster' and last_name = 'Alexandra';
--->
+```
 
+Check for:
+
+- Spelling
+- Semicolon at the end
+- Correct table name
+- Uses `WHERE` clause to select correct record
+
+##### !end-rubric
 ### !end-challenge
 <!-- prettier-ignore-end -->
