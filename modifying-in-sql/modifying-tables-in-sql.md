@@ -226,3 +226,63 @@ This modification relaxes the length limit the column had in the previous exampl
 Column constraints can also be modified with variants of the `ALTER TABLE ALTER COLUMN` command. We used the `TYPE` keyword to indicate that we wanted to change the column type, but additional keywords, including `SET`, `DROP`, and `ADD` with a wide variety of options also exist. We will not need to use them in this curriculum, but follow your curiosity!
 
 ### !end-callout
+
+## Renaming a Column
+
+The last column modification operation of `ALTER TABLE` that we will examine is renaming a column.
+
+```sql
+ALTER TABLE table_name
+RENAME COLUMN column_name
+TO new_column_name;
+```
+
+| <div style="width:200px;">Piece of Code</div> | Notes                                                                                                                               |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `ALTER TABLE`                                | SQL command to modify an existing table                                                                                                       |
+| `table_name`                          | **Replace this** with the name of the table to modify                                                                                    |
+| `RENAME COLUMN`                                    | SQL keywords indicating how we would like to modify the table. In this case, we want to rename a column.                                |
+| `column_name`                                 | **Replace this** with the name of the column to be renamed                                                                                     |
+| `TO`                                    | SQL keyword preceding the new name of the column                                |
+| `new_column_name`                                 | **Replace this** with the new name for the column                                                                                     |
+| `;`                                           | End the command with a `;` |
+
+### Examples of Renaming Columns
+
+Read through these example SQL statements. For each example, read the code and answer:
+
+1. What is the name of the table?
+1. What column is being renamed and what is its new name?
+1. Which pieces of syntax are unfamiliar?
+
+```sql
+ALTER TABLE users
+RENAME COLUMN email
+TO email_address;
+```
+
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `users`
+1. We are renaming the column `email` to be called `email_address`
+
+The `email` column in the `users` table will be renamed to `email_address`.
+
+</details>
+
+```sql
+ALTER TABLE books
+RENAME COLUMN intl_no
+TO isbn;
+```
+
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `books`
+1. We are renaming the column `intl_no` to be called `isbn`
+
+The `intl_no` column in the `books` table will be renamed to `isbn`.
+
+</details>
