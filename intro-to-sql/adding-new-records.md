@@ -212,7 +212,7 @@ SQL keywords are not required to be in ALL CAPS. For example, it's valid SQL syn
 
 ### !end-callout
 
-### Examples on Inserting Records
+### Examples of Inserting Records
 
 Read through these example SQL statements. For each example, read the code and answer:
 
@@ -220,28 +220,33 @@ Read through these example SQL statements. For each example, read the code and a
 1. For each column-value pair, what is the column and what is the value?
 1. Which pieces of syntax are unfamiliar?
 
-#### 1. Adding 'Octavia E. Butler'
-
 ```sql
 INSERT INTO authors (author_name)
 VALUES ('Octavia E. Butler');
 ```
 
-- The name of the table is `authors`
-- For the column `author_name`, the inserted value is`'Octavia E. Butler'`
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
 
-#### 2. Adding '11112222333344445'
+1. The name of the table is `authors`
+1. For the column `author_name`, the inserted value is `'Octavia E. Butler'`
+
+</details>
 
 ```sql
 INSERT INTO drivers (vin, is_available)
 VALUES ('11112222333344445', false);
 ```
 
-- The name of the table is `drivers`
-- For the column `vin`, the inserted value is `11112222333344445`
-- For the column `is_available`, the inserted value is `false`
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
 
-#### 3. Adding Blue Breaker
+1. The name of the table is `drivers`
+1. We insert 2 values:
+   1. For the column `vin`, the inserted value is `'11112222333344445'`
+   1. For the column `is_available`, the inserted value is `false`
+
+</details>
 
 ```sql
 INSERT INTO media (category, title, creator, publication_year, description_text)

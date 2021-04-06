@@ -186,23 +186,49 @@ Read through these example SQL statements. For each example, read the code and a
 SELECT author_name FROM authors;
 ```
 
-This statement selects the `author_name` column in the `authors` table.
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `authors`
+1. The selected column is `author_name`
+
+</details>
 
 ```sql
 SELECT * FROM drivers;
 ```
 
-This selects all columns in the `drivers` table.
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `drivers`
+1. All columns in the table are selected
+
+</details>
 
 ```sql
 SELECT id, category, title FROM media;
 ```
 
-This selects the `id`, `category`, and `title` columns in the `media` table.
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `media`
+2. We select 3 columns: `id`, `category`, and `title`
+
+</details>
 
 ```sql
 SELECT * FROM media;
 ```
+
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `media`
+2. All columns in the table are selected
+
+</details>
 
 <!-- Question 1 -->
 <!-- prettier-ignore-start -->
