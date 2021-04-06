@@ -157,7 +157,7 @@ What purpose does the table in the middle serve?
 
 ##### !question
 
-We want to select credit card number and expiration dates for a customer named "Shiloh Ahmad".  Reorder the SQL Query to complete the query.
+We want to select the credit card number and expiration date for a customer named "Shiloh Ahmad".  Reorder the pieces of this SQL statement to form a complete query.
 
 ##### !end-question
 
