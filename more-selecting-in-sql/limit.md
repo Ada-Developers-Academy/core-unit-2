@@ -11,7 +11,7 @@ Databases can store many millions of records. Even when we restrict our results 
 
 In situations where we know that we'd only like to get back up to a certain number of results at once, we can use the `LIMIT` clause. By limiting our queries to only the quantity of records we want to retrieve, we can both speed up our applications, and reduce demand on the database.
 
-## Limiting Syntax
+## LIMIT Syntax
 
 The `LIMIT` clause can be added to any `SELECT` statement as follows:
 
@@ -33,7 +33,7 @@ WHERE genre = 'sci-fi'
 LIMIT 10;
 ```
 
-## Offset
+## OFFSET Syntax
 
 We can use `LIMIT` to retrieve the first _n_ rows from a `SELECT` query. `LIMIT 10` restricts the query to the first 10 rows. But what if we want to retrieve rows 11 through 20? This might be useful for websites which allow the user to page through a list of results using buttons that present the next _n_ records.
 
@@ -49,6 +49,17 @@ LIMIT 10 OFFSET 10;
 ```
 
 The above query selects rows 11-20.
+
+`OFFSET` can also be used on its own, without `LIMIT`, to essentially skip the first _n_ records in a result.
+
+We could skip the first 10 results of our sci-fi query, still returning the entire remaining set with:
+
+```sql
+SELECT title
+FROM books
+WHERE genre = 'sci-fi'
+OFFSET 10;
+```
 
 ## Check for Understanding
 
