@@ -54,3 +54,9 @@ INSERT INTO products (
 )
 VALUES ('product 7', 'some description 7', 105);
 
+INSERT INTO products (
+  name,
+  description,
+  publisher_id
+)
+VALUES ('product 8', 'some description 8', 99);

@@ -139,7 +139,7 @@ For example, we can run the following command.
 CREATE DATABASE simons_example_db;
 ```
 
-... which will give us the feedback `CREATE DATABASE`. We can confirm our db is created by listing all databases again with `\l`:
+This will give us the feedback `CREATE DATABASE`. We can confirm our database is created by listing all databases again with `\l`:
 
 ```
                                       List of databases
