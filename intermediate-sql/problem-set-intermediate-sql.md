@@ -144,10 +144,38 @@ What purpose does the table in the middle serve?
 
 <!-- ======================= END CHALLENGE ======================= -->
 
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- Replace everything in square brackets [] and remove brackets  -->
 
-<!--
-SQL Question on Select with Join
- -->
+### !challenge
+
+* type: ordering
+* id: 63869fc6-1c28-4ac3-bb95-4c123732359d
+* title: Reordering SQL Select
+* points: 1
+* topics: sql, sql-select, sql-join
+
+##### !question
+
+We want to select the credit card number and expiration date for a customer named "Shiloh Ahmad".  Reorder the pieces of this SQL statement to form a complete query.
+
+##### !end-question
+
+##### !answer
+
+1. SELECT payment_methods.card_number, payment_methods.expr_date
+1. FROM payments
+1. INNER JOIN customers
+1.   ON customers.id = payments.customer_id
+1. WHERE customers.first_name = 'Shiloh' AND
+1.   customers.last_name = 'Ahmad'
+1. ;
+
+##### !end-answer
+
+### !end-challenge
+
+<!-- ======================= END CHALLENGE ======================= -->
 
 <!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
 <!-- Replace everything in square brackets [] and remove brackets  -->
