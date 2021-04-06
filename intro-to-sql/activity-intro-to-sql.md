@@ -119,7 +119,9 @@ Follow these steps:
 | movie    | Goodbye Forrester   | Sherwood Toy PhD | 1999             | Ipsam velit mollitia quo.              |
 | book     | Blacktop Equinox    | Man Von          | 2017             | Rerum est labore accusamus.            |
 
-For your convenience, here is the data for this table as a CSV file.
+<!-- TODO: Add absolute link for this -->
+
+For your convenience, [here is the data for this table as a CSV file](../assets/intro-to-sql_activity-intro-to-sql_media.csv).
 
 **Pro-Tip**: Draft your `INSERT` statements in a separate file. Utilize teamwork!
 
