@@ -151,6 +151,7 @@ You have a table named publishers with:
 | 1   | Glasgow Publishers    | 123 Elm Street, Glasgow, Scotland, 10358 |
 | 2   | Spring Rabbits Comics | P.O. Box 11234, Tuscon, AZ 85487         |
 | 3   | Ahmed Enriquez        | P.O. Box 98111, Los Angeles, CA 98774    |
+| ... | ...                   | ... (more records)                       |
 
 The table was created with:
 
@@ -212,6 +213,7 @@ You have a table named products with:
 | --- | -------- | ------------ | ------------------------- |
 | 1   | Nimona   | 1            | Wonderful comic by Noelle |
 | 2   | Watchmen | 2            | Dark, very dark           |
+| ... | ...      | ...          | ... (more records)        |
 
 The table was created with:
 
