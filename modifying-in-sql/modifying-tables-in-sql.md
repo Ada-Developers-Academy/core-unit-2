@@ -293,3 +293,23 @@ There are just as many, if not more, ways to modify columns in a database table 
 
 We looked at how to add, remove, and modify our columns. Each command we explored has many options that we did not discuss, so we should view this lesson as a starting point for further investigation into modifying our table columns.
 
+## Check for Understanding
+
+<!-- Question Takeaway -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: paragraph
+* id: 8d62c196
+* title: Modifying Tables in SQL
+##### !question
+
+What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+
+##### !end-question
+##### !placeholder
+
+My biggest takeaway from this lesson is...
+
+##### !end-placeholder
+### !end-challenge
+<!-- prettier-ignore-end -->
