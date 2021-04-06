@@ -136,7 +136,7 @@ Follow these steps:
 
 <!-- TODO: Add absolute link for this -->
 
-For your convenience, [here is the data for this table as a CSV file](../assets/intro-to-sql_activity-intro-to-sql_media.csv).
+For your convenience, [here is the data for this table as a CSV file](https://raw.githubusercontent.com/Ada-Developers-Academy/core-unit-2/main/assets/intro-to-sql_activity-intro-to-sql_media.csv).
 
 **Pro-Tip**: Draft your `INSERT` statements in a separate file. Utilize teamwork!
 
