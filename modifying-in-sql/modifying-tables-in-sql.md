@@ -88,3 +88,58 @@ We have seen the `DEFAULT` keyword used when inserting rows with an auto-generat
 The `DEFAULT` constraint will also affect future `INSERT` commands. If we insert a new record without providing `nyt_weeks`, Postgres will use the `DEFAULT` value that we set in the constraint: 0.
 
 </details>
+
+## Removing a Column
+
+The `ALTER TABLE` command also provides a way to remove an existing column.
+
+```sql
+ALTER TABLE table_name
+DROP COLUMN column_name;
+```
+
+| <div style="width:200px;">Piece of Code</div> | Notes                                                                                                                               |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `ALTER TABLE`                                | SQL command to modify an existing table                                                                                                       |
+| `table_name`                          | **Replace this** with the name of the table to modify                                                                                    |
+| `DROP COLUMN`                                    | SQL keywords indicating how we would like to modify the table. In this case, we want to remove a column.                                |
+| `column_name`                                 | **Replace this** with the name of the column to remove                                                                                     |
+| `;`                                           | End the command with a `;` |
+
+### Examples on Removing Columns
+
+Read through these example SQL statements. For each example, read the code and answer:
+
+1. What is the name of the table?
+1. What column is being removed?
+1. Which pieces of syntax are unfamiliar?
+
+```sql
+ALTER TABLE users
+DROP COLUMN geocities_homepage;
+```
+
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `users`
+1. We are removing the column `geocities_homepage`
+
+The `geocities_homepage` column will be removed from the `users` table.
+
+</details>
+
+```sql
+ALTER TABLE books
+DROP COLUMN author_name;
+```
+
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `books`
+1. We are removing the column `author_name`
+
+The `author_name` column will be removed from the `books` table. We might do this after restructuring our data so that the author information is stored elsewhere. This will be discussed further in the upcoming lesson on Database Relationships.
+
+</details>
