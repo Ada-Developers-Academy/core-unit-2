@@ -1,4 +1,4 @@
-# Aggregate Functions
+# Optional: Aggregate Functions
 
 ## Goals
 
