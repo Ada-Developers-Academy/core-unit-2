@@ -25,7 +25,7 @@ Standards:
         Path: /data-in-tables/activity-data-in-tables.md
   -
     Title: Intro To Sql
-    Description: Intro to SQL, Adding new records, Retrieving records, Updating ecords, Deleting records
+    Description: Intro to SQL, Adding new records, Retrieving records, Updating records, Deleting records
     UID: 3211fc3d75369f96b537a4535fcbba6d
     SuccessCriteria:
       - success criteria
@@ -68,7 +68,7 @@ Standards:
         Path: /intro-to-sql/activity-intro-to-sql.md 
   -
     Title: Intermediate SQL
-    Description: "Database Relationships, Activty: drawing relationships, Establishing Relationships, Database Joins"
+    Description: "Database Relationships, Activity: drawing relationships, Establishing Relationships, Database Joins"
     UID: 11a8027f-bd04-4c47-b4d3-36209af1068d
     SuccessCriteria:
       - success criteria
