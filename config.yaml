@@ -35,6 +35,10 @@ Standards:
         UID: d208cde984a0236f321a3a2216132286
         Path: /intro-to-sql/intro-to-sql.instructor.md
       -
+        Type: Instructor
+        UID: paZju7
+        Path: /intro-to-sql/intro-to-relational-databases.instructor.md
+      -
         Type: Lesson
         UID: bf845a0d8d9b36277b4a65ad5a323ec6
         Path: /intro-to-sql/intro-to-relational-databases.md
