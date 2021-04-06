@@ -67,6 +67,21 @@ Standards:
         UID: 1ccd31d7b789d74e78d94c236193bb8d
         Path: /intro-to-sql/activity-intro-to-sql.md 
   -
+    Title: Modifying in SQL 
+    Description: Modifying Tables in SQL, Modifying Databases in SQL
+    UID: adb24d77-6638-4351-9b81-4f6bb7fd26f9
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 139ef877-f6ea-4455-8cad-e42849c19bf8
+        Path: /modifying-in-sql/modifying-tables-in-sql.md
+      -
+        Type: Lesson
+        UID: eed7f313-69fe-4881-9b7c-829860adeb4e
+        Path: /modifying-in-sql/modifying-databases-in-sql.md
+  -
     Title: Intermediate SQL
     Description: "Database Relationships, Activity: drawing relationships, Establishing Relationships, Database Joins"
     UID: 11a8027f-bd04-4c47-b4d3-36209af1068d
