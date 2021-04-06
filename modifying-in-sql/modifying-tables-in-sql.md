@@ -218,3 +218,11 @@ TYPE TEXT;
 This modification relaxes the length limit the column had in the previous example where it was defined as a `VARCHAR(64)`. The change succeeded without issue.
 
 </details>
+
+### !callout-info
+
+## Column Constraints Can Also Be Modified
+
+Column constraints can also be modified with variants of the `ALTER TABLE ALTER COLUMN` command. We used the `TYPE` keyword to indicate that we wanted to change the column type, but additional keywords, including `SET`, `DROP`, and `ADD` with a wide variety of options also exist. We will not need to use them in this curriculum, but follow your curiosity!
+
+### !end-callout
