@@ -3,13 +3,15 @@
 ## Goals
 
 - Explain how `SELECT` statements can divide rows into groups by using the `GROUP BY` clause
-- Write `SELECT` statements using `Group BY` clauses and aggregate functions to calculate aggregate values on groups of rows
+- Write `SELECT` statements using `GROUP BY` clauses and aggregate functions to calculate aggregate values on groups of rows
 
 ## Introduction
 
-We can write queries to discover the maximum and minimum values for the entire query, but this can be quite limiting. Consider if we are building an online store and want to know how many products each vendor is setting? What if we want to find the most expensive product each vendor sells?
+We have seen how to use aggregate functions to find the minimum, maximum, and a variety of other values related to an entire query. We can gather a lot of information this way, but in some ways, it might still be inefficient.
 
-In these queries we want to group up a set of rows by a specific criterea and then run an aggregate query like `COUNT`, `MAX` or `MIN` on each group.
+What if we wanted to get the count of products sold by each vendor in our database? We could issue a query getting the count of products for the first vendor, then another for the second vendor, and so on, until we've gotten the information we wanted. But what if we could have the database perform those counts all at once?
+
+We can, using `GROUP BY`!
 
 ## GROUP BY To Get Distinct Entries
 
