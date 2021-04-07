@@ -32,7 +32,7 @@ Complete all questions below.
 * language: sql
 * id: 18206d9a-fde5-403d-a6ca-52686ff6cc9c
 * title: More Selecting in SQL
-* data_path: /more-selecting-in-sql/sql/create-products-table.sql
+* data_path: /more-selecting-in-sql/sql/problem-set.sql
 
 ##### !question
 
@@ -57,10 +57,6 @@ Write a `SELECT` statement that retrieves the names of the flowers that prefer `
 
 ```sql
 -- write a statement to select...
-SELECT name
-FROM flowers
-WHERE soil_type = 'acidic'
-AND light_level = 'partial shade';
 ```
 
 ##### !end-placeholder
@@ -69,7 +65,10 @@ AND light_level = 'partial shade';
 
 
 ```sql
-select 1;
+SELECT name
+FROM flowers
+WHERE soil_type = 'acidic'
+AND light_level = 'partial shade';
 ```
 
 ##### !end-tests
