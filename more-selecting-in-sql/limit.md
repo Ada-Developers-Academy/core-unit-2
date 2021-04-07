@@ -87,6 +87,33 @@ LIMIT 10;
 
 ## Check for Understanding
 
+<!-- Question 1 -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: ordering
+* id: 6duSMq
+* title: Limit
+##### !question
+
+Imagine building a feature where a user is online shopping, and the products are listed in pages. The user needs to see the products on page 4. Each page shows 50 products.
+
+Arrange the following syntax into a valid statement.
+
+##### !end-question
+##### !answer
+
+1. `SELECT *`
+1. `FROM products`
+1. `LIMIT`
+1. `50`
+1. `OFFSET`
+1. `150`
+1. `;`
+
+##### !end-answer
+### !end-challenge
+<!-- prettier-ignore-end -->
+
 <!-- Question Takeaway -->
 <!-- prettier-ignore-start -->
 ### !challenge
