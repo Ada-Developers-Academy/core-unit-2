@@ -198,7 +198,7 @@ USING nyt_weeks::boolean;
 
 Depending on the data that was already in the `nyt_weeks` column, Postgres may or may not be able to covert the column type automatically.
 
-In our case, we tried to run the modification without the `USING` clause, and Postgres failed. It recommended running the command again with the `nyt_weeks::boolean` conversion expression.
+In our case, we first tried to run the modification without the `USING` clause, and Postgres failed. It recommended running the command again with the `nyt_weeks::boolean` conversion expression.
 
 </details>
 
@@ -273,25 +273,63 @@ The `email` column in the `users` table will be renamed to `email_address`.
 
 ```sql
 ALTER TABLE books
-RENAME COLUMN intl_no
-TO isbn;
+RENAME COLUMN titel
+TO title;
 ```
 
 <details style="max-width: 700px; margin: auto;">
   <summary>Answer</summary>
 
 1. The name of the table is `books`
-1. We are renaming the column `intl_no` to be called `isbn`
+1. We are renaming the column `titel` to be called `title`
 
-The `intl_no` column in the `books` table will be renamed to `isbn`.
+The `titel` column in the `books` table will be renamed to `title`.
+
+</details>
+
+## Renaming a Table
+
+`ALTER TABLE` can also rename a table itself.
+
+```sql
+ALTER TABLE table_name
+RENAME TO new_table_name;
+```
+
+| <div style="width:200px;">Piece of Code</div> | Notes                                                                                                                               |
+| --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `ALTER TABLE`                                | SQL command to modify an existing table                                                                                                       |
+| `table_name`                          | **Replace this** with the name of the table to modify                                                                                    |
+| `RENAME TO`                                    | SQL keywords indicating how we would like to modify the table. In this case, we want to rename the table.                                |
+| `new_table_name`                                 | **Replace this** with the new name for the table                                                                                     |
+| `;`                                           | End the command with a `;` |
+
+### Example of Renaming a Table
+
+For the following SQL statement, read the code and answer:
+
+1. What is the name of the table and what is its new name?
+2. Which pieces of syntax are unfamiliar?
+
+```sql
+ALTER TABLE bokos
+RENAME TO books;
+```
+
+<details style="max-width: 700px; margin: auto;">
+  <summary>Answer</summary>
+
+1. The name of the table is `bokos` and we are renaming it to be called `books`
+
+The `bokos` table will be renamed to `books`.
 
 </details>
 
 ## Summary
 
-There are just as many, if not more, ways to modify columns in a database table as there are ways to create the columns to begin with! We should feel confident attempting to modify our tables, but sometimes it can be easier to recreate them from scratch if we run into difficulty.
+There are just as many, if not more, ways to modify columns and tables as there are ways to create them in the first place! We should feel confident attempting to modify our tables, but should also remember that sometimes it can be easier to recreate them from scratch if we run into difficulty.
 
-We looked at how to add, remove, and modify our columns. Each command we explored has many options that we did not discuss, so we should view this lesson as a starting point for further investigation into modifying our table columns.
+We looked at how to add, remove, and modify our columns, as well as renaming an entire table. Each command we explored has many options that we did not discuss, so we should view this lesson as a starting point for further investigation into modifying our tables.
 
 ## Check for Understanding
 
