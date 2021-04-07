@@ -30,11 +30,11 @@ These design principles are taught purposely on an introductory level. How REST 
 
 ## Vocabulary and Synonyms
 
-| Vocab             | Definition                                                                                                        | Synonyms | How to Use in a Sentence                                                                                                                                |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| REST              | An architecture style for applications and APIs that uses the HTTP protocol and uses client-server architecture   | -        | "RESTful APIs follow the same patterns for endpoints and how to use them, if they all follow the same design guidelines"                                |
-| Uniform Interface | A REST design principle that that prefers reliable and predictable endpoints, and doesn't prefer custom endpoints | -        | "The endpoints between different RESTful APIs are similar because they have a uniform interface."                                                       |
-| CRUD              | "Create, Read, Update, Delete." An acronym that describes the four basic operations to work with saved resources  | -        | "A great place to start web development is to make the CRUD functionality of a resource. That way, the user can create, read, update, and delete data." |
+| Vocab             | Definition                                                                                                        | How to Use in a Sentence                                                                                                                                |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| REST              | An architecture style for applications and APIs that uses the HTTP protocol and uses client-server architecture   | "RESTful APIs follow the same patterns for endpoints and how to use them, if they all follow the same design guidelines"                                |
+| Uniform Interface | A REST design principle that that prefers reliable and predictable endpoints, and doesn't prefer custom endpoints | "The endpoints between different RESTful APIs are similar because they have a uniform interface."                                                       |
+| CRUD              | "Create, Read, Update, Delete." An acronym that describes the four basic operations to work with saved resources  | "A great place to start web development is to make the CRUD functionality of a resource. That way, the user can create, read, update, and delete data." |
 
 ## HTTP RESTful Web APIs
 
