@@ -151,6 +151,7 @@ Read through the code. Which of these kinds of sorts does this function implemen
 Describe the algorithm for Bubble Sort in your own words. Make sure to touch on:
 
 - What makes this algorithm unique?
+- What is its time and space complexity?
 - What factors contribute to its time complexity?
 - What factors contribute to its space complexity?
 
@@ -176,6 +177,7 @@ The bubble sort algorithm is unique because...
 Describe the algorithm for Selection Sort in your own words. Make sure to touch on:
 
 - What makes this algorithm unique?
+- What is its time and space complexity?
 - What factors contribute to its time complexity?
 - What factors contribute to its space complexity?
 
@@ -201,6 +203,7 @@ The selection sort algorithm is unique because...
 Describe the algorithm for Insertion Sort in your own words. Make sure to touch on:
 
 - What makes this algorithm unique?
+- What is its time and space complexity?
 - What factors contribute to its time complexity?
 - What factors contribute to its space complexity?
 
@@ -226,6 +229,7 @@ The insertion sort algorithm is unique because...
 Describe the algorithm for Merge Sort in your own words. Make sure to touch on:
 
 - What makes this algorithm unique?
+- What is its time and space complexity?
 - What factors contribute to its time complexity?
 - What factors contribute to its space complexity?
 
