@@ -18,7 +18,7 @@ Design a fictional app back-end using the prompts below.
 
 Decide the overall concept of your app.
 
-Create an app concept. Get inspired by the following prompts:
+Get inspired by the following prompts:
 
 - A data management app that lets users organize something special in their collection...
 - A matchmaking app between different users who need each other for some reason...
