@@ -91,7 +91,7 @@ Standards:
         Path: /modifying-in-sql/modifying-databases-in-sql.md
   -
     Title: More Selecting In SQL
-    Description: "Compound Conditions, Ordering, Limit, Optional: Aggregate Functions, Optional: Grouping"
+    Description: "Compound Conditions, Ordering, Limit, Problem Set: More Selecting in SQL, Optional: Aggregate Functions, Optional: Grouping"
     UID: 29f75f91-0453-468c-a724-d6b90a045e6a
     SuccessCriteria:
       - success criteria
@@ -116,6 +116,10 @@ Standards:
         Type: Lesson
         UID: af18e4ef-18aa-432c-9f34-0375f4dbb82a
         Path: /more-selecting-in-sql/optional-grouping.md
+      -
+        Type: Lesson
+        UID: f9f13580-bd04-442a-8944-34864f3de6a2
+        Path: /more-selecting-in-sql/problem-set-more-selecting-in-sql.md
   -
     Title: Intermediate SQL
     Description: "Database Relationships, Establishing Relationships, Database Joins, Problem Set: Intermediate SQL"
