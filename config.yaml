@@ -2,7 +2,7 @@
 Standards:
   -
     Title: Update And Delete
-    Description: "Update and Delete, 404s and More Queries"
+    Description: "Update and Delete, Problem Set: Update and Delete, Activity: Solar System API: Update and Delete"
     UID: c806ada4c97ac6c20ee838c607c979d7
     SuccessCriteria:
       - success criteria
@@ -15,6 +15,10 @@ Standards:
         Type: Lesson
         UID: syrMq6
         Path: /update-and-delete/problem-set-update-and-delete.md
+      -
+        Type: Lesson
+        UID: etO5RZ
+        Path: /update-and-delete/activity-solar-system-api-update-delete.md
   -
     Title: More Flask Queries
     Description: "404s and More Queries, Query Params"
