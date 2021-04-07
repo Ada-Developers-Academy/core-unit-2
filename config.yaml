@@ -2,7 +2,7 @@
 Standards:
   -
     Title: Testing Our Apis
-    Description: Testing Our Apis
+    Description: "Environments and Env Vars, dotenv and the Test DB, Test Setup, Using Tests, Problem Set: Testing Our APIs, Activity: Solar System API: Tests"
     UID: e7cb1f63923b38e37e787f78784653ec
     SuccessCriteria:
       - success criteria
@@ -27,3 +27,11 @@ Standards:
         Type: Lesson
         UID: MAKii1
         Path: /testing-our-apis/using-tests.md
+      -
+        Type: Lesson
+        UID: 8TZO0e
+        Path: /testing-our-apis/problem-set-testing-our-apis.md
+      -
+        Type: Lesson
+        UID: L00UOa
+        Path: /testing-our-apis/activity-solar-system-api-tests.md
