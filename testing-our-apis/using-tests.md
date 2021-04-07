@@ -9,7 +9,7 @@ Our goals for this lesson are to:
 
 ## Hello Books API
 
-This lesson uses the Hello Books API.
+This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api).
 
 <details style="max-width: 700px; margin: auto;">
     <summary>

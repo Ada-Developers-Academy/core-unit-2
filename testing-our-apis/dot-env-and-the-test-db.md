@@ -8,7 +8,7 @@ These actions will allow us to practice testing, which in turn creates more high
 
 ## Hello Books API
 
-This lesson uses the Hello Books API.
+This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api).
 
 <details style="max-width: 700px; margin: auto;">
     <summary>
