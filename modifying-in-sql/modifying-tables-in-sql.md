@@ -21,7 +21,7 @@ Any of these situations and more could cause us to need to modify our existing t
 
 Before getting into how to modify our tables, it's worth remembering that sometimes it's easier to start over. If there isn't a lot of data in our table, we can always decide that it's easier to `DROP` the existing table and `CREATE` it again.
 
-Even if there _is_ some data in the table, it's sometimes easier to re-insert the rows than fight with complicated data incompatibilities!
+Even if there _is_ some data in the table, it's sometimes easier to re-insert the rows than to fight with complicated data incompatibilities!
 
 ## Adding a New Column
 
