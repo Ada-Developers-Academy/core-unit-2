@@ -190,3 +190,30 @@ Standards:
         Type: Lesson
         UID: 2f8f732d3d523c2302f4568e519bcbff
         Path: /requests-and-responses/activity-web-api-jigsaw.md
+  -
+    Title: Intro To API Design
+    Description: "Designing Endpoints, Designing Responses, Problem Set: Intro to API Design, Activity: Intro to API Design"
+    UID: 0c5f68ba66d52eba25ba51327ee89b88
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: 9844bca7c230e2bf7ded06c1c8157d12
+        Path: /intro-to-api-design/intro-to-api-design.instructor.md
+      -
+        Type: Lesson
+        UID: ba2ee66f047cf534ff691b8412da3332
+        Path: /intro-to-api-design/designing-endpoints.md
+      -
+        Type: Lesson
+        UID: 82f2c31b30d0ec23865311d32a45f02e
+        Path: /intro-to-api-design/designing-responses.md
+      -
+        Type: Lesson
+        UID: 8WFdaq
+        Path: /intro-to-api-design/problem-set-intro-to-api-design.md
+      -
+        Type: Lesson
+        UID: 5f9a641756dea1f4bc8a5c1776d46528
+        Path: /intro-to-api-design/activity-intro-to-api-design.md
