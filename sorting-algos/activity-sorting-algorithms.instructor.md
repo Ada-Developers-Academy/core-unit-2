@@ -1,4 +1,12 @@
-# Activity: Sorting Algos Jigsaw
+# Instructor: Activity: Sorting Algos Jigsaw
+
+### !callout-warning
+
+## Idk if I still like this activity
+
+I wrote this activity because I felt like the most important thing was to get the students to remember how to talk about sorting algorithms. Right now I feel like what's best is to maybe skip on this activity? idk.
+
+### !end-callout
 
 ## Goal
 

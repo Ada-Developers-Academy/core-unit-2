@@ -19,12 +19,6 @@ Sorting algorithms:
 | Internal Sorting | Sorting an entire array in memory                                                        | in-place sorting |
 | External Sorting | Sorting an array with part of the array on external storage, rather than internal memory | -                |
 
-## Video Lesson & Slides
-
-- [Video Lesson](https://adaacademy.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=a4668a63-9fb8-4778-b0a4-aaca006b34c8)
-- [Slide Deck](https://docs.google.com/presentation/d/1GkYP84Cbg3I5KS_wIfRN8Gn-5tQ_46vV5zWt1dTZn14/edit?usp=sharing)
-- [Sorting Exercise](https://github.com/Ada-c14/string-manipulation-practice)
-
 ## Introduction
 
 Imagine a stack of index cards, where each index card has the numbers 1 through 100. Imagine that these cards are shuffled in a random, unknowable order.
