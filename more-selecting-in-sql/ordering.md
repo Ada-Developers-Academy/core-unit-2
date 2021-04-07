@@ -139,6 +139,31 @@ ORDER BY price NULLS LAST;
 
 ## Check for Understanding
 
+<!-- Question 1 -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: ordering
+* id: QWYdjf
+* title: Ordering
+##### !question
+
+Imagine building a feature where a user can view forum posts. They can order the forum posts by date, and would like to see the most recent posts first.
+
+Arrange the following syntax into a valid statement.
+
+##### !end-question
+##### !answer
+
+1. `SELECT * FROM forum_posts`
+1. `ORDER BY`
+1. `post_date`
+1. `DESC`
+1. `;`
+
+##### !end-answer
+### !end-challenge
+<!-- prettier-ignore-end -->
+
 <!-- ORDERING Question with ORDER BY -->
 
 <!-- SQL question using order by and limit -->

@@ -215,6 +215,58 @@ Using parentheses when making queries with compound conditions can be very impor
 
 ## Check for Understanding
 
+<!-- Question 1 -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: ordering
+* id: 9qoJ5N
+* title: Compound Conditions
+##### !question
+
+Imagine building a feature where a user can shop for products by price. They want to see a listing of all products that have a price that is over `15`, but under `50`.
+
+Arrange the following syntax into a valid statement.
+
+##### !end-question
+##### !answer
+
+1. `SELECT * FROM products`
+1. `WHERE`
+1. `price >`
+1. `15 AND`
+1. `price <`
+1. `50`
+1. `;`
+
+##### !end-answer
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- Question 2 -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: ordering
+* id: A9Z6aO
+* title: Compound Conditions
+##### !question
+
+Imagine building a feature where a user can shop for products by color. They want to see a listing of all products that are categorized as either "red" or "yellow."
+
+Arrange the following syntax into a valid statement.
+
+##### !end-question
+##### !answer
+
+1. `SELECT * FROM products`
+1. `WHERE`
+1. `color = 'red'`
+1. `OR color = 'yellow'`
+1. `;`
+
+##### !end-answer
+### !end-challenge
+<!-- prettier-ignore-end -->
+
 <!-- Question Takeaway -->
 <!-- prettier-ignore-start -->
 ### !challenge
