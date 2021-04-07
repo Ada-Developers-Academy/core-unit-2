@@ -26,9 +26,18 @@ It may be better to think about this lesson as a resource to be familiar with, r
 
 ### !end-callout
 
-## Introduction: Hello Books API
+## Hello Books API
 
-We are using the Hello Books API.
+### Before This Lesson
+
+This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). Before beginning this lesson, we should have covered:
+
+- Cloning the repo onto our machine
+- Creating and activating a virtual environment
+- Installing dependencies
+- Running the Flask server
+- Creating basic endpoints
+- Testing those endpoints in Postman
 
 ## Creating the Database
 

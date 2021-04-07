@@ -32,7 +32,7 @@ It may be better to think about this lesson as a resource to be familiar with, r
 
 ### Before This Lesson
 
-The Hello Books API should have:
+This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). Before beginning this lesson, the Hello Books API should have:
 
 - A `hello_books_development` database
 - A `book` table defined

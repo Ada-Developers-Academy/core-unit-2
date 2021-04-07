@@ -13,11 +13,11 @@ On your machine, keep:
 
 ## Practice
 
-1. If you haven't already, fork and clone the Hello Books repo
+1. If you haven't already, fork and clone the [Hello Books API](https://github.com/AdaGold/hello-books-api) repo.
 1. Recreate the following steps of the Hello Books repo:
    1. Create a virtual environment
    1. Install the dependencies
-   1. Create the database `hello_books`
+   1. Create the database `hello_books_development`
    1. Create the `book` table with the columns `id`, `title`, and `description`
    1. Setup the `Book` model
 1. Create the following endpoints, with the same functionality presented in this topic:

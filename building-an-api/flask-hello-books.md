@@ -2,7 +2,7 @@
 
 ## Format
 
-This lesson will be in the format of a walkthrough. It will use the Hello Books API project repo.
+This lesson will be in the format of a walkthrough. It will use the [Hello Books API project repo](https://github.com/AdaGold/hello-books-api).
 
 We will:
 
@@ -37,7 +37,7 @@ It may be better to think about this lesson as a resource to be familiar with, r
 
 ## Introduction: Hello Books Repo
 
-We will use the repo Hello Books.
+We will use the repo [Hello Books API](https://github.com/AdaGold/hello-books-api).
 
 First, this repo will act as our Flask Hello World. We'll create some basic, experimental features to test that we can run Flask successfully.
 
@@ -45,7 +45,7 @@ Afterwards, we'll use the same Hello Books repo to demonstrate building a book l
 
 ### Refer to the Repo for Reference
 
-The original Hello Books repo is owned, written, and maintained by the Ada instructors. Use this repo as a reference for instructor-led code. We recommend:
+The original Hello Books API repo is owned, written, and maintained by the Ada instructors. Use this repo as a reference for instructor-led code. We recommend:
 
 1. Cloning this repo directly when you want to see and play with the instructor examples
 1. Renaming this project folder to `instructor-hello-books-api` to make it clear it's the instructor version
