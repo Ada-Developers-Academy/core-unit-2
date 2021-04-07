@@ -15,7 +15,7 @@ There aren't specific rules, patterns, or best practices to teach about designin
 
 Imagine Eryn, a developer who's making the back-end API for an educational podcast app. The app will allow users to sign up as students or instructors. Students can browse different courses. Each course will have several class sessions, which will contain podcast episodes.
 
-Eryn's current challenge is to ensure that her API server can handle any HTTP request, and to give back a response each time that is full of value to the client.
+Eryn's current challenge is to ensure that her API server can handle any HTTP request and to give back a response each time that is full of value to the client.
 
 ### !callout-info
 

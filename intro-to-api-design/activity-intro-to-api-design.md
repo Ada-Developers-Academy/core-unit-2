@@ -34,7 +34,7 @@ If there is ample time left, consider filling out the template with more example
 ## Prompts
 
 1. A library app that allows users to own and organize a library of books by author and genre.
-1. With your small group, pick one of the following web app descriptions, and fill in the blank together.
+1. With your small group, pick one of the following web app descriptions and fill in the blank together:
    - A space program that specializes in storing information about planets, solar systems, and `blank`
    - A grocery store that specializes in delivering `blank`
    - A reservation system that reserves `blank` for guests/customers

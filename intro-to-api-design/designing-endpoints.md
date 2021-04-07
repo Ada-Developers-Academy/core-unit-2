@@ -12,7 +12,7 @@
 
 Imagine Eryn, a developer who's making the back-end API for an educational podcast app. The app will allow users to sign up as students or instructors. Students can browse different courses. Each course will have several class sessions, which will contain podcast episodes.
 
-Eryn's current challenge is making the API that will give back the data about the episodes, class sessions, courses, instructors, and students. Eryn needs to create endpoints, or entry ways, so clients can send requests to her API and get back the data they need. But what makes a good endpoint, or good entryway into her API? How does Eryn know that she's making the right endpoints?
+Eryn's current challenge is making the API that will give back the data about the episodes, class sessions, courses, instructors, and students. Eryn needs to create endpoints, or entryways, so clients can send requests to her API and get back the data they need. But what makes a good endpoint, or a good entryway into her API? How does Eryn know that she's making the right endpoints?
 
 API design is a challenging, creative skill. Each endpoint should be designed to anticipate the needs of the clients who use the API. Each response should be designed to provide value to the client.
 
@@ -61,18 +61,18 @@ REST believes that a uniform interface follows these guidelines:
 
 Let's revisit REST's name: "Representational state transfer." After considering the name and these guidelines, we may conclude:
 
-- REST prioritizes _resources_ and _representations of resources_, and this will effect how URLs are made, what information to send with HTTP requests, and what we can expect from HTTP responses.
+- REST prioritizes _resources_ and _representations of resources_, and this will affect how URLs are made, what information to send with HTTP requests, and what we can expect from HTTP responses.
 - REST prioritizes _statelessness_ on the server between requests. It maintains statelessness between requests by relying on HTTP requests to send any details about client state.
 
 ## Meaningful Endpoints to Access Resources
 
-Recall that an _endpoint_ is an entrypoint URL to access a web API. For example, in the LocationIQ API, `/search` is the endpoint to access the API's search functionality.
+Recall that an _endpoint_ is an entry point URL to access a web API. For example, in the LocationIQ API, `/search` is the endpoint to access the API's search functionality.
 
 Also recall that resources are any piece of data to return, such as user data or web pages.
 
 A well-designed RESTful API states that endpoints should be based on resources.
 
-Imagine Eryn, who's making the back-end API for an educational podcast app. Eryn's educational app stores data about every student user, every instructor user, every different courses offered, and all class sessions within the courses.
+Imagine Eryn, who's making the back-end API for an educational podcast app. Eryn's educational app stores data about every student user, every instructor user, every different course offered, and all class sessions within the courses.
 
 Some example endpoints for Eryn may be:
 
@@ -83,7 +83,7 @@ Some example endpoints for Eryn may be:
 
 ## Meaningful HTTP Request Methods
 
-The REST principle "self-descriptive messages" includes the princple of meaningful HTTP request methods. Well-designed RESTful APIs use HTTP request method in combination with resource-centered endpoints.
+The REST principle "self-descriptive messages" includes the principle of meaningful HTTP request methods. Well-designed RESTful APIs use the HTTP request method in combination with resource-centered endpoints.
 
 REST implies these meanings to HTTP methods:
 
