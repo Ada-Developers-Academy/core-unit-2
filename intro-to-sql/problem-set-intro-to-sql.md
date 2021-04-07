@@ -79,7 +79,7 @@ INSERT 0 1
 CREATE TABLE ...
 
 ##### !end-placeholder
-##### !rubric
+##### !explanation
 
 This is an example solution:
 
@@ -101,7 +101,7 @@ Check for:
 - Correct table name
 - Correct column names and data types
 
-##### !end-rubric
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -142,7 +142,7 @@ Should output (notice the "f"):
 ```
 
 ##### !end-question
-##### !rubric
+##### !explanation
 
 This is an example solution:
 
@@ -156,7 +156,7 @@ Check for:
 - Semicolon at the end
 - Correct table name
 
-##### !end-rubric
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -214,7 +214,7 @@ WHERE name = 'Dark Pony Gaming';
 INSERT ...
 
 ##### !end-placeholder
-##### !rubric
+##### !explanation
 
 This is an example solution:
 
@@ -230,7 +230,7 @@ Check for:
 - Correct table name
 - Correct order of columns and inserted values
 
-##### !end-rubric
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -289,7 +289,7 @@ WHERE name = 'Jimmy Corrigan';
 INSERT ...
 
 ##### !end-placeholder
-##### !rubric
+##### !explanation
 
 This is an example solution:
 
@@ -305,7 +305,7 @@ Check for:
 - Correct table name
 - Correct order of columns and inserted values
 
-##### !end-rubric
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -357,7 +357,7 @@ WHERE first_name = 'Cade';
 UPDATE ...
 
 ##### !end-placeholder
-##### !rubric
+##### !explanation
 
 The original record is:
 
@@ -384,7 +384,7 @@ Check for:
 - Uses `''` to escape apostrophe in "O'Moore" correctly
 - Uses `WHERE` clause to select correct record
 
-##### !end-rubric
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -529,7 +529,7 @@ Should output:
 ```
 
 ##### !end-question
-##### !rubric
+##### !explanation
 
 The original record is:
 
@@ -553,6 +553,6 @@ Check for:
 - Correct table name
 - Uses `WHERE` clause to select correct record
 
-##### !end-rubric
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
