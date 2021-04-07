@@ -244,26 +244,230 @@ The merge sort algorithm is unique because...
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
-## Wave 1 - Sort by Length
+<!-- Question 8 -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: ordering
+* id: HtkSfZ
+* title: Sorting Algorithms
+##### !question
 
-In this method you will take a string as a parameter. The method will return an array of words in the string, sorted by length. Solve the problem without using the ruby `.sort` method. When words are tied for length, maintain the order they appeared in the original string.
+Arrange these sorting algorithms in time complexity order, where the more efficent algorithm is listed first, and the least efficient algorithm is listed last.
 
-## Wave 2 - Reverse Sentence
+For algorithms with equal time complexity, order them in alphabetical order.
 
-In this assignment, you'll design and implement one of the well-known string manipulation methods.
-Remember that a string is an array of characters. Algorithms that worked on restricted arrays will work on strings as well.
+##### !end-question
+##### !answer
 
-## Optional Exercise
+1. Merge Sort
+1. Bubble Sort
+1. Insertion Sort
+1. Selection Sort
 
-- Design and implement a method to reverse the words in a sentence _in place_. The string of words to be reversed in passed in as the input parameter to the method.
-  - Your algorithm should strive to optimize the space complexity as much as possible.
-- For example, if the method is called with input parameter of "Yoda&nbsp;&nbsp;&nbsp;is&nbsp;&nbsp;&nbsp;&nbsp;awesome", then the method should update the input string object to have the value "awesome&nbsp;&nbsp;&nbsp;&nbsp;is&nbsp;&nbsp;&nbsp;Yoda".
-  - Note that the count of white spaces between words is preserved.
-- Share and explain the time and space complexities for your solution in the comments above the method.
-  - If the complexity is shared in terms of _n_, your explanation must explain what _n_ stands for.
+##### !end-answer
+### !end-challenge
+<!-- prettier-ignore-end -->
 
-**Notes:**
-_ Do not use Ruby provided functionality for `.reverse` and `.reverse!`.
-_ You may use `.length` method available in the String class.
+<!-- Question 9 -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: code-snippet
+* language: python3.6
+* id: P2sZ7P
+* title: Sorting Algorithms
+### !question
 
-https://github.com/Ada-C14/string-manipulation-practice/tree/master/test
+There's nothing like getting familiar with sorting algorithms than to implement it yourself!
+
+Without using Python's `sort()` method (or anything like that), implement `sort_by_length` based on bubble sort, selection sort, or insertion sort.
+
+`sort_by_length` is a function that takes in one string. It returns a list of strings, where the items are the words from the string, ordered by length. The words with shorter length are placed before words with longer length.
+
+When words are tied for length, maintain the order they appeared in the original string.
+
+Here are the tests:
+
+```python
+def test_sort_by_length_with_empty_string():
+    assert sort_by_length("") == []
+
+
+def test_sort_by_length():
+    assert sort_by_length("I love great awesome words") == [
+        "I", "love", "great", "words", "awesome"]
+
+
+def test_sort_by_length_checks_smallest_word_last():
+    assert sort_by_length("love great awesome words I") == [
+        "I", "love", "great", "words", "awesome"]
+
+
+def test_sort_by_length_equal_length_maintains_order():
+    assert sort_by_length("words of equal length") == [
+        "of", "words", "equal", "length"]
+```
+
+### !end-question
+### !placeholder
+
+```python
+def sort_by_length(str):
+    pass
+```
+### !end-placeholder
+### !tests
+```python
+import unittest
+from main import *
+
+class TestPython1(unittest.TestCase):
+    def test_sort_by_length_with_empty_string(self):
+        self.assertEqual(sort_by_length(""), [])
+
+    def test_sort_by_length(self):
+        self.assertEqual(sort_by_length("I love great awesome words"),
+                         ["I", "love", "great", "words", "awesome"])
+
+    def test_sort_by_length_checks_smallest_word_last(self):
+        self.assertEqual(sort_by_length("love great awesome words I"),
+                         ["I", "love", "great", "words", "awesome"])
+
+    def test_sort_by_length_equal_length_maintains_order(self):
+        self.assertEqual(sort_by_length("words of equal length"),
+                         ["of", "words", "equal", "length"])
+```
+### !end-tests
+### !explanation
+
+An example of a working implementation:
+
+```python
+# Bubble Sort
+def sort_by_length(str):
+    array = str.split()
+    i = 0
+    while i < len(array) - 1:
+        j = 0
+        while j < (len(array) - i - 1):
+            if len(array[j]) > len(array[j+1]):
+                temp = array[j]
+                array[j] = array[j+1]
+                array[j + 1] = temp
+            j += 1
+        i += 1
+    return array
+```
+
+### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- Question 10 -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: paragraph
+* id: U2QaR9
+* title: Sorting Algorithms
+##### !question
+
+Describe the time and space complexity of your implementation of `sort_by_length`.
+
+##### !end-question
+##### !placeholder
+
+The time complexity is... The space complexity is...
+
+##### !end-placeholder
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- Question 11 -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: code-snippet
+* language: python3.6
+* id: bJNauF
+* title: Sorting Algorithms
+### !question
+
+Implement `reverse_sentence`.
+
+`reverse_sentence` is a function that takes in a sentence. It returns a string, which has each word in reverse order.
+
+Here are the tests:
+
+```python
+def test_reverse_sentence():
+    assert reverse_sentence("hello, world") == "world hello,"
+
+
+def test_reverse_sentence_long_sentence():
+    test_string = "I'm a better engineer today than I was yesterday."
+    assert reverse_sentence(
+        test_string) == "yesterday. was I than today engineer better a I'm"
+
+
+def test_reverse_sentence_with_empty_string():
+    assert reverse_sentence("") == ""
+
+
+def test_reverse_sentence_checks_none_input():
+    assert reverse_sentence(None) == None
+
+
+def test_reverse_sentence_one_word():
+    assert reverse_sentence("world") == "world"
+```
+
+### !end-question
+### !placeholder
+
+```python
+def reverse_sentence(sentence):
+    pass
+```
+### !end-placeholder
+### !tests
+```python
+import unittest
+from main import *
+
+class TestPython1(unittest.TestCase):
+    def test_reverse_sentence(self):
+        self.assertEqual(reverse_sentence("hello, world"), "world hello,")
+
+    def test_reverse_sentence_long_sentence(self):
+        test_string = "I'm a better engineer today than I was yesterday."
+        self.assertEqual(reverse_sentence(test_string),
+                         "yesterday. was I than today engineer better a I'm")
+
+    def test_reverse_sentence_with_empty_string(self):
+        self.assertEqual(reverse_sentence(""), "")
+
+    # We could use assertNone, but choosing assertEqual
+    # to mimic pytest
+    def test_reverse_sentence_checks_none_input(self):
+        self.assertEqual(reverse_sentence(None), None)
+
+    def test_reverse_sentence_one_word(self):
+        self.assertEqual(reverse_sentence("world"), "world")
+```
+### !end-tests
+### !explanation
+
+An example of a working implementation:
+
+```python
+def reverse_sentence(sentence):
+    if not sentence:
+        return sentence
+    arr = sentence.split()
+    reversed_sentence = []
+    for i in range(len(arr) - 1, -1, -1):
+        reversed_sentence.append(arr[i])
+    return " ".join(reversed_sentence)
+```
+
+### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
