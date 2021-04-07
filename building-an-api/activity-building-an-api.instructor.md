@@ -1,5 +1,13 @@
 # Activity: Building an API
 
+### !callout-warning
+
+## Not Used Anymore
+
+Instead of this activity, a different activity was made. But this activity is already written. It's written to check and make sure that everyone can at least do Hello World. Maybe it's useful somehow.
+
+### !end-callout
+
 ## Goal
 
 Our goal for this activity is:

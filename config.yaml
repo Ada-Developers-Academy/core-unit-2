@@ -2,7 +2,7 @@
 Standards:
   -
     Title: Building An API
-    Description: "Intro to Flask, Flask Setup, Flask Hello Books, Models, Models Setup, Create and Read, Problem Set: Building an API, Activity: Building an API"
+    Description: "Intro to Flask, Flask Setup, Flask Hello Books, Models, Models Setup, Create and Read, Problem Set: Building an API"
     UID: 2804d58bb38264215b9414a111a759d7
     SuccessCriteria:
       - success criteria
@@ -37,5 +37,9 @@ Standards:
         Path: /building-an-api/problem-set-building-an-api.md
       -
         Type: Lesson
+        UID: m9dgD0
+        Path: /building-an-api/activity-solar-system-api-setup-create-read.md
+      -
+        Type: Instructor
         UID: VuVY5h
-        Path: /building-an-api/activity-building-an-api.md
+        Path: /building-an-api/activity-building-an-api.instructor.md
