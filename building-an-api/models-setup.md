@@ -64,6 +64,14 @@ CREATE TABLE book (
 );
 ```
 
+### !callout-warning
+
+## Singular Table Names vs. Plural Table Names
+
+Different situations call for different conventions. In this situation, we suggest naming the table with a singular name, `book`. In other situations, we may have suggested using a plural table name, `books`. If we want to specify that the table name is `books`, there is additional code we need to write (detailed below). However, otherwise, this guide will recommend that we use `book`, and other singular table names with Flask.
+
+### !end-callout
+
 ## Connecting the DB and Flask
 
 The following is one of many formats to help locate our database. We choose this format because it will benefit some future setup instructions we have later.
@@ -167,6 +175,14 @@ Congratulations on defining your first Flask model!
 ## SQLAlchemy Has More Options to Configure
 
 There are plenty of more options for configuring our model. We can define more columns of more types, and even create plenty of great helper functions! Follow your curiosity!
+
+### !end-callout
+
+### !callout-secondary
+
+## Specifying the Table Name
+
+In this model definition, we can specify the name of the table, using the `__tablename__` property. There is more to research here!
 
 ### !end-callout
 
