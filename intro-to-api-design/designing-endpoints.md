@@ -118,9 +118,9 @@ We can combine the concepts from REST and CRUD and describe a formulaic set of A
 
 Eryn's app needs to store every student's name, contact information, courses that they're enrolled in, and classes that they attend.
 
-In this table, each row describes a different endpoint. We can read each row from left to right like, "If a client sends an HTTP request with the `Endpoint HTTP Method` method to the `Endpoint Path` path, the API server will `Endpoint Description`, and respond with `Expected Response`."
+In this table, each row describes a different endpoint. We can read each row from left to right like, "If a client sends an HTTP request with the `HTTP Method` method to the `Endpoint/Path/Route` path, the API server will `Endpoint Description`, and respond with `Expected Response`."
 
-| Endpoint HTTP Method | Endpoint Path                                                        | Request Body                 | Endpoint Description                                                           | Part of CRUD |
+| HTTP Method | <div style="min-width:200px;">Endpoint/Path/Route</div>              | Request Body                 | Endpoint Description                                                           | Part of CRUD |
 | -------------------- | -------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------ | ------------ |
 | `POST`               | `/students`                                                          | New student data             | Creates and saves a new student to the database                                | Create       |
 | `GET`                | `/students`                                                          | -                            | Get the data of all students, in a list                                        | Read         |
@@ -143,7 +143,7 @@ For each example, take notes:
 
 Eryn's app needs to store every instructor's name, contact information, and courses that they manage.
 
-| Endpoint HTTP Method | Endpoint Path                                                                | Request Body                    | Endpoint Description                                                                | Part of CRUD |
+| HTTP Method | <div style="min-width:200px;">Endpoint/Path/Route</div>                      | Request Body                    | Endpoint Description                                                                | Part of CRUD |
 | -------------------- | ---------------------------------------------------------------------------- | ------------------------------- | ----------------------------------------------------------------------------------- | ------------ |
 | `POST`               | `/instructors`                                                               | New instructor data             | Creates and saves a new instructor to the database                                  | Create       |
 | `GET`                | `/instructors`                                                               | -                               | Get the data of all instructors, in a list                                          | Read         |
@@ -156,7 +156,7 @@ Eryn's app needs to store every instructor's name, contact information, and cour
 
 Eryn's app needs to store every course's name, a description, the instructors who manage the course, the students enrolled in the class, and the classes inside the course.
 
-| Endpoint HTTP Method | Endpoint Path                                                     | Request Body                | Endpoint Description                                                         | Part of CRUD |
+| HTTP Method | <div style="min-width:200px;">Endpoint/Path/Route</div>           | Request Body                | Endpoint Description                                                         | Part of CRUD |
 | -------------------- | ----------------------------------------------------------------- | --------------------------- | ---------------------------------------------------------------------------- | ------------ |
 | `POST`               | `/courses`                                                        | New course data             | Creates and saves a new course to the database                               | Create       |
 | `GET`                | `/courses`                                                        | -                           | Get the data of all courses, in a list                                       | Read         |
@@ -169,7 +169,7 @@ Eryn's app needs to store every course's name, a description, the instructors wh
 
 Eryn's app needs to store every class's name, a description, the course that the class belongs to, the date and time of the class, and every student who attended it.
 
-| Endpoint HTTP Method | Endpoint Path                                                    | Request Body               | Endpoint Description                                                        | Part of CRUD |
+| HTTP Method | <div style="min-width:200px;">Endpoint/Path/Route</div>          | Request Body               | Endpoint Description                                                        | Part of CRUD |
 | -------------------- | ---------------------------------------------------------------- | -------------------------- | --------------------------------------------------------------------------- | ------------ |
 | `POST`               | `/classes`                                                       | New class data             | Creates and saves a new class to the database                               | Create       |
 | `GET`                | `/classes`                                                       | -                          | Get the data of all classes, in a list                                      | Read         |

@@ -20,12 +20,12 @@ We recommend taking this material and learning it on the definition level, and a
 
 ## Vocabulary and Synonyms
 
-| Vocab | Definition | Synonyms | How to Use in a Sentence |
-| ----- | ---------- | -------- | ------------------------ |
-Client | Within the client-server model, a computer who sends a request for a resource to a server, and receives back a response | - | "The client needs the data about news articles, so it will request that data from the server"
-Server | Within the client-server model, a computer who receives requests for a resource from a client, and sends back a response | - | "The server needs to respond to the client with their requested resources. The server will give back data about news articles."
-Web Server | Within the client-server model, a server that is specifically connected to a client over the web | - | "The web browser needs to get news article data, but it seems like the web servers are offline and down, and we can't establish a connection."
-HTTP | A specific protocol that determines how a clients and web servers communicate | - | "The requests and responses between a web browser and web server must follow HTTP. They are HTTP requests and HTTP responses."
+| Vocab      | Definition                                                                                                               | How to Use in a Sentence                                                                                                                       |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| Client     | Within the client-server model, a computer who sends a request for a resource to a server, and receives back a response  | "The client needs the data about news articles, so it will request that data from the server"                                                  |
+| Server     | Within the client-server model, a computer who receives requests for a resource from a client, and sends back a response | "The server needs to respond to the client with their requested resources. The server will give back data about news articles."                |
+| Web Server | Within the client-server model, a server that is specifically connected to a client over the web                         | "The web browser needs to get news article data, but it seems like the web servers are offline and down, and we can't establish a connection." |
+| HTTP       | A specific protocol that determines how a clients and web servers communicate                                            | "The requests and responses between a web browser and web server must follow HTTP. They are HTTP requests and HTTP responses."                 |
 
 ## Client-Server Model
 

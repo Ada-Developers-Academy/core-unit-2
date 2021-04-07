@@ -99,7 +99,6 @@ Subjects that are covered in later lessons:
 
 - Adding, deleting, modifying columns in a table
   - For now, just make tables with all the right columns, and drop the table if you need to
-- Database seeds
 - Joins/relationships/composition
 - More practice on `SELECT` and cool `WHERE` stuff
   - ordering
@@ -112,8 +111,7 @@ Everything else will probably **not** be covered, so feel free to be confident a
 - `WHERE` with `IN`, `BETWEEN`, `LIKE`
   - aka selecting within a range/array
   - or selecting with patterns
-- `OFFSET`, `EXISTS`, `ALL`, `ANY`
-  - aka "start searching by this offset"
+- `EXISTS`, `ALL`, `ANY`
   - get if something exists
   - get if all or any of the condition are true
 - `JSON` as an accepted data type

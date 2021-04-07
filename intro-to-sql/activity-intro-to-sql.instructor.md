@@ -6,6 +6,24 @@ This REAL goal of this activity is to check that everyone's tools are working.
 
 CSV: I provided a CSV file for them because otherwise it'd suck to type all of it out.
 
+- [Absolute link of it hosted on the `main` branch on the core repo](https://raw.githubusercontent.com/Ada-Developers-Academy/core-unit-2/main/assets/intro-to-sql_activity-intro-to-sql_media.csv)
+
+Here it is in raw text:
+
+```
+category,title,creator,publication_year,description_text
+book,Red Java,Jewel Koss,1971,Nisi ducimus reprehenderit molestiae.
+book,Postmodern Been,Glen Senger,1929,Dolore repellendus doloribus maiores.
+movie,American Select,Xuan Pouros,1997,Corporis id voluptatem fuga.
+movie,Wake-up Utopia,Buena Shanahan,1930,Fuga corrupti ducimus animi.
+movie,Summer Bean,Carolina Pfeffer,1997,Nesciunt consequatur reiciendis sequi.
+album,American Cake,Asley Durgan,1954,Vero voluptates voluptatibus qui.
+movie,Chocolate Forrester,Dorthey Cormier,1957,Velit earum quo voluptates.
+album,Spilt Cowboy,Shaun Nikolaus,1965,Esse quia et dolor.
+movie,Goodbye Forrester,Sherwood Toy PhD,1999,Ipsam velit mollitia quo.
+book,Blacktop Equinox,Man Von,2017,Rerum est labore accusamus.
+```
+
 For your benefit, here are the steps you can use to copy and paste for Part 2. Students may have different column names and data types.
 
 ```sql

@@ -6,7 +6,7 @@ The goal of this lesson is to give clear instructions about how to setup your wo
 
 This lesson should be read as a checklist of steps to follow once.
 
-Afterwards, this lesson can be helpful resource.
+Afterwards, this lesson can be a helpful resource.
 
 ## Learning Goals
 

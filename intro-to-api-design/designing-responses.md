@@ -78,14 +78,14 @@ For every situation, it's a good idea to check the [list of standard HTTP status
 
 Here is a list of the most common HTTP status codes.
 
-| Status Code | Status Message          | Meaning                                                                                                         |
-| ----------- | ----------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `200`       | `OK`                    | The request has succeeded. Implies that the fetched resource is in the response body.                           |
-| `201`       | `Created`               | The request has succeeded and a new resource has been created as a result                                       |
-| `301`       | `Moved Permanently`     | The URL of the requested resource has been changed permanently                                                  |
-| `400`       | `Bad Request`           | The server could not understand the request due to invalid syntax.                                              |
-| `404`       | `Not Found`             | The server can not find the requested resource, whether the URL is invalid, or that the resource doesn't exist. |
-| `500`       | `Internal Server Error` | The server has encountered a situation it doesn't know how to handle                                            |
+| Status Code | <div style="min-width:150px;">Status Message</div> | Meaning                                                                                                         |
+| ----------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `200`       | `OK`                                               | The request has succeeded. Implies that the fetched resource is in the response body.                           |
+| `201`       | `Created`                                          | The request has succeeded and a new resource has been created as a result                                       |
+| `301`       | `Moved Permanently`                                | The URL of the requested resource has been changed permanently                                                  |
+| `400`       | `Bad Request`                                      | The server could not understand the request due to invalid syntax.                                              |
+| `404`       | `Not Found`                                        | The server can not find the requested resource, whether the URL is invalid, or that the resource doesn't exist. |
+| `500`       | `Internal Server Error`                            | The server has encountered a situation it doesn't know how to handle                                            |
 
 ## The Shape of the JSON Response Body
 

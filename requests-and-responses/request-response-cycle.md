@@ -1,4 +1,4 @@
-# Request/Response Cycle
+# Request-Response Cycle
 
 ## Learning Goals
 
@@ -21,7 +21,7 @@ Therefore, when we start _building_ web apps, we'll need a slightly deeper under
 | Vocab             | Definition                                                                  | Synonyms                                     | How to Use in a Sentence                                                                                                                              |
 | ----------------- | --------------------------------------------------------------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Sending a request | The act of sending an HTTP request from a client to a server                | Calling an API, making a request, requesting | "We make a request to the Yelp API to request restaurant review data," "After logging in, we need to call the Yelp API to get restaurant review data" |
-| Endpoint          | Another name for the "path" of a resource, usually in the context of an API | Path, request URL                            | "Right now we're sending a `GET` request to the `/blog` endpoint"                                                                                     |
+| Endpoint          | Another name for the "path" of a resource, usually in the context of an API | Path, request URL, route                     | "Right now we're sending a `GET` request to the `/blog` endpoint"                                                                                     |
 
 ## Clients Make Requests, Servers Give Responses
 
@@ -71,7 +71,7 @@ Examples of HTTP methods in requests include:
 
 The request URL or _path_ in an HTTP request is the path to a resource hosted online.
 
-Again, the requested resource could be a website, aPDF file, an image file, or something else.
+Again, the requested resource could be a website, a PDF file, an image file, or something else.
 
 Examples:
 
@@ -85,7 +85,7 @@ Examples:
 
 ### Endpoint
 
-When talking about APIs, an **endpoint** is another name for a _path_ that expects API requests. Consider these examples:
+When talking about APIs, an **endpoint** is another name for a _path_ or _route_ that expects API requests. Consider these examples:
 
 | Full Path                                      | Abbreviated Path/Endpoint | How to Use in a Sentence                                              |
 | ---------------------------------------------- | ------------------------- | --------------------------------------------------------------------- |
@@ -118,11 +118,11 @@ http://fake.org?example_1=value_1&example_2&value_2
 
 Query params can be used for anything. However, query params are often used to specify a request. Here are some common examples:
 
-| Example use case                                                                                                                                                           | Example key-value pair(s)     | Example full request URL                       |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | ---------------------------------------------- |
-| While online shopping, wanting to go to the second page of products                                                                                                        | `page`: `2`                   | `http://fake.org/products?page=2`              |
-| While looking up apartments, condos, and houses, wanting to limit the number of listings to 50, and wanting to sort them by descending price                               | `limit`: `50`, `sort`: `desc` | `http://fake.org/listings?limit=50&sort=desc`  |
-| After clicking an advertisement in an email, the request can send information about the _referral_ of this link, and signify that the user was referred here through email | `ref`: `email`                | `http://fake.org/advertised-product?ref=email` |
+| Example use case                                                                                                                                                           | Example key-value pair(s)     | <div style="min-width:250px;">request URL</div> |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- | ----------------------------------------------- |
+| While online shopping, wanting to go to the second page of products                                                                                                        | `page`: `2`                   | `http://fake.org/products?page=2`               |
+| While looking up apartments, condos, and houses, wanting to limit the number of listings to 50, and wanting to sort them by descending price                               | `limit`: `50`, `sort`: `desc` | `http://fake.org/listings?limit=50&sort=desc`   |
+| After clicking an advertisement in an email, the request can send information about the _referral_ of this link, and signify that the user was referred here through email | `ref`: `email`                | `http://fake.org/advertised-product?ref=email`  |
 
 ### Headers
 
@@ -132,11 +132,11 @@ HTTP headers are most useful when giving information for how the client and serv
 
 Here are some example headers:
 
-| Example Header  | Purpose of Header                                                                           | Example Values           |
-| --------------- | ------------------------------------------------------------------------------------------- | ------------------------ |
-| `User-Agent`    | Describes the client making the request on behalf of the end-user (usually the web browser) | `Mozilla/5.0`            |
-| `Accept`        | Describes the types of contents that the client is able to understand                       | `text/html`, `image/*`   |
-| `Cache-Control` | Describes instructions for caching this request                                             | `max-age=0`, `no-cache`, |
+| Example Header  | Purpose of Header                                                                           | <div style="min-width:150px;">Example Values</div> |
+| --------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| `User-Agent`    | Describes the client making the request on behalf of the end-user (usually the web browser) | `Mozilla/5.0`                                      |
+| `Accept`        | Describes the types of contents that the client is able to understand                       | `text/html`, `image/*`                             |
+| `Cache-Control` | Describes instructions for caching this request                                             | `max-age=0`, `no-cache`,                           |
 
 ### Optional Bodies
 
@@ -178,13 +178,13 @@ Status codes are three digit numbers. The numbers, namely the first digit, indic
 
 Here is a list of the most common HTTP status codes.
 
-| Status Code | Status Message          | Meaning                                                                                                         |
-| ----------- | ----------------------- | --------------------------------------------------------------------------------------------------------------- |
-| `200`       | `OK`                    | The request has succeeded. Implies that the fetched resource is in the response body.                           |
-| `201`       | `Created`               | The request has succeeded and a new resource has been created as a result                                       |
-| `301`       | `Moved Permanently`     | The URL of the requested resource has been changed permanently                                                  |
-| `404`       | `Not Found`             | The server can not find the requested resource, whether the URL is invalid, or that the resource doesn't exist. |
-| `500`       | `Internal Server Error` | The server has encountered a situation it doesn't know how to handle                                            |
+| Status Code | <div style="min-width:150px;">Status Message</div> | Meaning                                                                                                         |
+| ----------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `200`       | `OK`                                               | The request has succeeded. Implies that the fetched resource is in the response body.                           |
+| `201`       | `Created`                                          | The request has succeeded and a new resource has been created as a result                                       |
+| `301`       | `Moved Permanently`                                | The URL of the requested resource has been changed permanently                                                  |
+| `404`       | `Not Found`                                        | The server can not find the requested resource, whether the URL is invalid, or that the resource doesn't exist. |
+| `500`       | `Internal Server Error`                            | The server has encountered a situation it doesn't know how to handle                                            |
 
 ### !callout-secondary
 
@@ -225,9 +225,9 @@ Imagine that the website tubeyou.com is online, alive, and kicking. The server s
 
 2. Now, imagine Ari is editing the title of a video they created and uploaded. When they submit the web form to update the title, the browser makes this request.
 
-| Request Method | Request Path                    | Request Body                                                                                 |
-| -------------- | ------------------------------- | -------------------------------------------------------------------------------------------- |
-| `PATCH`        | `http://tubeyou.com/aris-video` | JSON that includes the new title of the video: `{ "new_title": "Ari's Updated Video Title"}` |
+| Request Method | <div style="min-width:200px;">Request Path</div> | Request Body                                                                                 |
+| -------------- | ------------------------------------------------ | -------------------------------------------------------------------------------------------- |
+| `PATCH`        | `http://tubeyou.com/aris-video`                  | JSON that includes the new title of the video: `{ "new_title": "Ari's Updated Video Title"}` |
 
 tubeyou.com wants to respond that the update was successful.
 
@@ -254,7 +254,7 @@ The server needs to respond that there is no resource found at that path that it
 ### !challenge
 * type: paragraph
 * id: LZR9GV
-* title: NameOfLesson
+* title: Request-Response Cycle
 ##### !question
 
 What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
