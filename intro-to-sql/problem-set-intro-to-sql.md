@@ -8,7 +8,7 @@ We are providing a sample database to use as you practice writing SQL queries.
 
 To use the sample database, first download the following SQL file by right-clicking on the file and saving it to your computer.
 
-- [Starting Database]() - TODO ADD LINK
+- [Starting Database](https://raw.githubusercontent.com/Ada-Developers-Academy/core-unit-2/main/intro-to-sql/sql-fixtures/intro-to-sql-problemset.sql)
 
 Then import the file:
 
