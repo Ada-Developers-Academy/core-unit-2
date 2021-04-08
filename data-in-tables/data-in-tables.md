@@ -75,7 +75,9 @@ As programmers, we are particularly interested with interacting with tables by:
 - Reading records
 - Updating records
 - Deleting records
+
 Data storage systems typically implement these operations at minimum. We can remember these foundational operations as "CRUD."
+
 ### Reading Records From a Table
 
 Consider in slow motion what it means to read a record from a table. 🦥
