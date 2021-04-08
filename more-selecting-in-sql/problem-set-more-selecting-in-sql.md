@@ -55,6 +55,19 @@ AND light_level = 'partial shade';
 
 ##### !end-tests
 
+##### !explanation
+
+This is an example solution:
+
+```sql
+SELECT name
+FROM flowers
+WHERE soil_type = 'acidic'
+AND light_level = 'partial shade';
+```
+
+##### !end-explanation
+
 ### !end-challenge
 <!-- prettier-ignore-end -->
 <!-- ======================= END CHALLENGE ======================= -->
@@ -108,6 +121,19 @@ OR season = 'summer';
 
 ##### !end-tests
 
+##### !explanation
+
+This is an example solution:
+
+```sql
+SELECT name
+FROM flowers
+WHERE season = 'spring'
+OR season = 'summer';
+```
+
+##### !end-explanation
+
 ### !end-challenge
 <!-- prettier-ignore-end -->
 <!-- ======================= END CHALLENGE ======================= -->
@@ -158,6 +184,18 @@ ORDER BY height_in_cm DESC;
 ```
 
 ##### !end-tests
+
+##### !explanation
+
+This is an example solution:
+
+```sql
+SELECT name, height_in_cm
+FROM students
+ORDER BY height_in_cm DESC;
+```
+
+##### !end-explanation
 
 ### !end-challenge
 <!-- prettier-ignore-end -->
@@ -211,6 +249,19 @@ LIMIT 1;
 
 ##### !end-tests
 
+##### !explanation
+
+This is an example solution:
+
+```sql
+SELECT name, age
+FROM students
+ORDER BY age
+LIMIT 1;
+```
+
+##### !end-explanation
+
 ### !end-challenge
 <!-- prettier-ignore-end -->
 <!-- ======================= END CHALLENGE ======================= -->
@@ -262,6 +313,19 @@ LIMIT 5;
 ```
 
 ##### !end-tests
+
+##### !explanation
+
+This is an example solution:
+
+```sql
+SELECT name, population
+FROM states
+ORDER BY population
+LIMIT 5;
+```
+
+##### !end-explanation
 
 ### !end-challenge
 <!-- prettier-ignore-end -->
@@ -315,6 +379,20 @@ OFFSET 2;
 ```
 
 ##### !end-tests
+
+##### !explanation
+
+This is an example solution:
+
+```sql
+SELECT name, area_sq_mi
+FROM states
+ORDER BY area_sq_mi DESC
+LIMIT 1
+OFFSET 2;
+```
+
+##### !end-explanation
 
 ### !end-challenge
 <!-- prettier-ignore-end -->
