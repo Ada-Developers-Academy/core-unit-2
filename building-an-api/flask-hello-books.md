@@ -65,7 +65,6 @@ Clone the repo, `cd` into it, and open this project into your favorite text edit
 ├── app
 │   ├── __init__.py
 │   └── routes.py
-├── app.py
 └── requirements.txt
 ```
 
