@@ -194,10 +194,10 @@ The `text` data type is used for strings. What is `varchar`? The `varchar` data 
 
 In our micro-loan system, imagine the following two records in our `borrowers` table:
 
-| `full_name` (`varchar`) | `address` (`varchar`)                          |
-| ----------------------- | ---------------------------------------------- |
-| `Sabrina C. Hunter`     | `4654 Leisure Lane, San Luis Obispo, CA 93401` |
-| `Sabrina C. Hunter`     | `615 Radio Park Drive, Augusta, GA 30901`      |
+| `full_name` (`text`) | `address` (`text`)                             |
+| -------------------- | ---------------------------------------------- |
+| `Sabrina C. Hunter`  | `4654 Leisure Lane, San Luis Obispo, CA 93401` |
+| `Sabrina C. Hunter`  | `615 Radio Park Drive, Augusta, GA 30901`      |
 
 There are two borrowers named `Sabrina C. Hunter`. When our webapp needs to pull up Sabrina's address, which address gets pulled up?
 
