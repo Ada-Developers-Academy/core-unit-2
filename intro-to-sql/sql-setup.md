@@ -1,5 +1,7 @@
 # SQL Setup
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=d173c588-9ead-410a-ac5a-ad0500304e42&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goal
 
 The goal of this lesson is to give clear instructions about how to setup your work environment so you can read and write SQL and work with Postgres databases.
