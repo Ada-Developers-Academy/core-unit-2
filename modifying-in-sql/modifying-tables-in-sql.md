@@ -1,5 +1,7 @@
 # Modifying Tables in SQL
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=22059cfb-a976-4a8a-9cb3-ad0801101e6c&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 - Practice modifying table columns
