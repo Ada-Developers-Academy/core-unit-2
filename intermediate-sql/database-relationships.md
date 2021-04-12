@@ -1,5 +1,7 @@
 # Database Relationships
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=175a6822-42d6-47ad-8c0f-ad08006b50ac&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 - Explain how relational databases establish relationships
