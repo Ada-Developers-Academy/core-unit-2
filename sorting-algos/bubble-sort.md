@@ -6,92 +6,160 @@
 
 ## Overview
 
-The bubble sort algorithm might look like how a lot of people sort things.
+The bubble sort algorithm works by repeatedly looping through a list of data. With each pass through the list, the "next" sorted value will "bubble up" to its proper place in the list.
 
-Bubble sort...
+### Detailed Explanation
 
-- Repeatedly steps through the list to be sorted
-- Compares each pair of adjacent items in the list
-  - Swaps the adjacent items if they are in the wrong order
+Bubble sort works by repeatedly
+
+- Stepping through the list to be sorted
+- Comparing each pair of adjacent items, and
+- Swapping the adjacent items if they are in the wrong order
 
 As the algorithm proceeds, the largest element gets _bubbled_ to the top of the array after each iteration through the outer loop.
 
 The algorithm repeats this process until it makes a pass all the way through the list.
 
-### Detailed Explanation
+![Bubble sort example. The list starts with 9, 6, 4, 8, 3. 9 bubbles all the way to the end. 6, 4, 8, 3, 9. 6 starts to bubble, but hits 8 which bubbles to its spot. 4, 6, 3, 8, 9. 4 starts to bubble, but immediately hits 6, which bubbles to its spot. 4, 3, 6, 8, 9. 4 bubbles to its spot. 3, 4, 6, 8, 9. Only one unsorted item remains, so the list is sorted.](../assets/sorting-algos_bubble-sort_small-example.png)  
+_Fig. Steps that bubble sort takes when sorting a list containing 9, 6, 4, 8, 3._
 
 Here is a more detailed explanation of the bubble sort algorithm:
 
-- Start a variable `i` at `0`
-- Create an outer loop that loops while `i` is smaller than the length of the array - 1
-  - Start a variable `j` at `0`
-  - Create an inner loop that loops while `j` is smaller than `len(array) - i - 1`
-    - Compare the items at index `j` and `j+1`. If they're out of order:
-      - Swap the items at `array[j]` and `array[j+1]` using a temporary variable, `temp`
-    - Increment `j`
-  - Increment `i`
+- For each pass, start from one end of the list.
+- Compare each pair of adjacent items.
+- Swap the adjacent items if they are out of order.
+- Continue to the end of the list, checking each pair and swapping as needed.
+- Repeat from the beginning until we make an entire pass through the list without swapping any items. This means all the items are in the right order, and the list is sorted.
+
+We can make a few small optimizations to this process. Both are applied in the diagram above.
+
+- We can consider the length of the unsorted list to shorten by one with each pass. After each pass, one more item is guaranteed to be in the proper order at the end of the list.
+- If we track the unsorted list length, we never have to perform the final bubble pass (when the unsorted list has one item). There is nothing else left unsorted with which to swap that item!
 
 ## Example
 
 Consider the initial unsorted array `[99, 45, 35, 40, 16, 50, 11, 7, 90]`.
 
-This table demonstrates how the bubble sort algorithm works.
+This table shows the first pass through the array, demonstrating how the bubble sort algorithm performs the comparison and swapping of adjacent values from one end to the other.
 
-| Iteration | <div style="min-width:400px;">Array</div> | What is happening?                                                                                                         |
-| --------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| 1.        | [**99, 45**, 35, 40, 16, 50, 11, 7, 90]   | The pair of adjacent items is **99** and **45**. The algorithm compares them. 99 is larger, and should be placed after 45. |
-| 2.        | [45, **99, 35**, 40, 16, 50, 11, 7, 90]   | The adjacent items are **99** and **35**. The algorithm compares them. 99 is larger, and should be placed after 35.        |
-| 3.        | [45, 35, **99, 40**, 16, 50, 11, 7, 90]   | The algorithm compares **99** and **40**, and swaps their positions.                                                       |
-| 4.        | [45, 35, 40, **99, 16**, 50, 11, 7, 90]   | The algorithm compares **99** and **16**, and swaps their positions.                                                       |
-| 5.        | [45, 35, 40, 16, **99, 50**, 11, 7, 90]   | The algorithm compares **99** and **50**, and swaps their positions.                                                       |
-| 6.        | [45, 35, 40, 16, 50, **99, 11**, 7, 90]   | The algorithm compares and swaps **99** and **11**.                                                                        |
-| 7.        | [45, 35, 40, 16, 50, 11, **99, 7**, 90]   | The algorithm compares and swaps **99** and **7**.                                                                         |
-| 8.        | [45, 35, 40, 16, 50, 11, 7, **99, 90**]   | The algorithm compares and swaps **99** and **90**.                                                                        |
+| <div style="min-width:300px;">Array</div> | What is happening?                                                                                                         |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| [**99, 45**, 35, 40, 16, 50, 11, 7, 90]   | The pair of adjacent items is **99** and **45**. The algorithm compares them. 99 is larger, and should be placed after 45. |
+| [45, **99, 35**, 40, 16, 50, 11, 7, 90]   | The adjacent items are **99** and **35**. The algorithm compares them. 99 is larger, and should be placed after 35.        |
+| [45, 35, **99, 40**, 16, 50, 11, 7, 90]   | The algorithm compares **99** and **40**, and swaps their positions.                                                       |
+| [45, 35, 40, **99, 16**, 50, 11, 7, 90]   | The algorithm compares **99** and **16**, and swaps their positions.                                                       |
+| [45, 35, 40, 16, **99, 50**, 11, 7, 90]   | The algorithm compares **99** and **50**, and swaps their positions.                                                       |
+| [45, 35, 40, 16, 50, **99, 11**, 7, 90]   | The algorithm compares and swaps **99** and **11**.                                                                        |
+| [45, 35, 40, 16, 50, 11, **99, 7**, 90]   | The algorithm compares and swaps **99** and **7**.                                                                         |
+| [45, 35, 40, 16, 50, 11, 7, **99, 90**]   | The algorithm compares and swaps **99** and **90**.                                                                        |
 
-As you can see, the largest element, 99 gets bubbled to the top.
+Because the list is still relatively short, we (as humans) can easily pick out 99 as being the largest item. We should expect 99 to be moved to the last position in the list after the first pass. We see that by carefully performing the side-by-side checks and swaps that this is indeed the outcome we observe.
 
-The bubble sort algorithm continues:
+The bubble sort algorithm continues with pass two:
 
-| Iteration | <div style="min-width:350px;">Array</div>   | What is happening?                                                                                         |
-| --------- | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| 9.        | [**45**, **35**, 40, 16, 50, 11, 7, 90, 99] | 45 and 35 are compared, and must swap.                                                                     |
-| 10.       | [35, **45**, **40**, 16, 50, 11, 7, 90, 99] |
-| 11.       | [35, 40, **45**, **16**, 50, 11, 7, 90, 99] |
-| 12.       | [35, 40, 16, **45**, **50**, 11, 7, 90, 99] | 45 and 50 are compared, and don't swap.                                                                    |
-| 13.       | [35, 40, 16, 45, **50**, **11**, 7, 90, 99] |
-| 14.       | [35, 40, 16, 45, 11, **50**, **7**, 90, 99] |
-| 15.       | [35, 40, 16, 45, 11, 7, **50**, **90**, 99] | 50 and 90 are compared, and don't swap.                                                                    |
-| -         | -                                           | We do not compare 90 and 99,. In the bubble sort algorithm, the range of items to check shrinks each loop. |
+| <div style="min-width:300px;">Array</div>   | What is happening?                                                                                                                                                                                                                                           |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [**45**, **35**, 40, 16, 50, 11, 7, 90, 99] | 45 and 35 are compared, and must swap.                                                                                                                                                                                                                       |
+| [35, **45**, **40**, 16, 50, 11, 7, 90, 99] | 45 continues to win a number of comparisons, so continues to bubble up.                                                                                                                                                                                      |
+| [35, 40, **45**, **16**, 50, 11, 7, 90, 99] |
+| [35, 40, 16, **45**, **50**, 11, 7, 90, 99] | 45 and 50 are compared, but since 45 is less than 50, they are not swapped.                                                                                                                                                                                  |
+| [35, 40, 16, 45, **50**, **11**, 7, 90, 99] | The next pair check resumes with 50 being compared to 11. 50 is larger, so they are swapped.                                                                                                                                                                 |
+| [35, 40, 16, 45, 11, **50**, **7**, 90, 99] | 50 continues to be compared, swapping as it wins.                                                                                                                                                                                                            |
+| [35, 40, 16, 45, 11, 7, **50**, **90**, 99] | 50 and 90 are compared, and don't swap, since they are already in the proper order.                                                                                                                                                                          |
+| -                                           | We do not compare 90 and 99. As pointed out, we can consider 99 as being in an already sorted part of the list. We can think of the unsorted portion as shortening by one with each additional pass, which reduces the total number of comparisons required. |
 
-We can describe even one more whole loop:
+Let's step through one more pass—the third pass—in detail. We will see that this will _not_ be the final pass, as bubble sort will continue until no swaps are made.
 
-| Iteration | Array                                       |
-| --------- | ------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| 16.       | [**35**, **40**, 16, 45, 11, 7, 50, 90, 99] |
-| 17.       | [35, **40**, **16**, 45, 11, 7, 50, 90, 99] |
-| 18.       | [35, 16, **40**, **45**, 11, 7, 50, 90, 99] |
-| 19.       | [35, 16, 40, **45**, **11**, 7, 50, 90, 99] |
-| 20.       | [35, 16, 40, 11, **45**, **7**, 50, 90, 99] |
-| 22.       | [35, 16, 40, 11, 7, **45**, **50**, 90, 99] |
-| -         | -                                           | We do not compare 50 and 90. In the bubble sort algorithm, the range of items to check shrinks each loop. |
+| <div style="min-width:300px;">Array</div>   | What is happening?                                                                                                                                                  |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [**35**, **40**, 16, 45, 11, 7, 50, 90, 99] | We perform pairwise comparisons as before. Swapping as needed. 40 is the initial winner.                                                                            |
+| [35, **40**, **16**, 45, 11, 7, 50, 90, 99] |
+| [35, 16, **40**, **45**, 11, 7, 50, 90, 99] | 45 starts winning.                                                                                                                                                  |
+| [35, 16, 40, **45**, **11**, 7, 50, 90, 99] |
+| [35, 16, 40, 11, **45**, **7**, 50, 90, 99] |
+| [35, 16, 40, 11, 7, **45**, **50**, 90, 99] | 50 wins.                                                                                                                                                            |
+| -                                           | We do not compare 50 and 90. We think of the unsorted list as having shortened again. We do not need to compare 50 to the values in the sorted region of the array. |
 
-The algorithm continues!
+Since swaps were still made during this pass, bubble sort will continue to run.
 
-## Big(O) Complexity
+<br />
 
-The time complexity of Bubble sort is _O(n<sup>2</sup>)_. We can conclude this by considering:
+<details style="max-width: 700px; margin: auto;">
+  <summary>
+      Click to view a summary of the remaining passes.
+  </summary>
 
-- The inner most swap conditional statement is _O(1)_
-- The inner loop runs _i_ times i.e. _O(i)_ time complexity
-- The outer loop runs from _i_ = _0_ to _n_
+| Pass 4                                      |
+| ------------------------------------------- |
+| [**35**, **16**, 40, 11, 7, 45, 50, 90, 99] |
+| [16, **35**, **40**, 11, 7, 45, 50, 90, 99] |
+| [16, 35, **40**, **11**, 7, 45, 50, 90, 99] |
+| [16, 35, 11, **40**, **7**, 45, 50, 90, 99] |
+| [16, 35, 11, 7, **40**, **45**, 50, 90, 99] |
 
-Overall, the inner loop runs _n-1_ times during the first iteration of the outer loop, _n-2_ times during the second iteration through the outer loop, and so on. i.e. _n-1 + n-2 + n-3 + ... + 3 + 2 + 1_ = _n(n-1)/2_ = _O(n<sup>2</sup>)_
+| Pass 5                                      |
+| ------------------------------------------- |
+| [**16**, **35**, 11, 7, 40, 45, 50, 90, 99] |
+| [16, **35**, **11**, 7, 40, 45, 50, 90, 99] |
+| [16, 11, **35**, **7**, 40, 45, 50, 90, 99] |
+| [16, 11, 7, **35**, **40**, 45, 50, 90, 99] |
+
+| Pass 6                                      |
+| ------------------------------------------- |
+| [**16**, **11**, 7, 35, 40, 45, 50, 90, 99] |
+| [11, **16**, **7**, 35, 40, 45, 50, 90, 99] |
+| [11, 7, **16**, **35**, 40, 45, 50, 90, 99] |
+
+| Pass 7                                      |
+| ------------------------------------------- |
+| [**11**, **7**, 16, 35, 40, 45, 50, 90, 99] |
+| [7, **11**, **16**, 35, 40, 45, 50, 90, 99] |
+
+| Pass 8                                      |
+| ------------------------------------------- |
+| [**7**, **11**, 16, 35, 40, 45, 50, 90, 99] |
+
+Notice that for our nine value list, eight passes through the data were required, and that each pass checked one fewer set of pairs than the previous pass.
+
+</details>
+
+## Big O Complexity
+
+There are two basic operations in which we are interested when analyzing sorting algorithms:
+
+1. the number of comparisons
+1. the number of swaps
+
+In our big O analysis of sorting algorithms, we will typically focus on the number of comparisons. In some languages, the number of swaps will also be important and could provided a reason to favor an algorithm with fewer swaps over an algorithm with many swaps.
+
+Also, recall that big O analysis considers the worst case for an algorithm! Although it's possible for bubble sort to finish after a single pass (_O(n)_) if the array happened to be sorted already, we are less interested in that situation.
+
+Noticing best case performance can be useful if we are choosing between multiple algorithms that otherwise have the same complexity, or if we have forehand knowledge about the data with which we will be working.
+
+In the worst case, we would need to perform the check and swap with each pair, and everything would be out of order so that we don't finish early. This would require about as many passes through the array as there are values.
+
+This gives us a time complexity for bubble sort of _O(n<sup>2</sup>)_, where _n_ is the array length.
+
+We conclude this by considering:
+
+- The outer loop (overall number of passes) must run _n_ times
+- The inner loop (performing comparisons and swapping) must also run _n_ times
+
+We can even be a little more precise with our counting.
+
+The inner loop runs _n-1_ times during the first iteration of the outer loop, _n-2_ times during the second iteration through the outer loop, and so on. i.e. _n-1 + n-2 + n-3 + ... + 3 + 2 + 1_.
+
+There is a mathematical identity which states this summation is the same as _n(n-1)/2_. When multiplied out this results in _1⁄2n<sup>2</sup>-1⁄2n_, for _O(n<sup>2</sup>)_.
+
+Notice that _n(n-1)/2_ does _not_ equal _n<sup>2</sup>_. Recall that when performing big O analysis, we are interested in the rate of growth in the algorithm rather than the exact number of operations. The growth rate will be dominated by the largest term in the equation.
+
+After multiplying out the expression, the largest term is _1⁄2n<sup>2</sup>_. After dropping the constant, this allows us to say that bubble sort is _O(n<sup>2</sup>)_.
 
 ### !callout-info
 
 ## Mathematical Proofs Out of Scope
 
-The mathematical proof is out of scope for our discussion. However, there are great resources online that explain the math in-depth!
+In general, full mathematical proofs for the algorithms we discuss are out of scope for the curriculum. We will often apply analyses that are more intuitive than rigorous. However, there are great resources online that explain the math in-depth! Follow your curiosity!
 
 ### !end-callout
 
@@ -117,16 +185,26 @@ def bubble_sort(array):
         i += 1
 ```
 
-We should compare this code with our detailed explanation:
+Compare this code with this detailed explanation of the algorithm:
 
 - Start a variable `i` at `0`
-- Create an outer loop that loops while `i` is smaller than the length of the array - 1
+- Create an outer loop that loops while `i` is smaller than the length of the `array - 1` since we don't need to bubble the final value
   - Start a variable `j` at `0`
-  - Create an inner loop that loops while `j` is smaller than `len(array) - i - 1`
+  - Create an inner loop that loops while `j` is smaller than `len(array) - i - 1` since we want to avoid the `i` sorted elements at the end, and we need to leave one extra value for the pairwise comparisons
     - Compare the items at index `j` and `j+1`. If they're out of order:
       - Swap the items at `array[j]` and `array[j+1]` using a temporary variable, `temp`
     - Increment `j`
+  - Repeat until `j` reaches its limit
   - Increment `i`
+- Repeat until `i` reaches its limit
+
+This implementation does _not_ explicitly track whether a swap has been made (which could allow early termination). But when we get down to a single item in the unsorted portion, this is implicitly true, as there is nothing left with which we can compare.
+
+This implementation sorts the array in-place. That is, it uses only a small amount of constant extra memory (just a few local variables), and the original array itself is updated. Because the original array is modified, no return statement is needed.
+
+Note that the presented implementation used a temporary variable to perform the swap. This is a common pattern in languages that don't support multiple values in a single assignment. This implementation has been written in a general manner to emphasize that the algorithm—the steps for performing bubble sort—are not specific to any one language.
+
+We will follow this same style when discussing other sorting algorithms. But we should feel free to modify the presented implementation to make better use of language-specific features!
 
 ## Check for Understanding
 
