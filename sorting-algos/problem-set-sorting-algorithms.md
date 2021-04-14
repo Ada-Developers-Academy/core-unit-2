@@ -278,7 +278,7 @@ There's nothing like getting familiar with sorting algorithms than to implement 
 
 Without using Python's `sort()` method (or anything like that), implement `sort_by_length` based on bubble sort, selection sort, or insertion sort.
 
-`sort_by_length` is a function that takes in one string. It returns a list of strings, where the items are the words from the string, ordered by length. The words with shorter length are placed before words with longer length.
+`sort_by_length` is a function that takes in one string. It returns a list of strings, where the items are the words from the string, ordered by length. Words with shorter length are placed before words with longer length.
 
 When words are tied for length, maintain the order they appeared in the original string.
 
@@ -308,7 +308,8 @@ def test_sort_by_length_equal_length_maintains_order():
 ### !placeholder
 
 ```python
-def sort_by_length(str):
+def sort_by_length(sentence):
+    pass
     pass
 ```
 ### !end-placeholder
