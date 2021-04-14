@@ -13,11 +13,11 @@ Sorting algorithms:
 
 ## Vocabulary and Synonyms
 
-| Vocab            | Definition                                                                               | Synonyms         | How to Use in a Sentence |
-| ---------------- | ---------------------------------------------------------------------------------------- | ---------------- | ------------------------ |
-| Sorting          | Organizing a collection of elements into order                                           | -                |
-| Internal Sorting | Sorting an entire array in memory                                                        | in-place sorting |
-| External Sorting | Sorting an array with part of the array on external storage, rather than internal memory | -                |
+| <div style="min-width:150px;">Vocab</div>            | Definition                                                                                                                                                                          | How to Use in a Sentence                                                                                                                                                                                                                 |
+| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sorting          | Organizing a collection of elements into order                                                                                                                                      | "By sorting my list, I can present the data in a more understandable fashion."                                                                                                                                                           |
+| In-place Sorting | Sorting an array using only a small, constant amount—O(1)—of extra storage space. Sorting in place modifies the array to be sorted directly rather than making a new, sorted array. | "Our system is memory-constrained, so we should use an in-place sorting strategy so we don't have to duplicate our data." "Copy the array before using that in-place sort. We don't want to modify our original data in this situation." |
+| Stable           | A sorting algorithm is _stable_ if it guarantees that the relative ordering of two values having the same sort key is the same after the sort as it was before the sort.            | "Since that sorting algorithm is stable, we can apply it multiple times to the same data to sort records based on multiple attributes!"                                                                                                  |
 
 ## Introduction
 
