@@ -78,6 +78,10 @@ We might also notice that insertion sort, like bubble sort, has a best case time
 
 Insertion sort generally improves in complexity the closer the list is to being sorted, that is, the more items are already relatively in their correct places. In other words, insertion sort runs in _nearly_ linear time on a _nearly_ sorted list of elements.
 
+## Stability
+
+Insertion sort is a stable sorting algorithm. Like bubble sort, we only move items in the list using adjacent swaps, and then only when they are strictly out of order.
+
 ## Example Implementation
 
 Consider this example implementation of insertion sort.

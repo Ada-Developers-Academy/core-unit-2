@@ -59,6 +59,12 @@ Each successive pass requires one fewer comparison, so we end up with the same d
 
 For a more intuitive argument. Consider that both the outer loop (tracking the position to place the minimum) and the inner loop (looking for the current minimum) are related to the size of the array _n_, and since they are nested, we multiply their bounds together for _n*n_ or _O(n<sup>2</sup>)_.
 
+## Stability
+
+Selection sort is _not_ a stable sorting algorithm. The swaps that we perform can result in equivalent values jumping over one another, losing the information about their relative initial orderings.
+
+If we need a stable sorting algorithm, we should select a different algorithm, or think about how we could modify the base selection sort algorithm to enforce stability.
+
 ## Example Implementation
 
 Consider this example implementation of selection sort.

@@ -67,6 +67,18 @@ This is the process of sorting and merging at the same time, which repeats until
 
 Finally, the auxiliary array gets linearly copied back to the original array.
 
+## Stability
+
+Let's look at the stability of merge sort before tackling big O, since our complexity discussion will be a bit more involved.
+
+Merge sort is a stable sorting algorithm, though we have to be a little careful to ensure this.
+
+Recall that for a sorting algorithm to be stable, the sorted array must preserve the relative ordering between equivalent values that existed in the unsorted array. To ensure this, we need to guarantee that if there are two items with the same value, that the instance that started on the left, stays on the left.
+
+For the stable _O(n<sup>2</sup>)_ algorithms, we did this bys ensuring that we never swapped "through" an equivalent value. But with all our dividing and merging, how can we ensure this remains true in merge sort?
+
+Notice that when we divide a sub-array, there is always a left side and a right side. Anything that goes into the left array will originally have preceded anything in the right array. This is true all the way down during the divide phase. So if we encounter two equivalent values during the merge phase, one from the left and one from the right, we need only prefer the value from the left. As long as we do this all the way up through the merging, we will preserve the relative ordering required for a stable sort.
+
 ## Big O Complexity
 
 The time complexity of merge sort is _O(n log n)_. Let's look closer to understand how we achieved this conclusion.

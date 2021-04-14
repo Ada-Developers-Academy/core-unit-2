@@ -163,6 +163,14 @@ In general, full mathematical proofs for the algorithms we discuss are out of sc
 
 ### !end-callout
 
+## Stability
+
+Bubble sort is a stable sorting algorithm. Since we only shift values by one position, and even then only if they are strictly out of order, equivalent values will never "jump" over one another.
+
+That is, if the value 10 appeared in the list twice, the leftmost instance would always remain to the left, while the rightmost would remain to the right.
+
+As discussed in the Sorting Algorithms lesson, stability can be a useful property for a sorting algorithm to have. If our values were more complex records that we would like to sort based on multiple attributes, then we can simply apply a stable sort multiple times. Or if the initial ordering of a list isn't entirely random, a stable sort will preserve the ordering between records that are otherwise equivalent.
+
 ## Example Implementation
 
 Consider this example implementation of bubble sort.
