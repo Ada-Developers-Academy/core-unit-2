@@ -13,11 +13,11 @@ Sorting algorithms:
 
 ## Vocabulary and Synonyms
 
-| <div style="min-width:150px;">Vocab</div>            | Definition                                                                                                                                                                          | How to Use in a Sentence                                                                                                                                                                                                                 |
-| ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sorting          | Organizing a collection of elements into order                                                                                                                                      | "By sorting my list, I can present the data in a more understandable fashion."                                                                                                                                                           |
-| In-place Sorting | Sorting an array using only a small, constant amount—O(1)—of extra storage space. Sorting in place modifies the array to be sorted directly rather than making a new, sorted array. | "Our system is memory-constrained, so we should use an in-place sorting strategy so we don't have to duplicate our data." "Copy the array before using that in-place sort. We don't want to modify our original data in this situation." |
-| Stable           | A sorting algorithm is _stable_ if it guarantees that the relative ordering of two values having the same sort key is the same after the sort as it was before the sort.            | "Since that sorting algorithm is stable, we can apply it multiple times to the same data to sort records based on multiple attributes!"                                                                                                  |
+| <div style="min-width:150px;">Vocab</div> | Definition                                                                                                                                                                          | How to Use in a Sentence                                                                                                                                                                                                                 |
+| ----------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Sorting                                   | Organizing a collection of elements into order                                                                                                                                      | "By sorting my list, I can present the data in a more understandable fashion."                                                                                                                                                           |
+| In-place Sorting                          | Sorting an array using only a small, constant amount—O(1)—of extra storage space. Sorting in place modifies the array to be sorted directly rather than making a new, sorted array. | "Our system is memory-constrained, so we should use an in-place sorting strategy so we don't have to duplicate our data." "Copy the array before using that in-place sort. We don't want to modify our original data in this situation." |
+| Stable                                    | A sorting algorithm is _stable_ if it guarantees that the relative ordering of two values having the same sort key is the same after the sort as it was before the sort.            | "Since that sorting algorithm is stable, we can apply it multiple times to the same data to sort records based on multiple attributes!"                                                                                                  |
 
 ## Introduction
 
@@ -42,11 +42,11 @@ Sorting is a common feature of applications, such as:
 Also, certain algorithms improve significantly when working with a sorted array! Consider these examples:
 
 - Finding an element with a minimum or maximum value
-    - Unsorted array: O(n)
-    - Sorted array: O(1)
+  - Unsorted array: O(n)
+  - Sorted array: O(1)
 - Searching for an element in an array
-    - Unsorted array with linear search: O(n)
-    - Sorted array with binary search: O(log n)
+  - Unsorted array with linear search: O(n)
+  - Sorted array with binary search: O(log n)
 
 For each sorting algorithm, we should:
 
@@ -93,13 +93,13 @@ Notice that the order of the names with identical ages is preserved between the 
 
 ## O(n<sup>2</sup>) Algorithms
 
-Several commonly introduced sorting algorithms have time complexities of O(n<sup>2</sup>). These include *bubble sort*, *selection sort*, and *insertion sort*, which will be discussed in detail in the following lessons.
+Several commonly introduced sorting algorithms have time complexities of O(n<sup>2</sup>). These include _bubble sort_, _selection sort_, and _insertion sort_, which will be discussed in detail in the following lessons.
 
 These algorithms are fine when the array length _n_ is small, but quickly cease to be useful as the size of the array increases. Bubble sort and insertion sort can perform well in the best case, but they do not scale well.
 
 They **do** have the advantage of being approachable for discussion.
 
-Moving beyond these O(n<sup>2</sup>) algorithms, we will discuss *merge sort*, a O(n log n) algorithm with a beautiful symmetry!
+Moving beyond these O(n<sup>2</sup>) algorithms, we will discuss _merge sort_, a O(n log n) algorithm with a beautiful symmetry!
 
 ## Summary
 
