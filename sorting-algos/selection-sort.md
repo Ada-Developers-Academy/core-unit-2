@@ -63,7 +63,6 @@ def selection_sort(array):
             array[min_index] = array[i]
             array[i] = temp
         i += 1
-    return array
 ```
 
 Compare this code with this detailed explanation of the algorithm:

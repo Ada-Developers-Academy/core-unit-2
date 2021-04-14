@@ -31,7 +31,6 @@ def mystery_sort(array):
             array[min_index] = array[i]
             array[i] = temp
         i += 1
-    return array
 ```
 
 Read through the code. Which of these kinds of sorts does this function implement?
@@ -72,10 +71,9 @@ def mystery_sort(array):
             if array[j] > array[j+1]:
                 temp = array[j]
                 array[j] = array[j+1]
-                array[j + 1] = temp
+                array[j+1] = temp
             j += 1
         i += 1
-    return array
 ```
 
 Read through the code. Which of these kinds of sorts does this function implement?
@@ -118,7 +116,6 @@ def mystery_sort(array):
             j -= 1
         array[j] = to_insert
         i += 1
-    return array
 ```
 
 Read through the code. Which of these kinds of sorts does this function implement?
@@ -343,8 +340,8 @@ An example of a working implementation:
 
 ```python
 # Bubble Sort
-def sort_by_length(str):
-    array = str.split()
+def sort_by_length(sentence):
+    array = sentence.split()
     i = 0
     while i < len(array) - 1:
         j = 0

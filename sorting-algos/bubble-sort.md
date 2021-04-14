@@ -112,10 +112,9 @@ def bubble_sort(array):
                 # Swap
                 temp = array[j]
                 array[j] = array[j+1]
-                array[j + 1] = temp
+                array[j+1] = temp
             j += 1
         i += 1
-    return array
 ```
 
 We should compare this code with our detailed explanation:

@@ -75,12 +75,11 @@ def insertion_sort(array):
         j = i
         # Search in the sorted portion of the array
         # for the correct position to insert array[i]
-        while j > 0 and array[j - 1] > to_insert:
-            array[j] = array[j - 1]
+        while j > 0 and array[j-1] > to_insert:
+            array[j] = array[j-1]
             j -= 1
         array[j] = to_insert
         i += 1
-    return array
 ```
 
 - Loop through the entire list
