@@ -93,6 +93,13 @@ We indicate the number of rows involved in the relationship with the following s
 
 So in the diagram above each row in the authors table is connected to one and only one row in the royalty account.
 
+### !callout-info
+
+## No need for flash cards here!
+The above key of relationship symbols is a key engineers often need to look up when reading or writing a diagram like this. It's important to know these symbols exist but not important to memorize them.
+
+### !end-callout
+
 ### One to Many
 
 Another common type of relationship is called one to many.  In a one to many relationship each record in one table can relate to zero, one or many records in the other table.  We often call this type of relationship a *has-many* relationship.
