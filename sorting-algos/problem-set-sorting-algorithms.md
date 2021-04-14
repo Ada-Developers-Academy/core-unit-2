@@ -150,7 +150,6 @@ Describe the algorithm for Bubble Sort in your own words. Make sure to touch on:
 - What makes this algorithm unique?
 - What is its time and space complexity?
 - What factors contribute to its time complexity?
-- What factors contribute to its space complexity?
 
 Answer in 3-6 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
 
@@ -176,7 +175,6 @@ Describe the algorithm for Selection Sort in your own words. Make sure to touch 
 - What makes this algorithm unique?
 - What is its time and space complexity?
 - What factors contribute to its time complexity?
-- What factors contribute to its space complexity?
 
 Answer in 3-6 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
 
@@ -202,7 +200,6 @@ Describe the algorithm for Insertion Sort in your own words. Make sure to touch 
 - What makes this algorithm unique?
 - What is its time and space complexity?
 - What factors contribute to its time complexity?
-- What factors contribute to its space complexity?
 
 Answer in 3-6 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
 
@@ -226,9 +223,8 @@ The insertion sort algorithm is unique because...
 Describe the algorithm for Merge Sort in your own words. Make sure to touch on:
 
 - What makes this algorithm unique?
-- What is its time and space complexity?
+- What is its time complexity?
 - What factors contribute to its time complexity?
-- What factors contribute to its space complexity?
 
 Answer in 3-6 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
 
