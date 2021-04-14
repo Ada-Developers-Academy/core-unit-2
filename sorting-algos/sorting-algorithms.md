@@ -55,7 +55,41 @@ For each sorting algorithm, we should:
 1. Learn and understand the Big O complexity of this algorithm
 1. Practice reading the code of an example implementation
 
-Sorting is ordering a list of elements. We can distinguish two types of sorting. If the number of elements is small enough to fit in the main memory, sorting is called _internal sorting_. There are times when the number of elements is larger than can fit in the main memory, some of them will stay in the external storage while the sorting algorithm works and is called _external sorting_. We'll scope our conversation to a few internal sorting algorithms.
+## In-Place Sorting and Stable Sorting
+
+Some secondary goals we might keep in mind when studying sorting algorithms are recognizing which can be done _in-place_, and which are _stable_.
+
+### In-Place Sorting
+
+_In-place sorting_ lets us sort a list by using only a small, constant amount of extra memory. It primarily uses the array itself for any workspace needed during the process of sorting.
+
+In-place sorting saves on space, but may take more time, and ends up modifying the initial list.
+
+If we don't want our initial list modified, then we will either need to copy the list first, or use a strategy that makes a sorted copy.
+
+### Stable Sorting
+
+_Stable sorting_ describes sorting that maintains the relative order of items after sorting. It is very useful if we want to sort a collection of records on multiple attributes.
+
+Let's say we want to sort a list of people by their ages, and if two people have the same age, by their name. Consider the following list of names and ages.
+
+```
+Jean (25), Vickie (39), Karla (33), Patricia (25), Becky (39)
+```
+
+If we first sort this list by name we get the following:
+
+```
+Becky (39), Jean (25), Karla (33), Patricia (25), Vickie (39)
+```
+
+And then sorting further by age, we get the desired outcome of people sorted by age, where tied ages are sorted by name.
+
+```
+Jean (25), Patricia (25), Karla (33), Becky (39), Vickie (39)
+```
+
+Notice that the order of the names with identical ages is preserved between the second and third lists. For names that were tied in the second list, the one that was on the left is still on the left in the third list. This property is only true for stable sorts, and allows for sorting by an arbitrary number of attributes.
 
 ## O(n<sup>2</sup>) Algorithms
 
