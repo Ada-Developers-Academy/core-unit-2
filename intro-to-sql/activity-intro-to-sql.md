@@ -54,7 +54,9 @@ Be sure to use a hyphen in `ride-share` and an underscore before `development`. 
 When working on database projects, we often have test databases where active development is occurring, test databases, where data for running tests is stored, and production databases, where the live project data lives. By following the naming convention `project-name_environment`, we can keep our databases well-organized!
 
 ### !end-callout
- -->
+
+<!-- because learn doesn't _really_ like html comments -->
+
 - [ ] Confirm that this database now exists with `\l`.
 
 - [ ] Connect to this database with `\c ride-share_development`.
