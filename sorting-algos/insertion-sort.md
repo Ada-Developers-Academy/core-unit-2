@@ -6,62 +6,77 @@
 
 ## Overview
 
-The insertion sort algorithm works by inserting each item into its proper place to form the sorted list.
-
-The simplest implementation of this requires two list structures:
-
-1. The source list
-1. A list into which sorted items are inserted
-
-One entry is removed at a time and then each is inserted into a sorted part (initially empty).
-
-To save memory, most implementations use an in-place sort that works by moving the current item past the already sorted items and repeatedly swapping it with the preceding item until it is in place.
+The insertion sort algorithm works by considering each item in an unsorted list, and inserting them one-by-one into their proper places in a sorted list.
 
 ### Detailed Explanation
 
-![Insertion Sort Example](../assets/sorting-algos/insertion-sort.png)
+Conceptually, insertion sort works with two list structures:
+
+1. The unsorted source list
+2. A list into which sorted items are inserted
+
+We can iterate over the items in the unsorted list and insert each into the sorted list (which starts empty).
+
+To save memory, most insertion sort implementations use an in-place sort that works by treating a portion of the existing list as sorted (often the beginning) and moving each item in the unsorted portion to its proper location in the sorted portion.
+
+![Insertion Sort Example. The list starts with 9, 4, 8, 6, 3. Treat the left-most value as sorted. 4 belongs before 9, so shift it there. 4, 9, 8, 6, 3. 8 belongs between 4 and 9, so shift it there. 4, 8, 9, 6, 3. 6 belongs between 4 and 8, so shift it there. 4, 6, 8, 9, 3. 3 belongs before 4, so shift it there. 3, 4, 6, 8, 9. The list is sorted.](../assets/sorting-algos_insertion-sort_small-example.png)  
+*Fig. Steps that insertion sort takes when sorting a list containing 9, 4, 8, 6, 3.*
 
 Consider this more detailed explanation of insertion sort:
 
-- Loop through the entire list
-- Find the first element of the unsorted list. This is the element that needs to be inserted, called `to_insert`
-- Find the correct index to insert the value `to_insert`
-  - Loop through the sorted list
-  - Compare the values between the item we're inspecting, and `to_insert`
-  - Swap if needed
-- Increase the indices, so that the sorted list grows, and the unsorted list shrinks
+- Treat the first item as a list of length one, which is sorted by definition.
+- Consider each item in the unsorted portion of the list.
+- Step backwards through the sorted list, swapping the new item, until we find a value less than the current item. This item is now in its proper location (for the time being).
+- Continue with the next unsorted item, swapping it forward into the sorted portion until we find its proper location.
+- Continue with the remainder of the unsorted list, until the entire list has become sorted.
+
+We can also explain insertion sort this way:
+
+- Treat the first item as a list of length one, which is sorted by definition.
+- Expand the portion of the sorted list by one, which may mean it is no longer sorted. The final item, and _only_ the final item, might be in the wrong position.
+- Perform swaps towards the front of the list to move the final item to its proper location.
+- Continue by expanding the items included in the sorted list by one, swapping as necessary to move the final item to its proper location.
+- Continue with the remainder of the unsorted list, until the entire list has become sorted.
 
 ## Example
 
-Consider the initial unsorted array `[99, 45, 35, 40, 16, 50, 11, 7, 90]`. Here's what it looks like before and after each iteration of the outer loop. The sorted sub-array is **bolded**.
+Consider the initial unsorted array `[99, 45, 35, 40, 16, 50, 11, 7, 90]`.
 
-| Iteration | Array                                   |
-| --------- | --------------------------------------- |
-| 1.        | [**99**, 45, 35, 40, 16, 50, 11, 7, 90] |
-| 2.        | [**45, 99**, 35, 40, 16, 50, 11, 7, 90] |
-| 3.        | [**35, 45, 99**, 40, 16, 50, 11, 7, 90] |
-| 4.        | [**35, 40, 45, 99**, 16, 50, 11, 7, 90] |
-| 5.        | [**16, 35, 40, 45, 99**, 50, 11, 7, 90] |
-| 6.        | [**16, 35, 40, 45, 50, 99**, 11, 7, 90] |
-| 7.        | [**11, 16, 35, 40, 45, 50, 99**, 7, 90] |
-| 8.        | [**7, 11, 16, 35, 40, 45, 50, 99**, 90] |
-| 9.        | [**7, 11, 16, 35, 40, 45, 50, 90, 99**] |
+The simplified loop table below shows the arrangement of the array after moving each new item to its place in the sorted portion. Again, we shift the new item to its proper place by repeatedly swapping it forward with adjacent items until we encounter a value less than the new value.
 
-## Big(O) Complexity
+The sorted sub-array is **bolded**. The next value to be inserted is always the value adjacent to the end of the sorted sub-array.
 
-In sorting, the most expensive part is a comparison of two elements. Insertion sort algorithm requires
+| Pass | Array                                   |
+| ---- | --------------------------------------- |
+| 1    | [**99**, 45, 35, 40, 16, 50, 11, 7, 90] |
+| 2    | [**45, 99**, 35, 40, 16, 50, 11, 7, 90] |
+| 3    | [**35, 45, 99**, 40, 16, 50, 11, 7, 90] |
+| 4    | [**35, 40, 45, 99**, 16, 50, 11, 7, 90] |
+| 5    | [**16, 35, 40, 45, 99**, 50, 11, 7, 90] |
+| 6    | [**16, 35, 40, 45, 50, 99**, 11, 7, 90] |
+| 7    | [**11, 16, 35, 40, 45, 50, 99**, 7, 90] |
+| 8    | [**7, 11, 16, 35, 40, 45, 50, 99**, 90] |
+| 9    | [**7, 11, 16, 35, 40, 45, 50, 90, 99**] |
+
+## Big O Complexity
+
+As with the other sorting algorithms we have considered, with insertion sort we examine the number of comparisons performed in the inner loop.
+
+The insertion sort algorithm requires (in the worst case):
 
 - 0 comparisons to insert the first element
 - 1 comparison to insert the second element
 - 2 comparisons to insert the third element
 - ... and so on
-- _n-1_ comparisons (worst case) to insert the last element
+- _n-1_ comparisons to insert the last element
 
-Overall, this is _1 + 2 + 3 + ... + (n-1)_ = _O(n<sup>2</sup>)_
+Overall, this is _1 + 2 + 3 + ... + (n-1)_, the same expression we saw for bubble sort and selection sort.
 
-The insertion sort has a complexity of O(n<sup>2</sup>).
+Therefore insertion sort has a complexity of _O(n<sup>2</sup>)_.
 
-Unlike selection sort, insertion sort has a best case time complexity of O(n) when the items are already sorted. In other words, insertion sort runs in nearly linear time on a nearly sorted list of elements.
+We might also notice that insertion sort, like bubble sort, has a best case time complexity of _O(n)_ if the list is already sorted. As we expand the sorted sub-part of the array, each new item is already in its correct spot, which we can determine with a single check per item. Since there are _n_ items, this gives a best case of _O(n)_.
+
+Insertion sort generally improves in complexity the closer the list is to being sorted, that is, the more items are already relatively in their correct places. In other words, insertion sort runs in _nearly_ linear time on a _nearly_ sorted list of elements.
 
 ## Example Implementation
 
@@ -82,13 +97,17 @@ def insertion_sort(array):
         i += 1
 ```
 
-- Loop through the entire list
-- Find the first element of the unsorted list. This is the element that needs to be inserted, called `to_insert`
+Compare this code with this detailed explanation of the algorithm:
+
+- Loop through the entire list with `i` representing the first position of the unsorted sub-array
+- Store the first element of the unsorted list in a temporary variable called `to_insert`
 - Find the correct index to insert the value `to_insert`
-  - Loop through the sorted list
-  - Compare the values between the item we're inspecting, and `to_insert`
+  - Loop through the sorted list from back to front
+  - Compare the values between the item at the position we're inspecting, and `to_insert`
   - Swap if needed
-- Increase the indices, so that the sorted list grows, and the unsorted list shrinks
+- Increase the outer index `i` so that the sorted list grows, and the unsorted list shrinks
+
+This implementation sorts the array in-place. Because the original array is modified, no return statement is needed.
 
 ## Check for Understanding
 
