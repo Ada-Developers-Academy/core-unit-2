@@ -8,6 +8,10 @@ Standards:
       - success criteria
     ContentFiles:
       -
+        Type: Instructor
+        UID: 11ed7c3b-0b29-400d-9ed4-4af6ab4ba72d
+        Path: /sorting-algos/sorting-algos.instructor.md
+      -
         Type: Lesson
         UID: 32b0bd4445f66fd2663288c634432c2e
         Path: /sorting-algos/sorting-algorithms.md
