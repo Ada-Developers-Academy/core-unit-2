@@ -88,12 +88,20 @@ def selection_sort(array):
 
 Compare this code with this detailed explanation of the algorithm:
 
-- Finds the smallest element in the range of `i` and `min_index`
-- Sets `min_index` to the index of the smallest item
-- If `i` and `min_index` are not the same, then
-  - Swap the elements at index `i` and index `min_index`
-- Increases `i`
-- Do this until `i` reaches the end of the list
+- Start a variable `i` at `0`
+- Create an outer loop that loops while `i` is smaller than the length of the `array - 1` since we don't need to swap the final value
+  - Start with the assumption that the minimum value is already in the right place by setting `min_index` to `i` 
+  - Start a variable `j` at the position one past `i` to look for the smallest element in the rest of the array
+  - Create an inner loop that loops `j` over the remainder of the array
+    - If the current inspected value is smaller than the current smallest value, update `min_index` with the current index `j`
+    - Increase `j`
+  - Repeat until `j` reaches the end of the list
+  - If `i` and `min_index` are not the same, then
+    - Swap the elements at index `i` and index `min_index` using a temporary variable `temp`
+  - Increase `i`
+- Repeat until `i` reaches the end of the list
+
+This implementation sorts the array in-place. Because the original array is modified, no return statement is needed.
 
 ## Check for Understanding
 
