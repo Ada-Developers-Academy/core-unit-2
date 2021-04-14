@@ -21,7 +21,7 @@ Merge sort is a _divide-and-conquer_ algorithm. It involves the following three 
 
 ## Divide
 
-![Merge sort divide example. The list starts with the values (7, 2, 8, 1, 6, 5, 3, 9). This is split into to lists with one having (7, 2, 8, 1), and the other having (6, 5, 3, 9). Each list of four values is split into two lists of 2 value, resulting in 4 total lists. (7, 2), (8, 1), (6, 5), and (3, 9). Finally, each list of two is split into two single item lists for a total of 8 single item lists. (7), (2), (8), (1), (6), (5), (3), (9).](../assets/sorting-algos_merge-sort_divide.png)  
+![Merge sort divide example. The list starts with the values (7, 2, 8, 1, 6, 5, 3, 9). This is split into to lists with one having (7, 2, 8, 1), and the other having (6, 5, 3, 9). Each list of four values is split into two lists of 2 value, resulting in 4 total lists. (7, 2), (8, 1), (6, 5), and (3, 9). Finally, each list of two is split into two single item lists for a total of 8 single item lists. (7), (2), (8), (1), (6), (5), (3), (9).](../assets/sorting-algorithms_merge-sort_divide.png)  
 _Fig. Steps that merge sort takes when dividing a list containing 7, 2, 8, 1, 6, 5, 3, 9._
 
 Let's reference this image to illustrate the divide step, starting at the top, original array.
@@ -42,7 +42,7 @@ While combining the sub-arrays containing `7` and `2` respectively, the values i
 
 ### Sorting in Detail
 
-![Merge sort merge example. We start with 8 individual lists. (7), (2), (8), (1), (6), (5), (3), (9). Each pair of single value lists is merged into a single list of two values, resulting in four lists of two values. (2, 7), (1, 8), (5, 6), (3, 9). Each pair of two value lists is merged into a single list of four values, resulting in two lists of four values. (1, 2, 7, 8), (3, 5, 6, 9). Finally the two lists of four items are merged into a single list of eight items. (1, 2, 3, 5, 6, 7, 8, 9).](../assets/sorting-algos_merge-sort_merge.png)  
+![Merge sort merge example. We start with 8 individual lists. (7), (2), (8), (1), (6), (5), (3), (9). Each pair of single value lists is merged into a single list of two values, resulting in four lists of two values. (2, 7), (1, 8), (5, 6), (3, 9). Each pair of two value lists is merged into a single list of four values, resulting in two lists of four values. (1, 2, 7, 8), (3, 5, 6, 9). Finally the two lists of four items are merged into a single list of eight items. (1, 2, 3, 5, 6, 7, 8, 9).](../assets/sorting-algorithms_merge-sort_merge.png)  
 _Fig. Steps that merge sort takes when merging the lists it previously divided._
 
 How does the merge sort algorithm merge and sort two sub-arrays into one? The algorithm compares an item from each sub-array, and uses a third, temporary, auxiliary array.

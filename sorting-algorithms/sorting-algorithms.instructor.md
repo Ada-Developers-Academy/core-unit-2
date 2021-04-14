@@ -1,4 +1,4 @@
-# Instructor: Sorting Algos
+# Instructor: Sorting Algorithms
 
 ## Sorting Algorithms (Lesson)
 
