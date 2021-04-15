@@ -1,4 +1,4 @@
-# Instructor: Activity: Sorting Algos Jigsaw
+# Instructor: Activity: Sorting Algorithms Jigsaw
 
 ### !callout-warning
 

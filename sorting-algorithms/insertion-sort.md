@@ -19,7 +19,7 @@ We can iterate over the items in the unsorted list and insert each into the sort
 
 To save memory, most insertion sort implementations use an in-place sort that works by treating a portion of the existing list as sorted (often the beginning) and moving each item in the unsorted portion to its proper location in the sorted portion.
 
-![Insertion Sort Example. The list starts with 9, 4, 8, 6, 3. Treat the left-most value as sorted. 4 belongs before 9, so shift it there. 4, 9, 8, 6, 3. 8 belongs between 4 and 9, so shift it there. 4, 8, 9, 6, 3. 6 belongs between 4 and 8, so shift it there. 4, 6, 8, 9, 3. 3 belongs before 4, so shift it there. 3, 4, 6, 8, 9. The list is sorted.](../assets/sorting-algos_insertion-sort_small-example.png)  
+![Insertion Sort Example. The list starts with 9, 4, 8, 6, 3. Treat the left-most value as sorted. 4 belongs before 9, so shift it there. 4, 9, 8, 6, 3. 8 belongs between 4 and 9, so shift it there. 4, 8, 9, 6, 3. 6 belongs between 4 and 8, so shift it there. 4, 6, 8, 9, 3. 3 belongs before 4, so shift it there. 3, 4, 6, 8, 9. The list is sorted.](../assets/sorting-algorithms_insertion-sort_small-example.png)  
 *Fig. Steps that insertion sort takes when sorting a list containing 9, 4, 8, 6, 3.*
 
 Consider this more detailed explanation of insertion sort:

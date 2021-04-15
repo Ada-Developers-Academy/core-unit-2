@@ -10,7 +10,7 @@ The selection sort algorithm works by selecting the smallest unsorted item in th
 
 ### Detailed Explanation
 
-![Selection sort example. The list starts with 9, 4, 8, 6, 3. 3 is the smallest, so 3 and 9 swap. 3, 4, 8, 6, 9. 4 is the smallest, so it remains where it is. 3, 4, 8, 6, 9. 6 is the smallest, so 6 and 8 swap. 3, 4, 6, 8, 9. 8 is the smallest, so it remains where it is. 3, 4, 6, 8, 9. Only one unsorted item remains, so the list is sorted.](../assets/sorting-algos_selection-sort_small-example.png)  
+![Selection sort example. The list starts with 9, 4, 8, 6, 3. 3 is the smallest, so 3 and 9 swap. 3, 4, 8, 6, 9. 4 is the smallest, so it remains where it is. 3, 4, 8, 6, 9. 6 is the smallest, so 6 and 8 swap. 3, 4, 6, 8, 9. 8 is the smallest, so it remains where it is. 3, 4, 6, 8, 9. Only one unsorted item remains, so the list is sorted.](../assets/sorting-algorithms_selection-sort_small-example.png)  
 _Fig. Steps that selection sort takes when sorting a list containing 9, 4, 8, 6, 3._
 
 Here is a more detailed explanation of the selection sort algorithm:

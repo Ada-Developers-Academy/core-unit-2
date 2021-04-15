@@ -20,7 +20,7 @@ As the algorithm proceeds, the largest element gets _bubbled_ to the top of the 
 
 The algorithm repeats this process until it makes a pass all the way through the list.
 
-![Bubble sort example. The list starts with 9, 6, 4, 8, 3. 9 bubbles all the way to the end. 6, 4, 8, 3, 9. 6 starts to bubble, but hits 8 which bubbles to its spot. 4, 6, 3, 8, 9. 4 starts to bubble, but immediately hits 6, which bubbles to its spot. 4, 3, 6, 8, 9. 4 bubbles to its spot. 3, 4, 6, 8, 9. Only one unsorted item remains, so the list is sorted.](../assets/sorting-algos_bubble-sort_small-example.png)  
+![Bubble sort example. The list starts with 9, 6, 4, 8, 3. 9 bubbles all the way to the end. 6, 4, 8, 3, 9. 6 starts to bubble, but hits 8 which bubbles to its spot. 4, 6, 3, 8, 9. 4 starts to bubble, but immediately hits 6, which bubbles to its spot. 4, 3, 6, 8, 9. 4 bubbles to its spot. 3, 4, 6, 8, 9. Only one unsorted item remains, so the list is sorted.](../assets/sorting-algorithms_bubble-sort_small-example.png)  
 _Fig. Steps that bubble sort takes when sorting a list containing 9, 6, 4, 8, 3._
 
 Here is a more detailed explanation of the bubble sort algorithm:
