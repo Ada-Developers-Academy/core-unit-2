@@ -136,7 +136,6 @@ Our current project structure likely looks similar to this:
 │   ├── models
 │   │   └── book.py
 │   └── routes.py
-├── app.py
 └── requirements.txt
 ```
 
@@ -245,7 +244,6 @@ A neat side-effect about generating migrations is that we get to appreciate the 
 │   ├── models
 │   │   └── book.py
 │   └── routes.py
-├── app.py
 ├── migrations
 │   ├── README
 │   ├── alembic.ini

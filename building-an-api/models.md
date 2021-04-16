@@ -81,7 +81,6 @@ This curriculum's recommended file structure recommends creating a `models` fold
 │   ├── models
 │   │   └── model.py
 │   └── routes.py
-├── app.py
 └── requirements.txt
 ```
 
@@ -127,7 +126,6 @@ This command should create a new folder in our app, `migrations`.
 │   ├── models
 │   │   └── model.py
 │   └── routes.py
-├── app.py
 ├── migrations
 │   ├── README
 │   ├── alembic.ini
