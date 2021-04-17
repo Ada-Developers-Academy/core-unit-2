@@ -76,7 +76,7 @@ Standards:
         Path: /intro-to-sql/activity-intro-to-sql.md 
   -
     Title: Modifying in SQL 
-    Description: Modifying Tables in SQL, Modifying Databases in SQL
+    Description: "Modifying Tables in SQL, Modifying Databases in SQL"
     UID: adb24d77-6638-4351-9b81-4f6bb7fd26f9
     SuccessCriteria:
       - success criteria
@@ -143,6 +143,45 @@ Standards:
         Type: Lesson
         UID: cbd53d1c-3374-4a55-804b-85defb26bd4b
         Path: /intermediate-sql/problem-set-intermediate-sql.md
+  -
+    Title: Sorting Algorithms
+    Description: "Sorting Algorithms, Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Problem Set: Sorting Algorithms"
+    UID: 184d8af4792d6c2f80c90b27919caa10
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: 11ed7c3b-0b29-400d-9ed4-4af6ab4ba72d
+        Path: /sorting-algorithms/sorting-algorithms.instructor.md
+      -
+        Type: Lesson
+        UID: 32b0bd4445f66fd2663288c634432c2e
+        Path: /sorting-algorithms/sorting-algorithms.md
+      -
+        Type: Lesson
+        UID: 0806cdb2d0a4b885790d3793999db841
+        Path: /sorting-algorithms/bubble-sort.md
+      -
+        Type: Lesson
+        UID: 1dc3ffdcda584ccb3a445105b67bf21f
+        Path: /sorting-algorithms/selection-sort.md
+      -
+        Type: Lesson
+        UID: 04c103dab4d7e24b3e0922fba11ab2e7
+        Path: /sorting-algorithms/insertion-sort.md
+      -
+        Type: Lesson
+        UID: 64b3cc9b8ee0c4d4d7d0dadbaa0d618d
+        Path: /sorting-algorithms/merge-sort.md
+      -
+        Type: Lesson
+        UID: 383253988f7afc58dd4fe867d42d7cad
+        Path: /sorting-algorithms/problem-set-sorting-algorithms.md
+      -
+        Type: Instructor
+        UID: 70acaebba6da64c98fef0d184cd40e5b
+        Path: /sorting-algorithms/activity-sorting-algorithms.instructor.md
   -
     Title: Intro To Web Development
     Description: "Web Applications and Layers, Intro to Clients, Servers, HTTP, Sequence Diagrams, Activity: Layers"

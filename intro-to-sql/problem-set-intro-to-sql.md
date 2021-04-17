@@ -81,6 +81,8 @@ CREATE TABLE ...
 ##### !end-placeholder
 ##### !explanation
 
+Learn isn't actually able to check for correctness for this problem.
+
 This is an example solution:
 
 ```sql
@@ -94,7 +96,7 @@ CREATE TABLE reviews (
 );
 ```
 
-Check for:
+To see if your submission is correct, compare your submission with the solution above. Check for:
 
 - Spelling
 - Semicolon at the end
@@ -144,13 +146,15 @@ Should output (notice the "f"):
 ##### !end-question
 ##### !explanation
 
+Learn isn't actually able to check for correctness for this problem.
+
 This is an example solution:
 
 ```sql
 DROP TABLE books;
 ```
 
-Check for:
+To see if your submission is correct, compare your submission with the solution above. Check for:
 
 - Spelling
 - Semicolon at the end
@@ -216,6 +220,8 @@ INSERT ...
 ##### !end-placeholder
 ##### !explanation
 
+Learn isn't actually able to check for correctness for this problem.
+
 This is an example solution:
 
 ```sql
@@ -223,7 +229,7 @@ INSERT INTO publishers (name, address)
 VALUES ('Dark Pony Gaming', '315 5th Ave S Suite 200, Seattle, WA 98104');
 ```
 
-Check for:
+To see if your submission is correct, compare your submission with the solution above. Check for:
 
 - Spelling
 - Semicolon at the end
@@ -291,6 +297,8 @@ INSERT ...
 ##### !end-placeholder
 ##### !explanation
 
+Learn isn't actually able to check for correctness for this problem.
+
 This is an example solution:
 
 ```sql
@@ -298,7 +306,7 @@ INSERT INTO products (name, publisher_id, description)
 VALUES ('Jimmy Corrigan', 3, 'The smartest kid on earth.');
 ```
 
-Check for:
+To see if your submission is correct, compare your submission with the solution above. Check for:
 
 - Spelling
 - Semicolon at the end
@@ -367,6 +375,8 @@ The original record is:
   8 | Coade      | OMoore    | cade.omoore@gmail.com
 ```
 
+Learn isn't actually able to check for correctness for this problem.
+
 This is an example solution:
 
 ```sql
@@ -376,7 +386,7 @@ last_name = 'O''Moore'
 WHERE first_name = 'Coade' AND last_name='OMoore';
 ```
 
-Check for:
+To see if your submission is correct, compare your submission with the solution above. Check for:
 
 - Spelling
 - Semicolon at the end
@@ -539,14 +549,18 @@ The original record is:
   6 | Auster     | Alexandra | auster.alexandra@safemail.com
 ```
 
+
+Learn isn't actually able to check for correctness for this problem.
+
 This is an example solution:
+
 
 ```sql
 DELETE FROM users
 WHERE first_name = 'Auster' and last_name = 'Alexandra';
 ```
 
-Check for:
+To see if your submission is correct, compare your submission with the solution above. Check for:
 
 - Spelling
 - Semicolon at the end
