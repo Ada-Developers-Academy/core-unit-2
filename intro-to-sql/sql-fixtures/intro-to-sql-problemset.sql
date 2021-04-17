@@ -132,7 +132,6 @@ COPY public.products (id, name, publisher_id, description) FROM stdin;
 1	Blankets	3	Semiautobiographical story of a young man raised in a strict evangelical tradition.
 \.
 
-
 --
 -- TOC entry 3264 (class 0 OID 16671)
 -- Dependencies: 202
@@ -171,7 +170,7 @@ COPY public.users (id, first_name, last_name, email) FROM stdin;
 -- Name: products_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.products_id_seq', 1, true);
+SELECT pg_catalog.setval('public.products_id_seq', 10, true);
 
 
 --
@@ -215,4 +214,3 @@ ALTER TABLE ONLY public.users
 --
 -- PostgreSQL database dump complete
 --
-
