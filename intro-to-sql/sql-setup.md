@@ -39,7 +39,11 @@ Most tutorials will use these credentials, too. They are a good default for us u
 
 ## Create the Postgres User
 
-After installing Postgres, create the user named `postgres` with the command `$ createuser -s postgres`.
+After installing Postgres, create the user named `postgres` with the command: 
+
+```
+$ createuser -s postgres
+```
 
 ## Tools
 
