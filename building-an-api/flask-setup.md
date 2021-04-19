@@ -99,14 +99,16 @@ To update the `requirements.txt` file, we use this command:
 ### !callout-info
 
 ## No need to manually edit the requirements.txt file
+
 Because we can use the above command to ask `pip` to update our `requirements.txt` file, there's no need to ever open up the file and edit it directly.
 
 ### !end-callout
+
 ## Running, Stopping, and Restarting the Server
 
 Building an API means that we're building a web server. A web server needs to be _running_ in order to be accessible to clients. Running a web server makes it available to respond to HTTP requests at a particular _address_ and _port_.
 
-### !callout-info
+### !callout-secondary
 
 ## Address and Port Are Like Street Address and Apartment
 
@@ -148,10 +150,33 @@ In order for us to run terminal commands like `git`, we'll need to open an addit
 
 When we stop a server, the server runs its shut down operations. Once complete, it will no longer be available to handle requests until we start it again.
 
-To stop a Flask server, we return to the Terminal tab or window that is running the server, and we either:
+To stop a Flask server:
 
-- Use `ctrl` + `c`
-- Close or quit the terminal tab or window
+1. Return to the Terminal tab or window that is running the server
+1. Press `ctrl` + `c`
+
+<br />
+
+<details style="max-width: 700px; margin: auto;">
+
+   <summary>
+      Sometimes the server gets stuck. What do we do in that case?
+   </summary>
+
+If something goes wrong when shutting down the server, or if the Terminal where the server was running is somehow closed without stopping the server, the server may not release the address and port where it was running. If that happens, a new server will not be able to run using that address and port, and will fail to start. This may be reported with an error message resembling `OSError: [Errno 48] Address already in use`.
+
+#### One Debugging Strategy
+
+To locate another server using port 5000, which Flask wants to use, we can run `lsof -i:5000`. This will produce output similar to
+
+```
+COMMAND   PID  USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+Python  31756  user    3u  IPv4 0x92416cca3d5db1fb      0t0  TCP localhost:commplex-main (LISTEN)
+```
+
+We can use the number labelled as `PID` to terminate the other running server with the command `kill -9 31756`, where we would replace `31756` with the `PID` value we got from running `lsof`.
+
+</details>
 
 ### "Restarting" the Server
 
