@@ -12,7 +12,7 @@ Our goal for this lesson is:
 
 | Vocab              | Definition                                                                                                                                            | Synonyms                                   | How to Use in a Sentence                                                                                                                                  |
 | ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Model              | A representation of a single concept relevant to the application that contains the state and behavior                                                 | Data model, resource, entity, domain model | "Example models in an e-shopping web app might be `User`, `Product`, `Review`, and `Order`"                                                               |
+| Model              | A representation of a single concept relevant to the application. The model defines the state and behavior for that concept.                          | Data model, resource, entity, domain model | "Example models in an e-shopping web app might be `User`, `Product`, `Review`, and `Order`"                                                               |
 | Database Migration | When working with relational databases, a representation of a change in a database's schema. Migrations must be created and then applied to databases | Schema migration, migration                | "We want the `Product` table to add a new integer column, `stock`. We need to generate a migration to represent that change, and then run the migrations" |
 
 ## Models
@@ -31,66 +31,67 @@ If "models" sounds similar to _resource_, _entity_, or _class_, you're onto some
 
 We will define models in our Flask application code. We will use the package `SQLAlchemy` and follow their patterns to define and use models. Models in our Flask code will create a direct connection between the data modeled in our database, and the OOP Python code we can use in our back-end API.
 
-Therefore, when we set up each model, we will need to:
 
-1. Ensure our database and tables are aligned with our model
-1. Ensure our Flask code has defined and can use the model
-
-## Models Relate to Databases
+## Models Are a Link Between a Database and Code
 
 Our models are usually pieces of data that should be stored in a database. Their data should be persisted. To set up a model, we will need to:
 
 1. Set up the database for the project
-1. Set up the table for the model
-1. Use our database migration tools
+1. Configure our app to connect to the database
+1. Define our model in Python code
+1. Ensure that Flask and SQLAlchemy are able to see our model code
+1. Use tools to convert the model into instructions for creating or updating tables
+1. Apply the instructions to our database to create or update the tables
 
 ### Creating the Database
 
 Before we work with models in Flask, we should expect to create a database. We should continue to practice our great database skills!
 
-### Creating the Tables
 
-Similarly, before we work with different tables that hold our model data in Flask, we'll need to define database tables.
-
-### Connecting the DB and Flask
+### Connecting the Database and Flask
 
 Flask needs a way to connect to our database. We'll do so by providing a path to it.
 
-## Models Relate to Flask
 
-In order for our Flask app to access the model, we will need to:
-
-1. Define the model class in Flask
-1. Configure our Flask app to use the model
-
-## Create the Model File and Class
+### Create the Model File and Class
 
 We will create a class for each model. The class will define the state and behavior of our model.
 
-### The `app/models` Directory
+#### The `app/models` Directory
 
-SQLAlchemy and Flask patterns may encourage us to define each model as a class in its own file.
+SQLAlchemy and Flask patterns encourage us to define each model as a class in its own file.
 
-This curriculum's recommended file structure recommends creating a `models` folder inside of the `app` folder. Note the location of a hypothetical model, `model`, in `app/models/model.py`
+This curriculum's recommended file structure creates a `models` folder inside of the `app` folder. Note the location of a hypothetical model, `Model`, in `app/models/model.py`, as well as the typical `__init__.py` file to mark the folder as a package.
 
 ```
 .
-├── README.md
 ├── app
-│   ├── __init__.py
 │   ├── models
+│   │   ├── __init__.py
 │   │   └── model.py
+│   ├── __init__.py
 │   └── routes.py
+├── README.md
 └── requirements.txt
 ```
 
-### Configuring Models in Flask
+### Make Our Models Visible to the Flask Migration Helper
 
-Every time we define a new model, we'll need to make a small configuration update to our app.
+Creating the model file alone is not enough for Flask to generate instructions for modifying the database. We need to ensure the helper is able to find our models.
 
-### Using Defined Models in Flask
+### Generate Instructions for Modifying Our Database
 
-SQLAlchemy, our package that connects our models to the database, has powerful functionality. Instead of writing full lines of SQL, we will write Python that uses SQLAlchemy. SQLAlchemy will do most of the SQL for us!
+Flask and SQLAlchemy, our package connecting our models to the database, provide many useful model-related features. One such feature is that it can examine our models defined in Python, and produce a list of instructions for how to modify the database to be able to store the state of those models. This can include both creating new tables, and altering existing tables.
+
+### Apply the Instructions to Modifying Our Database
+
+Once the instructions have been generated, we use Flask and SQLAlchemy to apply those instructions to our database.
+
+Generating and applying these instructions in separate steps allows for teams to work together. One member might add a new model, and generate instructions for a new table to be created. They will commit that model and the instructions to the team repo. The other members can retrieve those instructions and apply the same change to their local working databases.
+
+## Using Defined Models in Flask
+
+We don't need to write the code for storing, retrieving, or updating our models. SQLAlchemy lets us define our models as normal Python classes. Instead of writing full lines of SQL ourselves, we will write Python classes following patterns defined by SQLAlchemy, and SQLAlchemy will do most of the SQL heavy lifting for us!
 
 SQLAlchemy has [already defined methods](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/) for:
 
@@ -102,38 +103,31 @@ SQLAlchemy has [already defined methods](https://flask-sqlalchemy.palletsproject
 
 And much more!
 
+### !callout-info
+
+## SQLAlchemy Is an Object-Relational Mapper (ORM)
+
+There are many ways to connect Python to a database. Some of them require us to write specific SQL queries ourselves. SQLAlchemy instead provides a connection from our Python classes (objects) to tables in a database (relations). In other words, it maps from object to relations. It's an Object-Relational Mapper!
+
+<br />
+
+In general, an Object-Relational Mapper is a tool that allows us to interact with tables without needing to write SQL directly.
+
+### !end-callout
+
 ## Database Migrations
 
-On bigger and bigger projects, we should anticipate the effects of changing our database schemas. We can organize our database schema changes into _database migrations_.
+On bigger and bigger projects, we should anticipate the need to change our database schemas. Over time we will need to add new models to our projects, or we might need to modify existing models. Changes to our models require changes to our database schema. To provide the ability to track our database schema changes, we can organize our changes into _database migrations_.
 
-A **datatbase migration** a representation of a change in a database's schema, usually as bit of code or a file of code. After migration files are created, these migration files can be applied to a database.
+A **database migration** is a representation of a change in a database's schema, usually as bit of code or a file of code. After migration files are created, these migration files can be applied to a database.
 
-Because the scale of our projects is increasing, we will also introduce a database migration tool.
+Migrations are usually applied using a database migration tool.
 
-[Alembic](https://alembic.sqlalchemy.org/en/latest/) is the database migration tool that pairs nicely with SQLAlchemy. We will follow common database and Alembic practices to manage and maintain our migrations.
+[Alembic](https://alembic.sqlalchemy.org/en/latest/) is the database migration tool that we will be using. It pairs nicely with SQLAlchemy. We will follow common database and Alembic practices to manage and maintain our migrations.
 
 ### One-time Setup: Initialize Migrations
 
-After the first database, table, and the configurations are set, we must initialize our migrations. We will only need to do this once.
-
-This command should create a new folder in our app, `migrations`.
-
-```
-.
-├── README.md
-├── app
-│   ├── __init__.py
-│   ├── models
-│   │   └── model.py
-│   └── routes.py
-├── migrations
-│   ├── README
-│   ├── alembic.ini
-│   ├── env.py
-│   ├── script.py.mako
-│   └── versions
-└── requirements.txt
-```
+After our database is created and we have configured our application to use it, we must initialize our migrations. We will only need to do this once.
 
 ### Generate Migrations After Each Model Change
 
