@@ -97,7 +97,9 @@ Standards:
       - success criteria
     ContentFiles:
       -
-        Type: Lesson
+        Type: Instructor
+        UID: VuVY5h
+        Path: /building-an-api/activity-building-an-api.instructor.md
         UID: 0cbd2906-19c9-4983-83b0-d1e8620ed879
         Path: /more-selecting-in-sql/compound-conditions.md
       -
@@ -275,3 +277,42 @@ Standards:
         Type: Lesson
         UID: 5f9a641756dea1f4bc8a5c1776d46528
         Path: /intro-to-api-design/activity-intro-to-api-design.md
+  -
+    Title: Building An API
+    Description: "Intro to Flask, Flask Setup, Flask Hello Books, Models, Models Setup, Create and Read, Problem Set: Building an API"
+    UID: 2804d58bb38264215b9414a111a759d7
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: e77cd6b2788d0e9d3a585da004982bda
+        Path: /building-an-api/intro-to-flask.md
+      -
+        Type: Lesson
+        UID: e89e0215704779b45a29307ae4e880be
+        Path: /building-an-api/flask-setup.md
+      -
+        Type: Lesson
+        UID: 34723e00ee31eff079c37b5c7e89822f
+        Path: /building-an-api/flask-hello-books.md
+      -
+        Type: Lesson
+        UID: fc3e20f36128c5fb1e97ab0b40553094
+        Path: /building-an-api/models.md
+      -
+        Type: Lesson
+        UID: dcd0d3c276356844a38f890d5a9b98c9
+        Path: /building-an-api/models-setup.md
+      -
+        Type: Lesson
+        UID: 2ca35886fc1a00a394384b7d88b9b2b8
+        Path: /building-an-api/create-and-read.md
+      -
+        Type: Lesson
+        UID: 5f4dda242707c828aa5dbd99e73fe62b
+        Path: /building-an-api/problem-set-building-an-api.md
+      -
+        Type: Lesson
+        UID: m9dgD0
+        Path: /building-an-api/activity-solar-system-api-setup-create-read.md
