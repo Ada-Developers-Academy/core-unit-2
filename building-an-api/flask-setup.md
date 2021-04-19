@@ -17,9 +17,15 @@ This lesson covers:
 
 ## Install Dependencies
 
-Whenever we work on a Python project, we need to be considerate of how we manage dependencies. Working with the `flask` package is enough reason to visit virtual environments.
+Whenever we work on a Python project, we need to consider how we manage our dependencies, the third party packages used by our project.
+
+`flask` is a package with many of its own dependencies, which can quickly make a mess of our system-wide Python installation!
+
+In reality, no Python project is too small to consider using a virtual environment. But working with a package that brings as many dependencies as does `flask` is reason enough for us to revisit the topic of virtual environments now.
 
 ### In a Virtual Environment
+
+We have been using virtual environments for a bit now, starting with our prior project work. We will present a brief review here, but we can always return to the previous material to refresh our memories about why we use virtual environments.
 
 At the very beginning of a Python project, we will either:
 
@@ -90,13 +96,31 @@ To update the `requirements.txt` file, we use this command:
 (venv) $ pip freeze > requirements.txt
 ```
 
+### !callout-info
+
+## No need to manually edit the requirements.txt file
+Because we can use the above command to ask `pip` to update our `requirements.txt` file, there's no need to ever open up the file and edit it directly.
+
+### !end-callout
 ## Running, Stopping, and Restarting the Server
 
-Building an API means that we're building a web server. A web server needs to be _running_ in order to be accessible to clients. When a server is running, we'll know the full request URL for HTTP requests.
+Building an API means that we're building a web server. A web server needs to be _running_ in order to be accessible to clients. Running a web server makes it available to respond to HTTP requests at a particular _address_ and _port_.
+
+### !callout-info
+
+## Address and Port Are Like Street Address and Apartment
+
+Any service listening for network requests listens at a particular _address_ and a particular _port_. The _address_ can be thought of as like a street address, while the _port_ is more like an apartment number. If we send a letter to our friend Kerry, who lives in an apartment building, we need both the street address of the building itself, as well as their apartment number in the building. If we send a letter to the wrong building, Kerry won't receive it. If we send the letter to the wrong apartment number, Kerry still won't receive it (their neighbors are jerks and won't drop it off at their door).
+
+<br />
+
+Likewise, if we send a network request to the wrong address, then it won't reach the proper machine. If we send it to the wrong port, it still won't reach the web server. We need to know the address and port to make sure our request reaches the web server.
+
+### !end-callout
 
 ### Running the Server
 
-When a server starts running, it runs start-up commands, such as rebuilding the app from its configuration files.
+When a server starts running, it performs its startup routine, which often includes reading configuration files, changing settings, and connecting to any required resources.
 
 To run a Flask server, we run this command:
 
@@ -108,17 +132,21 @@ To run a Flask server, we run this command:
 
 ## Default Flask Server URL is `localhost:5000`
 
-By default, running Flask servers will be available on `localhost:5000`. This means that our clients will send HTTP requests to `localhost:5000`. "Localhost" is a special name used to refer to the computer itself.
+By default, running Flask servers will be available on `localhost:5000`. `localhost` acts as the address and `5000` is the port. They are separated by a colon. Our clients will send HTTP requests to `http://localhost:5000`.
+
+<br />
+
+`localhost` is a special name used to refer to the local computer itself. We may also see the local computer referred to as `127.0.0.1`, which is called an _IP address_. `localhost` and `127.0.0.1` mean the same thing: the local computer itself!
 
 ### !end-callout
 
-Once we start running a server, the current Terminal tab begins to _tail_ the server logs. The servers will log status updates about the server's operations.
+Once we start running a server, the current Terminal tab begins to _tail_ the server logs. The server will log status updates about the server's operations.
 
-In order for us to run command-line commands like git, we'll need to open a new Terminal window, tab, or stop the server.
+In order for us to run terminal commands like `git`, we'll need to open an additional Terminal window or tab, or stop the server.
 
 ### Stopping the Server
 
-When we stop a server, the server runs its shut down operations. Then, it's unavailable to clients.
+When we stop a server, the server runs its shut down operations. Once complete, it will no longer be available to handle requests until we start it again.
 
 To stop a Flask server, we return to the Terminal tab or window that is running the server, and we either:
 
@@ -131,7 +159,7 @@ To stop a Flask server, we return to the Terminal tab or window that is running 
 
 ## Reading the Server Logs
 
-We can use the server logs to debug our server code. Any error messages that our server needs to print will go here.
+We can use the server logs to debug our server code. After we run `flask run` from the terminal to start the server, any error messages that our server needs to communicate will be printed in that terminal window.
 
 The server logs update in real-time. These are the logs immediately after receiving a `GET` request to `localhost:5000/`, which produced a `200` response.
 
@@ -157,9 +185,9 @@ In this example, it seems that we have a `ZeroDivisionError` caused in a method 
 
 ## Where Does Code Go: Endpoints
 
-When we work on Flask projects, there could be anywhere between one file, to hundreds of files and folders.
+When we work on Flask projects, there could be anywhere from one file, to hundreds of files and folders.
 
-Where our code that defines endpoints will **depend on the project**.
+The place we put our code that defines endpoints will **depend on the project**.
 
 ### !callout-warning
 
@@ -184,9 +212,9 @@ Inside each `app` folder, there will be a file named `routes.py`. The responsibi
 
 ## Where Does Code Go: Config
 
-As we develop our Flask projects, we'll need to reconfigure the app to suit our needs better. Configurations to the app can include things like, "Where's the location to our database?," "How do we load different data models?," or "How can we set up template views, called Blueprints?"
+As we develop our Flask projects, we'll need to reconfigure the app to suit our needs better. Configurations to the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
 
-Where our code that defines any configuration, again, **heavily depends on the project**.
+The place we put our code that defines any configuration, again, **heavily depends on the project**.
 
 This curriculum will provide a suggested project structure and location:
 
@@ -199,13 +227,19 @@ This curriculum will provide a suggested project structure and location:
 └── requirements.txt
 ```
 
-Inside each `app` folder, there will be a file named `__init__.py`. The responsibility of this file is to define the start-up logic for the Flask server.
+Inside each `app` folder, there will be a file named `__init__.py`. This is the same file we have used to mark a folder as a package! While we often leave this file blank, a common Flask pattern is to define the start-up logic for the Flask server in this file.
+
+The start-up logic is responsible for locating and applying any app configuration, and getting the server ready to receive requests.
 
 ### !callout-info
 
 ## Changing Configurations is Rare
 
-It isn't often that developers need to fuss with configurations; web developers should become familiar of configuration files. It's more important to know _where_ existing configurations are made, rather than being able to write fresh and new configurations.
+Developers don't need to fuss with configurations that often. Usually, when setting up a project, we will refer to a previous working project to make sure the new one is configured appropriately.
+
+<br />
+
+We should try to become familiar with the kinds of settings we might want to configure in our app. Overall it's more important to know _where_ configuration _changes_ are made, rather than being able to write fresh configurations from scratch.
 
 ### !end-callout
 
@@ -228,15 +262,16 @@ def create_app():
     db.init_app(app)
     migrate.init_app(app, db)
 
-    with app.app_context():
-        db.create_all()
+    # import models (data objects) here
+
+    # import routes (blueprints) here
 
     return app
 ```
 
 This code:
 
-- Creates a `db` reference and a `migrate` reference, which will be used to work with the db
+- Creates a `db` reference and a `migrate` reference, which will be used to work with the database
 - Creates a function named `create_app()`
 - Creates a `app` reference, which is the instance of our Flask app
 - Configures the app's connection to a database
