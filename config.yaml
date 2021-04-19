@@ -82,9 +82,7 @@ Standards:
       - success criteria
     ContentFiles:
       -
-        Type: Instructor
-        UID: VuVY5h
-        Path: /building-an-api/activity-building-an-api.instructor.md
+        Type: Lesson
         UID: 0cbd2906-19c9-4983-83b0-d1e8620ed879
         Path: /more-selecting-in-sql/compound-conditions.md
       -
@@ -192,7 +190,7 @@ Standards:
       - success criteria
     ContentFiles:
       -
-        Type: Lesson
+        Type: Instructor
         UID: c674f6dd20d7be77cfb94798b04ba3b7
         Path: /intro-to-web-development/intro-to-web-development.instructor.md
       -
@@ -284,6 +282,9 @@ Standards:
     SuccessCriteria:
       - success criteria
     ContentFiles:
+      - Type: Instructor
+        UID: VuVY5h
+        Path: /building-an-api/activity-building-an-api.instructor.md
       -
         Type: Lesson
         UID: e77cd6b2788d0e9d3a585da004982bda
