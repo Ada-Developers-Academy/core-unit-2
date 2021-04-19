@@ -59,7 +59,7 @@ When working on database projects, we often have test databases where active dev
 
 - [ ] Confirm that this database now exists with `\l`.
 
-- [ ] Connect to this database with `\c ride-share_development`.
+- [ ] Connect to this database with `\c ride_share_development`.
 
 - [ ] View the list of tables in this database with `\dt`.
 
