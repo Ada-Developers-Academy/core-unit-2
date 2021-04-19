@@ -43,11 +43,21 @@ This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-ap
 
 Before we work with models in Flask, we need to create a database for our project.
 
-There are no naming rules, but let's give our database a similar name to our project. We'll add in "development" as a descriptor: `hello_books_development`
+Flask doesn't define any particular naming rules, but let's give our database a similar name to our project. We'll add in "development" as a descriptor: `hello_books_development`
+
+We can startup the Postgres interactive terminal as the user named `postgres` with the following command:
+
+```
+psql -U postgres
+```
+
+and then create our database by running:
 
 ```SQL
 CREATE DATABASE hello_books_development;
 ```
+
+We should get a `CREATE DATABASE` confirmation message from Postgres to indicate the database has been created. We can run `\l` to list the databases, which should also show us our new database. Then we can quit the Postgres terminal with `\q`.
 
 ## Connecting the Database and Flask
 
@@ -262,6 +272,34 @@ We need to run this separate command to actually run and apply the generated mig
 ```
 
 This command should be run after every time we've generated new migrations and want to apply them. At this introductory level, there is no reason for us to generate migrations without immediately applying them so we should always run `flask db migrate` and `flask db upgrade` back-to-back in that order.
+
+### Confirm the Migration
+
+We should now be able to connect to our database with `psql` and confirm that the `book` table has been created. Connect to Postgres with:
+
+```
+psql -U postgres
+```
+
+Once in the Postgres interactive terminal we can run `\c hello_books_development` to connect to the database. We can list the tables in the database with `\dt` which should show us `book`, and another table called `alembic_version` which tracks our migrations. We can display the columns of the `book` table by running `\d book`, which will show `id`, `title`, and `description`.
+
+Congratulations! We've created our first Flask model table!
+
+### !callout-warning
+
+## Singular Table Names vs. Plural Table Names
+
+Different situations call for different conventions. Notice that SQLAlchemy used the name `book` for the table. Previously, we have suggested using plural table names, like `books`.
+
+<br />
+
+Traditional database practice often uses plural names for tables, since conceptually a table holds many records. A `books` table would hold many book records. However, class names usually use singular names, since they are a description for a single instance of our type. So we make a `Book` class rather than a `Books` class. For simplicity, SQLAlchemy uses this class name for the table name.
+
+<br />
+
+We could tell SQLAlchemy that we would rather use a table name of `books`. There is only a small amount of additional code we would need to write. But then our class and table names wouldn't match, which could lead to confusion. As a result, we will recommend that we use `book`, and other singular table names with Flask. We should be ready to adapt our practices to the context in which we are operating. Even though database tables are often plural, sometimes they will be singular!
+
+### !end-callout
 
 ## Check for Understanding
 
