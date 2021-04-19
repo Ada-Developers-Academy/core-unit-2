@@ -184,7 +184,17 @@ def books():
 
 ## `Blueprint`s and Routes are Sensitive to `/`
 
-Be sure to specify that this endpoint is `""`. When combined with the `book_bp`'s `url_prefix`, `"/books"`, we see this endpoint is a `POST` to `"/books"`. Flask will throw an error if we define this route as `"/"`. We should use `""`.
+Be sure to specify that this endpoint is `""`. When combined with the `book_bp`'s `url_prefix`, `"/books"`, we see this endpoint is a `POST` to `/books`. URIs are sensitive to the use of `/` and Flask will throw an error if we define this route as `"/"` but try to access it as `/books`. A URI ending in `/` is different from a URI that _doesn't_ end in `/`, so we should use `""`.
+
+<br/>
+
+<details>
+
+<summary>Is there a way to declare "/" as valid a route path?</summary>
+
+For a little more flexibility, we _could_ choose to use `"/"` as the route path and include the keyword argument `strict_slashes=False`. This tells the route to treat a URI the same whether or not it ends in `/`. Accepting either variation can make using our API a little easier for our clients.
+
+</details>
 
 ### !end-callout
 
@@ -195,6 +205,33 @@ Be sure to specify that this endpoint is `""`. When combined with the `book_bp`'
 There are dozens of ways to make an HTTP response in Flask. Look forward to seeing and researching many of them!
 
 ### !end-callout
+
+### Registering a Blueprint
+
+Now that we have defined our `books_bp` blueprint, Flask requires us to "register the blueprint" with our `app`.
+
+Let's return to the code in `app/__init__.py`. Inside our `create_app` function, after our model definitions, let's add the following:
+
+```python
+def create_app():
+    app = Flask(__name__)
+
+    # ... existing code that did
+    # app config...
+    # db initialization...
+    # migrate initialization...
+    # import models...
+    # create the models...
+
+    from .routes import books_bp
+    app.register_blueprint(books_bp)
+
+    # ... return app
+```
+
+Again, these lines make it so that our `Blueprint` is recognized by our Flask `app`. We need to do this step each time we make a new `Blueprint`.
+
+Note that we can add new routes to an existing `Blueprint` without further changes to our `app`. Once a `Blueprint` has been registered, all routes added to that `Blueprint` will be recognized.
 
 ### Manually Testing with Postman
 
@@ -497,6 +534,18 @@ def book(book_id):
 | `Book.query.get(book_id)`                           | We must pass in the primary key of a book here. The primary key of the book we're looking for was provided in the route parameter, `book_id`.                                                                                                                                                      |
 | `{ "id": book.id, ... }`                            | We can create a dictionary literal for our HTTP response.                                                                                                                                                                                                                                |
 | `return`                                            | As always, we must return a response. Flask will default to returning status `200 OK`.                                                                                                                                                                                                   |
+
+### !callout-warning
+
+## Python Doesn't Know What a `book_id` Is
+
+We named the route parameter `book_id` because we expect it to be an id of a book. But just like regular variable names, Python has no idea what a `book_id` is. All it does is look for whatever part of the URL path follows `/books/` and captures that into the variable `book_id`. A request for `/books/360` would set the value of `book_id` to be `"360"`. A request for `/books/tacocat` would set the value of `book_id` to be `"tacocat"`!
+
+<br />
+
+We should be careful to avoid thinking that Python uses the name of the parameter to do any kind of validation. As usual, the name provides information to us developers, not to Python.
+
+### !end-callout
 
 ### !callout-info
 
