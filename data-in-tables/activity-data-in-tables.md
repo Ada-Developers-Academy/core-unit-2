@@ -107,7 +107,11 @@ Come up with...
 
 ## How to Review
 
-1. In Part 2, did the columns for a post in "services" differ from the columns for a post in "for sale"? In what ways?
+1. Why wouldn’t Craigslist just store this data in a list of dictionaries? 
+1. Why would it be more work to add a new column to one of these tables than to add a row?
+1. In Part 2, did the columns for a post in "services" differ from the columns for a post in "for sale"? In what ways? Can a couple groups share what they got for part 2.3?
+1. Considering the entire activity, which happened more frequently: getting all of the records from a table, or getting a specific set of records from a table?
+
+### Additional questions, if you have time
 1. In Part 3, what was your favorite feature that you came up with?
 1. In Part 4, what was your favorite feature that you came up with?
-1. Considering the entire activity, which happened more frequently: getting all of the records from a table, or getting a specific set of records from a table?
