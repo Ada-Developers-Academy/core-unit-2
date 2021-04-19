@@ -36,9 +36,9 @@ If you find a way to accomplish something using syntax that wasn't described in 
 
 Open the Postgres interactive terminal with `$ psql -U postgres`.
 
-View the list of Postgres databases on this machine using `\l`. Ensure that there isn't an existing database named `ride-share_development`. If there is, ask for help from an instructor or use your best judgment.
+View the list of Postgres databases on this machine using `\l`. Ensure that there isn't an existing database named `ride_share_development`. If there is, ask for help from an instructor or use your best judgment.
 
-Create a database named `ride-share_development` with a SQL statement.
+Create a database named `ride_share_development` with a SQL statement.
 
 <!--
 
@@ -71,7 +71,7 @@ When working on database projects, we often have test databases where active dev
   - `passenger_name`, with a data type of `TEXT`, and a constraint `NOT NULL`
   - `phone_num`, with a data type of `TEXT`
 
-- [ ] Confirm that your (empty) table looks correct so far. Run `SELECT * FROM passenger;` and check that you get output similar to this:
+- [ ] Confirm that your (empty) table looks correct so far. Run `SELECT * FROM passengers;` and check that you get output similar to this:
 
 ```
  id | passenger_name | phone_num
@@ -89,7 +89,7 @@ If your table columns have a mistake, feel free to either drop the table and rec
 
 ### !end-callout
 
-- [ ] Confirm that your table now has 1 record. Run `SELECT * FROM passenger;` and check that you see your new record.
+- [ ] Confirm that your table now has 1 record. Run `SELECT * FROM passengers;` and check that you see your new record.
 
 - [ ] Attempt to add an _invalid_ record to the `passengers` table. Do this by either _excluding_ a value for `passenger_name`, or by giving the value `NULL`. Check that you get output similar to this:
 
