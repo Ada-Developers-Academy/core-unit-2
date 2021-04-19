@@ -1,6 +1,283 @@
 ---
 Standards:
   -
+    Title: Data In Tables
+    Description: "Data in Tables, Activity: Data in Tables"
+    UID: f7c302282a7e78968f846372a19f50ef
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: 50c412213820ae1e7ffd5a432f8a2fb7
+        Path: /data-in-tables/data-in-tables.instructor.md
+      -
+        Type: Lesson
+        UID: 0e1f2fc10fdeffcb430193b38662480e
+        Path: /data-in-tables/data-in-tables.md
+      -
+        Type: Instructor
+        UID: 62c24181bff87815cf3039e30c8c32b2
+        Path: /data-in-tables/instructor-activity-data-in-tables.md      
+      -
+        Type: Lesson
+        UID: a5d0460ebba87354036cecef3e810940
+        Path: /data-in-tables/activity-data-in-tables.md
+  -
+    Title: Intro To SQL
+    Description: "Intro to Relational Databases, SQL Setup, Adding New Records, Retrieving Records, Updating Records, Deleting Records, Problem Set: Intro to SQL, Activity: Intro to SQL"
+    UID: 3211fc3d75369f96b537a4535fcbba6d
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: d208cde984a0236f321a3a2216132286
+        Path: /intro-to-sql/intro-to-sql.instructor.md
+      -
+        Type: Instructor
+        UID: paZju7
+        Path: /intro-to-sql/intro-to-relational-databases.instructor.md
+      -
+        Type: Lesson
+        UID: bf845a0d8d9b36277b4a65ad5a323ec6
+        Path: /intro-to-sql/intro-to-relational-databases.md
+      -
+        Type: Lesson
+        UID: 9f6237c34cd80959b46a2a6b197e04f5
+        Path: /intro-to-sql/sql-setup.md
+      -
+        Type: Lesson
+        UID: 5166b21899f0663aace050ca240e65c4
+        Path: /intro-to-sql/adding-new-records.md
+      -
+        Type: Lesson
+        UID: 9bd533be21a9cc9981797c67b9991514
+        Path: /intro-to-sql/retrieving-records.md
+      -
+        Type: Lesson
+        UID: 17054b670dbade2badeca1263766c075
+        Path: /intro-to-sql/updating-records.md
+      -
+        Type: Lesson
+        UID: 66c659ae-9887-4e01-a059-a73b22847a5d
+        Path: /intro-to-sql/deleting-records.md
+      -
+        Type: Lesson
+        UID: tTqwLh
+        Path: /intro-to-sql/problem-set-intro-to-sql.md
+      -
+        Type: Instructor
+        UID: 431e288ed7b0fa2b88b7599ae09a3543
+        Path: /intro-to-sql/activity-intro-to-sql.instructor.md
+      -
+        Type: Lesson
+        UID: 1ccd31d7b789d74e78d94c236193bb8d
+        Path: /intro-to-sql/activity-intro-to-sql.md 
+  -
+    Title: Modifying in SQL 
+    Description: "Modifying Tables in SQL, Modifying Databases in SQL"
+    UID: adb24d77-6638-4351-9b81-4f6bb7fd26f9
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 139ef877-f6ea-4455-8cad-e42849c19bf8
+        Path: /modifying-in-sql/modifying-tables-in-sql.md
+      -
+        Type: Lesson
+        UID: eed7f313-69fe-4881-9b7c-829860adeb4e
+        Path: /modifying-in-sql/modifying-databases-in-sql.md
+  -
+    Title: More Selecting In SQL
+    Description: "Compound Conditions, Ordering, Limit, Problem Set: More Selecting in SQL, Optional: Aggregate Functions, Optional: Grouping"
+    UID: 29f75f91-0453-468c-a724-d6b90a045e6a
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: VuVY5h
+        Path: /building-an-api/activity-building-an-api.instructor.md
+        UID: 0cbd2906-19c9-4983-83b0-d1e8620ed879
+        Path: /more-selecting-in-sql/compound-conditions.md
+      -
+        Type: Lesson
+        UID: ec61db9d-17e7-4aff-ae18-904c13cdb8cd
+        Path: /more-selecting-in-sql/ordering.md
+      -
+        Type: Lesson
+        UID: f17bddc5-338d-4077-b4fe-5e9764000b87
+        Path: /more-selecting-in-sql/limit.md
+      -
+        Type: Lesson
+        UID: f9f13580-bd04-442a-8944-34864f3de6a2
+        Path: /more-selecting-in-sql/problem-set-more-selecting-in-sql.md
+      -
+        Type: Lesson
+        UID: 7b23e0bb-64ea-4f55-aca4-4502d9f8e7fb
+        Path: /more-selecting-in-sql/optional-aggregate-functions.md
+      -
+        Type: Lesson
+        UID: af18e4ef-18aa-432c-9f34-0375f4dbb82a
+        Path: /more-selecting-in-sql/optional-grouping.md
+  -
+    Title: Intermediate SQL
+    Description: "Database Relationships, Establishing Relationships, Database Joins, Problem Set: Intermediate SQL"
+    UID: 11a8027f-bd04-4c47-b4d3-36209af1068d
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: c8e5656f-6fd9-43fa-8c30-164c4da593b8
+        Path: /intermediate-sql/database-relationships.md
+      - 
+        Type: Lesson
+        UID: a00c1cf2-cb0c-440b-bb5b-188ab64628ea
+        Path: /intermediate-sql/establishing-relationships.md
+      -
+        Type: Lesson
+        UID: d23c9ef5-1e99-4057-93ef-8863f33be45f
+        Path: /intermediate-sql/database-joins.md
+      -
+        Type: Lesson
+        UID: cbd53d1c-3374-4a55-804b-85defb26bd4b
+        Path: /intermediate-sql/problem-set-intermediate-sql.md
+  -
+    Title: Sorting Algorithms
+    Description: "Sorting Algorithms, Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Problem Set: Sorting Algorithms"
+    UID: 184d8af4792d6c2f80c90b27919caa10
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: 11ed7c3b-0b29-400d-9ed4-4af6ab4ba72d
+        Path: /sorting-algorithms/sorting-algorithms.instructor.md
+      -
+        Type: Lesson
+        UID: 32b0bd4445f66fd2663288c634432c2e
+        Path: /sorting-algorithms/sorting-algorithms.md
+      -
+        Type: Lesson
+        UID: 0806cdb2d0a4b885790d3793999db841
+        Path: /sorting-algorithms/bubble-sort.md
+      -
+        Type: Lesson
+        UID: 1dc3ffdcda584ccb3a445105b67bf21f
+        Path: /sorting-algorithms/selection-sort.md
+      -
+        Type: Lesson
+        UID: 04c103dab4d7e24b3e0922fba11ab2e7
+        Path: /sorting-algorithms/insertion-sort.md
+      -
+        Type: Lesson
+        UID: 64b3cc9b8ee0c4d4d7d0dadbaa0d618d
+        Path: /sorting-algorithms/merge-sort.md
+      -
+        Type: Lesson
+        UID: 383253988f7afc58dd4fe867d42d7cad
+        Path: /sorting-algorithms/problem-set-sorting-algorithms.md
+      -
+        Type: Instructor
+        UID: 70acaebba6da64c98fef0d184cd40e5b
+        Path: /sorting-algorithms/activity-sorting-algorithms.instructor.md
+  -
+    Title: Intro To Web Development
+    Description: "Web Applications and Layers, Intro to Clients, Servers, HTTP, Sequence Diagrams, Activity: Layers"
+    UID: 87ee542387da94693acb5efb099b7f58
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: c674f6dd20d7be77cfb94798b04ba3b7
+        Path: /intro-to-web-development/intro-to-web-development.instructor.md
+      -
+        Type: Lesson
+        UID: fb82af67544ea4e47867dacf14422750
+        Path: /intro-to-web-development/web-applications-and-layers.md
+      -
+        Type: Lesson
+        UID: 3b85293903e714dbf08ba517f828ac88
+        Path: /intro-to-web-development/intro-to-clients-servers-http.md
+      -
+        Type: Lesson
+        UID: 0cb41fed41e0e32dfb1adbd4b5d61c9a
+        Path: /intro-to-web-development/sequence-diagrams.md
+      -
+        Type: Lesson
+        UID: 50ce8362260e6524b31d9c6a8c990c2c
+        Path: /intro-to-web-development/activity-layers.md
+  -
+    Title: Requests And Responses
+    Description: "Request-Response Cycle, Sending Requests from Postman, API Keys, Sending Requests With Python, Problem Set: Requests With Python, Activity: Web API Jigsaw"
+    UID: b33d004935f89cb3dc27032aed9a1971
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: f8718b982976e86f238c9e3b0af77636
+        Path: /requests-and-responses/requests-and-responses.instructor.md
+      -
+        Type: Lesson
+        UID: 725ecafa914bb1b7bd4f47a305398ae8
+        Path: /requests-and-responses/request-response-cycle.md
+      -
+        Type: Lesson
+        UID: 36352066c1e128d38ee834fb0db51513
+        Path: /requests-and-responses/sending-requests-from-postman.md
+      -
+        Type: Lesson
+        UID: 0bf2679dc61b68a5d8683c021f5e5621
+        Path: /requests-and-responses/api-keys.md
+      -
+        Type: Lesson
+        UID: 3ce410c74f7c810715f9982420878886
+        Path: /requests-and-responses/sending-requests-with-python.md
+      -
+        Type: Instructor
+        UID: 4e147331c0920ff789c815744d162587
+        Path: /requests-and-responses/problem-set-requests-with-python.instructor.md
+      -
+        Type: Lesson
+        UID: 3c6844408261fe7c7d50f7dc4dc2c447
+        Path: /requests-and-responses/problem-set-requests-with-python.md
+      -
+        Type: Lesson
+        UID: 2f8f732d3d523c2302f4568e519bcbff
+        Path: /requests-and-responses/activity-web-api-jigsaw.md
+  -
+    Title: Intro To API Design
+    Description: "Designing Endpoints, Designing Responses, Problem Set: Intro to API Design, Activity: Intro to API Design"
+    UID: 0c5f68ba66d52eba25ba51327ee89b88
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: 9844bca7c230e2bf7ded06c1c8157d12
+        Path: /intro-to-api-design/intro-to-api-design.instructor.md
+      -
+        Type: Lesson
+        UID: ba2ee66f047cf534ff691b8412da3332
+        Path: /intro-to-api-design/designing-endpoints.md
+      -
+        Type: Lesson
+        UID: 82f2c31b30d0ec23865311d32a45f02e
+        Path: /intro-to-api-design/designing-responses.md
+      -
+        Type: Lesson
+        UID: 8WFdaq
+        Path: /intro-to-api-design/problem-set-intro-to-api-design.md
+      -
+        Type: Lesson
+        UID: 5f9a641756dea1f4bc8a5c1776d46528
+        Path: /intro-to-api-design/activity-intro-to-api-design.md
+  -
     Title: Building An API
     Description: "Intro to Flask, Flask Setup, Flask Hello Books, Models, Models Setup, Create and Read, Problem Set: Building an API"
     UID: 2804d58bb38264215b9414a111a759d7
@@ -39,7 +316,3 @@ Standards:
         Type: Lesson
         UID: m9dgD0
         Path: /building-an-api/activity-solar-system-api-setup-create-read.md
-      -
-        Type: Instructor
-        UID: VuVY5h
-        Path: /building-an-api/activity-building-an-api.instructor.md
