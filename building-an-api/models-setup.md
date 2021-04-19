@@ -8,7 +8,7 @@ Our goal for this lesson is to provide details for _how_ to setup a model in a F
 
 This lesson is a walk-through and syntax explanation for how to build several features inside a Flask API. We **highly recommend** reading or watching through this first fully, before repeating on your own machine.
 
-This lesson has a large amount of new information. It may be better to think about this lesson as a resource to be familiar with, rather than commit all new knowledge to memory at once.
+This lesson has a large amount of new information. It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
 
 ### !callout-danger
 
@@ -22,7 +22,7 @@ We **highly suggest** reading or watching through this lesson fully, before repe
 
 ## Prioritize Familiarity
 
-It may be better to think about this lesson as a resource to be familiar with, rather than commit all new knowledge to memory at once.
+It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
 
 ### !end-callout
 
@@ -49,42 +49,23 @@ There are no naming rules, but let's give our database a similar name to our pro
 CREATE DATABASE hello_books_development;
 ```
 
-### Creating the Tables
+## Connecting the Database and Flask
 
-Similarly, we need to define the tables that will hold the data of our models.
+We need to tell Flask where to find our new database. We do this by supplying a _connection string_ that identifies where it is, and how to connect to it.
 
-We can name our tables whatever we'd like. However, Flask and SQLAlchemy will automatically look for tables whose names match the model. For example, for our `Book` model, SQLAlchemy will automatically look for the table named `book`. (Table names are not case-sensitive.)
-
-```SQL
-\c hello_books_development;
-CREATE TABLE book (
-  id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  title VARCHAR(200),
-  description TEXT
-);
-```
-
-### !callout-warning
-
-## Singular Table Names vs. Plural Table Names
-
-Different situations call for different conventions. In this situation, we suggest naming the table with a singular name, `book`. In other situations, we may have suggested using a plural table name, `books`. If we want to specify that the table name is `books`, there is additional code we need to write (detailed below). However, otherwise, this guide will recommend that we use `book`, and other singular table names with Flask.
-
-### !end-callout
-
-## Connecting the DB and Flask
-
-The following is one of many formats to help locate our database. We choose this format because it will benefit some future setup instructions we have later.
+A connection string resembles the following:
 
 ```
 postgresql+psycopg2://postgres:postgres@localhost:5432/REPLACE_THIS_LAST_PART_WITH_DB_NAME
 ```
 
+This tells Flask to connect to our database using the `psycopg2` package we installed from our `requirements.txt`. It connects using the `postgres` protocol using the `postgres` user on the local machine running at port `5432`.
+
 The text `REPLACE_THIS_LAST_PART_WITH_DB_NAME` should be replaced with our database's name, `hello_books_development`.
 
-### Configure the DB in `app/__init__.py`
+### Configure the Database in `app/__init__.py`
 
-Read through this code that configures the DB to use SQLAlchemy appropriately for our app.
+We can examine this code, which configures the database to use SQLAlchemy appropriately for our app.
 
 ```python
 from flask import Flask
@@ -107,14 +88,15 @@ def create_app(test_config=None):
     return app
 ```
 
-Then, align your `app/__init__.py` file so it looks identical.
+Then, we can edit our `app/__init__.py` file so it looks identical.
 
 On a high-level, this code does the following:
 
 1. Imports and sets up the packages SQLAlchemy and Migrate (a companion package to SQLAlchemy)
 1. Sets up `db` and `migrate`, which are conventional variables that give us access to database operations
 1. Configures the `app` to include two new SQLAlchemy settings
-   1. We set `app.config['SQLALCHEMY_DATABASE_URI']` to the pathway to our database, `hello_books_development`
+   1. We set `app.config['SQLALCHEMY_TRACK_MODIFICATIONS']` to `False` to hide a warning about a feature in SQLAlchemy that we won't be using.
+   1. We set `app.config['SQLALCHEMY_DATABASE_URI']` to the connection string for our database, `hello_books_development`
 1. Connects `db` and `migrate` to our Flask `app`, using the package's recommended syntax
 
 ## Defining the Model
@@ -123,6 +105,7 @@ Following the pattern of creating a file for every model, we can execute these c
 
 ```bash
 $ mkdir app/models
+$ touch app/models/__init__.py
 $ touch app/models/book.py
 ```
 
@@ -130,21 +113,23 @@ Our current project structure likely looks similar to this:
 
 ```
 .
-├── README.md
 ├── app
-│   ├── __init__.py
 │   ├── models
+│   │   ├── __init__.py
 │   │   └── book.py
+│   ├── __init__.py
 │   └── routes.py
+├── README.md
 └── requirements.txt
 ```
 
-### Models are Classes that Inherit `db.Model`
+### Models Are Classes That Inherit From `db.Model`
 
 Now, inside of `app/models/book.py`, we can define the `Book` model. SQLAlchemy provides a pattern for creating a class for our model that will:
 
-1. Connect the model seamlessly with our SQL database, mapping attribute to table column
+1. Connect the model seamlessly with our SQL database, mapping attributes to table columns
 1. Give our Flask code the ability to work with `Book` instances, taking advantage of OOP
+1. Enable us to access instances of `Book`, where each instance corresponds to a row in our database
 
 ```python
 from app import db
@@ -159,15 +144,15 @@ class Book(db.Model):
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                   |
 | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | `from app import db`                                | This file needs access to the SQLAlchemy `db`                                                                           |
-| `class Book(...)`                                   | We define a new class, and name it after our model (usually singular)                                                   |
-| `db.Model`                                          | Our model will inherit `db.Model`, so if we need to look up documentation, we can start with SQLAlchemy's `Model` class |
-| `id = db.Column(...)`                               | Instances of `Book` will have an attribute `id`, which maps to a database column                                        |
-| `db.Integer`                                        | A column data-type that SQL Alchemy defines. The `id` column accepts integers.                                          |
-| `primary_key=True, autoincrement=True`              | Keyword arguments that allow SQLAlchemy to understand how to fill in the values for new `Book` instances                |
-| `title = db.Column(db.String)`                      | Creates a `title` attribute, which maps to the string column, `title`                                                   |
-| `description = db.Column(db.String)`                | Creates a `description` attribute, which maps to the string column, `description`                                       |
+| `class Book(...)`                                   | We define a new class, and name it after our model (usually singular). By default, SQLAlchemy will use the lowercase version of this class name as the name of the table it will create.                                                   |
+| `db.Model`                                          | Our model will inherit from `db.Model`, so if we need to look up documentation, we can start with SQLAlchemy's `Model` class |
+| `id = db.Column(...)`                               | Instances of `Book` will have an attribute `id`, which will map to a database column. Notice that this attribute goes outside of any instance method and doesn't reference `self`. This is part of the pattern that models deriving from `db.Model` will follow, even though it's a little different from a typical Python class.                                      |
+| `db.Integer`                                        | A column data-type that SQL Alchemy defines. The `id` column stores integers.                                          |
+| `primary_key=True, autoincrement=True`              | Keyword arguments that allow SQLAlchemy to understand how to fill in the values for new `Book` instances. Notice how they resemble constraints that can be supplied to a column.                |
+| `title = db.Column(db.String)`                      | Creates a `title` attribute, which will map to a string column, `title`                                                   |
+| `description = db.Column(db.String)`                | Creates a `description` attribute, which will map to a string column, `description`                                       |
 
-Congratulations on defining your first Flask model!
+Congratulations! We've defined our first Flask model!
 
 ### !callout-info
 
@@ -181,17 +166,17 @@ There are plenty of more options for configuring our model. We can define more c
 
 ## Specifying the Table Name
 
-In this model definition, we can specify the name of the table, using the `__tablename__` property. There is more to research here!
+In model definitions, if we don't like the default name that SQLAlchemy picks we can specify a different name for the table, using the `__tablename__` property. There is more to research here!
 
 ### !end-callout
 
-### Configuring the `Book` Model in `__init__.py`
+### Making the `Book` Model Visible to the `app` in `__init__.py`
 
-Now that we've defined `Book`, we need to make sure our `app` sees it. During the configuration step, we need to import `Book` and connect it to our SQLAlchemy `db`.
+Now that we've defined `Book`, we need to make sure our `app` sees it. To do so, we need to import `Book` during the `app` startup.
 
 In `__init__.py`, we'll modify the `create_app()` function.
 
-There is new code after `db` and `migrate` are initialized, but before the `return app` statement. This code essentially connects the Flask `app` and the SQLAlchemy `db` to see each other.
+Notice the new `import` code after `db` and `migrate` are initialized, but before the `return app` statement. This code ensures that the `Book` model will be available to the `app` when we update our database in a moment.
 
 ```python
 def create_app(test_config=None):
@@ -200,27 +185,37 @@ def create_app(test_config=None):
     # ... db and migrate are initialized with app
 
     from app.models.book import Book
-    with app.app_context():
-        db.create_all()
 
     return app
 ```
 
 If we ever design any more models, we'll need to import the new model here too, mimicking the pattern of `from app.models.book import Book`.
 
+### !callout-warning
+
+## Sometimes Imports Don't Go at the Top
+
+Generally we prefer to put `import` statements at the top of our files. However, doing so here would result in an error called a _circular import error_. There are a number of ways to avoid this error, but by far the most straight-forward way is to place this `import` inside a function so that it doesn't run until the function gets called.
+
+<br />
+
+Sometimes we need to bend what we consider to be a best practice to address an immediate situation.
+
+### !end-callout
+
 ## Database Migrations
 
-Everything is set up! The remaining actions left are to use our Flask tools to generate migrations.
+Our model is set up! The remaining actions left are to use our Flask tools to generate the migrations that we'll be able to use to update our database.
 
 Our database development workflow will be as follows:
 
-1. Set up the db on the Flask end once
+1. Set up the database on the Flask end once
 1. Generate migration files
 1. Apply the migration files
 
 ### One-Time `init` Setup
 
-After the first time that a database and at least one table are setup, we can do this one-time setup command:
+Once we have created our database and configured the connection string, we can do this one-time setup command:
 
 ```bash
 (venv) $ flask db init
@@ -231,31 +226,34 @@ After the first time that a database and at least one table are setup, we can do
 We can generate database migrations with the following command. This command should be run every time there's a change to a file in the `models` folder.
 
 ```bash
-(venv) $ flask db migrate
+(venv) $ flask db migrate -m "adds Book model"
 ```
+
+Notice that just like when we make `git` commits, here too we can record a message summarizing the changes we have made. When running this command ourselves, we should replace the `"adds Book model"` with a description relevant to our recent changes.
 
 A neat side-effect about generating migrations is that we get to appreciate the migration files. The generated migrations are placed in a new folder now, the `migrations` folder!
 
 ```
 .
-├── README.md
 ├── app
-│   ├── __init__.py
 │   ├── models
+│   │   ├── __init__.py
 │   │   └── book.py
+│   ├── __init__.py
 │   └── routes.py
 ├── migrations
-│   ├── README
 │   ├── alembic.ini
 │   ├── env.py
+│   ├── README
 │   ├── script.py.mako
 │   └── versions
+├── README.md
 └── requirements.txt
 ```
 
 At the introductory level of Flask, it's unlikely that we will touch many of the files in the `migrations` folder.
 
-### Apply Migrations AFter Each Model Change
+### Apply Migrations After Each Model Change
 
 We need to run this separate command to actually run and apply the generated migrations:
 
@@ -263,7 +261,7 @@ We need to run this separate command to actually run and apply the generated mig
 (venv) $ flask db upgrade
 ```
 
-This command should be run after every time we've generated new migrations and want to apply them.
+This command should be run after every time we've generated new migrations and want to apply them. At this introductory level, there is no reason for us to generate migrations without immediately applying them so we should always run `flask db migrate` and `flask db upgrade` back-to-back in that order.
 
 ## Check for Understanding
 
