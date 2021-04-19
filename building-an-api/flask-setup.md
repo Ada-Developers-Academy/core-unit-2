@@ -226,10 +226,10 @@ This curriculum will provide a suggested project structure and location:
 
 ```
 .
-├── README.md
 ├── app
 │   ├── __init__.py
 │   └── routes.py
+├── README.md
 └── requirements.txt
 ```
 
@@ -245,10 +245,10 @@ This curriculum will provide a suggested project structure and location:
 
 ```
 .
-├── README.md
 ├── app
 │   ├── __init__.py
 │   └── routes.py
+├── README.md
 └── requirements.txt
 ```
 
