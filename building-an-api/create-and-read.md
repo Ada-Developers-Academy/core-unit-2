@@ -272,7 +272,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-question
 ##### !options
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Briefly considered `request`
 * Briefly considered `Blueprint`
 * Briefly considered `Response`
@@ -288,7 +288,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-options
 ##### !answer
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Briefly considered `request`
 * Briefly considered `Blueprint`
 * Briefly considered `Response`
@@ -437,7 +437,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-question
 ##### !options
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Briefly considered `jsonify`
 * Briefly considered `query`
 * Updated this endpoint to match `GET` requests, too
@@ -452,7 +452,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-options
 ##### !answer
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Briefly considered `jsonify`
 * Briefly considered `query`
 * Updated this endpoint to match `GET` requests, too
@@ -569,7 +569,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-question
 ##### !options
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Considered route parameters, and how we need the book ID in the route
 * Created a new endpoint that matches on `GET` requests to `"/<book_id>"`
 * Defined this endpoint with the function signature `def book(book_id):`
@@ -579,7 +579,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-options
 ##### !answer
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Considered route parameters, and how we need the book ID in the route
 * Created a new endpoint that matches on `GET` requests to `"/<book_id>"`
 * Defined this endpoint with the function signature `def book(book_id):`
