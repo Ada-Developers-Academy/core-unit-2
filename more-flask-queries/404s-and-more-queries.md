@@ -7,13 +7,15 @@ Our goal for this lesson is to apply our learnings about edge cases from RESTful
 This lesson covers:
 
 - Handling when a resource isn't found
-- Exploring more query functionality available by Flask-SQLAlchemy
+- Exploring more query functionality made available by Flask-SQLAlchemy
 
 ## Hello Books API
 
 ### Before This Lesson
 
 This lesson uses the Hello Books API.
+
+<br />
 
 <details style="max-width: 700px; margin: auto;">
     <summary>
@@ -44,23 +46,25 @@ Let's consider how to accomplish this feature:
 
 > As a client, I want to send a request trying to get one non-existing book and get a 404 response, so I know that the book resource was not found.
 
-### Predict HTTP Requests, Responses, and Logic
+### Planning HTTP Requests, Responses, and Logic
 
-Let's consider the endpoint to get a single book:
+This feature is a variation on our existing endpoint that reads a record, but it uses an invalid id. As a result, we can use the following verb and endpoint combination.
 
 | HTTP Method | Endpoint          |
 | ----------- | ----------------- |
 | `GET`       | `/books/99999999` |
 
-No request body.
+As with our existing `GET` requests, we do not send a request body.
 
-The response we want to send back is:
+We want to inform the client that the record was not found. The most appropriate response status code is `404 Not Found`. We could return an error message that echoes back the id the client submitted, but for simplicity, we'll only return the status code and leave the body empty.
 
 | Response Status | Response Body |
 | --------------- | ------------- |
 | `404 Not Found` | -             |
 
-During this method, we will need to:
+Now that we have planned out the endpoint behavior, we can turn our attention to how to implement it.
+
+Our endpoint will need to:
 
 1. Read the `book_id` in the request path
 1. Retrieve the book with the matching `book_id` from the db
@@ -71,13 +75,13 @@ During this method, we will need to:
 
 We've been retrieving our `Book` instance with the line `Book.query.get(book_id)`. What does this method do when there is no matching book?
 
-When `Model.query.get(primary key)` doesn't find a matching record, it returns `None`!
+When `Model.query.get(primary_key)` doesn't find a matching record, it returns `None`!
 
 ## `GET`ting a Missing Book: Code
 
-For this feature, we must return to our `GET` `/<book_id>` endpoint and re-work it.
+This endpoint uses the same path as our existing parameterized route, `"/<book_id>"`, so we can re-work it to add our new behavior.
 
-Let's look at this example code for one strategy:
+Let's modify our endpoint code to report a not found status when trying to `GET` a book.
 
 ```python
 @books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
@@ -85,8 +89,8 @@ def book(book_id):
     book = Book.query.get(book_id)
 
     if request.method == "GET":
-        if book == None:
-            return Response("", status=404)
+        if book is None:
+            return make_response("", 404)
         return {
             "id": book.id,
             "title": book.title,
@@ -98,8 +102,8 @@ def book(book_id):
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                       |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| `if book == None:`                                  | This checks if `Book.query.get(book_id)` returned `None` because there was no matching book |
-| `return Response("", status=404)`                   | We sent back an empty string as our empty response body                                     |
+| `if book is None:`                                  | This checks if `Book.query.get(book_id)` returned `None` because there was no matching book |
+| `return make_response("", 404)`                   | We sent back an empty string as our empty response body and set the status code to `404 Not Found`                                     |
 
 ### Manually Testing in Postman
 
@@ -117,14 +121,16 @@ Handling a missing book and sending back a 404 happens to be the same response w
 - `PUT` `/books/<book_id>`
 - `DELETE` `/books/<book_id>`
 
-We can consider refactoring and then testing our API to this code:
+While we _could_ duplicate the `None` check we added to the `GET` branch in each of the other cases, a simpler approach is to handle the `None` check before even checking for the verb. This lets us handle all three cases with a single piece of logic!
+
+Let's make the change and then test our API, making sure each verb case works as expected!
 
 ```python
 @books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
 def book(book_id):
     book = Book.query.get(book_id)
-    if book == None:
-        return Response("", status=404)
+    if book is None:
+        return make_response("", 404)
 
     if request.method == "GET":
         return {
@@ -140,7 +146,7 @@ def book(book_id):
 
 ## Even More Refactoring
 
-We could refactor our code to a number of different solutions that are more elegant. Feel free to refactor!
+There is no single correct way to structure our code. We could refactor our code to any number of different solutions. Feel free to refactor!
 
 ### !end-callout
 
@@ -183,7 +189,7 @@ Check off all the topics that we've briefly touched on so far.
 
 ### Filter By
 
-We can use the method `filter_by()` in order to filter our search query. We can give keyword arguments to describe the attribute and value we're filtering on. Consider this example that filters `Book`s by title.
+We can use the method `filter_by()` in order to filter our search query. We can give keyword arguments to describe the attribute and value on which we're filtering. Consider this example that filters `Book`s by title.
 
 ```python
 Book.query.filter_by(title="Fictional Book Title")
@@ -193,7 +199,7 @@ Book.query.filter_by(title="Fictional Book Title")
 
 ## Way More to Explore
 
-There's way more to explore in filtering that is uncovered in this curriculum, so drive your own learning!
+There's way more to explore in filtering than is covered in this curriculum, so drive your own learning!
 
 ### !end-callout
 
