@@ -1,5 +1,7 @@
 # Compound Conditions
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=f775b5b8-dd68-4efa-91f9-ad1000eb6c41&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 - Explain how `WHERE` clauses can contain multiple conditions
