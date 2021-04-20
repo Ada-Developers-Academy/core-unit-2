@@ -23,7 +23,6 @@ The new driver may need to setup their database. Follow these steps:
 1. Activate the virtual environment
 1. Install the dependencies
 1. Create the database `solar_system_development`
-1. Create the `planet` table with the columns `id`, `name`, and `description`, and the one additional column
 1. Run `$ flask db upgrade`
 1. Run `$ flask run` to confirm that the API is running as expected
 
