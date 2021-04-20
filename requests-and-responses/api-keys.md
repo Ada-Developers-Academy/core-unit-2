@@ -1,5 +1,7 @@
 # API Keys
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=b0801946-19e4-4450-9936-ad10003b9231&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 Most web APIs require the use of API keys. The goal of this lesson is to learn about API keys to work with existing web APIs meaningfully.
