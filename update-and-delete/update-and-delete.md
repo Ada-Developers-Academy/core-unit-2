@@ -3,13 +3,14 @@
 ## Goals
 
 - Practice defining routes that modify data in an API
+- Practice defining routes that delete data in an API
 - Modify a database record from the back-end layer
 
 ## Format
 
 This lesson is a walk-through and syntax explanation for how to build several features inside a Flask API. We **highly recommend** reading or watching through this first fully, before repeating on your own machine.
 
-This lesson has a large amount of new information. It may be better to think about this lesson as a resource to be familiar with, rather than commit all new knowledge to memory at once.
+This lesson has a large amount of new information. It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
 
 ### !callout-danger
 
@@ -23,7 +24,7 @@ We **highly suggest** reading or watching through this lesson fully, before repe
 
 ## Prioritize Familiarity
 
-It may be better to think about this lesson as a resource to be familiar with, rather than commit all new knowledge to memory at once.
+It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
 
 ### !end-callout
 
@@ -60,15 +61,17 @@ Let's consider how to accomplish this feature:
 
 > As a client, I want to send a request with valid book data to update one existing book and get a success response, so that I know the API updated the book data.
 
-### Predict HTTP Requests, Responses, and Logic
+### Planning HTTP Requests, Responses, and Logic
 
-Let's consider the endpoint to create a book:
+As we did for our create and read endpoints, we should think about the typical HTTP verb and endpoint used to replace the data for a particular model record.
+
+For this feature, we should make a `PUT` request to the `/books` path. We also need to include the `id` of the record to replace as part of the endpoint, as we did when _reading_ a particular record.
 
 | HTTP Method | Endpoint   |
 | ----------- | ---------- |
 | `PUT`       | `/books/1` |
 
-Request body:
+We are replacing the data associated with the specified record. As a result, the request body will consist of a JSON document with all the same fields as were required to create the resource in the first place. For our `Book` model, an example request body would be:
 
 ```json
 {
@@ -77,31 +80,34 @@ Request body:
 }
 ```
 
-This assumes that there is at least a `book` table with the following row:
+This assumes that there is a `book` table with at least the following row:
 
-| `id` | `title`                | `description`                               |
+| <div style="min-width:40px;">`id`</div> | `title`                | `description`                               |
 | ---- | ---------------------- | ------------------------------------------- |
 | `1`  | `Fictional Book Title` | `A fantasy novel set in an imaginary world` |
 
-The response we want to send back is:
+When the record is successfully updated, we should return the appropriate status code, which is `200 OK`. As with other endpoints, we may choose our response body from a variety of possibilities, but for simplicity, we will return a brief status message.
 
 | Response Status | Response Body                  |
 | --------------- | ------------------------------ |
 | `200 OK`        | `Book #1 successfully updated` |
 
-During this method, we will need to:
+Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
+Our endpoint will need to:
+
+1. Read the `book_id` in the request path
+1. Retrieve the `Book` instance with the matching `book_id` from the database
 1. Read the new, updated book data from the HTTP request
-1. Find the instance of `Book` that has the existing book data
 1. Update the instance of `Book` with the new data
-1. Save the `Book` in the db
+1. Save the updated `Book` in the database
 1. Send back a response
 
 ## Updating a Book Endpoint: Code
 
-This endpoint uses the same path as an existing one, `"/<book_id>"`. We can refactor and expand on this same function.
+This endpoint uses the same path as our existing route for reading a `Book` record, `"/<book_id>"`. We can refactor and expand on this same function.
 
-Let's look at this example code for our update feature.
+Let's modify our endpoint code to support the update feature.
 
 ```python
 @books_bp.route("/<book_id>", methods=["GET", "PUT"])
@@ -118,7 +124,7 @@ def book(book_id):
 
         db.session.commit()
 
-        return Response(f"Book #{book.id} successfully updated", status=200)
+        return make_response(f"Book #{book.id} successfully updated")
 ```
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                      |
@@ -127,12 +133,12 @@ def book(book_id):
 | `book = Book.query.get(book_id)`                    | Both the `GET` and `PUT` actions need to find the `Book` instance based on `book_id`, so we'll declare `book` at the beginning             |
 | `if request.method == "GET": ...`                   | We can refactor our existing `GET` functionality into this conditional                                                                     |
 | `elif request.method == "PUT":`                     | We can begin our update functionality inside of a conditional for `PUT` requests                                                           |
-| `... = request.get_json()`                          | This endpoint relies on reading the HTTP request body. We'll use `request.get_json()` to parse the JSON body into a Python data structure. |
-| `form_data`                                         | A local variable to hold the HTTP response.                                                                                                |
+| `... = request.get_json()`                          | This endpoint relies on reading the HTTP request body. We'll use `request.get_json()` to parse the JSON body into a Python dictionary. |
+| `form_data`                                         | A local variable to hold the body of the HTTP request. More about the meaning of the name below!                                                                                                |
 | `book.title = form_data["title"]`                   | We'll use our OOP skills to update `book`'s `title` attribute                                                                              |
 | `book.description = ...`                            | We'll use our OOP skills to update `book`'s `description` attribute                                                                        |
 | `db.session.commit()`                               | Every time a SQLAlchemy model has been updated, and we want to commit the change to the database, we'll execute `db.session.commit()`.     |
-| `return Response( ... )`                            | This is one of many ways we can return our appropriate HTTP response                                                                       |
+| `return make_response( ... )`                            | This is one of many ways we can return our appropriate HTTP response. Since we didn't supply a status code, Flask will default to `200 OK`.                                                                      |
 
 ### !callout-info
 
@@ -160,7 +166,9 @@ We can send another request to `GET /books/1` to confirm the updates worked.
 
 ### Manually Testing with `psql`
 
-We can also check if our book was updated in the database using `psql`!
+We can also check if our book was updated in the database using `psql`, just as we did when creating new records!
+
+Let's try it out on our own! We can refer back to the Intro to SQL lessons if we need a reminder about how to write a query like this.
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -176,24 +184,24 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-question
 ##### !options
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Refactored our `"/books/<book_id>"` endpoint to accept `PUT` requests
 * Used `Book.query.get(book_id)` to get an instance of `Book` matching `book_id`
 * Refactored our code to conditionally check the request's method
 * Read the HTTP request body using `request.get_json()`
-* Saved the instance of `Book` in the database
+* Updated the instance of `Book` in the database
 * Returned a response
 * Tested this request in Postman
 
 ##### !end-options
 ##### !answer
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Refactored our `"/books/<book_id>"` endpoint to accept `PUT` requests
 * Used `Book.query.get(book_id)` to get an instance of `Book` matching `book_id`
 * Refactored our code to conditionally check the request's method
 * Read the HTTP request body using `request.get_json()`
-* Saved the instance of `Book` in the database
+* Updated the instance of `Book` in the database
 * Returned a response
 * Tested this request in Postman
 
@@ -205,7 +213,7 @@ Check off all the topics that we've briefly touched on so far.
 
 ## What About Error Handling?
 
-There are many cases that weren't covered in this lesson, even though they are relevant to creating and reading `Book`s. For example, what happens if we make a `GET` request to `/books/this-book-doesnt-exist`? We are intentionally not covering these cases at the moment, to limit this lesson. However, hypothesize and research how to handle erroneous HTTP requests. Follow your curiosity!
+There are many cases that weren't covered in this lesson, even though they are relevant to creating and reading `Book`s. For example, what happens if we make a `PUT` request to `/books/this-book-doesnt-exist`? We are intentionally not covering these cases at the moment, to limit this lesson. However, hypothesize and research how to handle erroneous HTTP requests. Follow your curiosity!
 
 ### !end-callout
 
@@ -215,41 +223,45 @@ Let's consider how to accomplish this feature:
 
 > As a client, I want to send a request to delete one existing book and get a success response, so that I know the API deleted the book data.
 
-### Predict HTTP Requests, Responses, and Logic
+### Planning HTTP Requests, Responses, and Logic
 
-Let's consider the endpoint to create a book:
+We should think about the typical HTTP verb and endpoint used for requests that delete a particular model record.
+
+For this feature, we should make a `DELETE` request to the `/books` path, and we'll need to include the `id` of the record to delete as part of the endpoint.
 
 | HTTP Method | Endpoint   |
 | ----------- | ---------- |
 | `DELETE`    | `/books/1` |
 
-No request body.
+`DELETE` requests do not generally include a request body, so no additional planning around the request body is needed.
 
-This assumes that there is at least a `book` table with the following row:
+This assumes that there is a `book` table with at least the following row:
 
-| `id` | `title`                        | `description`                                     |
+| <div style="min-width:40px;">`id`</div> | `title`                | `description`                               |
 | ---- | ------------------------------ | ------------------------------------------------- |
 | `1`  | `Updated Fictional Book Title` | `This fantasy novel has robots and pirates, too.` |
 
-The response we want to send back is:
+When the record is successfully updated, we should return the appropriate status code, which is `200 OK`. Some APIs return the the record that was just deleted as the response body, but for simplicity, we will return a brief status message.
 
 | Response Status | Response Body                  |
 | --------------- | ------------------------------ |
 | `200 OK`        | `Book #1 successfully deleted` |
 
-During this method, we will need to:
+Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
-1. Read the new, updated book data from the HTTP request
-1. Find the instance of `Book` that has the existing book data
-1. Delete this instance of `Book`
-1. Save this change in the db
+Our endpoint will need to:
+
+1. Read the `book_id` in the request path
+1. Retrieve the `Book` instance with the matching `book_id` from the database
+1. Tell the database to delete this instance of `Book`
+1. Save this change in the database
 1. Send back a response
 
 ## Deleting a Book Endpoint: Code
 
-Let's expand our `book` endpoint.
+This endpoint uses the same path as our existing parameterized route, `"/<book_id>"`, so we can refactor and expand on the same function.
 
-Let's look at this example code for our delete feature.
+Let's modify our endpoint code to support the delete feature.
 
 ```python
 @books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
@@ -263,17 +275,17 @@ def book(book_id):
     elif request.method == "DELETE":
         db.session.delete(book)
         db.session.commit()
-        return Response(f"Book #{book.id} successfully deleted", status=200)
+        return make_response(f"Book #{book.id} successfully deleted")
 ```
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                 |
 | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `methods=["GET", "PUT", "DELETE"]`                  | We must update this endpoint so it accepts `DELETE` requests                                                                                          |
-| `book = Book.query.get(book_id)`                    | This feature will need to find our matching `Book` instance, so we still need to use `book`                                                           |
+| `book = Book.query.get(book_id)`                    | This feature will need to find our matching `Book` instance, so we still need the lookup code using `book_id` and store the found book in `book`                                                           |
 | `elif request.method == "DELETE":`                  | We can add a new conditional branch for `DELETE` requests                                                                                             |
-| `db.session.delete(book)`                           | We can use SQLAlchemy's functions to delete our `book` with `db.session.delete(book)`                                                                 |
+| `db.session.delete(book)`                           | We can use SQLAlchemy's functions to tell the database to prepare to delete our `book` with `db.session.delete(book)`                                                                 |
 | `db.session.commit()`                               | We use this function to actually apply our database changes                                                                                           |
-| `return Response(...)`                              | This is one of many ways to return an HTTP response                                                                                                   |
+| `return make_response(...)`                              | This is one of many ways to return an HTTP response. Since we didn't supply a status code, Flask will default to `200 OK`.                                                                                                   |
 | `f"Book #{book.id} successfully deleted"`           | We can still access `book.id` because the variable itself is still in scope in our app, even if the `book` _was_ successfully deleted in the database |
 
 ### Manually Testing in Postman
@@ -292,7 +304,11 @@ Afterwards, let's even make a `GET` request to `/books`. We see that there are n
 
 ![Screenshot of Postman featuring a request of GET to /books and a response of 200 with an empty array](../assets/update-and-delete/update-and-delete_delete-get-books-empty.png)
 
-We could also use `psql` to check this, too.
+### Manually Testing with `psql`
+
+We can also check if our book was deleted from the database using `psql`.
+
+Let's try it out on our own!
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -308,7 +324,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-question
 ##### !options
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Refactored our `"/books/<book_id>"` endpoint to accept `DELETE` requests
 * Used `Book.query.get(book_id)` to get an instance of `Book` matching `book_id`
 * Refactored our code to conditionally check the request's method
@@ -320,7 +336,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-options
 ##### !answer
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Refactored our `"/books/<book_id>"` endpoint to accept `DELETE` requests
 * Used `Book.query.get(book_id)` to get an instance of `Book` matching `book_id`
 * Refactored our code to conditionally check the request's method
