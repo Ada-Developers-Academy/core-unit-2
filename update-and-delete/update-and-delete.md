@@ -107,6 +107,14 @@ Our endpoint will need to:
 
 This endpoint uses the same path as our existing route for reading a `Book` record, `"/<book_id>"`. We can refactor and expand on this same function.
 
+### !callout-info
+
+## Reminder: Refactor ≠ Edit
+
+Refactoring means more than just making changes. When we say that we are refactoring some code, that means we are restructuring some code without altering its functionality. In this case, we still want our `GET` verb to be handled, but we also want to support `PUT` requests. To prepare for this expansion in functionality, we start by refactoring the existing `GET` logic into an `if` condition. All previous `GET` requests would still work, so the functionality hasn't changed. But now we've laid a foundation that lets us expand the functionality to also support `PUT` requests.
+
+### !end-callout
+
 Let's modify our endpoint code to support the update feature.
 
 ```python
