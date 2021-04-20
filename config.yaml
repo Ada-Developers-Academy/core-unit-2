@@ -317,3 +317,30 @@ Standards:
         Type: Lesson
         UID: m9dgD0
         Path: /building-an-api/activity-solar-system-api-setup-create-read.md
+  -
+    Title: Deployment
+    Description: "Deployment, Deploying to Heroku, Problem Set: Deployment, Activity: Deploying to Heroku"
+    UID: ea355214fd4bc7c57f471bd92918879b
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: 9e1096612d943453372431b09479429a
+        Path: /deployment/deployment.instructor.md
+      -
+        Type: Lesson
+        UID: d6dc45ac3fb4fec2cb1209ccf2ab53dc
+        Path: /deployment/deployment.md
+      -
+        Type: Lesson
+        UID: 2eccb3b5671761e4e6ea2f9f9e5cdf88
+        Path: /deployment/deploying-to-heroku.md
+      -
+        Type: Lesson
+        UID: 082a038b50122fe48f98c2338f822b2a
+        Path: /deployment/problem-set-deployment.md
+      -
+        Type: Lesson
+        UID: ee88de6f19748458e8539e3835f8c294
+        Path: /deployment/activity-deploying-to-heroku.md
