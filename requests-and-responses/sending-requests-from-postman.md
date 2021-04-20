@@ -1,5 +1,7 @@
 # Sending Requests From Postman
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=7d0fa5d5-031c-44e8-a8a2-ad1000265aaa&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goal
 
 One goal for this lesson is to demonstrate the request-response cycle in action. We want to visualize what requests and responses look like.
