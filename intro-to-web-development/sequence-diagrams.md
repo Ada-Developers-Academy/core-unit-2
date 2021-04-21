@@ -16,7 +16,7 @@ Sequence diagrams are a kind of diagram that depict one scenario or event. For o
 
 For example, let's consider this diagram that describes the process of logging into a web app.
 
-![Sequence Diagram showing the process of logging in. There are four vertical columns: User, Login Screen, ValidateUser, and Database. There are the following horizontal arrows: 1. Arrow from User to Login Screen labeled "clicks on Login." 2. Arrow from Login Screen to ValidateUser labeled "validateUser(userId,password)." 3. Arrow from ValidateUser to Database labeled "checkUserDetails." 4. Arrow from Database to ValidateUser labeled "UserDetails." 5. Arrow from ValidateUser to ValidateUser labeled "validateUser()." 6. Arrow from ValidateUser to Login Screen labeled "result." 7. Arrow from Login Screen to User labeled "showMessage." ](../assets/sequence-diagrams_login-example.png)
+![Sequence Diagram showing the process of logging in. There are four vertical columns: User, SocialMedia.com Login Screen, SocialMedia.com Back-end Service, and SocialMedia.com Database Containing Users. There are the following horizontal arrows: 1. Arrow from User to Login Screen labeled "clicks on Login Button." 2. Arrow from Login Screen to Back-end Service labeled "Asks to validate and login user." 3. Arrow from Back-end Service to Database labeled "Checks if user is valid adn queries user details." 4. Arrow from Database to Back-end service labeled "Gives back user details." 5. Arrow from Back-end Service to Login Screen labeled "Sends back message confirming the user is logged in." 7. Arrow from Login Screen to User labeled "Shows 'Successfully logged in' message." ](../assets/intro-to-web-dev_sequence-diagrams_sequence-1.png)
 
 In this diagram, the objects and actors involved are:
 
@@ -64,7 +64,11 @@ To read a sequence diagram, follow the arrows from top to bottom. The top-most a
 
 ### Example: Client-Server Diagram
 
+![Sequence Diagram showing a client-server diagram using "AdaMaps.com". There are three vertical columns: User, Browser open to AdaMaps.com, and AdaMaps.com Web Servers. There are the following horizontal arrows: 1. Arrow from User to Browser labeled "enters in 'Seattle' and 'Atlanta' and asks for directions." 2. Arrow from Browser to Web Servers labeled "Requests directions between Seattle and Atlanta." 3. Arrow from Web Servers to Browser labeled "Responds with driving routes between Seattle and Atlanta." 4. Arrow from Browser to User labeled "Shows two driving routes between Seattle and Atlanta."](../assets/intro-to-web-dev_sequence-diagrams_client-server-sequence-2.png)
+
 ### Example: End-user, Front-end, Back-end, Database Diagram
+
+![Sequence Diagram showing the process of accessing email. There are four vertical columns: User, MyEmail.com's website, MyEmail.com's Back-end Service, and MyEmail.com Database Containing Emails. There are the following horizontal arrows: 1. Arrow from User to website labeled "clicks the button 'Get All Emails'." 2. Arrow from website to Back-end Service labeled "Requests all emails for this user" 3. Arrow from Back-end Service to Database labeled "Queries all emails for this user." 4. Arrow from Database to Back-end service labeled "Gives back the data of all emails for this user." 5. Arrow from Back-end Service to website labeled "Sends back a list of all email data." 7. Arrow from website to User labeled "Shows a list of all email subject lines." ](../assets/intro-to-web-dev_sequence-diagrams_front-end-back-end-email.png)
 
 ### !callout-info
 
@@ -85,6 +89,8 @@ If you notice a relationship between front-end and client, and back-end and serv
 ##### !question
 
 Given this diagram, order these following options in sequential order. The first message sent should be listed first, and the last message sent should be listed last.
+
+![Sequence Diagram showing a client-server diagram using "AdaMaps.com". There are three vertical columns: User, Browser open to AdaMaps.com, and AdaMaps.com Web Servers. There are the following horizontal arrows: 1. Arrow from User to Browser labeled "enters in 'Center for Wooden Boats' and 'Seattle Art Museum' and asks specifically for public transportation options." 2. Arrow from Browser to Web Servers labeled "Requests public transportation directions between CWB and SAM." 3. Arrow from Web Servers to Browser labeled "Responds with four public transportation routes between CWB and SAM for the current time." 4. Arrow from Browser to User labeled "Shows four bus routes between CWB and SAM."](../assets/intro-to-web-dev_sequence-diagrams_client-server-sequence-1.png)
 
 ##### !end-question
 ##### !answer
@@ -108,6 +114,8 @@ Given this diagram, order these following options in sequential order. The first
 ##### !question
 
 Given this diagram, order these following options in sequential order. The first message sent should be listed first, and the last message sent should be listed last.
+
+![Sequence Diagram showing the process of accessing email. There are four vertical columns: User, AdaNails.com's Blog, AdaNails.com's Back-end Service, and AdaNails.com Database Containing Blog Posts and Comments. There are the following horizontal arrows: 1. Arrow from User to Blog labeled "types a comment in the comment box and clicks the button 'Submit Comment'." 2. Arrow from Blog to Back-end Service labeled "Sends the comment data and the blog post data." 3. Arrow from Back-end Service to Database labeled "tells the database to save this comment." 4. Arrow from Database to Back-end service labeled "Sends back a message saying the comment was saved successfully." 5. Arrow from Back-end Service to Blog labeled "Sends back the blog post and the comment data." 7. Arrow from Blog to User labeled "Shows 'comment posted' and the updated blog post." ](../assets/intro-to-web-dev_sequence-diagrams_back-end-front-end-blog-comment.png)
 
 ##### !end-question
 ##### !answer
