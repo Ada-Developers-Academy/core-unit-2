@@ -2,7 +2,7 @@
 
 ## Goals
 
-Our goal for this lesson is to expand our skills. We will practice handling more kinds HTTP requests.
+Our goal for this lesson is to expand our skills. We will practice handling more kinds of HTTP requests.
 
 We should walk away from this lesson understanding:
 
@@ -14,6 +14,8 @@ We should walk away from this lesson understanding:
 ### Before This Lesson
 
 This lesson uses the Hello Books API.
+
+<br />
 
 <details style="max-width: 700px; margin: auto;">
     <summary>
@@ -54,7 +56,7 @@ Everything after the `?` in this string defines a _query string_. In this case, 
 | --------------- | ----------------- |
 | `category`      | `novels`          |
 
-There can be multiple query param pairs. They are comma-separated. Here's an example:
+We can have multiple query param pairs. We separate them by ampersands `&`, like this:
 
 ```
 https://my-beautiful.site/search?category=novels&minimum_pages=800&maximum_pages=8000
@@ -74,7 +76,7 @@ It would be nice if valid query strings and valid query params could always be s
 https://my-beautiful.site/search?name=Hand-crafted exclusive: finest tote bag!
 ```
 
-However, some characters aren't handled very well in URLs, such as spaces, colons, commas, and so on. These characters need to be encoded into a valid URL format, which replaces them.
+However, some characters, like spaces, colons `:`, or commas `,`, aren't valid in URLs. Other characters, like question marks `?`, equal signs `=`, or ampersands `&`, can be used in URLs, but have special meanings. If we want to use any of these characters as data in our URL, we need to encode them using a process called _URL encoding_, which replaces the invalid characters with valid character combinations.
 
 ```
 https://my-beautiful.site/search?name=Hand-crafted%20exclusive%3A%20finest%20tote%20bag%21
@@ -88,20 +90,23 @@ From this example, we can observe:
 | `:`                | `%3A`              |
 | `!`                | `%21`              |
 
-Often, the work of encoding happens _through the client_, not through the server. However, this knowledge may be helpful when constructing URLs with query strings for testing!
+If we are using a program like Postman or a web browser to send requests, they will do their best to encode our URLs for us. If we are writing code to contact an endpoint, we may need to encode parts of the URL ourselves, using functionality built into Python.
+
+We will try to avoid characters that require encoding in our URLs and query parameters. However, this knowledge may be helpful when constructing URLs with query strings for testing!
 
 ### Typical Use Cases
 
 Query params provide extra information to an HTTP request.
 
-HTTP response bodies and query params are both responsible for adding data to a request, and can both accomplish similar things. The exact difference in usage will always depend on your project, context, and needs.
+HTTP request bodies, route parameters, and query params are all responsible for adding data to a request, and can accomplish similar things. The exact difference in usage will always depend on your project, context, and needs.
 
-However, typically:
+In the style of web API we are building, typically:
 
-- HTTP response bodies contain data that should be uploaded to the server
-- Query params contain data that describe the nature of the request
+- HTTP request bodies contain data that should be uploaded to the server
+- Route parameters contain data that identifies a particular record
+- Query params contain data that select customized behaviors
 
-We may often see query params used for:
+Common uses for query params include:
 
 - Sorting and filtering search results
 - Limiting the amount of data that comes back
@@ -116,7 +121,7 @@ query_param_value = request.args.get(query_param_key)
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                  |
 | --------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `query_param_value =`                               | We can make a local variable to represent the value of the param                       |
+| `query_param_value =`                               | A local variable in which we store the looked up value of a query param for later use  |
 | `request.args.get(...)`                             | Inside of a route, we can access the value of a query param using this method          |
 | `query_param_key`                                   | We should put in the query param key here, either as a variable or as a string literal |
 
@@ -124,13 +129,13 @@ query_param_value = request.args.get(query_param_key)
 
 ## Pro-tip: Check `request` Spelling
 
-The popular package `requests`, used for making HTTP requests, is not the same as the `request` that represents the HTTP request.
+The popular package `requests`, used for making HTTP requests, is not the same as the `request` that represents the HTTP request. If we are working on a web API project that also calls external APIs by using the `requests` package, we should be especially careful of whether we have written `request` or `requests`!
 
 ### !end-callout
 
 ## Using Query Params
 
-How we use query params now depends on our project needs, and using whatever Python strategies we need!
+The way we choose to use query params will depend on our project needs.
 
 ## Finding Books by Title: Preparation
 
@@ -138,15 +143,15 @@ Consider this feature:
 
 > As a client, I want to send a request trying to get a list of books with a matching title, so I know which books have a matching title.
 
-### Predict HTTP Requests, Responses, and Logic
+### Planning HTTP Requests, Responses, and Logic
 
-Let's consider the endpoint to get a single book:
+We want to get a list of book results, so the base of our endpoint will look like our usual endpoint to get all records of a particular type. We will use the `GET` verb sent to the `/books` endpoint. But now we'd also like to provide an additional parameter `title` that we can use to filter the results. Since filtering is a customization of the default _get all_ behavior, we can decide to express that as a query param.
 
 | HTTP Method | Endpoint              |
 | ----------- | --------------------- |
 | `GET`       | `/books?title=Apples` |
 
-No request body.
+As usual, we don't need a request body for `GET` requests.
 
 This assumes that there is at least a `book` table with the following rows. (The contents of `id`, `description`, and `completed_at` are irrelevant for this feature).
 
@@ -155,23 +160,25 @@ This assumes that there is at least a `book` table with the following rows. (The
 | `Apples`  |
 | `Oranges` |
 
-The response we want to send back is:
+In response to the request we've discussed, we want the endpoint to return success for the status code, and a list of the books with a matching title. We can use `200 OK` for the response status code, and a JSON response body representing a list of books.
 
 | Response Status | Response Body                                            |
 | --------------- | -------------------------------------------------------- |
 | `200 OK`        | `[{"id": ..., "title": "Apples", "description": "..."}]` |
 
-During this method, we will need to:
+Now that we have planned out these changes to our endpoint behavior, we can turn our attention to how to implement them.
+
+Our endpoint will need to:
 
 1. Check if the HTTP method is `GET`
 1. Check if we have a query param for `title`
-1. If we have a `title` query param, retrieve all of the books from the db that match
+1. If we have a `title` query param, retrieve all of the books from the database that match, otherwise retrieve all books as usual
 1. Format the books data into the appropriate structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
 1. Send back a response
 
 ## Finding Books by Title: Pseudocode
 
-For this feature, we must return to our `GET` `"/books"` endpoint and re-work it.
+This endpoint uses the same path as our existing `/books` route that lists books. Recall that the `"/books"` part comes from the blueprint, so our route path is set to `""`.
 
 Let's look at this example pseudocode for one strategy:
 
@@ -202,9 +209,9 @@ GET localhost:5000/books
 GET localhost:5000/books?title=Apples
 ```
 
-Our actual results will vary, depending on the contents of our databases. For example, if we've never created a `Book` with the title "Apple," then we'll never be able to retrieve that record!
+Our actual results will vary, depending on the contents of our databases. For example, if we haven't created any `Book`s with the title "Apple," then the second test will always return an empty list!
 
-Different records on different databases will change our tests and results.
+We should practice trying to predict the results of a test before running it to check our understanding. But we must take into account what records exist in our database, since this will affect our tests and results.
 
 ## Check for Understanding
 
