@@ -317,3 +317,37 @@ Standards:
         Type: Lesson
         UID: m9dgD0
         Path: /building-an-api/activity-solar-system-api-setup-create-read.md
+  -
+    Title: Update And Delete
+    Description: "Update and Delete, Problem Set: Update and Delete, Activity: Solar System API: Update and Delete"
+    UID: c806ada4c97ac6c20ee838c607c979d7
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: eebc0514b2efcba42ff925c17aa17fde
+        Path: /update-and-delete/update-and-delete.md
+      -
+        Type: Lesson
+        UID: syrMq6
+        Path: /update-and-delete/problem-set-update-and-delete.md
+      -
+        Type: Lesson
+        UID: etO5RZ
+        Path: /update-and-delete/activity-solar-system-api-update-delete.md
+  -
+    Title: More Flask Queries
+    Description: "404s and More Queries, Query Params"
+    UID: OkfzUG
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: Fm5rbb
+        Path: /more-flask-queries/404s-and-more-queries.md
+      -
+        Type: Lesson
+        UID: HfbxKc
+        Path: /more-flask-queries/query-params.md 
