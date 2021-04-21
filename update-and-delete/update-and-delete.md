@@ -294,7 +294,7 @@ def book(book_id):
 | `db.session.delete(book)`                           | We can use SQLAlchemy's functions to tell the database to prepare to delete our `book` with `db.session.delete(book)`                                                                 |
 | `db.session.commit()`                               | We use this function to actually apply our database changes                                                                                           |
 | `return make_response(...)`                              | This is one of many ways to return an HTTP response. Since we didn't supply a status code, Flask will default to `200 OK`.                                                                                                   |
-| `f"Book #{book.id} successfully deleted"`           | We can still access `book.id` because the variable itself is still in scope in our app, even if the `book` _was_ successfully deleted in the database |
+| `f"Book #{book.id} successfully deleted"`           | We can still access `book.id` because the variable itself is still in scope in our app, even if the `book` _was_ successfully deleted in the database. The object stored in memory and referenced by `book` does not automatically update in response to changes in the database. |
 
 ### Manually Testing in Postman
 
