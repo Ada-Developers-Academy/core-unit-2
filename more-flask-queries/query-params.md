@@ -153,7 +153,7 @@ We want to get a list of book results, so the base of our endpoint will look lik
 
 As usual, we don't need a request body for `GET` requests.
 
-This assumes that there is at least a `book` table with the following rows. (The contents of `id`, `description`, and `completed_at` are irrelevant for this feature).
+This assumes that there is a `book` table with at least the following rows. (The contents of `id`, and `description` are irrelevant for this feature).
 
 | `title`   |
 | --------- |
@@ -176,27 +176,49 @@ Our endpoint will need to:
 1. Format the books data into the appropriate structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
 1. Send back a response
 
-## Finding Books by Title: Pseudocode
+## Finding Books by Title: Code
 
 This endpoint uses the same path as our existing `/books` route that lists books. Recall that the `"/books"` part comes from the blueprint, so our route path is set to `""`.
 
-Let's look at this example pseudocode for one strategy:
+Let's modify our endpoint code to filter the results when a title query param is supplied.
 
 ```python
 @books_bp.route("", methods=["GET", "POST"])
-def books():
+def handle_books():
     if request.method == "GET":
-        # Check if the query param "title" exists
-        # by using request.args.get("title")
-            # Query the db for all matching books
-            # Create a response
-            # Return it
-        # Else if the query param "title" does not exist
-            # Query the db for all books...
-            # Create a response...
-            # Return it...
-    # ... no other changes
+        # this code replaces the previous query all code
+        title_query = request.args.get("title")
+        if title_query:
+            books = Book.query.filter_by(title=title_query)
+        else:
+            books = Book.query.all()
+        # end of the new code
+
+        books_response = []
+        for book in books:
+            books_response.append({
+                "id": book.id,
+                "title": book.title,
+                "description": book.description
+            })
+
+        return jsonify(books_response)
+    # ... existing code for creating a new book
 ```
+
+| <div style="min-width:270px;"> Piece of Code </div> | Notes                                                                                                                                                           |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `title_query = ...`                                 | Store the result of looking for the `title` query param in the variable `title_query`                                                                           |
+| `... = request.args.get("title")`                   | Try to get a query param called `title` from the `request`. This returns the value of the query param if it was set, or `None` if the query param is not found. |
+| `if title_query:`                                   | Decide which conditional branch to take by checking whether we got a query param with which to filter                                                           |
+| `books = ...`                                       | Store the results of our query in the `books` variable.                                                                                                         |
+| `... = Book.query.filter_by( ... )`                 | If we got a query param, we will make a `filter_by` call to filter the results.                                                                                 |
+| `title=title_query`                                 | Filter the book query results to those whose titles match the query param                                                                                       |
+| `... = Book.query.all()`                            | If we didn't get a query param, get all the books as before.                                                                                                    |
+
+The remainder of the code is the same as it was previously.
+
+To summarize, we looked up whether the `title` query param was provided. We used that to decide which query we should run, and we stored the result in `books`. Then we converted `books` into JSON as before and returned the result.
 
 ### Manually Testing in Postman
 
