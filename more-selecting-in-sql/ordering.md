@@ -80,10 +80,10 @@ The results could look like the following.
 ```
  title                         | price
 -------------------------------+-------
- The Heirs of the Plant People | 20.00
- Clue of the Burt Cottage      | 16.60
- The Mannequin in the Fog      | 16.25
  Imagine Us in Heaven          | 14.99
+ The Mannequin in the Fog      | 16.25
+ Clue of the Burt Cottage      | 16.60
+ The Heirs of the Plant People | 20.00
 (4 rows)
 ```
 
