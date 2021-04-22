@@ -265,40 +265,6 @@ We should try to become familiar with the kinds of settings we might want to con
 
 ### !end-callout
 
-In a sample Flask application, there may be a file (possibly `app/__init__.py`) that looks like this:
-
-```python
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-
-db = SQLAlchemy()
-migrate = Migrate()
-
-
-def create_app():
-    app = Flask(__name__)
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    app.config["SQLALCHEMY_DATABASE_URI"] = "... Some Path to Postgres Database ..."
-
-    db.init_app(app)
-    migrate.init_app(app, db)
-
-    # import models (data objects) here
-
-    # import routes (blueprints) here
-
-    return app
-```
-
-This code:
-
-- Creates a `db` reference and a `migrate` reference, which will be used to work with the database
-- Creates a function named `create_app()`
-- Creates a `app` reference, which is the instance of our Flask app
-- Configures the app's connection to a database
-- Initializes our database and migration features
-
 ## Dev Workflow
 
 Our modified dev workflow for Flask development may now look like this:
