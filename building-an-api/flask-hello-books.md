@@ -242,7 +242,7 @@ hello_world_bp = Blueprint("hello_world", __name__)
 
 
 @hello_world_bp.route("/hello-world", methods=["GET"])
-def hello_world():
+def say_hello_world():
     my_beautiful_response_body = "Hello, World!"
     return my_beautiful_response_body
 ```
@@ -304,7 +304,7 @@ Your code could look similar to this:
 
 ```python
 @hello_world_bp.route("/hello/JSON", methods=["GET"])
-def hello_json():
+def say_hello_json():
     return {
         "name": "Ada Lovelace",
         "message": "Hello!",
