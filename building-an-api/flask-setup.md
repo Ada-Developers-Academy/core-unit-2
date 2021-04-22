@@ -229,6 +229,8 @@ This curriculum will provide a suggested project structure and location:
 ```
 .
 ├── app
+│   ├── models
+│   │   └── __init__.py
 │   ├── __init__.py
 │   └── routes.py
 ├── README.md
