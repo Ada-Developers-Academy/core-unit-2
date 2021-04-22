@@ -237,30 +237,23 @@ This curriculum will provide a suggested project structure and location:
 └── requirements.txt
 ```
 
-Inside each `app` folder, there will be a file named `routes.py`. The responsibility of this file is to define the endpoints.
+### Routes
 
-## Where Does Code Go: Config
+Inside the `app` folder, there will be a file named `routes.py`. The responsibility of this file is to define the endpoints.
 
-As we develop our Flask projects, we'll need to reconfigure the app to suit our needs better. Configurations to the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
+### Models
 
-The place we put our code that defines any configuration, again, **heavily depends on the project**.
+The `app/models` directory will be responsible for holding our data models. Data models will be discussed further in the curriculum.
 
-This curriculum will provide a suggested project structure and location:
-
-```
-.
-├── app
-│   ├── __init__.py
-│   └── routes.py
-├── README.md
-└── requirements.txt
-```
+### The `app/__init__.py` File
 
 Inside each `app` folder, there will be a file named `__init__.py`. This is the same file we have used to mark a folder as a package! While we often leave this file blank, a common Flask pattern is to define the start-up logic for the Flask server in this file.
 
 The start-up logic is responsible for locating and applying any app configuration, and getting the server ready to receive requests.
 
-### !callout-info
+Configurations to the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
+
+### !callout-danger
 
 ## Changing Configurations is Rare
 
