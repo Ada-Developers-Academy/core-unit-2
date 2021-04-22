@@ -113,11 +113,9 @@ On a high-level, this code does the following:
 
 ## Defining the Model
 
-Following the pattern of creating a file for every model, we can execute these commands:
+Following the pattern of creating a file for every model, we can create a file for `Book`:
 
 ```bash
-$ mkdir app/models
-$ touch app/models/__init__.py
 $ touch app/models/book.py
 ```
 

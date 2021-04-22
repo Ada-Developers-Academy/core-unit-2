@@ -53,6 +53,8 @@ Clone the repo, `cd` into it, and open this project in your favorite text editor
 ```
 .
 ├── app
+│   ├── models
+│   │   └── __init__.py
 │   ├── __init__.py
 │   └── routes.py
 ├── README.md
@@ -64,6 +66,8 @@ The `app` directory will contain the bulk of our application code.
 `app/routes.py` is the file we'll use the most in this lesson. It will be where we define our endpoints.
 
 `app/__init__.py` is our usual package file that also contains a lot of startup code for our app.
+
+The `app/models` directory will hold our data models, which will be discussed further in the curriculum. The work in this lesson will not touch this folder.
 
 ## Manage Dependencies
 
