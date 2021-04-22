@@ -85,7 +85,7 @@ Let's modify our endpoint code to report a not found status when trying to `GET`
 
 ```python
 @books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
-def book(book_id):
+def handle_book(book_id):
     book = Book.query.get(book_id)
 
     if request.method == "GET":
@@ -127,7 +127,7 @@ Let's make the change and then test our API, making sure each verb case works as
 
 ```python
 @books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
-def book(book_id):
+def handle_book(book_id):
     book = Book.query.get(book_id)
     if book is None:
         return make_response("", 404)

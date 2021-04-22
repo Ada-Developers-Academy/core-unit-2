@@ -119,7 +119,7 @@ Let's modify our endpoint code to support the update feature.
 
 ```python
 @books_bp.route("/<book_id>", methods=["GET", "PUT"])
-def book(book_id):
+def handle_book(book_id):
     book = Book.query.get(book_id)
 
     if request.method == "GET":
@@ -273,7 +273,7 @@ Let's modify our endpoint code to support the delete feature.
 
 ```python
 @books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
-def book(book_id):
+def handle_book(book_id):
     book = Book.query.get(book_id)
 
     if request.method == "GET":
