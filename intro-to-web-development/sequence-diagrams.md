@@ -72,7 +72,7 @@ Imagine the popular maps and directions website, AdaMaps.com. Here is a sequence
 
 ### Example: End-user, Front-end, Back-end, Database Diagram
 
-Imagine the successful email service provider, MyEmail.com. A user wants to view all of their email. This sequence diagram focuses on the interactions between user, front-end, back-end, and database layers.
+Imagine the successful email service provider, MyEmail.com. A user wants to view all of their emails. This sequence diagram focuses on the interactions between user, front-end, back-end, and database layers.
 
 ![Sequence Diagram showing the process of accessing email. There are four vertical columns: User, MyEmail.com's website, MyEmail.com's Back-end Service, and MyEmail.com Database Containing Emails. There are the following horizontal arrows: 1. Arrow from User to website labeled "clicks the button 'Get All Emails'." 2. Arrow from website to Back-end Service labeled "Requests all emails for this user" 3. Arrow from Back-end Service to Database labeled "Queries all emails for this user." 4. Arrow from Database to Back-end service labeled "Gives back the data of all emails for this user." 5. Arrow from Back-end Service to website labeled "Sends back a list of all email data." 7. Arrow from website to User labeled "Shows a list of all email subject lines." ](../assets/intro-to-web-dev_sequence-diagrams_front-end-back-end-email.png)
 
