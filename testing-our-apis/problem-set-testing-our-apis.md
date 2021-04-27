@@ -17,12 +17,12 @@ Continue your independent Hello Books API.
 
 Fulfill the following requirements, with the same functionality presented in this topic:
 
-1. Create an `.env` file.
-1. Populate it with two environment variables: `SQLALCHEMY_DATABASE_URI` and `SQLALCHEMY_TEST_DATABASE_URI`. Set their values to the appropriate value.
+1. Create a `.env` file.
+1. Populate it with two environment variables: `SQLALCHEMY_DATABASE_URI` and `SQLALCHEMY_TEST_DATABASE_URI`. Set their values to the appropriate connection strings.
 1. Create a test database with the correct, matching name.
 1. Refactor the `create_app` method to:
    1. Check for a configuration flag
-   1. Reads the correct database location from `.env`
+   1. Read the correct database location from the appropriate environment variables
 1. Manually test that our development environment still works.
 1. Create a `tests` folder with the files `tests/__init__.py`, `tests/conftest.py`, and `tests/test_routes.py`.
 1. Populate `tests/conftest.py` with the recommended configuration.
