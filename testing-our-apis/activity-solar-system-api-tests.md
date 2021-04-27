@@ -23,7 +23,6 @@ The new driver may need to setup their database. Follow these steps:
 1. Activate the virtual environment
 1. Install the dependencies
 1. Create the database `solar_system_development`
-1. Create the `planet` table with the columns `id`, `name`, and `description`, and the one additional column
 1. Run `$ flask db upgrade`
 1. Run `$ flask run` to confirm that the API is running as expected
 
@@ -35,12 +34,12 @@ Driver and navigator roles should switch at least daily.
 
 Fulfill the following requirements, with similar functionality to the Hello Books API:
 
-1. Create an `.env` file.
-1. Populate it with two environment variables: `SQLALCHEMY_DATABASE_URI` and `SQLALCHEMY_TEST_DATABASE_URI`. Set their values to the appropriate value.
+1. Create a `.env` file.
+1. Populate it with two environment variables: `SQLALCHEMY_DATABASE_URI` and `SQLALCHEMY_TEST_DATABASE_URI`. Set their values to the appropriate connection strings.
 1. Create a test database with the correct, matching name.
 1. Refactor the `create_app` method to:
    1. Check for a configuration flag
-   1. Reads the correct database location from `.env`
+   1. Read the correct database location from the appropriate environment variables
 1. Manually test that our development environment still works.
 1. Create a `tests` folder with the files `tests/__init__.py`, `tests/conftest.py`, and `tests/test_routes.py`.
 1. Populate `tests/conftest.py` with the recommended configuration.
