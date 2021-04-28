@@ -37,7 +37,7 @@ This is what `pytest` fixtures do!
 
 We create a fixture with the `@pytest.fixture` decorator.
 
-Let's look at a small test file. Let's run `touch test_fixtures.py` to create a new file, then paste in the following code.
+Let's create a small test file that we'll use to experiment for this lesson. We'll only use this test file during this lesson, and we'll delete it at the end. In the project root of our Hello Books API project, let's run `touch test_fixtures.py` to create a new file, then paste in the following code.
 
 ```python
 import pytest
@@ -59,7 +59,7 @@ def test_len_of_empty_list(empty_list):
 | `def test_len_of_empty_list( ... ): ...`            | Declares a test function that `pytest` will be able to detect. It begins with `test_`.                                                                                                   |
 | `empty_test`                                        | This parameter matches the name of the `empty_list` fixture. When `pytest` runs this test it will first run the `empty_list` fixture and use the result as the value for this parameter. |
 
-We can run this test file with `pytest test_fixtures.py`. If we are not in our Hello Books API environment, we may need to create a virtual environment and install `pytest` so that the `pytest` command is available.
+Because we're in the Hello Books API project, we know that the `pytest` command is available. Let's make sure our virtual environment is active. Then, let's run this test file with `pytest test_fixtures.py`.
 
 Running the test file, we should see results similar to:
 
@@ -216,6 +216,14 @@ Fixtures let us move our setup and cleanup code into shared functions. These fun
 
 The examples we looked at in this lesson aren't very "useful", but in real cases where we use fixtures, we can perform more complicated setup. We could initialize the resources needed to test our API endpoints, or set up or tear down a test database, as we'll see in the next lesson!
 
+### !callout-info
+
+## Let's Cleanup Our Test File!
+
+We can delete the `test_fixtures.py` file from our project now! Or we can set it aside in another folder if we'd like to refer back to it later. But let's be sure to remove it from this project since it was only being used as an example for this lesson!
+
+### !end-callout
+
 ## Check for Understanding
 
 <!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
@@ -292,11 +300,11 @@ def test_my_fixture(my_fixture):
 
 Here's an explanation for each option:
 
-- This option doesn't follow `pytest` naming conventions, so it will not be recognized as a test.
-- This option omits the `@pytest.fixture` decorator.
-- This option calls the fixture function directly. `pytest` disallows this and will raise an error.
-- This option is correct. It uses the decorator, follows `pytest` naming conventions, and declares the fixture as a dependency in its parameter list.
-- This option properly declares the fixture, but doesn't list it in the test parameter list.
+1. This option doesn't follow `pytest` naming conventions, so it will not be recognized as a test.
+1. This option omits the `@pytest.fixture` decorator.
+1. This option calls the fixture function directly. `pytest` disallows this and will raise an error.
+1. This option is correct. It uses the decorator, follows `pytest` naming conventions, and declares the fixture as a dependency in its parameter list.
+1. This option properly declares the fixture, but doesn't list it in the test parameter list.
 
 ##### !end-explanation
 
