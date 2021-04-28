@@ -1,8 +1,8 @@
 ---
 Standards:
   -
-    Title: Testing Our Apis
-    Description: "Environments and Env Vars, dotenv and the Test DB, Test Setup, Using Tests, Problem Set: Testing Our APIs, Activity: Solar System API: Tests"
+    Title: Testing Our APIs
+    Description: "Environments and Env Vars, dotenv and the Test DB, Fixtures, Test Setup, Using Tests, Problem Set: Testing Our APIs, Activity: Solar System API: Tests"
     UID: e7cb1f63923b38e37e787f78784653ec
     SuccessCriteria:
       - success criteria
