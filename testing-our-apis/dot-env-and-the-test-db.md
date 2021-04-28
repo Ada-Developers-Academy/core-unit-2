@@ -61,6 +61,19 @@ We should ensure that `python-dotenv` is installed by either:
 
 1. Checking our `requirements.txt` and confirming `python-dotenv` is already listed, or
 1. Installing it with `(venv) $ pip install python-dotenv`
+   - In this case we should also update our `requirements.txt` by running `(venv) $ pip freeze > requirements.txt`
+
+## Create Our `.env` File
+
+The `python-dotenv` package expects to find a file named exactly `.env` in the project root directory.
+
+We should create the `.env` file in our project root either in our code editor, or by running
+
+```bash
+$ touch .env
+```
+
+in the project root directory.
 
 ## Make Git Ignore Our `.env` File
 
@@ -84,11 +97,17 @@ In the case that we already have contents in our `.gitignore` file, we can confi
 
 ## Populate the Environment Variables
 
-`.env` files are formatted in the following way:
+`.env` files are made of lines of the form:
 
-- Each line is a different environment variable
-- Environment variables are named, separated by a `=`, and then given a value (with no spaces or quotes)
-  - It's conventional to name environment variables with CAPITAL_CASING, just like constant variables
+```bash
+VARIABLE_NAME=variable value
+```
+
+| <div style="min-width:175px;"> Piece of Code </div> | Notes                                                                                                                                                                                                              |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `VARIABLE_NAME`                                     | Name of the environment variable to set. Replace `VARIABLE_NAME` with a good name for our environment variable. It's conventional to name environment variables with CAPITAL_CASING, just like constant variables. |
+| `=`                                                 | The environment variable name is separated from its value with `=`. We usually _don't_ surround it with spaces.                                                                                                    |
+| `variable value`                                    | The value for our environment variable. Surrounding quotes are optional in general, but may be required if we need our value to begin with spaces, since spaces immediately following the `=` are ignored.         |
 
 Beyond those guidelines, we are free to choose the best variable names and values for our project.
 
@@ -152,20 +171,20 @@ def create_app(test_config=None):
     return app
 ```
 
-| <div style="min-width:310px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                              |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `from dotenv import load_dotenv`                    | The `python-dotenv` package specifies to import the package like this                                                                                                                                                                                              |
-| `import os`                                         | This built-in module provides a way to read environment variables                                                                                                                                                                                |
-| `load_dotenv()`                                     | The `python-dotenv` package specifies to call this method, which loads the values from our `.env` file so that the `os` module is able to see them.                                                                                                                                                                  |
-| `def create_app( ... ):` | Add a new keyword parameter to `create_app` that we can use to customize its behavior |
-| `test_config=None` | We have called the new parameter `test_config` which should receive a dictionary of configuration settings. It has a default value of `None`, making the parameter optional. |
-| `if not test_config:`                           | Check the keyword argument `test_config`. When we call `create_app()`, if `test_config` is falsy (`None` or empty), that means we are not trying to run the app in a test environment. |
-| `os.environ.get( ... )`                             | This syntax gets an environment variable by the passed-in name                                                                                                                                                                                                     |
-| `"SQLALCHEMY_DATABASE_URI"`                         | This is the exact name of the **development** database environment variable we defined in `.env`                                                                                                                                                                   |
-| `else:`                                             | If there _is_ a `test_config` passed in, this means we're trying to test the app, which can have special test settings                                                                                                                                             |
-| `app.config["TESTING"] = True`                      | Turns testing mode on                                                                                                                                                                                                                                              |
-| `os.environ.get( ... )`                             | This syntax gets an environment variable by the passed-in name                                                                                                                                                                                                     |
-| `"SQLALCHEMY_TEST_DATABASE_URI"`                    | This is the exact name of the **testing** database environment variable we defined in `.env`                                                                                                                                                                       |
+| <div style="min-width:310px;"> Piece of Code </div> | Notes                                                                                                                                                                                  |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from dotenv import load_dotenv`                    | The `python-dotenv` package specifies to import the package like this                                                                                                                  |
+| `import os`                                         | This built-in module provides a way to read environment variables                                                                                                                      |
+| `load_dotenv()`                                     | The `python-dotenv` package specifies to call this method, which loads the values from our `.env` file so that the `os` module is able to see them.                                    |
+| `def create_app( ... ):`                            | Add a new keyword parameter to `create_app` that we can use to customize its behavior                                                                                                  |
+| `test_config=None`                                  | We have called the new parameter `test_config` which should receive a dictionary of configuration settings. It has a default value of `None`, making the parameter optional.           |
+| `if not test_config:`                               | Check the keyword argument `test_config`. When we call `create_app()`, if `test_config` is falsy (`None` or empty), that means we are not trying to run the app in a test environment. |
+| `os.environ.get( ... )`                             | This syntax gets an environment variable by the passed-in name                                                                                                                         |
+| `"SQLALCHEMY_DATABASE_URI"`                         | This is the exact name of the **development** database environment variable we defined in `.env`                                                                                       |
+| `else:`                                             | If there _is_ a `test_config` passed in, this means we're trying to test the app, which can have special test settings                                                                 |
+| `app.config["TESTING"] = True`                      | Turns testing mode on                                                                                                                                                                  |
+| `os.environ.get( ... )`                             | This syntax gets an environment variable by the passed-in name                                                                                                                         |
+| `"SQLALCHEMY_TEST_DATABASE_URI"`                    | This is the exact name of the **testing** database environment variable we defined in `.env`                                                                                           |
 
 ### !callout-secondary
 

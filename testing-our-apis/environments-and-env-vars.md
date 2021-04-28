@@ -36,14 +36,14 @@ In the context of local project development and testing, we will commonly use tw
 1. A _development environment_ dedicated to rapid development
 1. A _testing environment_ dedicated to holding test data
 
-| Name                    | Purpose                                                                                        | <div style="min-width:200px">Configuration Details</div>                          |
-| ----------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------ |
+| Name                    | Purpose                                                                            | <div style="min-width:200px">Configuration Details</div>                                                                                                               |
+| ----------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Development environment | Dedicated to rapid development. Things will change often as we work on the project | Has a dedicated development database where we can add sample data we will use during development. May enable a debugging mode with detailed logging and error reports. |
-| Testing environment     | Dedicated to running test suites.                                      | Has a dedicated testing database containing specific data used to exercise our test suite.     |
+| Testing environment     | Dedicated to running test suites.                                                  | Has a dedicated testing database containing specific data used to exercise our test suite.                                                                             |
 
 As developers, we access both environments.
 
-As we develop our Flask API, we will work in our development environment. As we make changes to our code, we will test it frequently using our test environment. 
+As we develop our Flask API, we will work in our development environment. As we make changes to our code, we will test it frequently using our test environment.
 
 These two environments could exist on different machines. In practice, it is usually more convenient to have a way to run under either environment from our own developer machine. This allows us to test our code as we are working on it, minimizing the chance of breaking previous functionality (called a _regression_).
 
@@ -107,6 +107,22 @@ Some examples include:
 - Locations of other resources (such as other services that are part of a larger software system)
 - Various configurations about how to run the app, such as debugging mode
 - API keys
+
+### !callout-info
+
+## There Are Many Environment Variables Set Already
+
+From any terminal prompt, we can run the command `env`. This displays the environment variables currently set in our terminal. We can set our own environment variables from the terminal as well. Let's run the following:
+
+```bash
+$ export MY_NEW_VAR="my value"
+```
+
+<br />
+
+If we then run `env` again, we will see our environment variable `MY_NEW_VAR` appear among the output.
+
+### !end-callout
 
 ### Managing Environment Variables
 
