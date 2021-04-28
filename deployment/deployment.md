@@ -10,7 +10,7 @@ Our applications and web APIs are developed locally and available locally—they
 
 If our personal machines are turned off, then our server isn't running, and our API isn't accessible.
 
-How do we make our web apps run online reliably?
+How do we make our web apps available to the rest of the world?
 
 ## Vocabulary and Synonyms
 
@@ -22,7 +22,7 @@ How do we make our web apps run online reliably?
 
 Software deployment is the process of making some software or application available for use, often to an end-user.
 
-If we _deploy_ our apps, we will set up machines and web servers dedicated to running our web app. Then, users can access our apps without relying on our own personal machines!
+When we _deploy_ our apps, we will set up machines and web servers dedicated to running our web app. Then, users can access our apps regardless of what our own personal machines are doing!
 
 We deploy apps using skills and tools in the realm of:
 
@@ -38,11 +38,11 @@ These areas introduce the following kinds of questions:
 - How do we keep these servers available?
 - How do we maintain these servers, when errors arise?
 
-In this curriculum, we will choose specific deployment tools and services that answer these questions for us, so that we may focus on web development skills.
+In this curriculum, we will choose specific deployment tools and services that answer these questions for us, so that we can focus on improving our web development skills.
 
 ### Example Platforms
 
-The following are all examlpes of _Platforms as a Service_. The responsibility of these services is to create, manage, and maintain environments that run our deployed apps.
+The following are all examples of _Platforms as a Service_. The responsibility of these services is to create, manage, and maintain environments that run our deployed apps.
 
 - AWS Elastic Beanstalk
 - Heroku
@@ -53,7 +53,7 @@ The following are all examlpes of _Platforms as a Service_. The responsibility o
 
 ## Deploy to the Production Environment
 
-Beyond the "development environment" and the "test environment," we can introduce a third "production environment." This production environment refers to the environment that runs our deployed, released application.
+The _production_ environment is like Aleesha's main stage! It refers to the environment that runs our deployed, released application. This is where all our hard work gets made available to actual users!
 
 ### !end-callout
 
