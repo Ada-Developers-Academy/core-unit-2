@@ -11,6 +11,8 @@ Our goals for this lesson are to:
 
 This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api).
 
+<br />
+
 <details style="max-width: 700px; margin: auto;">
     <summary>
         Before beginning this lesson, the Hello Books API should have the following.
@@ -18,17 +20,17 @@ This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-ap
 
 - A `hello_books_development` database
 - A `hello_books_test` database
-- A `book` table defined in both databases
+- A `book` table defined in the development database
 - A `Book` model defined
 
-An `.env` file that contains:
+A `.env` file that contains:
 
 ```
 SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
 SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_test
 ```
 
-Endpoints defined for these RESTful routes. They handle missing books:
+Endpoints defined for these RESTful routes. They can gracefully handle missing books:
 
 - `GET` to `/books`
 - `POST` to `/books`
@@ -61,9 +63,9 @@ Let's get to reading some test code! Let's reframe the three sections of a test 
 
 | Section | Description                                                                                                                                                                                                                    |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Arrange | Arrange all required conditions for the test. If we need test data in the test database, we should save them here.                                                                                                             |
+| Arrange | Arrange all required conditions for the test. If we need test data in the test database, we should save it here.                                                                                                             |
 | Act     | We need to send an HTTP request to our Flask API, so we should determine the HTTP method, path, request body, and any query params here.                                                                                       |
-| Assert  | At the minimum, we should check that the HTTP response's status code is what we expect, and the shape of the HTTP response body. We could also check the details of the response body, and also the database if it's relevant. |
+| Assert  | At a minimum, we should confirm the expected HTTP response status code, and the shape of the HTTP response body. We could also check the details of the response body, or look for changes in the database if our request should have made updates to our data. |
 
 ### Syntax
 
@@ -82,28 +84,29 @@ def test_get_all_books_with_no_records(client):
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                              |
 | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `def test_get_all_books_with_no_records( ... ):`    | Continuing our best pytest practices, this test should start with the name `test_`, and it should describe the nature of this test |
-| `..._no_records(client):`                           | We pass in the `client` fixture here. pytest will automatically search and detect the fixture with the same name                   |
+| `def test_get_..._no_records( ... ):`    | Continuing our best pytest practices, this test should start with the name `test_`, and it should describe the nature of this test. The name is shortened here for formatting purposes. |
+| `client`                           | We pass in the `client` fixture here, which we registered in `conftest.py`. pytest automatically tries to match each test parameter to a fixture with the same name.                   |
 | `client.get("/books")`                              | This sends an HTTP request to `/books`. It returns an HTTP response object, which we store in our local variable `response`        |
 | `response_body = response.get_json()`               | We can get the JSON response body with `response.get_json()`                                                                       |
 | `assert response.status_code == 200`                | Every `response` object will have a `status_code`. We can read that status code and check it against the expected status code.     |
-| `assert response_body == []`                        | We can check all of the parts of response body that we need to verify. We can check it's contents, size, values, etc!              |
+| `assert response_body == []`                        | We can check all of the parts of the response body that we need to verify. We can check its contents, size, values, etc!              |
 
-Add this test to `tests/test_routes.py`, and now let's run them!
+Add this test to `tests/test_routes.py`, and let's run it!
 
 ## Running Tests
 
-To run the tests, we use:
+To run our Flask tests, we can use the same methods as for any other test. From the command line we can run:
 
 ```bash
 (venv) $ pytest
 ```
+Or we can run them through the VS Code test panel.
 
 We should see this already-implemented route pass!
 
 ![Screenshot of pytest test result: 1 test passed](../assets/testing-apis/testing-apis_passing-get-books.png)
 
-Notice that we do _not_ need to run the Flask server to run the tests!
+Notice that we did _not_ need to run the Flask server to run the tests!
 
 ### Verify Broken Tests Can Fail
 
@@ -111,12 +114,12 @@ We haven't seen a failing test yet, because we are writing tests for already bui
 
 Let's verify that we can trust our tests to fail, by making them fail temporarily.
 
-Let's go to our `app/routes.py` file and temporarily break our `/books` endpoint. One way we can break this route is to return a response with a status code `418` immediately.
+Let's go to our `app/routes.py` file and temporarily break our `/books` endpoint. One way we can break this route is to return a response with a status code `418` before doing anything else in the function.
 
 ```python
 @books_bp.route("", methods=["GET", "POST"])
-def books():
-    return Response("This is one broken response!", status=418)
+def handle_books():
+    return Response("I'm a teapot!", status=418)
 ```
 
 Let's confirm that our test now fails:
@@ -164,6 +167,8 @@ If we run this test right now, we actually get a 404!
 
 Why would we get a `404` response?
 
+<br />
+
 <details style="max-width: 700px; margin: auto;">
     <summary>
         Expand this section to follow a debugging interlude!
@@ -186,58 +191,69 @@ def test_get_one_book(client):
     response = client.get("/books/1")
 ```
 
-Our test made a `GET` request to `/books/1`. A `GET` to `/books/1` can only mean that our test made a request to our `book()` route.
+Our test made a `GET` request to `/books/1`. A `GET` to `/books/1` matches the `/books/<book_id>` route with the `GET` method. This is mapped to our `handle_book()` function.
 
-- Let's visit our `book()` route:
+- Let's revisit our `handle_book()` function:
 
 ```python
 @books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
-def book(book_id):
+def handle_book(book_id):
     book = Book.query.get(book_id)
     if book == None:
         return Response("", status=404)
     # ... rest of our route
 ```
 
-Our `book()` route returns a `404` response if `book` is `None`.
+Our `handle_book()` function returns a `404` response if `book` is `None`.
 
 - Let's consider why `book` might have a value of `None`.
-  1.  What is the most line of code that most recently affected `book`?
+  1.  What is the line of code that most recently affected `book`?
   1.  `book` is assigned a value in the line before, `book = Book.query.get(book_id)`.
   1.  `Book.query.get(book_id)` must have returned `None`.
 
-Why would `Book.query.get(book_id)` return `None`? What are the reasons it behaved that way?
+Why would `Book.query.get(book_id)` return `None`? What could cause it to behave that way?
 
-- Let's dive into `Book.query.get(book_id)`.
+- What do we know about how `Book.query.get(book_id)` works?
   1.  The responsibility of this method is to return an instance of `Book` that has the primary key of `book_id`.
   1.  This method returns `None` when no `Book` with that id was found!
 
-Our debugging questions can continue in this line of thought:
+Our debugging questions can continue along this line of thought:
 
 1. Why is there no book that was found?
 1. Where is the test looking for books?
 1. Is the test (and the `app` object made in `create_app()`) set to look at the correct database?
 1. Are our environment variables accessed and set correctly?
-1. Can we access our test database and check the contents of it in `psql`?
-1. Is what we see inside our test database consistent with the test error?
+1. Are there any books in the test database?
 
-At this point, we should see that our test database has no book records inside of it.
+This final question is harder to confirm than might be expected! In the Test Setup lesson, we very briefly looked at the `app` fixture. But the full significance of the `db.create_all()` and `db.drop_all()` lines within the fixture may not have been apparent.
+
+At the start of _each_ test, `db.create_all()` will rebuild the entire test database, creating all the tables needed for our models. Crucially, these tables begin _empty_!
+
+Then at the end of _each_ test, `db.drop_all()` deletes _all_ the tables from the database. This prevents any test data created during one test from contaminating later tests. But this also means that if a test is not actively running, the test database will appear to be _completely_ empty! We won't even see empty tables. There will be _no_ tables!
+
+Using our ability to debug tests with breakpoints though VS Code, it _is_ possible to pause during the middle of a test, which would give us a chance to connect to the test database and check on its state. This can be very helpful for more complicated tests!
+
+But for the time being, we need only apply the knowledge that `db.create_all()` recreates the test database tables in an empty state at the start of each test.
+
+This means that when we try to get the `Book` with a primary key of `1`, no `Book` is found. `Book.query.get(book_id)` returns `None`, resulting in the `404 Not Found` response status code and the failure of our test!
 
 </details>
 
-To address our test failure, let's see one way to populate the test database.
+To address our test failure, let's look at one way to populate the test database!
 
 ## Adding Test Data with Fixtures
 
-We'll define parts of our "Arrange" sections inside of pytest fixtures.
+We could write code directly in our test to create data as part of our "Arrange" section. We could write helper functions if this data needs to be shared with other tests.
 
-Let's consider how we'll use fixtures to add test data:
+Or by using fixtures instead, we get data reusability and we explicitly list the data dependencies our test has!
 
-| Question              | Answer                                                                                                                                         |
+Let's review some of the characteristics of fixtures, and consider how we can use them to add test data:
+
+| <div style="min-width:100px;">Question</div>              | Answer                                                                                                                                         |
 | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| What are fixtures?    | Each pytest fixture we define will describe something we want to happen before the test, such as saving test data.                             |
-| Where do fixtures go? | The fixtures can be defined in any file (such as `tests/test_routes.py`), but we will define most of our routes inside of `tests/conftest.py`. |
-| Who uses them?        | Each test will state which fixtures they want to use, and each test can use multiple fixtures!                                                 |
+| What are fixtures?    | Each pytest fixture we define describes something we want to happen before a test. We could define a fixture that creates test data.                             |
+| Where do fixtures go? | Fixtures can be defined in any file (such as `tests/test_routes.py`), but we will define most of our fixtures inside of `tests/conftest.py`. This automatically allows them to be used in multiple test files if needed. |
+| Who uses them?        | Each test states which fixtures they want to use. Each test can use multiple fixtures!                                                 |
 
 ### Example Fixture: Creating Two Books
 
@@ -262,16 +278,16 @@ def two_saved_books(app):
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                         |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
 | `@pytest.fixture`                                   | Each fixture starts with this decorator                                                                       |
-| `def two_saved_books(...):`                         | We can name our fixtures whatever we want. `two_saved_books` is good enough, although we could think of more! |
-| `def two_saved_books(app):`                         | This fixture needs to request to use the `app` fixture, defined above, so we have access to our Flask app     |
+| `def two_saved_books( ... ):`                         | We can name our fixtures whatever we want. `two_saved_books` is a reasonable name that will help remind us what this fixture does. |
+| `app`                         | This fixture needs to request the use of the `app` fixture, defined previously, so we know the test database has been initialized.     |
 | `ocean_book = ...`                                  | We can make our first `Book` instance...                                                                      |
 | `mountain_book = ...`                               | ... and our second `Book` instance                                                                            |
 | `db.session.add_all([ ... , ... ])`                 | We can use the `add_all()` function to add a list of instances                                                |
-| `db.session.commit()`                               | This line commits and saves our book to the database                                                          |
+| `db.session.commit()`                               | This line commits and saves our books to the database                                                          |
 
 #### Requesting Fixtures in Tests
 
-To actually use this fixture in a test, we need to request this fixture by name.
+To actually use this fixture in a test, we need to request it by name.
 
 ```python
 def test_get_one_book(client, two_saved_books):
@@ -299,7 +315,9 @@ E         Use -v to get the full diff
 
 ![Screenshot of pytest test result: test_get_one_book failed because of AssertionError between two book dictionaries](../assets/testing-apis/testing-apis_failing-fixture-comparison.png)
 
-We should conclude that we need to update our test itself, finally! Let's fill in the expected test dictionary back in `tests/test_routes.py`. It should be consistent with whatever data we put in our fixture.
+The output shows that the data coming back from our API looks reasonable, but that the value we are comparing to in our test has empty strings for each dictionary value.
+
+We can conclude that we need to update our test itself, finally! Let's fill in the expected test dictionary values back in `tests/test_routes.py`. It should be consistent with whatever data we put in our fixture.
 
 ```python
 def test_get_one_book(client, two_saved_books):
