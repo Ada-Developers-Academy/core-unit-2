@@ -63,7 +63,11 @@ Each environment has lighting. However, the lighting equipment doesn't, and shou
 
 Keeping these environments separate helps Aleesha and the other dancers focus on doing specific things in each environment.
 
-We can imagine Aleesha's practice room at home is like a _development environment_.
+We can imagine Aleesha's practice room at home is like her combined _development_ and _test_ environment.
+
+As her _development_ environment, she can develop new dance routines in her own space. She can easily reconfigure the lighting and arrangement of things in that space to suit her work.
+
+As her _test_ environment, she can practice and practice and make sure she has everything down before meeting with the rest of her dance team.
 
 ### !callout-info
 
@@ -106,15 +110,23 @@ Some examples include:
 
 ### Managing Environment Variables
 
-Environment variables may hold a lot of values related to configuration.
+Because environment variables are held outside of our code, they do not get checked into source control. This makes them very useful for storing _sensitive and secret data_.
 
-Additionally, environment variables often hold _sensitive and secret data_.
+- We might need a username and password to connect to a database.
+- An API key is usually unique to our account. If someone else gets it, they can misuse a service acting under our identity.
 
-In both of these cases, we will need to manage them. Managing environment variables lets us:
+As our applications grow, we may need to store a larger number of variables, to the point that using the `export` command becomes a problem. It would be nice if we could group our environment variables into a special file: a file that holds only our environment variables, and no code.
 
-- Keep them organized together, rather than as constant variables throughout the project code
-- Control their visibility
+But once we have placed them in a file, we might accidentally commit that file. Because of the danger of misuse, we want to **avoid committing environment variables to source control**, where nefarious individuals could steal our credentials!
 
-It's often the case that we _must_ keep environment variables secret to the public. Because our codebases are often online, it may be necessary to **not commit environment variables to source control**.
+It seems like we're right back where we started!
 
-Different tools, packages, and practices will give us ways to manage and hide our environment variables.
+In the next lesson, will explore how to manage our environment variables so that they remain organized, out of our code, and secure!
+
+### !callout-info
+
+## Many Ways to Customize Environments
+
+Flask doesn't require a particular approach to setting environment configurations. We will keep our discussion of configuration focused on switching between databases and storing application secrets. Customizing configuration is a much larger topic, with many clever approaches to explore. Follow your curiosity!
+
+### !end-callout
