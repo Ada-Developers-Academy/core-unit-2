@@ -1,5 +1,6 @@
 # Web Applications and Layers
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=0f2b2dc7-5638-4a52-a2f5-ad17004c3bbe&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 ## Learning Goals
 
 - Compare the difference between front-end, back-end, and full-stack programming
@@ -19,8 +20,8 @@ Let's ponder one more time. What _is_ a web application? What are all of the pie
 | --------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Web App   | Application software that runs on a web server                                                 | Dynamic site, web site, site, app           | "I need to log onto that web app because it has all of my health insurance information," "My banking web app is slow, but I can pay my bills there"                        |
 | End-user  | the person who actually uses a particular product                                              | User, client, customer                                        | "This app is designed for an end-user who needs to organize their calendar," "This app needs to ultimately serve the end-user, so we should consider the end-user's needs" |
-| Front-end | a part of the system concerned with dealing with user interaction                              | "frontend," "front end," presentation layer |
-| Back-end  | a part of the system concerned with running application logic and storing application data     | "backend," "back end," data access layer    |
+| Front-end | a part of the system concerned with dealing with user interaction                              | "frontend," "front end," presentation layer | "The website on my browser Yelp.com is the front-end for Yelp, because it's what the end-user sees and interacts with."
+| Back-end  | a part of the system concerned with running application logic and storing application data     | "backend," "back end," data access layer    | "The servers that determine what data gets back to the user is the back-end for Yelp."
 | Web APIs  | Software built to translate messages between a user (often another program) and a _web server_ | API                                         | "If we use the Yelp API, we're able to query data that the Yelp databases store," "Yelp has an API that allows users to search for restaurants in a specific city"         |
 
 ## Web Applications
@@ -41,13 +42,13 @@ They typically run on web browsers, such as Mozilla Firefox, Google Chrome, and 
 
 ## Mobile Web Apps
 
-Native mobile apps (or apps that are built for smartphones, and are usually distributed on app stores) are not web apps. However, mobile devices also have web browsers! Web apps that are built for smartphone browsers are called mobile web apps.
+Native mobile apps (or apps built for smartphones that are usually distributed on app stores) are not web apps. However, mobile devices also have web browsers! Web apps that are built for smartphone browsers are called mobile web apps.
 
 ### !end-callout
 
 ### Web Applications Have Layers
 
-As programmers, we love designing systems that follow the principle of _separation of concerns_. We like it when a piece of a system is reponsible for one thing, and it relies on other pieces of the system to be responsible for a different thing.
+As programmers, we value designing systems that follow the principle of _separation of concerns_. We love it when a piece of a system is reponsible for one thing, and it relies on other pieces of the system to be responsible for a different thing.
 
 Web applications often follow the principle of separation of concerns by specifying different layers.
 
