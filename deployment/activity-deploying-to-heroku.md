@@ -6,7 +6,7 @@ Our goal is to practice deployment of our Flask APIs in a group setting. Deployi
 
 ## Preparation
 
-The Hello Books API should be in a working state, such that running `$ flask run` does not produce any errors. To the best of your ability, you should check that no syntax errors, name errors, or other runtime errors can occur.
+The Hello Books API should be in a working state, such that running `$ flask run` does not produce any errors. To the best of your ability, you should check that no syntax errors, name errors, or other runtime errors occur.
 
 All code for Hello Books API should be pushed to GitHub.
 
@@ -15,10 +15,10 @@ The Solar System API should also be in a working state, and up-to-date on GitHub
 ## Activity Instructions
 
 1. Get into pairs or small groups
-1. While using individual Hello Books API repos, as a pair/group, follow the "Deploying to Heroku" walkthrough step-by-step together
+1. While using individual Hello Books API repos, as a pair/group, follow the "Deploying to Heroku" walk-through step-by-step together
 1. When any errors or questions arise:
     - Write down what step/command just created the issue
-    - Write down how you observe the issue
+    - Write down how you observed the issue
     - Pause, debug, and ask for help!
 
 Then, answer the following questions with your pair or small group:
@@ -29,7 +29,13 @@ Then, answer the following questions with your pair or small group:
 1. How would you describe the overall development workflow, from the beginning of a project, to deployment?
 1. How would you like to celebrate a successful deployment?
 
-If there is time, repeat this process with Solar System API.
+### !callout-info
+
+## Repeat with Solar System API
+
+Our skills improve with repetition. If there is time during the activity, repeat the deployment process with Solar System API. If there is _not_ time, deploy Solar System API as an individual activity.
+
+### !end-callout
 
 ## How to Review
 
