@@ -351,3 +351,38 @@ Standards:
         Type: Lesson
         UID: HfbxKc
         Path: /more-flask-queries/query-params.md 
+  -
+    Title: Testing Our APIs
+    Description: "Environments and Env Vars, dotenv and the Test DB, Fixtures, Test Setup, Using Tests, Problem Set: Testing Our APIs, Activity: Solar System API: Tests"
+    UID: e7cb1f63923b38e37e787f78784653ec
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: c49f1e46b7e1f26263c71173af781cea
+        Path: /testing-our-apis/environments-and-env-vars.md
+      -
+        Type: Lesson
+        UID: f153ea3be2591354fccbc62912327060
+        Path: /testing-our-apis/dot-env-and-the-test-db.md
+      -
+        Type: Lesson
+        UID: 8dfac72f68845ac31b3527aeba524c01
+        Path: /testing-our-apis/fixtures.md
+      -
+        Type: Lesson
+        UID: ae6d7749089a176f86e664172c9c3102
+        Path: /testing-our-apis/test-setup.md
+      -
+        Type: Lesson
+        UID: MAKii1
+        Path: /testing-our-apis/using-tests.md
+      -
+        Type: Lesson
+        UID: 8TZO0e
+        Path: /testing-our-apis/problem-set-testing-our-apis.md
+      -
+        Type: Lesson
+        UID: L00UOa
+        Path: /testing-our-apis/activity-solar-system-api-tests.md
