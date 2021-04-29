@@ -159,6 +159,8 @@ Replace `your-app-name` with the desired name of the app.
 
 ![Screenshot of the terminal after running the command "heroku create hello-books-api"](../assets/deployment/deployment_heroku-cli-create.png)
 
+Note that the app name must be unique across all Heroku apps, not just our own apps. As a result, the name `hello-books-api` is already taken, as it was used in this walk-through! We will need to come up with our own name that has a unique touch, or we can simply use the nameless option to generate a unique name automatically.
+
 ### Our New Heroku App
 
 We have officially created a Heroku app that is accessible online! We can follow the link from the `heroku create` output.
