@@ -1,6 +1,6 @@
 # Instructor: Deployment
 
-## Why is there a "Platforms" section in the deployment lessno?
+## Why is there a "Platforms" section in the deployment lesson?
 
 - Heroku is a Platform as a Service
 - This is an introduction to other platforms students will likely use in Capstone

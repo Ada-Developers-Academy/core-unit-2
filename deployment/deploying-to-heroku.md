@@ -6,7 +6,7 @@ Our goal is to show the process of deploying a Flask API to Heroku.
 
 ### Intro to Heroku
 
-[Heroku](https://www.heroku.com/home) is one Platform as a Service (PaaS). We can use Heroku services to deploy our Flask API. After we successfully deploy, our API will be available to all web clients!
+[Heroku](https://www.heroku.com/home) is one Platform as a Service (PaaS). We can use Heroku services to deploy our Flask API. After we successfully deploy, our API will be available to the whole Internet!
 
 ![Screenshot of Heroku.com's splash page](../assets/deployment/deployment_heroku-splash.png)
 
@@ -59,7 +59,7 @@ It may be better to think about this lesson as a resource to be familiar with, r
 
 Create an account on [Heroku](https://www.heroku.com/home).
 
-After logging into the dashboard, we should see an empty list of Heroku apps. (This screenshot features one Heroku app).
+After logging into the dashboard, as a new user we should see an empty list of Heroku apps. (This screenshot is from an account which had already created one Heroku app).
 
 ![Screenshot of the Heroku Dashboard with one app listed in it](../assets/deployment/deployment_heroku-bare-dashboard.png)
 
@@ -73,6 +73,10 @@ Follow the directions to install [the Heroku CLI](https://devcenter.heroku.com/a
 $ brew tap heroku/brew && brew install heroku
 ```
 
+This command runs two separate commands. The `&&` joins them into one convenient copy/paste-able unit.
+
+The first command `brew tap heroku/brew` tells Homebrew to add an additional source of software packages (termed a _tap_ in Homebrew-speak). The second command `brew install heroku` uses Homebrew to install the Heroku CLI, which it will be able to find with the tap we just configured.
+
 ### Log In to the Heroku CLI
 
 The Heroku CLI needs to authenticate our user account. Follow the directions to [log into the Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#getting-started):
@@ -81,7 +85,7 @@ The Heroku CLI needs to authenticate our user account. Follow the directions to 
 $ heroku login
 ```
 
-We'll be prompted to enter any key to go to the web browser to complete login. The CLI will then log us in automatically.
+We'll be prompted to press any key to go to a web browser to complete our login. The CLI will then log us in automatically.
 
 ## Configure Our Flask App for Heroku
 
@@ -89,15 +93,17 @@ Although Heroku will do a lot of the work of hosting, running, and maintaining o
 
 ### Check Dependencies for `gunicorn`
 
-We will need to depend on a Python package named [gunicorn](https://pypi.org/project/gunicorn/).
+We will use a Python package named [gunicorn](https://pypi.org/project/gunicorn/) to launch our Flask API on Heroku.
 
-Confirm that the package `gunicorn` is in the project's `requirements.txt` file.
+`gunicorn` is capable of running Flask apps so that they can handle multiple simultaneous requests, which is very important for production web applications.
+
+We should confirm that the package `gunicorn` is in the project's `requirements.txt` file.
 
 ### Create a Procfile for Heroku
 
 [`Procfile`](https://devcenter.heroku.com/articles/procfile) is a file specifically used in codebases deployed on Heroku.
 
-We define web server processes Heroku needs to run inside the Procfile. We'll use our Procfile to define how to start a Flask web server.
+We'll use our Procfile to define how to start our Flask web server.
 
 First, create a `Procfile` inside the project root. This file _must be named exactly `Procfile`, **with no file extension**_.
 
@@ -113,13 +119,13 @@ web: gunicorn 'app:create_app()'
 
 ## Commit
 
-Save this file. Then, create a git commit that contains this change.
+Save this file. Then, create a Git commit that contains this change.
 
 ## Create a Heroku App
 
 For each project we deploy, we will need to create and manage a Heroku app. Our Heroku app will give us visibility, access, and tools to manage our deployed app.
 
-After `cd`ing to our project root, we can create a Heroku app using the Heroku CLI. In the command line using **either** of these options:
+After `cd`ing to our project root, we can create a Heroku app using the Heroku CLI. From the command line we should pick **either** of these options:
 
 1. We can create a Heroku app with an automatically generated app name using:
 
@@ -133,7 +139,7 @@ $ heroku create
 $ heroku create your-app-name
 ```
 
-Replace `your-app-name` with the name of the app.
+Replace `your-app-name` with the desired name of the app.
 
 ![Screenshot of the terminal after running the command "heroku create hello-books-api"](../assets/deployment/deployment_heroku-cli-create.png)
 
@@ -147,9 +153,9 @@ Our Heroku app doesn't have access to our Flask API code yet, so we'll see a def
 
 ### Verify the New Heroku Remote
 
-Creating a Heroku app will add a new git remote to our project!
+Creating a Heroku app will add a new Git remote to our project! A Git remote is a destination to which we can `git push`!
 
-We will get a new git remote automatically named `heroku`. This git remote points exactly to where Heroku keeps and serves our code!
+The new Git remote will be named `heroku`. This Git remote points exactly to where Heroku keeps and serves our code!
 
 Confirm that we have a `heroku` remote by running this command:
 
@@ -169,21 +175,29 @@ Visit the Heroku dashboard and see your new app listed! We'll visit this dashboa
 
 ## Push Code to the Heroku Remote
 
-We should send our project code base to our `heroku` remote.
+We should send our project codebase to our `heroku` remote.
 
-This command will push our project's git history to a remote named `heroku`. It will push the default `main` branch to Heroku.
+This command will push our project's Git history to a remote named `heroku`. It will push the default `main` branch to Heroku.
 
 ```bash
 $ git push heroku main
 ```
 
-Every time we want to push our git history to our Heroku app, we will need to push to the `heroku` remote.
+Every time we want to push our Git history to our Heroku app, we will need to push to the `heroku` remote.
+
+### !callout-info
+
+## Pushing to Heroku Still Ignores Files
+
+Since we are using Git to send our code to Heroku, this means any files listed in our `.gitignore` will _not_ be sent, including our `.env` file. This means our environment variables, which include our connection strings, will not be sent to Heroku! We'll see how to tell our app where to find our database later in this lesson.
+
+### !end-callout
 
 ## Create a Database in Heroku
 
-Now that we've created our Heroku app for the first time, we need to tell the app that we're interested in adding a postgres database to our deployed Heroku app.
+Now that we've created our Heroku app for the first time, we need to tell the app that we're interested in adding a Postgres database to our deployed Heroku app.
 
-This command uses the Heroku CLI to add a postgres database to the app.
+This command uses the Heroku CLI to add a Postgres database to the app.
 
 ```bash
 $ heroku addons:create heroku-postgresql:hobby-dev
@@ -193,7 +207,7 @@ $ heroku addons:create heroku-postgresql:hobby-dev
 
 We can verify that our Heroku app has added a Postgres database by checking the Heroku dashboard.
 
-Use the Heroku dashboard to view your Heroku app. In the "Overview" tab, in the "Installed add-ons" section, we should see "Heroku Postgres."
+We can use the Heroku dashboard to view our Heroku app. In the "Overview" tab, in the "Installed add-ons" section, we should see "Heroku Postgres."
 
 ![Screenshot of the Heroku dashboard at the Overview tab, showing the Heroku Postgres Add-on](../assets/deployment/deployment_overview-tab.png)
 
@@ -203,7 +217,7 @@ Alternatively, in the "Resources" tab, in the "Add-ons" section, we should see "
 
 ## Set Environment Variables in Heroku
 
-Our current app probably has `SQLALCHEMY_DATABASE_URI` set as an environment variable in `.env`. The Flask code probably uses this variable with `os.environ.get("SQLALCHEMY_DATABASE_URI")`.
+Our current app sets the `SQLALCHEMY_DATABASE_URI` environment variable using our `.env` file. Our Flask code accesses this environment variable with the code `os.environ.get("SQLALCHEMY_DATABASE_URI")`.
 
 Instead of giving Heroku our `.env` file, we need to add our environment variables to Heroku using the Heroku dashboard.
 
@@ -217,7 +231,7 @@ In the Heroku dashboard, in the "Settings" tab, there is a section titled "Confi
 
 ![Screenshot of the Heroku dashboard at the Settings tab](../assets/deployment/deployment_heroku-app-settings.png)
 
-Then:
+Once we locate this section, we should:
 
 1. Click "Reveal Config Vars"
 1. Find the automatically generated variable named "DATABASE_URL"
@@ -227,7 +241,7 @@ Then:
 
 ### Set the Environment Variables in Heroku
 
-Now, let's set `SQLALCHEMY_DATABASE_URI`.
+Now, let's set the `SQLALCHEMY_DATABASE_URI` variable.
 
 In the "Config Vars" section:
 
@@ -275,13 +289,13 @@ exit()
 
 ## Verify
 
-Our Flask project is on a Heroku machine, running, and connected to an initialized database. Now is the time to verify if our API is accessible by web!
+Our Flask project is on a Heroku machine, running, and connected to an initialized database. Now is the time to verify whether our API is accessible by web!
 
 ### Use the Browser
 
 We can use the browser to make `GET` requests to any endpoint defined in our project, now using our deployed Heroku URI instead of `localhost`.
 
-Instead of `localhost:5000/books`, we could visit `https://your-app-name.herokuapp.com/books`, where `your-app-name` is the name of your Heroku app.
+Instead of `localhost:5000/books`, we can visit `https://your-app-name.herokuapp.com/books`, where `your-app-name` is the name of our Heroku app.
 
 ![Screenshot of the browser open to the deployed API, showing a response of an empty JSON array](../assets/deployment/deployment_deployed-books.png)
 
@@ -289,13 +303,18 @@ Instead of `localhost:5000/books`, we could visit `https://your-app-name.herokua
 
 ## No Book Data
 
-Our apps have zero books listed when we go to `/books`, even though our app is deployed correctly and connected to our Postgres database correctly.
+Our app has zero books listed when we go to `/books`, even though our app is deployed correctly and connected to our Postgres database correctly.
+
+<br />
+
 
 <details>
 
 <summary>Why are there no books listed?</summary>
 
-Recall that our deployed app is connected to a Postgres database that we created a few steps ago! We have not added any book data to our Heroku database. Even if our local database is full of books, our Heroku app's connection string to the database points at the Heroku database. 
+<br />
+
+Recall that our deployed app is connected to a Postgres database that we created a few steps ago! We have not added any book data to our Heroku database. Even if our local database is full of books, our Heroku app's database connection string points at the Heroku database. 
 
 </details>
 
@@ -315,9 +334,9 @@ We can use Postman to make and verify all sorts of HTTP requests to our API!
 
 ### Use Heroku Logs
 
-During local development on our own machines, when we ran `$ flask run`, the server's logs were output into our terminal. We could see the details about every HTTP request our server receives and every HTTP response it gives. We could also output for any errors.
+During local development on our own machines, when we ran `$ flask run`, the server's logs were output into our terminal. We could see the details about every HTTP request our server received and every HTTP response it returned. We could also see output for any errors.
 
-We can access the server logs of our Heroku app from the Heroku dashboard by finding the "More" menu and finding "View logs."
+We can access the server logs of our Heroku app from the Heroku dashboard by finding the "More" menu and selecting "View logs."
 
 ![Screenshot of the Heroku dashboard, focusing on the "More" menu, which lists the option to View logs](../assets/deployment/deployment_heroku-view-logs-menu.png)
 
@@ -337,7 +356,7 @@ If we want to see the logs output in real time, we can run:
 $ heroku logs --tail
 ```
 
-This option is useful when we want to recreate an error and see what server logs are most relevant.
+This option is useful when we are troubleshooting an issue. If we can recreate the error, we'll be able to see the server log information related to the error just as if we were running the application locally.
 
 <!-- Question 1 -->
 <!-- prettier-ignore-start -->
@@ -361,7 +380,7 @@ Check off all the topics that we've briefly touched on so far.
 * Push code to the `heroku` remote
 * Added the Postgres add-on to our Heroku app using the Heroku CLI
 * Set the environment variable for our database in Heroku
-* Initialized the database by using `$ heroku run python3`
+* Initialized the database by using `$ heroku run flask db upgrade`
 
 ##### !end-options
 ##### !answer
@@ -373,7 +392,7 @@ Check off all the topics that we've briefly touched on so far.
 * Push code to the `heroku` remote
 * Added the Postgres add-on to our Heroku app using the Heroku CLI
 * Set the environment variable for our database in Heroku
-* Initialized the database by using `$ heroku run python3`
+* Initialized the database by using `$ heroku run flask db upgrade`
 
 ##### !end-answer
 ### !end-challenge
@@ -381,17 +400,17 @@ Check off all the topics that we've briefly touched on so far.
 
 ## Updating the Heroku Remote Workflow
 
-When we practice _continuous deployment_, we must adopt a practice of regularly updating the git history of our Heroku app.
+When we practice _continuous deployment_, we must adopt the practice of regularly updating the Git history of our Heroku app.
 
-We could summarize our local development workflow like this:
+We can summarize our local development workflow like this:
 
 1. Activate our virtual environment
-1. Pull down any new commits from git
+1. Pull down any new commits from Git
 1. Run tests
 1. Write code
-1. Make git commits
-1. Push our git history to the `origin` remote, which is our repo on GitHub
-1. **Push our git history to the `heroku` remote**, which is our Heroku app
+1. Make Git commits
+1. Push our Git history to the `origin` remote, which is our repo on GitHub
+1. **Push our Git history to the `heroku` remote**, which is our Heroku app
 1. Verify our deployment
 
 ## General Deployment Tools
@@ -412,11 +431,11 @@ The Heroku dashboard includes:
 
 The following are great Heroku CLI commands to keep handy:
 
-| Command              | Explanation                                                                                                                                                         |
+| <div style="min-width:200px;">Command</div>              | Explanation                                                                                                                                                         |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `heroku logs --tail` | Turns the current terminal window into tailing the Heroku logs, and get real-time updates                                                                           |
+| `heroku logs --tail` | Starts tailing the Heroku logs in the current terminal window, displaying real-time updates                                                                           |
 | `heroku run python3` | Runs the `python3` repl on the Heroku machine running our app                                                                                                       |
-| `heroku pg:psql`     | Runs the `psql` shell on the Heroku machine running our app. We can use this to execute `psql` commands, and check, add, update, delete the data that our app uses. |
+| `heroku pg:psql`     | Runs the `psql` CLI on the Heroku machine running our app. We can use this to execute `psql` commands, and check, add, update, or delete the data that our app uses. |
 
 ## General Heroku Debugging Strategies
 
@@ -431,14 +450,14 @@ Our deployed apps can encounter problems ranging from:
 
 In those situations, here is a starting point for debugging and determining what is causing the deployment error:
 
-| Debugging Action                          | Details                                                                                                                                                                                                                                            |
+| <div style="min-width:200px;">Debugging Action</div>                          | Details                                                                                                                                                                                                                                            |
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Check the logs                            | The logs will show error messages that the web server outputs. These messages could share details such as Python `NameError`s, database connection errors, problems with running the Flask app, problems with downloading the right packages, etc. |
 | See if you can recreate it locally        | Attempt to recreate the problem locally, by running `$ flask run` on your own local machine. Error messages may be more detailed on our local machine. Also, concluding that you're **unable to recreate the issue** is valuable in itself!        |
-| Check the status of the git history       | Confirm that the remote git history is up-to-date. Check that working code has been recently pushed to the `heroku` remote.                                                                                                                        |
+| Check the status of the Git history       | Confirm that the remote Git history is up-to-date. Check that working code has been recently pushed to the `heroku` remote.                                                                                                                        |
 | Internet research!                        | Heroku has a large community of support, and a lot of documentation on deploying Flask apps and using Postgres databases. Be sure to use the Internet and to rubber duck with others.                                                              |
 | Take notes of each debugging attempt      | It can be challenging to remember what you've tried on the Heroku machine. Write down and record all of the ways you've attempted to fix the problem.                                                                                              |
-| Rubber-duck, and post questions on Slack! | Debugging deployment usually depends on context. Rubber-duck and connect with folks who are deploying similar projects to you!                                                                                                                     |
+| Rubber duck, and post questions on Slack! | Debugging deployment usually depends on context. Rubber duck and connect with folks who are deploying similar projects to you!                                                                                                                     |
 
 <!-- Question 2 -->
 <!-- prettier-ignore-start -->
