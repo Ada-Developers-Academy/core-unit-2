@@ -99,6 +99,22 @@ We will use a Python package named [gunicorn](https://pypi.org/project/gunicorn/
 
 We should confirm that the package `gunicorn` is in the project's `requirements.txt` file.
 
+If `gunicorn` does _not_ appear in our `requirement.txt`, we can add it by installing it locally with:
+
+```bash
+(venv) $ pip install gunicorn
+```
+
+After it has installed, we can update our `requirements.txt` by running:
+
+```bash
+(venv) $ pip freeze > requirements.txt
+```
+
+Heroku makes use of our `requirements.txt` file to install our app dependencies, so it is very important to ensure that all of our dependencies are properly listed.
+
+If we needed to update our `requirements.txt`, we should be sure to add and commit this change.
+
 ### Create a Procfile for Heroku
 
 [`Procfile`](https://devcenter.heroku.com/articles/procfile) is a file specifically used in codebases deployed on Heroku.
