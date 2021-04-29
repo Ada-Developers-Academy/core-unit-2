@@ -53,7 +53,7 @@ The following are all examples of _Platforms as a Service_. The responsibility o
 
 ## Deploy to the Production Environment
 
-The _production_ environment is like Aleesha's main stage! It refers to the environment that runs our deployed, released application. This is where all our hard work gets made available to actual users!
+The _production_ environment refers to the environment that runs our deployed, released application. This is where all our hard work gets made available to actual users!
 
 ### !end-callout
 
