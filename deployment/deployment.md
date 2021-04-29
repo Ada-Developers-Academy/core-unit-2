@@ -73,12 +73,12 @@ _Continuous deployment_ is a software engineering practice that values and encou
 
 ## Our New Dev Workflow
 
-Assuming we want to deploy early and often, our new development workflow may look like this:
+Let's say we have an existing web application that is already deployed and already being used by people all over the world. Assuming we want to deploy early and often, our development workflow may look like this:
 
 1. Begin a new feature
 1. Do work in our local environment, using best practices for git and testing
 1. Finish the new feature
-1. Deploy to the production environment
+1. Deploy the updated code with this new feature to the production environment
 
 ## Check for Understanding
 
