@@ -270,40 +270,15 @@ In the "Config Vars" section:
 
 ## Setup and Initialize the Database in Heroku
 
-Now that our Flask app is on Heroku and can connect to a database, we need to run some commands to initialize the database in Heroku once.
+Now that our Flask app is on Heroku and can connect to a database, we need to initialize the database in Heroku once.
 
-First, we'll run this command, which uses the Heroku CLI to connect to our Heroku machine, and then opens the `python3` repl on that machine:
+We can run the following:
 
 ```bash
-$ heroku run python3
+$ heroku run flask db upgrade
 ```
 
-Now that we have the `python3` repl on that machine open, we can run any Python code! We can even run Python code that interacts with our Flask codebase. We should run these lines in order to create the database.
-
-```
-from app import db, create_app
-```
-
-```
-app = create_app()
-```
-
-For the next line to put into the Python repl, manually add in spaces for indentation, and press enter several times to execute the line.
-
-```
-with app.app_context():
-    db.create_all()
-```
-
-Our terminal could look like this:
-
-![Screenshot of the terminal connecting to the Heroku app's python shell using "heroku run python3". Other commands used to initialize the database are shown](../assets/deployment/deployment_python-repl-initializing-db.png)
-
-We can exit the `python3` repl with:
-
-```
-exit()
-```
+This will migrate the empty database in our remote Postgres connection to the latest schema configuration we have generated from our models.
 
 ## Verify
 
