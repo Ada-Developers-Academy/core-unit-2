@@ -223,7 +223,7 @@ $ heroku addons:create heroku-postgresql:hobby-dev
 
 ### Verify in the Dashboard
 
-We can verify that our Heroku app has added a Postgres database by checking the Heroku dashboard.
+We can verify that our Heroku app has added a Postgres database by checking the [Heroku dashboard](https://dashboard.heroku.com/).
 
 We can use the Heroku dashboard to view our Heroku app. In the "Overview" tab, in the "Installed add-ons" section, we should see "Heroku Postgres."
 
