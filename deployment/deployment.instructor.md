@@ -1,5 +1,9 @@
 # Instructor: Deployment
 
+Flask is weird about `/`. In "Building an API"/"Create and Read" we have a tip about loosening the routing pattern so that "" and "/" routes do the same thing.
+
+Sorry y'all I took out the direct link to that lesson </3 hehehe lolol.
+
 ## Why is there a "Platforms" section in the deployment lesson?
 
 - Heroku is a Platform as a Service
