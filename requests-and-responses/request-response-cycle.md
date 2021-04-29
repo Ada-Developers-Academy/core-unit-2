@@ -1,5 +1,7 @@
 # Request-Response Cycle
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=d7d102bf-3020-4e34-b8e3-ad1000290ba0&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Learning Goals
 
 - Explain how HTTP Requests, Responses, clients, and servers interact as part of the Request-Response Cycle

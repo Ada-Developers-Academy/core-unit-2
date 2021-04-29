@@ -1,5 +1,7 @@
 # Sending Requests With Python
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=26e9201d-6cac-4f5b-b749-ad1000629ee0&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goal
 
 Our goal for this lesson is to:

@@ -1,5 +1,7 @@
 # Models Setup
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=2d8c558c-d8f9-4fd7-9c15-ad11005fdfd5&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goal
 
 Our goal for this lesson is to provide details for _how_ to setup a model in a Flask app.
@@ -111,11 +113,9 @@ On a high-level, this code does the following:
 
 ## Defining the Model
 
-Following the pattern of creating a file for every model, we can execute these commands:
+Following the pattern of creating a file for every model, we can create a file for `Book`:
 
 ```bash
-$ mkdir app/models
-$ touch app/models/__init__.py
 $ touch app/models/book.py
 ```
 

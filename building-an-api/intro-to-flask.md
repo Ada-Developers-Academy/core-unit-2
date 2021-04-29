@@ -1,5 +1,7 @@
 # Intro to Flask
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=ac3c84a5-41fe-44ea-832c-ad10004eb723&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 Our goal for this lesson is to learn about Flask from a high-level perspective, in preparation for our new Flask development skills.

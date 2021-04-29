@@ -1,5 +1,7 @@
 # Create and Read
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=2820ad97-f0b3-4717-9e8f-ad11005c863e&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 - Practice defining routes that create model records
@@ -120,7 +122,6 @@ We will import `Blueprint` into our `routes.py` file. We will use Blueprints to 
 
 ## Working with the `Response` Class from Flask
 
-
 `Response` is a Flask class that represents HTTP responses. To make a response, we can make an instance of the `Response` class.
 
 Flask also provides a helper method `make_response` that is a little bit more flexible than instantiating a `Response` ourselves, so we'll be using `make_response` instead. But we should be aware that it's still creating a `Response` instance internally.
@@ -136,7 +137,6 @@ There are a variety of ways to create `Response` instances, some implicit and so
 
 Let's look at some example code for our create feature.
 
-
 ### Creating an Endpoint
 
 Let's start defining a route by adding the following code to our `routes.py` file.
@@ -150,7 +150,7 @@ books_bp = Blueprint("books", __name__, url_prefix="/books")
 
 
 @books_bp.route("", methods=["POST"])
-def books():
+def handle_books():
     request_body = request.get_json()
     new_book = Book(title=request_body["title"],
                     description=request_body["description"])
@@ -161,24 +161,24 @@ def books():
     return make_response(f"Book {new_book.title} successfully created", 201)
 ```
 
-| <div style="min-width:290px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                  |
-| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from app import db`, `from ... import Book`        | We need to import the necessary modules for our `Book` model                                                                                                                                                           |
-| `from flask import request, Blueprint, make_response`    | We need to import our dependencies. Python supports comma-separated importing.                                                                                                                                         |
-| `books_bp = Blueprint("books", __name__, ...)`   | Our `Blueprint` instance. We'll use it to group routes that start with `/books`. `"books"` is the debugging name for this `Blueprint`. `__name__` provides information the blueprint uses for certain aspects of routing.                               |
-| `url_prefix="/books"`                               | A keyword argument. This `url_prefix` indicates that _every_ endpoint using this Blueprint should be treated like it starts with `/books`. We should use this blueprint for all of our RESTful routes that start with `/books`! |
-| `@books_bp.route("", methods=["POST"])`             | A decorator that uses the `books_bp` Blueprint to define an endpoint and accepted HTTP method. The following function will execute whenever a matching HTTP request is received.                                       |
-| `def books():`                                      | This function will execute whenever a request that matches the decorator is received. The name of this function doesn't affect how requests are routed to this method. Common choices for a function name could include matching the route path, or using any other good, descriptive Python function name. |
-| `request_body = ...`                                | We create a local variable `request_body`, which will hold the body contents of the HTTP request in a Python data structure (likely dictionaries, lists, and strings)                                                                 |
-| `... request.get_json()`                            | We use the `request` object to get information about the HTTP request. We want to get the request's JSON body, so we use `request.get_json()`. This method "Pythonifies" the JSON HTTP request body by converting it to a Python dictionary.                  |
-| `new_book = Book( ... )`                            | We create an instance of `Book` using the data in `request_body`. We assign this new instance to the `new_book` variable.                                                                                                               |
-| `title=request_body["title"], ...`                  | We use keyword arguments matching our model attributes, and access the `request_body` values to create the `Book` instance                                                                                                                            |
-| `db.session.add(new_book)`                          | `db.session` is the database's way of collecting changes that need to be made. Here, we are saying we want the database to add `new_book`.                                                                                         |
-| `db.session.commit()`                               | Here, we are saying we want the database to save and commit the collected changes.                                                                                                                                           |
-| `return`                                            | For each endpoint, we must _return_ the HTTP response                                                                                                                                                                  |
-| `make_response(...)`                                     | This function instantiates a `Response` object. A `Response` object is generally what we want to return from Flask endpoint functions.                                                                                                                                                              |
-| `f"Book {new_book.title} successfully created"`     | The first parameter to `make_response()` is the HTTP response body. Until we have more specific requirements, we will send back a string.                                                                              |
-| `201`                                        | We can define the status code of the `Response` by passing an integer as the second argument to `make_response()`. When a second argument isn't specified `200` is always the default value.                                                                                                                              |
+| <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from app import db`, `from ... import Book`          | We need to import the necessary modules for our `Book` model                                                                                                                                                                                                                                                |
+| `from flask import request, Blueprint, make_response` | We need to import our dependencies. Python supports comma-separated importing.                                                                                                                                                                                                                              |
+| `books_bp = Blueprint("books", __name__, ...)`        | Our `Blueprint` instance. We'll use it to group routes that start with `/books`. `"books"` is the debugging name for this `Blueprint`. `__name__` provides information the blueprint uses for certain aspects of routing.                                                                                   |
+| `url_prefix="/books"`                                 | A keyword argument. This `url_prefix` indicates that _every_ endpoint using this Blueprint should be treated like it starts with `/books`. We should use this blueprint for all of our RESTful routes that start with `/books`!                                                                             |
+| `@books_bp.route("", methods=["POST"])`               | A decorator that uses the `books_bp` Blueprint to define an endpoint and accepted HTTP method. The following function will execute whenever a matching HTTP request is received.                                                                                                                            |
+| `def handle_books():`                                 | This function will execute whenever a request that matches the decorator is received. The name of this function doesn't affect how requests are routed to this method. Common choices for a function name could include matching the route path, or using any other good, descriptive Python function name. |
+| `request_body = ...`                                  | We create a local variable `request_body`, which will hold the body contents of the HTTP request in a Python data structure (likely dictionaries, lists, and strings)                                                                                                                                       |
+| `... request.get_json()`                              | We use the `request` object to get information about the HTTP request. We want to get the request's JSON body, so we use `request.get_json()`. This method "Pythonifies" the JSON HTTP request body by converting it to a Python dictionary.                                                                |
+| `new_book = Book( ... )`                              | We create an instance of `Book` using the data in `request_body`. We assign this new instance to the `new_book` variable.                                                                                                                                                                                   |
+| `title=request_body["title"], ...`                    | We use keyword arguments matching our model attributes, and access the `request_body` values to create the `Book` instance                                                                                                                                                                                  |
+| `db.session.add(new_book)`                            | `db.session` is the database's way of collecting changes that need to be made. Here, we are saying we want the database to add `new_book`.                                                                                                                                                                  |
+| `db.session.commit()`                                 | Here, we are saying we want the database to save and commit the collected changes.                                                                                                                                                                                                                          |
+| `return`                                              | For each endpoint, we must _return_ the HTTP response                                                                                                                                                                                                                                                       |
+| `make_response(...)`                                  | This function instantiates a `Response` object. A `Response` object is generally what we want to return from Flask endpoint functions.                                                                                                                                                                      |
+| `f"Book {new_book.title} successfully created"`       | The first parameter to `make_response()` is the HTTP response body. Until we have more specific requirements, we will send back a string.                                                                                                                                                                   |
+| `201`                                                 | We can define the status code of the `Response` by passing an integer as the second argument to `make_response()`. When a second argument isn't specified `200` is always the default value.                                                                                                                |
 
 ### !callout-info
 
@@ -272,7 +272,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-question
 ##### !options
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Briefly considered `request`
 * Briefly considered `Blueprint`
 * Briefly considered `Response`
@@ -288,7 +288,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-options
 ##### !answer
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Briefly considered `request`
 * Briefly considered `Blueprint`
 * Briefly considered `Response`
@@ -372,7 +372,7 @@ from flask import request, Blueprint, make_response, jsonify
 books_bp = Blueprint("books", __name__, url_prefix="/books")
 
 @books_bp.route("", methods=["GET", "POST"])
-def books():
+def handle_books():
     if request.method == "GET":
         books = Book.query.all()
         books_response = []
@@ -388,18 +388,18 @@ def books():
         # request_body = request.get_json()
 ```
 
-| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                  |
-| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `from flask import ..., jsonify`                    | Add in `jsonify` as a dependency                                                                                       |
-| `@books_bp.route("", methods=["GET", "POST"])`      | Add `"GET"` into this list of accepted HTTP methods                                                                 |
-| `if request.method == "GET":`                       | Separate this functionality from the Create feature by checking the `request`'s HTTP method                            |
-| `... = Book.query.all()`                            | This SQLAlchemy syntax tells `Book` to `query` for `all()` books. This method returns a _list_ of instances of `Book`. |
-| `books = ...`                                       | We store the list of `Book` instances in the variable `books`                                                          |
-| `for book in books:`                                | We iterate over all books in `books` so we can collect their data and format it into a response                     |
-| `books_response.append( ... )`                      | We will use the `books_response` list to hold book dictionaries                                                        |
-| `{ "id": book.id, ... }`                            | This is the format of dictionary we want to send back. We'll insert the values based on the `book` we're iterating on  |
-| `jsonify(books_response)`                           | `books_response` contains a list of book dictionaries. To turn it into a `Response` object, we pass it into `jsonify()`. This will be our common practice when returning a list of something because the `make_response` function does not handle lists.               |
-| `return ...`                                        | We must return our response. By default, a response with no specified status code returns `200 OK`                     |
+| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                    |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from flask import ..., jsonify`                    | Add in `jsonify` as a dependency                                                                                                                                                                                                                         |
+| `@books_bp.route("", methods=["GET", "POST"])`      | Add `"GET"` into this list of accepted HTTP methods                                                                                                                                                                                                      |
+| `if request.method == "GET":`                       | Separate this functionality from the Create feature by checking the `request`'s HTTP method                                                                                                                                                              |
+| `... = Book.query.all()`                            | This SQLAlchemy syntax tells `Book` to `query` for `all()` books. This method returns a _list_ of instances of `Book`.                                                                                                                                   |
+| `books = ...`                                       | We store the list of `Book` instances in the variable `books`                                                                                                                                                                                            |
+| `for book in books:`                                | We iterate over all books in `books` so we can collect their data and format it into a response                                                                                                                                                          |
+| `books_response.append( ... )`                      | We will use the `books_response` list to hold book dictionaries                                                                                                                                                                                          |
+| `{ "id": book.id, ... }`                            | This is the format of dictionary we want to send back. We'll insert the values based on the `book` we're iterating on                                                                                                                                    |
+| `jsonify(books_response)`                           | `books_response` contains a list of book dictionaries. To turn it into a `Response` object, we pass it into `jsonify()`. This will be our common practice when returning a list of something because the `make_response` function does not handle lists. |
+| `return ...`                                        | We must return our response. By default, a response with no specified status code returns `200 OK`                                                                                                                                                       |
 
 ### Manually Testing with Postman
 
@@ -437,7 +437,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-question
 ##### !options
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Briefly considered `jsonify`
 * Briefly considered `query`
 * Updated this endpoint to match `GET` requests, too
@@ -452,7 +452,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-options
 ##### !answer
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Briefly considered `jsonify`
 * Briefly considered `query`
 * Updated this endpoint to match `GET` requests, too
@@ -515,7 +515,7 @@ Let's take a look at how our new route will account for this!
 # No modifications to the other route...
 
 @books_bp.route("/<book_id>", methods=["GET"])
-def book(book_id):
+def handle_book(book_id):
     book = Book.query.get(book_id)
 
     return {
@@ -525,15 +525,15 @@ def book(book_id):
     }
 ```
 
-| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                                                    |
-| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@books_bp.route("...", methods=["GET"])`           | We are setting up a new route, so we must use the `Blueprint` decorator to define it                                                                                                                                                                                                     |
-| `"/<book_id>"`                                      | This is the `Blueprint` syntax to indicate _route parameters_. The `<book_id>` placeholder shows that we are looking for a variable value (could be `1`, `2`, or `3000`). We'll use this value in the function as the variable `book_id`, so we should use a good, descriptive name. |
-| `def book(book_id):`                                | This `book` function is called whenever the HTTP request matches the decorator. The name of this function should follow the previously discussed guidelines. We must add a parameter to this method, `book_id`. This parameter name must match the route parameter in the decorator. It will receive the part of the request path that lines up with the placeholder in the route.               |
-| `Book.query.get(...)`                               | This is the SQLAlchemy syntax to query for one `Book` resource. This method returns an instance of `Book`.                                                                                                                                                                               |
-| `Book.query.get(book_id)`                           | We must pass in the primary key of a book here. The primary key of the book we're looking for was provided in the route parameter, `book_id`.                                                                                                                                                      |
-| `{ "id": book.id, ... }`                            | We can create a dictionary literal for our HTTP response.                                                                                                                                                                                                                                |
-| `return`                                            | As always, we must return a response. Flask will default to returning status `200 OK`.                                                                                                                                                                                                   |
+| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                                                                                                                                              |
+| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `@books_bp.route("...", methods=["GET"])`           | We are setting up a new route, so we must use the `Blueprint` decorator to define it                                                                                                                                                                                                                                                                                               |
+| `"/<book_id>"`                                      | This is the `Blueprint` syntax to indicate _route parameters_. The `<book_id>` placeholder shows that we are looking for a variable value (could be `1`, `2`, or `3000`). We'll use this value in the function as the variable `book_id`, so we should use a good, descriptive name.                                                                                               |
+| `def handle_book(book_id):`                                | This `handle_book` function is called whenever the HTTP request matches the decorator. The name of this function should follow the previously discussed guidelines. We must add a parameter to this method, `book_id`. This parameter name must match the route parameter in the decorator. It will receive the part of the request path that lines up with the placeholder in the route. |
+| `Book.query.get(...)`                               | This is the SQLAlchemy syntax to query for one `Book` resource. This method returns an instance of `Book`.                                                                                                                                                                                                                                                                         |
+| `Book.query.get(book_id)`                           | We must pass in the primary key of a book here. The primary key of the book we're looking for was provided in the route parameter, `book_id`.                                                                                                                                                                                                                                      |
+| `{ "id": book.id, ... }`                            | We can create a dictionary literal for our HTTP response.                                                                                                                                                                                                                                                                                                                          |
+| `return`                                            | As always, we must return a response. Flask will default to returning status `200 OK`.                                                                                                                                                                                                                                                                                             |
 
 ### !callout-warning
 
@@ -569,7 +569,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-question
 ##### !options
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Considered route parameters, and how we need the book ID in the route
 * Created a new endpoint that matches on `GET` requests to `"/<book_id>"`
 * Defined this endpoint with the function signature `def book(book_id):`
@@ -579,7 +579,7 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-options
 ##### !answer
 
-* Predicted the HTTP response, request, and logic for this endpoint
+* Planned the HTTP response, request, and logic for this endpoint
 * Considered route parameters, and how we need the book ID in the route
 * Created a new endpoint that matches on `GET` requests to `"/<book_id>"`
 * Defined this endpoint with the function signature `def book(book_id):`

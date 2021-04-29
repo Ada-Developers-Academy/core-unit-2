@@ -1,5 +1,7 @@
 # Flask Hello Books
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=a2d78ec7-648f-41cc-9563-ad11001e7dd5&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Format
 
 This lesson will be in the format of a walk-through. It will use the [Hello Books API project repo](https://github.com/AdaGold/hello-books-api).
@@ -51,6 +53,8 @@ Clone the repo, `cd` into it, and open this project in your favorite text editor
 ```
 .
 ├── app
+│   ├── models
+│   │   └── __init__.py
 │   ├── __init__.py
 │   └── routes.py
 ├── README.md
@@ -62,6 +66,8 @@ The `app` directory will contain the bulk of our application code.
 `app/routes.py` is the file we'll use the most in this lesson. It will be where we define our endpoints.
 
 `app/__init__.py` is our usual package file that also contains a lot of startup code for our app.
+
+The `app/models` directory will hold our data models, which will be discussed further in the curriculum. The work in this lesson will not touch this folder.
 
 ## Manage Dependencies
 
@@ -240,7 +246,7 @@ hello_world_bp = Blueprint("hello_world", __name__)
 
 
 @hello_world_bp.route("/hello-world", methods=["GET"])
-def hello_world():
+def say_hello_world():
     my_beautiful_response_body = "Hello, World!"
     return my_beautiful_response_body
 ```
@@ -302,7 +308,7 @@ Your code could look similar to this:
 
 ```python
 @hello_world_bp.route("/hello/JSON", methods=["GET"])
-def hello_json():
+def say_hello_json():
     return {
         "name": "Ada Lovelace",
         "message": "Hello!",

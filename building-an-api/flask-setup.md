@@ -1,5 +1,7 @@
 # Flask Setup
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=f6e8d4bc-f9d7-4630-94b9-ad10005ccdd8&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 The goal of this lesson is to introduce the setup steps for a Flask project, and pair each setup step with any commands or instructions that must be run.
@@ -227,36 +229,31 @@ This curriculum will provide a suggested project structure and location:
 ```
 .
 ├── app
+│   ├── models
+│   │   └── __init__.py
 │   ├── __init__.py
 │   └── routes.py
 ├── README.md
 └── requirements.txt
 ```
 
-Inside each `app` folder, there will be a file named `routes.py`. The responsibility of this file is to define the endpoints.
+### Routes
 
-## Where Does Code Go: Config
+Inside the `app` folder, there will be a file named `routes.py`. The responsibility of this file is to define the endpoints.
 
-As we develop our Flask projects, we'll need to reconfigure the app to suit our needs better. Configurations to the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
+### Models
 
-The place we put our code that defines any configuration, again, **heavily depends on the project**.
+The `app/models` directory will be responsible for holding our data models. Data models will be discussed further in the curriculum.
 
-This curriculum will provide a suggested project structure and location:
-
-```
-.
-├── app
-│   ├── __init__.py
-│   └── routes.py
-├── README.md
-└── requirements.txt
-```
+### The `app/__init__.py` File
 
 Inside each `app` folder, there will be a file named `__init__.py`. This is the same file we have used to mark a folder as a package! While we often leave this file blank, a common Flask pattern is to define the start-up logic for the Flask server in this file.
 
 The start-up logic is responsible for locating and applying any app configuration, and getting the server ready to receive requests.
 
-### !callout-info
+Configurations to the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
+
+### !callout-danger
 
 ## Changing Configurations is Rare
 
@@ -267,40 +264,6 @@ Developers don't need to fuss with configurations that often. Usually, when sett
 We should try to become familiar with the kinds of settings we might want to configure in our app. Overall it's more important to know _where_ configuration _changes_ are made, rather than being able to write fresh configurations from scratch.
 
 ### !end-callout
-
-In a sample Flask application, there may be a file (possibly `app/__init__.py`) that looks like this:
-
-```python
-from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-
-db = SQLAlchemy()
-migrate = Migrate()
-
-
-def create_app():
-    app = Flask(__name__)
-    app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
-    app.config["SQLALCHEMY_DATABASE_URI"] = "... Some Path to Postgres Database ..."
-
-    db.init_app(app)
-    migrate.init_app(app, db)
-
-    # import models (data objects) here
-
-    # import routes (blueprints) here
-
-    return app
-```
-
-This code:
-
-- Creates a `db` reference and a `migrate` reference, which will be used to work with the database
-- Creates a function named `create_app()`
-- Creates a `app` reference, which is the instance of our Flask app
-- Configures the app's connection to a database
-- Initializes our database and migration features
 
 ## Dev Workflow
 

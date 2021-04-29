@@ -318,6 +318,75 @@ Standards:
         UID: m9dgD0
         Path: /building-an-api/activity-solar-system-api-setup-create-read.md
   -
+    Title: Update And Delete
+    Description: "Update and Delete, Problem Set: Update and Delete, Activity: Solar System API: Update and Delete"
+    UID: c806ada4c97ac6c20ee838c607c979d7
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: eebc0514b2efcba42ff925c17aa17fde
+        Path: /update-and-delete/update-and-delete.md
+      -
+        Type: Lesson
+        UID: syrMq6
+        Path: /update-and-delete/problem-set-update-and-delete.md
+      -
+        Type: Lesson
+        UID: etO5RZ
+        Path: /update-and-delete/activity-solar-system-api-update-delete.md
+  -
+    Title: More Flask Queries
+    Description: "404s and More Queries, Query Params"
+    UID: OkfzUG
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: Fm5rbb
+        Path: /more-flask-queries/404s-and-more-queries.md
+      -
+        Type: Lesson
+        UID: HfbxKc
+        Path: /more-flask-queries/query-params.md 
+  -
+    Title: Testing Our APIs
+    Description: "Environments and Env Vars, dotenv and the Test DB, Fixtures, Test Setup, Using Tests, Problem Set: Testing Our APIs, Activity: Solar System API: Tests"
+    UID: e7cb1f63923b38e37e787f78784653ec
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: c49f1e46b7e1f26263c71173af781cea
+        Path: /testing-our-apis/environments-and-env-vars.md
+      -
+        Type: Lesson
+        UID: f153ea3be2591354fccbc62912327060
+        Path: /testing-our-apis/dot-env-and-the-test-db.md
+      -
+        Type: Lesson
+        UID: 8dfac72f68845ac31b3527aeba524c01
+        Path: /testing-our-apis/fixtures.md
+      -
+        Type: Lesson
+        UID: ae6d7749089a176f86e664172c9c3102
+        Path: /testing-our-apis/test-setup.md
+      -
+        Type: Lesson
+        UID: MAKii1
+        Path: /testing-our-apis/using-tests.md
+      -
+        Type: Lesson
+        UID: 8TZO0e
+        Path: /testing-our-apis/problem-set-testing-our-apis.md
+      -
+        Type: Lesson
+        UID: L00UOa
+        Path: /testing-our-apis/activity-solar-system-api-tests.md
+  -
     Title: Deployment
     Description: "Deployment, Deploying to Heroku, Problem Set: Deployment, Activity: Deploying to Heroku"
     UID: ea355214fd4bc7c57f471bd92918879b

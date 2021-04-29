@@ -6,6 +6,8 @@ Note:  The beind the curtain is maybe something we don't keep, on the other hand
 
 -->
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=917e7bb8-f59f-4fba-b228-ad1000ea2a72&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 - Explain how `SELECT` statements can be used with `ORDER BY` to change the order of the result set
@@ -78,10 +80,10 @@ The results could look like the following.
 ```
  title                         | price
 -------------------------------+-------
- The Heirs of the Plant People | 20.00
- Clue of the Burt Cottage      | 16.60
- The Mannequin in the Fog      | 16.25
  Imagine Us in Heaven          | 14.99
+ The Mannequin in the Fog      | 16.25
+ Clue of the Burt Cottage      | 16.60
+ The Heirs of the Plant People | 20.00
 (4 rows)
 ```
 
