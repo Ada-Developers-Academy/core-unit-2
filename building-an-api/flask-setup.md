@@ -132,6 +132,12 @@ To run a Flask server, we run this command:
 (venv) $ flask run
 ```
 
+To run a Flask server in Debug mode so that we don't need to restart the server after each change, we run this command:
+
+```bash
+(venv) FLASK_ENV=development flask run
+```
+
 ### !callout-info
 
 ## Default Flask Server URL is `localhost:5000`
