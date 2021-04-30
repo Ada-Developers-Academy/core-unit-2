@@ -119,7 +119,7 @@ Let's go to our `app/routes.py` file and temporarily break our `/books` endpoint
 ```python
 @books_bp.route("", methods=["GET", "POST"])
 def handle_books():
-    return Response("I'm a teapot!", status=418)
+    return make_response("I'm a teapot!", 418)
 ```
 
 Let's confirm that our test now fails:
@@ -257,9 +257,12 @@ Let's review some of the characteristics of fixtures, and consider how we can us
 
 ### Example Fixture: Creating Two Books
 
-A lot of our tests need at least one book defined in our database. Inside of `tests/conftest.py`, we can make a fixture that saves two books to the database:
+A lot of our tests need at least one book defined in our database. Inside `tests/conftest.py`, we can make a fixture that saves two books to the database:
 
 ```python
+from app.models.book import Book
+# ...
+
 @pytest.fixture
 def two_saved_books(app):
     # Arrange
