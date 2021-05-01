@@ -1,5 +1,7 @@
 # Query Params
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=d7e5be9b-e964-4f23-b690-ad1b000294a1&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 Our goal for this lesson is to expand our skills. We will practice handling more kinds of HTTP requests.
