@@ -1,5 +1,7 @@
 # dotenv and the Test Database
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=57fb6d03-b718-4f99-9d37-ad1d0158d396&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 This lesson should serve as a walk-through for refactoring our code to use `python-dotenv`, and for creating a test database for our Hello Books API.

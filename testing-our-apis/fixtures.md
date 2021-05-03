@@ -1,5 +1,7 @@
 # Fixtures
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=ec8cf5ea-6006-4b2c-a774-ad1d0158d3c8&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 This lesson is a brief introduction to `pytest` [fixtures](https://docs.pytest.org/en/stable/fixture.html), which help us share setup and cleanup steps (our arrange steps) among multiple tests.
