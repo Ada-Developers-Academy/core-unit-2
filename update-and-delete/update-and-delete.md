@@ -1,5 +1,7 @@
 # Update and Delete
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=9a0d6a0c-1927-44b7-944b-ad1d01798fed&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 - Practice defining routes that modify data in an API
