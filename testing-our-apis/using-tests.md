@@ -48,7 +48,6 @@ A `tests` directory that contains `__init__.py`, `conftest.py`, and `test_routes
 
 </details>
 
-
 ### !callout-danger
 
 ## Read-through First, Repeat Second
@@ -61,10 +60,10 @@ We **highly suggest** reading or watching through this lesson fully, before repe
 
 Let's get to reading some test code! Let's reframe the three sections of a test for our Flask API:
 
-| Section | Description                                                                                                                                                                                                                    |
-| ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Arrange | Arrange all required conditions for the test. If we need test data in the test database, we should save it here.                                                                                                             |
-| Act     | We need to send an HTTP request to our Flask API, so we should determine the HTTP method, path, request body, and any query params here.                                                                                       |
+| Section | Description                                                                                                                                                                                                                                                     |
+| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Arrange | Arrange all required conditions for the test. If we need test data in the test database, we should save it here.                                                                                                                                                |
+| Act     | We need to send an HTTP request to our Flask API, so we should determine the HTTP method, path, request body, and any query params here.                                                                                                                        |
 | Assert  | At a minimum, we should confirm the expected HTTP response status code, and the shape of the HTTP response body. We could also check the details of the response body, or look for changes in the database if our request should have made updates to our data. |
 
 ### Syntax
@@ -82,14 +81,14 @@ def test_get_all_books_with_no_records(client):
     assert response_body == []
 ```
 
-| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                              |
-| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `def test_get_..._no_records( ... ):`    | Continuing our best pytest practices, this test should start with the name `test_`, and it should describe the nature of this test. The name is shortened here for formatting purposes. |
-| `client`                           | We pass in the `client` fixture here, which we registered in `conftest.py`. pytest automatically tries to match each test parameter to a fixture with the same name.                   |
-| `client.get("/books")`                              | This sends an HTTP request to `/books`. It returns an HTTP response object, which we store in our local variable `response`        |
-| `response_body = response.get_json()`               | We can get the JSON response body with `response.get_json()`                                                                       |
-| `assert response.status_code == 200`                | Every `response` object will have a `status_code`. We can read that status code and check it against the expected status code.     |
-| `assert response_body == []`                        | We can check all of the parts of the response body that we need to verify. We can check its contents, size, values, etc!              |
+| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                   |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `def test_get_..._no_records( ... ):`               | Continuing our best pytest practices, this test should start with the name `test_`, and it should describe the nature of this test. The name is shortened here for formatting purposes. |
+| `client`                                            | We pass in the `client` fixture here, which we registered in `conftest.py`. pytest automatically tries to match each test parameter to a fixture with the same name.                    |
+| `client.get("/books")`                              | This sends an HTTP request to `/books`. It returns an HTTP response object, which we store in our local variable `response`                                                             |
+| `response_body = response.get_json()`               | We can get the JSON response body with `response.get_json()`                                                                                                                            |
+| `assert response.status_code == 200`                | Every `response` object will have a `status_code`. We can read that status code and check it against the expected status code.                                                          |
+| `assert response_body == []`                        | We can check all of the parts of the response body that we need to verify. We can check its contents, size, values, etc!                                                                |
 
 Add this test to `tests/test_routes.py`, and let's run it!
 
@@ -100,6 +99,7 @@ To run our Flask tests, we can use the same methods as for any other test. From 
 ```bash
 (venv) $ pytest
 ```
+
 Or we can run them through the VS Code test panel.
 
 We should see this already-implemented route pass!
@@ -119,7 +119,7 @@ Let's go to our `app/routes.py` file and temporarily break our `/books` endpoint
 ```python
 @books_bp.route("", methods=["GET", "POST"])
 def handle_books():
-    return Response("I'm a teapot!", status=418)
+    return make_response("I'm a teapot!", 418)
 ```
 
 Let's confirm that our test now fails:
@@ -249,17 +249,20 @@ Or by using fixtures instead, we get data reusability and we explicitly list the
 
 Let's review some of the characteristics of fixtures, and consider how we can use them to add test data:
 
-| <div style="min-width:100px;">Question</div>              | Answer                                                                                                                                         |
-| --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| What are fixtures?    | Each pytest fixture we define describes something we want to happen before a test. We could define a fixture that creates test data.                             |
-| Where do fixtures go? | Fixtures can be defined in any file (such as `tests/test_routes.py`), but we will define most of our fixtures inside of `tests/conftest.py`. This automatically allows them to be used in multiple test files if needed. |
-| Who uses them?        | Each test states which fixtures they want to use. Each test can use multiple fixtures!                                                 |
+| <div style="min-width:100px;">Question</div> | Answer                                                                                                                                                                                                                   |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| What are fixtures?                           | Each pytest fixture we define describes something we want to happen before a test. We could define a fixture that creates test data.                                                                                     |
+| Where do fixtures go?                        | Fixtures can be defined in any file (such as `tests/test_routes.py`), but we will define most of our fixtures inside of `tests/conftest.py`. This automatically allows them to be used in multiple test files if needed. |
+| Who uses them?                               | Each test states which fixtures they want to use. Each test can use multiple fixtures!                                                                                                                                   |
 
 ### Example Fixture: Creating Two Books
 
-A lot of our tests need at least one book defined in our database. Inside of `tests/conftest.py`, we can make a fixture that saves two books to the database:
+A lot of our tests need at least one book defined in our database. Inside `tests/conftest.py`, we can make a fixture that saves two books to the database:
 
 ```python
+from app.models.book import Book
+# ...
+
 @pytest.fixture
 def two_saved_books(app):
     # Arrange
@@ -275,15 +278,16 @@ def two_saved_books(app):
     db.session.commit()
 ```
 
-| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                         |
-| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `@pytest.fixture`                                   | Each fixture starts with this decorator                                                                       |
-| `def two_saved_books( ... ):`                         | We can name our fixtures whatever we want. `two_saved_books` is a reasonable name that will help remind us what this fixture does. |
-| `app`                         | This fixture needs to request the use of the `app` fixture, defined previously, so we know the test database has been initialized.     |
-| `ocean_book = ...`                                  | We can make our first `Book` instance...                                                                      |
-| `mountain_book = ...`                               | ... and our second `Book` instance                                                                            |
-| `db.session.add_all([ ... , ... ])`                 | We can use the `add_all()` function to add a list of instances                                                |
-| `db.session.commit()`                               | This line commits and saves our books to the database                                                          |
+| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                              |
+| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `from app.models.book import Book`                  | We will make instances of the `Book` class (model), so we need to import `Book` into this file                                     |
+| `@pytest.fixture`                                   | Each fixture starts with this decorator                                                                                            |
+| `def two_saved_books( ... ):`                       | We can name our fixtures whatever we want. `two_saved_books` is a reasonable name that will help remind us what this fixture does. |
+| `app`                                               | This fixture needs to request the use of the `app` fixture, defined previously, so we know the test database has been initialized. |
+| `ocean_book = ...`                                  | We can make our first `Book` instance...                                                                                           |
+| `mountain_book = ...`                               | ... and our second `Book` instance                                                                                                 |
+| `db.session.add_all([ ... , ... ])`                 | We can use the `add_all()` function to add a list of instances                                                                     |
+| `db.session.commit()`                               | This line commits and saves our books to the database                                                                              |
 
 #### Requesting Fixtures in Tests
 
