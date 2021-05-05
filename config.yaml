@@ -413,3 +413,14 @@ Standards:
         Type: Lesson
         UID: ee88de6f19748458e8539e3835f8c294
         Path: /deployment/activity-deploying-to-heroku.md
+  -
+    Title: Unit Wrap Up
+    Description: "Activity: Mind Map"
+    UID: dndEGK
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: KSjccL
+        Path: /unit-wrap-up/activity-mind-map.md
