@@ -1,5 +1,7 @@
 # Deploying to Heroku
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=e0e3bd77-a308-451f-bbba-ad20017a3f81&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goal
 
 Our goal is to show the process of deploying a Flask API to Heroku.
