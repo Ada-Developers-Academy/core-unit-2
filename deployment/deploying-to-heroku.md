@@ -195,10 +195,10 @@ Visit the Heroku dashboard and see your new app listed! We'll visit this dashboa
 
 We should send our project codebase to our `heroku` remote.
 
-This command will push our project's Git history to a remote named `heroku`. It will push the default `main` branch to Heroku.
+This command will push our project's Git history to a remote named `heroku`. It will push the default `master` branch on our computer to Heroku's default `main` branch on our new Heroku virtual computer.
 
 ```bash
-$ git push heroku main
+$ git push heroku master:main
 ```
 
 Every time we want to push our Git history to our Heroku app, we will need to push to the `heroku` remote.
