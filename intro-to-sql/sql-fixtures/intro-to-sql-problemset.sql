@@ -129,7 +129,7 @@ COPY public.products (id, name, publisher_id, description) FROM stdin;
 5	This One Summer	103	Written by Mariko Tamaki and illustrated by Jillian Tamaki.
 6	Sweet Tooth	103	Interesting tale.
 7	Through The Woods	99	It came from the woods. Most strange things do.
-1	Blankets	3	Semiautobiographical story of a young man raised in a strict evangelical tradition.
+8	Blankets	3	Semiautobiographical story of a young man raised in a strict evangelical tradition.
 \.
 
 --
@@ -189,6 +189,9 @@ SELECT pg_catalog.setval('public.publishers_id_seq', 5, true);
 --
 
 SELECT pg_catalog.setval('public.users_id_seq', 8, true);
+
+ALTER TABLE ONLY public.products
+    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
 
 
 --
