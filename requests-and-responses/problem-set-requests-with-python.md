@@ -155,7 +155,7 @@ What is the longitude of the first result of "Petra"?
 What is the latitude of the first result of "Colosseum"?
 ##### !end-question
 ##### !answer
-41.8910091
+41.8902614
 ##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
@@ -170,7 +170,7 @@ What is the latitude of the first result of "Colosseum"?
 What is the longitude of the first result of "Colosseum"?
 ##### !end-question
 ##### !answer
-12.4920748
+12.4930871035955
 ##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
