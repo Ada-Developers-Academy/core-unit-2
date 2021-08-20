@@ -426,7 +426,7 @@ Standards:
       -
         Type: Lesson
         UID: d23c9ef5-1e99-4057-93ef-8863f33be45f
-        Path: /intermediate-sql/database-joins.md
+        Path: /many-to-many-relationships/database-joins.md
   -
     Title: Unit Wrap Up
     Description: "Activity: Mind Map"
