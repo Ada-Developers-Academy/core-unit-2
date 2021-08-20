@@ -252,8 +252,8 @@ Standards:
         UID: f9f13580-bd04-442a-8944-34864f3de6a2
         Path: /more-selecting-in-sql/problem-set-more-selecting-in-sql.md
   -
-    Title: Even More Selecting and Modifying in SQL
-    Description: "Optional: Aggregate Functions, Optional: Grouping, Modifying Tables in SQL, Modifying Databases in SQL"
+    Title: Even More SQL
+    Description: "Aggregate Functions, Grouping, Modifying Tables in SQL, Modifying Databases in SQL"
     UID: adb24d77-6638-4351-9b81-4f6bb7fd26f9
     SuccessCriteria:
       - success criteria
@@ -261,19 +261,19 @@ Standards:
       -
         Type: Lesson
         UID: 7b23e0bb-64ea-4f55-aca4-4502d9f8e7fb
-        Path: /more-selecting-in-sql/optional-aggregate-functions.md
+        Path: /even-more-sql/aggregate-functions.md
       -
         Type: Lesson
         UID: af18e4ef-18aa-432c-9f34-0375f4dbb82a
-        Path: /more-selecting-in-sql/optional-grouping.md
+        Path: /even-more-sql/grouping.md
       -
         Type: Lesson
         UID: 139ef877-f6ea-4455-8cad-e42849c19bf8
-        Path: /modifying-in-sql/modifying-tables-in-sql.md
+        Path: /even-more-sql/modifying-tables-in-sql.md
       -
         Type: Lesson
         UID: eed7f313-69fe-4881-9b7c-829860adeb4e
-        Path: /modifying-in-sql/modifying-databases-in-sql.md
+        Path: /even-more-sql/modifying-databases-in-sql.md
   -
     Title: Building an API With Models
     Description: "Models, Models Setup, Create and Read, Problem Set: Building an API"
