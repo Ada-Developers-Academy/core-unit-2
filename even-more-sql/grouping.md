@@ -1,4 +1,4 @@
-# Optional: Grouping
+# Grouping
 
 ## Goals
 
