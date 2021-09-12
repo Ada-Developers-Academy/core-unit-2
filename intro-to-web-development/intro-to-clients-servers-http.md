@@ -13,9 +13,7 @@
 
 Web developers develop programs that operate over Internet connections. The Internet connects users to other users, and users to other machines. In order to make better web apps in the future, getting a **definition-level** understanding of different pieces of the Internet now will help us.
 
-### !callout-info
-
-## Format: Brief Definitions
+### Format: Brief Definitions
 
 The format of this lesson is to introduce several concepts on the **definition** level. This curriculum purposely does not go deeper into this material.
 
