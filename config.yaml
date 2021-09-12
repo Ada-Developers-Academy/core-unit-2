@@ -139,21 +139,26 @@ Standards:
     SuccessCriteria:
       - success criteria
     ContentFiles:
-      - Type: Instructor
-        UID: VuVY5h
-        Path: /building-an-api/activity-building-an-api.instructor.md
       -
         Type: Lesson
         UID: e77cd6b2788d0e9d3a585da004982bda
-        Path: /building-an-api/intro-to-flask.md
+        Path: /requests-and-responses-in-flask/intro-to-flask.md
       -
         Type: Lesson
         UID: e89e0215704779b45a29307ae4e880be
-        Path: /building-an-api/flask-setup.md
+        Path: /requests-and-responses-in-flask/flask-setup.md
       -
         Type: Lesson
         UID: 34723e00ee31eff079c37b5c7e89822f
-        Path: /building-an-api/flask-hello-books.md
+        Path: /requests-and-responses-in-flask/flask-hello-books.md
+      -
+        Type: Lesson
+        UID: 5f4dda242707c828aa5dbd99e73fe62b
+        Path: /requests-and-responses-in-flask/problem-set-building-an-api.md
+      -
+        Type: Lesson
+        UID: m9dgD0
+        Path: /requests-and-responses-in-flask/activity-solar-system-api-setup-create-read.md
   -
     Title: Data In Tables
     Description: "Data in Tables, Activity: Data in Tables"
@@ -281,6 +286,9 @@ Standards:
     SuccessCriteria:
       - success criteria
     ContentFiles:
+      - Type: Instructor
+        UID: VuVY5h
+        Path: /building-an-api/activity-building-an-api.instructor.md
       -
         Type: Lesson
         UID: fc3e20f36128c5fb1e97ab0b40553094
