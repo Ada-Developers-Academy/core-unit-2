@@ -21,8 +21,6 @@ Understanding how data is sent over the Internet is useful for us web developers
 
 We recommend taking this material and learning it on the definition level, and applying it to your every day Internet-browsing life. Additionally, follow your curiosity!
 
-### !end-callout
-
 ## Vocabulary and Synonyms
 
 | Vocab      | Definition                                                                                                               | How to Use in a Sentence                                                                                                                       |
