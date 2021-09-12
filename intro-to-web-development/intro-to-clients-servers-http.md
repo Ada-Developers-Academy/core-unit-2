@@ -12,13 +12,17 @@
 
 Web developers develop programs that operate over Internet connections. The Internet connects users to other users, and users to other machines. In order to make better web apps in the future, getting a **definition-level** understanding of different pieces of the Internet now will help us.
 
-### Format: Brief Definitions
+### !callout-info
+
+## Format: Brief Definitions
 
 The format of this lesson is to introduce several concepts on the **definition** level. This curriculum purposely does not go deeper into this material.
 
 Understanding how data is sent over the Internet is useful for us web developers, but ultimately not necessary. Learning about Internet infrastructure as a web dev is similar to learning about how clothing materials get shipped between different manufacturers as a clothes designer. It's useful context for deep understanding, but almost irrelevant for entry-level roles.
 
 We recommend taking this material and learning it on the definition level, and applying it to your every day Internet-browsing life. Additionally, follow your curiosity!
+
+### !end-callout
 
 ## Vocabulary and Synonyms
 
@@ -33,14 +37,14 @@ We recommend taking this material and learning it on the definition level, and a
 
 How can two computers send data to each other? One way that two machines can send data to each other is following the _client-server model_.
 
-The **client-server model** describes a setup between (at least) two different machines. This model states that for any given interaction between two computers, the communication is setup like this:
+The **client-server model** describes a setup commonly between (at least) two different machines. This model states that for any given interaction between two computers, the communication is setup like this:
 
 1. One computer is the **client** in the relationship
 1. Another computer is the **server** in the relationship
-1. The _client_ computer asks for a specific piece of data or action by sending a request to the _server_ computer
+1. The _client_ computer asks for a specific piece of data or action by sending a **request** to the _server_ computer
    - The request from the client has details like "what should the server do, and how?"
 1. The _server_ computer receives the request from the client. The server computer tries to fulfill the request.
-1. The _server_ eventually gives back a response answer and sends it back to the client
+1. The _server_ eventually gives back a **response** answer and sends it back to the client
    - The response from the server has details like "what is the status of the server," and possibly the requested data
 1. The _client_ receives this response
 
@@ -91,13 +95,15 @@ When applied to many Internet interactions:
 - The **client** is a user's _web browser_ (such as Mozilla Firefox, Google Chrome, or Safari)
 - The **web server** is a server that hosts a website, such as Facebook.com or Instagram.com, and all of its server data and logic
 - The client sends requests to the web server about getting data or changing data on the website
-- The web server sends responses to the client about the requested data or the requested change
+- The web server then sends responses to the client about the requested data or the requested change
 
 ### !callout-info
 
 ## "Client" and "Server" Are Relative Terms
 
-The terms "client" and "server" are always describing a relationship. One machine can be a client in one relationship, and a server in another relationship. Look forward to diving into this in the future!
+The terms "client" and "server" are always describing a relationship. One machine can be a client in one relationship, and then a server in another relationship. 
+
+In fact, your own computer may act as _both_ the client and the server as we begin testing our end-points in future assignments! Look forward to diving into this in the future!
 
 ### !end-callout
 
@@ -137,15 +143,15 @@ Let's combine clients, servers, and HTTP into one story. Imagine that Meghan is 
 
 1. When Meghan is on her computer, she visits bookface.com on her browser Mozilla Firefox.
 1. When she clicks the button "Get All Posts," her browser acts as a _client_. The browser makes an HTTP request to the bookface.com servers. The HTTP request has details that say, "The client wants a list of all posts."
-1. The bookface.com server receives this HTTP request that asks for all posts, and needs to create an HTTP response with this data. The server talks to all of the databases and services it needs to, and constructs the appropriate HTTP response. Then, it sends the HTTP response back to the client.
+1. The bookface.com server receives this HTTP request that asks for all posts, and begins creating an HTTP response with this data. The server talks to all of the end-points, the databases, and services it needs to, and then constructs the appropriate HTTP response. Then, it sends the HTTP response back to the client.
 1. Meghan's browser, the client, receives the response. Because the response contains the bookface post data, the browser says, "I need to read this response and display all posts."
 
 An hour later, Meghan wants to update her status.
 
 1. Meghan finds the form on bookface.com that lets her write a new post inside of her browser. She types, "Hello, World! I'm on bookface.com!"
-1. Meghan presses the button that says "Post." At this point, the browser, the client, makes another HTTP request to the bookface.com servers. _This_ HTTP request has details that say, "The client wants to post "Hello, World! I'm on bookface.com!""
-1. The bookface.com server receives this HTTP request. When the server looks at this request, it's programmed to create a new post with the correct text, user data, timestamps, and any other information. Then, the server is programmed to save this to the database.
-1. Then, the server needs to give back an HTTP response. The server responds with the message, "The post was created successfully."
+1. Meghan presses the button that says "Post." At this point, the browser (aka the client), makes another HTTP request to the bookface.com servers. _This_ HTTP request has details that say, "The client wants to post 'Hello, World! I'm on bookface.com!'."
+1. The bookface.com server receives this HTTP request. When the server looks at this request, it is programmed to create a new post with the correct text, user data, timestamps, and any other information. Then, the server is programmed to save this to the database.
+1. Next, the server needs to give back an HTTP response. The server responds with the message, "The post was created successfully."
 1. Meghan's browser, the client, receives this response. The browser sees the message, "The post was created successfully." Then, the web browser changes, and there is a new yellow box that says "Post created."
 
 ### !callout-info
