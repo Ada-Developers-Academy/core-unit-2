@@ -106,7 +106,7 @@ When applied to many Internet interactions:
 
 The terms "client" and "server" are always describing a relationship. One machine can be a client in one relationship, and then a server in another relationship. 
 
-In fact, your own computer may act as _both_ the client and the server when we begin testing our end-points in future assignments! Look forward to diving into this in the future!
+In fact, your own computer may act as _both_ the client and the server when we begin making our own requests! Look forward to diving into this in the future!
 
 ### !end-callout
 
