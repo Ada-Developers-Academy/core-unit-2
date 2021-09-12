@@ -7,6 +7,7 @@
 - Define client
 - Define web server
 - Explain that HTTP is a protocol that specifies how data is communicated (sent and received through the request-response cycle)
+- Define request-response cycle
 
 ## Introduction
 
@@ -32,6 +33,7 @@ We recommend taking this material and learning it on the definition level, and a
 | Server     | Within the client-server model, a computer who receives requests for a resource from a client, and sends back a response | "The server needs to respond to the client with their requested resources. The server will give back data about news articles."                |
 | Web Server | Within the client-server model, a server that is specifically connected to a client over the web                         | "The web browser needs to get news article data, but it seems like the web servers are offline and down, and we can't establish a connection." |
 | HTTP       | A specific protocol that determines how a clients and web servers communicate                                            | "The requests and responses between a web browser and web server must follow HTTP. They are HTTP requests and HTTP responses."                 |
+| Request-Response Cycle | The cycle of communication between a client making a request and a server responding back.     | "We encounter the request-response cycle any time we log into a social media website or look up cat gifs on a search engine."                 |
 
 ## Client-Server Model
 
@@ -80,7 +82,7 @@ Meghan can make even a third request that Francis's computer can't deal with:
 
 ### The Cycle Repeats as Necessary
 
-This cycle of communication repeats as necessary! A client can make one, two, dozen, or hundreds of requests to a server. They will always get back the same number of responses.
+This request-response cycle of communication repeats as necessary! A client can make one, two, dozen, or hundreds of requests to a server. They will always get back the same number of responses.
 
 The client-server model allows client machines to take the lead and request for data or changes exactly when they want it.
 
@@ -96,6 +98,7 @@ When applied to many Internet interactions:
 - The **web server** is a server that hosts a website, such as Facebook.com or Instagram.com, and all of its server data and logic
 - The client sends requests to the web server about getting data or changing data on the website
 - The web server then sends responses to the client about the requested data or the requested change
+- This cycle of interaction and communication between client and server makes up the request-response cycle
 
 ### !callout-info
 
@@ -103,7 +106,7 @@ When applied to many Internet interactions:
 
 The terms "client" and "server" are always describing a relationship. One machine can be a client in one relationship, and then a server in another relationship. 
 
-In fact, your own computer may act as _both_ the client and the server as we begin testing our end-points in future assignments! Look forward to diving into this in the future!
+In fact, your own computer may act as _both_ the client and the server when we begin testing our end-points in future assignments! Look forward to diving into this in the future!
 
 ### !end-callout
 
