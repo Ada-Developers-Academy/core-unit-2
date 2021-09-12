@@ -36,25 +36,16 @@ It may be better to think about this lesson as a resource to be familiar with, r
 
 ### Before This Lesson
 
-This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). Before beginning this lesson, the Hello Books API should have:
-
-- A `hello_books_development` database
-- A `book` table defined
-- A `Book` model defined
-
-The model and table should have the following columns:
-
-- `id`
-- `title`
-- `description`
+This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). 
 
 ### This Lesson's Work
 
 We want to build our Hello Books API to fulfill these features:
 
-1. As a client, I want to send a request with new valid book data and get a success response, so that I know the API saved the book data.
 1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
 1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
+
+
 
 ## Creating a Book Endpoint: Preparation
 
@@ -313,9 +304,32 @@ Let's consider how to implement this feature:
 
 > As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
 
+### Data
+
+In order to get all existing books, we need some book data. Let's represent our data as instances of a class Book. The Book class has the attributes `id`, `title`, and `description`.
+
+```python
+# app.py
+class Book:
+    def __init__(self, id, title, description):
+        self.id = id
+        self.title = title
+        self.description = description
+```
+
+and the data is a list where each element is an instance of the `Book` class.
+
+```python
+BOOKS = [
+    Book(1, )
+    Book(2, )
+    Book(3, )
+]
+```
+
 ### Planning HTTP Requests, Responses, and Logic
 
-As before, we should think about the typical HTTP verb and endpoint used for requests that retrieve all records of a particular model.
+Let's think about the typical HTTP verb and endpoint used for requests that retrieve all records of a particular resource.
 
 For this feature, a `GET` request to the `/books` path follows the expected structure.
 
