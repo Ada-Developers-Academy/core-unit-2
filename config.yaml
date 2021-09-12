@@ -153,11 +153,15 @@ Standards:
         Path: /requests-and-responses-in-flask/flask-hello-books.md
       -
         Type: Lesson
-        UID: 5f4dda242707c828aa5dbd99e73fe62b
+        UID: 80decfe5-2fd1-45ee-9855-efe05da959d2
+        Path: /requests-and-responses-in-flask/flask-read-hardcoded-data.md
+      -
+        Type: Lesson
+        UID: aefff6c0-6dde-4470-8069-65025f89b66d
         Path: /requests-and-responses-in-flask/problem-set-building-an-api.md
       -
         Type: Lesson
-        UID: m9dgD0
+        UID: 6e0b2738-99c1-44f6-96c3-f17aaea55fcb
         Path: /requests-and-responses-in-flask/activity-solar-system-api-setup-create-read.md
   -
     Title: Data In Tables
