@@ -157,6 +157,10 @@ Standards:
         Path: /requests-and-responses-in-flask/flask-read-hardcoded-data.md
       -
         Type: Lesson
+        UID: dce109b9-20f8-4827-8d10-eeffab3c2de0
+        Path: /requests-and-responses-in-flask/read-one-book.md
+      -
+        Type: Lesson
         UID: aefff6c0-6dde-4470-8069-65025f89b66d
         Path: /requests-and-responses-in-flask/problem-set-building-an-api.md
       -
@@ -304,7 +308,11 @@ Standards:
       -
         Type: Lesson
         UID: 2ca35886fc1a00a394384b7d88b9b2b8
-        Path: /building-an-api/create-and-read.md
+        Path: /building-an-api/create.md
+      -
+        Type: Lesson
+        UID: 43e557f3-3455-4962-af38-43a23d57893f
+        Path: /building-an-api/read.md
       -
         Type: Lesson
         UID: 5f4dda242707c828aa5dbd99e73fe62b
