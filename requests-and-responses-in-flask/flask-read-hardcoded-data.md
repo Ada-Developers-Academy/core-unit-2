@@ -4,7 +4,7 @@
 
 ## Goals
 
-Our goal for this lesson is to learn how define routes that read data
+Our goal for this lesson is to learn how define routes that read data.
 
 ## Format
 
@@ -38,7 +38,7 @@ This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-ap
 
 In this lesson we will build our Hello Books API to fulfill the following feature:
 
-1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
+1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, `description`, and `author` of the book.
 
 ## Getting All Books Endpoint: Preparation
 
@@ -50,31 +50,24 @@ Let's consider how to implement this feature:
 
 Soon we will create and manipulate data in databases in SQL. We will then learn how to create an manipulate this data through a connection with our API built in flask. Until then, we will hardcode data in our app using data structures we have already learned about.
 
-Let's represent our data as a list of book dictionaries. Each book dictionary should have the keys `id`, `title`, and `description`.
+Let's represent our data as a list of book instances. Each book dictionary should have the keys `id`, `title`, and `description`.
+
+We need to make a `Book` class, and then instantiate multiple instances.
 
 ```python
 #routes.py
 
+class Book:
+    def __init__(id, title, description):
+        self.id = id
+        self.title = title
+        self.description = description
+
 books = [
-    {
-        "id": 1, 
-        "title": "Fictional Book 1", 
-        "description": "A fantasy novel set in an imaginary world.",
-        "author": "Author 1"
-    },
-    {
-        "id": 2, 
-        "title": "Fictional Book 2", 
-        "description": "A book about whales.",
-        "author": "Author 2"
-    },
-    {
-        "id": 3, 
-        "title": "Fictional Book 3", 
-        "description": "An autobiography.",
-        "author": "Author 3"
-    }
-]
+    Book(1, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
+    Book(2, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
+    Book(3, "Fictional Book Title", "A fantasy novel set in an imaginary world.")
+] 
 ```
 
 ### Planning HTTP Requests, Responses, and Logic
@@ -89,13 +82,13 @@ Recall that for requests that read records, it is typical to use a `GET` request
 
 `GET` requests do not include a request body, so no additional planning around the request body is needed.
 
-The response we want to send back is a list of JSON objects (dictionaries) with `id`, `title`, and `description`. You may notice that our `books` data also includes information about the author, but we have chosen not to include this information in our response body.
+The response we want to send back is a list of JSON objects (dictionaries) with `id`, `title`, and `description`.
 
 The most appropriate successful response status code is `200 OK`.
 
 | Response Status | Response Body                                                                                              |
 | --------------- | ---------------------------------------------------------------------------------------------------------- |
-| `200 OK`        | `[{"id": 1, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}]` |
+| `200 OK`        | `[{"id": 1, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}, {"id": 2, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}, {"id": 3, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}]` |
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
@@ -141,23 +134,17 @@ from app import db
 from app.models.book import Book
 from flask import Blueprint, jsonify
 
+class Book:
+    def __init__(id, title, description):
+        self.id = id
+        self.title = title
+        self.description = description
+
 books = [
-    {
-        "id": 1, 
-        "title": "Fictional Book 1", 
-        "description": "A fantasy novel set in an imaginary world."
-    },
-    {
-        "id": 2, 
-        "title": "Fictional Book 2", 
-        "description": "A book about whales."
-    },
-    {
-        "id": 3, 
-        "title": "Fictional Book 3", 
-        "description": "An autobiography."
-    }
-]
+    Book(1, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
+    Book(2, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
+    Book(3, "Fictional Book Title", "A fantasy novel set in an imaginary world.")
+] 
 
 books_bp = Blueprint("books", __name__, url_prefix="/books")
 
@@ -166,9 +153,9 @@ def handle_books():
     books_response = []
     for book in books:
         books_response.append({
-            "id": book["id"],
-            "title": book["title"],
-            "description": book["description"]
+            "id": book.id,
+            "title": book.title,
+            "description": book.description
         })
     return jsonify(books_response)
 ```
@@ -177,6 +164,8 @@ def handle_books():
 | <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 | `from flask import Blueprint, jsonify` | We need to import our dependencies. Python supports comma-separated importing.                                                                                                                                                                                                                              |
+
+| `class Book ...`   | Book class to store hardcoded data |
 | `books = [...]`   | Hardcoded data |
 | `books_bp = Blueprint("books", __name__, ...)`        | Our `Blueprint` instance. We'll use it to group routes that start with `/books`. `"books"` is the debugging name for this `Blueprint`. `__name__` provides information the blueprint uses for certain aspects of routing.                                                                                   |
 | `url_prefix="/books"`                                 | A keyword argument. This `url_prefix` indicates that _every_ endpoint using this Blueprint should be treated like it starts with `/books`. We should use this blueprint for all of our RESTful routes that start with `/books`!                                                                             |
