@@ -32,8 +32,7 @@ Decide who will be the driver today. The person who most desires to practice con
 1. Recreate the following setup steps of [the Solar System API repo](https://github.com/AdaGold/solar-system-api):
    1. Create a virtual environment and activate it
    1. Install the dependencies
-   1. Define a `Planet` class with the attributes `id`, `name`, and `description`, and one additional attribute
-   1. Create a list of `Planet` instances
+   1. Create a list of `Planet` dictionaries, each with the keys `id`, `name`, `description`, and one additional key/attribute.
 
 1. Create the following endpoints, with similar functionality presented in the Hello Books API:
    1. As a client, I want to send a request to get all existing planets, so that I can see a list of planets, with their `id`, `name`, `description`, and other data of the planet.

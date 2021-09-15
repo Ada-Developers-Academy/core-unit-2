@@ -17,8 +17,7 @@ On your machine, keep:
 1. Recreate the following steps of the Hello Books repo:
    1. Create a virtual environment
    1. Install the dependencies
-   1. Create a class `Book` with the attributes `id`, `title`, and `descrition`.
-   1. Create a list of `Book` instances.
+   1. Create a list of `Book` dictionaries, each with the keys `id`, `title`, `author`, and `descrition`.
 
 1. Create the following endpoints, with the same functionality presented in this topic:
    1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with the `id`, `title`,and `description` of the book.
