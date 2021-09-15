@@ -1,6 +1,8 @@
 # Read All Books Endpoint
 
-## Imbed Video
+## Video
+
+TODO: Embed Video
 
 ## Goals
 
