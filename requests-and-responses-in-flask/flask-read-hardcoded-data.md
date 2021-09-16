@@ -13,17 +13,6 @@ Our goal for this lesson is to learn how define routes that read data.
 This lesson is a walk-through and syntax explanation for how to build a feature inside a Flask API.
 
 
-### !callout-danger
-
-## Read-through First, Repeat Second
-
-We **highly suggest** reading or watching through this lesson fully, before repeating on your own machine.
-
-This lesson has a large amount of new information. It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
-
-### !end-callout
-
-
 ## Hello Books API
 
 ### Before This Lesson
@@ -50,6 +39,11 @@ Let's represent our data as a list of Book instances. The Book class should have
 
 We need to make a `Book` class, and then instantiate multiple instances.
 
+Let's write this code in `routes.py`. 
+
+<details>
+    <summary>Give it a try, then click here to review our code.</summary>
+
 ```python
 #routes.py
 
@@ -65,6 +59,9 @@ books = [
     Book(3, "Fictional Book Title", "A fantasy novel set in an imaginary world.")
 ] 
 ```
+
+</details>
+
 
 ### Planning HTTP Requests, Responses, and Logic
 
@@ -121,7 +118,7 @@ For additional details about `jsonify`, we can refer to:
 
 ## Getting All Books Endpoint: Code
 
-Let's update our route function in `routes.py` to include support for retrieving our models.
+Let's create a route function `handle_books` in `routes.py` to include support for retrieving all our data.
 
 ```python
 #routes.py
@@ -159,8 +156,7 @@ def handle_books():
 
 | <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
-| `from flask import Blueprint, jsonify` | We need to import our dependencies. Python supports comma-separated importing.                                                                                                                                                                                                                              |
-
+| `from flask import Blueprint, jsonify` | We need to import our dependencies. Python supports comma-separated importing.
 | `class Book ...`   | Book class to store hardcoded data |
 | `books = [...]`   | Hardcoded data |
 | `books_bp = Blueprint("books", __name__, ...)`        | Our `Blueprint` instance. We'll use it to group routes that start with `/books`. `"books"` is the debugging name for this `Blueprint`. `__name__` provides information the blueprint uses for certain aspects of routing.                                                                                   |
