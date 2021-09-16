@@ -10,7 +10,7 @@ Our goal for this lesson is to learn how define routes that read data.
 
 ## Format
 
-This lesson is a walk-through and syntax explanation for how to build a feature inside a Flask API. We **highly recommend** reading or watching through this first fully, before repeating on your own machine.
+This lesson is a walk-through and syntax explanation for how to build a feature inside a Flask API.
 
 
 ### !callout-danger
