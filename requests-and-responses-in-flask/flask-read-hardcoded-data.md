@@ -4,7 +4,7 @@
 
 TODO: Embed Video
 
-## Goals
+## Learning Goals
 
 Our goal for this lesson is to learn how define routes that read data.
 
@@ -12,7 +12,6 @@ Our goal for this lesson is to learn how define routes that read data.
 
 This lesson is a walk-through and syntax explanation for how to build a feature inside a Flask API. We **highly recommend** reading or watching through this first fully, before repeating on your own machine.
 
-This lesson has a large amount of new information. It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
 
 ### !callout-danger
 
@@ -20,15 +19,10 @@ This lesson has a large amount of new information. It may be better to think abo
 
 We **highly suggest** reading or watching through this lesson fully, before repeating on your own machine.
 
-### !end-callout
-
-### !callout-danger
-
-## Prioritize Familiarity
-
-It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
+This lesson has a large amount of new information. It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
 
 ### !end-callout
+
 
 ## Hello Books API
 
@@ -50,9 +44,9 @@ Let's consider how to implement this feature:
 
 ### Data
 
-Soon we will create and manipulate data in databases in SQL. We will then learn how to create an manipulate this data through a connection with our API built in flask. Until then, we will hardcode data in our app using data structures we have already learned about.
+Soon we will create and manipulate data in SQL database. We will then learn how to create an manipulate this data through a connection with our API built in Flask. Until then, we will hardcode data in our app using data structures we have already learned about.
 
-Let's represent our data as a list of book instances. Each book dictionary should have the keys `id`, `title`, and `description`.
+Let's represent our data as a list of Book instances. The Book class should have the attributes `id`, `title`, and `description`.
 
 We need to make a `Book` class, and then instantiate multiple instances.
 
@@ -97,7 +91,7 @@ Now that we have an idea of what our endpoint should look like, we can turn our 
 Our endpoint will need to:
 
 1. Retrieve all of the books data.
-1. Format the books data into the appropriate structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
+1. Format the list of Book instances into the appropriate JSON data structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
 1. Send back a response
 
 ### Dependencies
@@ -190,7 +184,7 @@ Be sure to specify that this endpoint is `""`. When combined with the `book_bp`'
 
 <details>
 
-<summary>Is there a way to declare "/" as valid a route path?</summary>
+<summary>Is there a way to declare "/" as a valid route path?</summary>
 
 For a little more flexibility, we _could_ choose to use `"/"` as the route path and include the keyword argument `strict_slashes=False`. This tells the route to treat a URI the same whether or not it ends in `/`. Accepting either variation can make using our API a little easier for our clients.
 

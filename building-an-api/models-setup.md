@@ -47,7 +47,7 @@ In a previous lesson we used hardcoded data stored in the variable `BOOKS` to le
 
 In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to *read* our data, but also *create*, *update*, and *delete* it!
 
-Before we go any further, let's removed our hardcoded `BOOKS` data from the `app`. 
+Before we go any further, let's remove our hardcoded `BOOKS` data from the `app`. 
 
 This is the code to remove:
 
