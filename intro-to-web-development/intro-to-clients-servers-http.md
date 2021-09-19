@@ -35,7 +35,7 @@ We recommend taking this material and learning it on the definition level, and a
 
 How can two computers send data to each other? One way that two machines can send data to each other is following the _client-server model_.
 
-![Different clients (desktop, smartphone, smart tablet) sending a request to a server and receiving a response back. There are the following horizontal arrows: 1. Arrow from the client to the server labelled "request." 2. Arrow from the server to the client labelled "response."](../assets/intro-to-web-development/intro-to-web-development_req-res-cycle.png)
+![Different clients (desktop, smartphone, smart tablet) sending a request to a server and receiving a response back. There are the following horizontal arrows: 1. Arrow from the client to the server labelled "request." 2. Arrow from the server to the client labelled "response."](../assets/intro-to-web-development/intro-to-web-dev_client-server.png)
 
 The **client-server model** describes a setup commonly between (at least) two different machines. This model states that for any given interaction between two computers, the communication is setup like this:
 
