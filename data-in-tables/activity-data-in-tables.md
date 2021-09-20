@@ -41,23 +41,17 @@ For all of these prompts, we _**encourage**_ you to simplify your ideas and make
 
 ### !end-callout
 
-1. Together as a group, pull up one post inside of the "Services" category and "Computer" subcategory. You will use this post as an example.
+1. Together as a group, pull up *one post* inside of the "Services" category and "Computer" subcategory. You will use this post as an example.
 
 Imagine a table that holds data about posts, and this post is one record inside that table.
 
 Make a list of the columns that this table might have. Also, for each column, decide if it holds a number, text, boolean, image, or a date or time.
 
-2. Together as a group, pull up one post inside of the "For Sale" category and "Computer" subcategory. You will use this post as an example.
+2. Together as a group, pull up *one post* inside of the "For Sale" category and "Computer" subcategory. You will use this post as an example.
 
 Imagine a table that holds data about posts, and this post is one record inside that table.
 
 Make a list of the columns that this table might have. Also, for each column, decide if it holds a number, text, boolean, image, or a date or time.
-
-3. Together as a group, pull up the _listing_ page for the "For Sale" category and "Antiques" subcategory. Do _not_ click through to an actual item.
-
-Imagine a table that holds data about posts, where each record is a post.
-
-_Only from the data presented on this listing page_, make a list of the columns that this table might have. Also, for each column, decide if it holds a number, text, boolean, image, or a date or time.
 
 ## Part 3: Predict Data Needs
 
@@ -80,16 +74,9 @@ Here is an example prompt and several example responses:
 1. Get the "next" post, which is a post of the same subcategory and filters, but is less relevant than the current post
 1. Get a list of all posts that have been flagged for removal (for breaking the terms of agreement)
 
-## Part 4: Consider Any App
+## Part 4: Consider A Solar System App
 
-For the following prompts, let your creativity run free and think about _any_ app that could exist.
-
-Some example apps to consider:
-
-- An app that tracks information and users, like IMDb
-- A social media platform, like Instagram
-- A media streaming service, like Netflix
-- An imaginary app
+Remember when we designed the API endpoints for an astronaut app? Let's now imagine what kind of data those planets and moons would have for the astronauts to browse through. Be as accurate or as creative as you like! Sure, the area of the planet or moon would be a great piece of information, but what about weather? Maybe we can create an alien species and keep track of its population!
 
 At the end of this section, share your ideas briefly with your group.
 
@@ -97,17 +84,20 @@ At the end of this section, share your ideas briefly with your group.
 
 Come up with...
 
-1. One table of data
+1. One table of planet data
+    - What would the table be named?
+    - What would each record represent?
+    - What data fields are needed in this table? Why?
+1. One table of moon data
     - What would the table be named?
     - What would each record represent?
     - What data fields are needed in this table? Why?
 1. A search feature that uses this table
 1. A feature that creates a new record in this table
-1. A feature that would update a record in this table
+1. A feature that would update a record by planting a flag in this table
 
 ## How to Review
 
 1. In Part 2, did the columns for a post in "services" differ from the columns for a post in "for sale"? In what ways?
 1. In Part 3, what was your favorite feature that you came up with?
-1. In Part 4, what was your favorite feature that you came up with?
 1. Considering the entire activity, which happened more frequently: getting all of the records from a table, or getting a specific set of records from a table?
