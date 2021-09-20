@@ -16,7 +16,7 @@ For this feature, a `GET` request to the `/books` path follows the expected stru
 
 `GET` requests do not include a request body, so no additional planning around the request body is needed.
 
-The response we want to send back is a list of JSON objects (dictionaries) with `id`, `title`, and `description`:
+The response we want to send back is a list of JSON objects (which resemble Python dictionaries) with `id`, `title`, and `description`:
 
 | Response Status | Response Body                                                                                              |
 | --------------- | ---------------------------------------------------------------------------------------------------------- |
