@@ -41,6 +41,31 @@ This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-ap
 - Creating basic endpoints
 - Testing those endpoints in Postman
 
+## Removing Hardcoded Data
+
+In a previous lesson we used hardcoded data stored in the variable `BOOKS` to learn how to write routes to *read* all books, and *read* one book. This was great for learning, but we were limited to *GET* routes, as we could not persist any changes to our data given that it was hardcoded. 
+
+In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to *read* our data, but also *create*, *update*, and *delete* it!
+
+Before we go any further, let's remove our hardcoded `BOOKS` data from the `app`. 
+
+This is the code to remove:
+
+```python
+# app.py
+class Book:
+    def __init__(self, id, title, description):
+        self.id = id
+        self.title = title
+        self.description = description
+
+BOOKS = [
+    Book(),
+    Book(),
+    Book()
+    ]
+```
+
 ## Creating the Database
 
 Before we work with models in Flask, we need to create a database for our project.
