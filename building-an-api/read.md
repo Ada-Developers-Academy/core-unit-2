@@ -1,5 +1,18 @@
 # Read
 
+## Goals
+
+- Practice defining routes that read model records
+- Access a database record from the back-end layer
+
+### This Lesson's Work
+
+We want to build our Hello Books API to fulfill these features:
+
+1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
+1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
+
+
 ## Getting All Books Endpoint: Preparation
 
 Let's consider how to implement this feature:

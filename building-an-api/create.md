@@ -5,8 +5,6 @@
 ## Goals
 
 - Practice defining routes that create model records
-- Practice defining routes that read model records
-- Access a database record from the back-end layer
 
 ## Format
 
@@ -48,11 +46,9 @@ The model and table should have the following columns:
 
 ### This Lesson's Work
 
-We want to build our Hello Books API to fulfill these features:
+We want to build our Hello Books API to fulfill the following feature:
 
 1. As a client, I want to send a request with new valid book data and get a success response, so that I know the API saved the book data.
-1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
-1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
 
 ## Creating a Book Endpoint: Preparation
 
@@ -148,7 +144,6 @@ from flask import request, Blueprint, make_response
 
 books_bp = Blueprint("books", __name__, url_prefix="/books")
 
-
 @books_bp.route("", methods=["POST"])
 def handle_books():
     request_body = request.get_json()
@@ -159,6 +154,8 @@ def handle_books():
     db.session.commit()
 
     return make_response(f"Book {new_book.title} successfully created", 201)
+
+# ... Commented Code ...
 ```
 
 | <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
@@ -208,30 +205,7 @@ There are dozens of ways to make an HTTP response in Flask. Look forward to seei
 
 ### Registering a Blueprint
 
-Now that we have defined our `books_bp` blueprint, Flask requires us to "register the blueprint" with our `app`.
-
-Let's return to the code in `app/__init__.py`. Inside our `create_app` function, after our model definitions, let's add the following:
-
-```python
-def create_app():
-    app = Flask(__name__)
-
-    # ... existing code that did
-    # app config...
-    # db initialization...
-    # migrate initialization...
-    # import models...
-    # create the models...
-
-    from .routes import books_bp
-    app.register_blueprint(books_bp)
-
-    # ... return app
-```
-
-Again, these lines make it so that our `Blueprint` is recognized by our Flask `app`. We need to do this step each time we make a new `Blueprint`.
-
-Note that we can add new routes to an existing `Blueprint` without further changes to our `app`. Once a `Blueprint` has been registered, all routes added to that `Blueprint` will be recognized.
+Recall that we have already registered our Blueprint in in `app/__init__.py` inside our `create_app` function, after our model definitions, let's add the following:
 
 ### Manually Testing with Postman
 

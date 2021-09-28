@@ -174,7 +174,7 @@ def handle_books():
 
 ## `Blueprint`s and Routes are Sensitive to `/`
 
-Be sure to specify that this endpoint is `""`. When combined with the `book_bp`'s `url_prefix`, `"/books"`, we see this endpoint is a `POST` to `/books`. URIs are sensitive to the use of `/` and Flask will throw an error if we define this route as `"/"` but try to access it as `/books`. A URI ending in `/` is different from a URI that _doesn't_ end in `/`, so we should use `""`.
+Be sure to specify that this endpoint is `""`. When combined with the `book_bp`'s `url_prefix`, `"/books"`, we see this endpoint is a `GET` to `/books`. URIs are sensitive to the use of `/` and Flask will throw an error if we define this route as `"/"` but try to access it as `/books`. A URI ending in `/` is different from a URI that _doesn't_ end in `/`, so we should use `""`.
 
 <br/>
 
@@ -192,23 +192,16 @@ For a little more flexibility, we _could_ choose to use `"/"` as the route path 
 
 Now that we have defined our `books_bp` blueprint, Flask requires us to "register the blueprint" with our `app`.
 
-Let's return to the code in `app/__init__.py`. Inside our `create_app` function, after our model definitions, let's add the following:
+Let's return to the code in `app/__init__.py`. Inside our `create_app` let's add two lines to register our `books_bp` Blueprint inside the `create_app` function:
 
 ```python
 def create_app():
     app = Flask(__name__)
 
-    # ... existing code that did
-    # app config...
-    # db initialization...
-    # migrate initialization...
-    # import models...
-    # create the models...
-
     from .routes import books_bp
     app.register_blueprint(books_bp)
 
-    # ... return app
+    return app
 ```
 
 Again, these lines make it so that our `Blueprint` is recognized by our Flask `app`. We need to do this step each time we make a new `Blueprint`.
