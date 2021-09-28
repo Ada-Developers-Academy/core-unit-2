@@ -1,44 +1,28 @@
 ---
 Standards:
   -
-    Title: Sorting Algorithms
-    Description: "Sorting Algorithms, Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Problem Set: Sorting Algorithms"
-    UID: 184d8af4792d6c2f80c90b27919caa10
+    Title: Hash Tables
+    Description: "Overview of Hash Tables, Using Hash Tables, Problem Set: Hash Tables"
+    UID: fac6e79e15b06e536f52e19c118bfff2
     SuccessCriteria:
       - success criteria
     ContentFiles:
       -
         Type: Instructor
-        UID: 11ed7c3b-0b29-400d-9ed4-4af6ab4ba72d
-        Path: /sorting-algorithms/sorting-algorithms.instructor.md
+        UID: 6eb75125c1055fad73ea77b1decf3b9b
+        Path: /hash-tables/hash-tables.instructor.md
       -
         Type: Lesson
-        UID: 32b0bd4445f66fd2663288c634432c2e
-        Path: /sorting-algorithms/sorting-algorithms.md
+        UID: 98bd2c57dd4d374c50f82260abf950bc
+        Path: /hash-tables/overview-of-hash-tables.md
       -
         Type: Lesson
-        UID: 0806cdb2d0a4b885790d3793999db841
-        Path: /sorting-algorithms/bubble-sort.md
+        UID: 423176ceb4ba129653c93c83452643f4
+        Path: /hash-tables/using-hash-tables.md
       -
         Type: Lesson
-        UID: 1dc3ffdcda584ccb3a445105b67bf21f
-        Path: /sorting-algorithms/selection-sort.md
-      -
-        Type: Lesson
-        UID: 04c103dab4d7e24b3e0922fba11ab2e7
-        Path: /sorting-algorithms/insertion-sort.md
-      -
-        Type: Lesson
-        UID: 64b3cc9b8ee0c4d4d7d0dadbaa0d618d
-        Path: /sorting-algorithms/merge-sort.md
-      -
-        Type: Lesson
-        UID: 383253988f7afc58dd4fe867d42d7cad
-        Path: /sorting-algorithms/problem-set-sorting-algorithms.md
-      -
-        Type: Instructor
-        UID: 70acaebba6da64c98fef0d184cd40e5b
-        Path: /sorting-algorithms/activity-sorting-algorithms.instructor.md
+        UID: 912e7b7efb8219dbd6639bdb575322bb
+        Path: /hash-tables/problem-set-hash-tables.md
   -
     Title: Intro To Web Development
     Description: "Web Applications and Layers, Intro to Clients, Servers, HTTP, Sequence Diagrams, Activity: Layers"
@@ -167,6 +151,25 @@ Standards:
         Type: Lesson
         UID: 6e0b2738-99c1-44f6-96c3-f17aaea55fcb
         Path: /requests-and-responses-in-flask/activity-solar-system-api-setup-create-read.md
+  -
+    Title: Branches In Git
+    Description: "Branches, Using Branches in Git, Problem Set: Git"
+    UID: 76a4001e9bc2734c2e93ede4b8f1297e
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 6c8aa01cc55f51f3cb90f1fd9f851595
+        Path: /branches-in-git/branches.md
+      -
+        Type: Lesson
+        UID: f88500a61648d8752735ca1b0b3e9522
+        Path: /branches-in-git/using-branches-in-git.md
+      -
+        Type: Lesson
+        UID: a23c8692ae7b601177cd574151717d51
+        Path: /branches-in-git/problem-set-git.md
   -
     Title: Data In Tables
     Description: "Data in Tables, Activity: Data in Tables"
@@ -409,6 +412,45 @@ Standards:
         Type: Lesson
         UID: L00UOa
         Path: /testing-our-apis/activity-solar-system-api-tests.md
+  -
+    Title: Sorting Algorithms
+    Description: "Sorting Algorithms, Bubble Sort, Selection Sort, Insertion Sort, Merge Sort, Problem Set: Sorting Algorithms"
+    UID: 184d8af4792d6c2f80c90b27919caa10
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: 11ed7c3b-0b29-400d-9ed4-4af6ab4ba72d
+        Path: /sorting-algorithms/sorting-algorithms.instructor.md
+      -
+        Type: Lesson
+        UID: 32b0bd4445f66fd2663288c634432c2e
+        Path: /sorting-algorithms/sorting-algorithms.md
+      -
+        Type: Lesson
+        UID: 0806cdb2d0a4b885790d3793999db841
+        Path: /sorting-algorithms/bubble-sort.md
+      -
+        Type: Lesson
+        UID: 1dc3ffdcda584ccb3a445105b67bf21f
+        Path: /sorting-algorithms/selection-sort.md
+      -
+        Type: Lesson
+        UID: 04c103dab4d7e24b3e0922fba11ab2e7
+        Path: /sorting-algorithms/insertion-sort.md
+      -
+        Type: Lesson
+        UID: 64b3cc9b8ee0c4d4d7d0dadbaa0d618d
+        Path: /sorting-algorithms/merge-sort.md
+      -
+        Type: Lesson
+        UID: 383253988f7afc58dd4fe867d42d7cad
+        Path: /sorting-algorithms/problem-set-sorting-algorithms.md
+      -
+        Type: Instructor
+        UID: 70acaebba6da64c98fef0d184cd40e5b
+        Path: /sorting-algorithms/activity-sorting-algorithms.instructor.md
   -
     Title: Deployment
     Description: "Deployment, Deploying to Heroku, Problem Set: Deployment, Activity: Deploying to Heroku"
