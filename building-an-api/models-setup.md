@@ -47,23 +47,50 @@ In a previous lesson we used hardcoded data stored in the variable `BOOKS` to le
 
 In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to *read* our data, but also *create*, *update*, and *delete* it!
 
-Before we go any further, let's remove our hardcoded `BOOKS` data from the `app`. 
+Before we go any further, let's comment our hardcoded `BOOKS` data and our two routes from the `app`. 
 
-This is the code to remove:
+This is the code to comment:
 
 ```python
 # app.py
-class Book:
-    def __init__(id, title, description):
-        self.id = id
-        self.title = title
-        self.description = description
+# class Book:
+#     def __init__(id, title, description):
+#         self.id = id
+#         self.title = title
+#         self.description = description
 
-books = [
-    Book(1, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
-    Book(2, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
-    Book(3, "Fictional Book Title", "A fantasy novel set in an imaginary world.")
-] 
+# books = [
+#     Book(1, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
+#     Book(2, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
+#     Book(3, "Fictional Book Title", "A fantasy novel set in an imaginary world.")
+# ] 
+
+# books_bp = Blueprint("books", __name__, url_prefix="/books")
+
+# @books_bp.route("", methods=["GET"])
+# def handle_books():
+#     books_response = []
+#     for book in books:
+#         books_response.append({
+#             "id": book.id,
+#             "title": book.title,
+#             "description": book.description
+#         })
+#     return jsonify(books_response)
+
+# @books_bp.route("/<book_id>", methods=["GET"])
+# def handle_book(book_id):
+#     for book_data in books:
+#         if book_data["id"] == book_id:
+#             book = book_data
+
+#     return {
+#         "id": book.id,
+#         "title": book.title,
+#         "description": book.description
+#     }
+
+
 ```
 
 ## Creating the Database
@@ -175,6 +202,18 @@ class Book(db.Model):
     title = db.Column(db.String)
     description = db.Column(db.String)
 ```
+
+You may notice that this class looks quite similar to the class we created in the earlier lesson when we created our hardcoded data. Take a moment to consider what this syntax indicates `class Book(db.Model):`
+
+<details>
+
+<summary>Take a moment to consider what this syntax indicates: `class Book(db.Model):`, and then click here.</summary>
+
+The class `Book` inherits from `db.Model` from `SQLAlchemy`.
+
+</details>
+
+
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                   |
 | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
