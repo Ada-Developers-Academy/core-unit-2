@@ -38,7 +38,7 @@ This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-ap
 - Creating and activating a virtual environment
 - Installing dependencies
 - Running the Flask server
-- Creating basic endpoints
+- Creating basic endpoints with hardcoded data
 - Testing those endpoints in Postman
 
 ## Removing Hardcoded Data
@@ -54,16 +54,16 @@ This is the code to remove:
 ```python
 # app.py
 class Book:
-    def __init__(self, id, title, description):
+    def __init__(id, title, description):
         self.id = id
         self.title = title
         self.description = description
 
-BOOKS = [
-    Book(),
-    Book(),
-    Book()
-    ]
+books = [
+    Book(1, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
+    Book(2, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
+    Book(3, "Fictional Book Title", "A fantasy novel set in an imaginary world.")
+] 
 ```
 
 ## Creating the Database
