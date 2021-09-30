@@ -374,6 +374,10 @@ Standards:
         Type: Lesson
         UID: cbd53d1c-3374-4a55-804b-85defb26bd4b
         Path: /intermediate-sql/problem-set-intermediate-sql.md
+      -
+        Type: Lesson
+        UID: d23c9ef5-1e99-4057-93ef-8863f33be45f
+        Path: /intermediate-sql/database-joins.md
   -
     Title: Testing Our APIs
     Description: "Environments and Env Vars, dotenv and the Test DB, Fixtures, Test Setup, Using Tests, Problem Set: Testing Our APIs, Activity: Solar System API: Tests"
