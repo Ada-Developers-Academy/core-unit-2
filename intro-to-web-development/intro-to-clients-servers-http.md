@@ -144,7 +144,7 @@ Let's combine clients, servers, and HTTP into one story. Imagine that Meghan is 
 
 1. When Meghan is on her computer, she visits bookface.com on her browser Mozilla Firefox.
 1. When she clicks the button "Get All Posts," her browser acts as a _client_. The browser makes an HTTP request to the bookface.com servers. The HTTP request has details that say, "The client wants a list of all posts."
-1. The bookface.com server receives this HTTP request that asks for all posts, and begins creating an HTTP response with this data. The server talks to all of the end-points, the databases, and services it needs to, and then constructs the appropriate HTTP response. Then, it sends the HTTP response back to the client.
+1. The bookface.com server receives this HTTP request that asks for all posts, and needs to create an HTTP response with this data. The server talks to all of the end-points, the databases, and services it needs to, and then constructs the appropriate HTTP response. Then, it sends the HTTP response back to the client.
 1. Meghan's browser, the client, receives the response. Because the response contains the bookface post data, the browser says, "I need to read this response and display all posts."
 
 An hour later, Meghan wants to update her status.
