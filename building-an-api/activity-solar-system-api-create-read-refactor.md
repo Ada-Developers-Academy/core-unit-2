@@ -42,3 +42,30 @@ Decide who will be the driver today. The person who most desires to practice con
 1. Create commits as you go
 1. Push commits before the next activity
 1. Finish this functionality with your pair before the next activity
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: checkbox
+* id: 4de3Ri
+* title: Create, Read
+##### !question
+
+Check off all the endpoints you created and tested.
+
+##### !end-question
+##### !options
+
+* Create one planet
+* Read all planets
+* Read one planet
+
+##### !end-options
+##### !answer
+
+* Create one planet
+* Read all planets
+* Read one planet
+
+##### !end-answer
+### !end-challenge
+<!-- prettier-ignore-end -->

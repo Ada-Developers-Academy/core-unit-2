@@ -358,6 +358,10 @@ Standards:
         Type: Lesson
         UID: HfbxKc
         Path: /more-flask-queries/query-params.md
+      -
+        Type: Lesson
+        UID: 2cfe7232-9dd4-4efe-8d33-9a4539ec3c63
+        Path: /more-flask-queries/activity-solar-system-api-404.md
   -
     Title: Relationships in Databases
     Description: "Database Relationships, Establishing Relationships, Problem Set: Intermediate SQL"
