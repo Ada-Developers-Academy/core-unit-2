@@ -16,7 +16,7 @@ Most web apps work by adhering to the client-server model:
 1. The end-user's web browser is a client, and sends HTTP requests to a web server over the Internet
 1. The web server sends an HTTP response for every request back to the client
 
-Therefore, when we start _building_ web apps, we'll need a slightly deeper understanding about what an HTTP request and an HTTP response is. We can explore these details through learning about the request-response cycle.
+Therefore, when we start _building_ web apps, we'll need a slightly deeper understanding about what an HTTP request and an HTTP response is. We can explore these details by diving deeper into what makes up the request-response cycle.
 
 ## Vocabulary and Synonyms
 
@@ -27,9 +27,9 @@ Therefore, when we start _building_ web apps, we'll need a slightly deeper under
 
 ## Clients Make Requests, Servers Give Responses
 
-The request-response cycle describes the movement of messages sent over the Internet. Clients make HTTP requests and send them to web servers. As a reply to each request, servers construct an HTTP response and sends it back.
+The request-response cycle describes the movement of messages sent over the Internet. Clients make HTTP requests and send them to web servers. As a reply to each request, servers construct an HTTP response and send it back.
 
-HTTP requests usually request a _resource_. A **resource** is a term to describe data that can be sent over the Internet, whether it's a full website, a piece of JSON with specific data, some XML, or a string of text.
+HTTP requests usually request a _resource_. A **resource** is a term to describe data that can be sent over the Internet, whether it's a full website, an HTML template, a piece of JSON with specific data, some XML, or a string of text.
 
 ## Anatomy of an HTTP Request
 
@@ -40,8 +40,8 @@ An HTTP request is a string of text that is specifically formatted to follow HTT
 | HTTP Method             | A word that describes the operation that the client wants to perform. The request method implies the nature of the request, whether it's fetching a resource, sending new information, or something else. | Yes       |
 | Path (or request URL)   | The URL that the requested resource is located at. Depending on context, this may include parts of the URL such as `http://`, `adadevelopersacademy.org/`, or not.                                        | Yes       |
 | Query Parameters        | Key-value pairs that describe information that can make this request more specific. Query params ultimately affect and become part of the request URL.                                                    | No        |
-| HTTP Headers            | Colon-separated pairs of information to describe additional details that the server may need                                                                                                              | No        |
-| HTTP Body               | Additional resources that need to be sent to the server                                                                                                                                                   | No        |
+| HTTP Headers            | Colon-separated pairs of information to describe additional details that the server may need                                          | No        |
+| HTTP Body               | Additional resources that need to be sent to the server          | No        |
 
 Details and examples of these pieces are listed below.
 
@@ -53,11 +53,11 @@ Each request method implies the nature of the request.
 
 | HTTP Method | Implied meaning                                                                                                         |
 | ----------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `GET`       | Requests retrieving the data of a specified resource                                                                    |
-| `POST`      | Requests submitting data to the server, and changing the state of the server. Usually associated with submitting forms. |
-| `PUT`       | Requests replacing a resource with a new resource                                                                       |
-| `PATCH`     | Requests replacing parts of a resource                                                                                  |
-| `DELETE`    | Requests deleting a resource                                                                                            |
+| `GET`       | Requests that retrieve the data of a specified resource                                |
+| `POST`      | Requests that submit or "post" data to the server, and change the state of the server. Usually associated with submitting forms and HTTP body. |
+| `PUT`       | Requests that replace a resource with a new resource                                                                       |
+| `PATCH`     | Requests that replace parts of a resource                                                                                  |
+| `DELETE`    | Requests that delete a resource                                                                                            |
 
 For the sake of practicality, this table doesn't cover the less frequently used methods `HEAD`, `CONNECT`, `OPTIONS`, and `TRACE`.
 
@@ -97,7 +97,7 @@ When talking about APIs, an **endpoint** is another name for a _path_ or _route_
 
 ### !callout-info
 
-## Going to a URL in a Browser Is a `GET` Request by Default
+## Going to a URL in a Browser is a `GET` Request by Default
 
 Imagine going to a web browser and going to the URL `https://adadevelopersacademy.org/`. When the browser visits this page, by default, the browser is making an HTTP request with the `GET` method to this path, and getting the website back as a response.
 
