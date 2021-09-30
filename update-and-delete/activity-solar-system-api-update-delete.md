@@ -39,18 +39,33 @@ As a client, I want to send a request...
 1. ... with valid planet data to update one existing planet and get a success response, so that I know the API updated the planet data.
 1. ... to delete one existing planet and get a success response, so that I know the API deleted the planet data.
 
-### Part Two
-
-After learning about 404s and more Flask queries, fulfill these features.
-
-As a client, I want to send a request...
-
-1. ... trying to get one non-existing planet and get a 404 response, so that I know the planet resource was not found.
-1. ... trying to update one non-existing planet and get a 404 response, so that I know the planet resource was not found.
-1. ... trying to delete one non-existing planet and get a 404 response, so that I know the planet resource was not found.
-
 ### Workflow
 
 1. Create commits as you go
 1. Push commits before the next activity
 1. Finish this functionality with your pair/group before the next activity
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: checkbox
+* id: 5aa672d2-ff5e-46b5-babf-bf13c9dcb5c3
+* title: Create, Read
+##### !question
+
+Check off all the endpoints you created and tested.
+
+##### !end-question
+##### !options
+
+* Update one planet
+* Delete one planet
+
+##### !end-options
+##### !answer
+
+* Update one planet
+* Delete one planet
+
+##### !end-answer
+### !end-challenge
+<!-- prettier-ignore-end -->
