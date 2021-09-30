@@ -8,7 +8,10 @@ The goal of this lesson is to introduce a tool called _the sequence diagram_. Th
 
 Sequence diagrams are useful and commonly taught, but in practicality, they're not a skill that is used daily.
 
+### !callout-info
+## Formal Styling isn't the Goal
 Formal sequence diagrams are usually very detailed and use a formal diagram syntax. This lesson will deprioritize those skills, and instead focus on sequence diagrams at a higher, more abstract level.
+### !end-callout
 
 ## Sequence Diagrams Show Communication Over Time
 
