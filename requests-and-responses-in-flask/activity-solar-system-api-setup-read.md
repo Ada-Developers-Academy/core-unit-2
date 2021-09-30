@@ -61,7 +61,7 @@ Check off all the endpoints you created and tested.
 * Read one planet
 
 ##### !end-options
-##### !answer∂
+##### !answer
 
 * Read all planets
 * Read one planet
