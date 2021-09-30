@@ -360,8 +360,8 @@ Standards:
         UID: etO5RZ
         Path: /update-and-delete/activity-solar-system-api-update-delete.md
   -
-    Title: More Flask Queries
-    Description: "404s and More Queries, Query Params"
+    Title: More Flask
+    Description: "404s & More Queries, Query Params, Relationships in Flask"
     UID: OkfzUG
     SuccessCriteria:
       - success criteria
