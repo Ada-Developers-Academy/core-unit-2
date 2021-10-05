@@ -34,14 +34,17 @@ If there is ample time left, consider filling out the template with more example
 ## Prompt
 
 An internal app that allows astronauts to: 
-- view information on all planets and their moon(s)
-- view information on one planet and its moon(s) by its id 
+- view information on all planets
+- view information on one planet by its id 
 - create a planet
-   - create a moon
 - delete one planet its id
-   - delete one moon by its id
 - update one planet by "planting a flag" on its surface by its id
-   - update one moon by "planting a flag" on its surface by its id 
+
+- view information on all moons
+- view information on one moon by its id 
+- create a moon
+- delete one moon its id
+- update one moon by "planting a flag" on its surface by its id
 
 
 ## API Server Description Template
