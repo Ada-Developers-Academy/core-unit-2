@@ -33,7 +33,7 @@ Let's consider how to implement this feature:
 
 ### Data
 
-Soon we will create and manipulate data in SQL database. We will then learn how to create an manipulate this data through a connection with our API built in Flask. Until then, we will hardcode data in our app using data structures we have already learned about.
+Soon we will create and manipulate data in a SQL database. We will then learn how to create an manipulate this data through a connection with our API built in Flask. Until then, we will hardcode data in our app using data structures we have already learned about.
 
 Let's represent our data as a list of Book instances. The Book class should have the attributes `id`, `title`, and `description`.
 
