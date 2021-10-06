@@ -73,7 +73,7 @@ Let's take a look at how our new route will account for this!
 def handle_book(book_id):
     book_id = int(book_id)
     for book in books:
-        if book["id"] == book_id:
+        if book.id == book_id:
             return {
                 "id": book.id,
                 "title": book.title,
