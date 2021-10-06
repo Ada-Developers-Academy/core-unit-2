@@ -54,7 +54,7 @@ This is the code to comment or remove:
 ```python
 # app.py
 # class Book:
-#     def __init__(id, title, description):
+#     def __init__(self, id, title, description):
 #         self.id = id
 #         self.title = title
 #         self.description = description
@@ -80,17 +80,13 @@ This is the code to comment or remove:
 
 # @books_bp.route("/<book_id>", methods=["GET"])
 # def handle_book(book_id):
-#     for book_data in books:
-#         if book_data["id"] == book_id:
-#             book = book_data
-
-#     return {
-#         "id": book.id,
-#         "title": book.title,
-#         "description": book.description
-#     }
-
-
+#     for book in books:
+#         if book.id == book_id:
+#            return {
+#               "id": book.id,
+#               "title": book.title,
+#               "description": book.description
+#           }
 ```
 
 ## Creating the Database
