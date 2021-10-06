@@ -1,12 +1,10 @@
-# Create and Read
+# Create
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=2820ad97-f0b3-4717-9e8f-ad11005c863e&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+IMBED VIDEO PLAYLIST
 
 ## Goals
 
 - Practice defining routes that create model records
-- Practice defining routes that read model records
-- Access a database record from the back-end layer
 
 ## Format
 
@@ -48,11 +46,9 @@ The model and table should have the following columns:
 
 ### This Lesson's Work
 
-We want to build our Hello Books API to fulfill these features:
+We want to build our Hello Books API to fulfill the following feature:
 
 1. As a client, I want to send a request with new valid book data and get a success response, so that I know the API saved the book data.
-1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
-1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
 
 ## Creating a Book Endpoint: Preparation
 
@@ -99,7 +95,6 @@ Our endpoint will need to:
 To make this feature, we'll work with the following objects, types, and functions:
 
 - `request`
-- `Blueprint`
 - `Response`
 - `make_response`
 
@@ -115,10 +110,6 @@ Flask, the framework, will provide all sorts of things to us. One of those thing
 
 - [Flask's definition of the `request` object](https://flask.palletsprojects.com/en/1.1.x/api/#flask.request)
 - [Flask's resource on the Request Context](https://flask.palletsprojects.com/en/1.1.x/reqcontext/), which outlines technical details of how `request` exists, and how to use it
-
-#### Revisiting `Blueprint` from Flask
-
-We will import `Blueprint` into our `routes.py` file. We will use Blueprints to create a group of related routes (endpoints). In our example, we'll create a group of related `books` routes.
 
 ## Working with the `Response` Class from Flask
 
@@ -148,7 +139,6 @@ from flask import request, Blueprint, make_response
 
 books_bp = Blueprint("books", __name__, url_prefix="/books")
 
-
 @books_bp.route("", methods=["POST"])
 def handle_books():
     request_body = request.get_json()
@@ -159,6 +149,8 @@ def handle_books():
     db.session.commit()
 
     return make_response(f"Book {new_book.title} successfully created", 201)
+
+# ... Commented Code ...
 ```
 
 | <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
@@ -178,7 +170,13 @@ def handle_books():
 | `return`                                              | For each endpoint, we must _return_ the HTTP response                                                                                                                                                                                                                                                       |
 | `make_response(...)`                                  | This function instantiates a `Response` object. A `Response` object is generally what we want to return from Flask endpoint functions.                                                                                                                                                                      |
 | `f"Book {new_book.title} successfully created"`       | The first parameter to `make_response()` is the HTTP response body. Until we have more specific requirements, we will send back a string.                                                                                                                                                                   |
-| `201`                                                 | We can define the status code of the `Response` by passing an integer as the second argument to `make_response()`. When a second argument isn't specified `200` is always the default value.                                                                                                                |
+| `201`                                                 | We can define the status code of the `Response` by passing an integer as the second argument to `make_response()`. When a second argument isn't specified `200` is always the default value.     
+
+### Blueprints
+
+For this project, **Hello Books**, we are using `Blueprints` to create a group of related routes (endpoints).
+
+Recall that we we have already registered `book_bp` in in `app/__init__.py` inside our `create_app`. function.                                                                                                           |
 
 ### !callout-info
 
@@ -205,33 +203,6 @@ For a little more flexibility, we _could_ choose to use `"/"` as the route path 
 There are dozens of ways to make an HTTP response in Flask. Look forward to seeing and researching many of them!
 
 ### !end-callout
-
-### Registering a Blueprint
-
-Now that we have defined our `books_bp` blueprint, Flask requires us to "register the blueprint" with our `app`.
-
-Let's return to the code in `app/__init__.py`. Inside our `create_app` function, after our model definitions, let's add the following:
-
-```python
-def create_app():
-    app = Flask(__name__)
-
-    # ... existing code that did
-    # app config...
-    # db initialization...
-    # migrate initialization...
-    # import models...
-    # create the models...
-
-    from .routes import books_bp
-    app.register_blueprint(books_bp)
-
-    # ... return app
-```
-
-Again, these lines make it so that our `Blueprint` is recognized by our Flask `app`. We need to do this step each time we make a new `Blueprint`.
-
-Note that we can add new routes to an existing `Blueprint` without further changes to our `app`. Once a `Blueprint` has been registered, all routes added to that `Blueprint` will be recognized.
 
 ### Manually Testing with Postman
 
@@ -262,7 +233,7 @@ Recall that our tools for debugging include:
 ### !challenge
 * type: checkbox
 * id: 4de3Ri
-* title: Create and Read, Creating a Book Endpoint
+* title: Create, Creating a Book Endpoint
 ##### !question
 
 Think about the "Creating a Book Endpoint."
@@ -276,8 +247,6 @@ Check off all the topics that we've briefly touched on so far.
 * Briefly considered `request`
 * Briefly considered `Blueprint`
 * Briefly considered `Response`
-* Registered a new `Blueprint` with `app`
-* Defined a new `Blueprint` named `books_bp`, which has a `url_prefix` of `"/books"`
 * Created a new endpoint that catches requests going to `""` (assumed `"/books"`) with the HTTP method `POST`
 * Read the HTTP request body using `request.get_json()`
 * Created a new instance of `Book`
@@ -292,8 +261,6 @@ Check off all the topics that we've briefly touched on so far.
 * Briefly considered `request`
 * Briefly considered `Blueprint`
 * Briefly considered `Response`
-* Registered a new `Blueprint` with `app`
-* Defined a new `Blueprint` named `books_bp`, which has a `url_prefix` of `"/books"`
 * Created a new endpoint that catches requests going to `""` (assumed `"/books"`) with the HTTP method `POST`
 * Read the HTTP request body using `request.get_json()`
 * Created a new instance of `Book`

@@ -1,4 +1,4 @@
-# Activity: Solar System API: Setup, Create, Read
+# Activity: Solar System API: Setup, Read
 
 ## Goal
 
@@ -32,11 +32,10 @@ Decide who will be the driver today. The person who most desires to practice con
 1. Recreate the following setup steps of [the Solar System API repo](https://github.com/AdaGold/solar-system-api):
    1. Create a virtual environment and activate it
    1. Install the dependencies
-   1. Create the database `solar_system_development`
-   1. Setup the `Planet` model with the attributes `id`, `name`, and `description`, and one additional attribute
-   1. Create a migration to add a table for the `Planet` model and then apply it. Confirm that the `planet` table has been created as expected.
+   1. Define a `Planet` class with the attributes `id`, `name`, and `description`, and one additional attribute
+   1. Create a list of `Planet` instances
+
 1. Create the following endpoints, with similar functionality presented in the Hello Books API:
-   1. As a client, I want to send a request with new valid planet data and get a success response, so that I know the API saved the planet data
    1. As a client, I want to send a request to get all existing planets, so that I can see a list of planets, with their `id`, `name`, `description`, and other data of the planet.
    1. As a client, I want to send a request to get one existing planet, so that I can see the `id`, `name`, `description`, and other data of the planet.
 
@@ -45,3 +44,28 @@ Decide who will be the driver today. The person who most desires to practice con
 1. Create commits as you go
 1. Push commits before the next activity
 1. Finish this functionality with your pair before the next activity
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: checkbox
+* id: f66175ea-4462-4500-ab28-c3a9af991a55
+* title: Create, Read
+##### !question
+
+Check off all the endpoints you created and tested.
+
+##### !end-question
+##### !options
+
+* Read all planets
+* Read one planet
+
+##### !end-options
+##### !answer
+
+* Read all planets
+* Read one planet
+
+##### !end-answer
+### !end-challenge
+<!-- prettier-ignore-end -->
