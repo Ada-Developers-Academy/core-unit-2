@@ -1,14 +1,28 @@
-## Getting All Books Endpoint: Preparation
+# Read
 
-Let's consider how to implement this feature:
+IMBED VIDEO PLAYLIST
 
-> As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
+## Goals
 
-### Planning HTTP Requests, Responses, and Logic
+- Practice defining routes that read model records
+- Access a database record from the back-end layer
 
-As before, we should think about the typical HTTP verb and endpoint used for requests that retrieve all records of a particular model.
+### This Lesson's Work
 
-For this feature, a `GET` request to the `/books` path follows the expected structure.
+We want to build our Hello Books API to fulfill these features:
+
+1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
+1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
+
+We will refactor the endpoints we designed in our previous lessons **Requests and Responses in Flask: Reading All Books and Endpoint and Read One Book Endpoint** to make use of the data in our postgres database.
+
+## Planning HTTP Requests, Responses, and Logic Review
+
+Let's review the planning work we did in the lesson **Requests and Responses in Flask: Reading All Books and Endpoint**.
+
+Let's think about the typical HTTP verb and endpoint used for requests that retrieve all records of a particular resource. 
+
+Recall that for requests that read records, it is typical to use a `GET` request to the `/books` path. 
 
 | HTTP Method | Endpoint |
 | ----------- | -------- |
@@ -16,27 +30,21 @@ For this feature, a `GET` request to the `/books` path follows the expected stru
 
 `GET` requests do not include a request body, so no additional planning around the request body is needed.
 
-The response we want to send back is a list of JSON objects (which resemble Python dictionaries) with `id`, `title`, and `description`:
+The response we want to send back is a list of JSON objects (dictionaries) with `id`, `title`, and `description`.
+
+The most appropriate successful response status code is `200 OK`.
 
 | Response Status | Response Body                                                                                              |
 | --------------- | ---------------------------------------------------------------------------------------------------------- |
-| `200 OK`        | `[{"id": 1, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}]` |
+| `200 OK`        | `[{"id": 1, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}, {"id": 2, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}, {"id": 3, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}]` |
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
 Our endpoint will need to:
 
-1. Retrieve all of the books from the database
-1. Format the books data into the appropriate structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
+1. Retrieve all of the books data.
+1. Format the list of Book instances into the appropriate JSON data structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
 1. Send back a response
-
-### Working with `jsonify` from Flask
-
-We need to import something named `jsonify` from `flask`.
-
-```python
-from flask import jsonify
-```
 
 `jsonify` is a Flask utility function that turns its argument into JSON. We'll use `jsonify` as a way to turn a list of book dictionaries into a `Response` object.
 
@@ -44,7 +52,7 @@ For additional details about `jsonify`, we can refer to:
 
 - [Flask's definition of `jsonify`](https://flask.palletsprojects.com/en/1.1.x/api/#flask.json.jsonify)
 
-### Working with `query` from SQLAlchemy's `Model`
+## Working with `query` from SQLAlchemy's `Model`
 
 Each Model class (a class that inherits from `db.Model`) has a `query` attribute. The object returned by the `query` attribute has the functions we will use to retrieve model data from the database. This is the object that will do the hard work of querying the database!
 
@@ -56,6 +64,13 @@ There are a lot of ways to use the `query` object. For future reference, we can 
 ## Getting All Books Endpoint: Code
 
 Let's update our route function in `routes.py` to include support for retrieving our models.
+
+To access all the books in our database we use the syntax `Book.query.all()`.
+
+Consider how you could refactor the `GET` `/books` route to make use of this *query*.
+
+<details>
+    <summary>Give it a try, then click here to review our code.</summary>
 
 ```python
 from app import db
@@ -80,6 +95,8 @@ def handle_books():
         # ... Indent all of the Create Book functionality into this elif
         # request_body = request.get_json()
 ```
+
+</details>
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                    |
 | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -167,7 +184,9 @@ Let's consider how to implement this feature:
 
 > As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
 
-### Planning HTTP Requests, Responses, and Logic
+## Planning HTTP Requests, Responses, and Logic Review
+
+Let's review the planning work we did in the lesson **Requests and Responses in Flask: Reading All Books and Endpoint and Read One Book Endpoint**.
 
 Once more, we should think about the typical HTTP verb and endpoint used for requests that retrieve the data for a particular model record.
 
@@ -194,13 +213,20 @@ Our endpoint will need to:
 1. Format the book data into the appropriate structure (a single dictionary with `id`, `title`, and `description`)
 1. Send back a response
 
-## Getting a Single Book Endpoint: Code
-
 Our new route needs to read data from the incoming request path. Our existing route doesn't do this, so we'll need to add an entirely new route to our existing `Blueprint`.
 
 Our new route needs a **route parameter**. The route `/books/1` should give us the details for the book with `id` 1. `/books/2` should give us details for book with `id` 2, `/books/3000` should give us details for book 3000, and so on.
 
 Let's take a look at how our new route will account for this!
+
+## Getting a Single Book Endpoint: Code
+
+To access a single book with `book_id` in our database we use the syntax `Book.query.get(book_id)`.
+
+Consider how you could refactor the `GET` `/books/<book_id>` route to make use of this *query*.
+
+<details>
+    <summary>Give it a try, then click here to review our code.</summary>
 
 ```python
 # No new import statements...
@@ -217,6 +243,8 @@ def handle_book(book_id):
         "description": book.description
     }
 ```
+
+</details>
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                                                                                                                                              |
 | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

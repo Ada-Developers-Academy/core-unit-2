@@ -1,4 +1,4 @@
-# Activity: Solar System API: Update, Delete
+# Activity: Solar System API: 404s
 
 ## Goal
 
@@ -32,12 +32,11 @@ Driver and navigator roles should switch at least daily.
 
 ### Build
 
-Create the following endpoints, with similar functionality presented in the Hello Books API:
-
 As a client, I want to send a request...
 
-1. ... with valid planet data to update one existing planet and get a success response, so that I know the API updated the planet data.
-1. ... to delete one existing planet and get a success response, so that I know the API deleted the planet data.
+1. ... trying to get one non-existing planet and get a 404 response, so that I know the planet resource was not found.
+1. ... trying to update one non-existing planet and get a 404 response, so that I know the planet resource was not found.
+1. ... trying to delete one non-existing planet and get a 404 response, so that I know the planet resource was not found.
 
 ### Workflow
 
@@ -48,21 +47,23 @@ As a client, I want to send a request...
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: checkbox
-* id: 5aa672d2-ff5e-46b5-babf-bf13c9dcb5c3
-* title: Create, Read
+* id: 912d5b54-0ab9-442d-a004-2348b969a00f
+* title: 404s
 ##### !question
 
-Check off all the endpoints you created and tested.
+Check off all the endpoints you modified to handle a non-existing planet.
 
 ##### !end-question
 ##### !options
 
+* Read one planet
 * Update one planet
 * Delete one planet
 
 ##### !end-options
 ##### !answer
 
+* Read one planet
 * Update one planet
 * Delete one planet
 

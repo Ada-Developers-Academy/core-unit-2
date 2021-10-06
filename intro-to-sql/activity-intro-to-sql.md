@@ -40,10 +40,6 @@ View the list of Postgres databases on this machine using `\l`. Ensure that ther
 
 Create a database named `ride_share_development` with a SQL statement.
 
-<!--
-
-TODO: Check in C16 to see if this would have been helpful
-
 ### !callout-info
 
 ## Take Care When Naming the Database
@@ -55,7 +51,6 @@ When working on database projects, we often have test databases where active dev
 
 ### !end-callout
 
-<!-- because learn doesn't _really_ like html comments -->
 
 - [ ] Confirm that this database now exists with `\l`.
 
@@ -102,7 +97,7 @@ DETAIL:  Failing row contains (2, null, X XXX XXX XXXX).
 
 - [ ] Update the record. Use the record's `id` value to find this record. Update the record's `passenger_name` value to: "Once my group has finished this step, we're done with Part 1!".
 
-- [ ] Confirm that your record has been updated. 🙂
+- [ ] Confirm that your record has been updated.
 
 ## Part 2
 
@@ -120,25 +115,26 @@ Follow these steps:
 
 <!-- Intentional double space on next line to break them -->
 
-**Database**: `media_ranker`  
-**Table**: `media`
+**Database**: `solar_system`  
+**Table**: `planets`
 
-| Category | Title               | Creator          | Publication Year | Description                            |
-| -------- | ------------------- | ---------------- | ---------------- | -------------------------------------- |
-| book     | Red Java            | Jewel Koss       | 1971             | Nisi ducimus reprehenderit molestiae.  |
-| book     | Postmodern Been     | Glen Senger      | 1929             | Dolore repellendus doloribus maiores.  |
-| movie    | American Select     | Xuan Pouros      | 1997             | Corporis id voluptatem fuga.           |
-| movie    | Wake-up Utopia      | Buena Shanahan   | 1930             | Fuga corrupti ducimus animi.           |
-| movie    | Summer Bean         | Carolina Pfeffer | 1997             | Nesciunt consequatur reiciendis sequi. |
-| album    | American Cake       | Asley Durgan     | 1954             | Vero voluptates voluptatibus qui.      |
-| movie    | Chocolate Forrester | Dorthey Cormier  | 1957             | Velit earum quo voluptates.            |
-| album    | Spilt Cowboy        | Shaun Nikolaus   | 1965             | Esse quia et dolor.                    |
-| movie    | Goodbye Forrester   | Sherwood Toy PhD | 1999             | Ipsam velit mollitia quo.              |
-| book     | Blacktop Equinox    | Man Von          | 2017             | Rerum est labore accusamus.            |
+(Surface area and distance from the Sun are being calculated in miles)
+
+| Name     | Surface Area        | Moons   | Distance from Sun | Namesake                            |
+| -------- | ------------------- | ------- | ----------------- | ----------------------------------- |
+| Jupiter  | 23,710,000,000      | 79      | 483,300,000       | King of the Roman gods, aka Zeus.  |
+| Mars     | 55,910,000          | 2       | 141,000,000       | Roman god of war, aka Ares.  |
+| Venus    | 67,400,000          | 0       | 177,700,000       | Roman goddess of love, aka Aphrodite.           |
+| Earth    | 57,510,000          | 1       | 93,123,021        | A variation on the word "ground" in several languages.           |
+| Neptune  | 2,941,000,000       | 14      | 2,793,000,000     | Roman god of the sea, aka Poseidon. |
+| Saturn   | 16,490,000,000      | 62      | 890,900,000       | Jupiter's father and titan, aka Chronos.      |
+| Uranus   | 3,171,000,000       | 27      | 1,784,000,000     | Greek personificatino of the sky or heavens, aka Caelus.            |
+| Mercury  | 28,880,000          | 0       | 35,980,000        | Roman god of travellers, aka Hermes.                    |
+
 
 <!-- TODO: Add absolute link for this -->
 
-For your convenience, [here is the data for this table as a CSV file](https://raw.githubusercontent.com/Ada-Developers-Academy/core-unit-2/main/assets/intro-to-sql_activity-intro-to-sql_media.csv).
+For your convenience, [here is the data for this table as a CSV file](https://raw.githubusercontent.com/Ada-Developers-Academy/core-unit-2/main/assets/intro-to-sql-activity_planets.csv).
 
 **Pro-Tip**: Draft your `INSERT` statements in a separate file. Utilize teamwork!
 
@@ -157,9 +153,9 @@ It's likely that, for this activity, inserting ten records one by one is more ef
 
 Now, come up with SQL statements that can answer the following questions:
 
-- How many albums are there?
-- What are the titles and creators of all media published before 1970?
-- What is the ID of the record with the title "Spilt Cowboy"?
+- How many planets are there?
+- What are the names of all the planets and the number of their moons that have a distance from the sun greater than 500,000,000 miles?
+- What is the ID of the record with the 62 moons?
 
 ## How to Review
 
