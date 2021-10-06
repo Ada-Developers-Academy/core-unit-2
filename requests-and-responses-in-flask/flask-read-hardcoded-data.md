@@ -41,8 +41,7 @@ We need to make a `Book` class, and then instantiate multiple instances.
 
 Let's write this code in `routes.py`. 
 
-<details>
-    <summary>Give it a try, then click here to review our code.</summary>
+Give it a try, then review our code below.
 
 ```python
 #routes.py
@@ -60,7 +59,10 @@ books = [
 ] 
 ```
 
-</details>
+| <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+| `class Book ...`   | Book class to represent hardcoded book data |
+| `books = [...]`   | List of instances of the Book class that serve that as hardcoded data |
 
 
 ### Planning HTTP Requests, Responses, and Logic
@@ -100,15 +102,54 @@ To make this feature, we'll work with the following objects, types, and function
 
 #### Revisiting `Blueprint` from Flask
 
-We will import `Blueprint` into our `routes.py` file. We will use Blueprints to create a group of related routes (endpoints). In our example, we'll create a group of related `books` routes.
+We will continue to use `Blueprint` in our `routes.py` file. We will use Blueprints to create a group of related routes (endpoints). In our example, we'll create a group of related `books` routes. `Blueprint` provides an optional parameter `url_prefix`. By setting the `url_prefix` value to `"/books"`, all endpoints that use the `books_bp` Blueprint will start with `\books`. 
+
+In `routes.py`, let's add this line:
+
+```python
+#routes.py
+...
+
+books_bp = Blueprint("books", __name__, url_prefix="/books")
+```
+
+| <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+| `books_bp = Blueprint("books", __name__, url_prefix="/books")`        | Our `Blueprint` instance. We'll use it to group routes that start with `/books`. `"books"` is the debugging name for this `Blueprint`. `__name__` provides information the blueprint uses for certain aspects of routing. We should use this blueprint for all of our RESTful routes that start with `/books`! 
+
+### Registering a Blueprint
+
+Now that we have defined our `books_bp` blueprint, Flask requires us to "register the blueprint" with our `app`.
+
+Let's return to the code in `app/__init__.py`. Inside our `create_app` let's add two lines to register our `books_bp` Blueprint inside the `create_app` function:
+
+```python
+def create_app():
+    app = Flask(__name__)
+
+    from .routes import books_bp
+    app.register_blueprint(books_bp)
+
+    return app
+```
+
+Again, these lines make it so that our `Blueprint` is recognized by our Flask `app`. We need to do this step each time we make a new `Blueprint`.
+
+Note that we can add new routes to an existing `Blueprint` without further changes to our `app`. Once a `Blueprint` has been registered, all routes added to that `Blueprint` will be recognized.
 
 ### Working with `jsonify` from Flask
 
 We need to import something named `jsonify` from `flask`.
 
 ```python
-from flask import jsonify
+#routes.py
+
+from flask import Blueprint, jsonify
 ```
+
+| <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
+| ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
+| `from flask import Blueprint, jsonify` | We need to import our dependencies. Python supports comma-separated importing.
 
 `jsonify` is a Flask utility function that turns its argument into JSON. We'll use `jsonify` as a way to turn a list of book dictionaries into a `Response` object.
 
@@ -123,8 +164,6 @@ Let's create a route function `handle_books` in `routes.py` to include support f
 ```python
 #routes.py
 
-from app import db
-from app.models.book import Book
 from flask import Blueprint, jsonify
 
 class Book:
@@ -156,11 +195,6 @@ def handle_books():
 
 | <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
-| `from flask import Blueprint, jsonify` | We need to import our dependencies. Python supports comma-separated importing.
-| `class Book ...`   | Book class to store hardcoded data |
-| `books = [...]`   | Hardcoded data |
-| `books_bp = Blueprint("books", __name__, ...)`        | Our `Blueprint` instance. We'll use it to group routes that start with `/books`. `"books"` is the debugging name for this `Blueprint`. `__name__` provides information the blueprint uses for certain aspects of routing.                                                                                   |
-| `url_prefix="/books"`                                 | A keyword argument. This `url_prefix` indicates that _every_ endpoint using this Blueprint should be treated like it starts with `/books`. We should use this blueprint for all of our RESTful routes that start with `/books`!                                                                             |
 | `@books_bp.route("", methods=["GET"])`               | A decorator that uses the `books_bp` Blueprint to define an endpoint and accepted HTTP method. The following function will execute whenever a matching HTTP request is received.                                                                                                                            |
 | `def handle_books():`                                 | This function will execute whenever a request that matches the decorator is received. The name of this function doesn't affect how requests are routed to this method. Common choices for a function name could include matching the route path, or using any other good, descriptive Python function name. |
 | `books = ...`                                       | We store the list of `Book` instances in the variable `books` |
@@ -187,27 +221,6 @@ For a little more flexibility, we _could_ choose to use `"/"` as the route path 
 </details>
 
 ### !end-callout
-
-### Registering a Blueprint
-
-Now that we have defined our `books_bp` blueprint, Flask requires us to "register the blueprint" with our `app`.
-
-Let's return to the code in `app/__init__.py`. Inside our `create_app` let's add two lines to register our `books_bp` Blueprint inside the `create_app` function:
-
-```python
-def create_app():
-    app = Flask(__name__)
-
-    from .routes import books_bp
-    app.register_blueprint(books_bp)
-
-    return app
-```
-
-Again, these lines make it so that our `Blueprint` is recognized by our Flask `app`. We need to do this step each time we make a new `Blueprint`.
-
-Note that we can add new routes to an existing `Blueprint` without further changes to our `app`. Once a `Blueprint` has been registered, all routes added to that `Blueprint` will be recognized.
-
 
 ### Manually Testing with Postman
 
