@@ -130,7 +130,7 @@ Let's look at some example code for our create feature.
 
 ### Creating an Endpoint
 
-Let's start defining a route by adding the following code to our `routes.py` file.
+Let's define the `POST /books` route by adding the following code to our `routes.py` file.
 
 ```python
 from app import db
