@@ -46,7 +46,7 @@ Our endpoint will need to:
 1. Format the list of Book instances into the appropriate JSON data structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
 1. Send back a response
 
-`jsonify` is a Flask utility function that turns its argument into JSON. We'll use `jsonify` as a way to turn a list of book dictionaries into a `Response` object.
+Recall that `jsonify` is a Flask utility function that turns its argument into JSON. We'll use `jsonify` as a way to turn a list of book dictionaries into a `Response` object.
 
 For additional details about `jsonify`, we can refer to:
 
