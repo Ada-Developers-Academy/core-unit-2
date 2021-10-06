@@ -23,7 +23,7 @@ This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-ap
 
 In this lesson we will build our Hello Books API to fulfill the following feature:
 
-1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, `description`, and `author` of the book.
+1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
 
 ## Getting All Books Endpoint: Preparation
 
