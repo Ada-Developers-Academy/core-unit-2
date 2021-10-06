@@ -47,7 +47,7 @@ Give it a try, then review our code below.
 #routes.py
 
 class Book:
-    def __init__(id, title, description):
+    def __init__(self, id, title, description):
         self.id = id
         self.title = title
         self.description = description
@@ -167,7 +167,7 @@ Let's create a route function `handle_books` in `routes.py` to include support f
 from flask import Blueprint, jsonify
 
 class Book:
-    def __init__(id, title, description):
+    def __init__(self, id, title, description):
         self.id = id
         self.title = title
         self.description = description
