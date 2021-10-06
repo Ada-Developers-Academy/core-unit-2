@@ -52,7 +52,8 @@ Before we go any further, let's remove our hardcoded `BOOKS` data and our two ro
 This is the code to remove:
 
 ```python
-# app.py
+# routes.py
+
 # class Book:
 #     def __init__(self, id, title, description):
 #         self.id = id
