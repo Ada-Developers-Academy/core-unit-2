@@ -14,11 +14,11 @@ We want to build our Hello Books API to fulfill these features:
 1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
 1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
 
-We will refactor the endpoints we designed in our previous lessons **Requests and Responses in Flask: Reading All Books and Endpoint and Read One Book Endpoint** to make use of the data in our postgres database.
+We will refactor the endpoints we designed in our previous lessons **Building and API - Part 1: Reading All Books and Endpoint and Read One Book Endpoint** to make use of the data in our postgres database.
 
 ## Planning HTTP Requests, Responses, and Logic Review
 
-Let's review the planning work we did in the lesson **Requests and Responses in Flask: Reading All Books and Endpoint**.
+Let's review the planning work we did in the lesson **Building and API - Part 1: Reading All Books and Endpoint**.
 
 Let's think about the typical HTTP verb and endpoint used for requests that retrieve all records of a particular resource. 
 
