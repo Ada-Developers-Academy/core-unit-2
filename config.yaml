@@ -245,7 +245,30 @@ Standards:
         UID: 1ccd31d7b789d74e78d94c236193bb8d
         Path: /intro-to-sql/activity-intro-to-sql.md
   -
-    Title: More Selecting In SQL
+    Title: Relationships in Databases
+    Description: "Database Relationships, Establishing Relationships, Problem Set: Intermediate SQL"
+    UID: 11a8027f-bd04-4c47-b4d3-36209af1068d
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: c8e5656f-6fd9-43fa-8c30-164c4da593b8
+        Path: /relationships-in-sql/database-relationships.md
+      -
+        Type: Lesson
+        UID: a00c1cf2-cb0c-440b-bb5b-188ab64628ea
+        Path: /relationships-in-sql/establishing-relationships.md
+      -
+        Type: Lesson
+        UID: cbd53d1c-3374-4a55-804b-85defb26bd4b
+        Path: /relationships-in-sql/problem-set-intermediate-sql.md
+      -
+        Type: Lesson
+        UID: d23c9ef5-1e99-4057-93ef-8863f33be45f
+        Path: /relationships-in-sql/database-joins.md
+  -
+    Title: (Optional) More Selecting In SQL
     Description: "Compound Conditions, Ordering, Limit, Problem Set: More Selecting in SQL"
     UID: 29f75f91-0453-468c-a724-d6b90a045e6a
     SuccessCriteria:
@@ -267,29 +290,22 @@ Standards:
         Type: Lesson
         UID: f9f13580-bd04-442a-8944-34864f3de6a2
         Path: /more-selecting-in-sql/problem-set-more-selecting-in-sql.md
-  -
-    Title: Even More SQL
-    Description: "Aggregate Functions, Grouping, Modifying Tables in SQL, Modifying Databases in SQL"
-    UID: adb24d77-6638-4351-9b81-4f6bb7fd26f9
-    SuccessCriteria:
-      - success criteria
-    ContentFiles:
       -
         Type: Lesson
         UID: 7b23e0bb-64ea-4f55-aca4-4502d9f8e7fb
-        Path: /even-more-sql/aggregate-functions.md
+        Path: /more-selecting-in-sql/aggregate-functions.md
       -
         Type: Lesson
         UID: af18e4ef-18aa-432c-9f34-0375f4dbb82a
-        Path: /even-more-sql/grouping.md
+        Path: /more-selecting-in-sql/grouping.md
       -
         Type: Lesson
         UID: 139ef877-f6ea-4455-8cad-e42849c19bf8
-        Path: /even-more-sql/modifying-tables-in-sql.md
+        Path: /more-selecting-in-sql/modifying-tables-in-sql.md
       -
         Type: Lesson
         UID: eed7f313-69fe-4881-9b7c-829860adeb4e
-        Path: /even-more-sql/modifying-databases-in-sql.md
+        Path: /more-selecting-in-sql/modifying-databases-in-sql.md
   -
     Title: Building an API With Models
     Description: "Models, Models Setup, Create and Read, Problem Set: Building an API"
@@ -344,8 +360,8 @@ Standards:
         UID: etO5RZ
         Path: /update-and-delete/activity-solar-system-api-update-delete.md
   -
-    Title: More Flask Queries
-    Description: "404s and More Queries, Query Params"
+    Title: More Flask
+    Description: "404s & More Queries, Query Params, Relationships in Flask"
     UID: OkfzUG
     SuccessCriteria:
       - success criteria
@@ -360,27 +376,12 @@ Standards:
         Path: /more-flask-queries/query-params.md
       -
         Type: Lesson
+        UID: 1b0fd3d1-a9d1-4cec-900a-4fe6cd44b573
+        Path: /more-flask-queries/relationships-in-flask.md
+      -
+        Type: Lesson
         UID: 2cfe7232-9dd4-4efe-8d33-9a4539ec3c63
         Path: /more-flask-queries/activity-solar-system-api-404.md
-  -
-    Title: Relationships in Databases
-    Description: "Database Relationships, Establishing Relationships, Problem Set: Intermediate SQL"
-    UID: 11a8027f-bd04-4c47-b4d3-36209af1068d
-    SuccessCriteria:
-      - success criteria
-    ContentFiles:
-      -
-        Type: Lesson
-        UID: c8e5656f-6fd9-43fa-8c30-164c4da593b8
-        Path: /intermediate-sql/database-relationships.md
-      -
-        Type: Lesson
-        UID: a00c1cf2-cb0c-440b-bb5b-188ab64628ea
-        Path: /intermediate-sql/establishing-relationships.md
-      -
-        Type: Lesson
-        UID: cbd53d1c-3374-4a55-804b-85defb26bd4b
-        Path: /intermediate-sql/problem-set-intermediate-sql.md
   -
     Title: Testing Our APIs
     Description: "Environments and Env Vars, dotenv and the Test DB, Fixtures, Test Setup, Using Tests, Problem Set: Testing Our APIs, Activity: Solar System API: Tests"
@@ -491,8 +492,8 @@ Standards:
     ContentFiles:
       -
         Type: Lesson
-        UID: d23c9ef5-1e99-4057-93ef-8863f33be45f
-        Path: /many-to-many-relationships/database-joins.md
+        UID: 55cb7e64-9a4f-47f5-bc7d-162e38257f05
+        Path: /many-to-many-relationships/many-to-many.md
   -
     Title: Unit Wrap Up
     Description: "Activity: Mind Map"
