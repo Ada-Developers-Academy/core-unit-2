@@ -117,8 +117,8 @@ Standards:
         UID: 5f9a641756dea1f4bc8a5c1776d46528
         Path: /intro-to-api-design/activity-intro-to-api-design.md
   -
-    Title: Requests and Responses in Flask
-    Description: "Intro to Flask, Flask Setup, Flask Hello Books"
+    Title: Building an API - Part 1
+    Description: "Intro to Flask, Flask Setup, Flask Hello Books, Read All Books, Read One Book"
     UID: dea859c0
     SuccessCriteria:
       - success criteria
@@ -307,7 +307,7 @@ Standards:
         UID: eed7f313-69fe-4881-9b7c-829860adeb4e
         Path: /more-selecting-in-sql/modifying-databases-in-sql.md
   -
-    Title: Building an API With Models
+    Title: Building an API - Part 2
     Description: "Models, Models Setup, Create and Read, Problem Set: Building an API"
     UID: 2804d58bb38264215b9414a111a759d7
     SuccessCriteria:
