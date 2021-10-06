@@ -7,6 +7,7 @@
 - Define client
 - Define web server
 - Explain that HTTP is a protocol that specifies how data is communicated (sent and received through the request-response cycle)
+- Define request-response cycle
 
 ## Introduction
 
@@ -28,19 +29,22 @@ We recommend taking this material and learning it on the definition level, and a
 | Server     | Within the client-server model, a computer who receives requests for a resource from a client, and sends back a response | "The server needs to respond to the client with their requested resources. The server will give back data about news articles."                |
 | Web Server | Within the client-server model, a server that is specifically connected to a client over the web                         | "The web browser needs to get news article data, but it seems like the web servers are offline and down, and we can't establish a connection." |
 | HTTP       | A specific protocol that determines how a clients and web servers communicate                                            | "The requests and responses between a web browser and web server must follow HTTP. They are HTTP requests and HTTP responses."                 |
+| Request-Response Cycle | The cycle of communication between a client making a request and a server responding back.     | "We encounter the request-response cycle any time we log into a social media website or look up cat gifs on a search engine."                 |
 
 ## Client-Server Model
 
 How can two computers send data to each other? One way that two machines can send data to each other is following the _client-server model_.
 
+![Different clients (desktop, smartphone, smart tablet) sending a request to a server and receiving a response back. There are the following horizontal arrows: 1. Arrow from the client to the server labelled "request." 2. Arrow from the server to the client labelled "response."](../assets/intro-to-web-development/intro-to-web-dev_client-server.png)
+
 The **client-server model** describes a setup between (at least) two different machines. This model states that for any given interaction between two computers, the communication is setup like this:
 
 1. One computer is the **client** in the relationship
 1. Another computer is the **server** in the relationship
-1. The _client_ computer asks for a specific piece of data or action by sending a request to the _server_ computer
+1. The _client_ computer asks for a specific piece of data or action by sending a **request** to the _server_ computer
    - The request from the client has details like "what should the server do, and how?"
 1. The _server_ computer receives the request from the client. The server computer tries to fulfill the request.
-1. The _server_ eventually gives back a response answer and sends it back to the client
+1. The _server_ eventually gives back a **response** answer and sends it back to the client
    - The response from the server has details like "what is the status of the server," and possibly the requested data
 1. The _client_ receives this response
 
@@ -76,7 +80,7 @@ Meghan can make even a third request that Francis's computer can't deal with:
 
 ### The Cycle Repeats as Necessary
 
-This cycle of communication repeats as necessary! A client can make one, two, dozen, or hundreds of requests to a server. They will always get back the same number of responses.
+This request-response cycle of communication repeats as necessary! A client can make one, two, dozen, or hundreds of requests to a server. They will always get back the same number of responses.
 
 The client-server model allows client machines to take the lead and request for data or changes exactly when they want it.
 
@@ -91,13 +95,16 @@ When applied to many Internet interactions:
 - The **client** is a user's _web browser_ (such as Mozilla Firefox, Google Chrome, or Safari)
 - The **web server** is a server that hosts a website, such as Facebook.com or Instagram.com, and all of its server data and logic
 - The client sends requests to the web server about getting data or changing data on the website
-- The web server sends responses to the client about the requested data or the requested change
+- The web server then sends responses to the client about the requested data or the requested change
+- This cycle of interaction and communication between client and server makes up the request-response cycle
 
 ### !callout-info
 
 ## "Client" and "Server" Are Relative Terms
 
-The terms "client" and "server" are always describing a relationship. One machine can be a client in one relationship, and a server in another relationship. Look forward to diving into this in the future!
+The terms "client" and "server" are always describing a relationship. One machine can be a client in one relationship, and then a server in another relationship. 
+
+In fact, your own computer may act as _both_ the client and the server when we begin making our own requests! Look forward to diving into this in the future!
 
 ### !end-callout
 
@@ -137,15 +144,15 @@ Let's combine clients, servers, and HTTP into one story. Imagine that Meghan is 
 
 1. When Meghan is on her computer, she visits bookface.com on her browser Mozilla Firefox.
 1. When she clicks the button "Get All Posts," her browser acts as a _client_. The browser makes an HTTP request to the bookface.com servers. The HTTP request has details that say, "The client wants a list of all posts."
-1. The bookface.com server receives this HTTP request that asks for all posts, and needs to create an HTTP response with this data. The server talks to all of the databases and services it needs to, and constructs the appropriate HTTP response. Then, it sends the HTTP response back to the client.
+1. The bookface.com server receives this HTTP request that asks for all posts, and needs to create an HTTP response with this data. The server talks to all of the end-points, the databases, and services it needs to, and then constructs the appropriate HTTP response. Then, it sends the HTTP response back to the client.
 1. Meghan's browser, the client, receives the response. Because the response contains the bookface post data, the browser says, "I need to read this response and display all posts."
 
 An hour later, Meghan wants to update her status.
 
 1. Meghan finds the form on bookface.com that lets her write a new post inside of her browser. She types, "Hello, World! I'm on bookface.com!"
-1. Meghan presses the button that says "Post." At this point, the browser, the client, makes another HTTP request to the bookface.com servers. _This_ HTTP request has details that say, "The client wants to post "Hello, World! I'm on bookface.com!""
-1. The bookface.com server receives this HTTP request. When the server looks at this request, it's programmed to create a new post with the correct text, user data, timestamps, and any other information. Then, the server is programmed to save this to the database.
-1. Then, the server needs to give back an HTTP response. The server responds with the message, "The post was created successfully."
+1. Meghan presses the button that says "Post." At this point, the browser (aka the client), makes another HTTP request to the bookface.com servers. _This_ HTTP request has details that say, "The client wants to post 'Hello, World! I'm on bookface.com!'."
+1. The bookface.com server receives this HTTP request. When the server looks at this request, it is programmed to create a new post with the correct text, user data, timestamps, and any other information. Then, the server is programmed to save this to the database.
+1. Next, the server needs to give back an HTTP response. The server responds with the message, "The post was created successfully."
 1. Meghan's browser, the client, receives this response. The browser sees the message, "The post was created successfully." Then, the web browser changes, and there is a new yellow box that says "Post created."
 
 ### !callout-info
