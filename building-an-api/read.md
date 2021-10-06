@@ -75,7 +75,7 @@ Consider how you could refactor the `GET` `/books` route to make use of this *qu
 ```python
 from app import db
 from app.models.book import Book
-from flask import request, Blueprint, make_response, jsonify
+from flask import Blueprint, jsonify, make_response, request
 
 books_bp = Blueprint("books", __name__, url_prefix="/books")
 
@@ -100,7 +100,6 @@ def handle_books():
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                    |
 | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from flask import ..., jsonify`                    | Add in `jsonify` as a dependency                                                                                                                                                                                                                         |
 | `@books_bp.route("", methods=["GET", "POST"])`      | Add `"GET"` into this list of accepted HTTP methods                                                                                                                                                                                                      |
 | `if request.method == "GET":`                       | Separate this functionality from the Create feature by checking the `request`'s HTTP method                                                                                                                                                              |
 | `... = Book.query.all()`                            | This SQLAlchemy syntax tells `Book` to `query` for `all()` books. This method returns a _list_ of instances of `Book`.                                                                                                                                   |
