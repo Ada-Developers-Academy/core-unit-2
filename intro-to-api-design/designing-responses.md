@@ -107,26 +107,30 @@ After considering all of these things, it is up to our creativity to determine t
 
 In Eryn's educational podcast app, there is the resource, students. Eryn's app stores every student's name, contact information, courses that they're enrolled in, and classes that they attend.
 
-The student table looks like this:
+The student data looks like this:
 
-| `student_id` | `full_name`      | `email_address`      |
-| ------------ | ---------------- | -------------------- |
-| `66`         | `"Imaani Moyer"` | `"imaani@moyer.com"` |
-
-There is a join table between students and courses named `courses_students`:
-
-| `course_id` | `student_id` |
-| ----------- | ------------ |
-| `14`        | `66`         |
-| `15`        | `66`         |
-
-There is a join table between students and courses named `classes_students`:
-
-| `class_id` | `student_id` |
-| ---------- | ------------ |
-| `436`      | `66`         |
-| `437`      | `66`         |
-| `502`      | `66`         |
+```json
+[
+  {
+    "student_id": 66,
+    "fulle_name": "Imaani Moyer",
+    "email_address": "imaani@moyer.com",
+    "courses": ["Pre-Calculus", "AP Art", "East Asian History", "Intro to Programming"]
+  },
+  {
+    "student_id": 67,
+    "fulle_name": "Fatima Mahar",
+    "email_address": "fmahar@email.com",
+    "courses": ["Physics","Intermediate Programming", "Statistics"]
+  },
+  {
+    "student_id": 69,
+    "fulle_name": "Jazmin Guerrero",
+    "email_address": "jguerrero@email.com",
+    "courses": ["Pre-Calculus", "Middle Eastern Studies", "Intro to Programming", "Statistics"]
+  }
+]
+```
 
 Imagine a client sending this HTTP request to Eryn's API:
 
