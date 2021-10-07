@@ -95,8 +95,14 @@ Rapidly making several HTTP requests to the same endpoint may exceed our API rat
 What is the latitude of the first result of "Great Wall of China"?
 ##### !end-question
 ##### !answer
-40.3587621
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to 40.3587621, but over time the coordinates can drift a bit.
+
+##### !end-explanation
+
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -110,8 +116,16 @@ What is the latitude of the first result of "Great Wall of China"?
 What is the longitude of the first result of "Great Wall of China"?
 ##### !end-question
 ##### !answer
-116.0136394
+/\d?\d\.\d+/
 ##### !end-answer
+
+##### !explanation
+
+It should be something similar to 116.0136394, but over time the coordinates can drift a bit.
+
+##### !end-explanation
+
+
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -125,8 +139,13 @@ What is the longitude of the first result of "Great Wall of China"?
 What is the latitude of the first result of "Petra"?
 ##### !end-question
 ##### !answer
-30.3273975
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to 30.3273975, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -140,8 +159,13 @@ What is the latitude of the first result of "Petra"?
 What is the longitude of the first result of "Petra"?
 ##### !end-question
 ##### !answer
-35.4464006
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to 35.4464006, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -155,8 +179,13 @@ What is the longitude of the first result of "Petra"?
 What is the latitude of the first result of "Colosseum"?
 ##### !end-question
 ##### !answer
-41.8902614
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to 41.8902614, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -170,8 +199,13 @@ What is the latitude of the first result of "Colosseum"?
 What is the longitude of the first result of "Colosseum"?
 ##### !end-question
 ##### !answer
-12.4930871035955
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to 12.4930871035955, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -185,8 +219,13 @@ What is the longitude of the first result of "Colosseum"?
 What is the latitude of the first result of "Chichen Itza"?
 ##### !end-question
 ##### !answer
-20.68285195
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to 20.68285195, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -200,8 +239,13 @@ What is the latitude of the first result of "Chichen Itza"?
 What is the longitude of the first result of "Chichen Itza"?
 ##### !end-question
 ##### !answer
--88.5687196355205
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to -88.5687196355205, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -215,8 +259,13 @@ What is the longitude of the first result of "Chichen Itza"?
 What is the latitude of the first result of "Machu Picchu"?
 ##### !end-question
 ##### !answer
--13.16441865
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to -13.16441865, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -230,8 +279,13 @@ What is the latitude of the first result of "Machu Picchu"?
 What is the longitude of the first result of "Machu Picchu"?
 ##### !end-question
 ##### !answer
--72.5447639743184
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to -72.5447639743184, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -245,8 +299,13 @@ What is the longitude of the first result of "Machu Picchu"?
 What is the latitude of the first result of "Taj Mahal"?
 ##### !end-question
 ##### !answer
-27.1750123
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to 27.1750123, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -260,8 +319,13 @@ What is the latitude of the first result of "Taj Mahal"?
 What is the longitude of the first result of "Taj Mahal"?
 ##### !end-question
 ##### !answer
-78.0420968366132
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to 78.0420968366132, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -275,8 +339,13 @@ What is the longitude of the first result of "Taj Mahal"?
 What is the latitude of the first result of "Christ the Redeemer"?
 ##### !end-question
 ##### !answer
--22.9519173
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to -22.9519173, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -290,7 +359,12 @@ What is the latitude of the first result of "Christ the Redeemer"?
 What is the longitude of the first result of "Christ the Redeemer"?
 ##### !end-question
 ##### !answer
--43.210495
+/\d?\d\.\d+/
 ##### !end-answer
+##### !explanation
+
+It should be something similar to -43.210495, but over time the coordinates can drift a bit.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
