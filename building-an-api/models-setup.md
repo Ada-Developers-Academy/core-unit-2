@@ -47,14 +47,15 @@ In a previous lesson we used hardcoded data stored in the variable `BOOKS` to le
 
 In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to *read* our data, but also *create*, *update*, and *delete* it!
 
-Before we go any further, let's comment or remove our hardcoded `BOOKS` data and our two routes from the `app`. 
+Before we go any further, let's remove our hardcoded `BOOKS` data and our two routes from the `app`. 
 
-This is the code to comment or remove:
+This is the code to remove:
 
 ```python
-# app.py
+# routes.py
+
 # class Book:
-#     def __init__(id, title, description):
+#     def __init__(self, id, title, description):
 #         self.id = id
 #         self.title = title
 #         self.description = description
@@ -64,9 +65,11 @@ This is the code to comment or remove:
 #     Book(2, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
 #     Book(3, "Fictional Book Title", "A fantasy novel set in an imaginary world.")
 # ] 
+```
 
-# books_bp = Blueprint("books", __name__, url_prefix="/books")
+We should also comment or remove our code for the `GET /books` and `GET /books/<book_id>` routes. We will refactor these to use our database in the **Read** lesson.
 
+```python
 # @books_bp.route("", methods=["GET"])
 # def handle_books():
 #     books_response = []
@@ -80,17 +83,13 @@ This is the code to comment or remove:
 
 # @books_bp.route("/<book_id>", methods=["GET"])
 # def handle_book(book_id):
-#     for book_data in books:
-#         if book_data["id"] == book_id:
-#             book = book_data
-
-#     return {
-#         "id": book.id,
-#         "title": book.title,
-#         "description": book.description
-#     }
-
-
+#     for book in books:
+#         if book.id == book_id:
+#            return {
+#               "id": book.id,
+#               "title": book.title,
+#               "description": book.description
+#           }
 ```
 
 ## Creating the Database

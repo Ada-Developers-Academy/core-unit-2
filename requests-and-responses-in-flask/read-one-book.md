@@ -2,7 +2,7 @@
 
 ## Video Lesson
 
-TODO: Embed Video
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=527ad2c0-f5a3-4033-b399-adba00194cce&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
 ## Goals
 
@@ -71,15 +71,14 @@ Let's take a look at how our new route will account for this!
 
 @books_bp.route("/<book_id>", methods=["GET"])
 def handle_book(book_id):
-    for book_data in books:
-        if book_data["id"] == book_id:
-            book = book_data
-
-    return {
-        "id": book.id,
-        "title": book.title,
-        "description": book.description
-    }
+    book_id = int(book_id)
+    for book in books:
+        if book.id == book_id:
+            return {
+                "id": book.id,
+                "title": book.title,
+                "description": book.description
+            }
 ```
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                                                                                                                                              |
@@ -87,10 +86,9 @@ def handle_book(book_id):
 | `@books_bp.route("...", methods=["GET"])`           | We are setting up a new route, so we must use the `Blueprint` decorator to define it                                                                                                                                                                                                                                                                                               |
 | `"/<book_id>"`                                      | This is the `Blueprint` syntax to indicate _route parameters_. The `<book_id>` placeholder shows that we are looking for a variable value (could be `1`, `2`, or `3000`). We'll use this value in the function as the variable `book_id`, so we should use a good, descriptive name.                                                                                               |
 | `def handle_book(book_id):`                                | This `handle_book` function is called whenever the HTTP request matches the decorator. The name of this function should follow the previously discussed guidelines. We must add a parameter to this method, `book_id`. This parameter name must match the route parameter in the decorator. It will receive the part of the request path that lines up with the placeholder in the route. |
+|`book_id = int(book_id)` | We must convert the `book_id` from the url from a string to an int. |
 | `for book_data in books...`                               | Iterate through the list of book dictionaries, and find the book dictionary with the `id` euqal to `book_id`This is the SQLAlchemy syntax to query for one `Book` resource. This method returns an instance of `Book`.                                                                                                                                                                                                                                                                         |
-| `{ "id": book.id, ... }`                            | We can create a dictionary literal for our HTTP response.                                                                                                                                                                                                                                                                                                                          |
-| `return`                                            | As always, we must return a response. Flask will default to returning status `200 OK`.                                                                                                                                                                                                                                                                                             |
-
+| `return { "id": book.id, ... }`                            | We can create a dictionary literal for our HTTP response. As always, we must return a response. Flask will default to returning status `200 OK`.                                                                                                                                                                                                                                                                                                                          |
 ### !callout-warning
 
 ## Python Doesn't Know What a `book_id` Is

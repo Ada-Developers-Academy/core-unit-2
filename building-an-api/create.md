@@ -1,6 +1,6 @@
 # Create
 
-IMBED VIDEO PLAYLIST
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=b0546829-5d82-43d0-be51-adb90189026d&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
 ## Goals
 
@@ -130,12 +130,12 @@ Let's look at some example code for our create feature.
 
 ### Creating an Endpoint
 
-Let's start defining a route by adding the following code to our `routes.py` file.
+Let's define the `POST /books` route by adding the following code to our `routes.py` file.
 
 ```python
 from app import db
 from app.models.book import Book
-from flask import request, Blueprint, make_response
+from flask import Blueprint, jsonify, make_response, request
 
 books_bp = Blueprint("books", __name__, url_prefix="/books")
 
@@ -150,13 +150,12 @@ def handle_books():
 
     return make_response(f"Book {new_book.title} successfully created", 201)
 
-# ... Commented Code ...
 ```
 
 | <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `from app import db`, `from ... import Book`          | We need to import the necessary modules for our `Book` model                                                                                                                                                                                                                                                |
-| `from flask import request, Blueprint, make_response` | We need to import our dependencies. Python supports comma-separated importing.                                                                                                                                                                                                                              |
+| `from flask import Blueprint, jsonify, make_response, request` | We need to import our dependencies. Python supports comma-separated importing.                                                                                                                                                                                                                              |
 | `books_bp = Blueprint("books", __name__, ...)`        | Our `Blueprint` instance. We'll use it to group routes that start with `/books`. `"books"` is the debugging name for this `Blueprint`. `__name__` provides information the blueprint uses for certain aspects of routing.                                                                                   |
 | `url_prefix="/books"`                                 | A keyword argument. This `url_prefix` indicates that _every_ endpoint using this Blueprint should be treated like it starts with `/books`. We should use this blueprint for all of our RESTful routes that start with `/books`!                                                                             |
 | `@books_bp.route("", methods=["POST"])`               | A decorator that uses the `books_bp` Blueprint to define an endpoint and accepted HTTP method. The following function will execute whenever a matching HTTP request is received.                                                                                                                            |

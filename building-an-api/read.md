@@ -1,6 +1,6 @@
 # Read
 
-IMBED VIDEO PLAYLIST
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=13c1312c-7230-4631-9687-adba0000a65e&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
 ## Goals
 
@@ -14,11 +14,11 @@ We want to build our Hello Books API to fulfill these features:
 1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
 1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
 
-We will refactor the endpoints we designed in our previous lessons **Requests and Responses in Flask: Reading All Books and Endpoint and Read One Book Endpoint** to make use of the data in our postgres database.
+We will refactor the endpoints we designed in our previous lessons **Building and API - Part 1: Reading All Books and Endpoint and Read One Book Endpoint** to make use of the data in our postgres database.
 
 ## Planning HTTP Requests, Responses, and Logic Review
 
-Let's review the planning work we did in the lesson **Requests and Responses in Flask: Reading All Books and Endpoint**.
+Let's review the planning work we did in the lesson **Building and API - Part 1: Reading All Books and Endpoint**.
 
 Let's think about the typical HTTP verb and endpoint used for requests that retrieve all records of a particular resource. 
 
@@ -46,7 +46,7 @@ Our endpoint will need to:
 1. Format the list of Book instances into the appropriate JSON data structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
 1. Send back a response
 
-`jsonify` is a Flask utility function that turns its argument into JSON. We'll use `jsonify` as a way to turn a list of book dictionaries into a `Response` object.
+Recall that `jsonify` is a Flask utility function that turns its argument into JSON. We'll use `jsonify` as a way to turn a list of book dictionaries into a `Response` object.
 
 For additional details about `jsonify`, we can refer to:
 
@@ -75,7 +75,7 @@ Consider how you could refactor the `GET` `/books` route to make use of this *qu
 ```python
 from app import db
 from app.models.book import Book
-from flask import request, Blueprint, make_response, jsonify
+from flask import Blueprint, jsonify, make_response, request
 
 books_bp = Blueprint("books", __name__, url_prefix="/books")
 
@@ -100,7 +100,6 @@ def handle_books():
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                    |
 | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from flask import ..., jsonify`                    | Add in `jsonify` as a dependency                                                                                                                                                                                                                         |
 | `@books_bp.route("", methods=["GET", "POST"])`      | Add `"GET"` into this list of accepted HTTP methods                                                                                                                                                                                                      |
 | `if request.method == "GET":`                       | Separate this functionality from the Create feature by checking the `request`'s HTTP method                                                                                                                                                              |
 | `... = Book.query.all()`                            | This SQLAlchemy syntax tells `Book` to `query` for `all()` books. This method returns a _list_ of instances of `Book`.                                                                                                                                   |
