@@ -107,28 +107,32 @@ After considering all of these things, it is up to our creativity to determine t
 
 In Eryn's educational podcast app, there is the resource, students. Eryn's app stores every student's name, contact information, courses that they're enrolled in, and classes that they attend.
 
-The student table looks like this:
+The student data looks like this in a JSON file:
 
-| `student_id` | `full_name`      | `email_address`      |
-| ------------ | ---------------- | -------------------- |
-| `66`         | `"Imaani Moyer"` | `"imaani@moyer.com"` |
+```json
+[
+  {
+    "student_id": 66,
+    "full_name": "Imaani Moyer",
+    "email_address": "imaani@moyer.com",
+    "courses": ["Pre-Calculus", "AP Art", "Intro to Programming"]
+  },
+  {
+    "student_id": 67,
+    "full_name": "Fatima Mahar",
+    "email_address": "fmahar@email.com",
+    "courses": ["Physics","Intermediate Programming", "Statistics"]
+  },
+  {
+    "student_id": 69,
+    "full_name": "Jazmin Guerrero",
+    "email_address": "jguerrero@email.com",
+    "courses": ["Pre-Calculus", "Middle Eastern Studies", "Intro to Programming"]
+  }
+]
+```
 
-There is a join table between students and courses named `courses_students`:
-
-| `course_id` | `student_id` |
-| ----------- | ------------ |
-| `14`        | `66`         |
-| `15`        | `66`         |
-
-There is a join table between students and courses named `classes_students`:
-
-| `class_id` | `student_id` |
-| ---------- | ------------ |
-| `436`      | `66`         |
-| `437`      | `66`         |
-| `502`      | `66`         |
-
-Imagine a client sending this HTTP request to Eryn's API:
+Imagine a client sending the HTTP request below to Eryn's API:
 
 - `GET` `/students/66`
 
@@ -142,16 +146,17 @@ From RESTful routes, let's answer the questions from above:
 | What does the client need to know?                                                | The student's name, contact info, and a list of courses they're enrolled in.                                                                          |
 | What's the best way to structure what the client needs to know?                   | key-value pairs                                                                                                                                       |
 | What data structure should this response be? Should it be a list or a dictionary? | Dictionary                                                                                                                                            |
-| If it's a dictionary, what keys exist? What are their values?                     | `"name"` should be the student's `full_name`, `"contact_info"` should be the student's `email_address`, `"course_ids"` should be a list of course IDs |
+| If it's a dictionary, what keys exist? What are their values?                     | `"name"` should be the student's `full_name`, `"contact_info"` should be the student's `email_address`, `"courses"` should be a list of courses |
 | If it's a list, then what data structure is each item?                            | -                                                                                                                                                     |
 
 From this information, Eryn may represent the student data like this:
 
 ```json
 {
+  "id": 66,
   "name": "Imaani Moyer",
   "contact_info": "imaani@moyer.com",
-  "course_ids": [14, 15]
+  "courses": ["Pre-Calculus", "AP Art", "Intro to Programming"]
 }
 ```
 
@@ -159,9 +164,10 @@ Or even this:
 
 ```json
 {
+  "student_id": 66,
   "full_name": "Imaani Moyer",
   "email_address": "imaani@moyer.com",
-  "course_ids": [14, 15]
+  "courses": ["Pre-Calculus", "AP Art", "Intro to Programming"]
 }
 ```
 
