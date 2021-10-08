@@ -309,7 +309,7 @@ The following are lines in an SQL SELECT query with a JOIN clause.  Put them in 
 * language: sql
 * id: ae7b2f5b-1baf-4711-929d-fe0d6355ce20
 * title: Database Joins
-* data_path: /intermediate-sql/sql/database-joins.sql
+* data_path: /relationships-in-sql/sql/database-joins.sql
 * points: 1
 * topics: sql, sql-select, sql-join
 
