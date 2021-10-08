@@ -153,12 +153,12 @@ We can observe the headers that came back with this HTTP response, too.
 <!-- Question 1 -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: 5UN8Fu
 * title: Sending Requests from Postman
 ##### !question
 
-Recreate this request and response in Postman. Check off all the steps that you are able to recreate.
+Recreate this request and response in Postman. Check off each step as you progress.
 
 ##### !end-question
 ##### !options
@@ -171,16 +171,6 @@ Recreate this request and response in Postman. Check off all the steps that you 
 - View the response's body
 
 ##### !end-options
-##### !answer
-
-- Construct the request with the correct HTTP method
-- Construct the request with the correct request URL (path)
-- Construct the request with the correct headers
-- View the response's status code and message
-- View the the response's headers
-- View the response's body
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -224,12 +214,12 @@ Now, let's make this request and see this response in Postman:
 <!-- Question 2 -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: xaxAis
 * title: Sending Requests from Postman
 ##### !question
 
-Recreate this request and response in Postman. Check off all the steps that you are able to recreate.
+Recreate this request and response in Postman. Check off each step as you progress.
 
 ##### !end-question
 ##### !options
@@ -242,16 +232,6 @@ Recreate this request and response in Postman. Check off all the steps that you 
 - View the response's body
 
 ##### !end-options
-##### !answer
-
-- Construct the request with the correct HTTP method
-- Construct the request with the correct request URL (path)
-- Construct the request with the correct headers
-- View the response's status code and message
-- View the the response's headers
-- View the response's body
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -292,12 +272,12 @@ Now that we see the actual response body, we should see that the response body i
 <!-- Question 3 -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: FxW4eE
 * title: Sending Requests from Postman
 ##### !question
 
-Recreate this request and response in Postman. Check off all the steps that you are able to recreate.
+Recreate this request and response in Postman. Check off each step as you progress.
 
 ##### !end-question
 ##### !options
@@ -310,22 +290,12 @@ Recreate this request and response in Postman. Check off all the steps that you 
 - View the response's body
 
 ##### !end-options
-##### !answer
-
-- Construct the request with the correct HTTP method
-- Construct the request with the correct request URL (path)
-- Construct the request with the correct headers
-- View the response's status code and message
-- View the the response's headers
-- View the response's body
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
 ## When to Use Postman
 
-There are other ways to make HTTP requests and see HTTP responses. However, Postman is great at showing us requests and responses easily. There are so many ocassions when this is beneficial:
+There are other ways to make HTTP requests and see HTTP responses. However, Postman is great at showing us requests and responses easily. There are so many occasions when this is beneficial:
 
 - In the middle of Python coding, needing to manually test and confirm an API call
 - Satisfying your curiosity

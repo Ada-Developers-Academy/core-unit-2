@@ -154,7 +154,7 @@ There is no single correct way to structure our code. We could refactor our code
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: q4OxIs
 * title: 404s and More Queries, GETing a Missing Book
 ##### !question
@@ -173,15 +173,6 @@ Check off all the topics that we've briefly touched on so far.
 * Applied this to the "Delete Book" functionality
 
 ##### !end-options
-##### !answer
-
-* Checked if `Book.query.get()` returned `None`
-* Sent back a response
-* Tested this request in Postman
-* Applied this to the "Update Book" functionality
-* Applied this to the "Delete Book" functionality
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
 

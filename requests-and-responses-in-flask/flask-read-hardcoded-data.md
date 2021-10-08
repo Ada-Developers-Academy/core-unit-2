@@ -33,7 +33,7 @@ Let's consider how to implement this feature:
 
 ### Data
 
-Soon we will create and manipulate data in a SQL database. We will then learn how to create an manipulate this data through a connection with our API built in Flask. Until then, we will hardcode data in our app using data structures we have already learned about.
+Soon we will create and manipulate data in a SQL database. We will then learn how to create an manipulate this data through a connection with our API built in Flask. Until then, we will hard code data in our app using data structures we have already learned about.
 
 Let's represent our data as a list of Book instances. The Book class should have the attributes `id`, `title`, and `description`.
 
@@ -245,7 +245,7 @@ Remember to use all debugging tools:
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: f6e59db1-edbc-40e1-af4e-f8b326899df9
 * title: Create and Read, Getting All Books Endpoint
 ##### !question
@@ -271,21 +271,5 @@ Check off all the topics that we've briefly touched on so far.
 * Tested this request in Postman
 
 ##### !end-options
-##### !answer
-
-* Planned the HTTP response, request, and logic for this endpoint
-* Created hardcoded book data `books`
-* Briefly considered `Blueprint`
-* Briefly considered `jsonify`
-* Registered a new `Blueprint` with `app`
-* Defined a new `Blueprint` named `books_bp`, which has a `url_prefix` of `"/books"`
-* Created a new endpoint that catches requests going to `""` (assumed `"/books"`) with the HTTP method `GET`
-* Iterated through `books`
-* Created a list of Book dictionaries in `books_response`
-* Used `jsonify` with `jsonify(books_response)`
-* Returned this JSON list with the status code `200 OK`
-* Tested this request in Postman
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->

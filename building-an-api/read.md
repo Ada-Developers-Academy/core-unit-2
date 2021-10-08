@@ -134,7 +134,7 @@ Remember to use all debugging tools:
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: 9Lz3nt
 * title: Create and Read, Getting All Books Endpoint
 ##### !question
@@ -159,21 +159,6 @@ Check off all the topics that we've briefly touched on so far.
 * Tested this request in Postman
 
 ##### !end-options
-##### !answer
-
-* Planned the HTTP response, request, and logic for this endpoint
-* Briefly considered `jsonify`
-* Briefly considered `query`
-* Updated this endpoint to match `GET` requests, too
-* Refactored this endpoint to check `request.method`
-* Got a list of `Book` instances using `Book.query.all()`
-* Iterated through `books`
-* Created a list of Book dictionaries in `books_response`
-* Used `jsonify` with `jsonify(books_response)`
-* Returned this JSON list with the status code `200 OK`
-* Tested this request in Postman
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -277,7 +262,7 @@ For reasons that are less important to memorize, Flask will automatically conver
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: ECXaUI
 * title: Create and Read, Getting a Single Book Endpoint
 ##### !question
@@ -297,16 +282,6 @@ Check off all the topics that we've briefly touched on so far.
 * Returned a dictionary literal as our response
 
 ##### !end-options
-##### !answer
-
-* Planned the HTTP response, request, and logic for this endpoint
-* Considered route parameters, and how we need the book ID in the route
-* Created a new endpoint that matches on `GET` requests to `"/<book_id>"`
-* Defined this endpoint with the function signature `def book(book_id):`
-* Used `Book.query.get(book_id)` to get an instance of `Book` matching `book_id`
-* Returned a dictionary literal as our response
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
 

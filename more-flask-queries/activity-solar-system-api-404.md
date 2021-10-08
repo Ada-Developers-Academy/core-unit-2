@@ -46,7 +46,7 @@ As a client, I want to send a request...
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: 912d5b54-0ab9-442d-a004-2348b969a00f
 * title: 404s
 ##### !question
@@ -61,12 +61,5 @@ Check off all the endpoints you modified to handle a non-existing planet.
 * Delete one planet
 
 ##### !end-options
-##### !answer
-
-* Read one planet
-* Update one planet
-* Delete one planet
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->

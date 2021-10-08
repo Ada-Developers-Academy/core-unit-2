@@ -87,7 +87,7 @@ def handle_book(book_id):
 | `"/<book_id>"`                                      | This is the `Blueprint` syntax to indicate _route parameters_. The `<book_id>` placeholder shows that we are looking for a variable value (could be `1`, `2`, or `3000`). We'll use this value in the function as the variable `book_id`, so we should use a good, descriptive name.                                                                                               |
 | `def handle_book(book_id):`                                | This `handle_book` function is called whenever the HTTP request matches the decorator. The name of this function should follow the previously discussed guidelines. We must add a parameter to this method, `book_id`. This parameter name must match the route parameter in the decorator. It will receive the part of the request path that lines up with the placeholder in the route. |
 |`book_id = int(book_id)` | We must convert the `book_id` from the url from a string to an int. |
-| `for book_data in books...`                               | Iterate through the list of book dictionaries, and find the book dictionary with the `id` euqal to `book_id`This is the SQLAlchemy syntax to query for one `Book` resource. This method returns an instance of `Book`.                                                                                                                                                                                                                                                                         |
+| `for book_data in books...`                               | Iterate through the list of book dictionaries, and find the book dictionary with the `id` equal to `book_id`This is the SQLAlchemy syntax to query for one `Book` resource. This method returns an instance of `Book`.                                                                                                                                                                                                                                                                         |
 | `return { "id": book.id, ... }`                            | We can create a dictionary literal for our HTTP response. As always, we must return a response. Flask will default to returning status `200 OK`.                                                                                                                                                                                                                                                                                                                          |
 ### !callout-warning
 
@@ -113,7 +113,7 @@ For reasons that are less important to memorize, Flask will automatically conver
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: 227efe7d-4177-4a2f-aac8-de188d17f62e
 * title: Create and Read, Getting a Single Book Endpoint
 ##### !question
@@ -133,16 +133,6 @@ Check off all the topics that we've briefly touched on so far.
 * Returned a dictionary literal as our response
 
 ##### !end-options
-##### !answer
-
-* Planned the HTTP response, request, and logic for this endpoint
-* Considered route parameters, and how we need the book ID in the route
-* Created a new endpoint that matches on `GET` requests to `"/<book_id>"`
-* Defined this endpoint with the function signature `def book(book_id):`
-* Iterated through `books` to get an instance of `Book` matching `book_id`
-* Returned a dictionary literal as our response
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
