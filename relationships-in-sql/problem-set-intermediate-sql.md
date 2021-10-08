@@ -186,7 +186,7 @@ We want to select the credit card number and expiration date for a customer name
 * language: sql
 * id: 3a3158ed-032e-4d53-b27e-c0351003c67a
 * title: Intermediate SQL
-* data_path: /intermediate-sql/sql/problem-set.sql
+* data_path: /relationships-in-sql/sql/problem-set.sql
 * points: 1
 * topics: sql, sql-select, sql-join
 
@@ -243,7 +243,7 @@ SQL Question on Select with Join and where
 * language: sql
 * id: 9f961b35-f00b-4718-bb7c-32dadd803236
 * title: Intermediate SQL
-* data_path: /intermediate-sql/sql/problem-set.sql
+* data_path: /relationships-in-sql/sql/problem-set.sql
 * points: 1
 * topics: sql, sql-select, sql-join
 
@@ -298,7 +298,7 @@ If we look the `products` table has a foreign key, `vendor_id`.  Could you use t
 * language: sql
 * id: c4d98bad-cfa8-4dfc-ab52-45d38da44488
 * title: Intermediate SQL
-* data_path: /intermediate-sql/sql/problem-set.sql
+* data_path: /relationships-in-sql/sql/problem-set.sql
 * points: 1
 * topics: sql, sql-select, sql-join
 

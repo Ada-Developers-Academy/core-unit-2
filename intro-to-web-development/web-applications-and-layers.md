@@ -1,6 +1,7 @@
 # Web Applications and Layers
 
 <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=0f2b2dc7-5638-4a52-a2f5-ad17004c3bbe&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Learning Goals
 
 - Compare the difference between front-end, back-end, and full-stack programming
