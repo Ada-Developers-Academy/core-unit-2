@@ -47,7 +47,7 @@ Decide who will be the driver today. The person who most desires to practice con
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: f66175ea-4462-4500-ab28-c3a9af991a55
 * title: Create, Read
 ##### !question
@@ -61,11 +61,5 @@ Check off all the endpoints you created and tested.
 * Read one planet
 
 ##### !end-options
-##### !answer
-
-* Read all planets
-* Read one planet
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->

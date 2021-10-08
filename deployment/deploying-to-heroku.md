@@ -367,7 +367,7 @@ This option is useful when we are troubleshooting an issue. If we can recreate t
 <!-- Question 1 -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: bDUwQW
 * title: Deploying to Heroku
 ##### !question
@@ -389,18 +389,6 @@ Check off all the topics that we've briefly touched on so far.
 * Initialized the database by using `$ heroku run flask db upgrade`
 
 ##### !end-options
-##### !answer
-
-* Create a Heroku account and download the Heroku CLI
-* Create a Procfile for our Flask project
-* Committed the Procfile
-* Create a Heroku app
-* Push code to the `heroku` remote
-* Added the Postgres add-on to our Heroku app using the Heroku CLI
-* Set the environment variable for our database in Heroku
-* Initialized the database by using `$ heroku run flask db upgrade`
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
 

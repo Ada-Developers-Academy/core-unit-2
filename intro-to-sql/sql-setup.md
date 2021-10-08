@@ -426,12 +426,12 @@ Here is an out-of-context list of debugging strategies that could come up during
 <!-- Question 1 -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: 3e22effd-b66f-4b6a-ad89-20bed46072b5
 * title: SQL Setup
 ##### !question
 
-While doing the SQL setup for the first time, use this checklist to make sure you tried everything. Submit this question when all tasks are finished.
+While doing the SQL setup for the first time, use this checklist to make sure you tried everything.
 
 ##### !end-question
 ##### !options
@@ -446,18 +446,6 @@ While doing the SQL setup for the first time, use this checklist to make sure yo
 * Drop a table
 
 ##### !end-options
-##### !answer
-
-* Install PostgreSQL
-* Open the Postgres terminal as user `postgres` with `$ psql -U postgres`
-* List all databases with `\l`
-* Create a database with `CREATE DATABASE db_name;`
-* Connect to a database with `\c db_name`
-* List all tables in the connected db with `\dt`
-* Create a table with `CREATE TABLE table_name ( ... );`
-* Drop a table
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier=ignore=end -->
 

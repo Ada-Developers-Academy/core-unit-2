@@ -182,7 +182,7 @@ Let's try it out on our own! We can refer back to the Intro to SQL lessons if we
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: pe3GBP
 * title: Update and Delete, Updating a Book Endpoint
 ##### !question
@@ -204,18 +204,6 @@ Check off all the topics that we've briefly touched on so far.
 * Tested this request in Postman
 
 ##### !end-options
-##### !answer
-
-* Planned the HTTP response, request, and logic for this endpoint
-* Refactored our `"/books/<book_id>"` endpoint to accept `PUT` requests
-* Used `Book.query.get(book_id)` to get an instance of `Book` matching `book_id`
-* Refactored our code to conditionally check the request's method
-* Read the HTTP request body using `request.get_json()`
-* Updated the instance of `Book` in the database
-* Returned a response
-* Tested this request in Postman
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -322,7 +310,7 @@ Let's try it out on our own!
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: wYm5yT
 * title: Update and Delete, Deleting a Book Endpoint
 ##### !question
@@ -344,18 +332,6 @@ Check off all the topics that we've briefly touched on so far.
 * Tested this request in Postman
 
 ##### !end-options
-##### !answer
-
-* Planned the HTTP response, request, and logic for this endpoint
-* Refactored our `"/books/<book_id>"` endpoint to accept `DELETE` requests
-* Used `Book.query.get(book_id)` to get an instance of `Book` matching `book_id`
-* Refactored our code to conditionally check the request's method
-* Deleted the `book` from the database
-* Committed these changes in the database
-* Returned a response
-* Tested this request in Postman
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
 

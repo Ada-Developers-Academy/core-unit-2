@@ -47,7 +47,7 @@ As a client, I want to send a request...
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: 5aa672d2-ff5e-46b5-babf-bf13c9dcb5c3
 * title: Create, Read
 ##### !question
@@ -61,11 +61,5 @@ Check off all the endpoints you created and tested.
 * Delete one planet
 
 ##### !end-options
-##### !answer
-
-* Update one planet
-* Delete one planet
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->

@@ -230,7 +230,7 @@ Recall that our tools for debugging include:
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: checkbox
+* type: tasklist
 * id: 4de3Ri
 * title: Create, Creating a Book Endpoint
 ##### !question
@@ -254,19 +254,5 @@ Check off all the topics that we've briefly touched on so far.
 * Tested this request in Postman
 
 ##### !end-options
-##### !answer
-
-* Planned the HTTP response, request, and logic for this endpoint
-* Briefly considered `request`
-* Briefly considered `Blueprint`
-* Briefly considered `Response`
-* Created a new endpoint that catches requests going to `""` (assumed `"/books"`) with the HTTP method `POST`
-* Read the HTTP request body using `request.get_json()`
-* Created a new instance of `Book`
-* Saved the instance of `Book` in the database
-* Returned an instance of `Response` with the status code `201 Created`
-* Tested this request in Postman
-
-##### !end-answer
 ### !end-challenge
 <!-- prettier-ignore-end -->
