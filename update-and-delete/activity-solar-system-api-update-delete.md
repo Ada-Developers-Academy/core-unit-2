@@ -47,7 +47,7 @@ As a client, I want to send a request...
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: typelist
+* type: tasklist
 * id: 5aa672d2-ff5e-46b5-babf-bf13c9dcb5c3
 * title: Create, Read
 ##### !question
