@@ -57,7 +57,7 @@ REST believes that a uniform interface follows these guidelines:
 | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | Resource-based Paths                         | Request URLs and paths should be based around a _resource_. Recall that resources are any piece of data to return, such as user data or web pages. | If there is a resource about dog data, `/dogs` |
 | Manipulate Resources Through Representations | Clients can modify or delete resources on a server if they have a representation of it, such as an ID                                              | Deleting the Dog resource of ID 45             |
-| Self-Descriptive Messages                    | HTTP requests and responses should include the information of how to be read, by carrying information about their format (usually as a header)     |
+| Self-Descriptive Messages                    | HTTP requests and responses should include the information of how to be read, by carrying information about their format (usually as a header)     |                                                |
 
 Let's revisit REST's name: "Representational state transfer." After considering the name and these guidelines, we may conclude:
 
@@ -127,7 +127,7 @@ In this table, each row describes a different endpoint. We can read each row fro
 | `GET`                | `/students/<student_id>`, where `<student_id>` is a number like `13` | -                            | Get the data of the student with ID #13                                        | Read         |
 | `PUT`                | `/students/<student_id>`, where `<student_id>` is a number like `13` | Updated student data         | Replaces the student ID #13 resource with the student data in the request body | Update       |
 | `PATCH`              | `/students/<student_id>`, where `<student_id>` is a number like `13` | Part of updated student data | Updates the student ID #13 resource with the student data in the request body  | Update       |
-| `DELETE`             | `/students/<student_id>`, where `<student_id>` is a number like `13` | -                            | Deletes the student ID #13 resource                                            |
+| `DELETE`             | `/students/<student_id>`, where `<student_id>` is a number like `13` | -                            | Deletes the student ID #13 resource                                            | Delete       |
 
 ## Examples
 
@@ -150,7 +150,7 @@ Eryn's app needs to store every instructor's name, contact information, and cour
 | `GET`                | `/instructors/<instructor_id>`, where `<instructor_id>` is a number like `5` | -                               | Get the data of the instructor with ID #5                                           | Read         |
 | `PUT`                | `/instructors/<instructor_id>`, where `<instructor_id>` is a number like `5` | Updated instructor data         | Replaces the instructor ID #5 resource with the instructor data in the request body | Update       |
 | `PATCH`              | `/instructors/<instructor_id>`, where `<instructor_id>` is a number like `5` | Part of updated instructor data | Updates the instructor ID #5 resource with the instructor data in the request body  | Update       |
-| `DELETE`             | `/instructors/<instructor_id>`, where `<instructor_id>` is a number like `5` | -                               | Deletes the instructor ID #5 resource                                               |
+| `DELETE`             | `/instructors/<instructor_id>`, where `<instructor_id>` is a number like `5` | -                               | Deletes the instructor ID #5 resource                                               | Delete       |
 
 ### Course Resource
 
@@ -163,7 +163,7 @@ Eryn's app needs to store every course's name, a description, the instructors wh
 | `GET`                | `/courses/<course_id>`, where `<course_id>` is a number like `26` | -                           | Get the data of the course with ID #26                                       | Read         |
 | `PUT`                | `/courses/<course_id>`, where `<course_id>` is a number like `26` | Updated course data         | Replaces the course ID #26 resource with the course data in the request body | Update       |
 | `PATCH`              | `/courses/<course_id>`, where `<course_id>` is a number like `26` | Part of updated course data | Updates the course ID #26 resource with the course data in the request body  | Update       |
-| `DELETE`             | `/courses/<course_id>`, where `<course_id>` is a number like `26` | -                           | Deletes the course ID #26 resource                                           |
+| `DELETE`             | `/courses/<course_id>`, where `<course_id>` is a number like `26` | -                           | Deletes the course ID #26 resource                                           | Delete       |
 
 ### Class Resource
 
@@ -176,7 +176,7 @@ Eryn's app needs to store every class's name, a description, the course that the
 | `GET`                | `/classes/<class_id>`, where `<class_id>` is a number like `171` | -                          | Get the data of the class with ID #171                                      | Read         |
 | `PUT`                | `/classes/<class_id>`, where `<class_id>` is a number like `171` | Updated class data         | Replaces the class ID #171 resource with the class data in the request body | Update       |
 | `PATCH`              | `/classes/<class_id>`, where `<class_id>` is a number like `171` | Part of updated class data | Updates the class ID #171 resource with the class data in the request body  | Update       |
-| `DELETE`             | `/classes/<class_id>`, where `<class_id>` is a number like `171` | -                          | Deletes the class ID #171 resource                                          |
+| `DELETE`             | `/classes/<class_id>`, where `<class_id>` is a number like `171` | -                          | Deletes the class ID #171 resource                                          | Delete       |
 
 ## Check for Understanding
 
