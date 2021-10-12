@@ -2,12 +2,7 @@
 
 ## Goal
 
-Our goal is to practice seeing how the following models apply to how web applications work:
-
-1. client-server model
-1. end-user, front-end layer, back-end layer, database
-
-We should also practice seeing how different components of web applications communicate with each other.
+Our goal is to practice visualizing how the client and the server communicate by creating sequence diagrams.
 
 ## Activity Instructions
 
@@ -42,8 +37,8 @@ Imagine a user who wants to find all free-stuff for sale that has been posted to
 Create a sequence diagram to describe what the user will do and see. Use the following objects/actors for this diagram:
 
 1. End-user
-1. Client (the end-user's browser)
-1. Craigslist.com's web servers
+1. Craigslist.com front-end
+1. Craigslist.com back-end
 
 ### User Searches for All Deliverable Books
 
@@ -54,9 +49,8 @@ Create a sequence diagram to describe what the user will do and see. Use the fol
 1. End-user
 1. Craigslist.com front-end
 1. Craigslist.com back-end
-1. Craigslist.com databases
 
-### User Reviews a Fictional Product: Client-Server
+### User Reviews a Fictional Product
 
 With your pair, create a fictional e-commerce online store. Pick something along the lines of "an online store for books about plants," or "an online store for antique/historical armor," or "an online store for pet clothes." Give this fictional online store a name.
 
@@ -65,21 +59,8 @@ Then, imagine a user who wants to write a review for a product.
 Create a sequence diagram to describe what the user will do and see. Use the following objects/actors for this diagram:
 
 1. End-user
-1. Client (the end-user's browser)
-1. Your online store's web servers
-
-### User Reviews a Fictional Product: Application Layers
-
-Continue to use the same fictional e-commerce store.
-
-Continue to imagine a user who wants to write a review for a product.
-
-Create a sequence diagram to describe what the user will do and see. Use the following objects/actors for this diagram:
-
-1. End-user
-1. Your online store's front-end
-1. Your online store's back-end
-1. Your online store's databases
+1. Craigslist.com front-end
+1. Craigslist.com back-end
 
 ## How to Review
 
