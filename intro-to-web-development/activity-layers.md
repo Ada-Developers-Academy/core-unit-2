@@ -59,6 +59,7 @@ Then, imagine a user who wants to write a review for a product.
 Create a sequence diagram to describe what the user will do and see. Use the following objects/actors for this diagram:
 
 1. End-user
+1. End-user
 1. Craigslist.com front-end
 1. Craigslist.com back-end
 
