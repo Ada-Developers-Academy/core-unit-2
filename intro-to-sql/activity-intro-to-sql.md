@@ -40,18 +40,6 @@ View the list of Postgres databases on this machine using `\l`. Ensure that ther
 
 Create a database named `ride_share_development` with a SQL statement.
 
-### !callout-info
-
-## Take Care When Naming the Database
-Be sure to use a hyphen in `ride-share` and an underscore before `development`. The name is specified this way to follow a naming convention that has two parts: a project name, and an environment.
-
-<br />
-
-When working on database projects, we often have test databases where active development is occurring, test databases, where data for running tests is stored, and production databases, where the live project data lives. By following the naming convention `project-name_environment`, we can keep our databases well-organized!
-
-### !end-callout
-
-
 - [ ] Confirm that this database now exists with `\l`.
 
 - [ ] Connect to this database with `\c ride_share_development`.
