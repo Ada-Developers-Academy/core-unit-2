@@ -120,3 +120,24 @@ If you still receive errors, delete your  `migrations` folder, drop your databas
 
 
 We are ready to create books _with_ an author! Let's move to the next lesson to learn how.
+
+## Check for Understanding
+
+<!-- Question Takeaway -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: paragraph
+* id: fea7f5a1-c411-4145-9a92-959b24f180f7
+* title: One-to-Many Relationships in Flask
+##### !question
+
+What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+
+##### !end-question
+##### !placeholder
+
+My biggest takeaway from this lesson is...
+
+##### !end-placeholder
+### !end-challenge
+<!-- prettier-ignore-end -->
