@@ -91,7 +91,7 @@ How do we define this foreign key in our Flask models? Refer to the [SQLAlchemy 
   class Author:
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String)
-    books = db.relationship("Book", backref="author")
+    books = db.relationship("Book", back_populates="author")
   ```
 </details>
 
