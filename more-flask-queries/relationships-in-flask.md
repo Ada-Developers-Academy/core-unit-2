@@ -76,7 +76,7 @@ So far we've seen relationships in databases strictly through ERDs and SQL comma
 We see that a `book` is connected to the `author` table by the author's `id` as a foreign key. This foreign key is defined as `author_id` in the `book` table. We could call it whatever we wish, just as we decided to add columns `title` and `description`. `author_id` is standard naming convention, however.
 
 ![An entity relational diagram describing a one-to-many relationship between books and authors in a SQL database](../assets/one-to-many-relationships-in-flask_erd.png)
-
+*Fig. ERD describing a one-to-many relationship between books and authors*
 ( [source](https://draw.io) )
 
 So how do we define this foreign key in our Flask models? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#one-to-many) first, then chck out our solution below. There are three ways we _could_ implement a one-to-many relationship in our models. Follow your curiosity and see if you can find out the differences between implementations.
