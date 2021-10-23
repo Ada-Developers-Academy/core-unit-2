@@ -63,7 +63,7 @@ Give this a try on your own, then check out our solution below.
 Next, we should make a Blueprint that groups the endpoints for our `Author` model. Refer back to [Flask Setup](../requests-and-responses-in-flask/flask-hello-books.md) on how to define a blueprint and register it in `create_app`.
 
 The last thing we'll do for now is create the following endpoints for our `Author` model:
-- `GET ` to `/authors/<author_id>`
+- `GET ` to `/authors`
 - `POST` to `/authors`
 
 Again, refer back to [Building an API, Part 1](../building-an-api/read.md) on how to define the `GET` endpoint and the `POST` endpoint.
