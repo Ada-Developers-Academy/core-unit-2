@@ -76,6 +76,7 @@ So far we've seen relationships in databases strictly through ERDs and SQL comma
 We see that a `book` is connected to the `author` table by the author's `id` as a foreign key. This foreign key is defined as `author_id` in the `book` table. We could call it whatever we wish, just as we decided to add columns `title` and `description`. `author_id` is standard naming convention, however.
 
 ![An entity relational diagram describing a one-to-many relationship between books and authors in a SQL database](../assets/one-to-many-relationships-in-flask_erd.png)
+<br/>
 *Fig. ERD describing a one-to-many relationship between books and authors*
 ( [source](https://draw.io) )
 
