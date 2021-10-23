@@ -7,7 +7,7 @@ Our goal for this lesson is to use it as a reference for establishing relationsh
 This lesson covers:
 
 - Connecting two tables together in a one-to-many relationship with SQLAlchemy
-- Utilizing documentation and problem solving to find missing information.
+- Utilizing documentation and problem solving to find missing information
 
 ### Before This Lesson
 
@@ -74,11 +74,12 @@ Again, refer back to [Building an API, Part 1](../building-an-api/read.md) on ho
 Let's think about what the relationship looks like between books and authors. Just like we've done for relationships defined using SQL commands, we can use entity relationship diagrams to visualize the relationships between our models.
 
 ![An entity relationship diagram describing a one-to-many relationship between authors and books](../assets/one-to-many-relationships-in-flask_erd.png)  
+
 _Fig. ERD describing a one-to-many relationship between authors and books_
 
 We see that a `book` is connected to the `author` table by the author's `id` as a foreign key. This foreign key is defined as `author_id` in the `book` table. We could call it whatever we wish, just as we decided to add columns `title` and `description`. `author_id` follows a standard convention for naming foreign keys which uses the name of the foreign table, followed by `_id`.
 
-How do we define this foreign key in our Flask models? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#one-to-many) first, then check out our solution below. There are several ways we _could_ implement a one-to-many relationship in our models. Follow your curiosity if you're interested in some of the other possible approaches.
+How do we define this foreign key in our Flask models? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#one-to-many) first, try it out, then check out our solution below. There are several ways we _could_ implement a one-to-many relationship in our models. Follow your curiosity if you're interested in some of the other possible approaches. (For example, what's the difference between `back_populates` and `backref`? Is one more efficient?)
 
 <br />
 
@@ -95,18 +96,20 @@ How do we define this foreign key in our Flask models? Refer to the [SQLAlchemy 
   ```
 </details>
 
+<br/>
+
 <details>
   <summary>Updated <code>Book</code> model</summary>
 
   ```python
   from app import db
 
-
   class Book(db.Model):
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     title = db.Column(db.String)
     description = db.Column(db.String)
     author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
+    author = db.relationship("Author", back_populates="books")
   ```
 </details>
 
