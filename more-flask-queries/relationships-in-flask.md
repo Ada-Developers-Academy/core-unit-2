@@ -15,7 +15,7 @@ This lesson uses the Hello Books API.
 
 <br />
 
-<details style="max-width: 700px; margin: auto;">
+<details>
     <summary>
         Before beginning this lesson, the Hello Books API should have the following.
     </summary>
@@ -41,7 +41,7 @@ The `Book` model and table should have the following columns:
 
 ## Author Model, Blueprint, and Routes
 
-We only have the `Book` model in our Hello Books API, so first we need to define a model for `Author` next in a new file `author.py` inside the `models` folder. An author should have the following attributes: an `id` as the primary key and a `name`.
+We only have the `Book` model in our Hello Books API, so first we need to define a model for `Author` in a new file `author.py` inside the `models` folder. An author should have the following attributes: an `id` as the primary key, and a string `name`.
 
 Give this a try on your own, then check out our solution below.
 
@@ -60,10 +60,10 @@ Give this a try on your own, then check out our solution below.
 </details>
 
 
-Next, we should make a Blueprint that organizes our endpoints together for our `Author` model. Refer back to [Flask Setup](../requests-and-responses-in-flask/flask-hello-books.md) on how to define a blueprint and register it in `create_app`.
+Next, we should make a Blueprint that groups the endpoints for our `Author` model. Refer back to [Flask Setup](../requests-and-responses-in-flask/flask-hello-books.md) on how to define a blueprint and register it in `create_app`.
 
-Lastly, we should (at the very least) define the following endpoints for our `Author` model for now:
-- `GET ` to `/authors/<author_id>`
+The last thing we'll do for now is create the following endpoints for our `Author` model:
+- `GET ` to `/authors`
 - `POST` to `/authors`
 
 Again, refer back to [Building an API, Part 1](../building-an-api/read.md) on how to define the `GET` endpoint and the `POST` endpoint.
@@ -71,53 +71,62 @@ Again, refer back to [Building an API, Part 1](../building-an-api/read.md) on ho
 
 ## Visualizing and Implementing the Relationship
 
-So far we've seen relationships in databases strictly through ERDs and SQL commands. Below is an example of an ERD we might have created to visualize the relationship between `authors` and `books`.
+Let's think about what the relationship looks like between books and authors. Just like we've done for relationships defined using SQL commands, we can use entity relationship diagrams to visualize the relationships between our models.
 
-We see that a `book` is connected to the `author` table by the author's `id` as a foreign key. This foreign key is defined as `author_id` in the `book` table. We could call it whatever we wish, just as we decided to add columns `title` and `description`. `author_id` is standard naming convention, however.
+![An entity relationship diagram describing a one-to-many relationship between authors and books](../assets/one-to-many-relationships-in-flask_erd.png)  
+_Fig. ERD describing a one-to-many relationship between authors and books_
 
-![An entity relational diagram describing a one-to-many relationship between books and authors in a SQL database](../assets/one-to-many-relationships-in-flask_erd.png)
-<br/>
-*Fig. ERD describing a one-to-many relationship between books and authors*
-( [source](https://draw.io) )
+We see that a `book` is connected to the `author` table by the author's `id` as a foreign key. This foreign key is defined as `author_id` in the `book` table. We could call it whatever we wish, just as we decided to add columns `title` and `description`. `author_id` follows a standard convention for naming foreign keys which uses the name of the foreign table, followed by `_id`.
 
-So how do we define this foreign key in our Flask models? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#one-to-many) first, then chck out our solution below. There are three ways we _could_ implement a one-to-many relationship in our models. Follow your curiosity and see if you can find out the differences between implementations.
+How do we define this foreign key in our Flask models? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#one-to-many) first, then check out our solution below. There are several ways we _could_ implement a one-to-many relationship in our models. Follow your curiosity if you're interested in some of the other possible approaches.
 
 <br />
 
 <details>
-  <summary>Check out our solution</summary>
+  <summary>Updated <code>Author</code> model</summary>
 
-  ``` python
+  ```python
   from app import db
 
   class Author:
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     name = db.Column(db.String)
-    author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
-    author = db.relationship("Author", backref="books")
+    books = db.relationship("Book", back_populates="author")
   ```
 </details>
 
-Now we have our `author_id`, but what is this new `author` attribute? And what in the world does `backref` do? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#one-to-many) or your search engine to find an answer.
+<details>
+  <summary>Updated <code>Book</code> model</summary>
 
+  ```python
+  from app import db
+
+
+  class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String)
+    description = db.Column(db.String)
+    author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
+  ```
+</details>
+
+Now we have our `author_id` in the `Book` model, but what is the new `books` attribute in `Author`? And what purpose does `backref` serve? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#one-to-many) or your favorite search engine to find an answer.
 
 ### Don't Forget to Generate Migrations
 
-Great! We've got a new model and made changes to our previous `Book` model. Sounds like it's time for another migration! Refer back to [Models Setup](../building-an-api/models-setup.md) to find the terminal commands for migration.
-
+Great! We've got a new model and made changes to our previous `Book` model. Sounds like it's time for another migration! We can refer back to [Models Setup](../building-an-api/models-setup.md) to review the terminal commands for migration.
 
 ### !callout-danger
 
 ## Troubleshooting Migration Errors
 
-Sometimes significant changes to models, like adding new not nullable attributes, will make migrating hairy. There's nothing wrong about deleteing the `migrations` folder in your project and trying again.
+The tools that detect model changes aren't perfect. When we make changes to existing models, sometimes the state of our data combined with the model changes can make migrating difficult. As we gain more experience working with migrations, we'll learn how to troubleshoot those difficulties, but for now, there's nothing wrong with deleting our migrations history and the existing database, then trying again.
 
-If you still receive errors, delete your  `migrations` folder, drop your database and then re-create it, and then try again!
+<br/>
+
+First, delete the `migrations` folder in the project, and drop the project database. Next, recreate the project database, and reinitialize the flask database setup. Then rerun the migration detection and upgrade steps.
 
 ### !end-callout
-
-### !callout-danger
-
 
 We are ready to create books _with_ an author! Let's move to the next lesson to learn how.
 
