@@ -106,21 +106,21 @@ Try puzzling this out yourself with the [Flask-SQLAlchemy documentation](https:/
     <summary>Finished <code>POST</code> endpoint example</summary>
 
 ``` python
-    @authors.route("/<author_id>/books", methods=["GET", "POST"])
+@authors.route("/<author_id>/books", methods=["GET", "POST"])
 def handle_authors_books(author_id):
+    author = Author.query.get(id=author_id)
+    if author is None:
+        return make_response("Author not found", 404)
+
     if request.method == "POST":
         request_body = request.get_json()
-
-        requested_author = Author.query.get(id=author_id)
         new_book = Book(
             title=request_body["title"],
             description=request_body["description"],
             author=requested_author
             )
-
         db.session.add(new_book)
         db.session.commit()
-
         return make_response(f"Book {new_book.title} by {new_book.author.name} successfully created", 201)
 ```
 </details>
@@ -133,14 +133,12 @@ Once we've successfully created a few new books belonging to an author, we can u
 ``` python
 # inside the handle_authors_books function
 
-if request.method == "GET":
-    author = Author.query.get(id=author_id)
+author = Author.query.get(id=author_id)
 
-    author_response = {
-        "id": author.id,
-        "name": author.name,
-        "has_books": []
-    }
+# POST route code here
+
+elif request.method == "GET":
+    books_response = []
 ```
 
 How do we access the `books` from the `author` record and add them to our response body? Try puzzling this out yourself with trial and error, as well as your search engine, then check out our solution below. _Hint: Print statements are your friend._
@@ -151,22 +149,17 @@ How do we access the `books` from the `author` record and add them to our respon
     <summary>Updated <code>GET</code> endpoint example</summary>
 
 ``` python
-if request.method == "GET":
-    author = Author.query.get(id=author_id)
-
-    author_response = {
-        "id": author.id,
-        "name": author.name,
-        "has_books": []
-    }
-
+elif request.method == "GET":
+    books_response = []
     for book in author.books:
-        author_response["has_books"].append({
+        books_response.append(
+            {
+            "id": book.id,
             "title": book.title,
             "description": book.description
-        })
-
-    return jsonify(author_response)
+            }
+        )
+    return jsonify(books_response)
 ```
 </details>
 
