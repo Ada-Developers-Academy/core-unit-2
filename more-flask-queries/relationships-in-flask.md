@@ -48,7 +48,7 @@ Give this a try on your own, then check out our solution below.
 <br />
 
 <details>
-  <summary>Click here for a solution</summary>
+  <summary>Click here for one way to do this</summary>
 
   ``` python
   from app import db
