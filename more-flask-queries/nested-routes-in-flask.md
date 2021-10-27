@@ -15,7 +15,7 @@ This lesson uses the Hello Books API.
 
 <br />
 
-<details style="max-width: 700px; margin: auto;">
+<details>
     <summary>
         Before beginning this lesson, the Hello Books API should have the following.
     </summary>
