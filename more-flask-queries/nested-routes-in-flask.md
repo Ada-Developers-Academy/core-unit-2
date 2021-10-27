@@ -2,7 +2,7 @@
 
 ## Goals
 
-Our goal for this lesson is to use it as a reference for defining a new endpoint with a nested route that connects a child model to its adult model.
+Our goal for this lesson is to use it as a reference for defining a new endpoint with a nested route that connects a parent model to its child model instances.
 
 This lesson covers:
 
