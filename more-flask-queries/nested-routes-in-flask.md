@@ -66,7 +66,7 @@ What information do we need to accomplish this? We need to know _which_ author, 
 
 ## More Than One Right Answer
 
-There's more than one way to implement the relationship between our book and author; for our curriculum we will stick with RESTful routing naming conventions and implement a *nested route* to describe this relationship.
+There's more than one way to implement the relationship between our book and author. For our curriculum we will stick with RESTful routing naming conventions and implement a *nested route* to describe this relationship.
 
 ### !end-callout
 
