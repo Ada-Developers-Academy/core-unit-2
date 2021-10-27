@@ -83,7 +83,7 @@ The nested route starts with the _parent_ model. In this case, `authors`. Then w
 
 ## Creating Our Endpoint
 
-Our nested route `/authors/<author_id>/books` will be grouped within our `authors_bp` blueprint. Here is an example of how it might look with a couple of missing lines:
+Our nested route `/authors/<author_id>/books` will be grouped within our `authors_bp` blueprint. Here is an example of how we might start to implement this:
 
 ```python
 @authors.route("/<author_id>/books", methods=["GET", "POST"])
