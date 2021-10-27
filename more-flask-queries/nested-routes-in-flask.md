@@ -27,11 +27,11 @@ This lesson uses the Hello Books API.
 - An `Author` model defined
 
 - Endpoints defined for these RESTful routes:
-- `GET` to `/books`
-- `POST` to `/books`
-- `GET` to `/books/<book_id>`
-- `PUT` to `/books/<book_id>`
-- `DELETE` to `/books/<book_id>`
+  - `GET` to `/books`
+  - `POST` to `/books`
+  - `GET` to `/books/<book_id>`
+  - `PUT` to `/books/<book_id>`
+  - `DELETE` to `/books/<book_id>`
 
 - Endpoints defined for these RESTful routes:
 - `GET` to `/authors`
