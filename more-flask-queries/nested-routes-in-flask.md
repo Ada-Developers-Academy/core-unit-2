@@ -76,7 +76,7 @@ There's more than one way to implement the relationship between our book and aut
 Nested routes (also called nested resources) describes the parent-child relationship between (at least) two models in our API. By nesting resources in a route, it allows the client to retrieve only the data they require. For example, not _all_ books or _all_ authors, but books from a particular author based on the author's `id`.
 
 
-![A diagram of a nested route: '/author/author_id/books'](../assets/nested-routes-in-flask_route-diagram.png)
+![A diagram of a nested route: '/author/author_id/books'](../assets/nested-routes-in-flask_route-diagram.png)  
 
 The nested route starts with the _parent_ model. In this case, `authors`. Then we specify the appropriate author record's `id` we want our new _child_ model record to belong to. In this case, that is `books`.
 
