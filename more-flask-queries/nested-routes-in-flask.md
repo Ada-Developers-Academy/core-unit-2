@@ -34,8 +34,8 @@ This lesson uses the Hello Books API.
   - `DELETE` to `/books/<book_id>`
 
 - Endpoints defined for these RESTful routes:
-- `GET` to `/authors`
-- `POST` to `/authors`
+  - `GET` to `/authors`
+  - `POST` to `/authors`
 
 The `Book` model and table should have the following columns:
 
