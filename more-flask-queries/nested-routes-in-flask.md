@@ -143,7 +143,7 @@ elif request.method == "GET":
     books_response = []
 ```
 
-How do we access the `books` from the `author` record and add them to our response body? Try puzzling this out yourself with trial and error, as well as your search engine, then check out our solution below. _Hint: Print statements are your friend._
+How do we access the `books` from the `author` record and add them to our response body? Try puzzling this out yourself with trial and error, as well as your search engine, then check out our solution below. _Hint: `print` statements will still appear in the terminal output, so they can be helpful to use during our investigation._
 
 <br/>
 
