@@ -77,6 +77,7 @@ Nested routes (also called nested resources) describes the parent-child relation
 
 
 ![A diagram of a nested route: '/author/author_id/books'](../assets/nested-routes-in-flask_route-diagram.png)  
+*Fig.  A diagram of a nested route*
 
 The nested route starts with the _parent_ model. In this case, `authors`. Then we specify the appropriate author record's `id` we want our new _child_ model record to belong to. In this case, that is `books`.
 
