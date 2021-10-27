@@ -58,7 +58,7 @@ The `Author` model and table should have the following columns:
 
 Let's consider this feature:
 
-> As a client, I want to send a request to create a new book and connect it to an author already found in the databse.
+> As a client, I want to send a request to create a new book and connect it to an author already found in the database.
 
 What information do we need to accomplish this? We need to know _which_ author, along with the new book's `title` and `description`. Now we could query the author by her name, but there might be authors with the same name! Sounds like a job for an `id` then!
 
