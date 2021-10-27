@@ -334,10 +334,6 @@ Standards:
         Path: /more-flask-queries/query-params.md
       -
         Type: Lesson
-        UID: 1b0fd3d1-a9d1-4cec-900a-4fe6cd44b573
-        Path: /more-flask-queries/relationships-in-flask.md
-      -
-        Type: Lesson
         UID: 2cfe7232-9dd4-4efe-8d33-9a4539ec3c63
         Path: /more-flask-queries/activity-solar-system-api-404.md
   -
@@ -403,16 +399,24 @@ Standards:
         UID: ee88de6f19748458e8539e3835f8c294
         Path: /deployment/activity-deploying-to-heroku.md
   -
-    Title: Many-to-Many Relationships
-    Description: "Database Relationships, Establishing Relationships, Problem Set: Intermediate SQL"
-    UID: a1733cc3
+    Title: (References) Relationships in SQLAlchemy
+    Description: "One-to-Many Relationships, Nested Routes in Flask, Many-to-Many Relationships"
+    UID: 11960148-2005-4ce6-b12d-c9f788667407
     SuccessCriteria:
       - success criteria
     ContentFiles:
       -
         Type: Lesson
         UID: 55cb7e64-9a4f-47f5-bc7d-162e38257f05
-        Path: /many-to-many-relationships/many-to-many.md
+        Path: /relationships-in-sqlalchemy/one-to-many.md
+      -
+        Type: Lesson
+        UID: 66f19557-3680-4552-bb9b-440ea22d0c20
+        Path: /relationships-in-sqlalchemy/nested-routes-in-flask.md
+      -
+        Type: Lesson
+        UID: c672b599-4f30-44cc-8831-0cf91f17d63e
+        Path: /relationships-in-sqlalchemy/many-to-many.md
   -
     Title: Unit Wrap Up
     Description: "Activity: Mind Map"
