@@ -419,11 +419,11 @@ Standards:
         Path: /relationships-in-sqlalchemy/many-to-many-models.md
       -
         Type: Lesson
-        UID: c672b599-4f30-44cc-8831-0cf91f17d63e
+        UID: 3bb7e9d1-b7fa-4067-a404-8d77468b563e
         Path: /relationships-in-sqlalchemy/many-to-many-routes.md
       -
         Type: Lesson
-        UID: c672b599-4f30-44cc-8831-0cf91f17d63e
+        UID: f819921c-5b20-4f0e-8816-7edc77cb2849
         Path: /relationships-in-sqlalchemy/showing-relationships.md
   -
     Title: Unit Wrap Up
