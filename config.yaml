@@ -416,7 +416,15 @@ Standards:
       -
         Type: Lesson
         UID: c672b599-4f30-44cc-8831-0cf91f17d63e
-        Path: /relationships-in-sqlalchemy/many-to-many.md
+        Path: /relationships-in-sqlalchemy/many-to-many-models.md
+      -
+        Type: Lesson
+        UID: c672b599-4f30-44cc-8831-0cf91f17d63e
+        Path: /relationships-in-sqlalchemy/many-to-many-routes.md
+      -
+        Type: Lesson
+        UID: c672b599-4f30-44cc-8831-0cf91f17d63e
+        Path: /relationships-in-sqlalchemy/showing-relationships.md
   -
     Title: Unit Wrap Up
     Description: "Activity: Mind Map"
