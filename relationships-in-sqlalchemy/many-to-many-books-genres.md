@@ -79,7 +79,7 @@ You may refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/1
 <br/>
 
 <details>
-  <summary>Click here for one way to implement the BookGenre model.</summary>
+  <summary>Click here for one way to implement the <code>BookGenre</code> model.</summary>
 
   ``` python
   # app/models/book_genre.py
@@ -93,11 +93,13 @@ You may refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/1
   ```
 </details>
 
-In order to easily see the `genres` associate with a particular book, we can add a relationship attribute to the `Book` model: `genres = db.relationship("Genre", secondary="books_genres", backref="books")` 
+In order to easily see the `genres` associate with a particular book, we can add a relationship attribute to the `Book` model: 
+- `genres = db.relationship("Genre", secondary="books_genres", backref="books")` 
 
-By using the `backref` keyword, we will also add a `books` attribute to the `Genre` model. In summary, by adding the `genres` attribute to the `Book` model:
-     - `book.genres` returns a list of `Genre` instances associated with the `Book` instance named `book`.
-     - `genre.books` returns a list of `Book` istances associated with the `Genre` instance named `genre`.
+By using the `backref` keyword, we also add a `books` attribute to the `Genre` model. 
+In summary, by adding the `genres` attribute to the `Book` model:
+- `book.genres` returns a list of `Genre` instances associated with the `Book` instance named `book`.
+- `genre.books` returns a list of `Book` istances associated with the `Genre` instance named `genre`.
 
 
 <details>
@@ -131,12 +133,14 @@ Now that we have established our models to create a many-to-many relationships b
 |--|--|--|
 |`PATCH`|`/books/<book_id>/assign_genres`|`{"genres": [1, 2, 3]}`|
 
-Not that the request body contains a list of `genre_ids` to indicate which genres to assign to the book with `book_id`.
+Note that the request body contains a list of `genre_ids` to indicate which genres to assign to the book with `book_id`.
 
 In our route function we will need to 
 - Query the `Book` table to get the book with `book_id`
 - Query the `Genre` table to get the genres with the `genre_id` is the request body
 - Assign the `genre`s from the request body.
+
+<br/>
 
 <details>
   <summary>Give this function a try and then click here to see the complete route.</summary>
@@ -161,13 +165,15 @@ In our route function we will need to
   ```
 </details>
 
-Note: This custom route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships, for instance with a `POST` `/genres/<genre_id>/books` route. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../relationships-in-sqlalchemy/bested-routes-in-flask.md))
+Note: This custom route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships, for instance with a `POST` `/genres/<genre_id>/books` route. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../relationships-in-sqlalchemy/bested-routes-in-flask.md)
 
 ## Displaying relationships in `Book` JSON
 
 Let's refactor our `GET` `\books\<book_id>` route. Currently this route returns JSON with the keys `"id"`, `"title"`, and `"description"`. Now that we've establishing a relationship between `Book`s and `Author`s and `Book`s and `Genre`s, let's add the keys `author` and `genres` to the JSON in our response body.
 
 To do this work, let's create a instance method `to_dict` on the `Book` class that returns the json we are looking for. 
+
+<br/>
 
 <details>
     <summary>Give it a try and then click here for one implementation.</summary>
@@ -221,7 +227,7 @@ Check off all the features you've written and tested.
 ##### !end-question
 ##### !options
 
-* Create `GenreBook` model
+* Create `BookGenre` model
 * Import `BookGenre` in `__init__.py`
 * Add `genres` attribute to `Book` model
 * Create `PATCH` `/book/<books_id>/assign_genres` route

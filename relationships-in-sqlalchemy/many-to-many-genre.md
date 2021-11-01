@@ -79,7 +79,7 @@ Great! We've got a new model. Sounds like it's time for another migration! We ca
 
 ## Genre Blueprint
 
-We should create a Blueprint that groups the endpoints for our `Genre` model Refer back to [Flask Setup](../requests-and-responses-in-flask/flask-hello-books.md) on how to define a blueprint and register it in `create_app`.
+We should create a Blueprint that groups the endpoints for our `Genre` model. Refer back to [Flask Setup](../requests-and-responses-in-flask/flask-hello-books.md) on how to define a blueprint and register it in `create_app`.
 
 We also need to import the `Genre` model in our `__init__.py` file.
 
