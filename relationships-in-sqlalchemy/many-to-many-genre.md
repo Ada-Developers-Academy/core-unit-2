@@ -171,8 +171,8 @@ Check off all the features you've written and tested.
 * Create `genres_bp`
 * Register genres_bp in `__init__.py`
 * Import `Genre` in `__init__.py`
-* Create `GET` `genres` route
-* Create `POST` `genres` route
+* Create `GET` `\genres` route
+* Create `POST` `\genres` route
 
 ##### !end-options
 ### !end-challenge
