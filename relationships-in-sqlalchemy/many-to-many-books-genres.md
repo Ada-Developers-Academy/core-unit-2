@@ -11,6 +11,7 @@ This lesson covers:
 - Creating a `BookGenre` association model / join table.
 - Adding a relationship attrbiute `genres` to the `Book` model.
 - Creating a `PATCH` `/books/<book_id>/assign_genres` custom route to associate genres with a book.
+- Creating a `Book` instance method `to_dict` that will return json with `author` and `genres` keys.
 
 ### Before This Lesson
 
@@ -162,15 +163,51 @@ In our route function we will need to
 
 Note: This custom route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships, for instance with a `POST` `/genres/<genre_id>/books` route. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../relationships-in-sqlalchemy/bested-routes-in-flask.md))
 
+## Displaying relationships in `Book` JSON
+
+Let's refactor our `GET` `\books\<book_id>` route. Currently this route returns JSON with the keys `"id"`, `"title"`, and `"description"`. Now that we've establishing a relationship between `Book`s and `Author`s and `Book`s and `Genre`s, let's add the keys `author` and `genres` to the JSON in our response body.
+
+To do this work, let's create a instance method `to_dict` on the `Book` class that returns the json we are looking for. 
+
+<details>
+    <summary>Give it a try and then click here for one implementation.</summary>
+
+    ```python
+    # app/models/book.py
+
+    ...
+
+    def to_dict(self):
+        genres = []
+        for genre in self.genres:
+            genres.append(genre.name)
+
+        if self.author:
+            author = self.author.name
+        else:
+            author = None
+
+        return {
+                "id": self.id,
+                "title": self.title,
+                "description": self.description,
+                "genres": genres,
+                "author": author
+                }
+    ```
+</details>
+
+In `routes.py` refactor the `GET` `/books` and `GET` `/books/<book_id>` to use the instance method `to_dict`.
+
 ## Manual Testing in Postman
 
 Now that we have established a relationship between the `Genre` and `Book` models, we can test our changes using Postman.
 
 View the genres in the database and the books in the database with a `GET` to `/genres` and a `GET` to `/books`.
 
-Assign one or more genres to a book in the database with a `PATCH` to `/books/<book_id>/assign_genres.
+Assign one or more genres to a book in the database with a `PATCH` to `/books/<book_id>/assign_genres`.
 
-In the next lesson, we will update our `GET` `/books` route to verify that the genres have been added to our book.
+Verify the genres have been added to the book with a `GET` to `/books/<book_id>`. 
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -187,7 +224,8 @@ Check off all the features you've written and tested.
 * Create `GenreBook` model
 * Import `BookGenre` in `__init__.py`
 * Add `genres` attribute to `Book` model
-* Create `PATCH` `\book\<books_id>\assign_genres` route
+* Create `PATCH` `/book/<books_id>/assign_genres` route
+* Refactor `GET` `/books` routes to use `to_dict` instance method.
 
 ##### !end-options
 ### !end-challenge
