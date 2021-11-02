@@ -203,7 +203,7 @@ First, we need to determine which branch our local repository is on. Run `git st
 On branch your-branch-name
 ```
 
-We next will push our project's Git history to a remote named `heroku`. We will push the branch on our computer to Heroku's default `main` branch on our new Heroku virtual computer. In the command below, replace `your-branch-name` with the name of the branch you identified using `git status`.
+We next will push our project's Git history to a remote named `heroku`. We will push the branch on our computer to Heroku's default `main` branch in our new Heroku environment. In the command below, replace `your-branch-name` with the name of the branch you identified using `git status`.
 
 ```bash
 $ git push heroku your-branch-name:main
