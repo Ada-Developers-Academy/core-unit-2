@@ -86,9 +86,9 @@ You may refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/1
   from app import db
 
   class BookGenre(db.Model):
-    __tablename__ = "books_genres"
-    book_id = db.Column(db.Integer, db.ForeignKey('book.id'), primary_key=True,nullable=False)
-    genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'), primary_key=True,nullable=False)
+      __tablename__ = "books_genres"
+      book_id = db.Column(db.Integer, db.ForeignKey('book.id'), primary_key=True,nullable=False)
+      genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'), primary_key=True,nullable=False)
 
   ```
 </details>
@@ -109,12 +109,12 @@ In summary, by adding the `genres` attribute to the `Book` model:
   # app/models/book.py
 
   class Book(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String)
-    description = db.Column(db.String)
-    author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
-    author = db.relationship("Author", backref="books")
-    genres = db.relationship("Genre", secondary="books_genres", backref="books")
+      id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+      title = db.Column(db.String)
+      description = db.Column(db.String)
+      author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
+      author = db.relationship("Author", backref="books")
+      genres = db.relationship("Genre", secondary="books_genres", backref="books")
 
   ```
 </details>
@@ -149,19 +149,19 @@ In our route function we will need to
 
   @books_bp.route("/<book_id>/assign_genres", methods=["PATCH"])
   def assign_genres(book_id):
-    book = Book.query.get(book_id)
+      book = Book.query.get(book_id)
 
-    if book is None:
-      return make_response(f"Book #{book.id} not found", 404)
+      if book is None:
+          return make_response(f"Book #{book.id} not found", 404)
     
-    request_body = request.get_json()
+      request_body = request.get_json()
 
-    for id in request_body["genres"]:
-      book.genres.append(Genre.query.get(id))
+      for id in request_body["genres"]:
+          book.genres.append(Genre.query.get(id))
     
-    db.session.commit()
+      db.session.commit()
 
-    return make_response("Genres successfully added", 200)
+      return make_response("Genres successfully added", 200)
   ```
 </details>
 
@@ -194,12 +194,12 @@ To do this work, let's create a instance method `to_dict` on the `Book` class th
             author = None
 
         return {
-                "id": self.id,
-                "title": self.title,
-                "description": self.description,
-                "genres": genres,
-                "author": author
-                }
+                    "id": self.id,
+                    "title": self.title,
+                    "description": self.description,
+                    "genres": genres,
+                    "author": author
+               }
     ```
 </details>
 

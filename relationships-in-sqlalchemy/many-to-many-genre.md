@@ -68,8 +68,8 @@ Give this a try on your own, then check out our solution below.
   from app import db
 
   class Genre(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String)
+      id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+      name = db.Column(db.String)
   ```
 </details>
 
