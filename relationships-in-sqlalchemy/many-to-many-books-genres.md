@@ -62,7 +62,7 @@ The `Genre` model and table should have the following columns:
 
 Let's think about what the relationship looks like between `books` and `genres`. Just like we've done for relationships defined using SQL commands, we can use entity relationship diagrams to visualize the relationships between our models.
 
-![An entity relationship diagram describing a many-to-many relationship between genres and books](../assets/many-to-many-relationships-in-flask_erd.png)  
+![An entity relationship diagram describing a many-to-many relationship between genres and books](../assets/many-to-many.drawio.svg)  
 
 _Fig. ERD describing a many-to-many relationship between books and genres_
 
@@ -165,7 +165,7 @@ In our route function we will need to
   ```
 </details>
 
-Note: This custom route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships, for instance with a `POST` `/genres/<genre_id>/books` route. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../relationships-in-sqlalchemy/bested-routes-in-flask.md)
+Note: This custom route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships, for instance with a `POST` `/genres/<genre_id>/books` route. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../relationships-in-sqlalchemy/nested-routes-in-flask.md)
 
 ## Displaying relationships in `Book` JSON
 
