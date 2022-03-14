@@ -94,11 +94,16 @@ Let's briefly cover the contents of a `tests/conftest.py` file, and then copy th
 import pytest
 from app import create_app
 from app import db
+from flask.signals import request_finished
 
 
 @pytest.fixture
 def app():
     app = create_app({"TESTING": True})
+
+    @request_finished.connect_via(app)
+    def expire_session(sender, response, **extra):
+        db.session.remove()
 
     with app.app_context():
         db.create_all()
@@ -120,6 +125,8 @@ def client(app):
 | `@pytest.fixture`                                   | We'll create and use a pytest fixture named `app`, which will be used in our `client` fixture (defined later)                                                                                              |
 | `app = create_app( ... )`                           | When we run our tests, this line will run and create an `app` object. It's using the same `create_app` function defined in our `app/__init__.py` file!                                                      |
 | `{"TESTING": True}`                                 | Here, we're passing in a dictionary to represent a "test config" object. The current implementation of `create_app()` in `app/__init__.py` uses this argument only to check if it's truthy (which this is!). |
+|`@request_finished.connect_via(app)`| This decorator indicates that the function defined below `expire_all` will be invoked after any request is completed |
+|`db.session.remove()`| After a request is made in our test, this line creates a new database session so that we can test that changes were persisted in the database. This is particularly relevant for testing the update method. Without this line, when we test that an update was made to a record following a `put` request, the test will only look at the local copy of the updated record. By adding `db.session.remove()`, we make sure the test checks that the update was persisted in the database.
 | `with app.app_context():`                           | This syntax designates that the following code should have an _application context_. This lets various functionality in Flask determine what the current running app is. This is particularly important when accessing the database associated with the app.                                                                   |
 | `db.create_all()` | At the start of each test, this code recreates the tables needed for our models. |
 | `yield app`                                         | This fixture suspends here, returning the app for use in tests or other fixtures. The lines after this `yield` statement will run after the test using the app has been completed.                                                              |
