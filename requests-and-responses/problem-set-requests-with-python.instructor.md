@@ -6,7 +6,7 @@ This isn't autograded for these reasons:
 1. I didn't put in the work of making a custom snippet that installs `requests`
 1. I haven't written in how to do unit testing with API calls (mocking calls)
 
-Here's the answer I got formatted:
+Here's the answer Simon got formatted:
 
 ```python
 {
@@ -41,7 +41,7 @@ Here's the answer I got formatted:
 }
 ```
 
-And the solution I had
+And the solution Simon had
 
 ```python
 import requests
@@ -72,3 +72,8 @@ wonders = ["Great Wall of China", "Petra", "Colosseum",
 
 print(get_lat_lon(wonders))
 ```
+
+### Aside
+
+- defined "api rate limit" in "api keys" lesson as a set-up for the seven wonders problem set
+  - put a hint about using `sleep` in seven wonders problem set

@@ -2,7 +2,7 @@
 Standards:
   -
     Title: Intro To Web Development
-    Description: "Web Applications and Layers, Intro to Clients, Servers, HTTP, Sequence Diagrams, Activity: Layers"
+    Description: "Web Applications and Layers, Intro to Clients, Servers, HTTP, Sequence Diagrams, Request-Response Cycle Activity: Layers"
     UID: 87ee542387da94693acb5efb099b7f58
     SuccessCriteria:
       - success criteria
@@ -25,23 +25,23 @@ Standards:
         Path: /intro-to-web-development/sequence-diagrams.md
       -
         Type: Lesson
+        UID: 725ecafa914bb1b7bd4f47a305398ae8
+        Path: /intro-to-web-development/request-response-cycle.md
+      -
+        Type: Lesson
         UID: 50ce8362260e6524b31d9c6a8c990c2c
         Path: /intro-to-web-development/activity-layers.md
   -
-    Title: Requests And Responses
-    Description: "Request-Response Cycle, Sending Requests from Postman, API Keys, Sending Requests With Python, Problem Set: Requests With Python, Activity: Web API Jigsaw"
+    Title: Requests And Responses in Postman and Python
+    Description: "Sending Requests from Postman, API Keys, Sending Requests With Python, Problem Set: Requests With Python, Activity: Web API Jigsaw"
     UID: b33d004935f89cb3dc27032aed9a1971
     SuccessCriteria:
       - success criteria
     ContentFiles:
       -
         Type: Instructor
-        UID: f8718b982976e86f238c9e3b0af77636
-        Path: /requests-and-responses/requests-and-responses.instructor.md
-      -
-        Type: Lesson
-        UID: 725ecafa914bb1b7bd4f47a305398ae8
-        Path: /requests-and-responses/request-response-cycle.md
+        UID: 4e147331c0920ff789c815744d162587
+        Path: /requests-and-responses/problem-set-requests-with-python.instructor.md
       -
         Type: Lesson
         UID: 36352066c1e128d38ee834fb0db51513
@@ -54,10 +54,7 @@ Standards:
         Type: Lesson
         UID: 3ce410c74f7c810715f9982420878886
         Path: /requests-and-responses/sending-requests-with-python.md
-      -
-        Type: Instructor
-        UID: 4e147331c0920ff789c815744d162587
-        Path: /requests-and-responses/problem-set-requests-with-python.instructor.md
+
       -
         Type: Lesson
         UID: 3c6844408261fe7c7d50f7dc4dc2c447
