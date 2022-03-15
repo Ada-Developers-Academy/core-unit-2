@@ -103,7 +103,7 @@ If an API service asks for the purpose of the key, answer honestly. Commercial p
 
 Most API services will ask you to determine which APIs and endpoints you'll need access to. In our case, we should pick **forward geocoding**.
 
-![Screenshot of ](../assets/api-keys/api-keys_location-iq-application.png)
+![Screenshot of ](../assets/api-keys/api-keys_location-iq-application-forward.png)
 
 ### Finding the API key
 
