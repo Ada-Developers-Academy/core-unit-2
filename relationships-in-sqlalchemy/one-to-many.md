@@ -60,13 +60,13 @@ Give this a try on your own, then check out our solution below.
 </details>
 
 
-Next, we should make a Blueprint that groups the endpoints for our `Author` model. Refer back to [Flask Setup](../requests-and-responses-in-flask/flask-hello-books.md) on how to define a blueprint and register it in `create_app`.
+Next, we should make a Blueprint that groups the endpoints for our `Author` model. Refer back to [Flask Setup](../building-an-api-part-1/flask-hello-books.md) on how to define a blueprint and register it in `create_app`.
 
 The last thing we'll do for now is create the following endpoints for our `Author` model:
 - `GET ` to `/authors`
 - `POST` to `/authors`
 
-Again, refer back to [Building an API, Part 1](../building-an-api/read.md) on how to define the `GET` endpoint and the `POST` endpoint.
+Again, refer back to [Building an API, Part 1](../building-an-api-part-2/read.md) on how to define the `GET` endpoint and the `POST` endpoint.
 
 
 ## Visualizing and Implementing the Relationship
@@ -117,7 +117,7 @@ Now we have our `author_id` in the `Book` model, but what is the new `books` att
 
 ### Don't Forget to Generate Migrations
 
-Great! We've got a new model and made changes to our previous `Book` model. Sounds like it's time for another migration! We can refer back to [Models Setup](../building-an-api/models-setup.md) to review the terminal commands for migration.
+Great! We've got a new model and made changes to our previous `Book` model. Sounds like it's time for another migration! We can refer back to [Models Setup](../building-an-api-part-2/models-setup.md) to review the terminal commands for migration.
 
 ### !callout-danger
 
