@@ -1,4 +1,6 @@
-# Activity: Solar System API: 404s
+# Activity: Solar System API - Wave 04
+
+Follow directions from your classroom instructor for completing this activity.
 
 <!-- prettier-ignore-start -->
 ### !challenge

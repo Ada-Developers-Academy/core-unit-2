@@ -1,4 +1,6 @@
-# Activity: Solar System API: Create and Read
+# Activity: Solar System API - Wave 02
+
+Follow directions from your classroom instructor for completing this activity.
 
 <!-- prettier-ignore-start -->
 ### !challenge
