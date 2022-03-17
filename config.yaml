@@ -98,6 +98,10 @@ Standards:
       - success criteria
     ContentFiles:
       -
+        Type: Instructor
+        UID: 6b5e64fa-93af-476a-82aa-521bc696065d
+        Path: /requests-and-responses-in-flask/activity-solar-system-api-setup-read.instructor.md
+      -
         Type: Lesson
         UID: e77cd6b2788d0e9d3a585da004982bda
         Path: /requests-and-responses-in-flask/intro-to-flask.md
