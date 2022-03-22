@@ -379,9 +379,9 @@ Some M1 Macs have trouble installing SQLAlchemy dependencies when running `pip3 
 <!-- prettier-ignore-start -->
 ### !challenge
 
-- type: paragraph
-- id: 304e964c-dcdc-463f-8dcb-3b8843857ecd
-- title: Models Setup
+* type: paragraph
+* id: 304e964c-dcdc-463f-8dcb-3b8843857ecd
+* title: Models Setup
 
 ##### !question
 
