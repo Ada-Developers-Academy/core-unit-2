@@ -43,9 +43,9 @@ This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-ap
 
 ## Removing Hardcoded Data
 
-In a previous lesson we used hardcoded data stored in the variable `BOOKS` to learn how to write routes to _read_ all books, and _read_ one book. This was great for learning, but we were limited to _GET_ routes, as we could not persist any changes to our data given that it was hardcoded.
+In a previous lesson we used hardcoded data stored in the variable `BOOKS` to learn how to write routes to *read* all books, and *read* one book. This was great for learning, but we were limited to *GET* routes, as we could not persist any changes to our data given that it was hardcoded.
 
-In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to _read_ our data, but also _create_, _update_, and _delete_ it!
+In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to *read* our data, but also *create*, *update*, and *delete* it!
 
 Before we go any further, let's remove our hardcoded `BOOKS` data and our two routes from the `app`.
 
@@ -170,7 +170,7 @@ On a high-level, this code does the following:
 Following the pattern of creating a file for every model, we can create a file for `Book`:
 
 ```bash
-touch app/models/book.py
+$ touch app/models/book.py
 ```
 
 Our current project structure likely looks similar to this:
