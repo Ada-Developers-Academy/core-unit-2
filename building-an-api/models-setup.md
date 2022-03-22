@@ -43,7 +43,7 @@ This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-ap
 
 ## Removing Hardcoded Data
 
-In a previous lesson we used hardcoded data stored in the variable `BOOKS` to learn how to write routes to _read_ all books, and *read* one book. This was great for learning, but we were limited to _GET_ routes, as we could not persist any changes to our data given that it was hardcoded.
+In a previous lesson we used hardcoded data stored in the variable `BOOKS` to learn how to write routes to _read_ all books, and _read_ one book. This was great for learning, but we were limited to _GET_ routes, as we could not persist any changes to our data given that it was hardcoded.
 
 In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to _read_ our data, but also _create_, _update_, and _delete_ it!
 
@@ -379,8 +379,8 @@ Some M1 Macs have trouble installing SQLAlchemy dependencies when running `pip3 
 <!-- prettier-ignore-start -->
 ### !challenge
 
-* type: paragraph
-- id: 5MOyCI
+- type: paragraph
+- id: 304e964c-dcdc-463f-8dcb-3b8843857ecd
 - title: Models Setup
 
 ##### !question
