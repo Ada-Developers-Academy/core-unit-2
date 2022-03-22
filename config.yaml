@@ -98,33 +98,37 @@ Standards:
       - success criteria
     ContentFiles:
       -
+        Type: Instructor
+        UID: 6b5e64fa-93af-476a-82aa-521bc696065d
+        Path: /building-an-api-part-1/activity-solar-system-api.instructor.md
+      -
         Type: Lesson
         UID: e77cd6b2788d0e9d3a585da004982bda
-        Path: /requests-and-responses-in-flask/intro-to-flask.md
+        Path: /building-an-api-part-1/intro-to-flask.md
       -
         Type: Lesson
         UID: e89e0215704779b45a29307ae4e880be
-        Path: /requests-and-responses-in-flask/flask-setup.md
+        Path: /building-an-api-part-1/flask-setup.md
       -
         Type: Lesson
         UID: 34723e00ee31eff079c37b5c7e89822f
-        Path: /requests-and-responses-in-flask/flask-hello-books.md
+        Path: /building-an-api-part-1/flask-hello-books.md
       -
         Type: Lesson
         UID: 80decfe5-2fd1-45ee-9855-efe05da959d2
-        Path: /requests-and-responses-in-flask/flask-read-hardcoded-data.md
+        Path: /building-an-api-part-1/flask-read-hardcoded-data.md
       -
         Type: Lesson
         UID: dce109b9-20f8-4827-8d10-eeffab3c2de0
-        Path: /requests-and-responses-in-flask/read-one-book.md
+        Path: /building-an-api-part-1/read-one-book.md
       -
         Type: Lesson
         UID: aefff6c0-6dde-4470-8069-65025f89b66d
-        Path: /requests-and-responses-in-flask/problem-set-building-an-api.md
+        Path: /building-an-api-part-1/problem-set-building-an-api.md
       -
         Type: Lesson
         UID: 6e0b2738-99c1-44f6-96c3-f17aaea55fcb
-        Path: /requests-and-responses-in-flask/activity-solar-system-api-setup-read.md
+        Path: /building-an-api-part-1/activity-solar-system-api-setup-read.md
   -
     Title: Data In Tables
     Description: "Data in Tables, Activity: Data in Tables"
@@ -268,33 +272,30 @@ Standards:
     SuccessCriteria:
       - success criteria
     ContentFiles:
-      - Type: Instructor
-        UID: VuVY5h
-        Path: /building-an-api/activity-building-an-api.instructor.md
       -
         Type: Lesson
         UID: fc3e20f36128c5fb1e97ab0b40553094
-        Path: /building-an-api/models.md
+        Path: /building-an-api-part-2/models.md
       -
         Type: Lesson
         UID: dcd0d3c276356844a38f890d5a9b98c9
-        Path: /building-an-api/models-setup.md
+        Path: /building-an-api-part-2/models-setup.md
       -
         Type: Lesson
         UID: 2ca35886fc1a00a394384b7d88b9b2b8
-        Path: /building-an-api/create.md
+        Path: /building-an-api-part-2/create.md
       -
         Type: Lesson
         UID: 43e557f3-3455-4962-af38-43a23d57893f
-        Path: /building-an-api/read.md
+        Path: /building-an-api-part-2/read.md
       -
         Type: Lesson
         UID: 5f4dda242707c828aa5dbd99e73fe62b
-        Path: /building-an-api/problem-set-building-an-api.md
+        Path: /building-an-api-part-2/problem-set-building-an-api.md
       -
         Type: Lesson
         UID: m9dgD0
-        Path: /building-an-api/activity-solar-system-api-create-read-refactor.md
+        Path: /building-an-api-part-2/activity-solar-system-api-create-read-refactor.md
   -
     Title: Update And Delete
     Description: "Update and Delete, Problem Set: Update and Delete, Activity: Solar System API: Update and Delete"

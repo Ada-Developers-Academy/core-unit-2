@@ -1,21 +1,21 @@
-# Activity: Solar System API - Wave 03
+# Activity: Solar System API - Wave 01
 
 Follow directions from your classroom instructor for completing this activity.
 
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: tasklist
-* id: 5aa672d2-ff5e-46b5-babf-bf13c9dcb5c3
+* id: f66175ea-4462-4500-ab28-c3a9af991a55
 * title: Create, Read
 ##### !question
 
-Check off all the endpoints you created and tested.
+Check off all the RESTful endpoints you created and tested.
 
 ##### !end-question
 ##### !options
 
-* Update one planet
-* Delete one planet
+* Read all planets
+* Read one planet
 
 ##### !end-options
 ### !end-challenge
