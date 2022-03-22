@@ -75,11 +75,11 @@ Give this a try on your own, then check out our solution below.
 
 ### Don't Forget to Generate Migrations
 
-Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [Models Setup](../building-an-api/models-setup.md) to review the terminal commands for migration.
+Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [Models Setup](../building-an-api-part-2/models-setup.md) to review the terminal commands for migration.
 
 ## Genre Blueprint
 
-We should create a Blueprint that groups the endpoints for our `Genre` model. Refer back to [Flask Setup](../requests-and-responses-in-flask/flask-hello-books.md) on how to define a blueprint and register it in `create_app`.
+We should create a Blueprint that groups the endpoints for our `Genre` model. Refer back to [Flask Setup](../building-an-api-part-1/flask-hello-books.md) on how to define a blueprint and register it in `create_app`.
 
 We also need to import the `Genre` model in our `__init__.py` file.
 
@@ -116,7 +116,7 @@ Finally we will create the following endpoints for our `Genre` model:
 - `GET ` to `/genres`
 - `POST` to `/genres`
 
-Refer back to [Building an API, Part 2](../building-an-api/read.md) on how to define the `GET` endpoint and the `POST` endpoints.
+Refer back to [Building an API, Part 2](../building-an-api-part-2/read.md) on how to define the `GET` endpoint and the `POST` endpoints.
 
 <br/>
 

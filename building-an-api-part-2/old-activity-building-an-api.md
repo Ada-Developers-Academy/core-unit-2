@@ -1,4 +1,4 @@
-# Activity: Building an API
+# Outdated Activity: Building an API
 
 ### !callout-warning
 
