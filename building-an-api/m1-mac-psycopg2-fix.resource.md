@@ -21,3 +21,5 @@ brew install openssl
 ```
 
 Then you can activate your virtual environment and install the dependencies with `pip3 install -r requirements.txt`.
+
+- [Original Github Issue](https://github.com/psycopg/psycopg2/issues/1200)
