@@ -296,6 +296,10 @@ Standards:
         Type: Lesson
         UID: m9dgD0
         Path: /building-an-api-part-2/activity-solar-system-api-create-read-refactor.md
+      -
+        Type: Resource
+        UID: e50fdece-7024-4bce-9523-0eff1f35e70c
+        Path: /building-an-api-part-2/m1-mac-psycopg2-fix.resource.md  
   -
     Title: Update And Delete
     Description: "Update and Delete, Problem Set: Update and Delete, Activity: Solar System API: Update and Delete"
