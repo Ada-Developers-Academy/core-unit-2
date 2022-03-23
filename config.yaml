@@ -405,34 +405,7 @@ Standards:
         UID: L00UOa
         Path: /api-6-testing/activity-solar-testing.md
   -
-    Title: Deployment
-    Description: "Deployment, Deploying to Heroku, Problem Set: Deployment, Activity: Deploying to Heroku"
-    UID: ea355214fd4bc7c57f471bd92918879b
-    SuccessCriteria:
-      - success criteria
-    ContentFiles:
-      -
-        Type: Instructor
-        UID: 9e1096612d943453372431b09479429a
-        Path: /deployment/deployment.instructor.md
-      -
-        Type: Lesson
-        UID: d6dc45ac3fb4fec2cb1209ccf2ab53dc
-        Path: /deployment/deployment.md
-      -
-        Type: Lesson
-        UID: 2eccb3b5671761e4e6ea2f9f9e5cdf88
-        Path: /deployment/deploying-to-heroku.md
-      -
-        Type: Lesson
-        UID: 082a038b50122fe48f98c2338f822b2a
-        Path: /deployment/problem-set-deployment.md
-      -
-        Type: Lesson
-        UID: ee88de6f19748458e8539e3835f8c294
-        Path: /deployment/activity-deploying-to-heroku.md
-  -
-    Title: (References) Relationships in SQLAlchemy
+    Title: 07) Building an API - Relationships
     Description: "One-to-Many Relationships, Nested Routes in Flask, Many-to-Many Relationships"
     UID: 11960148-2005-4ce6-b12d-c9f788667407
     SuccessCriteria:
@@ -441,19 +414,46 @@ Standards:
       -
         Type: Lesson
         UID: 55cb7e64-9a4f-47f5-bc7d-162e38257f05
-        Path: /relationships-in-sqlalchemy/one-to-many.md
+        Path: /api-7-relationships-in-sqlalchemy/one-to-many.md
       -
         Type: Lesson
         UID: 66f19557-3680-4552-bb9b-440ea22d0c20
-        Path: /relationships-in-sqlalchemy/nested-routes-in-flask.md
+        Path: /api-7-relationships-in-sqlalchemy/nested-routes-in-flask.md
       -
         Type: Lesson
         UID: c672b599-4f30-44cc-8831-0cf91f17d63e
-        Path: /relationships-in-sqlalchemy/many-to-many-genre.md
+        Path: /api-7-relationships-in-sqlalchemy/many-to-many-genre.md
       -
         Type: Lesson
         UID: 3bb7e9d1-b7fa-4067-a404-8d77468b563e
-        Path: /relationships-in-sqlalchemy/many-to-many-books-genres.md
+        Path: /api-7-relationships-in-sqlalchemy/many-to-many-books-genres.md
+  -
+    Title: 08) Building an API - Deployment
+    Description: "Deployment, Deploying to Heroku, Problem Set: Deployment, Activity: Deploying to Heroku"
+    UID: ea355214fd4bc7c57f471bd92918879b
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Instructor
+        UID: 9e1096612d943453372431b09479429a
+        Path: /api-8-deployment/deployment.instructor.md
+      -
+        Type: Lesson
+        UID: d6dc45ac3fb4fec2cb1209ccf2ab53dc
+        Path: /api-8-deployment/deployment.md
+      -
+        Type: Lesson
+        UID: 2eccb3b5671761e4e6ea2f9f9e5cdf88
+        Path: /api-8-deployment/deploying-to-heroku.md
+      -
+        Type: Lesson
+        UID: 082a038b50122fe48f98c2338f822b2a
+        Path: /api-8-deployment/problem-set-deployment.md
+      -
+        Type: Lesson
+        UID: ee88de6f19748458e8539e3835f8c294
+        Path: /api-8-deployment/activity-deploying-to-heroku.md
   -
     Title: Unit Wrap Up
     Description: "Activity: Mind Map"

@@ -165,7 +165,7 @@ In our route function we will need to
   ```
 </details>
 
-Note: This custom route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships, for instance with a `POST` `/genres/<genre_id>/books` route. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../relationships-in-sqlalchemy/nested-routes-in-flask.md)
+Note: This custom route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships, for instance with a `POST` `/genres/<genre_id>/books` route. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../api-7-relationships-in-sqlalchemy/nested-routes-in-flask.md)
 
 ## Displaying relationships in `Book` JSON
 
