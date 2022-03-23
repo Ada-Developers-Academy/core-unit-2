@@ -131,7 +131,7 @@ Standards:
         Path: /api-1-setup-read/activity-solar-setup-read.md
       -
         Type: Resource
-        UID: e50fdece-7024-4bce-9523-0eff1f35e70c
+        UID: 2b5c17c9-4e58-4182-acb5-09d5260faefc
         Path: /api-1-setup-read/m1-mac-psycopg2-fix.resource.md 
   -
     Title: 2) Building an API - Read One Book, 400 and 404s
