@@ -1,21 +1,22 @@
-# Activity: Solar System API - Wave 01
+# Activity: Solar System API - Wave 02
 
 Follow directions from your classroom instructor for completing this activity.
 
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: tasklist
-* id: f66175ea-4462-4500-ab28-c3a9af991a55
+* id: 15a34f7b-64aa-453a-a913-e43c5aea7019
 * title: Create, Read
 ##### !question
 
-Check off all the RESTful endpoints you created and tested.
+Check off all the RESTful endpoint(s) you created or error handling you implemented.
 
 ##### !end-question
 ##### !options
 
-* Read all planets
 * Read one planet
+* Return a 404 for a non-existing planet.
+* Return a 400 for a invalid `planet_id`
 
 ##### !end-options
 ### !end-challenge
