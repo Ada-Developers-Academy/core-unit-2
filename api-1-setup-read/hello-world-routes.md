@@ -12,6 +12,7 @@ We will:
 1. Define our first endpoint, `/hello-world`
 1. Witness the response of our first endpoint
 1. Define our second endpoint, `/hello/JSON`
+1. Read the server logs
 1. Witness the response of our second endpoint
 1. Debug a third, broken endpoint
 
@@ -143,6 +144,8 @@ Instead of using Postman, we can alternatively use our browser to make a `GET` r
 ![Screenshot of a browser pointing to localhost:5000/hello-world with the text "Hello, World!"](../assets/building-an-api/flask-hello-books_hello-world-browser.png)
 
 ## Check the Server Logs
+
+We can use the server logs to debug our server code. After we run `flask run` from the terminal to start the server, any error messages that our server needs to communicate will be printed in that terminal window.
 
 Each time we send an HTTP request to our server, we should see a new line appear in the server log.
 

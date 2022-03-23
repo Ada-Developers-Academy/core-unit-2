@@ -17,7 +17,6 @@ We will:
 1. Create the flask project directory structure
 1. Write code to implement the flask server start-up
 1. Run, stop, and restart a Flask server
-1. Read the server logs
 
 
 ## Install Dependencies
@@ -123,16 +122,13 @@ Because we can use the above command to ask `pip` to update our `requirements.tx
 
 ### !end-callout
 
+### !callout-info
+
 ### Sometimes Requirements Fail to Install
 
 System configurations vary, and sometimes the requirements installation step may fail. We should feel confident to use a search engine to research particular errors that we encounter, and to reach out for additional assistance as needed. We can expand the section below for some commonly-reported commands that have helped others in the past.
 
 ### !end-callout
-
-<details style="max-width: 700px; margin: auto;">
-    <summary>
-      Click to show troubleshooting commands
-    </summary>
 
 ### !callout-warning
 
@@ -164,6 +160,72 @@ A common installation error may be solved by executing `$ xcode-select --install
 ## M1 Macs & SQL Alchemy
 
 Some M1 Macs have trouble installing SQLAlchemy dependencies when running `pip3 install -r requirements.txt`. If you encounter an error referencing `psycopg2`, you can try following [these instructions](./m1-mac-psycopg2-fix.resource.md)
+
+### !end-callout
+
+## Where Does Code Go: Endpoints
+
+When we work on Flask projects, there could be anywhere from one file, to hundreds of files and folders.
+
+The place we put our code that defines endpoints will **depend on the project**.
+
+### !callout-warning
+
+## Every Project Structure is Different
+
+Flask does not enforce one specific file and folder structure. We'll have to go exploring to figure out where to put our code for each project.
+
+### !end-callout
+
+This curriculum will provide a suggested project structure and location:
+
+```
+.
+├── app
+│   ├── models
+│   │   └── __init__.py
+│   ├── __init__.py
+│   └── routes.py
+├── README.md
+└── requirements.txt
+```
+
+### Routes
+
+Inside the `app` folder, there will be a file named `routes.py`. The responsibility of this file is to define the endpoints.
+
+### Models
+
+The `app/models` directory will be responsible for holding our data models. Data models will be discussed further in the curriculum.
+
+### The `app/__init__.py` File
+
+Inside each `app` folder, there will be a file named `__init__.py`. This is the same file we have used to mark a folder as a package! While we often leave this file blank, a common Flask pattern is to define the start-up logic for the Flask server in this file.
+
+The start-up logic is responsible for locating and applying any app configuration, and getting the server ready to receive requests.
+
+To get started, we will include the following code in `__init__.py`. This is the starting, boilerplate code to start a Flask application. Follow your curiousity if you would like to learn more about [`create_app`](https://flask.palletsprojects.com/en/2.0.x/patterns/appfactories/)
+
+```python
+from flask import Flask
+
+def create_app(test_config=None):
+    app = Flask(__name__)
+
+    return app
+```
+
+Configurations to the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
+
+### !callout-danger
+
+## Changing Configurations is Rare
+
+Developers don't need to fuss with configurations that often. Usually, when setting up a project, we will refer to a previous working project to make sure the new one is configured appropriately.
+
+<br />
+
+We should try to become familiar with the kinds of settings we might want to configure in our app. Overall it's more important to know _where_ configuration _changes_ are made, rather than being able to write fresh configurations from scratch.
 
 ### !end-callout
 
@@ -255,101 +317,20 @@ We can use the number labelled as `PID` to terminate the other running server wi
 
 We can use the server logs to debug our server code. After we run `flask run` from the terminal to start the server, any error messages that our server needs to communicate will be printed in that terminal window.
 
-The server logs update in real-time. These are the logs immediately after receiving a `GET` request to `localhost:5000/`, which produced a `200` response.
-
-![Screenshot of Terminal after running the command "flask run". Details show server startup and request/response of GET to slash.](../assets/building-an-api/flask-setup_server-logs-200.png)
-
 These are the logs immediately after a `GET` request to `localhost:5000/i-didnt-define-this-endpoint-in-my-server-code`, which produced a `404` response.
 
 ![Screenshot of Terminal, which includes Flask sever startup messages, and output for request/response of a 404 error](../assets/building-an-api/flask-setup_server-logs-404.png)
 
-These are the logs immediately after a `GET` request to `localhost:5000/broken-endpoint-with-broken-server-code`, which raised an error in our server code.
-
-![Screenshot of Terminal, which includes Flask sever startup messages, and output for request/response of a 500 error, with error logs](../assets/building-an-api/flask-setup_server-logs-500.png)
-
-We can focus on the error message at the bottom here to trace our error:
-
-```bash
-  File "/hello_world_api/app/routes.py", line 17, in broken_endpoint
-    return 10 / 0
-ZeroDivisionError: division by zero
-```
-
-In this example, it seems that we have a `ZeroDivisionError` caused in a method named `broken_endpoint`, on line 17, in the file `/hello_world_api/app/routes.py`.
-
-## Where Does Code Go: Endpoints
-
-When we work on Flask projects, there could be anywhere from one file, to hundreds of files and folders.
-
-The place we put our code that defines endpoints will **depend on the project**.
-
-### !callout-warning
-
-## Every Project Structure is Different
-
-Flask does not enforce one specific file and folder structure. We'll have to go exploring to figure out where to put our code for each project.
-
-### !end-callout
-
-This curriculum will provide a suggested project structure and location:
-
-```
-.
-├── app
-│   ├── models
-│   │   └── __init__.py
-│   ├── __init__.py
-│   └── routes.py
-├── README.md
-└── requirements.txt
-```
-
-### Routes
-
-Inside the `app` folder, there will be a file named `routes.py`. The responsibility of this file is to define the endpoints.
-
-### Models
-
-The `app/models` directory will be responsible for holding our data models. Data models will be discussed further in the curriculum.
-
-### The `app/__init__.py` File
-
-Inside each `app` folder, there will be a file named `__init__.py`. This is the same file we have used to mark a folder as a package! While we often leave this file blank, a common Flask pattern is to define the start-up logic for the Flask server in this file.
-
-The start-up logic is responsible for locating and applying any app configuration, and getting the server ready to receive requests.
-
-To get started, we will include the following code in `__init__.py`. This is the starting, boilerplate code to start a Flask application. Follow your curiousity if you would like to learn more about [`create_app`](https://flask.palletsprojects.com/en/2.0.x/patterns/appfactories/)
-
-```python
-from flask import Flask
-
-def create_app(test_config=None):
-    app = Flask(__name__)
-
-    return app
-```
-
-Configurations to the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
-
-### !callout-danger
-
-## Changing Configurations is Rare
-
-Developers don't need to fuss with configurations that often. Usually, when setting up a project, we will refer to a previous working project to make sure the new one is configured appropriately.
-
-<br />
-
-We should try to become familiar with the kinds of settings we might want to configure in our app. Overall it's more important to know _where_ configuration _changes_ are made, rather than being able to write fresh configurations from scratch.
-
-### !end-callout
+Note that all `GET` requests at this stage will produce a `404` response because we have not defined any endpoints.
 
 ## Dev Workflow
 
-Our modified dev workflow for Flask development may now look like this:
+Our dev workflow for Flask development may now look like this:
 
 1. `cd` into a project root folder
 1. Activate a virtual environment
 1. Check git status
+1. Create file directory with start-up code
 1. Start the server
 1. Cycle frequently between:
    1. Writing code
