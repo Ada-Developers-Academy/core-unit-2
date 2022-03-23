@@ -60,7 +60,7 @@ Give this a try on your own, then check out our solution below.
 </details>
 
 
-Next, we should make a Blueprint that groups the endpoints for our `Author` model. Refer back to [Flask Setup](../building-an-api-part-1/flask-hello-books.md) on how to define a blueprint and register it in `create_app`.
+Next, we should make a Blueprint that groups the endpoints for our `Author` model. Refer back to [Hello World Routes](../api-1-setup-read/hello-world-routes.md) on how to define a blueprint and register it in `create_app`.
 
 The last thing we'll do for now is create the following endpoints for our `Author` model:
 - `GET ` to `/authors`

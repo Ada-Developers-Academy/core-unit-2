@@ -91,8 +91,8 @@ Standards:
         UID: 5f9a641756dea1f4bc8a5c1776d46528
         Path: /intro-to-api-design/activity-intro-to-api-design.md
   -
-    Title: Building an API - Part 1
-    Description: "Intro to Flask, Flask Setup, Flask Hello Books, Read All Books, Read One Book"
+    Title: 1) Building an API - Intro to Flask, Setup, and Read
+    Description: "Intro to Flask, Intro to Hello Books, Flask Setup, Hello World, Read All Books"
     UID: dea859c0
     SuccessCriteria:
       - success criteria
@@ -100,35 +100,58 @@ Standards:
       -
         Type: Instructor
         UID: 6b5e64fa-93af-476a-82aa-521bc696065d
-        Path: /building-an-api-part-1/activity-solar-system-api.instructor.md
+        Path: /api-1-setup-read/activity-solar-system-api.instructor.md
       -
         Type: Lesson
         UID: e77cd6b2788d0e9d3a585da004982bda
-        Path: /building-an-api-part-1/intro-to-flask.md
+        Path: /api-1-setup-read/intro-to-flask.md
+      -
+        Type: Lesson
+        UID: ecc66e53-6e24-4fd8-ab9a-555a4087d222
+        Path: /api-1-setup-read/intro-to-hello-books.md
       -
         Type: Lesson
         UID: e89e0215704779b45a29307ae4e880be
-        Path: /building-an-api-part-1/flask-setup.md
+        Path: /api-1-setup-read/flask-setup.md
       -
         Type: Lesson
         UID: 34723e00ee31eff079c37b5c7e89822f
-        Path: /building-an-api-part-1/flask-hello-books.md
+        Path: /api-1-setup-read/hello-world-routes.md
       -
         Type: Lesson
         UID: 80decfe5-2fd1-45ee-9855-efe05da959d2
-        Path: /building-an-api-part-1/flask-read-hardcoded-data.md
-      -
-        Type: Lesson
-        UID: dce109b9-20f8-4827-8d10-eeffab3c2de0
-        Path: /building-an-api-part-1/read-one-book.md
+        Path: /api-1-setup-read/read-all-books.md
       -
         Type: Lesson
         UID: aefff6c0-6dde-4470-8069-65025f89b66d
-        Path: /building-an-api-part-1/problem-set-building-an-api.md
+        Path: /api-1-setup-read/problem-set-setup-read.md
       -
         Type: Lesson
         UID: 6e0b2738-99c1-44f6-96c3-f17aaea55fcb
-        Path: /building-an-api-part-1/activity-solar-system-api-setup-read.md
+        Path: /api-1-setup-read/activity-solar-setup-read.md
+  -
+    Title: 2) Building an API - Read One Book, 400 and 404s
+    Description: "Read One Book, 400 and 404s"
+    UID: 58e6e2cb-3060-48f8-abf2-0df2986f07ae
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 66500b39-f5e6-4ac3-bb00-5978cdfc2450
+        Path: /api-2-read-404s/read-one-book.md
+      -
+        Type: Lesson
+        UID: dce109b9-20f8-4827-8d10-eeffab3c2de0
+        Path: /api-2-read-404s/400-and-404s.md
+      -
+        Type: Lesson
+        UID: 470465db-89a3-4535-a154-7e7391ef4d93
+        Path: /api-2-read-404s/problem-set-read-404s.md
+      -
+        Type: Lesson
+        UID: 8ac983dc-e8a4-492c-8149-df4d0458add8
+        Path: /api-2-read-404s/activity-solar-read-404s.md
   -
     Title: Data In Tables
     Description: "Data in Tables, Activity: Data in Tables"
