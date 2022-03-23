@@ -66,7 +66,7 @@ The last thing we'll do for now is create the following endpoints for our `Autho
 - `GET ` to `/authors`
 - `POST` to `/authors`
 
-Again, refer back to [Building an API, Part 1](../building-an-api-part-2/read.md) on how to define the `GET` endpoint and the `POST` endpoint.
+Again, refer back to [Building an API, Part 1](../api-3-database-models-read/read.md) on how to define the `GET` endpoint and the `POST` endpoint.
 
 
 ## Visualizing and Implementing the Relationship
@@ -117,7 +117,7 @@ Now we have our `author_id` in the `Book` model, but what is the new `books` att
 
 ### Don't Forget to Generate Migrations
 
-Great! We've got a new model and made changes to our previous `Book` model. Sounds like it's time for another migration! We can refer back to [Models Setup](../building-an-api-part-2/models-setup.md) to review the terminal commands for migration.
+Great! We've got a new model and made changes to our previous `Book` model. Sounds like it's time for another migration! We can refer back to [Models Setup](../api-3-database-models-read/models-setup.md) to review the terminal commands for migration.
 
 ### !callout-danger
 

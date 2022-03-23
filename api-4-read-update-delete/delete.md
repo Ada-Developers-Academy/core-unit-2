@@ -164,15 +164,15 @@ We can use Postman to check our update functionality.
 
 It may help to first make a request to `GET /books/1` before updating it.
 
-![Screenshot of Postman featuring a request of GET /books/1 and a response of 200 with book data](../assets/update-and-delete/update-and-delete_update-precheck-get.png)
+![Screenshot of Postman featuring a request of GET /books/1 and a response of 200 with book data](../assets/api-4-read-update-delete/api-4-read-update-delete_update-precheck-get.png)
 
 Then, make a request to `PUT /books/1` with our proper JSON request body.
 
-![Screenshot of Postman featuring a request of PUT /books/1 and a response of 200 with a success message](../assets/update-and-delete/update-and-delete_update-request.png)
+![Screenshot of Postman featuring a request of PUT /books/1 and a response of 200 with a success message](../assets/api-4-read-update-delete/api-4-read-update-delete_update-request.png)
 
 We can send another request to `GET /books/1` to confirm the updates worked.
 
-![Screenshot of Postman featuring a request of GET /books/1 and a response updated book data](../assets/update-and-delete/update-and-delete_update-confirm-get.png)
+![Screenshot of Postman featuring a request of GET /books/1 and a response updated book data](../assets/api-4-read-update-delete/api-4-read-update-delete_update-confirm-get.png)
 
 ### Manually Testing with `psql`
 
@@ -292,15 +292,15 @@ After writing this code, we can use Postman to test our delete functionality.
 
 First, let's make a `GET` request to `/books/1` to confirm that a book with ID 1 exists.
 
-![Screenshot of Postman featuring a request of GET to /books/1 and a response of 200 with book data](../assets/update-and-delete/update-and-delete_delete-get-book.png)
+![Screenshot of Postman featuring a request of GET to /books/1 and a response of 200 with book data](../assets/api-4-read-update-delete/api-4-read-update-delete_delete-get-book.png)
 
 Then, let's make our `DELETE` request to `/books/1` and check the response.
 
-![Screenshot of Postman featuring a request of DELETE to /books/1 and a response of 200 with a success message](../assets/update-and-delete/update-and-delete_delete-request.png)
+![Screenshot of Postman featuring a request of DELETE to /books/1 and a response of 200 with a success message](../assets/api-4-read-update-delete/api-4-read-update-delete_delete-request.png)
 
 Afterwards, let's even make a `GET` request to `/books`. We see that there are no more books that exist! Our book was successfully deleted.
 
-![Screenshot of Postman featuring a request of GET to /books and a response of 200 with an empty array](../assets/update-and-delete/update-and-delete_delete-get-books-empty.png)
+![Screenshot of Postman featuring a request of GET to /books and a response of 200 with an empty array](../assets/api-4-read-update-delete/api-4-read-update-delete_delete-get-books-empty.png)
 
 ### Manually Testing with `psql`
 

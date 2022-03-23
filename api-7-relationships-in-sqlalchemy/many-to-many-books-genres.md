@@ -121,7 +121,7 @@ In summary, by adding the `genres` attribute to the `Book` model:
 
 ### Don't Forget to Generate Migrations
 
-Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [Models Setup](../building-an-api-part-2/models-setup.md) to review the terminal commands for migration.
+Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [Models Setup](../api-3-database-models-read/models-setup.md) to review the terminal commands for migration.
 
 In addition, remember to import the `BookGenre` model in `app/__init__.py` with `from app.models.book_genre import BookGenre`.
 
@@ -165,7 +165,7 @@ In our route function we will need to
   ```
 </details>
 
-Note: This custom route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships, for instance with a `POST` `/genres/<genre_id>/books` route. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../relationships-in-sqlalchemy/nested-routes-in-flask.md)
+Note: This custom route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships, for instance with a `POST` `/genres/<genre_id>/books` route. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../api-7-relationships-in-sqlalchemy/nested-routes-in-flask.md)
 
 ## Displaying relationships in `Book` JSON
 

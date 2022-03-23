@@ -16,7 +16,6 @@ Check off all the endpoints you created and tested.
 
 * Create one planet
 * Read all planets
-* Read one planet
 
 ##### !end-options
 ### !end-challenge

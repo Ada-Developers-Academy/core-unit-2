@@ -75,7 +75,7 @@ Give this a try on your own, then check out our solution below.
 
 ### Don't Forget to Generate Migrations
 
-Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [Models Setup](../building-an-api-part-2/models-setup.md) to review the terminal commands for migration.
+Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [Models Setup](../api-3-database-models-read/models-setup.md) to review the terminal commands for migration.
 
 ## Genre Blueprint
 
@@ -116,7 +116,7 @@ Finally we will create the following endpoints for our `Genre` model:
 - `GET ` to `/genres`
 - `POST` to `/genres`
 
-Refer back to [Building an API, Part 2](../building-an-api-part-2/read.md) on how to define the `GET` endpoint and the `POST` endpoints.
+Refer back to [Building an API, Part 2](../api-3-database-models-read/read.md) on how to define the `GET` endpoint and the `POST` endpoints.
 
 <br/>
 
