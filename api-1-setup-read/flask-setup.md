@@ -17,9 +17,10 @@ We will:
 1. Create the flask project directory structure
 1. Write code to implement the flask server start-up
 1. Run, stop, and restart a Flask server
+1. Read the server logs
 
 
-## Install Dependencies
+## Manage Dependencies
 
 Whenever we work on a Python project, we need to consider how we manage our dependencies, the third party packages used by our project.
 
@@ -27,7 +28,7 @@ Whenever we work on a Python project, we need to consider how we manage our depe
 
 In reality, no Python project is too small to consider using a virtual environment. But working with a package that brings as many dependencies as does `flask` is reason enough for us to revisit the topic of virtual environments now.
 
-### In a Virtual Environment
+### Virtual Environment
 
 We have been using virtual environments for a bit now, starting with our prior project work. We will present a brief review here, but we can always return to the previous material to refresh our memories about why we use virtual environments.
 
@@ -56,7 +57,7 @@ $
 $ # should stop seeing (venv)
 ```
 
-### From `requirements.txt`
+### `requirements.txt`
 
 Python projects will conventionally record all of their project dependencies in a file named `requirements.txt`.
 
@@ -163,7 +164,7 @@ Some M1 Macs have trouble installing SQLAlchemy dependencies when running `pip3 
 
 ### !end-callout
 
-## Where Does Code Go: Endpoints
+## Project Structure
 
 When we work on Flask projects, there could be anywhere from one file, to hundreds of files and folders.
 
@@ -330,7 +331,6 @@ Our dev workflow for Flask development may now look like this:
 1. `cd` into a project root folder
 1. Activate a virtual environment
 1. Check git status
-1. Create file directory with start-up code
 1. Start the server
 1. Cycle frequently between:
    1. Writing code

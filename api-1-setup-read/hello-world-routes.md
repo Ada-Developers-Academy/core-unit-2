@@ -12,7 +12,6 @@ We will:
 1. Define our first endpoint, `/hello-world`
 1. Witness the response of our first endpoint
 1. Define our second endpoint, `/hello/JSON`
-1. Read the server logs
 1. Witness the response of our second endpoint
 1. Debug a third, broken endpoint
 
