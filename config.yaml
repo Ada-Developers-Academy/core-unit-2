@@ -289,8 +289,8 @@ Standards:
         UID: eed7f313-69fe-4881-9b7c-829860adeb4e
         Path: /more-selecting-in-sql/modifying-databases-in-sql.md
   -
-    Title: Building an API - Part 2
-    Description: "Models, Models Setup, Create and Read, Problem Set: Building an API"
+    Title: 3) Building an API - Database, Models, Create, and Read 
+    Description: "Introduction to Models and Migrations, Models Setup, Create, Read"
     UID: 2804d58bb38264215b9414a111a759d7
     SuccessCriteria:
       - success criteria
@@ -298,53 +298,61 @@ Standards:
       -
         Type: Lesson
         UID: fc3e20f36128c5fb1e97ab0b40553094
-        Path: /building-an-api-part-2/models.md
+        Path: /api-3-database-models-read/models-migrations.md
       -
         Type: Lesson
         UID: dcd0d3c276356844a38f890d5a9b98c9
-        Path: /building-an-api-part-2/models-setup.md
+        Path: /api-3-database-models-read/models-setup.md
       -
         Type: Lesson
         UID: 2ca35886fc1a00a394384b7d88b9b2b8
-        Path: /building-an-api-part-2/create.md
+        Path: /api-3-database-models-read/create.md
       -
         Type: Lesson
-        UID: 43e557f3-3455-4962-af38-43a23d57893f
-        Path: /building-an-api-part-2/read.md
+        UID: 31ce9cf5-9f15-455c-8992-99f08172c506
+        Path: /api-3-database-models-read/read.md
       -
         Type: Lesson
         UID: 5f4dda242707c828aa5dbd99e73fe62b
-        Path: /building-an-api-part-2/problem-set-building-an-api.md
+        Path: /api-3-database-models-read/problem-set-create-read.md
       -
         Type: Lesson
         UID: m9dgD0
-        Path: /building-an-api-part-2/activity-solar-system-api-create-read-refactor.md
+        Path: /api-3-database-models-read/activity-solar-create-read.md
       -
         Type: Resource
         UID: e50fdece-7024-4bce-9523-0eff1f35e70c
-        Path: /building-an-api-part-2/m1-mac-psycopg2-fix.resource.md  
+        Path: /api-3-database-models-read/m1-mac-psycopg2-fix.resource.md  
   -
-    Title: Update And Delete
-    Description: "Update and Delete, Problem Set: Update and Delete, Activity: Solar System API: Update and Delete"
+    Title: 04) Building an API - Read, Update, And Delete
+    Description: "Read, Update, and Delete"
     UID: c806ada4c97ac6c20ee838c607c979d7
     SuccessCriteria:
       - success criteria
     ContentFiles:
       -
         Type: Lesson
+        UID: 8c8f1381-c8ef-4859-aa05-d04e8c7392fa
+        Path: /api-4-read-update-delete/read-one-book-2.md
+      -
+        Type: Lesson
+        UID: 43e557f3-3455-4962-af38-43a23d57893f
+        Path: /api-4-read-update-delete/update.md
+      -
+        Type: Lesson
         UID: eebc0514b2efcba42ff925c17aa17fde
-        Path: /update-and-delete/update-and-delete.md
+        Path: /api-4-read-update-delete/delete.md
       -
         Type: Lesson
         UID: syrMq6
-        Path: /update-and-delete/problem-set-update-and-delete.md
+        Path: /api-4-read-update-delete/problem-set-read-update-delete.md
       -
         Type: Lesson
         UID: etO5RZ
-        Path: /update-and-delete/activity-solar-system-api-update-delete.md
+        Path: /api-4-read-update-delete/activity-solar-read-update-delete.md
   -
-    Title: More Flask
-    Description: "404s & More Queries, Query Params, Relationships in Flask"
+    Title: 05) Building an API - More Flask Queries
+    Description: "filter_by and limit, Query Params"
     UID: OkfzUG
     SuccessCriteria:
       - success criteria
@@ -352,18 +360,18 @@ Standards:
       -
         Type: Lesson
         UID: Fm5rbb
-        Path: /more-flask-queries/404s-and-more-queries.md
+        Path: /api-5-more-queries/filter_by_limit.md
       -
         Type: Lesson
         UID: HfbxKc
-        Path: /more-flask-queries/query-params.md
+        Path: /api-5-more-queries/query-params.md
       -
         Type: Lesson
         UID: 2cfe7232-9dd4-4efe-8d33-9a4539ec3c63
-        Path: /more-flask-queries/activity-solar-system-api-404.md
+        Path: /api-5-more-queries/activity-solar-refactor.md
   -
-    Title: Testing Our APIs
-    Description: "Environments and Env Vars, dotenv and the Test DB, Fixtures, Test Setup, Using Tests, Problem Set: Testing Our APIs, Activity: Solar System API: Tests"
+    Title: 06) Building an API - Testing
+    Description: "Environments and Env Vars, dotenv and the Test DB, Fixtures, Test Setup, Using Tests"
     UID: e7cb1f63923b38e37e787f78784653ec
     SuccessCriteria:
       - success criteria
@@ -371,31 +379,31 @@ Standards:
       -
         Type: Lesson
         UID: c49f1e46b7e1f26263c71173af781cea
-        Path: /testing-our-apis/environments-and-env-vars.md
+        Path: /api-6-testing/environments-and-env-vars.md
       -
         Type: Lesson
         UID: f153ea3be2591354fccbc62912327060
-        Path: /testing-our-apis/dot-env-and-the-test-db.md
+        Path: /api-6-testing/dot-env-and-the-test-db.md
       -
         Type: Lesson
         UID: 8dfac72f68845ac31b3527aeba524c01
-        Path: /testing-our-apis/fixtures.md
+        Path: /api-6-testing/fixtures.md
       -
         Type: Lesson
         UID: ae6d7749089a176f86e664172c9c3102
-        Path: /testing-our-apis/test-setup.md
+        Path: /api-6-testing/test-setup.md
       -
         Type: Lesson
         UID: MAKii1
-        Path: /testing-our-apis/using-tests.md
+        Path: /api-6-testing/using-tests.md
       -
         Type: Lesson
         UID: 8TZO0e
-        Path: /testing-our-apis/problem-set-testing-our-apis.md
+        Path: /api-6-testing/problem-set-testing.md
       -
         Type: Lesson
         UID: L00UOa
-        Path: /testing-our-apis/activity-solar-system-api-tests.md
+        Path: /api-6-testing/activity-solar-testing.md
   -
     Title: Deployment
     Description: "Deployment, Deploying to Heroku, Problem Set: Deployment, Activity: Deploying to Heroku"

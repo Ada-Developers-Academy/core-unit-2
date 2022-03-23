@@ -1,4 +1,4 @@
-# 404s and More Queries
+# filter_by and limit
 
 <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=05d0a97a-623c-4fc9-b079-ad1a018974eb&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
@@ -111,7 +111,7 @@ def handle_book(book_id):
 
 After writing this code, we can use Postman to test it. Let's make a `GET` request to `/books/99999999`.
 
-![Screenshot of Postman featuring a request of GET to /books/99999999 and a response of 404](../assets/update-and-delete/404s-and-more-queries_get-missing-book.png)
+![Screenshot of Postman featuring a request of GET to /books/99999999 and a response of 404](../assets/api-4-read-update-delete/404s-and-more-queries_get-missing-book.png)
 
 We should see a `404` status and an empty response body.
 
@@ -202,7 +202,7 @@ There's way more to explore in filtering than is covered in this curriculum, so 
 
 Take the time to experiment in your Flask API! Consider making a small experimental endpoint that will never be committed to Git.
 
-![Screenshot of Postman featuring a request of GET to /books/experimental-filtering and a response of 200](../assets/update-and-delete/404s-and-more-queries_experimental-filtering.png)
+![Screenshot of Postman featuring a request of GET to /books/experimental-filtering and a response of 200](../assets/api-4-read-update-delete/404s-and-more-queries_experimental-filtering.png)
 
 ### !end-callout
 

@@ -24,4 +24,3 @@ On your machine, keep:
 1. Create or refactor the following endpoints, with the same functionality presented in this topic:
    1. As a client, I want to send a request with new valid book data and get a success response, so that I know the API saved the book data
    1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
-   1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
