@@ -106,7 +106,7 @@ Or we can run them through the VS Code test panel.
 
 We should see this already-implemented route pass!
 
-![Screenshot of pytest test result: 1 test passed](../assets/testing-apis/testing-apis_passing-get-books.png)
+![Screenshot of pytest test result: 1 test passed](../assets/api-6-testing/api-6-testing_passing-get-books.png)
 
 Notice that we did _not_ need to run the Flask server to run the tests!
 
@@ -126,7 +126,7 @@ def handle_books():
 
 Let's confirm that our test now fails:
 
-![Screenshot of pytest test result: test_get_one_book fails because of AssertionError, which checks if 418 is equal to 200](../assets/testing-apis/testing-apis_broken-get-books.png)
+![Screenshot of pytest test result: test_get_one_book fails because of AssertionError, which checks if 418 is equal to 200](../assets/api-6-testing/api-6-testing_broken-get-books.png)
 
 The test fails! We can read through these test failures and see that our test _expected_ a status code of `200`, but _actually_ got status `418`.
 
@@ -165,7 +165,7 @@ However, this test isn't complete yet...
 
 If we run this test right now, we actually get a 404!
 
-![Screenshot of pytest test result: test_get_one_book fails because of AssertionError, which checks if 404 is equal to 200](../assets/testing-apis/testing-apis_404-get-books-1.png)
+![Screenshot of pytest test result: test_get_one_book fails because of AssertionError, which checks if 404 is equal to 200](../assets/api-6-testing/api-6-testing_404-get-books-1.png)
 
 Why would we get a `404` response?
 
@@ -319,7 +319,7 @@ E         {'description': 'watr 4evr'} != {'description': ''}
 E         Use -v to get the full diff
 ```
 
-![Screenshot of pytest test result: test_get_one_book failed because of AssertionError between two book dictionaries](../assets/testing-apis/testing-apis_failing-fixture-comparison.png)
+![Screenshot of pytest test result: test_get_one_book failed because of AssertionError between two book dictionaries](../assets/api-6-testing/api-6-testing_failing-fixture-comparison.png)
 
 The output shows that the data coming back from our API looks reasonable, but that the value we are comparing to in our test has empty strings for each dictionary value.
 
@@ -348,7 +348,7 @@ Success! We passed this test. Congratulations! 🎉
 
 ### !end-callout
 
-![Screenshot of pytest test result: 2 tests in tests/test_routes.py passed](../assets/testing-apis/testing-apis_passing-get-books-1.png)
+![Screenshot of pytest test result: 2 tests in tests/test_routes.py passed](../assets/api-6-testing/api-6-testing_passing-get-books-1.png)
 
 ## Check for Understanding
 
