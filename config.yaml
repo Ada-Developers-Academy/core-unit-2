@@ -129,6 +129,10 @@ Standards:
         Type: Lesson
         UID: 6e0b2738-99c1-44f6-96c3-f17aaea55fcb
         Path: /api-1-setup-read/activity-solar-setup-read.md
+      -
+        Type: Resource
+        UID: e50fdece-7024-4bce-9523-0eff1f35e70c
+        Path: /api-1-setup-read/m1-mac-psycopg2-fix.resource.md 
   -
     Title: 2) Building an API - Read One Book, 400 and 404s
     Description: "Read One Book, 400 and 404s"
@@ -318,11 +322,7 @@ Standards:
       -
         Type: Lesson
         UID: m9dgD0
-        Path: /building-an-api-part-2/activity-solar-system-api-create-read-refactor.md
-      -
-        Type: Resource
-        UID: e50fdece-7024-4bce-9523-0eff1f35e70c
-        Path: /building-an-api-part-2/m1-mac-psycopg2-fix.resource.md  
+        Path: /building-an-api-part-2/activity-solar-system-api-create-read-refactor.md 
   -
     Title: Update And Delete
     Description: "Update and Delete, Problem Set: Update and Delete, Activity: Solar System API: Update and Delete"

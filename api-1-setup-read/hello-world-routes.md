@@ -8,133 +8,12 @@ This lesson will be in the format of a walk-through. It will use the [Hello Book
 
 We will:
 
-1. Clone our repo
-1. Manage our dependencies
 1. Define our first blueprint
 1. Define our first endpoint, `/hello-world`
 1. Witness the response of our first endpoint
 1. Define our second endpoint, `/hello/JSON`
 1. Witness the response of our second endpoint
 1. Debug a third, broken endpoint
-
-
-### !callout-danger
-
-## Prioritize Familiarity
-
-It may be better to think about this lesson as a resource to be familiar with, rather than commit all new knowledge to memory at once.
-
-### !end-callout
-
-## Introduction: Hello Books Repo
-
-We will use the repo [Hello Books API](https://github.com/AdaGold/hello-books-api).
-
-First, this repo will act as our Flask Hello World. We'll create some basic, experimental features to test that we can run Flask successfully.
-
-Afterwards, we'll use the same Hello Books repo to demonstrate building a book library API.
-
-### Refer to the Repo for Reference
-
-The original Hello Books API repo is owned, written, and maintained by the Ada instructors. Use this repo as a reference for instructor-led code. We recommend:
-
-1. Cloning this repo directly when you want to see and play with the instructor examples
-1. Renaming this project folder to `instructor-hello-books-api` to make it clear it's the instructor version
-1. Deleting this folder or removing any changes you've made using git whenever you are done experimenting. Ensuring you don't leave any of your own changes in this folder will make it possible to get the latest instructor code without introduing conflicts.
-
-### Fork and Clone the Repo for Personal Experimentation
-
-If you are interested in personal exploration of the project, fork this repo to your own account. This will let you have full control over the repo, and you can create and push commits over time.
-
-## Clone and Explore
-
-Clone the repo, `cd` into it, and open this project in your favorite text editor. We should see the following structure.
-
-```
-.
-├── app
-│   ├── models
-│   │   └── __init__.py
-│   ├── __init__.py
-│   └── routes.py
-├── README.md
-└── requirements.txt
-```
-
-The `app` directory will contain the bulk of our application code.
-
-`app/routes.py` is the file we'll use the most in this lesson. It will be where we define our endpoints.
-
-`app/__init__.py` is our usual package file that also contains a lot of startup code for our app.
-
-The `app/models` directory will hold our data models, which will be discussed further in the curriculum. The work in this lesson will not touch this folder.
-
-## Manage Dependencies
-
-Now we need to create a virtual environment, activate it, and then install the dependencies from `requirements.txt`.
-
-We can follow these steps in the Terminal:
-
-```bash
-$ python3 -m venv venv
-$ source venv/bin/activate
-(venv) $ pip install -r requirements.txt
-```
-
-### !callout-warning
-
-## Sometimes Requirements Fail to Install
-
-System configurations vary, and sometimes the requirements installation step may fail. We should feel confident to use a search engine to research particular errors that we encounter, and to reach out for additional assistance as needed. We can expand the section below for some commonly-reported commands that have helped others in the past.
-
-### !end-callout
-
-<details style="max-width: 700px; margin: auto;">
-    <summary>
-      Click to show troubleshooting commands
-    </summary>
-
-### !callout-warning
-
-## Common Debugging: Need to `$ pip install --upgrade pip`
-
-A common installation error may be solved by executing `$ pip install --upgrade pip`. Afterwards, attempt `$ pip install -r requirements.txt` again. _(Note: Written March 2021.)_
-
-### !end-callout
-
-### !callout-warning
-
-## Common Debugging: Need to `$ pip install --upgrade setuptools`
-
-A common installation error may be solved by executing `$ pip install --upgrade setuptools`. Afterwards, attempt `$ pip install -r requirements.txt` again.
-
-### !end-callout
-
-### !callout-warning
-
-## Common Debugging: Need to `$ brew install openssl`
-
-A common installation error may be solved by executing `$ brew install openssl`. Afterwards, attempt `$ pip install -r requirements.txt` again.
-
-### !end-callout
-
-### !callout-warning
-
-## Common Debugging: Need to `$ xcode-select --install`
-
-A common installation error may be solved by executing `$ xcode-select --install`. Afterwards, attempt `$ pip install -r requirements.txt` again.
-
-### !end-callout
-
-### !callout-warning
-
-## Common Debugging: Need to `$ pip install psycopg2-binary`
-
-A common installation error may be solved by executing `$ pip install psycopg2-binary`. Afterwards, attempt `$ pip install -r requirements.txt` again.
-
-### !end-callout
-
-</details>
 
 ## Defining Endpoints with Blueprint
 
@@ -264,6 +143,8 @@ Instead of using Postman, we can alternatively use our browser to make a `GET` r
 ![Screenshot of a browser pointing to localhost:5000/hello-world with the text "Hello, World!"](../assets/building-an-api/flask-hello-books_hello-world-browser.png)
 
 ## Check the Server Logs
+
+We can use the server logs to debug our server code. After we run `flask run` from the terminal to start the server, any error messages that our server needs to communicate will be printed in that terminal window.
 
 Each time we send an HTTP request to our server, we should see a new line appear in the server log.
 

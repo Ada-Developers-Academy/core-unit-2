@@ -365,14 +365,6 @@ We could tell SQLAlchemy that we would rather use a table name of `books`. There
 
 ### !end-callout
 
-### !callout-warning
-
-## M1 Macs & SQL Alchemy
-
-Some M1 Macs have trouble installing SQLAlchemy dependencies when running `pip3 install -r requirements.txt`. If you encounter an error referencing `psycopg2`, you can try following [these instructions](./m1-mac-psycopg2-fix.resource.md)
-
-### !end-callout
-
 ## Check for Understanding
 
 <!-- Question Takeaway -->

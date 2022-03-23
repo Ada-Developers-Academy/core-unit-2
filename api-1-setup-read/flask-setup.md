@@ -8,16 +8,19 @@ The goal of this lesson is to introduce the setup steps for a Flask project, and
 
 ## Format
 
-This lesson covers:
+This lesson will be in the format of a walk-through. It will use the [Hello Books API project repo](https://github.com/AdaGold/hello-books-api).
 
-1. How to install dependencies
-   - Inside a virtual environment
-   - From `requirements.txt`
-1. How to run, stop, and restart a Flask server
-1. How to read the server logs
-1. Considerations for where different parts of code go
+We will:
 
-## Install Dependencies
+1. Clone our repo
+1. Manage our dependencies
+1. Create the flask project directory structure
+1. Write code to implement the flask server start-up
+1. Run, stop, and restart a Flask server
+1. Read the server logs
+
+
+## Manage Dependencies
 
 Whenever we work on a Python project, we need to consider how we manage our dependencies, the third party packages used by our project.
 
@@ -25,7 +28,7 @@ Whenever we work on a Python project, we need to consider how we manage our depe
 
 In reality, no Python project is too small to consider using a virtual environment. But working with a package that brings as many dependencies as does `flask` is reason enough for us to revisit the topic of virtual environments now.
 
-### In a Virtual Environment
+### Virtual Environment
 
 We have been using virtual environments for a bit now, starting with our prior project work. We will present a brief review here, but we can always return to the previous material to refresh our memories about why we use virtual environments.
 
@@ -54,33 +57,47 @@ $
 $ # should stop seeing (venv)
 ```
 
-### From `requirements.txt`
+### `requirements.txt`
 
 Python projects will conventionally record all of their project dependencies in a file named `requirements.txt`.
 
 These files will list the exact packages and their version numbers to download and install into this environment.
 
-Here is a sample `requirements.txt`:
+Here is a sample `requirements.txt` for a Flask project:
 
 ```
 alembic==1.5.4
+attrs==20.3.0
 autopep8==1.5.5
+blinker==1.4
+certifi==2020.12.5
+chardet==4.0.0
 click==7.1.2
 Flask==1.1.2
 Flask-Migrate==2.6.0
 Flask-SQLAlchemy==2.4.4
+gunicorn==20.1.0
+idna==2.10
+iniconfig==1.1.1
 itsdangerous==1.1.0
 Jinja2==2.11.3
 Mako==1.1.4
 MarkupSafe==1.1.1
-psycopg2==2.8.6
+packaging==20.9
+pluggy==0.13.1
+psycopg2-binary==2.8.6
+py==1.10.0
 pycodestyle==2.6.0
+pyparsing==2.4.7
+pytest==6.2.3
 python-dateutil==2.8.1
 python-dotenv==0.15.0
 python-editor==1.0.4
+requests==2.25.1
 six==1.15.0
 SQLAlchemy==1.3.23
 toml==0.10.2
+urllib3==1.26.4
 Werkzeug==1.0.1
 ```
 
@@ -103,6 +120,113 @@ To update the `requirements.txt` file, we use this command:
 ## No need to manually edit the requirements.txt file
 
 Because we can use the above command to ask `pip` to update our `requirements.txt` file, there's no need to ever open up the file and edit it directly.
+
+### !end-callout
+
+### !callout-info
+
+### Sometimes Requirements Fail to Install
+
+System configurations vary, and sometimes the requirements installation step may fail. We should feel confident to use a search engine to research particular errors that we encounter, and to reach out for additional assistance as needed. We can expand the section below for some commonly-reported commands that have helped others in the past.
+
+### !end-callout
+
+### !callout-warning
+
+### Common Debugging: Need to `$ pip install --upgrade pip`
+
+A common installation error may be solved by executing `$ pip install --upgrade pip`. Afterwards, attempt `$ pip install -r requirements.txt` again. _(Note: Written March 2021.)_
+
+### !end-callout
+
+### !callout-warning
+
+### Common Debugging: Need to `$ pip install --upgrade setuptools`
+
+A common installation error may be solved by executing `$ pip install --upgrade setuptools`. Afterwards, attempt `$ pip install -r requirements.txt` again.
+
+### !end-callout
+
+### !callout-warning
+
+## Common Debugging: Need to `$ xcode-select --install`
+
+A common installation error may be solved by executing `$ xcode-select --install`. Afterwards, attempt `$ pip install -r requirements.txt` again.
+
+### !end-callout
+
+
+### !callout-warning
+
+## M1 Macs & SQL Alchemy
+
+Some M1 Macs have trouble installing SQLAlchemy dependencies when running `pip3 install -r requirements.txt`. If you encounter an error referencing `psycopg2`, you can try following [these instructions](./m1-mac-psycopg2-fix.resource.md)
+
+### !end-callout
+
+## Project Structure
+
+When we work on Flask projects, there could be anywhere from one file, to hundreds of files and folders.
+
+The place we put our code that defines endpoints will **depend on the project**.
+
+### !callout-warning
+
+## Every Project Structure is Different
+
+Flask does not enforce one specific file and folder structure. We'll have to go exploring to figure out where to put our code for each project.
+
+### !end-callout
+
+This curriculum will provide a suggested project structure and location:
+
+```
+.
+├── app
+│   ├── models
+│   │   └── __init__.py
+│   ├── __init__.py
+│   └── routes.py
+├── README.md
+└── requirements.txt
+```
+
+### Routes
+
+Inside the `app` folder, there will be a file named `routes.py`. The responsibility of this file is to define the endpoints.
+
+### Models
+
+The `app/models` directory will be responsible for holding our data models. Data models will be discussed further in the curriculum.
+
+### The `app/__init__.py` File
+
+Inside each `app` folder, there will be a file named `__init__.py`. This is the same file we have used to mark a folder as a package! While we often leave this file blank, a common Flask pattern is to define the start-up logic for the Flask server in this file.
+
+The start-up logic is responsible for locating and applying any app configuration, and getting the server ready to receive requests.
+
+To get started, we will include the following code in `__init__.py`. This is the starting, boilerplate code to start a Flask application. Follow your curiousity if you would like to learn more about [`create_app`](https://flask.palletsprojects.com/en/2.0.x/patterns/appfactories/)
+
+```python
+from flask import Flask
+
+def create_app(test_config=None):
+    app = Flask(__name__)
+
+    return app
+```
+
+Configurations to the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
+
+### !callout-danger
+
+## Changing Configurations is Rare
+
+Developers don't need to fuss with configurations that often. Usually, when setting up a project, we will refer to a previous working project to make sure the new one is configured appropriately.
+
+<br />
+
+We should try to become familiar with the kinds of settings we might want to configure in our app. Overall it's more important to know _where_ configuration _changes_ are made, rather than being able to write fresh configurations from scratch.
 
 ### !end-callout
 
@@ -194,86 +318,15 @@ We can use the number labelled as `PID` to terminate the other running server wi
 
 We can use the server logs to debug our server code. After we run `flask run` from the terminal to start the server, any error messages that our server needs to communicate will be printed in that terminal window.
 
-The server logs update in real-time. These are the logs immediately after receiving a `GET` request to `localhost:5000/`, which produced a `200` response.
-
-![Screenshot of Terminal after running the command "flask run". Details show server startup and request/response of GET to slash.](../assets/building-an-api/flask-setup_server-logs-200.png)
-
 These are the logs immediately after a `GET` request to `localhost:5000/i-didnt-define-this-endpoint-in-my-server-code`, which produced a `404` response.
 
 ![Screenshot of Terminal, which includes Flask sever startup messages, and output for request/response of a 404 error](../assets/building-an-api/flask-setup_server-logs-404.png)
 
-These are the logs immediately after a `GET` request to `localhost:5000/broken-endpoint-with-broken-server-code`, which raised an error in our server code.
-
-![Screenshot of Terminal, which includes Flask sever startup messages, and output for request/response of a 500 error, with error logs](../assets/building-an-api/flask-setup_server-logs-500.png)
-
-We can focus on the error message at the bottom here to trace our error:
-
-```bash
-  File "/hello_world_api/app/routes.py", line 17, in broken_endpoint
-    return 10 / 0
-ZeroDivisionError: division by zero
-```
-
-In this example, it seems that we have a `ZeroDivisionError` caused in a method named `broken_endpoint`, on line 17, in the file `/hello_world_api/app/routes.py`.
-
-## Where Does Code Go: Endpoints
-
-When we work on Flask projects, there could be anywhere from one file, to hundreds of files and folders.
-
-The place we put our code that defines endpoints will **depend on the project**.
-
-### !callout-warning
-
-## Every Project Structure is Different
-
-Flask does not enforce one specific file and folder structure. We'll have to go exploring to figure out where to put our code for each project.
-
-### !end-callout
-
-This curriculum will provide a suggested project structure and location:
-
-```
-.
-├── app
-│   ├── models
-│   │   └── __init__.py
-│   ├── __init__.py
-│   └── routes.py
-├── README.md
-└── requirements.txt
-```
-
-### Routes
-
-Inside the `app` folder, there will be a file named `routes.py`. The responsibility of this file is to define the endpoints.
-
-### Models
-
-The `app/models` directory will be responsible for holding our data models. Data models will be discussed further in the curriculum.
-
-### The `app/__init__.py` File
-
-Inside each `app` folder, there will be a file named `__init__.py`. This is the same file we have used to mark a folder as a package! While we often leave this file blank, a common Flask pattern is to define the start-up logic for the Flask server in this file.
-
-The start-up logic is responsible for locating and applying any app configuration, and getting the server ready to receive requests.
-
-Configurations to the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
-
-### !callout-danger
-
-## Changing Configurations is Rare
-
-Developers don't need to fuss with configurations that often. Usually, when setting up a project, we will refer to a previous working project to make sure the new one is configured appropriately.
-
-<br />
-
-We should try to become familiar with the kinds of settings we might want to configure in our app. Overall it's more important to know _where_ configuration _changes_ are made, rather than being able to write fresh configurations from scratch.
-
-### !end-callout
+Note that all `GET` requests at this stage will produce a `404` response because we have not defined any endpoints.
 
 ## Dev Workflow
 
-Our modified dev workflow for Flask development may now look like this:
+Our dev workflow for Flask development may now look like this:
 
 1. `cd` into a project root folder
 1. Activate a virtual environment
