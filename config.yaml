@@ -158,7 +158,7 @@ Standards:
         Path: /api-2-read-404s/activity-solar-read-404s.md
   -
     Title: Data In Tables
-    Description: "Data in Tables, Activity: Data in Tables"
+    Description: "Data in Tables, Intro to Relational Databases, Activity: Data in Tables"
     UID: f7c302282a7e78968f846372a19f50ef
     SuccessCriteria:
       - success criteria
@@ -168,20 +168,28 @@ Standards:
         UID: 50c412213820ae1e7ffd5a432f8a2fb7
         Path: /data-in-tables/data-in-tables.instructor.md
       -
+        Type: Instructor
+        UID: 62c24181bff87815cf3039e30c8c32b2
+        Path: /data-in-tables/instructor-activity-data-in-tables.md
+      -
+        Type: Instructor
+        UID: paZju7
+        Path: /intro-to-sql/intro-to-relational-databases.instructor.md
+      -
         Type: Lesson
         UID: 0e1f2fc10fdeffcb430193b38662480e
         Path: /data-in-tables/data-in-tables.md
       -
-        Type: Instructor
-        UID: 62c24181bff87815cf3039e30c8c32b2
-        Path: /data-in-tables/instructor-activity-data-in-tables.md
+        Type: Lesson
+        UID: bf845a0d8d9b36277b4a65ad5a323ec6
+        Path: /intro-to-sql/intro-to-relational-databases.md
       -
         Type: Lesson
         UID: a5d0460ebba87354036cecef3e810940
         Path: /data-in-tables/activity-data-in-tables.md
   -
     Title: Intro To SQL
-    Description: "Intro to Relational Databases, SQL Setup, Adding New Records, Retrieving Records, Updating Records, Deleting Records, Problem Set: Intro to SQL, Activity: Intro to SQL"
+    Description: "SQL Setup, Adding New Records, Retrieving Records, Updating Records, Deleting Records, Problem Set: Intro to SQL, Activity: Intro to SQL"
     UID: 3211fc3d75369f96b537a4535fcbba6d
     SuccessCriteria:
       - success criteria
@@ -190,14 +198,6 @@ Standards:
         Type: Instructor
         UID: d208cde984a0236f321a3a2216132286
         Path: /intro-to-sql/intro-to-sql.instructor.md
-      -
-        Type: Instructor
-        UID: paZju7
-        Path: /intro-to-sql/intro-to-relational-databases.instructor.md
-      -
-        Type: Lesson
-        UID: bf845a0d8d9b36277b4a65ad5a323ec6
-        Path: /intro-to-sql/intro-to-relational-databases.md
       -
         Type: Lesson
         UID: 9f6237c34cd80959b46a2a6b197e04f5
@@ -231,7 +231,7 @@ Standards:
         UID: 1ccd31d7b789d74e78d94c236193bb8d
         Path: /intro-to-sql/activity-intro-to-sql.md
   -
-    Title: Relationships in Databases
+    Title: Relationships in SQL
     Description: "Database Relationships, Establishing Relationships, Problem Set: Intermediate SQL"
     UID: 11a8027f-bd04-4c47-b4d3-36209af1068d
     SuccessCriteria:
@@ -409,8 +409,8 @@ Standards:
         UID: L00UOa
         Path: /api-6-testing/activity-solar-testing.md
   -
-    Title: 07) Building an API - Relationships
-    Description: "One-to-Many Relationships, Nested Routes in Flask, Many-to-Many Relationships"
+    Title: 07) Building an API - One-to-Many Relationships
+    Description: "One-to-Many Relationships, Nested Routes in Flask"
     UID: 11960148-2005-4ce6-b12d-c9f788667407
     SuccessCriteria:
       - success criteria
@@ -423,14 +423,6 @@ Standards:
         Type: Lesson
         UID: 66f19557-3680-4552-bb9b-440ea22d0c20
         Path: /api-7-relationships-in-sqlalchemy/nested-routes-in-flask.md
-      -
-        Type: Lesson
-        UID: c672b599-4f30-44cc-8831-0cf91f17d63e
-        Path: /api-7-relationships-in-sqlalchemy/many-to-many-genre.md
-      -
-        Type: Lesson
-        UID: 3bb7e9d1-b7fa-4067-a404-8d77468b563e
-        Path: /api-7-relationships-in-sqlalchemy/many-to-many-books-genres.md
   -
     Title: 08) Building an API - Deployment
     Description: "Deployment, Deploying to Heroku, Problem Set: Deployment, Activity: Deploying to Heroku"
@@ -458,6 +450,21 @@ Standards:
         Type: Lesson
         UID: ee88de6f19748458e8539e3835f8c294
         Path: /api-8-deployment/activity-deploying-to-heroku.md
+  -
+    Title: 09) Building an API - Many-to-Many Relationships
+    Description: "Many-to-Many: Genres, Many-to-Many: Books and Genres"
+    UID: 47ca5247-b2f4-45c9-8d37-8ea43f0e86f8
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+        -
+          Type: Lesson
+          UID: c672b599-4f30-44cc-8831-0cf91f17d63e
+          Path: /api-9-many-to-many/many-to-many-genre.md
+        -
+          Type: Lesson
+          UID: 3bb7e9d1-b7fa-4067-a404-8d77468b563e
+          Path: /api-9-many-to-many/many-to-many-books-genres.md
   -
     Title: Unit Wrap Up
     Description: "Activity: Mind Map"
