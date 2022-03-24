@@ -189,7 +189,7 @@ Standards:
         Path: /data-in-tables/activity-data-in-tables.md
   -
     Title: Intro To SQL
-    Description: "Intro to Relational Databases, SQL Setup, Adding New Records, Retrieving Records, Updating Records, Deleting Records, Problem Set: Intro to SQL, Activity: Intro to SQL"
+    Description: "SQL Setup, Adding New Records, Retrieving Records, Updating Records, Deleting Records, Problem Set: Intro to SQL, Activity: Intro to SQL"
     UID: 3211fc3d75369f96b537a4535fcbba6d
     SuccessCriteria:
       - success criteria
@@ -452,7 +452,7 @@ Standards:
         Path: /api-8-deployment/activity-deploying-to-heroku.md
   -
     Title: 09) Building an API - Many-to-Many Relationships
-    Description: "Many-to-Many"
+    Description: "Many-to-Many: Genres, Many-to-Many: Books and Genres"
     UID: 47ca5247-b2f4-45c9-8d37-8ea43f0e86f8
     SuccessCriteria:
       - success criteria
