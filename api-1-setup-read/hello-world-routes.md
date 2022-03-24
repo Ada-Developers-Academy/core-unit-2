@@ -1,10 +1,12 @@
 # Hello World Routes
 
+## Video
+
 <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=a2d78ec7-648f-41cc-9563-ad11001e7dd5&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
-## Format
+## Goals
 
-This lesson will be in the format of a walk-through. It will use the [Hello Books API project repo](https://github.com/AdaGold/hello-books-api).
+The goals of this lessons is to create and debug endpoints in Flask.
 
 We will:
 
@@ -14,6 +16,12 @@ We will:
 1. Define our second endpoint, `/hello/JSON`
 1. Witness the response of our second endpoint
 1. Debug a third, broken endpoint
+
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`01b-flask-setup` |`01c-hello-world-endpoints`|
 
 ## Defining Endpoints with Blueprint
 

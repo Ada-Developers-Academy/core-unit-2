@@ -4,26 +4,20 @@
 
 <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=4361d68a-a293-47d8-b10c-adba0018b109&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
-## Learning Goals
+## Goals
 
 Our goal for this lesson is to learn how define routes that read data.
-
-## Format
-
-This lesson is a walk-through and syntax explanation for how to build a feature inside a Flask API.
-
-
-## Hello Books API
-
-### Before This Lesson
-
-This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). 
-
-### This Lesson's Work
 
 In this lesson we will build our Hello Books API to fulfill the following feature:
 
 1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
+
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`01c-hello-world-endpoints` |`01d-read-all-books`|
+
 
 ## Getting All Books Endpoint: Preparation
 

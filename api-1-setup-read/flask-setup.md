@@ -6,10 +6,6 @@
 
 The goal of this lesson is to introduce the setup steps for a Flask project, and pair each setup step with any commands or instructions that must be run.
 
-## Format
-
-This lesson will be in the format of a walk-through. It will use the [Hello Books API project repo](https://github.com/AdaGold/hello-books-api).
-
 We will:
 
 1. Clone our repo
@@ -19,6 +15,11 @@ We will:
 1. Run, stop, and restart a Flask server
 1. Read the server logs
 
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`01a-intro-to-flask` |`01b-flask-setup`|
 
 ## Manage Dependencies
 

@@ -1,20 +1,29 @@
-# Intro to Hello Books
+# Intro to Hello Books API
 
-The Building an API Learn lessons walk-through building a Flask API with the companion repo [Hello Books API](https://github.com/AdaGold/hello-books-api)
+The Lessons in the Building an API Learn Topics will walk-through building a Flask API with the companion repo [Hello Books API](https://github.com/AdaGold/hello-books-api).
 
-### Workflow Recommendations
+## Branches
 
-The original Hello Books API repo is owned, written, and maintained by the Ada instructors and curriculum developers. Use this repo as a reference for instructor-led code. We recommend:
+The [Hello Books API repo](https://github.com/AdaGold/hello-books-api) has a git branch with the new code introduced in each lesson. At the top of a lesson that adds to the Hello Books API Flask application code, the starting branch and ending branch will be indicated in a table. For example, the next lesson, **Flask Setup**, starts with the *default* branch `01a-intro-to-flask` and ends with the branch `01b-flask-setup`. 
 
-1. Cloning this repo directly (without forking) when you want to see and play with the instructor examples
-1. Renaming this project folder to `instructor-hello-books-api` to make it clear it's the instructor version
-1. Deleting this folder or removing any changes you've made using `git stash` whenever you are done experimenting. This don't leave any of your own changes in this folder will make it possible to get the latest instructor code without introduing conflicts.
+| Starting Branch | Ending Branch|
+|--|--|
+|`01a-intro-to-flask` |`01b-flask-setup`|
 
-## **** Update with instructions and suggestions on how to use the hello books repo as a companion to these lessons****
+## Workflow Recommendation
 
+As you work through the Building an API Learn Topics and learn to building an API with Flask, you will find a workflow that works for you. Here is one workflow recommendations:
 
-### Fork and Clone the Repo for Personal Experimentation
+1. Clone [Hello Books API](https://github.com/AdaGold/hello-books-api) directly (without forking).
+1. Rename this project folder to `ada-hello-books-api` to make it clear it's the Ada maintained version.
+1. When beginning a lesson, checkout the corresponding starting branch for that lesson.
+1. Code along with the lesson **as much or as little as best supports your learning**. You may find it's best to watch all the videos without coding along. Alternatively, you may prefer to implement every new feature along with the reading and videos.
+    * Do not make commits -- *This is likely the only time we'll ever suggest not making commits*
+1. When starting the lesson, remove any changes you've made using `git stash`. `git stash` resets files to the previous commit point. By not leaving any of your own changes, it makes it possible to checkout the next lesson's branch without introduing conflicts.
 
-If you are interested in personal exploration of the project, fork this repo to your own account. This will let you have full control over the repo, and you can create and push commits over time.
+### Fork and Clone the Repo
 
+After completing all the lessons for a single topic, we highly recommend you implement all the new features introduced in that Learn Topic in your **own fork** of the [Hello Books API](https://github.com/AdaGold/hello-books-api). This additional practice will reinforce the new skills learned, provide an opportunity for debugging practice, and ensure your local flask set-up is working.
+
+For this work, we highly encourage you to practice making small, atomic commits.
 
