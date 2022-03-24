@@ -21,9 +21,14 @@ As you work through the Building an API Learn Topics and learn to building an AP
     * Do not make commits -- *This is likely the only time we'll ever suggest not making commits*
 1. When starting the lesson, remove any changes you've made using `git stash`. `git stash` resets files to the previous commit point. By not leaving any of your own changes, it makes it possible to checkout the next lesson's branch without introduing conflicts.
 
-### Fork and Clone the Repo
+### Problems Sets
 
-After completing all the lessons for a single topic, we highly recommend you implement all the new features introduced in that Learn Topic in your **own fork** of the [Hello Books API](https://github.com/AdaGold/hello-books-api). This additional practice will reinforce the new skills learned, provide an opportunity for debugging practice, and ensure your local flask set-up is working.
+After completing all the lessons for a single topic, the problems set direct us to implement the new features introduced in that Learn Topic in our **own fork** of the [Hello Books API](https://github.com/AdaGold/hello-books-api). This additional practice will reinforce the new skills learned, provide an opportunity for debugging practice, and ensure our local flask set-up is working.
 
-For this work, we highly encourage you to practice making small, atomic commits.
+For this work, we should practice making small, atomic commits
+
+## Class Activities
+
+The Building an API has a companion pair project / class activity [Solar System API](https://github.com/AdaGold/solar-system-api) for additional skills practice.
+
 
