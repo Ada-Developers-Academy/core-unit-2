@@ -6,10 +6,6 @@
 
 The goal of this lesson is to introduce the setup steps for a Flask project, and pair each setup step with any commands or instructions that must be run.
 
-## Format
-
-This lesson will be in the format of a walk-through. It will use the [Hello Books API project repo](https://github.com/AdaGold/hello-books-api).
-
 We will:
 
 1. Clone our repo
@@ -19,6 +15,11 @@ We will:
 1. Run, stop, and restart a Flask server
 1. Read the server logs
 
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`01a-intro-to-flask` |`01b-flask-setup`|
 
 ## Manage Dependencies
 
@@ -131,38 +132,44 @@ System configurations vary, and sometimes the requirements installation step may
 
 ### !end-callout
 
-### !callout-warning
-
-### Common Debugging: Need to `$ pip install --upgrade pip`
-
-A common installation error may be solved by executing `$ pip install --upgrade pip`. Afterwards, attempt `$ pip install -r requirements.txt` again. _(Note: Written March 2021.)_
-
-### !end-callout
-
-### !callout-warning
-
-### Common Debugging: Need to `$ pip install --upgrade setuptools`
-
-A common installation error may be solved by executing `$ pip install --upgrade setuptools`. Afterwards, attempt `$ pip install -r requirements.txt` again.
-
-### !end-callout
-
-### !callout-warning
-
-## Common Debugging: Need to `$ xcode-select --install`
-
-A common installation error may be solved by executing `$ xcode-select --install`. Afterwards, attempt `$ pip install -r requirements.txt` again.
-
-### !end-callout
+<details>
+   <summary>Expand for common installation failures and debugging</summary>
 
 
-### !callout-warning
+   ### !callout-warning
 
-## M1 Macs & SQL Alchemy
+   ### Common Debugging: Need to `$ pip install --upgrade pip`
 
-Some M1 Macs have trouble installing SQLAlchemy dependencies when running `pip3 install -r requirements.txt`. If you encounter an error referencing `psycopg2`, you can try following [these instructions](./m1-mac-psycopg2-fix.resource.md)
+   A common installation error may be solved by executing `$ pip install --upgrade pip`. Afterwards, attempt `$ pip install -r requirements.txt` again. _(Note: Written March 2021.)_
 
-### !end-callout
+   ### !end-callout
+
+   ### !callout-warning
+
+   ### Common Debugging: Need to `$ pip install --upgrade setuptools`
+
+   A common installation error may be solved by executing `$ pip install --upgrade setuptools`. Afterwards, attempt `$ pip install -r requirements.txt` again.
+
+   ### !end-callout
+
+   ### !callout-warning
+
+   ## Common Debugging: Need to `$ xcode-select --install`
+
+   A common installation error may be solved by executing `$ xcode-select --install`. Afterwards, attempt `$ pip install -r requirements.txt` again.
+
+   ### !end-callout
+
+
+   ### !callout-warning
+
+   ## M1 Macs & SQL Alchemy
+
+   Some M1 Macs have trouble installing SQLAlchemy dependencies when running `pip3 install -r requirements.txt`. If you encounter an error referencing `psycopg2`, you can try following [these instructions](./m1-mac-psycopg2-fix.resource.md)
+
+   ### !end-callout
+
+</details>
 
 ## Project Structure
 
