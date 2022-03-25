@@ -1,4 +1,4 @@
-# Problem Set: Read One Book, 400 and 404s
+# Problem Set: Read One Book
 
 ## Directions
 
