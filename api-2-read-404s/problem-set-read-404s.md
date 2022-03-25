@@ -22,5 +22,5 @@ On your machine, keep:
 
 1. Create the following endpoint, with the same functionality presented in this topic:
    1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
-        * The API should return a `404` for a non-existing book.
+        * The API should return a `404` for a non-existing `book`.
         * The API should return a `400` for an invalid `book_id`.
