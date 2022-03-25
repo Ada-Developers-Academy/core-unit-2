@@ -134,8 +134,8 @@ Standards:
         UID: 2b5c17c9-4e58-4182-acb5-09d5260faefc
         Path: /api-1-setup-read/m1-mac-psycopg2-fix.resource.md 
   -
-    Title: 2) Building an API - Read One Book, 400 and 404s
-    Description: "Read One Book, 400 and 404s"
+    Title: 2) Building an API - Read and Errors
+    Description: "Read One Book, Error Handling"
     UID: 58e6e2cb-3060-48f8-abf2-0df2986f07ae
     SuccessCriteria:
       - success criteria

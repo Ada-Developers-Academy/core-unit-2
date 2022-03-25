@@ -4,22 +4,17 @@
 
 ## Goals
 
-Our goal for this lesson is to learn how define routes that read data
-
-## Format
-
-Like the previous lesson, this lesson is a walk-through and syntax explanation for how to build a feature inside a Flask API. We **highly recommend** reading or watching through this first fully, before repeating on your own machine.
-
-### Before This Lesson
-
-This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api).
-- The `GET` `/books` route should be defined.
-
-### This Lesson's Work
+Our goal for this lesson is to learn how define routes that read data.
 
 In this lesson we will build our Hello Books API to fulfill the following feature:
 
 1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
+
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`01d-read-all-books` |`02a-read-one-book`|
 
 ## Getting a Single Book Endpoint: Preparation
 
@@ -113,7 +108,7 @@ For reasons that are less important to memorize, Flask will automatically conver
 ### !challenge
 * type: tasklist
 * id: 227efe7d-4177-4a2f-aac8-de188d17f62e
-* title: Create and Read, Getting a Single Book Endpoint
+* title: Getting a Single Book Endpoint
 ##### !question
 
 Think about the "Getting a Single Book Endpoint."
@@ -133,11 +128,3 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-options
 ### !end-challenge
 <!-- prettier-ignore-end -->
-
-### !callout-warning
-
-## What About Error Handling?
-
-There are many cases that weren't covered in this lesson, even though they are relevant to creating and reading `Book`s. For example, what happens if we make a `GET` request to `/books/this-book-doesnt-exist`? We are intentionally not covering these cases at the moment, to limit this lesson. However, hypothesize and research how to handle erroneous HTTP requests. Follow your curiosity!
-
-### !end-callout
