@@ -108,7 +108,7 @@ For reasons that are less important to memorize, Flask will automatically conver
 ### !challenge
 * type: tasklist
 * id: 227efe7d-4177-4a2f-aac8-de188d17f62e
-* title: Create and Read, Getting a Single Book Endpoint
+* title: Getting a Single Book Endpoint
 ##### !question
 
 Think about the "Getting a Single Book Endpoint."
