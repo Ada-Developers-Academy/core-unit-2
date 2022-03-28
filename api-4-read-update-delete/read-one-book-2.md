@@ -16,7 +16,7 @@ We will refactor the endpoint we designed in our previous lesson [02) Building a
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`03b-create` |`03c-read-all-books`|
+|`03c-read-all-books` |`04a-read-one-book`|
 
 ## Getting a Single Book Endpoint: Preparation
 
@@ -26,7 +26,7 @@ Let's consider how to implement this feature:
 
 ## Planning HTTP Requests, Responses, and Logic Review
 
-Let's review the planning work we did in the lesson **Requests and Responses in Flask: Reading All Books and Endpoint and Read One Book Endpoint**.
+Let's review the planning work we did in the lesson [02) Building and API - Read One Book Endpoint](../api-2-read-404s/read-one-book.md).
 
 Once more, we should think about the typical HTTP verb and endpoint used for requests that retrieve the data for a particular model record.
 
@@ -116,11 +116,15 @@ For reasons that are less important to memorize, Flask will automatically conver
 
 ### !end-callout
 
+## Error Handling
+
+***** This section will be updated as part of the updates to 04) Building an API in the next PR ****
+
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: tasklist
 * id: ECXaUI
-* title: Create and Read, Getting a Single Book Endpoint
+* title: Getting a Single Book Endpoint
 ##### !question
 
 Think about the "Getting a Single Book Endpoint."
@@ -136,6 +140,7 @@ Check off all the topics that we've briefly touched on so far.
 * Defined this endpoint with the function signature `def book(book_id):`
 * Used `Book.query.get(book_id)` to get an instance of `Book` matching `book_id`
 * Returned a dictionary literal as our response
+* Handled `400` and `404` responses
 
 ##### !end-options
 ### !end-challenge
