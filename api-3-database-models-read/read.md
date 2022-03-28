@@ -11,7 +11,6 @@ Our goal for this lesson is to:
 We will build our Hello Books API to fulfill these features:
 
 1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
-1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
 
 We will refactor the endpoint we designed in our previous lesson [01) Building and API - Read All Books Endpoint](../api-1-setup-read/read-all-books.md) to make use of the data in our postgres database.
 
@@ -27,7 +26,7 @@ Let's review the planning work we did in the lesson **Building and API - Part 1:
 
 Let's think about the typical HTTP verb and endpoint used for requests that retrieve all records of a particular resource. 
 
-Recall that for requests that read records, it is typical to use a `GET` request to the `/books` path. 
+Recall that for requests that read records, it is RESTful to use a `GET` request to the `/books` path. 
 
 | HTTP Method | Endpoint |
 | ----------- | -------- |
