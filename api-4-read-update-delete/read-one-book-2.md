@@ -118,7 +118,60 @@ For reasons that are less important to memorize, Flask will automatically conver
 
 ## Error Handling
 
-***** This section will be updated as part of the updates to 04) Building an API in the next PR ****
+Recall the `validate_book` function that handles an invalid `book_id` or a non-existing book by returning a `400` or `404` response. 
+
+<details>
+    <summary>Expland to view validate_book function.</summary>
+
+```python
+def validate_book(book_id):
+    try:
+        book_id = int(book_id)
+    except:
+        abort(make_response({"message":f"book {book_id} invalid"}, 400))
+
+    for book in books:
+        if book.id == book_id:
+            return book_id
+
+    abort(make_response({"message":f"book {book_id} not found"}, 404))
+```
+</details>
+
+Let's refactor `validate_book` so that it gets the correct `book` instance from the database, and returns this `book`.
+
+We can also use this opportunity to rename `handle_book` to something more descriptive like `read_one_book`.
+
+<details>
+    <summary>Give it a try, then click here to review our code.</summary>
+
+```python
+def validate_book(book_id):
+    try:
+        book_id = int(book_id)
+    except:
+        abort(make_response({"message":f"book {book_id} invalid"}, 400))
+
+    book = Book.query.get(book_id)
+
+    if not book:
+        abort(make_response({"message":f"book {book_id} not found"}, 404))
+
+    return book
+
+@books_bp.route("/<book_id>", methods=["GET"])
+def read_one_book(book_id):
+    book = validate_book(book_id)
+    return {
+            "id": book.id,
+            "title": book.title,
+            "description": book.description
+        }
+```
+
+</details>
+
+
 
 <!-- prettier-ignore-start -->
 ### !challenge
