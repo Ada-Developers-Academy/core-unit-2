@@ -4,51 +4,17 @@
 
 ## Goals
 
-- Practice defining routes that create model records
+Our goal for this lesson is to create a route that creates model records.
 
-## Format
-
-This lesson is a walk-through and syntax explanation for how to build several features inside a Flask API. We **highly recommend** reading or watching through this first fully, before repeating on your own machine.
-
-This lesson has a large amount of new information. It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
-
-### !callout-danger
-
-## Read-through First, Repeat Second
-
-We **highly suggest** reading or watching through this lesson fully, before repeating on your own machine.
-
-### !end-callout
-
-### !callout-danger
-
-## Prioritize Familiarity
-
-It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
-
-### !end-callout
-
-## Hello Books API
-
-### Before This Lesson
-
-This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). Before beginning this lesson, the Hello Books API should have:
-
-- A `hello_books_development` database
-- A `book` table defined
-- A `Book` model defined
-
-The model and table should have the following columns:
-
-- `id`
-- `title`
-- `description`
-
-### This Lesson's Work
-
-We want to build our Hello Books API to fulfill the following feature:
+We will add to our Hello Books API to fulfill the following feature:
 
 1. As a client, I want to send a request with new valid book data and get a success response, so that I know the API saved the book data.
+
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`03a-models-setup` |`03b-create`|
 
 ## Creating a Book Endpoint: Preparation
 
