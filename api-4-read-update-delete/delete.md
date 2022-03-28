@@ -1,4 +1,4 @@
-# Update and Delete
+# Delete
 
 ## Goals
 Our goals for this lesson are to:

@@ -91,7 +91,7 @@ Standards:
         UID: 5f9a641756dea1f4bc8a5c1776d46528
         Path: /intro-to-api-design/activity-intro-to-api-design.md
   -
-    Title: 1) Building an API - Intro to Flask, Setup, and Read
+    Title: 01) Building an API - Intro to Flask, Setup, and Read
     Description: "Intro to Flask, Intro to Hello Books, Flask Setup, Hello World, Read All Books"
     UID: dea859c0
     SuccessCriteria:
@@ -134,7 +134,7 @@ Standards:
         UID: 2b5c17c9-4e58-4182-acb5-09d5260faefc
         Path: /api-1-setup-read/m1-mac-psycopg2-fix.resource.md 
   -
-    Title: 2) Building an API - Read and Errors
+    Title: 02) Building an API - Read and Errors
     Description: "Read One Book, Error Handling"
     UID: 58e6e2cb-3060-48f8-abf2-0df2986f07ae
     SuccessCriteria:
@@ -293,7 +293,7 @@ Standards:
         UID: eed7f313-69fe-4881-9b7c-829860adeb4e
         Path: /more-selecting-in-sql/modifying-databases-in-sql.md
   -
-    Title: 3) Building an API - Database, Models, Create, and Read 
+    Title: 03) Building an API - Database, Models, Create, and Read 
     Description: "Introduction to Models and Migrations, Models Setup, Create, Read"
     UID: 2804d58bb38264215b9414a111a759d7
     SuccessCriteria:
