@@ -19,7 +19,7 @@ We will build our Hello Books API to fulfill the following feature:
 
 ## Updating a Book Endpoint: Planning HTTP Requests, Responses, and Logic
 
-As we did for our create and read endpoints, we should think about the typical HTTP verb and endpoint used to replace the data for a particular model record.
+As we did for our create and read endpoints, we should think about the RESTful HTTP verb and endpoint used to replace the data for a particular model record.
 
 For this feature, we should make a `PUT` request to the `/books` path. We also need to include the `id` of the record to replace as part of the endpoint, as we did when _reading_ a particular record.
 

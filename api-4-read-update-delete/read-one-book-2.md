@@ -22,7 +22,7 @@ We will refactor the endpoint we designed in our previous lesson [02) Building a
 
 Let's review the planning work we did in the lesson [02) Building and API - Read One Book Endpoint](../api-2-read-404s/read-one-book.md).
 
-Once more, we should think about the typical HTTP verb and endpoint used for requests that retrieve the data for a particular model record.
+Once more, we should think about the RESTful HTTP verb and endpoint used for requests that retrieve the data for a particular model record.
 
 For this feature, we should make a `GET` request to the `/books` path, but we need to include the `id` of the record to retrieve as part of the endpoint.
 

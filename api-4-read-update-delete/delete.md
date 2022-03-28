@@ -16,7 +16,7 @@ We will build our Hello Books API to fulfill the following feature:
 
 ## Deleting a Book Endpoint: Planning HTTP Requests, Responses, and Logic
 
-We should think about the typical HTTP verb and endpoint used for requests that delete a particular model record.
+We should think about the RESTful HTTP verb and endpoint used for requests that delete a particular model record.
 
 For this feature, we should make a `DELETE` request to the `/books` path, and we'll need to include the `id` of the record to delete as part of the endpoint.
 
