@@ -8,6 +8,12 @@ We will build our Hello Books API to fulfill the following feature:
 
 1. As a client, I want to send a request to delete one existing book and get a success response, so that I know the API deleted the book data.
 
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`04b-update` |`04c-delete`|
+
 ## Deleting a Book Endpoint: Planning HTTP Requests, Responses, and Logic
 
 We should think about the typical HTTP verb and endpoint used for requests that delete a particular model record.
@@ -44,30 +50,23 @@ Our endpoint will need to:
 
 ## Deleting a Book Endpoint: Code
 
-This endpoint uses the same path as our existing parameterized route, `"/<book_id>"`, so we can refactor and expand on the same function.
-
-Let's modify our endpoint code to support the delete feature.
+This endpoint uses the same path as our existing route for reading and updating a `Book` record, `"/<book_id>"`. Let's create another route function to handle the delete feature.
 
 ```python
-@books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
-def handle_book(book_id):
-    book = Book.query.get(book_id)
+@books_bp.route("/<book_id>", methods=["DELETE"])
+def delete_book(book_id):
+    book = validate_book(book_id)
 
-    if request.method == "GET":
-        # ... existing code for getting a single book
-    elif request.method == "PUT":
-        # ... existing code for updating a single book
-    elif request.method == "DELETE":
-        db.session.delete(book)
-        db.session.commit()
-        return make_response(f"Book #{book.id} successfully deleted")
+    db.session.delete(book)
+    db.session.commit()
+
+    return make_response(f"Book #{book.id} successfully deleted")
 ```
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                 |
 | --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `methods=["GET", "PUT", "DELETE"]`                  | We must update this endpoint so it accepts `DELETE` requests                                                                                          |
-| `book = Book.query.get(book_id)`                    | This feature will need to find our matching `Book` instance, so we still need the lookup code using `book_id` and store the found book in `book`                                                           |
-| `elif request.method == "DELETE":`                  | We can add a new conditional branch for `DELETE` requests                                                                                             |
+| `methods=["DELETE"]`                  | This endpoint must accept `DELETE` requests                                                                                          |
+| `book = validate_book(book_id)`                    | The delete feature will also use the `validate_book` helper method for error handling                                                            |
 | `db.session.delete(book)`                           | We can use SQLAlchemy's functions to tell the database to prepare to delete our `book` with `db.session.delete(book)`                                                                 |
 | `db.session.commit()`                               | We use this function to actually apply our database changes                                                                                           |
 | `return make_response(...)`                              | This is one of many ways to return an HTTP response. Since we didn't supply a status code, Flask will default to `200 OK`.                                                                                                   |
@@ -88,6 +87,8 @@ Then, let's make our `DELETE` request to `/books/1` and check the response.
 Afterwards, let's even make a `GET` request to `/books`. We see that there are no more books that exist! Our book was successfully deleted.
 
 ![Screenshot of Postman featuring a request of GET to /books and a response of 200 with an empty array](../assets/api-4-read-update-delete/api-4-read-update-delete_delete-get-books-empty.png)
+
+We should also verify the error handling from the `validate_error` helper function behaves as expected for invalid `book_id` and non-existing `book`s.
 
 ### Manually Testing with `psql`
 
@@ -117,28 +118,8 @@ Check off all the topics that we've briefly touched on so far.
 * Committed these changes in the database
 * Returned a response
 * Tested this request in Postman
+* Verified invalid `book_id`s and non-existing `book`s are handled
 
 ##### !end-options
-### !end-challenge
-<!-- prettier-ignore-end -->
-
-## Check for Understanding
-
-<!-- Question Takeaway -->
-<!-- prettier-ignore-start -->
-### !challenge
-* type: paragraph
-* id: dZYkxW
-* title: Update and Delete
-##### !question
-
-What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
-
-##### !end-question
-##### !placeholder
-
-My biggest takeaway from this lesson is...
-
-##### !end-placeholder
 ### !end-challenge
 <!-- prettier-ignore-end -->

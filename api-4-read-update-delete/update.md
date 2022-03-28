@@ -11,6 +11,12 @@ We will build our Hello Books API to fulfill the following feature:
 
 1. As a client, I want to send a request with valid book data to update one existing book and get a success response, so that I know the API updated the book data.
 
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`04a-read-one-book` |`04b-udpate`|
+
 ## Updating a Book Endpoint: Planning HTTP Requests, Responses, and Logic
 
 As we did for our create and read endpoints, we should think about the typical HTTP verb and endpoint used to replace the data for a particular model record.
