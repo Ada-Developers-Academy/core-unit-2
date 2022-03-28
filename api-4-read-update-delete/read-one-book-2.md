@@ -2,7 +2,7 @@
 
 ## Goals
 
-Our goal for this lesson is to:
+Our goals for this lesson are to:
 - Practice defining routes that read model records
 - Access a database record from the back-end layer
 
@@ -138,9 +138,7 @@ def validate_book(book_id):
 ```
 </details>
 
-Let's refactor `validate_book` so that it gets the correct `book` instance from the database, and returns this `book`.
-
-We can also use this opportunity to rename `handle_book` to something more descriptive like `read_one_book`.
+Let's refactor `validate_book` so that it gets the correct `book` instance from the database, and returns this `book`. We can use this opportunity to rename `handle_book` to something more descriptive like `read_one_book`.
 
 <details>
     <summary>Give it a try, then click here to review our code.</summary>
