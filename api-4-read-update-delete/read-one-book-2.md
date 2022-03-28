@@ -18,13 +18,7 @@ We will refactor the endpoint we designed in our previous lesson [02) Building a
 |--|--|
 |`03c-read-all-books` |`04a-read-one-book`|
 
-## Getting a Single Book Endpoint: Preparation
-
-Let's consider how to implement this feature:
-
-> As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
-
-## Planning HTTP Requests, Responses, and Logic Review
+## Getting a Single Book Endpoint: Planning HTTP Requests, Responses, and Logic Review
 
 Let's review the planning work we did in the lesson [02) Building and API - Read One Book Endpoint](../api-2-read-404s/read-one-book.md).
 
@@ -196,11 +190,3 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-options
 ### !end-challenge
 <!-- prettier-ignore-end -->
-
-### !callout-warning
-
-## What About Error Handling?
-
-There are many cases that weren't covered in this lesson, even though they are relevant to creating and reading `Book`s. For example, what happens if we make a `GET` request to `/books/this-book-doesnt-exist`? We are intentionally not covering these cases at the moment, to limit this lesson. However, hypothesize and research how to handle erroneous HTTP requests. Follow your curiosity!
-
-### !end-callout
