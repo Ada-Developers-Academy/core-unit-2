@@ -4,17 +4,22 @@
 
 ## Goals
 
+Our goal for this lesson is to:
 - Practice defining routes that read model records
 - Access a database record from the back-end layer
 
-### This Lesson's Work
-
-We want to build our Hello Books API to fulfill these features:
+We will build our Hello Books API to fulfill these features:
 
 1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
 1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
 
 We will refactor the endpoints we designed in our previous lessons **Building and API - Part 1: Reading All Books and Endpoint and Read One Book Endpoint** to make use of the data in our postgres database.
+
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`03b-create` |`03c-read-all-books`|
 
 ## Planning HTTP Requests, Responses, and Logic Review
 
