@@ -43,7 +43,7 @@ Before we go any further, let's comment or remove our hardcoded `BOOKS` data and
 
 </details>
 
-We should also comment or remove our code for the `GET /books` and `GET /books/<book_id>` routes. We will refactor these to use our database in the **Read** lesson.
+We should also comment or remove our code for the `GET /books` and `GET /books/<book_id>` routes. We will refactor these to use our database in the forthcoming **Read All Books** and **Read One Book** lesson.
 
 <details>
     <summary>Expand to see the code to remove or comment.</summary>
