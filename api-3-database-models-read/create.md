@@ -198,7 +198,7 @@ Recall that our tools for debugging include:
 ### !challenge
 * type: tasklist
 * id: 4de3Ri
-* title: Create, Creating a Book Endpoint
+* title: Creating a Book Endpoint
 ##### !question
 
 Think about the "Creating a Book Endpoint."

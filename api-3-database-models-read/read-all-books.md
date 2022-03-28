@@ -4,7 +4,7 @@
 
 ## Goals
 
-Our goal for this lesson is to:
+Our goal for this lesson are to:
 - Practice defining routes that read model records
 - Access a database record from the back-end layer
 
@@ -188,7 +188,7 @@ Soon, we will create unit tests that we can use for this sort of verification.
 ### !challenge
 * type: tasklist
 * id: 9Lz3nt
-* title: Create and Read, Getting All Books Endpoint
+* title: Getting All Books Endpoint
 ##### !question
 
 Think about the "Getting All Books Endpoint."

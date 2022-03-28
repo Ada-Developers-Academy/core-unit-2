@@ -116,7 +116,7 @@ Finally we will create the following endpoints for our `Genre` model:
 - `GET ` to `/genres`
 - `POST` to `/genres`
 
-Refer back to [03) Building an API](../api-3-database-models-read/) for how to define the `GET` endpoint and the `POST` endpoints.
+Refer back to [03) Building an API - Read All Books](../api-3-database-models-read/read-all-books.md) for how to define the `GET` endpoint and the `POST` endpoints.
 
 <br/>
 

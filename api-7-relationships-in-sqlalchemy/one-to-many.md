@@ -66,7 +66,7 @@ The last thing we'll do for now is create the following endpoints for our `Autho
 - `GET ` to `/authors`
 - `POST` to `/authors`
 
-Again, refer back to [Building an API, Part 1](../api-3-database-models-read) for how to define the `GET` endpoint and the `POST` endpoint.
+Again, refer back to [03) Building an API - Read All Books](../api-3-database-models-read/read-all-books.md) for how to define the `GET` endpoint and the `POST` endpoint.
 
 
 ## Visualizing and Implementing the Relationship
