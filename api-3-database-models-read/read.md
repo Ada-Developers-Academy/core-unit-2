@@ -1,4 +1,4 @@
-# Read
+# Read All Books
 
 <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=13c1312c-7230-4631-9687-adba0000a65e&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
@@ -13,7 +13,7 @@ We will build our Hello Books API to fulfill these features:
 1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
 1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
 
-We will refactor the endpoints we designed in our previous lessons **Building and API - Part 1: Reading All Books and Endpoint and Read One Book Endpoint** to make use of the data in our postgres database.
+We will refactor the endpoint we designed in our previous lesson [01) Building and API - Read All Books Endpoint](../api-1-setup-read/read-all-books.md) to make use of the data in our postgres database.
 
 ## Branches
 
@@ -137,6 +137,54 @@ Remember to use all debugging tools:
 
 ### !end-callout
 
+## Refactor using Seperate Route Functions
+
+Finally, let's refactor to create separate route functions for the **create** and **read** features. While Flask allows us to put the functionality for multiple features into a single function, it can enhance readibility and changeability to separate them out into seperate functions. 
+
+<details>
+    <summary>Consider how to refactor into seperate route function and then expand the review the code.</summary>
+
+```python
+# app/routes.py
+
+from app import db
+from app.models.book import Book
+from flask import Blueprint, jsonify, make_response, request
+
+books_bp = Blueprint("books_bp", __name__, url_prefix="/books")
+
+@books_bp.route("", methods=["POST"])
+def create_book():
+    request_body = request.get_json()
+    new_book = Book(title=request_body["title"],
+                    description=request_body["description"])
+
+    db.session.add(new_book)
+    db.session.commit()
+
+    return make_response(f"Book {new_book.title} successfully created", 201)
+
+@books_bp.route("", methods=["GET"])
+def read_all_books():
+    books_response = []
+    books = Book.query.all()
+    for book in books:
+        books_response.append(
+            {
+                "id": book.id,
+                "title": book.title,
+                "description": book.description
+            }
+        )
+    return jsonify(books_response)
+```
+
+We should verify that our `GET` `/books` and `CREATE` `/books` route still work the same as before the refactor using Postman and/or the browser.
+
+Soon, we will create unit tests that we can use for this sort of verification. 
+
+</details>
+
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: tasklist
@@ -162,138 +210,9 @@ Check off all the topics that we've briefly touched on so far.
 * Used `jsonify` with `jsonify(books_response)`
 * Returned this JSON list with the status code `200 OK`
 * Tested this request in Postman
+* Refactored to separate route functions for **create** and **read**
 
 ##### !end-options
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
-## Getting a Single Book Endpoint: Preparation
-
-Let's consider how to implement this feature:
-
-> As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
-
-## Planning HTTP Requests, Responses, and Logic Review
-
-Let's review the planning work we did in the lesson **Requests and Responses in Flask: Reading All Books and Endpoint and Read One Book Endpoint**.
-
-Once more, we should think about the typical HTTP verb and endpoint used for requests that retrieve the data for a particular model record.
-
-For this feature, we should make a `GET` request to the `/books` path, but we need to include the `id` of the record to retrieve as part of the endpoint.
-
-| HTTP Method | Endpoint   |
-| ----------- | ---------- |
-| `GET`       | `/books/1` |
-
-`GET` requests do not include a request body, so no additional planning around the request body is needed.
-
-We want to send back a single JSON object (dictionary) with `id`, `title`, and `description`:
-
-| Response Status | Response Body                                                                                            |
-| --------------- | -------------------------------------------------------------------------------------------------------- |
-| `200 OK`        | `{"id": 1, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}` |
-
-Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
-
-Our endpoint will need to:
-
-1. Read the `book_id` in the request path
-1. Retrieve the book with the matching `book_id` from the database
-1. Format the book data into the appropriate structure (a single dictionary with `id`, `title`, and `description`)
-1. Send back a response
-
-Our new route needs to read data from the incoming request path. Our existing route doesn't do this, so we'll need to add an entirely new route to our existing `Blueprint`.
-
-Our new route needs a **route parameter**. The route `/books/1` should give us the details for the book with `id` 1. `/books/2` should give us details for book with `id` 2, `/books/3000` should give us details for book 3000, and so on.
-
-Let's take a look at how our new route will account for this!
-
-## Getting a Single Book Endpoint: Code
-
-To access a single book with `book_id` in our database we use the syntax `Book.query.get(book_id)`.
-
-Consider how you could refactor the `GET` `/books/<book_id>` route to make use of this *query*.
-
-<details>
-    <summary>Give it a try, then click here to review our code.</summary>
-
-```python
-# No new import statements...
-
-# No modifications to the other route...
-
-@books_bp.route("/<book_id>", methods=["GET"])
-def handle_book(book_id):
-    book = Book.query.get(book_id)
-
-    return {
-        "id": book.id,
-        "title": book.title,
-        "description": book.description
-    }
-```
-
-</details>
-
-| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                                                                                                                                              |
-| --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@books_bp.route("...", methods=["GET"])`           | We are setting up a new route, so we must use the `Blueprint` decorator to define it                                                                                                                                                                                                                                                                                               |
-| `"/<book_id>"`                                      | This is the `Blueprint` syntax to indicate _route parameters_. The `<book_id>` placeholder shows that we are looking for a variable value (could be `1`, `2`, or `3000`). We'll use this value in the function as the variable `book_id`, so we should use a good, descriptive name.                                                                                               |
-| `def handle_book(book_id):`                                | This `handle_book` function is called whenever the HTTP request matches the decorator. The name of this function should follow the previously discussed guidelines. We must add a parameter to this method, `book_id`. This parameter name must match the route parameter in the decorator. It will receive the part of the request path that lines up with the placeholder in the route. |
-| `Book.query.get(...)`                               | This is the SQLAlchemy syntax to query for one `Book` resource. This method returns an instance of `Book`.                                                                                                                                                                                                                                                                         |
-| `Book.query.get(book_id)`                           | We must pass in the primary key of a book here. The primary key of the book we're looking for was provided in the route parameter, `book_id`.                                                                                                                                                                                                                                      |
-| `{ "id": book.id, ... }`                            | We can create a dictionary literal for our HTTP response.                                                                                                                                                                                                                                                                                                                          |
-| `return`                                            | As always, we must return a response. Flask will default to returning status `200 OK`.                                                                                                                                                                                                                                                                                             |
-
-### !callout-warning
-
-## Python Doesn't Know What a `book_id` Is
-
-We named the route parameter `book_id` because we expect it to be an id of a book. But just like regular variable names, Python has no idea what a `book_id` is. All it does is look for whatever part of the URL path follows `/books/` and captures that into the variable `book_id`. A request for `/books/360` would set the value of `book_id` to be `"360"`. A request for `/books/tacocat` would set the value of `book_id` to be `"tacocat"`!
-
-<br />
-
-We should be careful to avoid thinking that Python uses the name of the parameter to do any kind of validation. As usual, the name provides information to us developers, not to Python.
-
-### !end-callout
-
-### !callout-info
-
-## Why Didn't We Call `jsonify()` or `make_response()` on the Dictionary?
-
-For reasons that are less important to memorize, Flask will automatically convert a dictionary into an HTTP response body. If we don't want to remember this exception, we can call `jsonify()` or `make_response()` with the dictionary as an argument to return the result.
-
-### !end-callout
-
-<!-- prettier-ignore-start -->
-### !challenge
-* type: tasklist
-* id: ECXaUI
-* title: Create and Read, Getting a Single Book Endpoint
-##### !question
-
-Think about the "Getting a Single Book Endpoint."
-
-Check off all the topics that we've briefly touched on so far.
-
-##### !end-question
-##### !options
-
-* Planned the HTTP response, request, and logic for this endpoint
-* Considered route parameters, and how we need the book ID in the route
-* Created a new endpoint that matches on `GET` requests to `"/<book_id>"`
-* Defined this endpoint with the function signature `def book(book_id):`
-* Used `Book.query.get(book_id)` to get an instance of `Book` matching `book_id`
-* Returned a dictionary literal as our response
-
-##### !end-options
-### !end-challenge
-<!-- prettier-ignore-end -->
-
-### !callout-warning
-
-## What About Error Handling?
-
-There are many cases that weren't covered in this lesson, even though they are relevant to creating and reading `Book`s. For example, what happens if we make a `GET` request to `/books/this-book-doesnt-exist`? We are intentionally not covering these cases at the moment, to limit this lesson. However, hypothesize and research how to handle erroneous HTTP requests. Follow your curiosity!
-
-### !end-callout
