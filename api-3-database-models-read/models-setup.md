@@ -6,40 +6,13 @@
 
 Our goal for this lesson is to provide details for _how_ to setup a model in a Flask app.
 
-## Format
+This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). You can review the recommended workflow for this an subsequent lessons in the [Intro to Hello Books](../api-1-setup-read/intro-to-hello-books.md) lesson. 
 
-This lesson is a walk-through and syntax explanation for how to build several features inside a Flask API. We **highly recommend** reading or watching through this first fully, before repeating on your own machine.
+## Branches
 
-This lesson has a large amount of new information. It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
-
-### !callout-danger
-
-## Read-through First, Repeat Second
-
-We **highly suggest** reading or watching through this lesson fully, before repeating on your own machine.
-
-### !end-callout
-
-### !callout-danger
-
-## Prioritize Familiarity
-
-It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
-
-### !end-callout
-
-## Hello Books API
-
-### Before This Lesson
-
-This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). Before beginning this lesson, we should have covered:
-
-- Cloning the repo onto our machine
-- Creating and activating a virtual environment
-- Installing dependencies
-- Running the Flask server
-- Creating basic endpoints with hardcoded data
-- Testing those endpoints in Postman
+| Starting Branch | Ending Branch|
+|--|--|
+|`02b-404` |`03a-models-setup`|
 
 ## Removing Hardcoded Data
 
@@ -47,9 +20,10 @@ In a previous lesson we used hardcoded data stored in the variable `BOOKS` to le
 
 In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to *read* our data, but also *create*, *update*, and *delete* it!
 
-Before we go any further, let's remove our hardcoded `BOOKS` data and our two routes from the `app`.
+Before we go any further, let's comment or remove our hardcoded `BOOKS` data and our two routes from the `app`.
 
-This is the code to remove:
+<details>
+    <summary>Expand to see the code to remove or comment.</summary>
 
 ```python
 # routes.py
@@ -67,30 +41,53 @@ This is the code to remove:
 # ] 
 ```
 
+</details>
+
 We should also comment or remove our code for the `GET /books` and `GET /books/<book_id>` routes. We will refactor these to use our database in the **Read** lesson.
 
+<details>
+    <summary>Expand to see the code to remove or comment.</summary>
+
 ```python
+#def validate_book(book_id):
+#    try:
+#        book_id = int(book_id)
+#    except:
+#        abort(make_response({"message":f"book {book_id} invalid"}, 400))
+#
+#    for book in books:
+#        if book.id == book_id:
+#            return book_id
+#
+#    abort(make_response({"message":f"book {book_id} not found"}, 404))
+        
 # @books_bp.route("", methods=["GET"])
 # def handle_books():
 #     books_response = []
 #     for book in books:
-#         books_response.append({
-#             "id": book.id,
-#             "title": book.title,
-#             "description": book.description
-#         })
+#         books_response.append(
+#             {
+#                 "id": book.id,
+#                 "title": book.title,
+#                 "description": book.description
+#             }
+#         )
 #     return jsonify(books_response)
 
 # @books_bp.route("/<book_id>", methods=["GET"])
 # def handle_book(book_id):
+#     validate_book(book_id)
+
 #     for book in books:
 #         if book.id == book_id:
-#            return {
-#               "id": book.id,
-#               "title": book.title,
-#               "description": book.description
-#           }
+#             return {
+#                 "id": book.id,
+#                 "title": book.title,
+#                 "description": book.description,
+#             }
 ```
+
+</details>
 
 ## Creating the Database
 
@@ -209,7 +206,7 @@ You may notice that this class looks quite similar to the class we created in th
 
 <details>
 
-<summary>Take a moment to consider what this syntax indicates: `class Book(db.Model):`, and then click here.</summary>
+<summary>Take a moment to consider what this syntax indicates: class Book(db.Model):, and then click here.</summary>
 
 The class `Book` inherits from `db.Model` from `SQLAlchemy`.
 
