@@ -4,7 +4,7 @@
 
 ## Goals
 
-Our goal for this lesson is to create a route that creates model records.
+Our goal for this lesson is to implement a route that creates model records.
 
 We will add to our Hello Books API to fulfill the following feature:
 
