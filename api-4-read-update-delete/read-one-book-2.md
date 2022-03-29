@@ -2,7 +2,7 @@
 
 ## Goals
 
-Our goal for this lesson is to:
+Our goals for this lesson are to:
 - Practice defining routes that read model records
 - Access a database record from the back-end layer
 
@@ -18,29 +18,23 @@ We will refactor the endpoint we designed in our previous lesson [02) Building a
 |--|--|
 |`03c-read-all-books` |`04a-read-one-book`|
 
-## Getting a Single Book Endpoint: Preparation
-
-Let's consider how to implement this feature:
-
-> As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
-
-## Planning HTTP Requests, Responses, and Logic Review
+## Getting a Single Book Endpoint: Planning HTTP Requests, Responses, and Logic Review
 
 Let's review the planning work we did in the lesson [02) Building and API - Read One Book Endpoint](../api-2-read-404s/read-one-book.md).
 
-Once more, we should think about the typical HTTP verb and endpoint used for requests that retrieve the data for a particular model record.
+Once more, we should think about the RESTful HTTP verb and endpoint used for requests that retrieve the data for a particular model record.
 
 For this feature, we should make a `GET` request to the `/books` path, but we need to include the `id` of the record to retrieve as part of the endpoint.
 
-| HTTP Method | Endpoint   |
-| ----------- | ---------- |
-| `GET`       | `/books/1` |
+| HTTP Method | Endpoint   | Example |
+| ----------- | ---------- | ---------- | 
+| `GET`       | `/books/<book_id>` | `/books/3` |
 
 `GET` requests do not include a request body, so no additional planning around the request body is needed.
 
 We want to send back a single JSON object (dictionary) with `id`, `title`, and `description`:
 
-| Response Status | Response Body                                                                                            |
+| Response Status | Sample Response Body                                                                                            |
 | --------------- | -------------------------------------------------------------------------------------------------------- |
 | `200 OK`        | `{"id": 1, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}` |
 
@@ -118,7 +112,58 @@ For reasons that are less important to memorize, Flask will automatically conver
 
 ## Error Handling
 
-***** This section will be updated as part of the updates to 04) Building an API in the next PR ****
+Recall the `validate_book` function that handles an invalid `book_id` or a non-existing book by returning a `400` or `404` response. 
+
+<details>
+    <summary>Expland to view validate_book function.</summary>
+
+```python
+def validate_book(book_id):
+    try:
+        book_id = int(book_id)
+    except:
+        abort(make_response({"message":f"book {book_id} invalid"}, 400))
+
+    for book in books:
+        if book.id == book_id:
+            return book_id
+
+    abort(make_response({"message":f"book {book_id} not found"}, 404))
+```
+</details>
+
+Let's refactor `validate_book` so that it gets the correct `book` instance from the database, and returns this `book`. We can use this opportunity to rename `handle_book` to something more descriptive like `read_one_book`.
+
+<details>
+    <summary>Give it a try, then click here to review our code.</summary>
+
+```python
+def validate_book(book_id):
+    try:
+        book_id = int(book_id)
+    except:
+        abort(make_response({"message":f"book {book_id} invalid"}, 400))
+
+    book = Book.query.get(book_id)
+
+    if not book:
+        abort(make_response({"message":f"book {book_id} not found"}, 404))
+
+    return book
+
+@books_bp.route("/<book_id>", methods=["GET"])
+def read_one_book(book_id):
+    book = validate_book(book_id)
+    return {
+            "id": book.id,
+            "title": book.title,
+            "description": book.description
+        }
+```
+
+</details>
+
+
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -145,11 +190,3 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-options
 ### !end-challenge
 <!-- prettier-ignore-end -->
-
-### !callout-warning
-
-## What About Error Handling?
-
-There are many cases that weren't covered in this lesson, even though they are relevant to creating and reading `Book`s. For example, what happens if we make a `GET` request to `/books/this-book-doesnt-exist`? We are intentionally not covering these cases at the moment, to limit this lesson. However, hypothesize and research how to handle erroneous HTTP requests. Follow your curiosity!
-
-### !end-callout
