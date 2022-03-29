@@ -28,9 +28,9 @@ Once more, we should think about the typical HTTP verb and endpoint used for req
 
 For this feature, we should make a `GET` request to the `/books` path, but we need to include the `id` of the record to retrieve as part of the endpoint.
 
-| HTTP Method | Endpoint   |
-| ----------- | ---------- |
-| `GET`       | `/books/1` |
+| HTTP Method | Endpoint   |Example   |
+| ----------- | ---------- |---------- |
+| `GET`       | `/books/<book_id>` |`/books/1` |
 
 `GET` requests do not include a request body, so no additional planning around the request body is needed.
 

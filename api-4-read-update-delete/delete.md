@@ -20,9 +20,9 @@ We should think about the RESTful HTTP verb and endpoint used for requests that 
 
 For this feature, we should make a `DELETE` request to the `/books` path, and we'll need to include the `id` of the record to delete as part of the endpoint.
 
-| HTTP Method | Endpoint   |
-| ----------- | ---------- |
-| `DELETE`    | `/books/1` |
+| HTTP Method | Endpoint   | Example |
+| ----------- | ---------- |---------- |
+| `DELETE`    | `/books/<book_id>` |`/books/1` |
 
 `DELETE` requests do not generally include a request body, so no additional planning around the request body is needed.
 
