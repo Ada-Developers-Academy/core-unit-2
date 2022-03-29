@@ -206,7 +206,7 @@ You may notice that this class looks quite similar to the class we created in th
 
 <details>
 
-<summary>Take a moment to consider what this syntax indicates: class Book(db.Model):, and then click here.</summary>
+<summary>Take a moment to consider what this syntax indicates: <code>class Book(db.Model)</code>:, and then click here.</summary>
 
 The class `Book` inherits from `db.Model` from `SQLAlchemy`.
 
