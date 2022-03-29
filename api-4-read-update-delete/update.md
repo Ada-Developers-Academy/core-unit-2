@@ -23,9 +23,9 @@ As we did for our create and read endpoints, we should think about the RESTful H
 
 For this feature, we should make a `PUT` request to the `/books` path. We also need to include the `id` of the record to replace as part of the endpoint, as we did when _reading_ a particular record.
 
-| HTTP Method | Endpoint   |
-| ----------- | ---------- |
-| `PUT`       | `/books/1` |
+| HTTP Method | Endpoint   | Example
+| ----------- | ---------- | ---------- |
+| `PUT`       | `/books/<book_id>` | `/books/1`
 
 We are replacing the data associated with the specified record. As a result, the request body will consist of a JSON document with all the same fields as were required to create the resource in the first place. For our `Book` model, an example request body would be:
 

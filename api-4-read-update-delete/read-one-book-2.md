@@ -26,15 +26,15 @@ Once more, we should think about the RESTful HTTP verb and endpoint used for req
 
 For this feature, we should make a `GET` request to the `/books` path, but we need to include the `id` of the record to retrieve as part of the endpoint.
 
-| HTTP Method | Endpoint   |
-| ----------- | ---------- |
-| `GET`       | `/books/1` |
+| HTTP Method | Endpoint   | Example |
+| ----------- | ---------- | ---------- | 
+| `GET`       | `/books/<book_id>` | `/books/3` |
 
 `GET` requests do not include a request body, so no additional planning around the request body is needed.
 
 We want to send back a single JSON object (dictionary) with `id`, `title`, and `description`:
 
-| Response Status | Response Body                                                                                            |
+| Response Status | Sample Response Body                                                                                            |
 | --------------- | -------------------------------------------------------------------------------------------------------- |
 | `200 OK`        | `{"id": 1, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}` |
 
