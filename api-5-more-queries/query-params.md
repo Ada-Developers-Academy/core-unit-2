@@ -4,10 +4,9 @@
 
 ## Goals
 
-Our goal for this lesson is to expand our skills. We will practice handling more kinds of HTTP requests.
+Our goals for this lesson are to:
 
-We should walk away from this lesson understanding:
-
+- Explore more query functionality made available by Flask-SQLAlchemy
 - What are query strings and query parameters
 - How to access query parameters within our Flask app
 
@@ -231,8 +230,8 @@ There's way more to explore in filtering than is covered in this curriculum, so 
 ### More to Explore with Querying
 
 [There's more to explore with querying](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records)! Follow your curiousity.
-
-For one more query method, consider this syntax for limiting the number of `Book` records:
+<br>
+Here's one more query method to consider. This is the syntax for limiting the number of `Book` records:
 
 ```python
 Book.query.limit(100).all()
@@ -240,24 +239,28 @@ Book.query.limit(100).all()
 
 ### !end-callout
 
-
-## Check for Understanding
-
-<!-- Question Takeaway -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: paragraph
-* id: K84OQh
+* type: tasklist
+* id: 14ef34fa
 * title: Query Params
 ##### !question
 
-What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+Think about Query Params and Filtering Books by Title.
+
+Check off all the topics that we've briefly touched on so far.
 
 ##### !end-question
-##### !placeholder
+##### !options
 
-My biggest takeaway from this lesson is...
+* Reviewed query strings
+* Planned the HTTP request
+* Refactored our code to check for a query param 
+* Used `request.args.get("title")` to get the query param
+* Used `Book.query.filter_by(title=title_query)` to filter by the query param
+* Tested our refactored route
+* Considered other query methods
 
-##### !end-placeholder
+##### !end-options
 ### !end-challenge
 <!-- prettier-ignore-end -->

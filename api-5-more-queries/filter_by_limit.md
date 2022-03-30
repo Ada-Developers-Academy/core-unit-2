@@ -3,6 +3,7 @@
 ## Goals
 
 Our goal for this lesson is to:
+
 - Explore more query functionality made available by Flask-SQLAlchemy
 
 ## Branches
