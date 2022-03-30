@@ -132,7 +132,14 @@ def validate_book(book_id):
 ```
 </details>
 
-Let's refactor `validate_book` so that it gets the correct `book` instance from the database, and returns this `book`. We can use this opportunity to rename `handle_book` to something more descriptive like `read_one_book`.
+Let's refactor `validate_book` so that it gets the correct `book` instance from the database, and returns this `book`. 
+
+We've been retrieving our `Book` instance with the line `Book.query.get(book_id)`. What does this method do when there is no matching book?
+
+When `Model.query.get(primary_key)` doesn't find a matching record, it returns `None`!
+
+We can use this opportunity to rename `handle_book` to something more descriptive like `read_one_book`.
+
 
 <details>
     <summary>Give it a try, then click here to review our code.</summary>

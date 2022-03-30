@@ -1,77 +1,9 @@
 # filter_by and limit
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=05d0a97a-623c-4fc9-b079-ad1a018974eb&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
-
 ## Goals
 
-Our goal for this lesson is to apply our learnings about edge cases from RESTful API design. We should walk away from this lesson understanding how to write more robust Flask code.
-
-This lesson covers:
-
-- Handling when a resource isn't found
-- Exploring more query functionality made available by Flask-SQLAlchemy
-
-## Hello Books API
-
-### Before This Lesson
-
-This lesson uses the Hello Books API.
-
-<br />
-
-<details style="max-width: 700px; margin: auto;">
-    <summary>
-        Before beginning this lesson, the Hello Books API should have the following.
-    </summary>
-
-- A `hello_books_development` database
-- A `book` table defined
-- A `Book` model defined
-- Endpoints defined for these RESTful routes:
-- `GET` to `/books`
-- `POST` to `/books`
-- `GET` to `/books/<book_id>`
-- `PUT` to `/books/<book_id>`
-- `DELETE` to `/books/<book_id>`
-
-The `Book` model and table should have the following columns:
-
-- `id`
-- `title`
-- `description`
-
-</details>
-
-## `GET`ting a Missing Book: Preparation
-
-Let's consider how to accomplish this feature:
-
-> As a client, I want to send a request trying to get one non-existing book and get a 404 response, so I know that the book resource was not found.
-
-### Planning HTTP Requests, Responses, and Logic
-
-This feature is a variation on our existing endpoint that reads a record, but it uses an invalid id. As a result, we can use the following verb and endpoint combination.
-
-| HTTP Method | Endpoint          |
-| ----------- | ----------------- |
-| `GET`       | `/books/99999999` |
-
-As with our existing `GET` requests, we do not send a request body.
-
-We want to inform the client that the record was not found. The most appropriate response status code is `404 Not Found`. We could return an error message that echoes back the id the client submitted, but for simplicity, we'll only return the status code and leave the body empty.
-
-| Response Status | Response Body |
-| --------------- | ------------- |
-| `404 Not Found` | -             |
-
-Now that we have planned out the endpoint behavior, we can turn our attention to how to implement it.
-
-Our endpoint will need to:
-
-1. Read the `book_id` in the request path
-1. Retrieve the book with the matching `book_id` from the db
-1. Discover that there is no matching book with `book_id` in the db
-1. Send back a response
+Our goal for this lesson is to:
+- Explore more query functionality made available by Flask-SQLAlchemy
 
 ### Working More With `query`
 
