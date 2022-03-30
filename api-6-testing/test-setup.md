@@ -2,66 +2,17 @@
 
 <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=f93112cf-feaa-48ae-a56a-ad1d0158eee5&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
-## Introduction
+## Goals
 
-We can build on our pytest knowledge to test our Flask APIs! Reading, writing, and using pytest for a Flask API isn't very different from using pytest outside a Flask API.
+Our goals for this lesson are to:
+- Build on our pytest knowledge to test our Flask APIs
+- Configure our `hello-books-api` to use pytest and a test database 
 
-The main difference is in how we set up our tests. In this lesson, we'll configure our Flask projects to use pytest and a test database.
+## Branches
 
-## Hello Books API
-
-This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api).
-
-<br />
-
-<details style="max-width: 700px; margin: auto;">
-    <summary>
-        Before beginning this lesson, the Hello Books API should have the following.
-    </summary>
-
-- A `hello_books_development` database
-- A `hello_books_test` database
-- A `book` table defined in the development database
-- A `Book` model defined
-
-A `.env` file that contains:
-
-```
-SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
-SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_test
-```
-
-Endpoints defined for these RESTful routes. They can gracefully handle missing books:
-
-- `GET` to `/books`
-- `POST` to `/books`
-- `GET` to `/books/<book_id>`
-- `PUT` to `/books/<book_id>`
-- `DELETE` to `/books/<book_id>`
-
-The `Book` model and table should have the following columns:
-
-- `id`
-- `title`
-- `description`
-
-</details>
-
-### !callout-danger
-
-## Read-through First, Repeat Second
-
-We **highly suggest** reading or watching through this lesson fully, before repeating on your own machine.
-
-### !end-callout
-
-### !callout-danger
-
-## Prioritize Familiarity
-
-It may be better to think about this lesson as a resource to be familiar with, rather than commit all new knowledge to memory at once.
-
-### !end-callout
+| Starting Branch | Ending Branch|
+|--|--|
+|`06a-test-database` |`06b-test-setup`|
 
 ## Navigating Our New `tests` Folder
 
