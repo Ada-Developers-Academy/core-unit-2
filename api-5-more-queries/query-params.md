@@ -7,8 +7,8 @@
 Our goals for this lesson are to:
 
 - Explore more query functionality made available by Flask-SQLAlchemy
-- What are query strings and query parameters
-- How to access query parameters within our Flask app
+- Define query strings and query parameters
+- Implement accessing query parameters within our `hello-books-api` Flask app.
 
 
 ## Branches
@@ -219,18 +219,14 @@ We should practice trying to predict the results of a test before running it to 
 
 ### !callout-info
 
-### More to Explore with Filtering
-
-There's way more to explore in filtering than is covered in this curriculum, so drive your own learning!
-
-### !end-callout
-
-### !callout-info
-
 ### More to Explore with Querying
 
-[There's more to explore with querying](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records)! Follow your curiousity.
-<br>
+There's way more to explore in filtering than is covered in this curriculum.
+
+
+More generally speaking, [there's more to explore with querying](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records)! Follow your curiousity.
+
+
 Here's one more query method to consider. This is the syntax for limiting the number of `Book` records:
 
 ```python
