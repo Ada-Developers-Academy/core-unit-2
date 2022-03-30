@@ -138,7 +138,7 @@ We've been retrieving our `Book` instance with the line `Book.query.get(book_id)
 
 When `Model.query.get(primary_key)` doesn't find a matching record, it returns `None`!
 
-We can use this opportunity to rename `handle_book` to something more descriptive like `read_one_book`.
+We can use this refactoring opportunity to rename `handle_book` to something more descriptive like `read_one_book`.
 
 
 <details>
