@@ -161,6 +161,7 @@ Let's modify our endpoint code to filter the results when a title query param is
 ```python
 @books_bp.route("", methods=["GET"])
 def read_all_books():
+    
     # this code replaces the previous query all code
     title_query = request.args.get("title")
     if title_query:
