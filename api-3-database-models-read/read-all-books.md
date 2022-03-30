@@ -177,12 +177,13 @@ def read_all_books():
         )
     return jsonify(books_response)
 ```
+</details>
 
 We should verify that our `GET` `/books` and `CREATE` `/books` route still work the same as before the refactor using Postman and/or the browser.
 
 Soon, we will create unit tests that we can use for this sort of verification. 
 
-</details>
+
 
 <!-- prettier-ignore-start -->
 ### !challenge

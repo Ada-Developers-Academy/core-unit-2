@@ -363,10 +363,6 @@ Standards:
     ContentFiles:
       -
         Type: Lesson
-        UID: Fm5rbb
-        Path: /api-5-more-queries/filter_by_limit.md
-      -
-        Type: Lesson
         UID: HfbxKc
         Path: /api-5-more-queries/query-params.md
       -

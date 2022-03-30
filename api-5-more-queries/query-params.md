@@ -4,45 +4,18 @@
 
 ## Goals
 
-Our goal for this lesson is to expand our skills. We will practice handling more kinds of HTTP requests.
+Our goals for this lesson are to:
 
-We should walk away from this lesson understanding:
+- Explore more query functionality made available by Flask-SQLAlchemy
+- Define query strings and query parameters
+- Implement accessing query parameters within our `hello-books-api` Flask app.
 
-- What are query strings and query parameters
-- How to access query parameters within our Flask app
 
-## Hello Books API
+## Branches
 
-### Before This Lesson
-
-This lesson uses the Hello Books API.
-
-<br />
-
-<details style="max-width: 700px; margin: auto;">
-    <summary>
-        Before beginning this lesson, the Hello Books API should have the following.
-    </summary>
-
-- A `hello_books_development` database
-- A `book` table defined
-- A `Book` model defined
-
-Endpoints defined for these RESTful routes. They handle missing books:
-
-- `GET` to `/books`
-- `POST` to `/books`
-- `GET` to `/books/<book_id>`
-- `PUT` to `/books/<book_id>`
-- `DELETE` to `/books/<book_id>`
-
-The `Book` model and table should have the following columns:
-
-- `id`
-- `title`
-- `description`
-
-</details>
+| Starting Branch | Ending Branch|
+|--|--|
+|`04c-delete` |`05a-query-params`|
 
 ## Contextualizing Query Strings
 
@@ -149,7 +122,7 @@ Consider this feature:
 
 We want to get a list of book results, so the base of our endpoint will look like our usual endpoint to get all records of a particular type. We will use the `GET` verb sent to the `/books` endpoint. But now we'd also like to provide an additional parameter `title` that we can use to filter the results. Since filtering is a customization of the default _get all_ behavior, we can decide to express that as a query param.
 
-| HTTP Method | Endpoint              |
+| HTTP Method | Example Endpoint      |
 | ----------- | --------------------- |
 | `GET`       | `/books?title=Apples` |
 
@@ -182,30 +155,37 @@ Our endpoint will need to:
 
 This endpoint uses the same path as our existing `/books` route that lists books. Recall that the `"/books"` part comes from the blueprint, so our route path is set to `""`.
 
+We can use the method [`filter_by`](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records) in order to filter our search query.
+
+Consider this example that filters `Book`s by title.
+
+```python
+Book.query.filter_by(title="Fictional Book Title")
+```
+
 Let's modify our endpoint code to filter the results when a title query param is supplied.
 
 ```python
-@books_bp.route("", methods=["GET", "POST"])
-def handle_books():
-    if request.method == "GET":
-        # this code replaces the previous query all code
-        title_query = request.args.get("title")
-        if title_query:
-            books = Book.query.filter_by(title=title_query)
-        else:
-            books = Book.query.all()
-        # end of the new code
+@books_bp.route("", methods=["GET"])
+def read_all_books():
 
-        books_response = []
-        for book in books:
-            books_response.append({
-                "id": book.id,
-                "title": book.title,
-                "description": book.description
-            })
+    # this code replaces the previous query all code
+    title_query = request.args.get("title")
+    if title_query:
+        books = Book.query.filter_by(title=title_query)
+    else:
+        books = Book.query.all()
+    # end of the new code
 
-        return jsonify(books_response)
-    # ... existing code for creating a new book
+    books_response = []
+    for book in books:
+        books_response.append({
+            "id": book.id,
+            "title": book.title,
+            "description": book.description
+        })
+
+    return jsonify(books_response)
 ```
 
 | <div style="min-width:270px;"> Piece of Code </div> | Notes                                                                                                                                                           |
@@ -224,7 +204,7 @@ To summarize, we looked up whether the `title` query param was provided. We used
 
 ### Manually Testing in Postman
 
-We can use Postman to manually test our database.
+We can use the Browser and/or Postman to manually test our database.
 
 We can compare our original feature which gets all books, to filtering by title.
 
@@ -237,23 +217,46 @@ Our actual results will vary, depending on the contents of our databases. For ex
 
 We should practice trying to predict the results of a test before running it to check our understanding. But we must take into account what records exist in our database, since this will affect our tests and results.
 
-## Check for Understanding
+### !callout-info
 
-<!-- Question Takeaway -->
+### More to Explore with Querying
+
+There's way more to explore in filtering than is covered in this curriculum.
+<br>
+<br>
+More generally speaking, [there's more to explore with querying](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records)! Follow your curiousity.
+<br>
+<br>
+Here's one more query method to consider. This is the syntax for limiting the number of `Book` records:
+
+```python
+Book.query.limit(100).all()
+```
+
+### !end-callout
+
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: paragraph
-* id: K84OQh
+* type: tasklist
+* id: 14ef34fa
 * title: Query Params
 ##### !question
 
-What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+Think about Query Params and Filtering Books by Title.
+
+Check off all the topics that we've briefly touched on so far.
 
 ##### !end-question
-##### !placeholder
+##### !options
 
-My biggest takeaway from this lesson is...
+* Reviewed query strings and query params
+* Planned the HTTP request for filtering by title
+* Refactored our code to check for a query param 
+* Used `request.args.get("title")` to get the query param
+* Used `Book.query.filter_by(title=title_query)` to filter by the query param
+* Tested our refactored route
+* Considered other query methods
 
-##### !end-placeholder
+##### !end-options
 ### !end-challenge
 <!-- prettier-ignore-end -->
