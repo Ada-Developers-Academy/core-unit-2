@@ -9,6 +9,12 @@ Our goals for this lesson are to:
 - Practice writing and running automated tests in Flask with pytest
 - Write a test that 
 
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`06b-test-setup` |`06c-using-tests`|
+
 ## Reading Code
 
 Let's get to reading some test code! Let's reframe the three sections of a test for our Flask API:

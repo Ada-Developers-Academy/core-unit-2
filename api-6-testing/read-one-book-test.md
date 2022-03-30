@@ -1,3 +1,17 @@
+# GET /book/<book_id> Test
+
+## Goals
+
+Our goals for this lesson are to:
+- Use fixtures to create test data
+- Write tests that use test data
+
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`06c-using-setup` |`06d-read-one-book-test`|
+
 ## Tests That Need Test Data
 
 Let's consider a second test in `tests/test_routes.py`.

@@ -356,7 +356,7 @@ Standards:
         Path: /api-4-read-update-delete/activity-solar-read-update-delete.md
   -
     Title: 05) Building an API - More Flask Queries
-    Description: "filter_by and limit, Query Params"
+    Description: "Query Params"
     UID: OkfzUG
     SuccessCriteria:
       - success criteria
@@ -375,7 +375,7 @@ Standards:
         Path: /api-5-more-queries/activity-solar-refactor.md
   -
     Title: 06) Building an API - Testing
-    Description: "Environments and Env Vars, dotenv and the Test DB, Fixtures, Test Setup, Using Tests"
+    Description: "Environments and Env Vars, dotenv and the Test DB, Fixtures, Test Setup, GET /books, GET /books/<book_id>, POST /books"
     UID: e7cb1f63923b38e37e787f78784653ec
     SuccessCriteria:
       - success criteria
@@ -406,7 +406,7 @@ Standards:
         Path: /api-6-testing/read-one-book-test.md
       -
         Type: Lesson
-        UID: 474170f0-3e8c-4c57-89a3-5bade315e300
+        UID: 1a399481-d020-47d6-a6a5-9bb3199d53c1
         Path: /api-6-testing/post-books-test.md
       -
         Type: Lesson
