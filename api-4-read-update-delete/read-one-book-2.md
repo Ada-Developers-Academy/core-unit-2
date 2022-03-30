@@ -140,7 +140,6 @@ When `Model.query.get(primary_key)` doesn't find a matching record, it returns `
 
 We can use this refactoring opportunity to rename `handle_book` to something more descriptive like `read_one_book`.
 
-
 <details>
     <summary>Give it a try, then click here to review our code.</summary>
 
