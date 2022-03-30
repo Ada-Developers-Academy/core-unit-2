@@ -156,12 +156,20 @@ Our endpoint will need to:
 
 This endpoint uses the same path as our existing `/books` route that lists books. Recall that the `"/books"` part comes from the blueprint, so our route path is set to `""`.
 
+We can use the method [`filter_by`](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records) in order to filter our search query.
+
+Consider this example that filters `Book`s by title.
+
+```python
+Book.query.filter_by(title="Fictional Book Title")
+```
+
 Let's modify our endpoint code to filter the results when a title query param is supplied.
 
 ```python
 @books_bp.route("", methods=["GET"])
 def read_all_books():
-    
+
     # this code replaces the previous query all code
     title_query = request.args.get("title")
     if title_query:
@@ -197,7 +205,7 @@ To summarize, we looked up whether the `title` query param was provided. We used
 
 ### Manually Testing in Postman
 
-We can use Postman to manually test our database.
+We can use the Browser and/or Postman to manually test our database.
 
 We can compare our original feature which gets all books, to filtering by title.
 
@@ -209,6 +217,29 @@ GET localhost:5000/books?title=Apples
 Our actual results will vary, depending on the contents of our databases. For example, if we haven't created any `Book`s with the title "Apple," then the second test will always return an empty list!
 
 We should practice trying to predict the results of a test before running it to check our understanding. But we must take into account what records exist in our database, since this will affect our tests and results.
+
+### !callout-info
+
+### More to Explore with Filtering
+
+There's way more to explore in filtering than is covered in this curriculum, so drive your own learning!
+
+### !end-callout
+
+### !callout-info
+
+### More to Explore with Querying
+
+[There's more to explore with querying](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records)! Follow your curiousity.
+
+For one more query method, consider this syntax for limiting the number of `Book` records:
+
+```python
+Book.query.limit(100).all()
+```
+
+### !end-callout
+
 
 ## Check for Understanding
 
