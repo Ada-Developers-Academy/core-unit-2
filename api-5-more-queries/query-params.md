@@ -11,38 +11,12 @@ We should walk away from this lesson understanding:
 - What are query strings and query parameters
 - How to access query parameters within our Flask app
 
-## Hello Books API
 
-### Before This Lesson
+## Branches
 
-This lesson uses the Hello Books API.
-
-<br />
-
-<details style="max-width: 700px; margin: auto;">
-    <summary>
-        Before beginning this lesson, the Hello Books API should have the following.
-    </summary>
-
-- A `hello_books_development` database
-- A `book` table defined
-- A `Book` model defined
-
-Endpoints defined for these RESTful routes. They handle missing books:
-
-- `GET` to `/books`
-- `POST` to `/books`
-- `GET` to `/books/<book_id>`
-- `PUT` to `/books/<book_id>`
-- `DELETE` to `/books/<book_id>`
-
-The `Book` model and table should have the following columns:
-
-- `id`
-- `title`
-- `description`
-
-</details>
+| Starting Branch | Ending Branch|
+|--|--|
+|`04c-delete` |`05a-query-params`|
 
 ## Contextualizing Query Strings
 
@@ -149,7 +123,7 @@ Consider this feature:
 
 We want to get a list of book results, so the base of our endpoint will look like our usual endpoint to get all records of a particular type. We will use the `GET` verb sent to the `/books` endpoint. But now we'd also like to provide an additional parameter `title` that we can use to filter the results. Since filtering is a customization of the default _get all_ behavior, we can decide to express that as a query param.
 
-| HTTP Method | Endpoint              |
+| HTTP Method | Example Endpoint      |
 | ----------- | --------------------- |
 | `GET`       | `/books?title=Apples` |
 
@@ -185,27 +159,25 @@ This endpoint uses the same path as our existing `/books` route that lists books
 Let's modify our endpoint code to filter the results when a title query param is supplied.
 
 ```python
-@books_bp.route("", methods=["GET", "POST"])
-def handle_books():
-    if request.method == "GET":
-        # this code replaces the previous query all code
-        title_query = request.args.get("title")
-        if title_query:
-            books = Book.query.filter_by(title=title_query)
-        else:
-            books = Book.query.all()
-        # end of the new code
+@books_bp.route("", methods=["GET"])
+def read_all_books():
+    # this code replaces the previous query all code
+    title_query = request.args.get("title")
+    if title_query:
+        books = Book.query.filter_by(title=title_query)
+    else:
+        books = Book.query.all()
+    # end of the new code
 
-        books_response = []
-        for book in books:
-            books_response.append({
-                "id": book.id,
-                "title": book.title,
-                "description": book.description
-            })
+    books_response = []
+    for book in books:
+        books_response.append({
+            "id": book.id,
+            "title": book.title,
+            "description": book.description
+        })
 
-        return jsonify(books_response)
-    # ... existing code for creating a new book
+    return jsonify(books_response)
 ```
 
 | <div style="min-width:270px;"> Piece of Code </div> | Notes                                                                                                                                                           |
