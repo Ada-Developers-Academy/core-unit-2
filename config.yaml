@@ -402,6 +402,14 @@ Standards:
         Path: /api-6-testing/using-tests.md
       -
         Type: Lesson
+        UID: 474170f0-3e8c-4c57-89a3-5bade315e300
+        Path: /api-6-testing/read-one-book-test.md
+      -
+        Type: Lesson
+        UID: 474170f0-3e8c-4c57-89a3-5bade315e300
+        Path: /api-6-testing/post-books-test.md
+      -
+        Type: Lesson
         UID: 8TZO0e
         Path: /api-6-testing/problem-set-testing.md
       -
