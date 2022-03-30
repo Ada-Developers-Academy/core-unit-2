@@ -222,11 +222,11 @@ We should practice trying to predict the results of a test before running it to 
 ### More to Explore with Querying
 
 There's way more to explore in filtering than is covered in this curriculum.
-
-
+<br>
+<br>
 More generally speaking, [there's more to explore with querying](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records)! Follow your curiousity.
-
-
+<br>
+<br>
 Here's one more query method to consider. This is the syntax for limiting the number of `Book` records:
 
 ```python
@@ -249,8 +249,8 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-question
 ##### !options
 
-* Reviewed query strings
-* Planned the HTTP request
+* Reviewed query strings and query params
+* Planned the HTTP request for filtering by title
 * Refactored our code to check for a query param 
 * Used `request.args.get("title")` to get the query param
 * Used `Book.query.filter_by(title=title_query)` to filter by the query param
