@@ -1,18 +1,21 @@
 # filter_by and limit
-## Goals
 
-Our goal for this lesson is to apply our learnings about edge cases from RESTful API design. We should walk away from this lesson understanding how to write more robust Flask code.
+## Goals
 
 Our goal for this lesson is to:
 - Explore more query functionality made available by Flask-SQLAlchemy
 
-## More About Queries
+## Branches
+
+This lesson is exploratory and does not alter the `hello-book-api` repo.
+
+## Queries
 
 [There's more to explore with querying](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records)! Let's touch on two topics.
 
 ### Filter By
 
-We can use the method `filter_by()` in order to filter our search query. We can give keyword arguments to describe the attribute and value on which we're filtering. Consider this example that filters `Book`s by title.
+We can use the method `filter_by` in order to filter our search query. We can give keyword arguments to describe the attribute and value on which we're filtering. Consider this example that filters `Book`s by title.
 
 ```python
 Book.query.filter_by(title="Fictional Book Title")
@@ -20,7 +23,7 @@ Book.query.filter_by(title="Fictional Book Title")
 
 ### !callout-info
 
-## Way More to Explore
+### Way More to Explore
 
 There's way more to explore in filtering than is covered in this curriculum, so drive your own learning!
 
@@ -28,7 +31,7 @@ There's way more to explore in filtering than is covered in this curriculum, so 
 
 ### !callout-info
 
-## Pro-Tip: Experiment in Flask With Experimental Endpoints
+### Pro-Tip: Experiment in Flask With Experimental Endpoints
 
 Take the time to experiment in your Flask API! Consider making a small experimental endpoint that will never be committed to Git.
 
@@ -38,7 +41,7 @@ Take the time to experiment in your Flask API! Consider making a small experimen
 
 ### Limits
 
-We can limit the number of results in our queries by using `limit()`. Consider this example that gets the first 100 `Book` records.
+We can limit the number of results in our queries by using `limit`. Consider this example that gets the first 100 `Book` records.
 
 ```python
 Book.query.limit(100).all()
