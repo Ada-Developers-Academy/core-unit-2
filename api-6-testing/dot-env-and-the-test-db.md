@@ -4,45 +4,11 @@
 
 ## Goals
 
-This lesson should serve as a walk-through for refactoring our code to use `python-dotenv`, and for creating a test database for our Hello Books API.
+Our goals for this lesson are to:
+- Refactoring our code to use `python-dotenv`
+- Create the test database for `hello-books-api`
 
-These actions will allow us to set up testing for our API, which in turn will help us create software of higher quality.
-
-## Hello Books API
-
-This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api).
-
-<br />
-
-<details style="max-width: 700px; margin: auto;">
-    <summary>
-        Before beginning this lesson, the Hello Books API should have the following.
-    </summary>
-
-- A `hello_books_development` database
-- A `book` table defined
-- A `Book` model defined
-
-Endpoints defined for these RESTful routes. They can gracefully handle missing books:
-
-- `GET` to `/books`
-- `POST` to `/books`
-- `GET` to `/books/<book_id>`
-- `PUT` to `/books/<book_id>`
-- `DELETE` to `/books/<book_id>`
-
-The `Book` model and table should have the following columns:
-
-- `id`
-- `title`
-- `description`
-
-</details>
-
-## Format
-
-This lesson will go through the following steps:
-
+We will complete the following steps:
 1. Ensure that `python-dotenv` is installed
 1. Create a _dotenv_ `.env` file
 1. Prevent our `.env` from being committed by using a `.gitignore` file
@@ -54,6 +20,14 @@ This lesson will go through the following steps:
    1. Check for a configuration flag
    1. Read the correct database location from `.env`
 1. Manually test that our development environment still works
+
+These actions will allow us to set up testing for our API, which in turn will help us create software of higher quality.
+
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`05a-query-params` |`06a-test-database`|
 
 ## Manage More Dependencies
 
