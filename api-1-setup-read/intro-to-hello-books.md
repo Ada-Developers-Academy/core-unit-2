@@ -26,7 +26,11 @@ As you work through the Building an API Learn Topics and learn to building an AP
 
 ## Video Lessons
 
-You may notice small inconsistencies between the video lessons and the readings due to revisions to the `hello-books-api` and readings since the videos were recorded. For instance, the branch the instructor checks out in the video lesson may be different than the branch indicated in the reading. Follow the instructions in the reading. The code modeled in the video lesson should match the code in the reading.
+You may notice small inconsistencies between the video lessons and the readings due to revisions to the `hello-books-api` and readings since the videos were recorded. 
+
+The branch the instructor checks out in the video lesson may be different than the branch indicated in the reading. Follow the instructions in the reading. The code modeled in the video lesson should match the code in the reading.
+
+The instructor may also highlight the recommendation to watch the video lesson in its entirety before implementing the code. We acknowledge that you know your learning best, and it might be best for your learning to code along.
 
 ### !end-callout
 
