@@ -153,7 +153,7 @@ Standards:
         UID: 470465db-89a3-4535-a154-7e7391ef4d93
         Path: /api-2-read-404s/problem-set-read-404s.md
       -
-        Type: Instructor
+        Type: Lesson
         UID: 8ac983dc-e8a4-492c-8149-df4d0458add8
         Path: /api-2-read-404s/activity-solar-read-404s.md
   -
@@ -320,7 +320,7 @@ Standards:
         UID: 5f4dda242707c828aa5dbd99e73fe62b
         Path: /api-3-database-models-read/problem-set-create-read.md
       -
-        Type: Instructor
+        Type: Lesson
         UID: m9dgD0
         Path: /api-3-database-models-read/activity-solar-create-read.md
       -
@@ -351,7 +351,7 @@ Standards:
         UID: syrMq6
         Path: /api-4-read-update-delete/problem-set-read-update-delete.md
       -
-        Type: Instructor
+        Type: Lesson
         UID: etO5RZ
         Path: /api-4-read-update-delete/activity-solar-read-update-delete.md
   -
@@ -366,7 +366,7 @@ Standards:
         UID: HfbxKc
         Path: /api-5-more-queries/query-params.md
       -
-        Type: Instructor
+        Type: Lesson
         UID: 2cfe7232-9dd4-4efe-8d33-9a4539ec3c63
         Path: /api-5-more-queries/activity-solar-refactor.md
   -
@@ -409,7 +409,7 @@ Standards:
         UID: 8TZO0e
         Path: /api-6-testing/problem-set-testing.md
       -
-        Type: Instructor
+        Type: Lesson
         UID: L00UOa
         Path: /api-6-testing/activity-solar-testing.md
   -
