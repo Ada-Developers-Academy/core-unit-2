@@ -16,7 +16,6 @@ In this lesson we will build our Hello Books API to fulfill the following featur
 |--|--|
 |`01c-hello-world-endpoints` |`01d-read-all-books`|
 
-
 ## Getting All Books Endpoint: Preparation
 
 Let's consider how to implement this feature:

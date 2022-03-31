@@ -16,6 +16,22 @@ We will add to our Hello Books API to fulfill the following feature:
 |--|--|
 |`03a-models-setup` |`03b-create`|
 
+<details>
+   <summary>Expand to see the model and database features <code>Hello Books API</code> should have before this lesson</summary>
+
+* A `hello_books_development` database
+* A `book` table defined
+* A `Book` model defined
+
+The model and table should have the following columns:
+
+* `id`
+* `title`
+* `description`
+
+</details>
+<br>
+
 ## Creating a Book Endpoint: Preparation
 
 Let's consider how to accomplish this feature:

@@ -14,6 +14,17 @@ This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-ap
 |--|--|
 |`02b-404` |`03a-models-setup`|
 
+<details>
+   <summary>Expand to see the features <code>Hello Books API</code> should have before this lesson</summary>
+
+* The `GET` `/books` route should be defined
+* The `GET` `/books/<book_id>` route should be defined
+* Invalid `book`and non-exiting `books` should be handled with a helper function `validate_book`
+
+</details>
+<br>
+
+
 ## Removing Hardcoded Data
 
 In a previous lesson we used hardcoded data stored in the variable `BOOKS` to learn how to write routes to *read* all books, and *read* one book. This was great for learning, but we were limited to *GET* routes, as we could not persist any changes to our data given that it was hardcoded.

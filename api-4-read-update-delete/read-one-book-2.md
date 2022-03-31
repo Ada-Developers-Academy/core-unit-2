@@ -18,6 +18,18 @@ We will refactor the endpoint we designed in our previous lesson [02) Building a
 |--|--|
 |`03c-read-all-books` |`04a-read-one-book`|
 
+<details>
+   <summary>Expand to see the features <code>Hello Books API</code> should have before this lesson</summary>
+
+* A `hello_books_development` database
+* A `book` table defined
+* A `Book` model defined
+* `POST` `/books` route defined
+* `GET` `/books` route defined
+
+</details>
+<br>
+
 ## Getting a Single Book Endpoint: Planning HTTP Requests, Responses, and Logic Review
 
 Let's review the planning work we did in the lesson [02) Building and API - Read One Book Endpoint](../api-2-read-404s/read-one-book.md).
