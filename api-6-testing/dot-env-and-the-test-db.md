@@ -40,7 +40,7 @@ These actions will allow us to set up testing for our API, which in turn will he
 * `GET` `/books/<book_id>` route defined
 * `PUT` `/books/<book_id>` route defined
 * `DELETE` `/books/<book_id>` route defined
-* Invalid <book_id> and non-exiting `book`s handled with `validate_book` helper function
+* Invalid <code>book_id</code> and non-exiting `book`s handled with `validate_book` helper function
 
 </details>
 <br>

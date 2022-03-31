@@ -28,6 +28,7 @@ Our goals for this lesson are to:
 * `GET` `/books/<book_id>` route defined
 * `PUT` `/books/<book_id>` route defined
 * `DELETE` `/books/<book_id>` route defined
+* Invalid <code>book_id</code> and non-exiting `book`s handled with `validate_book` helper function
 
 </details>
 <br>
