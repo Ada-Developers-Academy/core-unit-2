@@ -231,7 +231,7 @@ Success! We passed this test. Congratulations! 🎉
 * title: Get One Book Test
 ##### !question
 
-Think about the test for "`GET` `/books/<book_id>`"
+Think about the test for `GET` `/books/<book_id>`
 
 Check off all the topics that we've touched on so far.
 

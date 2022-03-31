@@ -102,7 +102,7 @@ Revert the changes that made the test fail, and return Hello Books back to a wor
 * title: Read All Books Test
 ##### !question
 
-Think about the test for "`GET` `/books`"
+Think about the test for `GET` `/books`
 
 Check off all the topics that we've touched on so far.
 

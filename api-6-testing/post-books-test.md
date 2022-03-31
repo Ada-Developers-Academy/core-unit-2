@@ -34,8 +34,8 @@ def test_create_one_book(client):
 | <div style="min-width:250px;"> Piece of Code </div> | Notes|
 |--|--|
 |`def test_create_one_book(client):` | Continuing our best pytest practices, this test should start with the name `test_`, and it should describe the nature of this test.|
-|`client.post("/books", json=...`|Sends an `POST` request to `/book` with the JSON request body passed in as the `json` keyword argument| 
-| `response_body = response.get_json()`| Get the JSON response body with `response.get_json()|
+|`client.post("/books", json=...`|Sends an `POST` request to `/books` with the JSON request body passed in as the `json` keyword argument| 
+| `response_body = response.get_json()`| Get the JSON response body with `response.get_json()`|
 |`assert response.status_code == 201`|Check for the expected status code|
 |`assert response_body == "Book New Book successfully created"`|Check for the expected response body|
 
@@ -45,13 +45,15 @@ When we run are test using `pytest` we will see a failure:
 
 ![POST /books test failure](../assets/post_test_failure.png)
 
-Reading the test failure output indicates tat `response.get_json` returns `None` whereas we expect it to return `"Book New Book successfully created"`.
+Reading the test failure output indicates tat `response.get_json()` returns `None` whereas we expect it to return `"Book New Book successfully created"`.
 
 To investigate this error we may start by looking at the [`get_json` documentation](https://flask.palletsprojects.com/en/2.0.x/api/?highlight=get_json#flask.Response.get_json) and will note this piece:
 
-"If the mimetype does not indicate JSON (application/json, see is_json), this returns None."
+```
+"If the mimetype does not indicate JSON (application/json, see is_json), this returns `None`."
+```
 
-Futher investigation will might lead us to the [`get_data` method](https://flask.palletsprojects.com/en/2.0.x/api/?highlight=get_json#flask.Response.get_data) and we will find that if we use `response_body = response.get_data(as_text=True)` our test will pass.
+Futher investigation might lead us to the [`get_data` method](https://flask.palletsprojects.com/en/2.0.x/api/?highlight=get_json#flask.Response.get_data) and we will find that if we use `response_body = response.get_data(as_text=True)` our test will pass.
 
 Alternatively, we can `jsonify` the response body in our `POST` `/books` route:
 
@@ -59,13 +61,13 @@ Alternatively, we can `jsonify` the response body in our `POST` `/books` route:
 return make_response(jsonify(f"Book {new_book.title} successfully created"), 201)
 ```
 
-Note that `POST` tests passes with this change:
+Note that `POST` test passes with this change:
 
 ![POST /books test success](../assets/post_test_success.png)
 
-We will prefer this second solution because it adds consistently to our routes. We consistently return `JSON` in our response bodies, and thus can consistently use the method `get_json` in our tests. 
+We will prefer this second solution because it adds consistency to our routes. We consistently return `JSON` in our response bodies, and thus can consistently use the method `get_json` in our tests. 
 
-We should also make this change to jsonify our response body in the `PUT` `/books/<book_id>` and `DELETE` `/books/<book_id>` routes. This adds predictability to our RESTful routes. 
+We should also make this change to `jsonify` our response body in the `PUT` `/books/<book_id>` and `DELETE` `/books/<book_id>` routes. This adds predictability to our RESTful routes. 
 
 We may also consider refactoring these routes to return a dictionary consistent with the responses typically expected for this RESTful routes. We will save this work for a later lesson.
 
@@ -76,9 +78,9 @@ We may also consider refactoring these routes to return a dictionary consistent 
 * title: Create One Book Test
 ##### !question
 
-Think about the test for "`POST` `/books`"
+Think about the test for `POST` `/books`
 
-Check off all the topics that we've briefly touched on so far.
+Check off all the topics that we've touched on so far.
 
 ##### !end-question
 ##### !options
