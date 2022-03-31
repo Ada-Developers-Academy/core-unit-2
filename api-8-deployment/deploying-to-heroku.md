@@ -25,6 +25,12 @@ Then, we will cover these topics on continuous deployment to Heroku:
 1. General Heroku tools
 1. General Heroku debugging strategies
 
+## Branches
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`07b-nested-routes` <br> Any branch after connecting the database will work |`08a-deploying-to-heroku `|
+
 ### Intro to Heroku
 
 [Heroku](https://www.heroku.com/home) is one Platform as a Service (PaaS). We can use Heroku services to deploy our Flask API. After we successfully deploy, our API will be available to the whole Internet!
