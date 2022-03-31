@@ -65,7 +65,14 @@ Note that `POST` test passes with this change:
 
 ![POST /books test success](../assets/post_test_success.png)
 
-We will prefer this second solution because it adds consistency to our routes. We consistently return `JSON` in our response bodies, and thus can consistently use the method `get_json` in our tests. 
+<!-- available callout types: info, success, warning, danger, secondary, star  -->
+### !callout-info
+
+## <code>jsonify</code>
+
+We will prefer the `jsonify` solution because it adds consistency to our routes. We consistently return `JSON` in our response bodies, and thus can consistently use the method `get_json` in our tests. 
+
+### !end-callout
 
 We should also make this change to `jsonify` our response body in the `PUT` `/books/<book_id>` and `DELETE` `/books/<book_id>` routes. This adds predictability to our RESTful routes. 
 
