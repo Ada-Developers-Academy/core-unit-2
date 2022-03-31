@@ -16,6 +16,14 @@ In this lesson we will build our Hello Books API to fulfill the following featur
 |--|--|
 |`01d-read-all-books` |`02a-read-one-book`|
 
+<details>
+   <summary>Expand to see the feature <code>Hello Books API</code> should have before this lesson</summary>
+
+The `GET` `/books` route should be defined
+
+</details>
+<br>
+
 ## Getting a Single Book Endpoint: Preparation
 
 Let's consider how to implement this feature:
