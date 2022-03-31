@@ -126,7 +126,7 @@ Standards:
         UID: aefff6c0-6dde-4470-8069-65025f89b66d
         Path: /api-1-setup-read/problem-set-setup-read.md
       -
-        Type: Instructor
+        Type: Lesson
         UID: 6e0b2738-99c1-44f6-96c3-f17aaea55fcb
         Path: /api-1-setup-read/activity-solar-setup-read.md
       -
