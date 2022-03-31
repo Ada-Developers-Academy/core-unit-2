@@ -15,6 +15,26 @@ Our goals for this lesson are to:
 |--|--|
 |`06b-test-setup` |`06c-using-tests`|
 
+<details>
+   <summary>Expand to see the new test related features <code>Hello Books API</code> should have before this lesson</summary>
+
+* A `hello_books_test` database
+* A `.env` file that contains:
+
+```
+SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
+SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_test
+```
+
+* A `tests` directory that contains:
+    *  `__init__.py`
+    * `conftest.py`
+        * This file is populated.
+    * `test_routes.py`
+
+</details>
+<br>
+
 ## Reading Code
 
 Let's get to reading some test code! Let's reframe the three sections of a test for our Flask API:
