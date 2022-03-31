@@ -95,23 +95,25 @@ Revert the changes that made the test fail, and return Hello Books back to a wor
 
 ### !end-callout
 
-## Check for Understanding
-
-<!-- Question Takeaway -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: paragraph
-* id: CfBygr
-* title: Using Tests
+* type: tasklist
+* id: bbc37084-f5de-4805-bd0a-17c78f009c74
+* title: Read All Books Test
 ##### !question
 
-What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+Think about the test for "`GET` `/books`"
+
+Check off all the topics that we've touched on so far.
 
 ##### !end-question
-##### !placeholder
+##### !options
 
-My biggest takeaway from this lesson is...
+* Considered how to use the Arrange / Act / Assert paradigm
+* Examined the syntax for `test_get_all_books_with_no_records`
+* Ran the test using `pytest`
+* Verified broken tests can fail
 
-##### !end-placeholder
+##### !end-options
 ### !end-challenge
 <!-- prettier-ignore-end -->

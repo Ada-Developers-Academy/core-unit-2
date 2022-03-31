@@ -224,23 +224,25 @@ Success! We passed this test. Congratulations! 🎉
 
 ![Screenshot of pytest test result: 2 tests in tests/test_routes.py passed](../assets/api-6-testing/api-6-testing_passing-get-books-1.png)
 
-## Check for Understanding
-
-<!-- Question Takeaway -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: paragraph
-* id: 6e07e81e-006c-4bb0-a798-c3990b1b65df
-* title: Using Tests
+* type: tasklist
+* id: 72e74eca-43e2-47f2-b013-41eb3a7cbac2
+* title: Get One Book Test
 ##### !question
 
-What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+Think about the test for "`GET` `/books/<book_id>`"
+
+Check off all the topics that we've touched on so far.
 
 ##### !end-question
-##### !placeholder
+##### !options
 
-My biggest takeaway from this lesson is...
+* Examined the `test_get_one_book` syntax
+* Observed `test_get_one_book` fail
+* Added to the test database with a fixture
+* Used the `two_saved_book` fixture in `test_get_one_book`
 
-##### !end-placeholder
+##### !end-options
 ### !end-challenge
 <!-- prettier-ignore-end -->
