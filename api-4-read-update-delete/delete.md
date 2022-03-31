@@ -112,7 +112,7 @@ Check off all the topics that we've briefly touched on so far.
 
 * Planned the HTTP response, request, and logic for this endpoint
 * Refactored our `"/books/<book_id>"` endpoint to accept `DELETE` requests
-* Used `Book.query.get(book_id)` to get an instance of `Book` matching `book_id`
+* Used `validate_book(book_id)` to get an instance of `Book` matching `book_id` and handle errors
 * Refactored our code to conditionally check the request's method
 * Deleted the `book` from the database
 * Committed these changes in the database
