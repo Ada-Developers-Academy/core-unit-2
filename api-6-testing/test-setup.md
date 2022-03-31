@@ -14,6 +14,20 @@ Our goals for this lesson are to:
 |--|--|
 |`06a-test-database` |`06b-test-setup`|
 
+<details>
+   <summary>Expand to see the new test related features <code>Hello Books API</code> should have before this lesson</summary>
+
+* A `hello_books_test` database
+* A `.env` file that contains:
+
+```
+SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
+SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_test
+```
+
+</details>
+<br>
+
 ## Navigating Our New `tests` Folder
 
 Create a `tests` folder, and the following files:

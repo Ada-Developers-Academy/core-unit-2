@@ -17,6 +17,22 @@ Our goals for this lesson are to:
 |--|--|
 |`04c-delete` |`05a-query-params`|
 
+<details>
+   <summary>Expand to see the features <code>Hello Books API</code> should have before this lesson</summary>
+
+* A `hello_books_development` database
+* A `book` table defined
+* A `Book` model defined
+* `POST` `/books` route defined
+* `GET` `/books` route defined
+* `GET` `/books/<book_id>` route defined
+* `PUT` `/books/<book_id>` route defined
+* `DELETE` `/books/<book_id>` route defined
+* Invalid <code>book_id</code> and non-exiting `book`s handled with `validate_book` helper function
+
+</details>
+<br>
+
 ## Contextualizing Query Strings
 
 A query string is a part of an HTTP request URL that contains query params. Recall that query params are key-value pairs which extend an HTTP request. For example:
