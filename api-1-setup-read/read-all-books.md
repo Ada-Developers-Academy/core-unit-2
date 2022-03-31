@@ -14,7 +14,7 @@ In this lesson we will build our Hello Books API to fulfill the following featur
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`01c-hello-world-endpoints` |`01d-read-all-books`|
+|`01c-hello-world` |`01d-read-all-books`|
 
 ## Getting All Books Endpoint: Preparation
 
