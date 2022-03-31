@@ -4,26 +4,10 @@
 
 ## Goal
 
-Our goal is to show the process of deploying a Flask API to Heroku.
+Our goal for this lesson is to:
+* Practice the process of deploying a Flask API to Heroku.
 
-### Intro to Heroku
-
-[Heroku](https://www.heroku.com/home) is one Platform as a Service (PaaS). We can use Heroku services to deploy our Flask API. After we successfully deploy, our API will be available to the whole Internet!
-
-![Screenshot of Heroku.com's splash page](../assets/deployment/deployment_heroku-splash.png)
-
-We are choosing Heroku as a deployment platform because:
-
-- It is a trusted, popular platform with a large, supportive community
-- It has free features that fulfill our needs
-  - It supports Python and Flask deployment
-  - It supports Postgres databases
-- It is appropriate for small, individual projects (as well as large ones)
-- It uses Git as part of its development workflow
-
-## Format
-
-This lesson will outline the following steps in order to do an initial deploy to Heroku:
+We will outline the following steps in order to do an initial deploy to Heroku:
 
 1. Create a Heroku account and get access to the Heroku CLI
 1. Configure our Flask project for Heroku
@@ -41,21 +25,20 @@ Then, we will cover these topics on continuous deployment to Heroku:
 1. General Heroku tools
 1. General Heroku debugging strategies
 
-### !callout-danger
+### Intro to Heroku
 
-## Read-through First, Repeat Second
+[Heroku](https://www.heroku.com/home) is one Platform as a Service (PaaS). We can use Heroku services to deploy our Flask API. After we successfully deploy, our API will be available to the whole Internet!
 
-We **highly suggest** reading or watching through this lesson fully, before repeating on your own machine.
+![Screenshot of Heroku.com's splash page](../assets/deployment/deployment_heroku-splash.png)
 
-### !end-callout
+We are choosing Heroku as a deployment platform because:
 
-### !callout-danger
-
-## Prioritize Familiarity
-
-It may be better to think about this lesson as a resource to be familiar with, rather than committing all the new knowledge to memory at once.
-
-### !end-callout
+- It is a trusted, popular platform with a large, supportive community
+- It has free features that fulfill our needs
+  - It supports Python and Flask deployment
+  - It supports Postgres databases
+- It is appropriate for small, individual projects (as well as large ones)
+- It uses Git as part of its development workflow
 
 ## Create a Heroku Account
 
