@@ -1,5 +1,7 @@
 # Delete
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=7e1090b2-bf2f-472e-94ba-ae69016261e6&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 Our goals for this lesson are to:
 - Practice defining routes that delete data in an API
