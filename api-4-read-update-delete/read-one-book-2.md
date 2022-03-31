@@ -1,5 +1,7 @@
 # Read One Book
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=34c46ceb-7f39-4bc6-bcd5-ae690161fae0&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 Our goals for this lesson are to:
