@@ -160,11 +160,11 @@ And sure enough, she did not realize this, but even her own source tree got into
 ```
 $ flask db history
 f9e86c06ab0d -> bf69b044cdfc (head), add author to book
-f9e86c06ab0d -> 73c1f8470b04 (head), empty message
+f9e86c06ab0d -> 73c1f8470b04 (head), add isbn to book
 <base> -> f9e86c06ab0d (branchpoint), add book table
 ```
 
-So what happened here? As you see above, the migration history is not linear anymore. Migration 279ebc64991a was the starting migration for both Audrey and Trenisha, so both their migrations are based on this change, creating a branched migration history with two heads.
+So what happened here? As you see above, the migration history is not linear anymore. Migration `f9e86c06ab0d` was the starting migration for both Audrey and Trenisha, so both their migrations are based on this change, creating a branched migration history with two heads.
 
 It's interesting to note that when Audrey pulled Trenisha's change git did not complain. These schema migrations are stored each in its own file, so git did not see conflicts in Audrey's change and allowed her change to be merged, causing the project to break. Not nice, right?
 
