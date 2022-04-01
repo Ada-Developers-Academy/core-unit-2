@@ -25,6 +25,24 @@ This lesson is a resource to use when you run into database schema conflicts. We
 
 ### !end-callout
 
+### !callout-info
+
+## Drop Database
+
+This lesson outlines two good solution for resolving database schema conflicts. 
+
+While less ideal, it is perfectly reasonable to resolve database schema conflicts for our development database by recreating the database in the migrations with the following commands:
+
+```
+$ dropdb hello_books_development
+$ createdb hello_books_development
+$ rm -rf migrations
+$ flask db init
+$ flask db migrate
+$ flask db upgrade
+```
+### !end-callout
+
 ## Introduction
 
 If you work on a project that uses database migrations with other developers, it is likely that you have experienced migration conflicts at some point. These occur when two or more developers are merging unrelated features to the master source control branch at around the same time, with each feature requiring different changes to the database.
