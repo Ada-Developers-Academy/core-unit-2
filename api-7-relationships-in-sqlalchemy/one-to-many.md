@@ -205,12 +205,12 @@ Great! We have a new model, `Author`, and we have made changes to the `Book` mod
 ## Troubleshooting Migration Errors
 
 The tools that detect model changes are not perfect. When we make changes to existing models, sometimes the state of our data combined with the model changes can make migrating difficult. 
-
-As we gain more experience working with migrations, we will learn how to troubleshoot those difficulties. We recommend [this blog post on resolving database schema conflicts in Flask](https://blog.miguelgrinberg.com/post/resolving-database-schema-conflicts)). 
+</br>
+</br>
+As we gain more experience working with migrations, we will learn how to troubleshoot those difficulties. We recommend [this blog post on resolving database schema conflicts in Flask](https://blog.miguelgrinberg.com/post/resolving-database-schema-conflicts). 
+</br>
 </br>
 If all else fails, it is okay to delete the migrations directory and the database, and start again.
-
-<br/>
 
 ### !end-callout
 
