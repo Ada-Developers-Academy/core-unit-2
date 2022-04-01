@@ -132,7 +132,7 @@ class Book(db.Model):
 And she also creates a database migration for this change:
 
 ```
-$ flask db migrate -m "add isbn to books"
+$ flask db migrate -m "add isbn to book"
 INFO  [alembic.autogenerate.compare] Detected added column 'book.isbn'
   Generating migrations/versions/73c1f8470b04_add_isbn_to_book.py ... done
 
@@ -194,26 +194,28 @@ While detecting these conflicts before they are pushed to the shared repository 
 There are a couple of ways to unlock Audrey's database. Recent releases of Alembic and Flask-Migrate support the merge command, which creates yet another migration that joins these multiple heads, creating a diamond shape. To get everything back in order with a merge, you need to run this command:
 
 ```
-$ flask db merge -m "merge migrations from Audrey and Trenisha" 678d339a120f d3868407e935
-  Generating migrations/versions/66fd23fca675_merge_migrations_from_mary_and_david.py ... done
+$ flask db merge heads -m "merge migrations with isbn and author"
+  Generating /Users/becca/GitHub/my_projects/hello-books-api/migrations/versions/009c1afa3037_merge_migrations_with_isbn_and_author.py ...  done
 ```
 
 And then after that, doing an upgrade works fine:
 
 ```
 $ flask db upgrade
-INFO  [alembic.runtime.migration] Running upgrade 279ebc64991a -> 678d339a120f, add user avatars
-INFO  [alembic.runtime.migration] Running upgrade 678d339a120f, d3868407e935 -> 66fd23fca675, merge migrations from audrey and trenisha
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade f9e86c06ab0d -> 73c1f8470b04, add isbn to book
+INFO  [alembic.runtime.migration] Running upgrade bf69b044cdfc, 73c1f8470b04 -> 009c1afa3037, merge migrations with isbn and author
 ```
 
 If you look at the updated migration history, you will notice that the branches remain in the history behind the new merge migration:
 
 ```
 $ flask db history
-678d339a120f, d3868407e935 -> 66fd23fca675 (head) (mergepoint), merge migrations from audrey and trenisha
-279ebc64991a -> 678d339a120f, add user avatars
-279ebc64991a -> d3868407e935, add password hashes to users
-<base> -> 279ebc64991a (branchpoint), add user table
+bf69b044cdfc, 73c1f8470b04 -> 009c1afa3037 (head) (mergepoint), merge migrations with isbn and author
+f9e86c06ab0d -> bf69b044cdfc, add author to book
+f9e86c06ab0d -> 73c1f8470b04, add isbn to book
+<base> -> f9e86c06ab0d (branchpoint), add book table
 ```
 
 Committing this new migration and pushing it to the team's git repository will address the problem and allow the deployment script to apply the migrations correctly.
@@ -230,12 +232,12 @@ Committing this new migration and pushing it to the team's git repository will a
 
 ```
 $ flask db history
-279ebc64991a -> 678d339a120f (head), add user avatars
-279ebc64991a -> d3868407e935 (head), add password hashes to users
-<base> -> 279ebc64991a (branchpoint), add user table
+f9e86c06ab0d -> bf69b044cdfc (head), add author to book
+f9e86c06ab0d -> 73c1f8470b04 (head), add isbn to book
+<base> -> f9e86c06ab0d (branchpoint), add book table
 ```
 
-Her database is synced to migration d3868407e935, which is one of the two heads:
+Her database is synced to migration bf69b044cdfc, which is one of the two heads:
 
 ```
 $ flask db current
