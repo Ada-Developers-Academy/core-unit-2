@@ -64,6 +64,9 @@ This lesson is a resource to use when you run into database schema conflicts. We
 
 ## The Problem
 
+<details>
+    <summary>Expand to review how a database schema conflict can arise</summary>
+
 Let's say we have a team of two developers working on different features of an application. Audrey, for example, needs to implement the user authentication subsystem, while Trenisha needs to add avatars for each user. The two developers start working on their features at about the same time, each on a freshly cloned copy of the team's git repository.
 
 At the time Audrey and Trenisha clone the project to start their work, the project has a Book model that looks like this:
@@ -183,6 +186,8 @@ Likewise in Trenisha's database, there is no `author` column.
 Before I tell you how to untangle this schema mess, let's think about Audrey's actions. Could she or her team have done anything different to prevent conflicts like this from ever appearing in the team's repository?
 
 There are certainly ways to prevent this type of conflicts. A migration history test could be written to find this and other problems with migrations. This is a test that creates an empty database, and simply applies all the migrations in order, to ensure that they all run fine. The test can then downgrade the database all the way back to its initial state, to also test downgrades, something that very few people check. A migration history test can be included as part of the application's unit test suite, or as a source control pre-commit check.
+
+</details>
 
 ## How to Resolve a Schema Conflict with a Merge
 
