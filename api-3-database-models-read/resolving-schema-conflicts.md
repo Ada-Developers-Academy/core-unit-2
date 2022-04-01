@@ -1,7 +1,5 @@
 # Instructor: Resolving Schema Conflicts
 
-***Solution needs to be verified and updated with `Book` model examples***
-
 ### !callout-info
 
 ### Source: Miguel Grinberg's Blog
