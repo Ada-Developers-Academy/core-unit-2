@@ -9,15 +9,13 @@
 This solution and explanation to resolving schema conflicts is taken from [Miguel Grinberg's blog](https://blog.miguelgrinberg.com/post/resolving-database-schema-conflicts). 
 </br>
 </br>
-We have only changed the example model from `User` to `Book` and the names of the two developers.
+We made a few minor changes to the wording, we changed the example model from `User` to `Book`, and we changed the names of the two developers to Ada instructors.
 
 ### !end-callout
 
 ## Goals
 
 Our goal for this lesson to describe one method for resolving database schema conflicts.
-
-### !end-callout
 
 ## Introduction
 
@@ -53,6 +51,8 @@ $ flask db init
 $ flask db migrate
 $ flask db upgrade
 ```
+
+### !end-callout
 
 ### !callout-info
 
@@ -103,7 +103,7 @@ INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
 INFO  [alembic.ddl.postgresql] Detected sequence named 'book_id_seq' as owned by integer column 'book(id)', assuming SERIAL and omitting
 INFO  [alembic.autogenerate.compare] Detected added column 'book.author'
-  Generating /Users/becca/GitHub/my_projects/hello-books-
+  Generating /hello-books-
   api/migrations/versions/bf69b044cdfc_add_author_to_book.py ...  done
 
 $ flask db upgrade
@@ -200,7 +200,7 @@ There are a couple of ways to unlock Audrey's database. Recent releases of Alemb
 
 ```
 $ flask db merge heads -m "merge migrations with isbn and author"
-  Generating /Users/becca/GitHub/my_projects/hello-books-api/migrations/versions/009c1afa3037_merge_migrations_with_isbn_and_author.py ...  done
+  Generating /hello-books-api/migrations/versions/009c1afa3037_merge_migrations_with_isbn_and_author.py ...  done
 ```
 
 And then after that, doing an upgrade works fine:
