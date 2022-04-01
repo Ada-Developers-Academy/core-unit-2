@@ -2,6 +2,8 @@
 
 The Lessons in the Building an API Learn Topics will walk-through building a Flask API with the companion repo [Hello Books API](https://github.com/AdaGold/hello-books-api).
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=3baea592-08f8-48eb-beb4-ae6a012e05e8&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Branches
 
 The [Hello Books API repo](https://github.com/AdaGold/hello-books-api) has a git branch with the new code introduced in each lesson. At the top of a lesson that adds to the Hello Books API Flask application code, the starting branch and ending branch will be indicated in a table. For example, the next lesson, **Flask Setup**, starts with the *default* branch `01a-intro-to-flask` and ends with the branch `01b-flask-setup`. 
