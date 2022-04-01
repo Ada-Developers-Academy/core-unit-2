@@ -17,11 +17,23 @@ We have only changed the example model from `User` to `Book` and the names of th
 
 Our goal for this lesson to describe one method for resolving database schema conflicts.
 
+### !end-callout
+
+## Introduction
+
+If you work on a project that uses database migrations with other developers, it is likely that you have experienced migration conflicts at some point. These occur when two or more developers are merging unrelated features to the master source control branch at around the same time, with each feature requiring different changes to the database.
+
 ### !callout-info
 
-## This Lesson is a Resource
+## Avoid Conflicts
 
-This lesson is a resource to use when you run into database schema conflicts. We highly recommend that you wait until you run int a conflict to review this content.
+No matter how careful we are, we will encounter conflicts. 
+
+However, here are a few tips to help avoid conflicts in the database schema:
+* `git pull` often
+  * especially, `git pull` before applying changes to the model with `flask db migrate`
+* Work on updates to the models together
+  * Even if working on separate models, conflicts to the database schema can arise
 
 ### !end-callout
 
@@ -29,7 +41,7 @@ This lesson is a resource to use when you run into database schema conflicts. We
 
 ## Drop Database
 
-This lesson outlines two good solution for resolving database schema conflicts. 
+This lesson outlines two good solutions for resolving database schema conflicts. 
 
 While less ideal, it is perfectly reasonable to resolve database schema conflicts for our development database by recreating the database in the migrations with the following commands:
 
@@ -41,11 +53,14 @@ $ flask db init
 $ flask db migrate
 $ flask db upgrade
 ```
+
+### !callout-info
+
+## This Lesson is a Resource
+
+This lesson is a resource to use when you run into database schema conflicts. We highly recommend that you wait until you run into a conflict to review the content below.
+
 ### !end-callout
-
-## Introduction
-
-If you work on a project that uses database migrations with other developers, it is likely that you have experienced migration conflicts at some point. These occur when two or more developers are merging unrelated features to the master source control branch at around the same time, with each feature requiring different changes to the database.
 
 ## The Problem
 
@@ -107,9 +122,10 @@ So Audrey happily goes off to work on adding authors.
 Meanwhile, Trenisha needs to add an isbn number for all the books, so starting from the same Book model as Audrey, she makes the following change on his development environment:
 
 ```python
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128))
+class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String)
+    description = db.Column(db.String)
     isbn = db.Column(db.Integer)
 ```
 
