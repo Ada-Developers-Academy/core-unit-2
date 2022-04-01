@@ -63,7 +63,7 @@ What information do we need to accomplish this? We need to know _which_ author, 
 
 ## More Than One Right Answer
 
-There's more than one way to implement the relationship between our book and author. For our curriculum we will stick with RESTful routing naming conventions and implement a *nested route* to describe this relationship.
+There's more than one way to implement the relationship between our book and author. For our curriculum, we will stick with RESTful routing naming conventions and implement a *nested route* to describe this relationship.
 
 ### !end-callout
 
@@ -139,20 +139,9 @@ def create_book(author_id):
 
 ## `GET`ting All Books from an Author
 
-Once we've successfully created a few new books belonging to an author, we can use this route to retrieve all the books from a specific author. Let's now query our author by `id` and start constructing the response body.
+Once we have successfully created a few new books belonging to an `author`, we can use this route to retrieve all the books from a specific author. 
 
-``` python
-# inside the handle_authors_books function
-
-author = Author.query.get(id=author_id)
-
-# POST route code here
-
-elif request.method == "GET":
-    books_response = []
-```
-
-How do we access the `books` from the `author` record and add them to our response body? Try puzzling this out yourself with trial and error, as well as your search engine, then check out our solution below. _Hint: `print` statements will still appear in the terminal output, so they can be helpful to use during our investigation._
+How do we access the `books` from the `author` record and add them to our response body? Try working through this on your own, with the help of the documentation and a search engine. Then check out our solution below. _Hint: `print` statements will still appear in the terminal output, so they can be helpful to use during our investigation._
 
 <br/>
 
@@ -160,7 +149,11 @@ How do we access the `books` from the `author` record and add them to our respon
     <summary>Updated <code>GET</code> endpoint example</summary>
 
 ``` python
-elif request.method == "GET":
+@authors_bp.route("/<author_id>/books", methods=["GET"])
+def read_books(author_id):
+
+    author = validate_author(author_id)
+
     books_response = []
     for book in author.books:
         books_response.append(
@@ -174,23 +167,26 @@ elif request.method == "GET":
 ```
 </details>
 
-## Check for Understanding
+### !end-callout
 
-<!-- Question Takeaway -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: paragraph
-* id: 496c3633-4d11-4215-b03c-d8b859854554
-* title: Nested Routes in Flask
+* type: tasklist
+* id: b4eb362c-cfb1-41b1-9fbb-f83d2cd3c228
+* title: Nested Routes
 ##### !question
 
-What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+Think about the Nested Routes lesson.
+
+Check off all the topics that we've touched on so far.
 
 ##### !end-question
-##### !placeholder
+##### !options
 
-My biggest takeaway from this lesson is...
+* Considered the parts of a nested endpoint 
+* Implemented the `POST` `/authors/<author_id>/books` route
+* Implemented the `GET` `/authors/<author_id>/books` route
 
-##### !end-placeholder
+##### !end-options
 ### !end-challenge
 <!-- prettier-ignore-end -->
