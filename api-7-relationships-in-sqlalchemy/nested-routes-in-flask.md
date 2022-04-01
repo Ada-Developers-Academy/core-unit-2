@@ -57,13 +57,13 @@ Let's consider this feature:
 
 > As a client, I want to send a request to create a new book and connect it to an author already found in the database.
 
-What information do we need to accomplish this? We need to know _which_ author, and the new book's `title` and `description`. To specify the author, we can use the author's `id`. This will refer to one and only one author, even if there are multiple authors with the same name.
+What information do we need to accomplish this? We need to know _which_ author, and the new book's `title` and `description`. To specify the `author`, we can use the author's `id`. This will refer to one and only one author, even if there are multiple authors with the same name.
 
 ### !callout-info
 
 ## More Than One Right Answer
 
-There's more than one way to implement the relationship between our book and author. For our curriculum, we will stick with RESTful routing naming conventions and implement a *nested route* to describe this relationship.
+There's more than one way to implement the relationship between our `book` and `author`. For our curriculum, we will stick with RESTful routing naming conventions and implement a *nested route* to describe this relationship.
 
 ### !end-callout
 
@@ -82,10 +82,8 @@ The nested route starts with the _parent_ model. In this case, `authors`. Then w
 
 Our nested route `POST` `/authors/<author_id>/books` will use the `authors_bp` blueprint. Here is an example of how we might start to implement this:
 
-# refer to the documentation and try
-# completing this endpoint yourself
-
 ```python
+#app/author_routes.py
 @authors_bp.route("/<author_id>/books", methods=["POST"])
 def create_book(author_id):
 
@@ -103,9 +101,10 @@ Try completing this route function by referencing the [Flask-SQLAlchemy document
 <br/>
 
 <details>
-    <summary>Finished <code>POST</code> endpoint example</summary>
+    <summary>Complete <code>POST</code> <code>/authors/<author_id>/books</code> endpoint example</summary>
 
 ``` python
+#app/author_routes.py
 def validate_author(author_id):
     try:
         author_id = int(author_id)
@@ -139,14 +138,14 @@ def create_book(author_id):
 
 ## `GET`ting All Books from an Author
 
-Once we have successfully created a few new books belonging to an `author`, we can use this route to retrieve all the books from a specific author. 
+Once we have successfully created a few new `book`s belonging to an `author`, we can use this route to retrieve all the `book`s from a specific `author`. 
 
 How do we access the `books` from the `author` record and add them to our response body? Try working through this on your own, with the help of the documentation and a search engine. Then check out our solution below. _Hint: `print` statements will still appear in the terminal output, so they can be helpful to use during our investigation._
 
 <br/>
 
 <details>
-    <summary>Updated <code>GET</code> endpoint example</summary>
+    <summary>Complete <code>GET</code> <code>/authors/<author_id>/books</code> endpoint example</summary>
 
 ``` python
 @authors_bp.route("/<author_id>/books", methods=["GET"])
@@ -166,8 +165,6 @@ def read_books(author_id):
     return jsonify(books_response)
 ```
 </details>
-
-### !end-callout
 
 <!-- prettier-ignore-start -->
 ### !challenge
