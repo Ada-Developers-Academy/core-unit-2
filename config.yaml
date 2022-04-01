@@ -316,7 +316,7 @@ Standards:
         UID: 31ce9cf5-9f15-455c-8992-99f08172c506
         Path: /api-3-database-models-read/read-all-books.md
       -
-        Type: Instructor
+        Type: Lesson
         UID: 40e9a62e-f430-4e55-a6cf-87070d069620
         Path: /api-3-database-models-read/resolving-schema-conflicts.md 
       -
