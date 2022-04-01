@@ -33,100 +33,117 @@ If you work on a project that uses database migrations with other developers, it
 
 Let's say we have a team of two developers working on different features of an application. Audrey, for example, needs to implement the user authentication subsystem, while Trenisha needs to add avatars for each user. The two developers start working on their features at about the same time, each on a freshly cloned copy of the team's git repository.
 
-At the time Audrey and Trenisha clone the project to start their work, the project has a User model that looks like this:
+At the time Audrey and Trenisha clone the project to start their work, the project has a Book model that looks like this:
 
 ```python
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128))
+class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String)
+    description = db.Column(db.String)
 ```
 
 They are using Flask-SQLAlchemy as ORM, and Flask-Migrate to track migrations to the database. The database migration history at the time both developers begin working on their features includes a single migration:
 
 ```
 $ flask db history
-<base> -> 279ebc64991a (head), add user table
+<base> -> f9e86c06ab0d (head), add book table
 ```
 
-Now Audrey and Trenisha get to work on their features. Audrey needs to add password hashes to the User model, so one of the very first things she does is to edit the model as follows:
+Now Audrey and Trenisha get to work on their features. Audrey needs to add an author to the Book model, so one of the very first things she does is to edit the model as follows:
 
 ```python
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(128))
-    password_hash = db.Column(db.String(64))
+class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String)
+    description = db.Column(db.String)
+    author = db.Column(db.String)
 ```
 
 Immediately after editing the model, she generates and applies a database migration, to make this change on her development database:
 
 ```
-$ flask db migrate -m "add password hashes to users"
+$ flask db migrate -m "add author to book"
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.ddl.postgresql] Detected sequence named 'book_id_seq' as owned by integer column 'book(id)', assuming SERIAL and omitting
+INFO  [alembic.autogenerate.compare] Detected added column 'book.author'
+  Generating /Users/becca/GitHub/my_projects/hello-books-
+  api/migrations/versions/bf69b044cdfc_add_author_to_book.py ...  done
 
-
-INFO  [alembic.autogenerate.compare] Detected added column 'user.password_hash'
-  Generating migrations/versions/d3868407e935_add_password_hashes_to_users.py ... done
-
-$ flask upgrade
-INFO  [alembic.runtime.migration] Running upgrade 279ebc64991a -> d3868407e935, add password hashes to users
+$ flask db upgrade
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade f9e86c06ab0d -> bf69b044cdfc, add author to book
 ```
 
 She then checks the database migration history to make sure the change was applied:
 
 ```
 $ flask db history
-279ebc64991a -> d3868407e935 (head), add password hashes to users
-<base> -> 279ebc64991a, add user table
+f9e86c06ab0d -> bf69b044cdfc (head), add author to book
+<base> -> f9e86c06ab0d, add book table
 ```
 
-So Audrey happily goes off to work on adding password hashes.
+So Audrey happily goes off to work on adding authors.
 
-Meanwhile, Trenisha needs to add avatar URLs for all the users, so starting from the same User model as Audrey, she makes the following change on his development environment:
+Meanwhile, Trenisha needs to add an isbn number for all the books, so starting from the same Book model as Audrey, she makes the following change on his development environment:
 
 ```python
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128))
-    avatar = db.Column(db.String(256))
+    isbn = db.Column(db.Integer)
 ```
 
 And she also creates a database migration for this change:
 
 ```
-$ flask db migrate -m "add user avatars"
-INFO  [alembic.autogenerate.compare] Detected added column 'user.avatar'
-  Generating migrations/versions/678d339a120f_add_user_avatars.py ... done
+$ flask db migrate -m "add isbn to books"
+INFO  [alembic.autogenerate.compare] Detected added column 'book.isbn'
+  Generating migrations/versions/73c1f8470b04_add_isbn_to_book.py ... done
 
 $ flask db history
-279ebc64991a -> 678d339a120f (head), add user avatars
-<base> -> 279ebc64991a, add user table
+f9e86c06ab0d -> 73c1f8470b04 (head), add isbn to book
+<base> -> f9e86c06ab0d, add book table
 ```
 
 Let's assume that Trenisha finishes his work first, and pushes the user avatar changes to the upstream repository. This commit triggers an automatic deployment to a staging server, where Trenisha goes and checks that user avatars are working fine. She finds no problems, so she goes to find other work.
 
-When Audrey completes her work on user authentication, she tries to push to master and gets an error that tells her that her source tree is out of date. So she does a git pull --rebase, and then tries to push again. This time the push succeeds, so then she anxiously waits for the staging server to update so that she can check her work before moving on. But something bad happened, the deployment to the staging server failed horribly.
+When Audrey completes her work on user authentication, she tries to push to master and gets an error that tells her that her source tree is out of date. So she does a `git pull`, and then tries to push again. This time the push succeeds, so then she anxiously waits for the staging server to update so that she can check her work before moving on. But something bad happened, the deployment to the staging server failed horribly.
 
 Can you see why? When Audrey goes to check the logs of the failed deployment, this is what she finds:
 
 ```
 $ flask db upgrade
-Traceback (most recent call last):
-    ...
-alembic.script.revision.MultipleHeads: Multiple heads are present for given argument 'head';
-678d339a120f, d3868407e935
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
 ```
+
+It silently fails.
 
 And sure enough, she did not realize this, but even her own source tree got into a weird state after she pulled in Trenisha's change:
 
 ```
 $ flask db history
-279ebc64991a -> 678d339a120f (head), add user avatars
-279ebc64991a -> d3868407e935 (head), add password hashes to users
-<base> -> 279ebc64991a (branchpoint), add user table
+f9e86c06ab0d -> bf69b044cdfc (head), add author to book
+f9e86c06ab0d -> 73c1f8470b04 (head), empty message
+<base> -> f9e86c06ab0d (branchpoint), add book table
 ```
 
 So what happened here? As you see above, the migration history is not linear anymore. Migration 279ebc64991a was the starting migration for both Audrey and Trenisha, so both their migrations are based on this change, creating a branched migration history with two heads.
 
 It's interesting to note that when Audrey pulled Trenisha's change git did not complain. These schema migrations are stored each in its own file, so git did not see conflicts in Audrey's change and allowed her change to be merged, causing the project to break. Not nice, right?
+
+Notice that in Audrey's database, there is no `isbn` column.
+
+```
+$ SELECT * FROM book;
+ id | title | description | author 
+----+-------+-------------+--------
+(0 rows)
+```
+
+Likewise in Trenisha's database, there is no `author` column.
 
 ## How to Detect Schema Conflicts Before They are Committed
 Before I tell you how to untangle this schema mess, let's think about Audrey's actions. Could she or her team have done anything different to prevent conflicts like this from ever appearing in the team's repository?
