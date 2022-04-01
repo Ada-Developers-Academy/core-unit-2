@@ -39,7 +39,7 @@ However, here are a few tips to help avoid conflicts in the database schema:
 
 ## Drop Database
 
-This lesson outlines two good solutions for resolving database schema conflicts. 
+This resource outlines a solution for resolving database schema conflicts. 
 
 While less ideal, it is perfectly reasonable to resolve database schema conflicts for our development database by recreating the database in the migrations with the following commands:
 
@@ -227,90 +227,10 @@ Committing this new migration and pushing it to the team's git repository will a
 
 </details>
 
+### !callout-info
+
 ## How to Resolve a Schema Conflict By Editing the Migration History
 
-<details>
-    <summary>Expand for instructions on how to resolve a schema conflict with a merge</summary>
+For a second solution to resolving database schema conflicts, see the second solution in [Miguel Grinberg's blog post](https://blog.miguelgrinberg.com/post/resolving-database-schema-conflicts).
 
-
-"Let's look at the state of the migration history on Audrey's environment when she found she had a conflict:
-
-```
-$ flask db history
-f9e86c06ab0d -> bf69b044cdfc (head), add author to book
-f9e86c06ab0d -> 73c1f8470b04 (head), add isbn to book
-<base> -> f9e86c06ab0d (branchpoint), add book table
-```
-
-Her database is synced to migration bf69b044cdfc, which is one of the two heads:
-
-```
-$ flask db current
-d3868407e935 (head)
-```
-
-To unlock the migration history, all that needs to be done is to alter the order of the migrations, so that these two migrations by Trenisha and Audrey happen one after the other. Because Trenisha was first to commit her migration, the correct thing to do is to move Audrey's migration after Trenisha's.
-
-The first step to reorder the migrations is to move the database back one migration, so that it isn't inside Audrey's branch anymore:
-
-```
-$ flask db downgrade
-INFO  [alembic.runtime.migration] Running downgrade d3868407e935 -> 279ebc64991a, add password hashes to users
-```
-
-With this command, the changes that Audrey made to her database are removed. The next step involves manual editing of Audrey's migration script, which is in file `migrations/versions/d3868407e935_add_password_hashes_to_users.py`. The first few lines of this script are:
-
-```python
-"""add password hashes to users
-
-Revision ID: d3868407e935
-Revises: 279ebc64991a
-Create Date: 2016-02-09 22:13:25.135581
-
-"""
-
-
-# revision identifiers, used by Alembic.
-revision = 'd3868407e935'
-down_revision = '279ebc64991a'
-
-# ...
-```
-
-The important part here is the revision that is set as the down_revision, which is the migration that comes right before it in the history. To move this migration script after Trenisha's, all that needs to be done is to replace revision 279ebc64991a with Trenisha's revision code, which is 678d339a120f. After you edit the two occurrences of the previous migration, the migration script should look like this:
-
-```python
-"""add password hashes to users
-
-Revision ID: d3868407e935
-Revises: 678d339a120f
-Create Date: 2016-02-09 22:13:25.135581
-
-"""
-
-# revision identifiers, used by Alembic.
-revision = 'd3868407e935'
-down_revision = '678d339a120f'
-
-# ...
-```
-
-And with that change saved, the migration history has been reordered and is again nice and sequential:
-
-```
-$ flask db history
-678d339a120f -> d3868407e935 (head), add password hashes to users
-279ebc64991a -> 678d339a120f, add user avatars
-<base> -> 279ebc64991a, add user table
-```
-
-And now an upgrade cleanly applies Trenisha's migration and then Audrey's:
-
-```
-$ flask db upgrade
-INFO  [alembic.runtime.migration] Running upgrade 279ebc64991a -> 678d339a120f, add user avatars
-INFO  [alembic.runtime.migration] Running upgrade 678d339a120f -> d3868407e935, add password hashes to users
-```
-
-At this point, the schema migrations are back in order and can be pushed to the team's repository to address the breakage.
-</details>
+### !end-callout
