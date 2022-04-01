@@ -68,7 +68,7 @@ There's more than one way to implement the relationship between our `book` and `
 ### !end-callout
 
 
-## Nested Routes
+### Nested Routes
 
 Nested routes (also called nested resources) describe the parent-child relationship between (at least) two models in our API. By nesting resources in a single route, the client can retrieve only the data they require. For example, we can read all `book`s (`GET`) or create (`POST`) a `book` by a specific `author`.
 
@@ -78,7 +78,7 @@ Nested routes (also called nested resources) describe the parent-child relations
 
 The nested route starts with the _parent_ model. In this case, `authors`. Then we specify the appropriate author record's `id` we want our new _child_ model record to belong to, indicated by the `<author_id>` parameter. Finally, we list the name of the child collection, in this case, `books`.
 
-## Creating Our Endpoint
+### Creating Our Endpoint
 
 Our nested route `POST` `/authors/<author_id>/books` will use the `authors_bp` blueprint. Here is an example of how we might start to implement this:
 
@@ -138,7 +138,9 @@ def create_book(author_id):
 
 ## `GET`ting All Books from an Author
 
-Once we have successfully created a few new `book`s belonging to an `author`, we can use this route to retrieve all the `book`s from a specific `author`. 
+Let's consider this feature:
+
+> As a client, I want to send a request to read all books by a particular author in the database.
 
 How do we access the `books` from the `author` record and add them to our response body? Try working through this on your own, with the help of the documentation and a search engine. Then check out our solution below. _Hint: `print` statements will still appear in the terminal output, so they can be helpful to use during our investigation._
 
