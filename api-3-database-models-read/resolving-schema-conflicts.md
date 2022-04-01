@@ -19,9 +19,9 @@ Our goal for this lesson to describe one method for resolving database schema co
 
 ### !callout-info
 
-## Resource
+## This Lesson is a Resource
 
-This lesson is a resource to use when you run into database schema conflicts. You can review it now, or wait to review it until you run into a conflict.
+This lesson is a resource to use when you run into database schema conflicts. We highly recommend that you wait until you run int a conflict to review this content.
 
 ### !end-callout
 
