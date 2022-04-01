@@ -58,14 +58,11 @@ $ flask db upgrade
 
 ## This Lesson is a Resource
 
-This lesson is a resource to use when you run into database schema conflicts. We highly recommend that you wait until you run into a conflict to review the content below.
+This lesson is a resource to use when you run into database schema conflicts. We highly recommend that you wait until you run into a conflict to review the content below. You can skip to one solution to resolving a database schema conflict [here](#how-to-resolve-a-schema-conflict-with-a-merge).
 
 ### !end-callout
 
 ## The Problem
-
-<details>
-    <summary>Expand to review how a database schema conflict can arise</summary>
 
 Let's say we have a team of two developers working on different features of an application. Audrey, for example, needs to implement the user authentication subsystem, while Trenisha needs to add avatars for each user. The two developers start working on their features at about the same time, each on a freshly cloned copy of the team's git repository.
 
@@ -187,12 +184,8 @@ Before I tell you how to untangle this schema mess, let's think about Audrey's a
 
 There are certainly ways to prevent this type of conflicts. A migration history test could be written to find this and other problems with migrations. This is a test that creates an empty database, and simply applies all the migrations in order, to ensure that they all run fine. The test can then downgrade the database all the way back to its initial state, to also test downgrades, something that very few people check. A migration history test can be included as part of the application's unit test suite, or as a source control pre-commit check.
 
-</details>
 
 ## How to Resolve a Schema Conflict with a Merge
-
-<details>
-    <summary>Expand for instructions on how to resolve a schema conflict with a merge</summary>
 
 While detecting these conflicts before they are pushed to the shared repository is important, let's not forget about Audrey's situation. Because she applied her migration before pulling in Trenisha's changes, her database is aligned with one of the two branched heads in the migration history. Trenisha's migration is in the other branch, so it can't be applied through an upgrade.
 
@@ -225,7 +218,6 @@ f9e86c06ab0d -> 73c1f8470b04, add isbn to book
 
 Committing this new migration and pushing it to the team's git repository will address the problem and allow the deployment script to apply the migrations correctly.
 
-</details>
 
 ### !callout-info
 
