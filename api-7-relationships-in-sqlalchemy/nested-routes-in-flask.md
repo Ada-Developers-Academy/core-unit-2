@@ -2,23 +2,22 @@
 
 ## Goals
 
-Our goal for this lesson is to use it as a reference for defining a new endpoint with a nested route that connects a parent model to its child model instances.
+Our goals for this lesson are to:
+* Implement a new endpoint with a nested route that connects a parent model to its child model instances
+* Utilize documentation and problem solving to learn how to implement new features
 
-This lesson covers:
+We will implement the following routes:
+* `POST` `/authors/<author_id>/books`
+* `GET` `/authors/<author_id>/books`
 
-- Defining a new endpoint with a nested route to create and connect one model to another in a database
-- Utilizing documentation and problem solving to find missing information
+## Branches
 
-### Before This Lesson
-
-This lesson uses the Hello Books API.
-
-<br />
+| Starting Branch | Ending Branch|
+|--|--|
+|`07a-author-model` |`07b-nested-routes`|
 
 <details>
-    <summary>
-        Before beginning this lesson, the Hello Books API should have the following.
-    </summary>
+   <summary>Expand to see the features <code>Hello Books API</code> should have before this lesson</summary>
 
 - A `hello_books_development` database
 - A `book` table defined
@@ -32,8 +31,6 @@ This lesson uses the Hello Books API.
   - `GET` to `/books/<book_id>`
   - `PUT` to `/books/<book_id>`
   - `DELETE` to `/books/<book_id>`
-
-- Endpoints defined for these RESTful routes:
   - `GET` to `/authors`
   - `POST` to `/authors`
 
@@ -60,7 +57,7 @@ Let's consider this feature:
 
 > As a client, I want to send a request to create a new book and connect it to an author already found in the database.
 
-What information do we need to accomplish this? We need to know _which_ author, along with the new book's `title` and `description`. To specify the author, we can use the author's `id`. This will refer to one and only one author, even if there are multiple authors with the same name.
+What information do we need to accomplish this? We need to know _which_ author, and the new book's `title` and `description`. To specify the author, we can use the author's `id`. This will refer to one and only one author, even if there are multiple authors with the same name.
 
 ### !callout-info
 
@@ -73,34 +70,35 @@ There's more than one way to implement the relationship between our book and aut
 
 ## Nested Routes
 
-Nested routes (also called nested resources) describes the parent-child relationship between (at least) two models in our API. By nesting resources in a route, it allows the client to retrieve only the data they require. For example, not _all_ books or _all_ authors, but books from a particular author based on the author's `id`.
+Nested routes (also called nested resources) describe the parent-child relationship between (at least) two models in our API. By nesting resources in a single route, the client can retrieve only the data they require. For example, we can read all `book`s (`GET`) or create (`POST`) a `book` by a specific `author`.
 
 
 ![A diagram of a nested route: '/author/author_id/books'](../assets/nested-routes-in-flask_route-diagram.png)  
 *Fig.  A diagram of a nested route*
 
-The nested route starts with the _parent_ model. In this case, `authors`. Then we specify the appropriate author record's `id` we want our new _child_ model record to belong to, indicated by the `<author_id>` placeholder. Finally, we list the name of the child collection, in this case, `books`.
+The nested route starts with the _parent_ model. In this case, `authors`. Then we specify the appropriate author record's `id` we want our new _child_ model record to belong to, indicated by the `<author_id>` parameter. Finally, we list the name of the child collection, in this case, `books`.
 
 ## Creating Our Endpoint
 
-Our nested route `/authors/<author_id>/books` will be grouped within our `authors_bp` blueprint. Here is an example of how we might start to implement this:
+Our nested route `POST` `/authors/<author_id>/books` will use the `authors_bp` blueprint. Here is an example of how we might start to implement this:
+
+# refer to the documentation and try
+# completing this endpoint yourself
 
 ```python
-@authors.route("/<author_id>/books", methods=["GET", "POST"])
-def handle_authors_books(author_id):
-    if request.method == "POST":
-        request_body = request.get_json()
+@authors_bp.route("/<author_id>/books", methods=["POST"])
+def create_book(author_id):
 
-        # refer to the documentation and try
-        # completing this endpoint yourself
+    # refer to the documentation and try
+    # completing this endpoint yourself
 
-        db.session.add(new_book)
-        db.session.commit()
+    db.session.add(new_book)
+    db.session.commit()
 
-        return make_response(f"Book {new_book.title} by {new_book.author.name} successfully created", 201)
+    return make_response(jsonify(f"Book {new_book.title} by {new_book.author.name} successfully created"), 201)
 ```
 
-Try puzzling this out yourself with the [Flask-SQLAlchemy documentation](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#simple-relationships), then check out our solution below. Remember: there's more than one way to do this!
+Try completing this route function by referencing the [Flask-SQLAlchemy documentation](https://flask-sqlalchemy.palletsprojects.com/en/2.x/quickstart/#simple-relationships), then check out our solution below. Remember, there is more than one way to do this! 
 
 <br/>
 
@@ -108,22 +106,33 @@ Try puzzling this out yourself with the [Flask-SQLAlchemy documentation](https:/
     <summary>Finished <code>POST</code> endpoint example</summary>
 
 ``` python
-@authors.route("/<author_id>/books", methods=["GET", "POST"])
-def handle_authors_books(author_id):
-    author = Author.query.get(id=author_id)
-    if author is None:
-        return make_response("Author not found", 404)
+def validate_author(author_id):
+    try:
+        author_id = int(author_id)
+    except:
+        abort(make_response({"message":f"author {author_id} invalid"}, 400))
 
-    if request.method == "POST":
-        request_body = request.get_json()
-        new_book = Book(
-            title=request_body["title"],
-            description=request_body["description"],
-            author=requested_author
-            )
-        db.session.add(new_book)
-        db.session.commit()
-        return make_response(f"Book {new_book.title} by {new_book.author.name} successfully created", 201)
+    author = Author.query.get(author_id)
+
+    if not author:
+        abort(make_response({"message":f"author {author_id} not found"}, 404))
+
+    return author
+
+@authors_bp.route("/<author_id>/books", methods=["POST"])
+def create_book(author_id):
+
+    author = validate_author(author_id)
+
+    request_body = request.get_json()
+    new_book = Book(
+        title=request_body["title"],
+        description=request_body["description"],
+        author=author
+    )
+    db.session.add(new_book)
+    db.session.commit()
+    return make_response(jsonify(f"Book {new_book.title} by {new_book.author.name} successfully created"), 201)
 ```
 </details>
 

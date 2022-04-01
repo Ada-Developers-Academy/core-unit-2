@@ -4,7 +4,7 @@
 
 Our goals for this lesson are to:
 * Connect two tables in a one-to-many relationship with SQLAlchemy
-* Utilize documentation and problem solving to find missing information
+* Utilize documentation and problem solving to learn how to implement new features
 
 We will:
 * Create an `Author` model
@@ -27,8 +27,6 @@ This lesson asks us to do more independent research than the previous **Building
 
 <details>
    <summary>Expand to see the features <code>Hello Books API</code> should have before this lesson</summary>
-        Before beginning this lesson, the Hello Books API should have the following.
-    </summary>
 
 - A `hello_books_development` database
 - A `book` table defined
