@@ -1,5 +1,63 @@
 # Many-to-Many: Nested Routes
 
+## Goals
+
+Our goal for this lesson is to create routes to **read** all `book`s of a specific `genre` and **create** `book`s of a specific genre.
+
+This lesson covers:
+
+- Creating a `POST` `/genres/<genre_id>/books` RESTful route to create a book of a specific genre.
+- Creating a `GET` `/genres/<genre_id>/books` RESTful route to read all books of a specific genre.
+
+| Starting Branch | Ending Branch|
+|--|--|
+|`09b-books-genres` |`09b-nested-routes`|
+
+<br/>
+
+<details>
+    <summary>
+        Before beginning this lesson, the Hello Books API should have the following.
+    </summary>
+
+- A `hello_books_development` database
+- A `book` table defined
+- A `Book` model defined
+- An `author` table defined
+- A `Author` model defined
+- Endpoints defined for these RESTful routes:
+- `GET` to `/books`
+- `POST` to `/books`
+- `GET` to `/books/<book_id>`
+- `PUT` to `/books/<book_id>`
+- `DELETE` to `/books/<book_id>`
+- `POST` to `/authors`
+- `GET` to `authors/<author_id>/books`
+- `GET` to `/genres`
+- `POST` to `/genres`
+
+The `Book` model and table should have the following columns:
+
+- `id`
+- `title`
+- `description`
+
+The `Author` model and table should have the following columns:
+
+- `id`
+- `name`
+
+The `Genre` model and table should have the following columns:
+
+- `id`
+- `name`
+
+The `BookGenre` model and table should have the following columns:
+- `book_id`
+- `genre_id`
+
+</details>
+
 ## `PATCH` `/books/<book_id>/assign_genres` route
 
 Now that we have established our models to create a many-to-many relationships between `Book`s and `Genre`s, we can write a custom endpoint to assign `Genre`s to `Book`s in our database. 

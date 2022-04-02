@@ -12,9 +12,11 @@ This lesson covers:
 - Creating a `GET` `/genres` route
 - Creating a `POST` `/genres` route
 
-### Before This Lesson
+## Branches
 
-This lesson uses the Hello Books API.
+| Starting Branch | Ending Branch|
+|--|--|
+|`08a-deploying-to-heroku` |`09a-genres`|
 
 <br/>
 

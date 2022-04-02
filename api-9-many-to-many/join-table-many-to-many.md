@@ -9,13 +9,13 @@ This lesson should be used as a reference in conjuction with [SQLAlchemy's docum
 This lesson covers:
 
 - Creating a `BookGenre` association model / join table.
-- Adding a relationship attrbiute `genres` to the `Book` model.
+- Adding a relationship attribute `genres` to the `Book` model.
 - Creating a `PATCH` `/books/<book_id>/assign_genres` custom route to associate genres with a book.
 - Creating a `Book` instance method `to_dict` that will return json with `author` and `genres` keys.
 
-### Before This Lesson
-
-This lesson uses the Hello Books API.
+| Starting Branch | Ending Branch|
+|--|--|
+|`09a-genres` |`09b-books-genre`|
 
 <br/>
 
