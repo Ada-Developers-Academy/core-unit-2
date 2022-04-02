@@ -456,7 +456,7 @@ Standards:
         Path: /api-8-deployment/activity-deploying-to-heroku.md
   -
     Title: 09) Building an API - Many-to-Many Relationships
-    Description: "Many-to-Many: Genres, Many-to-Many: Books and Genres"
+    Description: "Many-to-Many: Genres, BookGenre Join Table, Many-to-Many: Nested Routes"
     UID: 47ca5247-b2f4-45c9-8d37-8ea43f0e86f8
     SuccessCriteria:
       - success criteria
@@ -464,11 +464,15 @@ Standards:
         -
           Type: Lesson
           UID: c672b599-4f30-44cc-8831-0cf91f17d63e
-          Path: /api-9-many-to-many/many-to-many-genre.md
+          Path: /api-9-many-to-many/genre-many-to-many.md
         -
           Type: Lesson
           UID: 3bb7e9d1-b7fa-4067-a404-8d77468b563e
-          Path: /api-9-many-to-many/many-to-many-books-genres.md
+          Path: /api-9-many-to-many/join-table-many-to-many.md
+        -
+          Type: Lesson
+          UID: 13d46c9e-fe8f-4091-a930-d29676535e9d
+          Path: /api-9-many-to-many/routes-many-to-many.md
   -
     Title: Unit Wrap Up
     Description: "Activity: Mind Map"

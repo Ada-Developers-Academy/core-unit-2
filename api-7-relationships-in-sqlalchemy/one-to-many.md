@@ -1,4 +1,4 @@
-# One-to-Many Relationships
+# One-to-Many: Authors
 
 ## Goals
 
