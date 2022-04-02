@@ -101,7 +101,7 @@ In summary, by adding the `genres` attribute to the `Book` model:
 - `genre.books` returns a list of `Book` istances associated with the `Genre` instance named `genre`.
 
 <details>
-  <summary>Expand to see complete `Book` model code</summary>
+  <summary>Expand to see complete <code>Book</code> model code</summary>
 
 ``` python
 # app/models/book.py
@@ -119,7 +119,13 @@ class Book(db.Model):
 
 </details>
 
+### !callout-info
+
+## `books_genres` vs. `book_genre`
+
 We will notice that in the provided implementation, the `BookGenre` model table is named `book_genre` and not `books_genres`. Some frameworks may enforce a particular convention. With Flask, we just need to make sure that we are consistent.
+
+### !end-callout
 
 ### Don't Forget to Generate Migrations
 
