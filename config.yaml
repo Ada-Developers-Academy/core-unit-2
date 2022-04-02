@@ -414,7 +414,7 @@ Standards:
         Path: /api-6-testing/activity-solar-testing.md
   -
     Title: 07) Building an API - One-to-Many Relationships
-    Description: "One-to-Many Relationships, Nested Routes in Flask"
+    Description: "One-to-Many: Authors, Nested Routes"
     UID: 11960148-2005-4ce6-b12d-c9f788667407
     SuccessCriteria:
       - success criteria

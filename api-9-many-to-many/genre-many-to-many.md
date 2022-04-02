@@ -2,7 +2,7 @@
 
 ## Goals
 
-Our goal for this lesson is to create a `Genre` model and routes so that we can create a many-to-many relationship between `Genres` and `Books`.
+Our goal for this lesson is to create a `Genre` model and routes in order to create a many-to-many relationship between `Genre`s and `Book`s.
 
 This lesson should be used as a reference for creating the `Genre` model and routes. It does not provide a detailed description of the code.
 
@@ -52,9 +52,11 @@ The `Author` model and table should have the following columns:
 
 ## Genre Model
 
-Books and genres have a many-to-many relationship. A book can belong to many genres, and a genre can have many books.
+`Book`s and `genre`s have a many-to-many relationship. A book can belong to many genres, and a genre can have many books.
 
-To establish this relationship in our `hello-books-api` with SQLAlchemy, first we will to define a model for `Genre` in a new file `genre.py` inside the `models` folder. A genre should have the following attributes: an `id` as the primary key, and a string `name`.
+To establish this relationship in our `hello-books-api` with SQLAlchemy, first we need to define a model for `Genre` in a new file `genre.py` inside the `models` folder. A genre should have the following attributes:
+* `id`, integer, primary key
+* `name`, string
 
 Give this a try on your own, then check out our solution below.
 
@@ -75,7 +77,7 @@ Give this a try on your own, then check out our solution below.
 
 ### Don't Forget to Generate Migrations
 
-Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [Models Setup](../api-3-database-models-read/models-setup.md) to review the terminal commands for migration.
+Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [03)Building an API - Models Setup](../api-3-database-models-read/models-setup.md) to review the terminal commands for migration.
 
 ## Genre Blueprint
 
@@ -123,28 +125,31 @@ Refer back to [03) Building an API - Read All Books](../api-3-database-models-re
 <details>
   <summary>Give it a try and then view one implementation of these routes here.</summary>
 
-  ```python
-  @genres_bp.route("", methods=["GET","POST"])
-  def handle_genres():
-    if request.method == "GET":
-        genres = Genre.query.all()
-        genres_response = []
-        for genre in genres:
-            genres_response.append({
-                "id": genre.id,
+```python
+@genres_bp.route("", methods=["POST"])
+def create_genre():
+    request_body = request.get_json()
+    new_genre = Genre(name=request_body["name"],)
+
+    db.session.add(new_genre)
+    db.session.commit()
+
+    return make_response(jsonify(f"Genre {new_genre.name} successfully created"), 201)
+
+@genres_bp.route("", methods=["GET"])
+def read_all_genres():
+    
+    genres = Genre.query.all()
+
+    genres_response = []
+    for genre in genres:
+        genres_response.append(
+            {
                 "name": genre.name
-                })
-        return jsonify(genres_response)
-    elif request.method == "POST":
-        request_body = request.get_json()
-
-        genre = Genre(name=request_body["name"])
-
-        db.session.add(genre)
-        db.session.commit()
-
-        return jsonify(f"Genre {genre.name} was successfully created"), 201
-  ```
+            }
+        )
+    return jsonify(genres_response)
+```
 </details>
 
 ## Manual Testing in Postman
@@ -162,7 +167,7 @@ Verify that the genre has been added to the database with a `GET` to `/genres`.
 * title: Genre
 ##### !question
 
-Check off all the features you've written and tested.
+Check off all the features you wrote and tested.
 
 ##### !end-question
 ##### !options
