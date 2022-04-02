@@ -2,7 +2,7 @@
 
 ## Goals
 
-Our goal for this lesson is to create routes to **read** all `book`s of a specific `genre` and **create** `book`s of a specific genre.
+Our goal for this lesson is to create routes to create `book`s of a specific `genre` and read all `book`s of a specific `genre`.
 
 This lesson covers:
 
@@ -43,11 +43,14 @@ The `Book` model and table should have the following columns:
 - `id`
 - `title`
 - `description`
+- `author` (model only)
+- `genres` (model only)
 
 The `Author` model and table should have the following columns:
 
 - `id`
 - `name`
+- `books` (model only)
 
 The `Genre` model and table should have the following columns:
 
@@ -62,21 +65,21 @@ The `BookGenre` model and table should have the following columns:
 
 ## `POST` `/genres/<genre_id>/books`
 
-Now that we have established our models to create a many-to-many relationships between `Book`s and `Genre`s, we can write a custom endpoint to assign `Genre`s to `Book`s in our database. 
+Now that we have established our models to create a many-to-many relationships between `book`s and `genre`s, we can write a RESTful route to create a book of a specific genre. 
 
 |Verb|Endpoint|Example Request Body|
 |--|--|--|
-|`POST`|`/genres/<genre_id>/books``|`{"title": "book title", "description": "creative description", "author_id": 1`|
+|`POST`|`/genres/<genre_id>/books`|`{"title": "book title", "description": "creative description", "author_id": 1`|
 
 Our route function we will need to 
 - Query the `Genre` table to get the `genre` with `genre_id`
-- Create a new book instance with data from the request_body and `genre`
+- Create a new book instance with data from the request_body and the `genre`
 - Commit our new book from the database
 
 <br/>
 
 <details>
-  <summary>Give this function a try and then click here to see the complete route.</summary>
+  <summary>Give this function a try and then click here to see the complete <code>POST /genres/<genre_id>/books</code> route.</summary>
 
 ```python
 def validate_genre(genre_id):
@@ -122,7 +125,7 @@ To do this work, let's create a instance method `to_dict` on the `Book` class th
 <br/>
 
 <details>
-    <summary>Give it a try and then click here for one implementation.</summary>
+    <summary>Give it a try and then click here for one implementation of the <code>to_dict</code> method.</summary>
 
 ```python
 # app/models/book.py
@@ -157,8 +160,10 @@ Our route function we will need to
 - Iterate through the `book`s with that `genre` 
 - Return a response as a list of dictionaries with information for each `book` in the specified `genre`.
 
+</br>
+
 <details>
-    <summary>Give it a try and then click here for one implementation of the <code>GET /genres/<genre_id>/books</code> route</summary>
+    <summary>Give it a try and then click here for one implementation of the <code>GET /genres/<genre_id>/books</code> route.</summary>
 
 ```python
 @genres_bp.route("/<genre_id>/books", methods=["GET"])
@@ -183,11 +188,11 @@ Now that we have established a relationship between the `Genre` and `Book` model
 
 View the genres in the database and the books in the database with a `GET` request to `/genres` and a `GET` to `/books`.
 
-Create a book of a specific genre with a `POST` request to `/genres/<genre_id/books`.
+Create a `book` of a specific `genre` with a `POST` request to `/genres/<genre_id/books`.
 
-Verify the genres have been added to the book with a `GET` request to `/books/<book_id>`. 
+Verify the `genre`s have been added to the book with a `GET` request to `/books/<book_id>`. 
 
-View all books of a specific genre with a `GET` request to `/genres/<genre_id/books`.
+View all `book`s of a specific `genre` with a `GET` request to `/genres/<genre_id/books`.
 
 <!-- prettier-ignore-start -->
 ### !challenge

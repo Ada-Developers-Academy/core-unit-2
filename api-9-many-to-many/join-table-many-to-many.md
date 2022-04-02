@@ -10,7 +10,6 @@ This lesson covers:
 
 - Creating a `BookGenre` association model / join table.
 - Adding a relationship attribute `genres` to the `Book` model.
-- Creating a `PATCH` `/books/<book_id>/assign_genres` custom route to associate genres with a book.
 
 | Starting Branch | Ending Branch|
 |--|--|
@@ -44,11 +43,13 @@ The `Book` model and table should have the following columns:
 - `id`
 - `title`
 - `description`
+- `author` (model only)
 
 The `Author` model and table should have the following columns:
 
 - `id`
 - `name`
+- `books` (model only)
 
 The `Genre` model and table should have the following columns:
 
@@ -100,7 +101,7 @@ In summary, by adding the `genres` attribute to the `Book` model:
 - `genre.books` returns a list of `Book` istances associated with the `Genre` instance named `genre`.
 
 <details>
-  <summary>Work independently to implement <code>to_dict</code> and then expand to see one solution.</summary>
+  <summary>Expand to see complete `Book` model code</summary>
 
 ``` python
 # app/models/book.py
@@ -117,6 +118,8 @@ class Book(db.Model):
 ```
 
 </details>
+
+We will notice that in the provided implementation, the `BookGenre` model table is named `book_genre` and not `books_genres`. Some frameworks may enforce a particular convention. With Flask, we just need to make sure that we are consistent.
 
 ### Don't Forget to Generate Migrations
 

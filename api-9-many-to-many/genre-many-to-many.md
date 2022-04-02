@@ -44,11 +44,13 @@ The `Book` model and table should have the following columns:
 - `id`
 - `title`
 - `description`
+- `author` (model only)
 
 The `Author` model and table should have the following columns:
 
 - `id`
 - `name`
+- `books` (model only)
 
 </details>
 
