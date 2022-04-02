@@ -11,7 +11,6 @@ This lesson covers:
 - Creating a `BookGenre` association model / join table.
 - Adding a relationship attribute `genres` to the `Book` model.
 - Creating a `PATCH` `/books/<book_id>/assign_genres` custom route to associate genres with a book.
-- Creating a `Book` instance method `to_dict` that will return json with `author` and `genres` keys.
 
 | Starting Branch | Ending Branch|
 |--|--|
@@ -100,8 +99,6 @@ In summary, by adding the `genres` attribute to the `Book` model:
 - `book.genres` returns a list of `Genre` instances associated with the `Book` instance named `book`.
 - `genre.books` returns a list of `Book` istances associated with the `Genre` instance named `genre`.
 
-Let's also write a `Book` instance method `to_dict` that returns a dictionary with the keys `"id"`, `"title"`, and `"descirption"`. This dictionary should also include key value pairs for `"author"` and `"genres"` for books with these attributes.
-
 <details>
   <summary>Work independently to implement <code>to_dict</code> and then expand to see one solution.</summary>
 
@@ -117,21 +114,6 @@ class Book(db.Model):
     author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
     author = db.relationship("Author", back_populates="books")
     genres = db.relationship("Genre", secondary="book_genre", backref="books")
-
-    def to_dict(self):
-        book_dict = {
-            "id": self.id,
-            "title": self.title,
-            "description": self.description
-        }
-        if self.author:
-            book_dict["author"] = self.author.name
-
-        if self.genres:
-            genre_names = [genre.name for genre in self.genres]
-            book_dict["genres"] = genre_names
-
-        return book_dict
 ```
 
 </details>
@@ -157,7 +139,6 @@ Check off all the features you've written and tested.
 * Create `BookGenre` model
 * Import `BookGenre` in `__init__.py`
 * Add `genres` attribute to `Book` model
-* Create a `Book` instand method that returns a dictionary with information about one book
 
 ##### !end-options
 ### !end-challenge

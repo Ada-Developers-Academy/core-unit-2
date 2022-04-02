@@ -7,6 +7,7 @@ Our goal for this lesson is to create routes to **read** all `book`s of a specif
 This lesson covers:
 
 - Creating a `POST` `/genres/<genre_id>/books` RESTful route to create a book of a specific genre.
+- Creating a `Book` instance method to display `genres` in response body
 - Creating a `GET` `/genres/<genre_id>/books` RESTful route to read all books of a specific genre.
 
 | Starting Branch | Ending Branch|
@@ -33,6 +34,7 @@ This lesson covers:
 - `DELETE` to `/books/<book_id>`
 - `POST` to `/authors`
 - `GET` to `authors/<author_id>/books`
+- `POST` to `authors/<author_id>/books`
 - `GET` to `/genres`
 - `POST` to `/genres`
 
@@ -58,47 +60,58 @@ The `BookGenre` model and table should have the following columns:
 
 </details>
 
-## `PATCH` `/books/<book_id>/assign_genres` route
+## `POST` `/genres/<genre_id>/books`
 
 Now that we have established our models to create a many-to-many relationships between `Book`s and `Genre`s, we can write a custom endpoint to assign `Genre`s to `Book`s in our database. 
 
-|Verb|Endpoint|Request Body|
+|Verb|Endpoint|Example Request Body|
 |--|--|--|
-|`PATCH`|`/books/<book_id>/assign_genres`|`{"genres": [1, 2, 3]}`|
+|`POST`|`/genres/<genre_id>/books``|`{"title": "book title", "description": "creative description", "author_id": 1`|
 
-Note that the request body contains a list of `genre_ids` to indicate which genres to assign to the book with `book_id`.
-
-In our route function we will need to 
-- Query the `Book` table to get the book with `book_id`
-- Query the `Genre` table to get the genres with the `genre_id` is the request body
-- Assign the `genre`s from the request body.
+Our route function we will need to 
+- Query the `Genre` table to get the `genre` with `genre_id`
+- Create a new book instance with data from the request_body and `genre`
+- Commit our new book from the database
 
 <br/>
 
 <details>
   <summary>Give this function a try and then click here to see the complete route.</summary>
 
-  ```python
+```python
+def validate_genre(genre_id):
+    try:
+        genre_id = int(genre_id)
+    except:
+        abort(make_response({"message":f"genre {genre_id} invalid"}, 400))
 
-  @books_bp.route("/<book_id>/assign_genres", methods=["PATCH"])
-  def assign_genres(book_id):
-      book = Book.query.get(book_id)
+    genre = Genre.query.get(genre_id)
 
-      if book is None:
-          return make_response(f"Book #{book.id} not found", 404)
-    
-      request_body = request.get_json()
+    if not genre:
+        abort(make_response({"message":f"genre {genre_id} not found"}, 404))
 
-      for id in request_body["genres"]:
-          book.genres.append(Genre.query.get(id))
-    
-      db.session.commit()
+    return genre
 
-      return make_response("Genres successfully added", 200)
-  ```
+@genres_bp.route("/<genre_id>/books", methods=["POST"])
+def create_book(genre_id):
+
+    genre = validate_genre(genre_id)
+
+    request_body = request.get_json()
+    new_book = Book(
+        title=request_body["title"],
+        description=request_body["description"],
+        author_id=request_body["author_id"],
+        genres=[genre]
+    )
+    db.session.add(new_book)
+    db.session.commit()
+    return make_response(jsonify(f"Book {new_book.title} by {new_book.author.name} successfully created"), 201)
+```
+
 </details>
 
-Note: This custom route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships, for instance with a `POST` `/genres/<genre_id>/books` route. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../api-7-relationships-in-sqlalchemy/nested-routes-in-flask.md)
+Note: This RESTful route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../api-7-relationships-in-sqlalchemy/nested-routes-in-flask.md)
 
 ## Displaying relationships in `Book` JSON
 
@@ -111,42 +124,70 @@ To do this work, let's create a instance method `to_dict` on the `Book` class th
 <details>
     <summary>Give it a try and then click here for one implementation.</summary>
 
-    ```python
-    # app/models/book.py
+```python
+# app/models/book.py
 
-    ...
+...
 
-    def to_dict(self):
-        genres = []
-        for genre in self.genres:
-            genres.append(genre.name)
+def to_dict(self):
+    book_dict = {
+        "id": self.id,
+        "title": self.title,
+        "description": self.description
+    }
+    if self.author:
+        book_dict["author"] = self.author.name
 
-        if self.author:
-            author = self.author.name
-        else:
-            author = None
+    if self.genres:
+        genre_names = [genre.name for genre in self.genres]
+        book_dict["genres"] = genre_names
 
-        return {
-                    "id": self.id,
-                    "title": self.title,
-                    "description": self.description,
-                    "genres": genres,
-                    "author": author
-               }
-    ```
+    return book_dict
+```
 </details>
 
 In `routes.py` refactor the `GET` `/books` and `GET` `/books/<book_id>` to use the instance method `to_dict`.
+
+## `GET` `/genres/<genre_id>/books`
+
+Finally, let's create a route to get all books by a specific genre.
+
+Our route function we will need to 
+- Query the `Genre` table to get the `genre` with `genre_id`
+- Iterate through the `book`s with that `genre` 
+- Return a response as a list of dictionaries with information for each `book` in the specified `genre`.
+
+<details>
+    <summary>Give it a try and then click here for one implementation of the <code>GET /genres/<genre_id>/books</code> route</summary>
+
+```python
+@genres_bp.route("/<genre_id>/books", methods=["GET"])
+def read_all_books(genre_id):
+    
+    genre = validate_genre(genre_id)
+
+    books_response = []
+    for book in genre.books:
+        books_response.append(
+            book.to_dict()
+        )
+    return jsonify(books_response)
+```
+
+</details>
+
 
 ## Manual Testing in Postman
 
 Now that we have established a relationship between the `Genre` and `Book` models, we can test our changes using Postman.
 
-View the genres in the database and the books in the database with a `GET` to `/genres` and a `GET` to `/books`.
+View the genres in the database and the books in the database with a `GET` request to `/genres` and a `GET` to `/books`.
 
-Assign one or more genres to a book in the database with a `PATCH` to `/books/<book_id>/assign_genres`.
+Create a book of a specific genre with a `POST` request to `/genres/<genre_id/books`.
 
-Verify the genres have been added to the book with a `GET` to `/books/<book_id>`. 
+Verify the genres have been added to the book with a `GET` request to `/books/<book_id>`. 
+
+View all books of a specific genre with a `GET` request to `/genres/<genre_id/books`.
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -160,8 +201,9 @@ Check off all the features you've written and tested.
 ##### !end-question
 ##### !options
 
-* Create `PATCH` `/book/<books_id>/assign_genres` route
-* Refactor `GET` `/books` routes to use `to_dict` instance method.
+* Create `POST` `/genres/<genre_id/books` route.
+* Add `Book` instance method `to_dict`
+* Create `GET` `/genres/<genre_id/books` route.
 
 ##### !end-options
 ### !end-challenge
