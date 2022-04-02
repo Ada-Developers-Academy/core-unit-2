@@ -454,21 +454,21 @@ Standards:
         Type: Lesson
         UID: ee88de6f19748458e8539e3835f8c294
         Path: /api-8-deployment/activity-deploying-to-heroku.md
-  # -
-  #   Title: 09) Building an API - Many-to-Many Relationships
-  #   Description: "Many-to-Many: Genres, Many-to-Many: Books and Genres"
-  #   UID: 47ca5247-b2f4-45c9-8d37-8ea43f0e86f8
-  #   SuccessCriteria:
-  #     - success criteria
-  #   ContentFiles:
-  #       -
-  #         Type: Lesson
-  #         UID: c672b599-4f30-44cc-8831-0cf91f17d63e
-  #         Path: /api-9-many-to-many/many-to-many-genre.md
-  #       -
-  #         Type: Lesson
-  #         UID: 3bb7e9d1-b7fa-4067-a404-8d77468b563e
-  #         Path: /api-9-many-to-many/many-to-many-books-genres.md
+  -
+    Title: 09) Building an API - Many-to-Many Relationships
+    Description: "Many-to-Many: Genres, Many-to-Many: Books and Genres"
+    UID: 47ca5247-b2f4-45c9-8d37-8ea43f0e86f8
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+        -
+          Type: Lesson
+          UID: c672b599-4f30-44cc-8831-0cf91f17d63e
+          Path: /api-9-many-to-many/many-to-many-genre.md
+        -
+          Type: Lesson
+          UID: 3bb7e9d1-b7fa-4067-a404-8d77468b563e
+          Path: /api-9-many-to-many/many-to-many-books-genres.md
   -
     Title: Unit Wrap Up
     Description: "Activity: Mind Map"
