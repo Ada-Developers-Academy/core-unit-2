@@ -82,46 +82,63 @@ You may refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/1
   <summary>Click here for one way to implement the <code>BookGenre</code> model.</summary>
 
   ``` python
-  # app/models/book_genre.py
-  from app import db
+# app/models/book_genre.py
+from app import db
 
-  class BookGenre(db.Model):
-      __tablename__ = "books_genres"
-      book_id = db.Column(db.Integer, db.ForeignKey('book.id'), primary_key=True,nullable=False)
-      genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'), primary_key=True,nullable=False)
-
-  ```
+class BookGenre(db.Model):
+    __tablename__ = "book_genre"
+    book_id = db.Column(db.Integer, db.ForeignKey('book.id'), primary_key=True,nullable=False)
+    genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'), primary_key=True,nullable=False)
+```
 </details>
 
 In order to easily see the `genres` associate with a particular book, we can add a relationship attribute to the `Book` model: 
-- `genres = db.relationship("Genre", secondary="books_genres", backref="books")` 
+- `genres = db.relationship("Genre", secondary="book_genre", backref="books")` 
 
 By using the `backref` keyword, we also add a `books` attribute to the `Genre` model. 
 In summary, by adding the `genres` attribute to the `Book` model:
 - `book.genres` returns a list of `Genre` instances associated with the `Book` instance named `book`.
 - `genre.books` returns a list of `Book` istances associated with the `Genre` instance named `genre`.
 
+Let's also write a `Book` instance method `to_dict` that returns a dictionary with the keys `"id"`, `"title"`, and `"descirption"`. This dictionary should also include key value pairs for `"author"` and `"genres"` for books with these attributes.
 
 <details>
-  <summary>Click here to see the complete <code>Book</code> model.</summary>
+  <summary>Work independently to implement <code>to_dict</code> and then expand to see one solution.</summary>
 
-  ``` python
-  # app/models/book.py
+``` python
+# app/models/book.py
 
-  class Book(db.Model):
-      id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-      title = db.Column(db.String)
-      description = db.Column(db.String)
-      author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
-      author = db.relationship("Author", backref="books")
-      genres = db.relationship("Genre", secondary="books_genres", backref="books")
+from app import db
 
-  ```
+class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    title = db.Column(db.String)
+    description = db.Column(db.String)
+    author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
+    author = db.relationship("Author", back_populates="books")
+    genres = db.relationship("Genre", secondary="book_genre", backref="books")
+
+    def to_dict(self):
+        book_dict = {
+            "id": self.id,
+            "title": self.title,
+            "description": self.description
+        }
+        if self.author:
+            book_dict["author"] = self.author.name
+
+        if self.genres:
+            genre_names = [genre.name for genre in self.genres]
+            book_dict["genres"] = genre_names
+
+        return book_dict
+```
+
 </details>
 
 ### Don't Forget to Generate Migrations
 
-Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [Models Setup](../api-3-database-models-read/models-setup.md) to review the terminal commands for migration.
+Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [03) Building an API - Models Setup](../api-3-database-models-read/models-setup.md) to review the terminal commands for migration.
 
 In addition, remember to import the `BookGenre` model in `app/__init__.py` with `from app.models.book_genre import BookGenre`.
 
@@ -140,6 +157,7 @@ Check off all the features you've written and tested.
 * Create `BookGenre` model
 * Import `BookGenre` in `__init__.py`
 * Add `genres` attribute to `Book` model
+* Create a `Book` instand method that returns a dictionary with information about one book
 
 ##### !end-options
 ### !end-challenge
