@@ -2,7 +2,9 @@
 
 ## Goals
 
-Our goal for this lesson is to create routes to create `book`s of a specific `genre` and read all `book`s of a specific `genre`.
+Our goals for this lesson are to:
+* Implement endpoints with nested routes that connect two models with a many-to-many relationship
+* Utilize documentation and problem solving to learn how to implement new features
 
 This lesson covers:
 
