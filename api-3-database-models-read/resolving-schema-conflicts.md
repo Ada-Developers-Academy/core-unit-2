@@ -1,4 +1,4 @@
-# Instructor: Resolving Schema Conflicts
+# Resolving Schema Conflicts
 
 ### !callout-info
 
@@ -13,7 +13,7 @@ We made a few minor changes to the wording, we changed the example model from `U
 
 ## Goals
 
-Our goal for this lesson to describe one method for resolving database schema conflicts.
+Our goal for this lesson is to describe one method for resolving database schema conflicts.
 
 ## Introduction
 
@@ -40,7 +40,7 @@ However, here are a few tips to help avoid conflicts in the database schema:
 
 This resource outlines a solution for resolving database schema conflicts. 
 
-While less ideal, it is perfectly reasonable to resolve database schema conflicts for our development database by recreating the database in the migrations with the following commands:
+While less ideal, it is perfectly reasonable to resolve database schema conflicts for our development database by recreating the database and the migrations with the following commands:
 
 ```
 $ dropdb hello_books_development
@@ -63,7 +63,7 @@ This lesson is a resource to use when you run into database schema conflicts. We
 
 ## The Problem
 
-Let's say we have a team of two developers working on different features of an application. Audrey, for example, needs to implement the user authentication subsystem, while Trenisha needs to add avatars for each user. The two developers start working on their features at about the same time, each on a freshly cloned copy of the team's git repository.
+Let's say we have a team of two developers working on different features of a library application. Audrey, for example, needs to add the author attribute to books, while Trenisha needs to add an ISBN ((a number used to track book barcodes) to each book. The two developers start working on their features at about the same time, each on a freshly cloned copy of the team's git repository.
 
 At the time Audrey and Trenisha clone the project to start their work, the project has a Book model that looks like this:
 
@@ -118,7 +118,7 @@ f9e86c06ab0d -> bf69b044cdfc (head), add author to book
 
 So Audrey happily goes off to work on adding authors.
 
-Meanwhile, Trenisha needs to add an ISBN (a number used to track book barcodes) for all the books, so starting from the same Book model as Audrey, she makes the following change on her development environment:
+Meanwhile, Trenisha needs to add an ISBN for all the books, so starting from the same Book model as Audrey, she makes the following change on her development environment:
 
 ```python
 class Book(db.Model):
