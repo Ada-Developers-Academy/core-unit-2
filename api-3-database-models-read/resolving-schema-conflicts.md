@@ -29,7 +29,8 @@ However, here are a few tips to help avoid conflicts in the database schema:
 * `git pull` often
   * especially, `git pull` before applying changes to the model with `flask db migrate`
 * Work on updates to the models together
-  * Even if working on separate models, conflicts to the database schema can arise
+  * We strongly recommend using pair programming for every change you make to a model in a group project.
+  * Even if working on separate models, conflicts to the database schema can arise.
 
 ### !end-callout
 
@@ -117,7 +118,7 @@ f9e86c06ab0d -> bf69b044cdfc (head), add author to book
 
 So Audrey happily goes off to work on adding authors.
 
-Meanwhile, Trenisha needs to add an isbn number for all the books, so starting from the same Book model as Audrey, she makes the following change on his development environment:
+Meanwhile, Trenisha needs to add an ISBN (a number used to track book barcodes) for all the books, so starting from the same Book model as Audrey, she makes the following change on her development environment:
 
 ```python
 class Book(db.Model):
@@ -139,7 +140,7 @@ f9e86c06ab0d -> 73c1f8470b04 (head), add isbn to book
 <base> -> f9e86c06ab0d, add book table
 ```
 
-Let's assume that Trenisha finishes his work first, and pushes the user avatar changes to the upstream repository. This commit triggers an automatic deployment to a staging server, where Trenisha goes and checks that user avatars are working fine. She finds no problems, so she goes to find other work.
+Let's assume that Trenisha finishes her work first, and pushes the book changes to the upstream repository. This commit triggers an automatic deployment to a staging server, where Trenisha goes and checks that ISBNs are working fine. She finds no problems, so she goes to find other work.
 
 When Audrey completes her work on user authentication, she tries to push to master and gets an error that tells her that her source tree is out of date. So she does a `git pull`, and then tries to push again. This time the push succeeds, so then she anxiously waits for the staging server to update so that she can check her work before moving on. But something bad happened, the deployment to the staging server failed horribly.
 
