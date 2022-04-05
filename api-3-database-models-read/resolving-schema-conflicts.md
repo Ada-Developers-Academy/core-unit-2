@@ -63,7 +63,7 @@ This lesson is a resource to use when you run into database schema conflicts. We
 
 ## The Problem
 
-Let's say we have a team of two developers working on different features of a library application. Audrey, for example, needs to add the author attribute to books, while Trenisha needs to add an ISBN ((a number used to track book barcodes) to each book. The two developers start working on their features at about the same time, each on a freshly cloned copy of the team's git repository.
+Let's say we have a team of two developers working on different features of a library application. Audrey, for example, needs to add the author attribute to books, while Trenisha needs to add an ISBN (a number used to track book barcodes) to each book. The two developers start working on their features at about the same time, each on a freshly cloned copy of the team's git repository.
 
 At the time Audrey and Trenisha clone the project to start their work, the project has a Book model that looks like this:
 
