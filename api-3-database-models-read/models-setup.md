@@ -6,30 +6,29 @@
 
 Our goal for this lesson is to provide details for _how_ to setup a model in a Flask app.
 
-This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). You can review the recommended workflow for this an subsequent lessons in the [Intro to Hello Books](../api-1-setup-read/intro-to-hello-books.md) lesson. 
+This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). You can review the recommended workflow for this an subsequent lessons in the [Intro to Hello Books](../api-1-setup-read/intro-to-hello-books.md) lesson.
 
 ## Branches
 
-| Starting Branch | Ending Branch|
-|--|--|
-|`02b-404` |`03a-models-setup`|
+| Starting Branch | Ending Branch      |
+| --------------- | ------------------ |
+| `02b-404`       | `03a-models-setup` |
 
 <details>
    <summary>Expand to see the features <code>Hello Books API</code> should have before this lesson</summary>
 
-* The `GET` `/books` route should be defined
-* The `GET` `/books/<book_id>` route should be defined
-* Invalid `book`and non-exiting `books` should be handled with a helper function `validate_book`
+- The `GET` `/books` route should be defined
+- The `GET` `/books/<book_id>` route should be defined
+- Invalid `book`and non-existing `books` should be handled with a helper function `validate_book`
 
 </details>
 <br>
 
-
 ## Removing Hardcoded Data
 
-In a previous lesson we used hardcoded data stored in the variable `BOOKS` to learn how to write routes to *read* all books, and *read* one book. This was great for learning, but we were limited to *GET* routes, as we could not persist any changes to our data given that it was hardcoded.
+In a previous lesson we used hardcoded data stored in the variable `BOOKS` to learn how to write routes to _read_ all books, and _read_ one book. This was great for learning, but we were limited to _GET_ routes, as we could not persist any changes to our data given that it was hardcoded.
 
-In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to *read* our data, but also *create*, *update*, and *delete* it!
+In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to _read_ our data, but also _create_, _update_, and _delete_ it!
 
 Before we go any further, let's comment or remove our hardcoded `BOOKS` data and our two routes from the `app`.
 
@@ -49,7 +48,7 @@ Before we go any further, let's comment or remove our hardcoded `BOOKS` data and
 #     Book(1, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
 #     Book(2, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
 #     Book(3, "Fictional Book Title", "A fantasy novel set in an imaginary world.")
-# ] 
+# ]
 ```
 
 </details>
@@ -71,7 +70,7 @@ We should also comment or remove our code for the `GET /books` and `GET /books/<
 #            return book
 #
 #    abort(make_response({"message":f"book {book_id} not found"}, 404))
-        
+
 # @books_bp.route("", methods=["GET"])
 # def handle_books():
 #     books_response = []
@@ -221,16 +220,16 @@ The class `Book` inherits from `db.Model` from `SQLAlchemy`.
 
 </details>
 
-| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                   |
-| --------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `from app import db`                                | This file needs access to the SQLAlchemy `db`                                                                           |
-| `class Book(...)`                                   | We define a new class, and name it after our model (usually singular). By default, SQLAlchemy will use the lowercase version of this class name as the name of the table it will create.                                                   |
-| `db.Model`                                          | Our model will inherit from `db.Model`, so if we need to look up documentation, we can start with SQLAlchemy's `Model` class |
-| `id = db.Column(...)`                               | Instances of `Book` will have an attribute `id`, which will map to a database column. Notice that this attribute goes outside of any instance method and doesn't reference `self`. This is part of the pattern that models deriving from `db.Model` will follow, even though it's a little different from a typical Python class.                                      |
-| `db.Integer`                                        | A column data-type that SQL Alchemy defines. The `id` column stores integers.                                          |
-| `primary_key=True, autoincrement=True`              | Keyword arguments that allow SQLAlchemy to understand how to fill in the values for new `Book` instances. Notice how they resemble constraints that can be supplied to a column.                |
-| `title = db.Column(db.String)`                      | Creates a `title` attribute, which will map to a string column, `title`                                                   |
-| `description = db.Column(db.String)`                | Creates a `description` attribute, which will map to a string column, `description`                                       |
+| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                                                                                             |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from app import db`                                | This file needs access to the SQLAlchemy `db`                                                                                                                                                                                                                                                                                     |
+| `class Book(...)`                                   | We define a new class, and name it after our model (usually singular). By default, SQLAlchemy will use the lowercase version of this class name as the name of the table it will create.                                                                                                                                          |
+| `db.Model`                                          | Our model will inherit from `db.Model`, so if we need to look up documentation, we can start with SQLAlchemy's `Model` class                                                                                                                                                                                                      |
+| `id = db.Column(...)`                               | Instances of `Book` will have an attribute `id`, which will map to a database column. Notice that this attribute goes outside of any instance method and doesn't reference `self`. This is part of the pattern that models deriving from `db.Model` will follow, even though it's a little different from a typical Python class. |
+| `db.Integer`                                        | A column data-type that SQL Alchemy defines. The `id` column stores integers.                                                                                                                                                                                                                                                     |
+| `primary_key=True, autoincrement=True`              | Keyword arguments that allow SQLAlchemy to understand how to fill in the values for new `Book` instances. Notice how they resemble constraints that can be supplied to a column.                                                                                                                                                  |
+| `title = db.Column(db.String)`                      | Creates a `title` attribute, which will map to a string column, `title`                                                                                                                                                                                                                                                           |
+| `description = db.Column(db.String)`                | Creates a `description` attribute, which will map to a string column, `description`                                                                                                                                                                                                                                               |
 
 Congratulations! We've defined our first Flask model!
 
