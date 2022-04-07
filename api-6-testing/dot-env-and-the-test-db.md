@@ -5,10 +5,12 @@
 ## Goals
 
 Our goals for this lesson are to:
+
 - Refactoring our code to use `python-dotenv`
 - Create the test database for `hello-books-api`
 
 We will complete the following steps:
+
 1. Ensure that `python-dotenv` is installed
 1. Create a _dotenv_ `.env` file
 1. Prevent our `.env` from being committed by using a `.gitignore` file
@@ -25,22 +27,22 @@ These actions will allow us to set up testing for our API, which in turn will he
 
 ## Branches
 
-| Starting Branch | Ending Branch|
-|--|--|
-|`05a-query-params` |`06a-test-database`|
+| Starting Branch    | Ending Branch       |
+| ------------------ | ------------------- |
+| `05a-query-params` | `06a-test-database` |
 
 <details>
    <summary>Expand to see the features <code>Hello Books API</code> should have before this lesson</summary>
 
-* A `hello_books_development` database
-* A `book` table defined
-* A `Book` model defined
-* `POST` `/books` route defined
-* `GET` `/books` route defined
-* `GET` `/books/<book_id>` route defined
-* `PUT` `/books/<book_id>` route defined
-* `DELETE` `/books/<book_id>` route defined
-* Invalid <code>book_id</code> and non-exiting `book`s handled with `validate_book` helper function
+- A `hello_books_development` database
+- A `book` table defined
+- A `Book` model defined
+- `POST` `/books` route defined
+- `GET` `/books` route defined
+- `GET` `/books/<book_id>` route defined
+- `PUT` `/books/<book_id>` route defined
+- `DELETE` `/books/<book_id>` route defined
+- Invalid <code>book_id</code> and non-existing `book`s handled with `validate_book` helper function
 
 </details>
 <br>
