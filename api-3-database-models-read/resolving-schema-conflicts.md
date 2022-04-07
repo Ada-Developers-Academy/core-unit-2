@@ -140,11 +140,9 @@ f9e86c06ab0d -> 73c1f8470b04 (head), add isbn to book
 <base> -> f9e86c06ab0d, add book table
 ```
 
-Let's assume that Trenisha finishes her work first, and pushes the book changes to the upstream repository. This commit triggers an automatic deployment to a staging server, where Trenisha goes and checks that ISBNs are working fine. She finds no problems, so she goes to find other work.
+Let's assume that Trenisha finishes her work first, and pushes the book changes to the upstream repository. 
 
-When Audrey completes her work on user authentication, she tries to push to master and gets an error that tells her that her source tree is out of date. So she does a `git pull`, and then tries to push again. This time the push succeeds, so then she anxiously waits for the staging server to update so that she can check her work before moving on. But something bad happened, the deployment to the staging server failed horribly.
-
-Can you see why? When Audrey goes to check the logs of the failed deployment, this is what she finds:
+When Audrey completes her work on the book author, she tries to push to master and gets an error that tells her that her source tree is out of date. So she does a `git pull`, and then tries to push again. This time the push succeeds. To apply to new migrations she runs `flask db upgrade`, and sees that it fails silently:
 
 ```
 $ flask db upgrade
@@ -152,9 +150,7 @@ INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
 ```
 
-It silently fails.
-
-And sure enough, she did not realize this, but even her own source tree got into a weird state after she pulled in Trenisha's change:
+Sure enough, she did not realize this, but even her own source tree got into a weird state after she pulled in Trenisha's change:
 
 ```
 $ flask db history
@@ -178,15 +174,11 @@ $ SELECT * FROM book;
 
 Likewise in Trenisha's database, there is no `author` column.
 
-## How to Detect Schema Conflicts Before They are Committed
-Before I tell you how to untangle this schema mess, let's think about Audrey's actions. Could she or her team have done anything different to prevent conflicts like this from ever appearing in the team's repository?
-
-There are certainly ways to prevent this type of conflicts. A migration history test could be written to find this and other problems with migrations. This is a test that creates an empty database, and simply applies all the migrations in order, to ensure that they all run fine. The test can then downgrade the database all the way back to its initial state, to also test downgrades, something that very few people check. A migration history test can be included as part of the application's unit test suite, or as a source control pre-commit check.
 
 
 ## How to Resolve a Schema Conflict with a Merge
 
-While detecting these conflicts before they are pushed to the shared repository is important, let's not forget about Audrey's situation. Because she applied her migration before pulling in Trenisha's changes, her database is aligned with one of the two branched heads in the migration history. Trenisha's migration is in the other branch, so it can't be applied through an upgrade.
+Let's help Audrey with her situation. Because she applied her migration before pulling in Trenisha's changes, her database is aligned with one of the two branched heads in the migration history. Trenisha's migration is in the other branch, so it can't be applied through an upgrade.
 
 There are a couple of ways to unlock Audrey's database. Recent releases of Alembic and Flask-Migrate support the merge command, which creates yet another migration that joins these multiple heads, creating a diamond shape. To get everything back in order with a merge, you need to run this command:
 
