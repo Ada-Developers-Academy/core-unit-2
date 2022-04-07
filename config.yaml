@@ -317,6 +317,10 @@ Standards:
         Path: /api-3-database-models-read/read-all-books.md
       -
         Type: Lesson
+        UID: 40e9a62e-f430-4e55-a6cf-87070d069620
+        Path: /api-3-database-models-read/resolving-schema-conflicts.md 
+      -
+        Type: Lesson
         UID: 5f4dda242707c828aa5dbd99e73fe62b
         Path: /api-3-database-models-read/problem-set-create-read.md
       -
