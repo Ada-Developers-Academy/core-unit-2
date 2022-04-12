@@ -110,7 +110,7 @@ Query parameters are key-value pairs that describe information that makes the re
 Query parameters ultimately become formatted as a string as part of the request URL. The text-formatting happens in this pattern:
 
 ```
-http://fake.org?example_1=value_1&example_2&value_2
+http://fake.org?example_1=value_1&example_2=value_2
 ```
 
 ... where there are two query param key-value pairs:
