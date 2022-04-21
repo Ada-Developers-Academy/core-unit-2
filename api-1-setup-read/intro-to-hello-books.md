@@ -20,7 +20,7 @@ As you work through the Building an API Learn Topics and learn to building an AP
 1. Rename this project folder to `ada-hello-books-api` to make it clear it's the Ada maintained version.
 1. When beginning a lesson, checkout the corresponding starting branch for that lesson.
 1. Code along with the lesson **as much or as little as best supports your learning**. You may find it's best to watch all the videos without coding along. Alternatively, you may prefer to implement every new feature along with the reading and videos.
-1. When finishing the lesson, 
+1. When finishing a lesson, 
    - you may `add` and `commit` your changes before checking out the next branch
    - alternatively, you may remove any changes you've made using `git stash`
       - `git stash` resets files to the previous commit point. 
