@@ -1,5 +1,7 @@
 # GET /book/<book_id> Test
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=6259a9f1-a9fd-450a-a070-ae89011c1e10&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goals
 
 Our goals for this lesson are to:
