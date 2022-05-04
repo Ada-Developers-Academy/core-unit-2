@@ -12,7 +12,7 @@ Our goals for this lesson are to:
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`06c-using-tests` |`06d-read-one-book-test`|
+|`06c-using-tests` |`06d-read-one-books-test`|
 
 ## Tests That Need Test Data
 
