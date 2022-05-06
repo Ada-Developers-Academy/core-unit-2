@@ -459,7 +459,7 @@ Standards:
         UID: ee88de6f19748458e8539e3835f8c294
         Path: /api-8-deployment/activity-deploying-to-heroku.md
   -
-    Title: 09) Building an API - Many-to-Many Relationships
+    Title: [Optional] 09) Building an API - Many-to-Many Relationships
     Description: "Many-to-Many: Genres, BookGenre Join Table, Many-to-Many: Nested Routes"
     UID: 47ca5247-b2f4-45c9-8d37-8ea43f0e86f8
     SuccessCriteria:
