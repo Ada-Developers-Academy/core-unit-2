@@ -81,7 +81,7 @@ Our route function we will need to
 <br/>
 
 <details>
-  <summary>Give this function a try and then click here to see the complete <code>POST /genres/<genre_id>/books</code> route.</summary>
+  <summary>Give this function a try and then click here to see the complete <code>POST /genres/&#60;genre_id&#62;/books</code> route.</summary>
 
 ```python
 def validate_genre(genre_id):
@@ -120,7 +120,7 @@ Note: This RESTful route is one way to create a relationship between `Book` and 
 
 ## Displaying relationships in `Book` JSON
 
-Let's refactor our `GET` `\books\<book_id>` route. Currently this route returns JSON with the keys `"id"`, `"title"`, and `"description"`. Now that we've establishing a relationship between `Book`s and `Author`s and `Book`s and `Genre`s, let's add the keys `author` and `genres` to the JSON in our response body.
+Let's refactor our `GET` `/books/<book_id>` route. Currently this route returns JSON with the keys `"id"`, `"title"`, and `"description"`. Now that we've establishing a relationship between `Book`s and `Author`s and `Book`s and `Genre`s, let's add the keys `author` and `genres` to the JSON in our response body.
 
 To do this work, let's create a instance method `to_dict` on the `Book` class that returns the json we are looking for. 
 
@@ -165,7 +165,7 @@ Our route function we will need to
 </br>
 
 <details>
-    <summary>Give it a try and then click here for one implementation of the <code>GET /genres/<genre_id>/books</code> route.</summary>
+    <summary>Give it a try and then click here for one implementation of the <code>GET /genres/&#60;genre_id&#62;/books</code> route.</summary>
 
 ```python
 @genres_bp.route("/<genre_id>/books", methods=["GET"])
