@@ -70,7 +70,7 @@ We establish relationships between tables in databases by connecting fields.  Fo
 
 Similarly we can find all the books written by a specific author by finding all the rows in the `books` table with an `author_id` field which matches the given author's `id`.
 
-The `author_id` field in the `books` table is a *foreign_key*.
+The `author_id` field in the `books` table is a *foreign key*.
 
 We can illustrate the relationship with this diagram.
 
