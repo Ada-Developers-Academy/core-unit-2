@@ -4,7 +4,7 @@
 
 ## Goals
 
-Our goal for this lesson is to learn how define routes that read data.
+Our goal for this lesson is to learn how to define routes that read data.
 
 In this lesson we will build our Hello Books API to fulfill the following feature:
 

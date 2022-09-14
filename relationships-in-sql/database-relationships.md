@@ -66,9 +66,11 @@ As we examine the types of relationships possible in relational databases we wil
 
 ## Establishing Relationships With Foreign Keys
 
-We establish relationships between tables in databases by connecting fields.  For example we may have a `books` table and an `authors` table.  Each book should belong to an author, so we can add an `author_id` field to the `books` table.  The `author_id` field is used to reference the `id` primary key field of the `authors` table.  We can find the author of a specific book by finding the author with an `id` field which matches the book's `author_id` field.
+We establish relationships between tables in databases by connecting fields.  For example we may have a `books` table and an `authors` table.  Each book should belong to an author, so we can add an `author_id` field to the `books` table. The `author_id` field is used to reference the `id` primary key field of the `authors` table.  We can find the author of a specific book by finding the author with an `id` field which matches the book's `author_id` field.
 
 Similarly we can find all the books written by a specific author by finding all the rows in the `books` table with an `author_id` field which matches the given author's `id`.
+
+The `author_id` field in the `books` table is a *foreign key*.
 
 We can illustrate the relationship with this diagram.
 
