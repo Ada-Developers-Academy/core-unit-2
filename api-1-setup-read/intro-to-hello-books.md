@@ -1,12 +1,14 @@
 # Intro to Hello Books API
 
-The Lessons in the Building an API Learn Topics will walk-through building a Flask API with the companion repo [Hello Books API](https://github.com/AdaGold/hello-books-api).
+The Lessons in the **Building an API** Learn Topics will walk-through building a Flask API with the companion repo [Hello Books API](https://github.com/AdaGold/hello-books-api).
 
 <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=3baea592-08f8-48eb-beb4-ae6a012e05e8&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
 ## Branches
 
-The [Hello Books API repo](https://github.com/AdaGold/hello-books-api) has a git branch with the new code introduced in each lesson. At the top of a lesson that adds to the Hello Books API Flask application code, the starting branch and ending branch will be indicated in a table. For example, the next lesson, **Flask Setup**, starts with the *default* branch `01a-intro-to-flask` and ends with the branch `01b-flask-setup`. 
+There are 9 separate Learn topics in the **Building an API** lesson series. The [Hello Books API repo](https://github.com/AdaGold/hello-books-api) has a git branch with the new code introduced in each lesson. As we learn how to build an API through this lesson series, the branches will be a way to look at new code introduced in each lesson. Think of it like bookmarks or milestones as we learn.
+
+At the top of a lesson that adds to the Hello Books API Flask application code, the starting branch and ending branch will be indicated in a table. For example, the next lesson, **Flask Setup**, starts with the branch `01a-intro-to-flask` and ends with the branch `01b-flask-setup`. While it is a convention in GitHub for the default branch to be the `main` branch, the default branch for the **Hello Books API** repository is `01a-intro-to-flask`.
 
 | Starting Branch | Ending Branch|
 |--|--|
