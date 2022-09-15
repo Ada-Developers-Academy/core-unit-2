@@ -148,6 +148,23 @@ Instead of using Postman, we can alternatively use our browser to make a `GET` r
 
 ![Screenshot of a browser pointing to localhost:5000/hello-world with the text "Hello, World!"](../assets/building-an-api/flask-hello-books_hello-world-browser.png)
 
+<!-- available callout types: info, success, warning, danger, secondary, star  -->
+### !callout-info
+
+## Troubleshooting
+
+Here are a couple quick troubleshooting techniques to try:
+
+</br>
+
+If you are unable to access the server at `localhost:5000/hello-world`, replace `localhost:5000` with `127.0.0.1` (i.e. `127.0.0.1:5000/hello-world`)
+
+</br>
+
+If you receive the error “Access to localhost was denied”, go to **System Preferences** -> **Sharing**, and uncheck “AirPlay Receiver”.
+
+### !end-callout
+
 ## Check the Server Logs
 
 We can use the server logs to debug our server code. After we run `flask run` from the terminal to start the server, any error messages that our server needs to communicate will be printed in that terminal window.
