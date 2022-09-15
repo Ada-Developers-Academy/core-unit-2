@@ -26,7 +26,7 @@ As you work through the Building an API Learn Topics and learn to building an AP
    - `add` and `commit` your changes, or
    - use `git stash -u` to set aside any changes you've made
 
-If you'd like to restore changes that have been stashed, Git provides several ways to do this. A good starting point for investigation is git stash pop. Follow your curiosity!
+If you'd like to restore changes that have been stashed, Git provides several ways to do this. A good starting point for investigation is `git stash pop`. Follow your curiosity!
    
 ### !callout-info
 

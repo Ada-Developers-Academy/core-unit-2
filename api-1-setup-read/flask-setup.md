@@ -124,7 +124,7 @@ Because we can use the above command to ask `pip` to update our `requirements.tx
 
 </br>
 
-Exceptions to this rule can occur when configuration arise.
+Exceptions to this rule can occur when configuration issues arise.
 
 </br>
 
