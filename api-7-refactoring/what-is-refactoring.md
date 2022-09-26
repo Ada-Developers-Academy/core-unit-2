@@ -9,14 +9,14 @@ Our goals will be to:
 1. Describe the benefits of refactoring
 
 ## Introduction
-Let’s take a moment to really take in the image below. This is a Wenger 16999 Giant Swiss Army knife, which was made to have one of each tool that had ever been on a Swiss Army knife before. 
+Let’s take a moment to take in the image below. This "pocket tool" is a Wenger 16999 Giant Swiss Army knife, an edition which contains every tool that had been in previous Swiss Army knives. 
 
-![A picture of a pocket tool with 87 fold out implements, that are all partially or fully extended.](../assets/api-7-refactoring_what-is-refactoring_giant-pocket-tool.jpg)  
+![A picture of a pocket tool with 87 fold out implements, that are all partially or fully extended.](../assets/api-7-refactoring/api-7-refactoring_what-is-refactoring_giant-pocket-tool.jpg)  
 *Fig. Wenger 16999 Giant Swiss Army Knife*  [(source)](https://www.amazon.com/Wenger-16999-Swiss-Knife-Giant/dp/B001DZTJRQ/)
 
 It _works_, but how easily can you find and use what you need? Is this a better tool because it has a lot of functions, or would we be better served with multiple smaller tool kits?
 
-Often in our lives, we may find our code seems closer to the image above than a curated set of tools; holding onto extra variables or functions that duplicate tasks. This is normal, especially in early drafts of our solutions! But then how do we combat the chaos? 
+Often in our lives, we may find that our code seems closer to the image above than a curated set of tools; holding onto extra variables or functions that duplicate tasks. This is normal, especially in early drafts of our solutions! But then, how do we combat the chaos? 
 
 ## Defining Refactoring
 
