@@ -1,7 +1,7 @@
 # Extracting Helper Functions Pt. 2
 
 ## Goals
-Our goal for this lesson is to refactor code for creating a `Book` model from the `create_book` route to a helper function named `from_dict` in the model's class.
+Our goal for this lesson is to refactor the code for creating a `Book` model from the `create_book` route to a helper function named `from_dict` in the model's class.
 
 To do this we will follow the same steps of planning, then executing our refactor, as outlined on the previous lesson. 
 
