@@ -418,7 +418,7 @@ Standards:
         Path: /api-6-testing/activity-solar-testing.md
   -
     Title: 07) Building an API - Refactoring
-    Description: "What is Refactoring?, Extracting Helper Functions, Refactor validate_book"
+    Description: "What is Refactoring?, Extracting Helper Functions Pt. 1, Extracting Helper Functions Pt. 2, Refactor validate_book"
     UID: 11960148-2005-4ce6-b12d-c9f788667408
     SuccessCriteria:
       - success criteria

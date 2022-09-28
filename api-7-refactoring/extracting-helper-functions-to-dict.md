@@ -1,7 +1,7 @@
 # Extracting Helper Functions Pt. 1
 
 ## Goals
-Our goal for this lesson is to refactor code that converts a `Book` to a `Dictionary` into a reusable helper function `to_dict` in the model's class
+Our goal for this lesson is to refactor code that converts a `Book` model into a `Dictionary` to a reusable helper function named `to_dict` in the model's class.
 
 To do this we will:
 - Plan our refactor by 
@@ -45,7 +45,7 @@ Our test suite should have 3 tests:
 </details>
 </br>
 
-## Refactoring for `to_dict`
+## Planning the refactor
 
 Our first step in refactoring is taking a critical look at our code. If we review the routes file, we may see a pattern in our read functions and what they return. What do you see in common between the `read_all_books` and `read_one_book` functions below?
 
@@ -81,17 +81,15 @@ def read_one_book(book_id):
 
 The responses are a little different, but in both cases we need to convert a `Book` model to a dictionary to create our response. We can see this code repeated in both functions, so let's move forward with refactoring it to a helper function!
 
-### Planning `to_dict`'s refactor
+### Identifying Dependencies
 
 We've identified the code we want to refactor, but do we have the safety net we need to refactor confidently? To know that, we need to first identify our dependencies, then ensure we have strong test coverage around those scenarios.
-
-#### Identifying Dependencies
 
 To identify dependencies, we want to look at the code base and ask "Where is the code I'm refactoring being called?". We should keep track of all the locations we find. If we're refactoring code inside a class, we'd also want to ask "Does any other code extend or inherit this class?".
 
 In our case, we can search the project and feel confident that our two read functions, `read_all_books` and `read_one_book`, are the only dependencies. 
 
-#### Check Test Coverage
+### Check Test Coverage
 
 We know our dependencies, so at this point we need to move over to our test files. Our goal is to ensure we have tests covering nominal and edge cases for each dependency we found.
 
@@ -177,13 +175,13 @@ def test_get_one_book_id_invalid(client, two_saved_books):
 
 At this point, we have a solid test suite for our routes that will be affected by our changes! We can feel good about making updates with the knowledge that we can run our tests frequently and they will help us catch issues if they arise.
 
-### Executing `to_dict` Refactor
+## Executing the Refactor
 
 We know that we want to move our code that creates a dictionary from a `Book` model from the `read_all_books` and `read_one_book` functions, but where does that code belong? Since creating a dictionary from a `Book` requires specific knowledge about the `Book` class, it makes a lot of sense to add the function directly to the `Book` class. 
 
 Planning our function further, we know that we need a book as input, and we want our function's output to be a dictionary with a key for each of the input `Book`'s attributes. Because we need an instance of a `Book` to take this action, we probably want this to be an instance function of our `Book` class.
 
-#### Write failing tests for `to_dict`
+### Write failing tests for `to_dict`
 
 If we're following TDD, our next step should be to write some tests for `to_dict` that will fail until we write our new function. We'll create a new file `test_models.py` and add tests to cover nominal and edge cases for the `to_dict` function.
 
@@ -258,7 +256,7 @@ def test_to_dict_missing_description(client):
 
 At this point, when we run our test suite we should see all of the tests in `test_routes.py` passing, and all of the tests in `test_models.py` failing. Now we can start our cycle of making small changes and testing until we complete our refactor!
 
-#### Write the `to_dict` function
+### Write the `to_dict` function
 
 We know the expected input and output of `to_dict` and where we want to write it, so let's start out with some pseudocode. A set of steps could look like:
 
@@ -297,7 +295,7 @@ def to_dict(self):
 
 When we run our tests now, we should see all tests passing  but we still have changes to make! 
 
-#### Replace the repeated code
+### Replace Repeated Code
 
 Let's USE. THAT. NEW. FUNCTION!!! We'll update our existing functions `read_all_books` and `read_one_book` one at a time, continuing our path of making a small change and testing before moving on. Focusing on one function at a time will help us by reducing the surface area where issues could arise while we make our changes.
 
@@ -346,3 +344,27 @@ def read_one_book(book_id):
     book = validate_book(book_id)
     return book.to_dict()
 ```
+
+</details>
+</br>
+
+## Check for Understanding
+
+<!-- Question Takeaway -->
+<!-- prettier-ignore-start -->
+### !challenge
+* type: paragraph
+* id: 43d9c16f
+* title: Refactoring
+##### !question
+
+What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+
+##### !end-question
+##### !placeholder
+
+My biggest takeaway from this lesson is...
+
+##### !end-placeholder
+### !end-challenge
+<!-- prettier-ignore-end -->
