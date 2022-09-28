@@ -43,7 +43,7 @@ We want to be reviewing our code with questions in mind like:
 
 ## What are code smells?
 
-“Code smells" is a common term for patterns that can indicate issues with code and often comes up when talking about refactoring. There are many lists of common code smells out there, and they can be a handy checklist when refactoring code. If you’re interested in learning more, I encourage you to follow your curiosity!
+“Code smells" is a common term for patterns that can indicate issues with code and often comes up when talking about refactoring. There are many lists of common code smells out there, and they can be a handy checklist when refactoring code. If you’re interested in learning more, we encourage you to follow your curiosity!
 
 ### !end-callout
 
@@ -74,17 +74,17 @@ We’ll dive into applying these refactoring strategies to Hello Books soon, but
 
 ## The Benefits of Refactoring!
 
-So far we’ve made claims that refactoring makes code “easier to read” & “easier to maintain”, but what does that actually boil down to? Below we’ve listed some direct effects of refactoring along with how they benefit us as coders in our day to day.  
+So far we’ve made claims that refactoring makes code “easier to read” & “easier to maintain”, but what does that actually boil down to? Below we’ve listed some direct effects of refactoring, along with how they benefit us as coders in our day to day.  
 
-Shorter functions
+Shorter functions:
 - Less code to read! Less time to read & understand what a function is doing
 
-Enforcing single responsibility for our functions:
+Enforcing single-responsibility for our functions:
 - Less branching logic in a function: makes it easier to reason about what a function does, and what the output will be for any given input
 - Easier to test the function: if it does one thing, there are less edge cases for that particular function that will need to be thought through and tested.
 - The code is more reusable: if a function does multiple things, and only one of the effects is needed in another part of the software, we can’t reuse the existing code as-is.
 
-Reducing duplicated code
+Reducing duplicated code:
 - Less places to make changes if code needs to updated
 - Less code = less places where we could have bugs
 - It’s easier to find the code you are looking for if there is only one function that does that task.
