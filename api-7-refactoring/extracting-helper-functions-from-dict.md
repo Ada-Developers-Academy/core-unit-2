@@ -1,9 +1,12 @@
 # Extracting Helper Functions Pt. 2
 
 ## Goals
-Our goal for this lesson is to refactor the code for creating a `Book` model from the `create_book` route to a class method named `from_dict` in the model's class.
+Our goals for this lesson are to: 
+- Learn about class method syntax
+- Create a class method named `from_dict` in `book.py` 
+- Refactor the code for creating a `Book` model in the `create_book` route to use `from_dict`
 
-To do this we will follow the same steps of planning, then executing our refactor, as outlined on the previous lesson. 
+To do this we will follow the same steps of planning then executing a refactor, as outlined on the previous lesson. 
 
 ## Branches
 
@@ -107,7 +110,7 @@ def create_book():
 
 </details>
 
-### Dependencies
+### Identify Dependencies
 
 We've flagged the code we want to refactor, next we need to identify our dependencies. 
 
@@ -115,7 +118,7 @@ If we look through the `Hello Books` project, there are several places across `c
 
 The only other place we create a `Book` is in the `create_book` route. There we're getting the values from a dictionary. Since `create_book` is the only function that will be affected by our changes, we can move forward by examining our test suite.
 
-### Test Coverage
+### Check for Tests
 
 Let's take a look in `test_routes.py` and see what our coverage looks like for `create_book`.
 

@@ -89,7 +89,7 @@ To identify dependencies, we want to look at the code base and ask "Where is the
 
 In our case, we can search the project and feel confident that our two read functions, `read_all_books` and `read_one_book`, are the only dependencies. 
 
-### Check Test Coverage
+### Check for Tests
 
 We know our dependencies, so at this point we need to move over to our test files. Our goal is to ensure we have tests covering nominal and edge cases for each dependency we found.
 
