@@ -222,7 +222,7 @@ def test_to_dict_missing_id():
     assert result["title"] == "Ocean Book"
     assert result["description"] == "watr 4evr"
 
-def test_to_dict_missing_title(client):
+def test_to_dict_missing_title():
     # Arrange
     test_data = Book(id=1,
                     description="watr 4evr")
@@ -236,7 +236,7 @@ def test_to_dict_missing_title(client):
     assert result["title"] is None
     assert result["description"] == "watr 4evr"
 
-def test_to_dict_missing_description(client):
+def test_to_dict_missing_description():
     # Arrange
     test_data = Book(id = 1,
                     title="Ocean Book")
@@ -293,7 +293,7 @@ def to_dict(self):
 </details>
 </br>
 
-When we run our tests now, we should see all tests passing  but we still have changes to make! 
+When we run our tests now, we should see all tests passing – but we still have changes to make! 
 
 ### Replace Repeated Code
 
@@ -301,12 +301,12 @@ Let's USE. THAT. NEW. FUNCTION!!! We'll update our existing functions `read_all_
 
 Starting with `read_all_books`, we first want to remove the existing code that creates a dictionary. Tying it back to TDD, now that we've made this change, we want try to run our tests and make sure our `read_all_books` route tests are now failing.  
 
-Next we'll add a call to `to_dict` in place of the old code and run the test suite again. We should see all tests are passing again.
+Next we'll add a call to `to_dict` in place of the old code and run the test suite again. We should see all tests are passing once more.
 
 Try out replacing the code yourself, then take a look at our updated `read_all_books` below. 
 
 <details>
-   <summary>Updated <code>read_all_books</code> function</summary>
+   <summary>Updated <code>read_all_books</code> function example</summary>
 
 ```python
 @books_bp.route("", methods=["GET"])
