@@ -2,7 +2,7 @@
 
 ## Goals
 Our goals for this lesson are to: 
-- Learn about class method syntax
+- Define class method syntax
 - Create a class method named `from_dict` in `book.py` 
 - Refactor the code for creating a `Book` model in the `create_book` route to use `from_dict`
 
@@ -116,11 +116,11 @@ We've flagged the code we want to refactor, next we need to identify our depende
 
 If we look through the `Hello Books` project, there are several places across `conftest.py` and `test_models.py` where a `Book` model is created. However, in those cases, we're choosing to pass the default constructor specific values for testing. Our changes shouldn't affect these uses of `Book`. 
 
-The only other place we create a `Book` is in the `create_book` route. There we're getting the values from a dictionary. Since `create_book` is the only function that will be affected by our changes, we can move forward by examining our test suite.
+The only other place we create a `Book` is in the `create_book` route. There we're getting the values from a dictionary. Since `create_book` is the only function that will be affected by our changes, we've completed identifying our dependencies and can move forward by examining our test suite.
 
 ### Check for Tests
 
-Let's take a look in `test_routes.py` and see what our coverage looks like for `create_book`.
+Let's take a look in `test_routes.py` and see what our test cases look like for `create_book`.
 
 ```python
 def test_create_one_book(client):
