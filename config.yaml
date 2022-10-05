@@ -417,7 +417,7 @@ Standards:
         UID: L00UOa
         Path: /api-6-testing/activity-solar-testing.md
   -
-    Title: 07) Building an API - One-to-Many Relationships
+    Title: 08) Building an API - One-to-Many Relationships
     Description: "One-to-Many: Authors, Nested Routes"
     UID: 11960148-2005-4ce6-b12d-c9f788667407
     SuccessCriteria:
@@ -426,13 +426,13 @@ Standards:
       -
         Type: Lesson
         UID: 55cb7e64-9a4f-47f5-bc7d-162e38257f05
-        Path: /api-7-relationships-in-sqlalchemy/one-to-many.md
+        Path: /api-8-relationships-in-sqlalchemy/one-to-many.md
       -
         Type: Lesson
         UID: 66f19557-3680-4552-bb9b-440ea22d0c20
-        Path: /api-7-relationships-in-sqlalchemy/nested-routes-in-flask.md
+        Path: /api-8-relationships-in-sqlalchemy/nested-routes-in-flask.md
   -
-    Title: 08) Building an API - Deployment
+    Title: 09) Building an API - Deployment
     Description: "Deployment, Deploying to Heroku, Problem Set: Deployment, Activity: Deploying to Heroku"
     UID: ea355214fd4bc7c57f471bd92918879b
     SuccessCriteria:
@@ -441,25 +441,25 @@ Standards:
       -
         Type: Instructor
         UID: 9e1096612d943453372431b09479429a
-        Path: /api-8-deployment/deployment.instructor.md
+        Path: /api-9-deployment/deployment.instructor.md
       -
         Type: Lesson
         UID: d6dc45ac3fb4fec2cb1209ccf2ab53dc
-        Path: /api-8-deployment/deployment.md
+        Path: /api-9-deployment/deployment.md
       -
         Type: Lesson
         UID: 2eccb3b5671761e4e6ea2f9f9e5cdf88
-        Path: /api-8-deployment/deploying-to-heroku.md
+        Path: /api-9-deployment/deploying-to-heroku.md
       -
         Type: Lesson
         UID: 082a038b50122fe48f98c2338f822b2a
-        Path: /api-8-deployment/problem-set-deployment.md
+        Path: /api-9-deployment/problem-set-deployment.md
       -
         Type: Lesson
         UID: ee88de6f19748458e8539e3835f8c294
-        Path: /api-8-deployment/activity-deploying-to-heroku.md
+        Path: /api-9-deployment/activity-deploying-to-heroku.md
   -
-    Title: 09) Building an API - Many-to-Many Relationships
+    Title: 10) Building an API - Many-to-Many Relationships
     Description: "Many-to-Many: Genres, BookGenre Join Table, Many-to-Many: Nested Routes"
     UID: 47ca5247-b2f4-45c9-8d37-8ea43f0e86f8
     SuccessCriteria:
@@ -468,15 +468,15 @@ Standards:
         -
           Type: Lesson
           UID: c672b599-4f30-44cc-8831-0cf91f17d63e
-          Path: /api-9-many-to-many/genre-many-to-many.md
+          Path: /api-10-many-to-many/genre-many-to-many.md
         -
           Type: Lesson
           UID: 3bb7e9d1-b7fa-4067-a404-8d77468b563e
-          Path: /api-9-many-to-many/join-table-many-to-many.md
+          Path: /api-10-many-to-many/join-table-many-to-many.md
         -
           Type: Lesson
           UID: 13d46c9e-fe8f-4091-a930-d29676535e9d
-          Path: /api-9-many-to-many/routes-many-to-many.md
+          Path: /api-10-many-to-many/routes-many-to-many.md
   -
     Title: Unit Wrap Up
     Description: "Activity: Mind Map"

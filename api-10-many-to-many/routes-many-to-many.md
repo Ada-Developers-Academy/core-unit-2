@@ -14,7 +14,7 @@ This lesson covers:
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`09b-books-genres` |`09b-nested-routes`|
+|`10b-books-genres` |`10b-nested-routes`|
 
 <br/>
 
