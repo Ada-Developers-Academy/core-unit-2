@@ -6,7 +6,7 @@ Our goals for this lesson are to:
 - Create a class method named `from_dict` in `book.py` 
 - Refactor the code for creating a `Book` model in the `create_book` route to use `from_dict`
 
-To do this we will follow the same steps of planning then executing a refactor, as outlined on the previous lesson. 
+To do this we will follow the same steps of planning then executing a refactor as outlined in the previous lesson. 
 
 ## Branches
 
