@@ -44,8 +44,8 @@ Our test folder should have 2 files:
 
 | Vocab | Definition | Synonyms | How to Use in a Sentence |
 |--|--|--|--|
-| Convenience Initializer | A function that is not the default initializer for a class that allows us to take actions and perform some extra logic when creating an instance of a class | Secondary Constructor | "The network give us data back as a list, so we created a convenience initializer that takes in a list and returns an instance of our class." |
-| Class Method | A function that is part of the class definition that only has access to class-level variables. It must be prefixed with the decorator `@classmethod` and takes `cls` as its first parameter. They can be called by referencing the class name followed by the function name (Ex.  `<Class_Name>.<function_name>()`) | Class Function | "We created a class method that returns a new instance with all the attributes set to 0" |
+| Convenience Initializer | A function that is not the default initializer for a class that allows us to take actions and perform some extra logic when creating an instance of a class | Secondary Constructor | "The network gives us data back as a list, so we created a convenience initializer that takes in a list and returns an instance of our class." |
+| Class Method | A function that is part of the class definition that only has access to class-level variables. It must be prefixed with the decorator `@classmethod` and takes `cls` as its first parameter. Class methods can be called by referencing the class name followed by the function name (Ex.  `<Class_Name>.<function_name>()`) | Class Function | "We created a class method that returns a new instance with all the attributes set to 0" |
 
 ## Why refactor what isn't repeated?
 
@@ -53,7 +53,7 @@ We know that we have code in the `routes.py` file that creates an instance of a 
 
 So far we've refactored to reduce repeated code, but there are so many other reasons we might want to refactor! A common reason is improving our code organization. We often want functions that operate directly on a particular class to be bundled with that class's code. We save time by having those functions ship with the class and be easy to find and navigate. 
 
-There are many kinds of functions we package with classes, but let's focus on initializers for a moment. All classes have some kind of initializer, whether it's the default that the language provides or one we write ourselves. "Convenience Initializers" are functions other than the default initializer that let us perform some extra logic or set up defaults to create an instance of a class. Tying it back to `Hello Books`, if we know that we'll frequently have a dictionary and want to create a `Book` from its contents, we might want a convenience initializer that ships with the `Book` class to handle the task.
+There are many kinds of functions we package with classes, but let's focus on initializers for a moment. All classes have some kind of initializer, whether it's the default that the language provides or one we write ourselves. **Convenience Initializers** are functions other than the default initializer that let us perform some extra logic or set up defaults to create an instance of a class. Tying it back to `Hello Books`, if we know that we'll frequently have a dictionary and want to create a `Book` from its contents, we might want a convenience initializer that ships with the `Book` class to handle the task.
 
 ## Class Methods
 
@@ -264,9 +264,9 @@ If we run our test suite and see only these new tests are failing, we can start 
 
 ### Write the `from_dict` function
 
-Our next step would be to write out our pseudocode. We'll leave that as an exercise for you to try out and move on to writing our function definition. 
+Our next step is to write out our pseudocode. We'll leave that as an exercise for you to try out and move on to writing our function definition. 
 
-For python to recognize our new function as a class method, We'll need to use the new syntax we talked about above, the `@classmethod` decorator and `cls` parameter:
+For Python to recognize our new function as a class method, we'll need to use the new syntax discussed above, the `@classmethod` decorator and `cls` parameter:
 
 ```python  
 @classmethod
@@ -274,7 +274,7 @@ def from_dict(cls, book_data):
    pass
 ```
 
-Our tests in `test_models.py` for `from_dict` should still be failing at this point. If they are, we can start changing our pseudocode into python code. Try out writing the function, then take a look at our implementation below.
+Our tests in `test_models.py` for `from_dict` should still be failing at this point. If they are, we can start changing our pseudocode into Python code. Try out writing the function, then take a look at our implementation below.
 
 <details>
    <summary>Complete <code>from_dict</code> function example</summary>
@@ -294,7 +294,7 @@ At this point, we should see all our tests passing!
 
 ### Replace the Code in `routes.py`
 
-Now that we're replacing the original code in `routes.py`, the first thing we want to do is remove the changing code from `create_book` and see those tests fail. Once we see the tests failing, we'll replace the line with a call to `Book`'s new class method. If we run our tests one last time, we should see green tests all the way! 
+Now that we're replacing the original code in `routes.py`, the first thing we want to do is remove the code in `create_book` we intend to replace and see those tests fail. Once we see the tests failing, replace the line with a call to `Book`'s new class method. If we run our tests one last time, we should see green tests all the way! 
 
 Try out replacing the code yourself, then take a look at our updated `create_book` below. 
 

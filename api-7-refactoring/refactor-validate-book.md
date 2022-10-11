@@ -30,11 +30,11 @@ In the previous lesson, we needed to pass `cls` as the first parameter to a clas
 - A `book` table defined
 - A `Book` model defined
 - Endpoints defined for these RESTful routes:
-- `GET` to `/books`
-- `POST` to `/books`
-- `GET` to `/books/<book_id>`
-- `PUT` to `/books/<book_id>`
-- `DELETE` to `/books/<book_id>`
+  - `GET` to `/books`
+  - `POST` to `/books`
+  - `GET` to `/books/<book_id>`
+  - `PUT` to `/books/<book_id>`
+  - `DELETE` to `/books/<book_id>`
 
 The `Book` model and table should have the following columns:
 - `id`
@@ -54,11 +54,13 @@ Our test folder should have 2 files:
 
 ## Refactoring for the Future
 
-Planning ahead for work to come is another great reason we refactor. For this lesson's refactor, we're going to be peeking into the future of `Hello Books` a bit. Right now our project has a single model `Book`, with the attributes `title` and `description`, but what other data is helpful when tracking books? If we're building this to share with other folks, we know that we're likely to add other models that represent authors, or genres as we build out the functionality.
+Planning ahead for work to come is another great reason we refactor. For this lesson's refactor, we're going to be peeking into the future of `Hello Books` a bit. Right now our project has a single model `Book`, with the attributes `title` and `description`, but what other data is helpful when tracking books? If we're building this to share with other folks, we know that we're likely to add other models that represent authors or genres as we build out the functionality.
 
 Taking a look over `routes.py`, we can see that all of the routes that read or alter a model by `id` use the `validate_book` function. This makes sense, we're reusing code to fetch a single `Book` from the database, so that's all good right? Here's where we want to think about our upcoming models. 
 
-When we add a new model, say `Author`, and create routes for it, what will we need to do for routes that read, update or delete an `Author` by `id`? If we don't have a function flexible enough to work for any model, then we may need a custom validate function for every model we add. In a very small project, this may not be cumbersome, but as a project grows it can become a pain point, especially if there is ever a need to update the pattern for fetching a model.
+The addition of any new model and its associated routes will require a validation function very similar to `validate_book`. For example an added `Author` model needs a `validate_author` function for routes that read, update or delete an `Author` by `id`.  
+
+Because we currently lack a function flexible enough to work for any model, we need a custom validate function for every model we add. In a very small project, this may not be cumbersome, but as a project grows it can become a pain point, especially if there is ever a need to update the pattern for fetching a model.
 
 ## Planning the Refactor
 
@@ -231,18 +233,18 @@ With all of our new and old tests passing, we can start the next step - writing 
 
 ### The Cycle: Update Tests to Fail, Write Code to Make Them Pass
 
-In our previous refactors we were creating brand new functions and were able to write out our test cases ahead of our implementation code. In this case, we're making several implementation changes to an existing function and renaming it. There are many ways we could approach testing at this point, but we want to take a path that lets us get feedback as we make changes to our existing function, rather than when we think we're done. Our recommendation is to start a cycle of making a small change to the `validate_book` tests so that they fail, then updating the code until the tests pass again, until all our changes are complete and all our tests are passing.
+In our previous refactors we created brand new functions and were able to write out our test cases ahead of our implementation code. In this case, we're making several implementation changes to an existing function and renaming it. There are many ways we could approach testing at this point, but we want to take a path that lets us get feedback as we make changes to our existing function rather than when we think we're done. Our recommendation is to start a cycle of making a small change to the `validate_book` tests so that they fail, then updating the code until the tests pass again, until all our changes are complete and all our tests are passing.
 
 Let's review our inputs and outputs for `validate_model` so we can start our improvements. Our function `validate_model` will:
 - Have a parameter `cls`, a reference to a model class (like `Book`)
-- Have a parameter `model_id`, an integer representing the `id` of an instance of a model.
+- Have a parameter `model_id`, an integer representing the `id` of an instance of a model
 - Return an instance of the model class represented by `cls` with an id of `model_id`, if it exists in the database
 - Return a 404 error if `model_id` is an integer but no model with that `id` exists
 - Return a 400 error if `model_id` is not an integer
 
 ### Incremental Changes: Function Signature
 
-When we change many things at once, it becomes more difficult to know which change caused an issue if errors arise. We'll avoid that by focusing on one alteration at a time. 
+When we change many things at once, it becomes more difficult to know which change caused an issue when an error arises. We'll avoid that by focusing on one alteration at a time. 
 
 The first thing we'll do is update our `validate_book` tests to pass `Book` as the first argument, and an `id` as the second argument when invoking `validate_book`. The updated code for `test_validate_book` is below; we're showing one example, but we are making the same change to all `validate_book` tests.
 
@@ -335,7 +337,7 @@ We could change our `validate_book` code to lowercase the result of `cls.__name_
 
 We're nearing the end of our refactor! All the practical changes have been made for `validate_book` to use a class reference in place of hard coding `Book`, but the purpose of our function no longer matches the naming. Furthermore, our variable names and the `book_id` parameter don't accurately reflect what they hold. 
 
-Let's do one more cycle of test then code changes to make our code easier to read and understand. We'll start out by updating our `validate_book` tests to fail by changing both the test names and our invocation of the function to use the new name `validate_model`. Try out making those updates, then check out our updated tests below when you're ready.
+Let's do one more cycle of tests followed by code changes to make our code easier to read and understand. We'll start out by updating our `validate_book` tests to fail by changing both the test names and our invocation of the function to use the new name `validate_model`. Try out making those updates, then check out our updated tests below when you're ready.
 
 <details>
    <summary>Updated <code>validate_model</code> tests example</summary>

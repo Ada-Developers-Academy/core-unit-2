@@ -1,7 +1,7 @@
 # Extracting Helper Functions Pt. 1
 
 ## Goals
-Our goal for this lesson is to refactor code that converts a `Book` model into a `Dictionary` from the `routes.py` file to a reusable helper function named `to_dict` in the model's class.
+Our goal for this lesson is to refactor the code in the `routes.py` file that converts a `Book` model into a `Dictionary` to a reusable helper function named `to_dict` in the `Book` model's class.
 
 To do this we will:
 - Plan our refactor by 
@@ -9,9 +9,9 @@ To do this we will:
   - identifying dependencies on the code being refactored
   - ensuring we have strong test coverage
 - Execute our refactor by 
-  - writing new, reusable, helper functions, 
+  - writing new, reusable, helper functions
   - replacing the existing code with our new functions
-  - frequently running our tests as we work to ensure our code's behavior remained the same
+  - frequently running our tests as we work to ensure our code's behavior remains the same
 
 ## Branches
 
@@ -26,11 +26,11 @@ To do this we will:
 - A `book` table defined
 - A `Book` model defined
 - Endpoints defined for these RESTful routes:
-- `GET` to `/books`
-- `POST` to `/books`
-- `GET` to `/books/<book_id>`
-- `PUT` to `/books/<book_id>`
-- `DELETE` to `/books/<book_id>`
+  - `GET` to `/books`
+  - `POST` to `/books`
+  - `GET` to `/books/<book_id>`
+  - `PUT` to `/books/<book_id>`
+  - `DELETE` to `/books/<book_id>`
 
 The `Book` model and table should have the following columns:
 - `id`
@@ -45,8 +45,8 @@ Our test suite should have 3 tests:
 </details>
 </br>
 
-## Planning the refactor
-
+## Planning the Refactor
+### Identifying Code to Refactor
 Our first step in refactoring is taking a critical look at our code. If we review the routes file, we may see a pattern in our read functions and what they return. What do you see in common between the `read_all_books` and `read_one_book` functions below?
 
 ```python
@@ -79,13 +79,13 @@ def read_one_book(book_id):
         }
 ```
 
-The responses are a little different, but in both cases we need to convert a `Book` model to a dictionary to create our response. We can see this code repeated in both functions, so let's move forward with refactoring it to a helper function!
+The responses are a little different, but in both cases we need to convert a `Book` model to a dictionary to create our response. We can see this code repeated in both functions, so let's move forward with refactoring the repeated code into a single helper function both functions can use!
 
 ### Identifying Dependencies
 
-We've identified the code we want to refactor, but do we have the safety net we need to refactor confidently? To know that, we need to first identify our dependencies, then ensure we have strong test coverage around those scenarios.
+We identified the code we want to refactor, but do we have the safety net we need to refactor confidently? To know that, we need to first identify our dependencies, then ensure we have strong test coverage around those scenarios.
 
-To identify dependencies, we want to look at the code base and ask "Where is the code I'm refactoring being called?". We should keep track of all the locations we find. If we're refactoring code inside a class, we'd also want to ask "Does any other code extend or inherit this class?".
+To identify dependencies, we want to look at the code base and ask "Where is the code I'm refactoring being called?" We should keep track of all the locations we find. If we're refactoring code inside a class, we also want to ask "Does any other code extend or inherit this class?"
 
 In our case, we can search the project and feel confident that our two read functions, `read_all_books` and `read_one_book`, are the only dependencies. 
 
@@ -93,16 +93,16 @@ In our case, we can search the project and feel confident that our two read func
 
 We know our dependencies, so at this point we need to move over to our test files. Our goal is to ensure we have tests covering nominal and edge cases for each dependency we found.
 
-If we navigate to `test_routes.py`, we'll find that we have one test for each of the dependent functions, `test_get_all_books_with_no_records` and `test_get_one_book`. These are important to have, but we are missing several scenarios for each function that would confirm it's behavior.
+If we navigate to `test_routes.py`, we'll find that we have one test for each of the dependent functions, `test_get_all_books_with_no_records` and `test_get_one_book`. These are important to have, but we are missing several scenarios that would confirm each function's behavior.
 
-Take a moment to brainstorm what other nominal or edge cases would be needed to know our route works as we expect under a variety of inputs. It might help to take a look at the route functions and the `validate_book` function to see what paths our code is taking depending on the input.  
+Take a moment to brainstorm what other nominal or edge cases are needed to know our route works as expected under a variety of inputs. It may help to look at the route functions and the `validate_book` function to see what paths our code takes depending on the input.  
 
 <details>
    <summary>When you're done brainstorming, expand this section to review our cases and new test code. </summary>
 
 We want to add tests that check:
 - When we have records, `read_all_books` returns a list containing a dictionary representing each `Book`
-- When we have records and a `title` query in the request arguments, `read_all_books` returns a list containing only the `Book`s which match the query.
+- When we have records and a `title` query in the request arguments, `read_all_books` returns a list containing only the `Book`s which match the query
 - When we call `read_one_book` with a numeric ID that doesn't have a record, we get the expected error message
 - When we call `read_one_book` with a non-numeric ID, we get the expected error message
 
@@ -173,7 +173,7 @@ def test_get_one_book_id_invalid(client, two_saved_books):
 </details>
 </br>
 
-At this point, we have a solid test suite for our routes that will be affected by our changes! We can feel good about making updates with the knowledge that we can run our tests frequently and they will help us catch issues if they arise.
+At this point, we have a solid test suite for our routes that will be affected by our changes! We can feel good about making updates with the knowledge that we can run our tests frequently and they will help us catch any issues that arise.
 
 ## Executing the Refactor
 
@@ -183,9 +183,9 @@ Planning our function further, we know that we need a book as input, and we want
 
 ### Write failing tests for `to_dict`
 
-If we're following TDD, our next step should be to write some tests for `to_dict` that will fail until we write our new function. We'll create a new file `test_models.py` and add tests to cover nominal and edge cases for the `to_dict` function.
+If we're following TDD, our next step is to write tests for `to_dict` that will fail until we write our new function. We'll create a new file `test_models.py` and add tests to cover nominal and edge cases for the `to_dict` function.
 
-Let's pause to think through what cases we might test for the `to_dict` function and what data we would need to arrange and check. When you're ready, check out our `test_models.py` code below.
+Let's pause to think through what cases we might test for the `to_dict` function and what data we need to arrange and check those cases. When you're ready, check out our `test_models.py` code below.
 
 <details>
    <summary>Complete <code>test_models.py</code> example</summary>
