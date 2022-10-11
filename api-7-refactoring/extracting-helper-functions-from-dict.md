@@ -53,7 +53,7 @@ We know that we have code in the `routes.py` file that creates an instance of a 
 
 So far we've refactored to reduce repeated code, but there are so many other reasons we might want to refactor! A common reason is improving our code organization. We often want functions that operate directly on a particular class to be bundled with that class's code. We save time by having those functions ship with the class and be easy to find and navigate. 
 
-There are many kinds of functions we package with classes, but let's focus on initializers for a moment. All classes have some kind of initializer, whether it's the default that the language provides or one we write ourselves. **Convenience Initializers** are functions other than the default initializer that let us perform some extra logic or set up defaults to create an instance of a class. Tying it back to `Hello Books`, if we know that we'll frequently have a dictionary and want to create a `Book` from its contents, we might want a convenience initializer that ships with the `Book` class to handle the task.
+There are many kinds of functions we package with classes, but let's focus on initializers for a moment. All classes have some kind of initializer, whether it's the default that the language provides or one we write ourselves. **Convenience Initializers** are functions other than the default initializer that let us perform some extra logic or set up defaults to create an instance of a class. Tying it back to `Hello Books`, if we know that we'll frequently have a dictionary and want to create a `Book` from its contents, we might want a convenience initializer bundled with the `Book` class to handle the task.
 
 ## Class Methods
 

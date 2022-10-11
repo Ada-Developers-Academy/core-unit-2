@@ -331,7 +331,7 @@ Failed: [undefined]AssertionError: assert {'message': '... 3 not found'} == {'me
 
 Taking this line-by-line, we can see that we have an `AssertionError` around the `message` returned. The test was expecting `{'message': 'book 3 not found'}`, but it got a response with different capitalization: `{'message': 'Book 3 not found'}`. Our change `cls.__name__` gives us the exact name of our class, which is capitalized, so the string is different from what our tests expect! 
 
-We could change our `validate_book` code to lowercase the result of `cls.__name__` so our tests pass again, but in this case we're going to choose to update our tests and keep the new capitalization. Once we've gone through and updated the expected messages for our failing tests, we should see everything passing again.
+We could change our `validate_book` code to lowercase the result of `cls.__name__` so our tests pass again, but in this case we're going to choose to update our tests and keep the new capitalization; either choice is valid for `hello_books`. In the industry, and generally when working with other people, we would consult with folks who are invested in the project before changing user-facing messages. Once we've gone through and updated the expected messages for our failing tests, we should see everything passing again.
 
 ### Final Touches: Update Function and Variable Names
 

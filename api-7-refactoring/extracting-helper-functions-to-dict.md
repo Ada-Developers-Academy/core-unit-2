@@ -183,7 +183,7 @@ Planning our function further, we know that we need a book as input, and we want
 
 ### Write failing tests for `to_dict`
 
-If we're following TDD, our next step is to write tests for `to_dict` that will fail until we write our new function. We'll create a new file `test_models.py` and add tests to cover nominal and edge cases for the `to_dict` function.
+If we're following Test Driven Development (TDD), our next step is to write tests for `to_dict` that will fail until we write our new function. We'll create a new file `test_models.py` and add tests to cover nominal and edge cases for the `to_dict` function.
 
 Let's pause to think through what cases we might test for the `to_dict` function and what data we need to arrange and check those cases. When you're ready, check out our `test_models.py` code below.
 
