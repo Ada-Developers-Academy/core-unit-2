@@ -329,7 +329,7 @@ def read_all_books():
 
 Once we've completed changes for `read_all_books`, we'll follow the same steps for `read_one_book`:
 1. Delete the old dictionary creation code
-2. Try running tests and see them fail
+2. Run unit tests and see them fail
 3. Add a call to `to_dict` in place of the old code
 4. Run the full test suite and see all tests pass
 
