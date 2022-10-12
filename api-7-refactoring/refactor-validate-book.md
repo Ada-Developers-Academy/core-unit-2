@@ -98,9 +98,44 @@ We can see our dependencies are the functions `read_one_book`, `update_book`, an
 
 ### Check for Tests
 
-We previously wrote tests for `read_one_book`, so we can feel good about that function's coverage, but we don't have any tests for the functions `update_book` or `delete_book`. Furthermore, we don't have tests for `validate_book` to confirm its behavior as we make modifications. 
+We previously wrote tests for `read_one_book`, so we can feel good about that function's coverage, but we don't have any tests for the functions `update_book` or `delete_book`. Furthermore, we don't have tests for `validate_book` to confirm its behavior as we make modifications. Let's pause and think through nominal and edge cases for the functions `update_book`, `delete_book`, and `validate_book`. We want to list out what test cases are missing that would give us security while we refactor.
 
-Let's pause and think through nominal and edge cases for the functions `update_book`, `delete_book`, and `validate_book`. We'll add tests for these functions to `test_routes.py`. Give writing the tests a try, then check out the tests we included below.
+<!-- prettier-ignore-start -->
+### !challenge
+* type: paragraph
+* id: 43d9c16j
+* title: Identify Missing Test Cases
+* 
+##### !question
+Take a few minutes to look over the functions `update_book`, `delete_book`, and `validate_book`, and the existing tests in `test_routes.py`. Make a list of missing nominal and edge cases for each function that would help confirm their behavior. Enter those missing scenarios below and when you're done, check out the explanation to see what test cases we identified. 
+##### !end-question
+
+##### !placeholder
+The test cases I identified are...
+##### !end-placeholder
+
+##### !explanation
+`update_book` Test Cases
+- Updating a book successfully 
+- Updating a book successfully when there are extra keys in the request
+- Failing to update a book whose record `id` is not in the database
+- Failing to update a record when the record `id` is invalid (non-integer)
+
+`delete_book` Test Cases
+- Deleting a book successfully
+- Failing to delete a book whose record `id` is not in the database
+- Failing to delete a record when the record `id` is invalid (non-integer)
+
+`validate_book` Test Cases
+- validating a book successfully
+- Failing to validate a book whose record `id` is not in the database
+- Failing to validate a record when the record `id` is invalid (non-integer)
+##### !end-explanation
+
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+Now that we've outlined what test cases we're missing, we'll go to `test_routes.py` and add new tests for the functions `update_book`, `delete_book`, and `validate_book`. Give writing the tests a try, then check out the tests we included below.
 
 <details>
    <summary>New test cases for <code>update_book</code>, <code>delete_book</code>, and <code>validate_book</code></summary>
@@ -246,9 +281,12 @@ Let's review our inputs and outputs for `validate_model` so we can start our imp
 
 When we change many things at once, it becomes more difficult to know which change caused an issue when an error arises. We'll avoid that by focusing on one alteration at a time. 
 
-The first thing we'll do is update our `validate_book` tests to pass `Book` as the first argument, and an `id` as the second argument when invoking `validate_book`. The updated code for `test_validate_book` is below; we're showing one example, but we are making the same change to all `validate_book` tests.
+The first thing we'll do is update our `validate_book` tests to pass `Book` as the first argument, and an `id` as the second argument when invoking `validate_book`. To get access to the `Book` class in our test file, we'll need to import `Book` with the line `from app.models.book import Book`. The updated code for `test_validate_book` is below; we're showing one example, but we are making the same change to all `validate_book` tests.
 
 ```python
+from app.models.book import Book
+...
+
 def test_validate_book(two_saved_books):
     # Act
     # Add `Book` argument to `validate_book` invocation

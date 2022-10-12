@@ -87,7 +87,26 @@ We identified the code we want to refactor, but do we have the safety net we nee
 
 To identify dependencies, we want to look at the code base and ask "Where is the code I'm refactoring being called?" We should keep track of all the locations we find. If we're refactoring code inside a class, we also want to ask "Does any other code extend or inherit this class?"
 
-In our case, we can search the project and feel confident that our two read functions, `read_all_books` and `read_one_book`, are the only dependencies. 
+<!-- prettier-ignore-start -->
+### !challenge
+* type: paragraph
+* id: 43d9c16i
+* title: Identify Dependencies
+* 
+##### !question
+Take a few minutes to look over `hello_book`'s routes and model files, and make a list of the dependencies you notice. When you're done, check out the explanation to see what dependencies we found. 
+##### !end-question
+
+##### !placeholder
+The dependencies I found are...
+##### !end-placeholder
+
+##### !explanation
+We searched the project for locations where we transform a `Book` model into a dictionary and found that our two read functions, `read_all_books` and `read_one_book`, are the only dependencies. 
+##### !end-explanation
+
+### !end-challenge
+<!-- prettier-ignore-end -->
 
 ### Check for Tests
 
@@ -178,7 +197,7 @@ def test_get_one_book_id_invalid(client, two_saved_books):
 </details>
 </br>
 
-At this point, we have a solid test suite for our routes that will be affected by our changes! We can feel good about making updates with the knowledge that we can run our tests frequently and they will help us catch any issues that arise.
+At this point, we have a solid test suite for our routes that will be affected by our changes! All of our tests, existing and new, should be passing. We can feel good about making updates with the knowledge that we can run our tests frequently and they will help us catch any issues that arise.
 
 ## Executing the Refactor
 
