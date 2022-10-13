@@ -29,7 +29,7 @@ Then, we will cover these topics on continuous deployment to Heroku:
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`07b-nested-routes` <br> Any branch after connecting the database will work |`08a-deploying-to-heroku `|
+|`08b-nested-routes` <br> Any branch after connecting the database will work |`09a-deploying-to-heroku `|
 
 ### Intro to Heroku
 

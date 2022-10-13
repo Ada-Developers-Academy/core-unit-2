@@ -14,7 +14,7 @@ We will implement the following routes:
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`07a-author-model` |`07b-nested-routes`|
+|`08a-author-model` |`08b-nested-routes`|
 
 <details>
    <summary>Expand to see the features <code>Hello Books API</code> should have before this lesson</summary>
