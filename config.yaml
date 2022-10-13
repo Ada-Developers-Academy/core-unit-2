@@ -417,6 +417,29 @@ Standards:
         UID: L00UOa
         Path: /api-6-testing/activity-solar-testing.md
   -
+    Title: 07) Building an API - Refactoring
+    Description: "What is Refactoring?, Extracting Helper Functions Pt. 1, Extracting Helper Functions Pt. 2, Refactor validate_book"
+    UID: 11960148-2005-4ce6-b12d-c9f788667408
+    SuccessCriteria:
+      - success criteria
+    ContentFiles:
+      -
+        Type: Lesson
+        UID: 55cb7e64-9a4f-47f5-bc7d-162e38257f06
+        Path: /api-7-refactoring/what-is-refactoring.md
+      -
+        Type: Lesson
+        UID: 66f19557-3680-4552-bb9b-440ea22d0c21
+        Path: /api-7-refactoring/extracting-helper-functions-to-dict.md
+      -
+        Type: Lesson
+        UID: 66f19557-3680-4552-bb9b-440ea22d0c22
+        Path: /api-7-refactoring/extracting-helper-functions-from-dict.md
+      -
+        Type: Lesson
+        UID: 66f19557-3680-4552-bb9b-440ea22d0c23
+        Path: /api-7-refactoring/refactor-validate-book.md
+  -
     Title: 07) Building an API - One-to-Many Relationships
     Description: "One-to-Many: Authors, Nested Routes"
     UID: 11960148-2005-4ce6-b12d-c9f788667407

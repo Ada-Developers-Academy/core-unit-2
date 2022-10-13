@@ -53,7 +53,7 @@ To investigate this error we may start by looking at the [`get_json` documentati
 "If the mimetype does not indicate JSON (application/json, see is_json), this returns `None`."
 ```
 
-Futher investigation might lead us to the [`get_data` method](https://flask.palletsprojects.com/en/2.0.x/api/?highlight=get_json#flask.Response.get_data) and we will find that if we use `response_body = response.get_data(as_text=True)` our test will pass.
+Further investigation might lead us to the [`get_data` method](https://flask.palletsprojects.com/en/2.0.x/api/?highlight=get_json#flask.Response.get_data) and we will find that if we use `response_body = response.get_data(as_text=True)` our test will pass.
 
 Alternatively, we can `jsonify` the response body in our `POST` `/books` route:
 
