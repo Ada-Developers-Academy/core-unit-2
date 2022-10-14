@@ -13,7 +13,7 @@ This lesson covers:
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`09a-genres` |`09b-books-genre`|
+|`10a-genres` |`10b-books-genre`|
 
 <br/>
 

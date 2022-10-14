@@ -23,7 +23,7 @@ This lesson asks us to do more independent research than the previous **Building
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`06e-post-books-test` |`07a-author-model`|
+|`07c-validate-book-refactor` |`08a-author-model`|
 
 <details>
    <summary>Expand to see the features <code>Hello Books API</code> should have before this lesson</summary>

@@ -14,7 +14,7 @@ This lesson covers:
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`09b-books-genres` |`09b-nested-routes`|
+|`10b-books-genres` |`10c-nested-routes`|
 
 <br/>
 
@@ -116,7 +116,7 @@ def create_book(genre_id):
 
 </details>
 
-Note: This RESTful route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../api-7-relationships-in-sqlalchemy/nested-routes-in-flask.md)
+Note: This RESTful route is one way to create a relationship between `Book` and `Genre` instances. Consider how else we might create these relationships. Refer back to our [nested route for creating `Book`s by a specifict `Author`](../api-8-relationships-in-sqlalchemy/nested-routes-in-flask.md)
 
 ## Displaying relationships in `Book` JSON
 
