@@ -84,23 +84,13 @@ Our route function we will need to
   <summary>Give this function a try and then click here to see the complete <code>POST /genres/&#60;genre_id&#62;/books</code> route.</summary>
 
 ```python
-def validate_genre(genre_id):
-    try:
-        genre_id = int(genre_id)
-    except:
-        abort(make_response({"message":f"genre {genre_id} invalid"}, 400))
-
-    genre = Genre.query.get(genre_id)
-
-    if not genre:
-        abort(make_response({"message":f"genre {genre_id} not found"}, 404))
-
-    return genre
+from app.book_routes import validate_model
 
 @genres_bp.route("/<genre_id>/books", methods=["POST"])
+
 def create_book(genre_id):
 
-    genre = validate_genre(genre_id)
+    genre = validate_model(Genre, genre_id)
 
     request_body = request.get_json()
     new_book = Book(
@@ -122,12 +112,12 @@ Note: This RESTful route is one way to create a relationship between `Book` and 
 
 Let's refactor our `GET` `/books/<book_id>` route. Currently this route returns JSON with the keys `"id"`, `"title"`, and `"description"`. Now that we've establishing a relationship between `Book`s and `Author`s and `Book`s and `Genre`s, let's add the keys `author` and `genres` to the JSON in our response body.
 
-To do this work, let's create a instance method `to_dict` on the `Book` class that returns the json we are looking for. 
+To do this, let's modify the instance method `to_dict` on the `Book` class which returns the json we are looking for. 
 
 <br/>
 
 <details>
-    <summary>Give it a try and then click here for one implementation of the <code>to_dict</code> method.</summary>
+    <summary>Give it a try and then click here for one updated implementation of the <code>to_dict</code> method.</summary>
 
 ```python
 # app/models/book.py
@@ -151,8 +141,6 @@ def to_dict(self):
 ```
 </details>
 
-In `routes.py` refactor the `GET` `/books` and `GET` `/books/<book_id>` to use the instance method `to_dict`.
-
 ## `GET` `/genres/<genre_id>/books`
 
 Finally, let's create a route to get all books by a specific genre.
@@ -171,7 +159,7 @@ Our route function we will need to
 @genres_bp.route("/<genre_id>/books", methods=["GET"])
 def read_all_books(genre_id):
     
-    genre = validate_genre(genre_id)
+    genre = validate_model(Genre, genre_id)
 
     books_response = []
     for book in genre.books:
@@ -190,7 +178,7 @@ Now that we have established a relationship between the `Genre` and `Book` model
 
 View the genres in the database and the books in the database with a `GET` request to `/genres` and a `GET` to `/books`.
 
-Create a `book` of a specific `genre` with a `POST` request to `/genres/<genre_id/books`.
+Create a `book` of a specific `genre` with a `POST` request to `/genres/<genre_id>/books`.
 
 Verify the `genre`s have been added to the book with a `GET` request to `/books/<book_id>`. 
 
