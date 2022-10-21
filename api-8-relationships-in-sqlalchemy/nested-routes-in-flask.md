@@ -101,27 +101,16 @@ Try completing this route function by referencing the [Flask-SQLAlchemy document
 <br/>
 
 <details>
-    <summary>Complete <code>POST</code> <code>/authors/<author_id>/books</code> endpoint example</summary>
+    <summary>Complete <code>POST</code> <code>/authors/&lt;author_id&gt;/books</code> endpoint example</summary>
 
 ``` python
 #app/author_routes.py
-def validate_author(author_id):
-    try:
-        author_id = int(author_id)
-    except:
-        abort(make_response({"message":f"author {author_id} invalid"}, 400))
-
-    author = Author.query.get(author_id)
-
-    if not author:
-        abort(make_response({"message":f"author {author_id} not found"}, 404))
-
-    return author
+from app.book_routes import validate_model
 
 @authors_bp.route("/<author_id>/books", methods=["POST"])
 def create_book(author_id):
 
-    author = validate_author(author_id)
+    author = validate_model(Author, author_id)
 
     request_body = request.get_json()
     new_book = Book(
@@ -147,13 +136,14 @@ How do we access the `books` from the `author` record and add them to our respon
 <br/>
 
 <details>
-    <summary>Complete <code>GET</code> <code>/authors/<author_id>/books</code> endpoint example</summary>
+    <summary>Complete <code>GET</code> <code>/authors/&lt;author_id&gt;/books</code> endpoint example</summary>
 
 ``` python
 @authors_bp.route("/<author_id>/books", methods=["GET"])
+
 def read_books(author_id):
 
-    author = validate_author(author_id)
+    author = validate_model(Author, author_id)
 
     books_response = []
     for book in author.books:
