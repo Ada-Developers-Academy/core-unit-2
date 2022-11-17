@@ -120,7 +120,15 @@ To update the `requirements.txt` file, we use this command:
 
 ## No need to manually edit the requirements.txt file
 
-Because we can use the above command to ask `pip` to update our `requirements.txt` file, there's no need to ever open up the file and edit it directly.
+Because we can use the above command to ask `pip` to update our `requirements.txt` file, we generally do not need to open up the file and edit it directly.
+
+</br>
+
+Exceptions to this rule can occur when configuration issues arise.
+
+</br>
+
+One such common configuration issue may be needing the change the version of `psycopg2-binary` as described below in the section on common installation failures and debugging.
 
 ### !end-callout
 

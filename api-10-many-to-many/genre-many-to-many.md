@@ -16,7 +16,7 @@ This lesson covers:
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`08a-deploying-to-heroku` |`09a-genres`|
+|`09a-deploying-to-heroku` |`10a-genres`|
 
 <br/>
 

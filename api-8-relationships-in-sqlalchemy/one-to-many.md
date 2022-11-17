@@ -23,7 +23,7 @@ This lesson asks us to do more independent research than the previous **Building
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`06e-post-books-test` |`07a-author-model`|
+|`07c-validate-book-refactor` |`08a-author-model`|
 
 <details>
    <summary>Expand to see the features <code>Hello Books API</code> should have before this lesson</summary>
@@ -190,6 +190,20 @@ class Book(db.Model):
     description = db.Column(db.String)
     author_id = db.Column(db.Integer, db.ForeignKey('author.id'))
     author = db.relationship("Author", back_populates="books")
+
+    def to_dict(self):
+        book_as_dict = {}
+        book_as_dict["id"] = self.id
+        book_as_dict["title"] = self.title
+        book_as_dict["description"] = self.description
+
+        return book_as_dict
+
+    @classmethod
+    def from_dict(cls, book_data):
+        new_book = Book(title=book_data["title"],
+                        description=book_data["description"])
+        return new_book
 ```
 </details>
 </br>
