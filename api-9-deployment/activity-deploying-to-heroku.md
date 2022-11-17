@@ -29,13 +29,10 @@ Then, answer the following questions with your pair or small group:
 1. How would you describe the overall development workflow, from the beginning of a project, to deployment?
 1. How would you like to celebrate a successful deployment?
 
-### !callout-info
 
 ## Repeat with Solar System API
 
-Our skills improve with repetition. If there is time during the activity, repeat the deployment process with Solar System API. If there is _not_ time, deploy Solar System API as an individual activity.
-
-### !end-callout
+Our skills improve with repetition. If there is time during the activity, repeat the deployment process with Solar System API. If there is _not_ time, deploy Solar System API as an individual activity before submitting your Solar System project. 
 
 ## How to Review
 
