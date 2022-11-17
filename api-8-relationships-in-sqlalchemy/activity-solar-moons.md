@@ -26,8 +26,9 @@ Check off all the RESTful endpoint(s) you created and tested.
 ##### !options
 
 * Create one moon
-* Get one moon
+* Read one moon
 * Read all moons
-
+* Create one moon to a planet
+* Read all moons from a planet
 ##### !end-options
 ### !end-challenge
