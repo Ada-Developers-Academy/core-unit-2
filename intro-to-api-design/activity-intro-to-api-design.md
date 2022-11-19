@@ -1,4 +1,4 @@
-# Activity: Intro to API Design
+# Activity: Intro to API Design - Designing a Solar System API
 
 ## Goal
 

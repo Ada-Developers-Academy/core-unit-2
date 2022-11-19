@@ -1,4 +1,4 @@
-# Activity: Solar System API - Wave 07
+# Activity: Solar System API - Wave 08
 
 Follow directions from your classroom instructor for completing this activity.
 
