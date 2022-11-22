@@ -439,6 +439,10 @@ Standards:
         Type: Lesson
         UID: 66f19557-3680-4552-bb9b-440ea22d0c23
         Path: /api-7-refactoring/refactor-validate-book.md
+      - 
+        Type: Lesson
+        UID: 2d867268-79a6-4b30-8104-d3143104d5d2
+        Path: /api-7-refactoring/activity-solar-refactoring.md
   -
     Title: 08) Building an API - One-to-Many Relationships
     Description: "One-to-Many: Authors, Nested Routes"
@@ -454,6 +458,10 @@ Standards:
         Type: Lesson
         UID: 66f19557-3680-4552-bb9b-440ea22d0c20
         Path: /api-8-relationships-in-sqlalchemy/nested-routes-in-flask.md
+      -
+        Type: Lesson
+        UID: c5eb083d-4245-481e-943b-927cb3e8d286
+        Path: /api-8-relationships-in-sqlalchemy/activity-solar-moons.md
   -
     Title: 09) Building an API - Deployment
     Description: "Deployment, Deploying to Heroku, Problem Set: Deployment, Activity: Deploying to Heroku"
