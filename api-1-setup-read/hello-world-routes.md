@@ -19,7 +19,7 @@ We will:
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`01b-flask-setup` |`01c-hello-world-endpoints`|
+|`01b-flask-setup` |`01c-hello-world`|
 
 ## Defining Endpoints with Blueprint
 
