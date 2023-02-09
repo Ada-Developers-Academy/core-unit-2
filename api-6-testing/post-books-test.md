@@ -10,7 +10,7 @@ Our goals for this lesson are to:
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`06d-read-one-book-test` |`06e-post-books-test`|
+|`06d-read-one-books-test` |`06e-post-books-test`|
 
 
 # Syntax
