@@ -6,7 +6,7 @@ In the following exercise, Amazdun books is a new startup founded to sell ecomic
 
 We are providing a sample database to use as you practice writing SQL queries.
 
-To use the sample database, first download the following SQL file by right-clicking on the file and saving it to your computer.
+To use the sample database, first download the following SQL file by right-clicking on the file and saving it to your computer. Note: you'll need to download the file to the directory in which you'll be executing the commands given below.
 
 - [Starting Database](https://raw.githubusercontent.com/Ada-Developers-Academy/core-unit-2/main/intro-to-sql/sql-fixtures/intro-to-sql-problemset.sql)
 
