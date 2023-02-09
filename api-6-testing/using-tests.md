@@ -7,7 +7,7 @@
 Our goals for this lesson are to:
 - Describe the pytest syntax used to define automated tests in Flask
 - Practice writing and running automated tests in Flask with pytest
-- Write a test that 
+- Write a test that is expected to fail to help verify functionality
 
 ## Branches
 
