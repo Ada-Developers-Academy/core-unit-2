@@ -5,39 +5,39 @@
 ## Goal
 
 Our goal for this lesson is to:
-* Practice the process of deploying a Flask API to Heroku.
+* Practice the process of deploying a Flask API to Render.
 
-We will outline the following steps in order to do an initial deploy to Heroku:
+We will outline the following steps in order to do an initial deploy to Render:
 
-1. Create a Heroku account and get access to the Heroku CLI
-1. Configure our Flask project for Heroku
-1. Commit our new configurations
-1. Create a Heroku app via the CLI
-1. Push code to the Heroku remote
-1. Create a database in Heroku via the CLI
-1. Set the environment variables for Heroku
-1. Setup and initialize the database in Heroku via the CLI
-1. Verify
+1. Create a Render account
+2. Configure our Flask project for Render
+3. Commit our new configurations
+4. Create a Render app via their web launcher
+5. Push code to the Render remote <!--Is this step necessary for Render?-->
+6. Create a database in Render via the CLI
+7. Set the environment variables for Render
+8. Setup and initialize the database in Render via the CLI
+9. Verify
 
-Then, we will cover these topics on continuous deployment to Heroku:
+Then, we will cover these topics on continuous deployment to Render:
 
-1. Updating the Heroku remote in our development workflow
-1. General Heroku tools
-1. General Heroku debugging strategies
+1. Updating the Render remote in our development workflow <!-- Is this step necessary for Render? -->
+1. General Render tools
+1. General Render debugging strategies
 
 ## Branches
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`08b-nested-routes` <br> Any branch after connecting the database will work |`09a-deploying-to-heroku `|
+|`08b-nested-routes` <br> Any branch after connecting the database will work |`09a-deploying-to-render`|
 
-### Intro to Heroku
+### Intro to Render
 
-[Heroku](https://www.heroku.com/home) is one Platform as a Service (PaaS). We can use Heroku services to deploy our Flask API. After we successfully deploy, our API will be available to the whole Internet!
+[Render](https://render.com/) is one Platform as a Service (PaaS). We can use Render services to deploy our Flask API. After we successfully deploy, our API will be available to the whole Internet!
 
-![Screenshot of Heroku.com's splash page](../assets/deployment/deployment_heroku-splash.png)
+![Screenshot of Render.com's splash page](../assets/deployment/deployment_render-splash.png)
 
-We are choosing Heroku as a deployment platform because:
+We are choosing Render as a deployment platform because:
 
 - It is a trusted, popular platform with a large, supportive community
 - It has free features that fulfill our needs
@@ -45,42 +45,28 @@ We are choosing Heroku as a deployment platform because:
   - It supports Postgres databases
 - It is appropriate for small, individual projects (as well as large ones)
 - It uses Git as part of its development workflow
+- It has a simple user interface
 
-## Create a Heroku Account
+## Create a Render Account
 
-Create an account on [Heroku](https://www.heroku.com/home).
+Create an account on [Render](https://dashboard.render.com/register?next=%2Fregisterundefined).
 
-After logging into the dashboard, as a new user we should see an empty list of Heroku apps. (This screenshot is from an account which had already created one Heroku app).
+Render will send a verification message to the email you use to register. The email will include a link that brings you to your dashboard.
 
+![Screenshot of Account Verification Email from Render](../assets/deployment/deployment_render-verification-email.png)
+
+After logging into the dashboard, as a new user we should see a quick start guide.
+
+![Screenshot of the Render New User Dashboard](../assets/deployment/deployment_render-new-user-dash.png)
+
+Once we've added apps, our dashboard will change to show a list of all our deployed applications. 
+
+<!-- Replace image -->
 ![Screenshot of the Heroku Dashboard with one app listed in it](../assets/deployment/deployment_heroku-bare-dashboard.png)
 
-### Get the Heroku CLI
+## Configure Our Flask App for Render
 
-The Heroku CLI will allow us to run powerful commands to manage our Heroku apps from our command line! We'll use the CLI to create and manage our deployed projects.
-
-Follow the directions to install [the Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli):
-
-```bash
-$ brew tap heroku/brew && brew install heroku
-```
-
-This command runs two separate commands. The `&&` joins them into one convenient copy/paste-able unit.
-
-The first command `brew tap heroku/brew` tells Homebrew to add an additional source of software packages (termed a _tap_ in Homebrew-speak). The second command `brew install heroku` uses Homebrew to install the Heroku CLI, which it will be able to find with the tap we just configured.
-
-### Log In to the Heroku CLI
-
-The Heroku CLI needs to authenticate our user account. Follow the directions to [log into the Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#getting-started):
-
-```bash
-$ heroku login
-```
-
-We'll be prompted to press any key to go to a web browser to complete our login. The CLI will then log us in automatically.
-
-## Configure Our Flask App for Heroku
-
-Although Heroku will do a lot of the work of hosting, running, and maintaining our API server, we need to add a small amount of configuration to our project.
+Although Render will do a lot of the work of hosting, running, and maintaining our API server, we need to add a small amount of configuration to our project.
 
 ### Check Dependencies for `gunicorn`
 
@@ -102,33 +88,11 @@ After it has installed, we can update our `requirements.txt` by running:
 (venv) $ pip freeze > requirements.txt
 ```
 
-Heroku makes use of our `requirements.txt` file to install our app dependencies, so it is very important to ensure that all of our dependencies are properly listed.
+Render makes use of our `requirements.txt` file to install our app dependencies, so it is very important to ensure that all of our dependencies are properly listed.
 
 If we needed to update our `requirements.txt`, we should be sure to add and commit this change.
 
-### Create a Procfile for Heroku
-
-[`Procfile`](https://devcenter.heroku.com/articles/procfile) is a file specifically used in codebases deployed on Heroku.
-
-We'll use our Procfile to define how to start our Flask web server.
-
-First, create a `Procfile` inside the project root. This file _must be named exactly `Procfile`, **with no file extension**_.
-
-```bash
-$ touch Procfile
-```
-
-Then, fill the Procfile with this content:
-
-```
-web: gunicorn 'app:create_app()'
-```
-
-## Commit
-
-Save this file. Then, create a Git commit that contains this change.
-
-## Create a Heroku App
+## Create a Render App
 
 For each project we deploy, we will need to create and manage a Heroku app. Our Heroku app will give us visibility, access, and tools to manage our deployed app.
 

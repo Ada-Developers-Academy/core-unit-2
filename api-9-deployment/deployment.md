@@ -1,16 +1,10 @@
 # Deployment
 
 <!-- available callout types: info, success, warning, danger, secondary, star  -->
-### !callout-danger
-
-## Changes in Progress for C19
-
-We are in the process of updating this lesson to use [Render](https://render.com/) as our deployment platform as Heroku is no longer a free service. You are welcome to read the lesson as is but know that significant changes will be made. 
-
-### !end-callout
 
 
 <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=3e9a3bf8-4dcb-4d16-b382-ad20016acbe5&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- replace video lesson -->
 
 ## Learning Goals
 
@@ -18,7 +12,7 @@ We are in the process of updating this lesson to use [Render](https://render.com
 
 ## Introduction
 
-Our applications and web APIs are developed locally and available locally—they are only accessible while our local machines are running a server, and only through `localhost`.
+Our applications and web APIs are both developed and available locally — they are only accessible while our local machines are running a server, and only through `localhost`.
 
 If our personal machines are turned off, then our server isn't running, and our API isn't accessible.
 
@@ -32,9 +26,9 @@ How do we make our web apps available to the rest of the world?
 
 ## What is Deployment?
 
-Software deployment is the process of making some software or application available for use, often to an end-user.
+Software deployment is the process of making a piece of software or an application available for use, often to an end-user.
 
-When we _deploy_ our apps, we will set up machines and web servers dedicated to running our web app. Then, users can access our apps regardless of what our own personal machines are doing!
+When we _deploy_ our apps, we set up machines and web servers dedicated to running our web app. Then, users can access our apps regardless of what our own personal machines are doing!
 
 We deploy apps using skills and tools in the realm of:
 
@@ -60,10 +54,13 @@ The following are all examples of _Platforms as a Service_. The responsibility o
 - Heroku
 - Windows Azure
 - Google App Engine
+- Render
 
 ### !callout-info
 
 ## Deploy to the Production Environment
+
+<!-- Add explanation about development environment vs production environment -->
 
 The _production_ environment refers to the environment that runs our deployed, released application. This is where all our hard work gets made available to actual users!
 
