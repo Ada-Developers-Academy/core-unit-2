@@ -456,7 +456,7 @@ Standards:
         Path: /api-8-relationships-in-sqlalchemy/nested-routes-in-flask.md
   -
     Title: 09) Building an API - Deployment
-    Description: "Deployment, Deploying to Render, Problem Set: Deployment, Activity: Deploying to Heroku"
+    Description: "Deployment, Deploying to Render, Problem Set: Deployment, Activity: Deploying to Render"
     UID: ea355214fd4bc7c57f471bd92918879b
     SuccessCriteria:
       - success criteria
@@ -472,7 +472,7 @@ Standards:
       -
         Type: Lesson
         UID: 2eccb3b5671761e4e6ea2f9f9e5cdf88
-        Path: /api-9-deployment/deploying-to-heroku.md
+        Path: /api-9-deployment/deploying-to-render.md
       -
         Type: Lesson
         UID: 082a038b50122fe48f98c2338f822b2a

@@ -12,8 +12,7 @@ We will outline the following steps in order to do an initial deploy to Render:
 1. Create a Render account
 2. Configure our Flask project for Render
 3. Commit our new configurations
-4. Create a Render app via their web launcher
-5. Push code to the Render remote <!--Is this step necessary for Render?-->
+4. Create a Render app via their web launche
 6. Create a database in Render via the CLI
 7. Set the environment variables for Render
 8. Setup and initialize the database in Render via the CLI
@@ -21,9 +20,8 @@ We will outline the following steps in order to do an initial deploy to Render:
 
 Then, we will cover these topics on continuous deployment to Render:
 
-1. Updating the Render remote in our development workflow <!-- Is this step necessary for Render? -->
 1. General Render tools
-1. General Render debugging strategies
+2. General Render debugging strategies
 
 ## Branches
 
@@ -61,8 +59,24 @@ After logging into the dashboard, as a new user we should see a quick start guid
 
 Once we've added apps, our dashboard will change to show a list of all our deployed applications. 
 
-<!-- Replace image -->
-![Screenshot of the Heroku Dashboard with one app listed in it](../assets/deployment/deployment_heroku-bare-dashboard.png)
+![Screenshot of the Heroku Dashboard with three apps listed in it](../assets/deployment/deployment_dashboard-with-apps-render.png)
+
+## Connect Render Account to Github
+
+Connecting our Render account with our Github account allows us to link our project repository to our Render application. 
+
+To connect our Render and Github accounts click on your user profile in the upper righthand corner of Render, then select _Account Settings_. 
+
+![Screenshot of User Dropdown Menu](../assets/deployment/deployment_account-settings-render.png)
+
+Under the Profile section of the Account Settings page, click the _Connect Github_ button and sign in to Github when prompted. 
+
+![Screenshot of Profile Section](../assets/deployment/deployment_profile-connect-github-render.png)
+
+When you have successfully linked your Github account to Render, the _Connect Github_ button will be replaced with your Github username and an option to disconnect your Github account.
+
+![Screenshot of Successful Github Connection](../assets/deployment/deployment_profile-with-connected-github-render.png)
+
 
 ## Configure Our Flask App for Render
 
@@ -94,9 +108,13 @@ If we needed to update our `requirements.txt`, we should be sure to add and comm
 
 ## Create a Render App
 
-For each project we deploy, we will need to create and manage a Heroku app. Our Heroku app will give us visibility, access, and tools to manage our deployed app.
+For each project we deploy, we will need to create and manage a Render app. Our Render app will give us visibility, access, and tools to manage our deployed app.
 
-After `cd`ing to our project root, we can create a Heroku app using the Heroku CLI. From the command line we should pick **either** of these options:
+To create your Render app, click the _New_ button in the top navigation bar, and then choose _Web Service_. 
+
+![Create New Web Service Button Screenshot](../assets/deployment/deployment_new_web_service_render.png)
+
+We
 
 1. We can create a Heroku app with an automatically generated app name using:
 
@@ -116,6 +134,15 @@ Replace `your-app-name` with the desired name of the app.
 
 Note that the app name must be unique across all Heroku apps, not just our own apps. As a result, the name `hello-books-api` is already taken, as it was used in this walk-through! We will need to come up with our own name that has a unique touch, or we can simply use the nameless option to generate a unique name automatically.
 
+<!-- available callout types: info, success, warning, danger, secondary, star  -->
+### !callout-warning
+
+## Render Free App Limits
+
+Render only supports a single full stack application (front end app, backend app, and Postgres database) with it's free tier. To stay on the free tier, we will need to 
+
+### !end-callout
+
 ### Our New Heroku App
 
 We have officially created a Heroku app that is accessible online! We can follow the link from the `heroku create` output.
@@ -124,19 +151,6 @@ We have officially created a Heroku app that is accessible online! We can follow
 
 Our Heroku app doesn't have access to our Flask API code yet, so we'll see a default Heroku message.
 
-### Verify the New Heroku Remote
-
-Creating a Heroku app will add a new Git remote to our project! A Git remote is a destination to which we can `git push`!
-
-The new Git remote will be named `heroku`. This Git remote points exactly to where Heroku keeps and serves our code!
-
-Confirm that we have a `heroku` remote by running this command:
-
-```bash
-$ git remote -v
-```
-
-We should see the `heroku` remote listed alongside our `origin` remote.
 
 ### Verify in the Dashboard
 
