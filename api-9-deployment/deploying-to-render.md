@@ -9,8 +9,9 @@ We will outline the following steps in order to do an initial deploy to Render:
 
 1. Create a Render account
 2. Connect our Render account to our Github account
-3. Create a Render app via their web launcher
-4. Create a PostgreSQL database in Render
+3. Configure our Flask app for Render
+4. Create a Render app via their web launcher
+5. Create a PostgreSQL database in Render
 6. Setup and initialize the database in Render via the CLI
 7. Set the environment variables for our Render app
 8. Verify
@@ -50,19 +51,19 @@ Render will send a verification message to the email you use to register. The em
 
 ![Screenshot of Account Verification Email from Render](../assets/deployment/deployment_render-verification-email.png)
 
-After logging into the dashboard, as a new user we should see a quick start guide.
+As a new user, our dashboard should display a quick start guide. 
 
 ![Screenshot of the Render New User Dashboard](../assets/deployment/deployment_render-new-user-dash.png)
 
-Once we've added apps, our dashboard will change to show a list of all our deployed applications. 
+Once we have added applications, our dashboard will change to show a list of all our deployed applications. 
 
-![Screenshot of the Heroku Dashboard with three apps listed in it](../assets/deployment/deployment_dashboard-with-apps-render.png)
+![Screenshot of the Render Dashboard with three apps listed in it](../assets/deployment/deployment_dashboard-with-apps-render.png)
 
 ## Connect Render Account to Github
 
 Connecting our Render account with our Github account allows us to link our project repository to our Render application. 
 
-To connect our Render and Github accounts click on your user profile in the upper righthand corner of Render, then select _Account Settings_. 
+To connect our Render and Github accounts, we can click on our user profile in the upper righthand corner of Render, then select _Account Settings_. 
 
 ![Screenshot of User Dropdown Menu](../assets/deployment/deployment_account-settings-render.png)
 
@@ -70,7 +71,7 @@ Under the Profile section of the Account Settings page, click the _Connect Githu
 
 ![Screenshot of Profile Section](../assets/deployment/deployment_profile-connect-github-render.png)
 
-When you have successfully linked your Github account to Render, the _Connect Github_ button will be replaced with your Github username and an option to disconnect your Github account.
+When we have successfully linked your Github account to Render, the _Connect Github_ button will be replaced with our Github username and an option to disconnect our Github account.
 
 ![Screenshot of Successful Github Connection](../assets/deployment/deployment_profile-with-connected-github-render.png)
 
@@ -111,7 +112,9 @@ To create your Render app, click the _New_ button in the top navigation bar, and
 
 ![Create New Web Service Button Screenshot](../assets/deployment/deployment_new_web_service_render.png)
 
-Next, use the search bar to find your Hello Books API Github repository. Click the _Connect_ button next to your project repository to link it to your application. 
+Next, we can use the search bar to find our Hello Books API Github repository. Click the _Connect_ button next to our project repository to link it to our new application. 
+
+Note that we should use our _fork_ of the Hello Books API repo which is listed under our Github username. So we should search for `your-github-username/hello-books-api`. We are working with the AdaGold version only for the purposes of this demo. 
 
 ![Screenshot of selecting the AdaGold/hello-books-api Repo](../assets/deployment/deployment_connect-app-to-repo-render.png)
 
@@ -125,11 +128,16 @@ Note that the app name must be unique across all Render apps, not just our own a
 
 <!-- Add comment about Render tacking on random characters for non-unique names-->
 
-Next, we need to set which branch we want Render to use for our application.Most of the time we will choose `main`, but in the case of the Hello Books API repo, we don't have a branch named `main`. Instead we'll want to choose the branch we are currently working in, `08b-nested-routes`, which holds all of our latest changes. 
+Next, we need to set which branch we want Render to use for our application.Most of the time we will choose `main`, but in the case of the Hello Books API repo, we don't have a branch named `main`. Instead we'll want to choose the branch we are currently working in which holds all of our latest changes. For us, that is `08b-nested-routes`. If you are working off a different branch, use that branch. 
 
 ![Screenshot of Render after adding choosing branch 08b-nested-routes](../assets/deployment/deployment_choose-web-service-name-render.png)
 
-Finally, we need to alter the _Start Command_ field which defaults to the value `gunicorn app: app`. This field defines how our Flask web server.
+Finally, we need to alter the _Start Command_ field which defaults to the value `$ gunicorn app: app`. This field defines how our Flask web server will start. 
+
+Update the _Start Command_ field to `$ gunicorn "app:create_app()"`.
+
+![Screenshot of Changing app start command to gunicorn "app:create_app()"](../assets/deployment/deployment_change-start-command-render.png)
+
 
 <!-- available callout types: info, success, warning, danger, secondary, star  -->
 ### !callout-warning
