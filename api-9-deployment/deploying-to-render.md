@@ -1,6 +1,4 @@
-# Deploying to Heroku
-
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=e0e3bd77-a308-451f-bbba-ad20017a3f81&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+# Deploying to Render
 
 ## Goal
 
@@ -10,13 +8,12 @@ Our goal for this lesson is to:
 We will outline the following steps in order to do an initial deploy to Render:
 
 1. Create a Render account
-2. Configure our Flask project for Render
-3. Commit our new configurations
-4. Create a Render app via their web launche
-6. Create a database in Render via the CLI
-7. Set the environment variables for Render
-8. Setup and initialize the database in Render via the CLI
-9. Verify
+2. Connect our Render account to our Github account
+3. Create a Render app via their web launcher
+4. Create a PostgreSQL database in Render
+6. Setup and initialize the database in Render via the CLI
+7. Set the environment variables for our Render app
+8. Verify
 
 Then, we will cover these topics on continuous deployment to Render:
 
@@ -114,25 +111,25 @@ To create your Render app, click the _New_ button in the top navigation bar, and
 
 ![Create New Web Service Button Screenshot](../assets/deployment/deployment_new_web_service_render.png)
 
-We
+Next, use the search bar to find your Hello Books API Github repository. Click the _Connect_ button next to your project repository to link it to your application. 
 
-1. We can create a Heroku app with an automatically generated app name using:
+![Screenshot of selecting the AdaGold/hello-books-api Repo](../assets/deployment/deployment_connect-app-to-repo-render.png)
 
-```bash
-$ heroku create
-```
-
-2. We can create our app with the name `your-app-name` using:
-
-```bash
-$ heroku create your-app-name
-```
+Enter `your-app-name` into the _Name_ field to create an app with the name `your-app-name`. 
 
 Replace `your-app-name` with the desired name of the app.
 
-![Screenshot of the terminal after running the command "heroku create hello-books-api"](../assets/deployment/deployment_heroku-cli-create.png)
+![Screenshot of Render after adding the app name](../assets/deployment/deployment_connect-app-to-repo-render.png)
 
-Note that the app name must be unique across all Heroku apps, not just our own apps. As a result, the name `hello-books-api` is already taken, as it was used in this walk-through! We will need to come up with our own name that has a unique touch, or we can simply use the nameless option to generate a unique name automatically.
+Note that the app name must be unique across all Render apps, not just our own apps. As a result, the name `hello-books-api` is already taken, as it was used in this walk-through! We will need to come up with our own name that has a unique touch.
+
+<!-- Add comment about Render tacking on random characters for non-unique names-->
+
+Next, we need to set which branch we want Render to use for our application.Most of the time we will choose `main`, but in the case of the Hello Books API repo, we don't have a branch named `main`. Instead we'll want to choose the branch we are currently working in, `08b-nested-routes`, which holds all of our latest changes. 
+
+![Screenshot of Render after adding choosing branch 08b-nested-routes](../assets/deployment/deployment_choose-web-service-name-render.png)
+
+Finally, we need to alter the _Start Command_ field which defaults to the value `gunicorn app: app`. This field defines how our Flask web server.
 
 <!-- available callout types: info, success, warning, danger, secondary, star  -->
 ### !callout-warning
@@ -145,6 +142,7 @@ Render only supports a single full stack application (front end app, backend app
 
 ### Our New Heroku App
 
+<!-- TODO: Replace -->
 We have officially created a Heroku app that is accessible online! We can follow the link from the `heroku create` output.
 
 ![Screenshot of the default Heroku welcome message after the initial deployment, in the browser](../assets/deployment/deployment_heroku-initial-deploy.png)
@@ -186,15 +184,45 @@ Since we are using Git to send our code to Heroku, this means any files listed i
 
 ### !end-callout
 
-## Create a Database in Heroku
+## Create a Database in Render
 
-Now that we've created our Heroku app for the first time, we need to tell the app that we're interested in adding a Postgres database to our deployed Heroku app.
+Now that we've created our Render app for the first time, we need to tell the app that we're interested in adding a Postgres database to our deployed Render app.
 
-This command uses the Heroku CLI to add a Postgres database to the app.
+To create a new Postgres database, click the _New_ button in the top navigation bar, and then choose _PostgreSQL_. 
 
-```bash
-$ heroku addons:create heroku-postgresql:hobby-dev
-```
+![Screenshot of selecting new PostgreSQL service](../assets/deployment/deployment_new-postgres-db-render.png)
+
+Just as with our web service, we need to give our database a name. Enter `your-app-name` into the _Name_ field. 
+
+Replace `your-app-name` with the desired name of the Postgres database. 
+
+![Screenshot of new PostgreSQL databse with hello-books-api as database name in Render](../assets/deployment/deployment_set-postgres-db-name-render.png)
+
+Finally, scroll down to the bottom of the current page and click _Create Database_. 
+
+![Screenshot of Create Database button on Render](../assets/deployment/deployment_create-database-render.png)
+
+Render will bring us to our new database's _Info_ section where we will see that it is creating the database when we examine the _Status_ field. Creating the database may take a few minutes. 
+
+![Screenshot of hello-books-api database being created](../assets/deployment/deployment_creating-database-status-render.png)
+
+Once the database is successfully created, the _Status_ field will change to Available. 
+
+![Screenshot of hello-books-api database with status available](../assets/deployment/deployment_database-with-available-status-render.png)
+
+<!-- Add the database to hello-books-api-->
+
+## Creating Tables in Our Database
+
+Right now, our new Postgres database is empty. We need to populate it with the tables we need for our application. In the case of Hello Books API, that means creating the `Book` and `Author` tables. 
+
+To create the tables, we can connect our new Render database to 
+
+To create the tables, we first scroll down our new database's page on Render, and copy the _External Database URL_ field under the _Connections_ section. 
+
+![Copy external connection string of Postgres database](../assets/deployment/deployment_copy-external-database-url-render.png)
+
+Then navigate to the `.env` file of your project on your local machine. 
 
 ### Verify in the Dashboard
 
