@@ -144,7 +144,7 @@ Update the _Start Command_ field to `$ gunicorn "app:create_app()"`.
 
 ## Render Free App Limits
 
-Render only supports a single full stack application (front end app, backend app, and Postgres database) with it's free tier. To stay on the free tier, we will need to 
+Render only supports a single full stack application (front end app, backend app, and Postgres database) with it's free tier. If we want to deploy a second app, we will need to suspend or delete any other apps we have deployed. 
 
 ### !end-callout
 
