@@ -128,15 +128,19 @@ Note that the app name must be unique across all Render apps, not just our own a
 
 <!-- Add comment about Render tacking on random characters for non-unique names-->
 
-Next, we need to set which branch we want Render to use for our application.Most of the time we will choose `main`, but in the case of the Hello Books API repo, we don't have a branch named `main`. Instead we'll want to choose the branch we are currently working in which holds all of our latest changes. For us, that is `08b-nested-routes`. If you are working off a different branch, use that branch. 
+Next, change the _Branh_ field to set which branch we want to pull our code from for our deployed applicaton. Most of the time we will choose `main`, but in the case of the Hello Books API repo, we don't have a `main` branch. Instead we'll want to choose the branch we are currently working in which holds all of our latest changes. For us, that is `08b-nested-routes`. If you are working off a different branch, use that branch. 
 
 ![Screenshot of Render after adding choosing branch 08b-nested-routes](../assets/deployment/deployment_choose-web-service-name-render.png)
 
-Finally, we need to alter the _Start Command_ field which defaults to the value `$ gunicorn app: app`. This field defines how our Flask web server will start. 
+Next, we need to alter the _Start Command_ field which defaults to the value `$ gunicorn app: app`. This field defines how our Flask web server will start. 
 
 Update the _Start Command_ field to `$ gunicorn "app:create_app()"`.
 
-![Screenshot of Changing app start command to gunicorn "app:create_app()"](../assets/deployment/deployment_change-start-command-render.png)
+![Screenshot of changing app start command to gunicorn "app:create_app()"](../assets/deployment/deployment_change-start-command-render.png)
+
+Finally, scroll down to the bottom of the page and click the _Create Web Service_ button.
+
+![Screenshot of Creating Web Service in Render](../assets/deployment/deployment_create-web-service-render.png)
 
 
 <!-- available callout types: info, success, warning, danger, secondary, star  -->
@@ -144,53 +148,35 @@ Update the _Start Command_ field to `$ gunicorn "app:create_app()"`.
 
 ## Render Free App Limits
 
-Render only supports a single full stack application (front end app, backend app, and Postgres database) with it's free tier. If we want to deploy a second app, we will need to suspend or delete any other apps we have deployed. 
+Render's free tier only supports a single full stack application (front end app, backend app, and Postgres database). If we want to deploy a second app, we will need to suspend or delete any other apps we have deployed. 
 
 ### !end-callout
 
-### Our New Heroku App
+### Our New Render App
 
-<!-- TODO: Replace -->
-We have officially created a Heroku app that is accessible online! We can follow the link from the `heroku create` output.
+Render will now begin to build our app. This may take several minutes. If our app successfully deploys, we will see a  `Your service is live 🎉` message appear in the logs section at the bottom of the screen.
 
-![Screenshot of the default Heroku welcome message after the initial deployment, in the browser](../assets/deployment/deployment_heroku-initial-deploy.png)
+![Screenshot of the your service is live message in the logs of a successfully deployed Render app](../assets/deployment/deployment_successful-deployment-logs-render.png)
 
-Our Heroku app doesn't have access to our Flask API code yet, so we'll see a default Heroku message.
-
-
-### Verify in the Dashboard
-
-Creating a Heroku app will associate this app to our Heroku account.
-
-Visit the Heroku dashboard and see your new app listed! We'll visit this dashboard whenever we need details about our Heroku app.
-
-![Screenshot of the Heroku dashboard with the new hello-books-api app listed](../assets/deployment/deployment_heroku-dashboard-new-app.png)
-
-## Push Code to the Heroku Remote
-
-We should send our project codebase to our `heroku` remote.
-
-First, we need to determine which branch our local repository is on. Run `git status` to get this information. The first line displayed by this command should be
-
-```
-On branch your-branch-name
-```
-
-We next will push our project's Git history to a remote named `heroku`. We will push the branch on our computer to Heroku's default `main` branch in our new Heroku environment. In the command below, replace `your-branch-name` with the name of the branch you identified using `git status`.
-
-```bash
-$ git push heroku your-branch-name:main
-```
-
-Every time we want to push our Git history to our Heroku app, we will need to push to the `heroku` remote.
+Our Render app is not connected to a Postgres database yet, so we cannot make HTTP requests with our routes successfully at this stage.
 
 ### !callout-info
 
-## Pushing to Heroku Still Ignores Files
+## Render Still Ignores Files
 
-Since we are using Git to send our code to Heroku, this means any files listed in our `.gitignore` will _not_ be sent, including our `.env` file. This means our environment variables, which include our connection strings, will not be sent to Heroku! We'll see how to tell our app where to find our database later in this lesson.
+Since we are using Github to give Render access to our code, this means Render will _not_ have access to any files listed in our `.gitignore`, including our `.env` file. This means our environment variables, which include our connection strings, are unseen by Render! We'll learn how to tell our app where to find our database later in this lesson.
 
 ### !end-callout
+
+### Verify in the Dashboard
+
+Click the _Dashboard_ button in the top navigation bar to return to your primary dashboard. 
+
+![Screenshot of top navigation bar with dashboard button highlighted](../assets/deployment/deployment_dashboard-button-top-nav-render.png)
+
+Our new app is now listed! We'll visit this dashboard whenever we need to see or update details of our Render apps. 
+
+![Screenshot of the Render dashboard with the new hello-books-api app listed](../assets/deployment/deployment_render-dashboard-new-app.png)
 
 ## Create a Database in Render
 
