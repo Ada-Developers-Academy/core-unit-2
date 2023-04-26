@@ -12,7 +12,7 @@ We will outline the following steps in order to do an initial deploy to Render:
 3. Configure our Flask app for Render
 4. Create a Render app via their web launcher
 5. Create a PostgreSQL database in Render
-6. Setup and initialize the database in Render via the CLI
+6. Initialize the database
 7. Set the environment variables for our Render app
 8. Verify
 
@@ -196,7 +196,7 @@ Finally, scroll down to the bottom of the current page and click _Create Databas
 
 Render will bring us to our new database's "Info" section. The "Status" field will show that it is in the process of creating the database. Creating the database may take several minutes. 
 
-![Screenshot of hello-books-api database being created](../assets/deployment/deployment_status-creating-render.png)
+![Screenshot of hello-books-api database being created](../assets/deployment/deployment_database-status-creating-render.png)
 
 Once the database is successfully created, the "Status" field will change to "Available." 
 
@@ -309,8 +309,9 @@ In the "Environment" section:
 
 1. Click "Add Environment Variable" in the "Environment Variables" section
 2. Set the key as `SQLALCHEMY_DATABASE_URI`
-3. Set the value of this variable to the interal connection string we copied
-4. Click "Save Changes"
+3. Set the value of this variable to the internal connection string we copied
+4. Modify the value of the internal connection string so that the beginning reads `postgresql+psycopg2` instead of `postgres`
+5. Click "Save Changes"
 
 ![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The SQLALCHEMY_DATABASE_URI variable is present](../assets/deployment/deployment_set-environment-var-render.png)
 
