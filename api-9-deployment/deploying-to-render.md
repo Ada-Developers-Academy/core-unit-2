@@ -8,7 +8,7 @@ Our goal for this lesson is to:
 We will outline the following steps in order to do an initial deploy to Render:
 
 1. Create a Render account
-2. Connect our Render account to our Github account
+2. Connect our Render account to our GitHub account
 3. Configure our Flask app for Render
 4. Create a Render app via their web launcher
 5. Create a PostgreSQL database in Render
@@ -59,21 +59,21 @@ Once we have added applications, our dashboard will change to show a list of all
 
 ![Screenshot of the Render Dashboard with three apps listed in it](../assets/deployment/deployment_dashboard-with-apps-render.png)
 
-## Connect Render Account to Github
+## Connect Render Account to GitHub
 
-Connecting our Render account with our Github account allows us to link our project repository to our Render application. 
+Connecting our Render account with our GitHub account allows us to link our project repository to our Render application. 
 
-To connect our Render and Github accounts, we can click on our user profile in the upper righthand corner of Render, then select _Account Settings_. 
+To connect our Render and GitHub accounts, we can click on our user profile in the upper righthand corner of Render, then select "Account Settings". 
 
 ![Screenshot of User Dropdown Menu](../assets/deployment/deployment_account-settings-render.png)
 
-Under the Profile section of the Account Settings page, click the _Connect Github_ button and sign in to Github when prompted. 
+Under the Profile section of the Account Settings page, click the "Connect GitHub" button and sign in to GitHub as prompted. 
 
-![Screenshot of Profile Section](../assets/deployment/deployment_profile-connect-github-render.png)
+![Screenshot of Profile Section](../assets/deployment/deployment_profile-connect-Github-render.png)
 
-When we have successfully linked your Github account to Render, the _Connect Github_ button will be replaced with our Github username and an option to disconnect our Github account.
+When we have successfully linked our GitHub account to Render, the "Connect GitHub" button will be replaced with our GitHub username and an option to disconnect our GitHub account.
 
-![Screenshot of Successful Github Connection](../assets/deployment/deployment_profile-with-connected-github-render.png)
+![Screenshot of Successful GitHub Connection](../assets/deployment/deployment_profile-with-connected-Github-render.png)
 
 
 ## Configure Our Flask App for Render
@@ -108,17 +108,17 @@ If we needed to update our `requirements.txt`, we should be sure to add and comm
 
 For each project we deploy, we will need to create and manage a Render app. Our Render app will give us visibility, access, and tools to manage our deployed app.
 
-To create your Render app, click the _New_ button in the top navigation bar, and then choose _Web Service_. 
+To create our Render app, click the "New" button in the top navigation bar, and then choose "Web Service". 
 
 ![Create New Web Service Button Screenshot](../assets/deployment/deployment_new_web_service_render.png)
 
-Next, we can use the search bar to find our Hello Books API Github repository. Click the _Connect_ button next to our project repository to link it to our new application. 
+Next, we can use the search bar to find our Hello Books API GitHub repository. Click the "Connect" button next to our project repository to link it to our new application. 
 
-Note that we should use our _fork_ of the Hello Books API repo which is listed under our Github username. So we should search for `your-github-username/hello-books-api`. We are working with the AdaGold version only for the purposes of this demo. 
+Note that we should use _our fork_ of the Hello Books API repo which is listed under our GitHub username. So we should search for `your-github-username/hello-books-api`. We are working with the AdaGold version only for the purposes of this walk-through. 
 
 ![Screenshot of selecting the AdaGold/hello-books-api Repo](../assets/deployment/deployment_connect-app-to-repo-render.png)
 
-Enter `your-app-name` into the _Name_ field to create an app with the name `your-app-name`. 
+Enter `your-app-name` into the "Name" field to create an app with the name `your-app-name`. 
 
 Replace `your-app-name` with the desired name of the app.
 
@@ -128,17 +128,17 @@ Note that the app name must be unique across all Render apps, not just our own a
 
 <!-- Add comment about Render tacking on random characters for non-unique names-->
 
-Next, change the _Branch_ field to set which branch we want to pull our code from for our deployed applicaton. Most of the time we will choose `main`, but in the case of the Hello Books API repo, we don't have a `main` branch. Instead we'll want to choose the branch we are currently working in which holds all of our latest changes. For us, that is `08b-nested-routes`. If you are working off a different branch, use that branch. 
+Next, change the "Branch" field to set which branch we want to pull our code from for our deployed applicaton. Most of the time we will choose `main`, but in the case of the Hello Books API repo, we don't have a `main` branch. Instead we want to choose the branch that includes all the code and latest changes we want to be a part of our deployed app. For us, that should be `08b-nested-routes` or any later branch. 
 
 ![Screenshot of Render after adding choosing branch 08b-nested-routes](../assets/deployment/deployment_choose-web-service-name-render.png)
 
-Next, we need to alter the _Start Command_ field which defaults to the value `$ gunicorn app: app`. This field defines how our Flask web server will start. 
+Next, we need to alter the "Start Command" field which defaults to the value `$ gunicorn app: app`. This field defines where in our code the `gunicorn` package should look to find what it needs to start our Flask web server. 
 
-Update the _Start Command_ field to `$ gunicorn "app:create_app()"`.
+Update the "Start Command" field to `$ gunicorn "app:create_app()"`.
 
 ![Screenshot of changing app start command to gunicorn "app:create_app()"](../assets/deployment/deployment_change-start-command-render.png)
 
-Finally, scroll down to the bottom of the page and click the _Create Web Service_ button.
+Finally, scroll down to the bottom of the page and click the "Create Web Service" button.
 
 ![Screenshot of Creating Web Service in Render](../assets/deployment/deployment_create-web-service-render.png)
 
@@ -164,15 +164,15 @@ Our Render app is not connected to a Postgres database yet, so we cannot make HT
 
 ## Render Still Ignores Files
 
-Since we are using Github to give Render access to our code, this means Render will _not_ have access to any files listed in our `.gitignore`, including our `.env` file. This means our environment variables, which include our connection strings, are unseen by Render! We'll learn how to tell our app where to find our database later in this lesson.
+Since we are using GitHub to give Render access to our code, this means Render will _not_ have access to any files listed in our `.gitignore`, including our `.env` file. This means our environment variables, which include our connection strings, are unseen by Render! We'll learn how to tell our app where to find our database later in this lesson.
 
 ### !end-callout
 
 ### Verify in the Dashboard
 
-We can verify our app was created by navigating to our primary [Render dashboard](https://dashboard.render.com/).
+We can verify our app was created by navigating to our main [Render dashboard](https://dashboard.render.com/).
 
-Our new app is now listed! We'll visit this dashboard whenever we need to see or update details of our Render apps. 
+Our new app is now listed! We'll visit this dashboard whenever we need to see or update details of our Render apps. We can access the individual app's dashboard by clicking on the app where it is listed in our dashboard.
 
 ![Screenshot of the Render dashboard with the new hello-books-api app listed](../assets/deployment/deployment_render-dashboard-new-app.png)
 
@@ -194,7 +194,7 @@ Finally, scroll down to the bottom of the current page and click _Create Databas
 
 ![Screenshot of Create Database button on Render](../assets/deployment/deployment_create-database-render.png)
 
-Render will bring us to our new database's "Info" section. The "Status" field will show that it is in the process of creating the database. Creating the database may take several minutes. 
+Render will bring us to our new database's "Info" section. The "Status" field will show that it is "Creating" the database. Creating the database may take several minutes. 
 
 ![Screenshot of hello-books-api database being created](../assets/deployment/deployment_database-status-creating-render.png)
 
@@ -227,7 +227,7 @@ Render generated `YOUR_DATABASE_USERNAME` and `YOUR_DATABASE` when we first set 
 
 ![Screenshot of the Connections section on the Info page for our Render Postgres Database](../assets/deployment/deployment_render-db-connections-section.png)
 
-In our case `YOUR_DATABASE_USERNAME` is `hello_books_api_db_h25f_user` (listed as the Username on our database's dashboard) and `YOUR_DATABASE` is `hello_books_api_db_h25f` (listed as the Database on our database's dashboard).
+In our case `YOUR_DATABASE_USERNAME` is `hello_books_api_db_h25f_user` (listed as the "Username" on our database's dashboard) and `YOUR_DATABASE` is `hello_books_api_db_h25f` (listed as the "Database" on our database's dashboard).
 
 `CONNECTION-STRING` will be a long series of random characters. 
 
@@ -239,7 +239,7 @@ SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5
 RENDER_DATABASE_URL = postgres://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
 ```
 
-We need to modify the start of our external database URL to work with the version of SQLAlchemy we are using. We can update the beginning of our external database URL from `postgres` to `postgresql+pyscopg2`.
+We need to modify the start of our external database URL to work with the version of SQLAlchemy we are using. Update the beginning of our external database URL from `postgres` to `postgresql+pyscopg2`.
 
 ```
 SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
@@ -397,12 +397,11 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-question
 ##### !options
 
-* Create a Render account and connect our Render account to our Github account
+* Create a Render account and connect our Render account to our GitHub account
 * Create a Render web service app
 * Create a Postgres database in Render
-* Connect our locally hosted database to our Render web service app
-* Set the environment variable for our Render database in Render
 * Initialize the Render database by performing a database migration
+* Set the environment variable for our Render database in Render
 
 ##### !end-options
 ### !end-challenge
