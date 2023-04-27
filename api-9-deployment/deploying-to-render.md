@@ -128,7 +128,7 @@ Note that the app name must be unique across all Render apps, not just our own a
 
 <!-- Add comment about Render tacking on random characters for non-unique names-->
 
-Next, change the _Branh_ field to set which branch we want to pull our code from for our deployed applicaton. Most of the time we will choose `main`, but in the case of the Hello Books API repo, we don't have a `main` branch. Instead we'll want to choose the branch we are currently working in which holds all of our latest changes. For us, that is `08b-nested-routes`. If you are working off a different branch, use that branch. 
+Next, change the _Branch_ field to set which branch we want to pull our code from for our deployed applicaton. Most of the time we will choose `main`, but in the case of the Hello Books API repo, we don't have a `main` branch. Instead we'll want to choose the branch we are currently working in which holds all of our latest changes. For us, that is `08b-nested-routes`. If you are working off a different branch, use that branch. 
 
 ![Screenshot of Render after adding choosing branch 08b-nested-routes](../assets/deployment/deployment_choose-web-service-name-render.png)
 
@@ -400,9 +400,9 @@ Check off all the topics that we've briefly touched on so far.
 * Create a Render account and connect our Render account to our Github account
 * Create a Render web service app
 * Create a Postgres database in Render
-* Connect our local database to our web service app
+* Connect our locally hosted database to our Render web service app
 * Set the environment variable for our Render database in Render
-* Initialize the Render database by 
+* Initialize the Render database by performing a database migration
 
 ##### !end-options
 ### !end-challenge
@@ -499,18 +499,18 @@ Check all of the options that are recommended debugging steps.
 ##### !options
 
 * Try to recreate the issue on your local machine
-* Check the Heroku server logs
+* Check the Render server logs
 * Check the local server logs
-* Confirm that recent, working code is pushed up to the `heroku` remote
+* Confirm that recent, working code is pushed up to the `origin` remote
 * Copy and paste the error messages and look it up on the Internet
-* Push all code to the `origin` remote
+* Push all code to the `Render` remote
 
 ##### !end-options
 ##### !answer
 
 * Try to recreate the issue on your local machine
-* Check the Heroku server logs
-* Confirm that recent, working code is pushed up to the `heroku` remote
+* Check the Render server logs
+* Confirm that recent, working code is pushed up to the `origin` remote
 * Copy and paste the error messages and look it up on the Internet
 
 ##### !end-answer
