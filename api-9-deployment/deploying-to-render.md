@@ -82,7 +82,7 @@ Although Render will do a lot of the work of hosting, running, and maintaining o
 
 ### Check Dependencies for `gunicorn`
 
-We will use a Python package named [gunicorn](https://pypi.org/project/gunicorn/) to launch our Flask API on Heroku.
+We will use a Python package named [gunicorn](https://pypi.org/project/gunicorn/) to launch our Flask API on Render.
 
 `gunicorn` is capable of running Flask apps so that they can handle multiple simultaneous requests, which is very important for production web applications.
 
@@ -430,10 +430,9 @@ We can continue to use the browser and Postman to create HTTP requests and check
 
 The Render dashboard includes:
 
+- Access to app dashboards for deployed apps
 - Access to the Render logs
-- Access to the Heroku console (which acts as a terminal on our Heroku machine)
 - Management of environment variables
-- Management of collaborators on this Heroku app
 - History of "Latest Activity," which will show the timeline of recent deployments
 
 ## General Render Debugging Strategies
@@ -455,42 +454,16 @@ In those situations, here is a starting point for debugging and determining what
 | See if you can recreate it locally        | Attempt to recreate the problem locally, by running `$ flask run` on your own local machine. Error messages may be more detailed on our local machine. Also, concluding that you're **unable to recreate the issue** is valuable in itself!        |
 | Check the status of the Git history       | Confirm that the remote Git history is up-to-date. remote.                                                                                                                        |
 | Internet research!                        | Render has a large community of support, and a lot of documentation on deploying Flask apps and using Postgres databases. Be sure to use the Internet and to rubber duck with others.                                                              |
-| Take notes of each debugging attempt      | It can be challenging to remember what you've tried on the Heroku machine. Write down and record all of the ways you've attempted to fix the problem.                                                                                              |
+| Take notes of each debugging attempt      | It can be challenging to remember what you've tried on the Render machine. Write down and record all of the ways you've attempted to fix the problem.                                                                                              |
 | Rubber duck, and post questions on Slack! | Debugging deployment usually depends on context. Rubber duck and connect with folks who are deploying similar projects to you!                                                                                                                     |
+
 
 <!-- Question 2 -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: multiple-choice
-* id: oOMsqS
-* title: Deploying to Heroku
-##### !question
-
-Which of the following is a command we can use to access the Heroku Postgres repl?
-
-##### !end-question
-##### !options
-
-* `heroku pg:psql`
-* `heroku python3`
-* `heroku run python3`
-* `heroku open SQLALCHEMY_DATABASE_URI`
-
-##### !end-options
-##### !answer
-
-* `heroku pg:psql`
-
-##### !end-answer
-### !end-challenge
-<!-- prettier-ignore-end -->
-
-<!-- Question 3 -->
-<!-- prettier-ignore-start -->
-### !challenge
 * type: checkbox
 * id: CSpfam
-* title: Deploying to Heroku
+* title: Deploying to Render
 ##### !question
 
 Check all of the options that are recommended debugging steps.
