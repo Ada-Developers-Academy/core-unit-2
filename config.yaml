@@ -480,7 +480,7 @@ Standards:
       -
         Type: Lesson
         UID: ee88de6f19748458e8539e3835f8c294
-        Path: /api-9-deployment/activity-deploying-to-heroku.md
+        Path: /api-9-deployment/activity-deploying-to-render.md
   -
     Title: 10) Building an API - Many-to-Many Relationships
     Description: "Many-to-Many: Genres, BookGenre Join Table, Many-to-Many: Nested Routes"
