@@ -317,16 +317,24 @@ In the "Environment" section:
 
 ## Verify
 
-Our Flask project is on a Heroku machine, running, and connected to an initialized database. Now is the time to verify whether our API is accessible by web!
+Our Flask project is on a Render machine, running, and connected to an initialized database. Now is the time to verify whether our API is accessible by web!
 
 ### Use the Browser
 
-We can use the browser to make `GET` requests to any endpoint defined in our project, now using our deployed Heroku URI instead of `localhost`.
+We can use the browser to make `GET` requests to any endpoint defined in our project, now using our deployed Render URL instead of `localhost`.
+
+We can find our URL on our deployed application's dashboard, listed just under the name of our web service application. Render URLs will take the form `https://your-app-name.onrender.com` Our demonstration has the URL `https://hello-books-api.onrender.com`.
+
+![Screenshot of Render URL for deployed hello-books-api application with copy to clipboard message](../assets/deployment/deployment_deployed-web-service-url-render.png)
 
 ### !callout-warning
 
 ## Routing Configurations May Result in a `404 Not Found`
 Recall that Flask routes are very picky about `/` characters. Some browsers will try to put a `/` character at the end of an address automatically. Depending on how our routes are set up, this might result in a route mismatch.
+
+<br />
+
+Also note that our API does not define the endpoint for our base URL, thus sending a `GET` request to our base Render URL `https://your-app-name.onrender.com/` will result in a `404 Not Found` error. However sending a `GET` request to `https://your-app-name.onrender.com/books` should return a `200 OK` status code because our project defines that route.
 
 <br />
 
@@ -353,49 +361,26 @@ Our app has zero books listed when we go to `/books`, even though our app is dep
 
 <br />
 
-Recall that our deployed app is connected to a Postgres database that we created a few steps ago! We have not added any book data to our Heroku database. Even if our local database is full of books, our Heroku app's database connection string points at the Heroku database. 
+Recall that our deployed app is connected to a Postgres database that we created a few steps ago! We have not added any book data to our Render database. Even if our local database is full of books, our Render app's database connection string points at the Render database. 
 
 </details>
 
 ### !end-callout
 
-As a convenient shortcut, the Heroku CLI gives us this command to automatically open our Heroku app in the browser:
-
-```bash
-$ heroku open
-```
-
-This command needs to be run inside of our project folder.
-
 ### Use Postman
 
 We can use Postman to make and verify all sorts of HTTP requests to our API!
 
-### Use Heroku Logs
+### Use Render Logs
 
 During local development on our own machines, when we ran `$ flask run`, the server's logs were output into our terminal. We could see the details about every HTTP request our server received and every HTTP response it returned. We could also see output for any errors.
 
-We can access the server logs of our Heroku app from the Heroku dashboard by finding the "More" menu and selecting "View logs."
+We can access the server logs of our Render app from our app's Render dashboard by finding the "More" menu and selecting "Logs."
 
-![Screenshot of the Heroku dashboard, focusing on the "More" menu, which lists the option to View logs](../assets/deployment/deployment_heroku-view-logs-menu.png)
+It reports the HTTP requests, responses, and errors that our Render app encounters.
 
-It reports the HTTP requests, responses, and errors that our Heroku app encounters.
+![Screenshot of the Render logs, showing examples of different HTTP requests and responses](../assets/deployment/deployment_render-logs.png)
 
-![Screenshot of the Heroku logs, showing examples of different HTTP requests and responses](../assets/deployment/deployment_heroku-logs.png)
-
-Alternatively, we can access the server logs using the Heroku CLI and running:
-
-```bash
-$ heroku logs
-```
-
-If we want to see the logs output in real time, we can run:
-
-```bash
-$ heroku logs --tail
-```
-
-This option is useful when we are troubleshooting an issue. If we can recreate the error, we'll be able to see the server log information related to the error just as if we were running the application locally.
 
 <!-- Question 1 -->
 <!-- prettier-ignore-start -->
@@ -423,9 +408,9 @@ Check off all the topics that we've briefly touched on so far.
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
-## Updating the Heroku Remote Workflow
+## Updating the Render Remote Workflow
 
-When we practice _continuous deployment_, we must adopt the practice of regularly updating the Git history of our Heroku app.
+When we practice _continuous deployment_, we must adopt the practice of regularly updating the Git history of our Render app.
 
 We can summarize our local development workflow like this:
 
@@ -434,35 +419,24 @@ We can summarize our local development workflow like this:
 1. Run tests
 1. Write code
 1. Make Git commits
-1. Push our Git history to the `origin` remote, which is our repo on GitHub
-1. **Push our Git history to the `heroku` remote**, which is our Heroku app
-1. Verify our deployment
+2. Push our Git history to the `origin` remote, which is our repo on GitHub
+3. Verify our deployment
 
 ## General Deployment Tools
 
 We can continue to use the browser and Postman to create HTTP requests and check their HTTP responses!
 
-### Heroku Tools in the Dashboard
+### Render Tools in the Dashboard
 
-The Heroku dashboard includes:
+The Render dashboard includes:
 
-- Access to the Heroku logs
+- Access to the Render logs
 - Access to the Heroku console (which acts as a terminal on our Heroku machine)
 - Management of environment variables
 - Management of collaborators on this Heroku app
 - History of "Latest Activity," which will show the timeline of recent deployments
 
-### Command-Line Tools
-
-The following are great Heroku CLI commands to keep handy:
-
-| <div style="min-width:200px;">Command</div>              | Explanation                                                                                                                                                         |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `heroku logs --tail` | Starts tailing the Heroku logs in the current terminal window, displaying real-time updates                                                                           |
-| `heroku run python3` | Runs the `python3` repl on the Heroku machine running our app                                                                                                       |
-| `heroku pg:psql`     | Runs the `psql` CLI on the Heroku machine running our app. We can use this to execute `psql` commands, and check, add, update, or delete the data that our app uses. |
-
-## General Heroku Debugging Strategies
+## General Render Debugging Strategies
 
 Sometimes, after deployment, our deployed app doesn't behave as expected. This could be a bug, and it could also be our web server catching an exception.
 
