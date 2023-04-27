@@ -69,11 +69,11 @@ To connect our Render and GitHub accounts, we can click on our user profile in t
 
 Under the Profile section of the Account Settings page, click the "Connect GitHub" button and sign in to GitHub as prompted. 
 
-![Screenshot of Profile Section](../assets/deployment/deployment_profile-connect-Github-render.png)
+![Screenshot of Profile Section](../assets/deployment/deployment_profile-connect-github-render.png)
 
 When we have successfully linked our GitHub account to Render, the "Connect GitHub" button will be replaced with our GitHub username and an option to disconnect our GitHub account.
 
-![Screenshot of Successful GitHub Connection](../assets/deployment/deployment_profile-with-connected-Github-render.png)
+![Screenshot of Successful GitHub Connection](../assets/deployment/deployment_profile-with-connected-github-render.png)
 
 
 ## Configure Our Flask App for Render
