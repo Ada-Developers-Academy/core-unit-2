@@ -342,7 +342,7 @@ Our Flask API isn't _intended_ to be used through a web browser. It's meant to b
 
 ### !end-callout
 
-Instead of `localhost:5000/books`, we can visit `https://your-app-name.herokuapp.com/books`, where `your-app-name` is the name of our Heroku app.
+Instead of `localhost:5000/books`, we can visit `https://your-app-name.onrender.com/books`, where `your-app-name` is the name of our Render app.
 
 ![Screenshot of the browser open to the deployed API, showing a response of an empty JSON array](../assets/deployment/deployment_deployed-books.png)
 
@@ -444,8 +444,8 @@ Our deployed apps can encounter problems ranging from:
 
 - Problems with our own Flask code, such as broken syntax or buggy features
 - Our database not being connected or initialized properly
-- Our Heroku machine not downloading and installing the correct dependencies
-- Heroku.com itself being down, or improper use of Heroku tools
+- Our Render machine not downloading and installing the correct dependencies
+- Render.com itself being down, or improper use of Render tools
 
 In those situations, here is a starting point for debugging and determining what is causing the deployment error:
 
@@ -453,8 +453,8 @@ In those situations, here is a starting point for debugging and determining what
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Check the logs                            | The logs will show error messages that the web server outputs. These messages could share details such as Python `NameError`s, database connection errors, problems with running the Flask app, problems with downloading the right packages, etc. |
 | See if you can recreate it locally        | Attempt to recreate the problem locally, by running `$ flask run` on your own local machine. Error messages may be more detailed on our local machine. Also, concluding that you're **unable to recreate the issue** is valuable in itself!        |
-| Check the status of the Git history       | Confirm that the remote Git history is up-to-date. Check that working code has been recently pushed to the `heroku` remote.                                                                                                                        |
-| Internet research!                        | Heroku has a large community of support, and a lot of documentation on deploying Flask apps and using Postgres databases. Be sure to use the Internet and to rubber duck with others.                                                              |
+| Check the status of the Git history       | Confirm that the remote Git history is up-to-date. remote.                                                                                                                        |
+| Internet research!                        | Render has a large community of support, and a lot of documentation on deploying Flask apps and using Postgres databases. Be sure to use the Internet and to rubber duck with others.                                                              |
 | Take notes of each debugging attempt      | It can be challenging to remember what you've tried on the Heroku machine. Write down and record all of the ways you've attempted to fix the problem.                                                                                              |
 | Rubber duck, and post questions on Slack! | Debugging deployment usually depends on context. Rubber duck and connect with folks who are deploying similar projects to you!                                                                                                                     |
 
