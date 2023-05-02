@@ -122,7 +122,7 @@ Enter `your-app-name` into the "Name" field to create an app with the name `your
 
 Replace `your-app-name` with the desired name of the app.
 
-![Screenshot of Render after adding the app name](../assets/deployment/deployment_connect-app-to-repo-render.png)
+![Screenshot of web service deployment page after adding the app name](../assets/deployment/deployment_name-web-service-render.png)
 
 Note that the app name must be unique across all Render apps, not just our own apps. As a result, the name `hello-books-api` is already taken, as it was used in this walk-through! We will need to come up with our own name that has a unique touch.
 
@@ -130,7 +130,7 @@ Note that the app name must be unique across all Render apps, not just our own a
 
 Next, change the "Branch" field to set which branch we want to pull our code from for our deployed applicaton. Most of the time we will choose `main`, but in the case of the Hello Books API repo, we don't have a `main` branch. Instead we want to choose the branch that includes all the code and latest changes we want to be a part of our deployed app. For us, that should be `08b-nested-routes` or any later branch. 
 
-![Screenshot of Render after adding choosing branch 08b-nested-routes](../assets/deployment/deployment_choose-web-service-name-render.png)
+![Screenshot of Render after adding choosing branch 08b-nested-routes](../assets/deployment/deployment_select-branch-08b-render.png)
 
 Next, we need to alter the "Start Command" field which defaults to the value `$ gunicorn app: app`. This field defines where in our code the `gunicorn` package should look to find what it needs to start our Flask web server. 
 
