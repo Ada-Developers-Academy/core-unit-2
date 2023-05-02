@@ -88,7 +88,7 @@ We will use a Python package named [gunicorn](https://pypi.org/project/gunicorn/
 
 We should confirm that the package `gunicorn` is in the project's `requirements.txt` file.
 
-If `gunicorn` does _not_ appear in our `requirement.txt`, we can add it by installing it locally with:
+If `gunicorn` does _not_ appear in our `requirement.txt`, we can install it locally by activating our virtual environment and running the command:
 
 ```bash
 (venv) $ pip install gunicorn
