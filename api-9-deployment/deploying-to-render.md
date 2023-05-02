@@ -231,12 +231,12 @@ In our case `YOUR_DATABASE_USERNAME` is `hello_books_api_db_h25f_user` (listed a
 
 `CONNECTION-STRING` will be a long series of random characters. 
 
-Navigate to the `.env` file in our project's root directory in VS Code. Create a new environment variable `RENDER_DATABASE_URL` to hold our external database URL. 
+Navigate to the `.env` file in our project's root directory in VS Code. Create a new environment variable `RENDER_DATABASE_URI` to hold our external database URL. 
 
 ```
 SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
 SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_test
-RENDER_DATABASE_URL = postgres://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
+RENDER_DATABASE_URI = postgres://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
 ```
 
 We need to modify the start of our external database URL to work with the version of SQLAlchemy we are using. Update the beginning of our external database URL from `postgres` to `postgresql+pyscopg2`.
@@ -244,7 +244,7 @@ We need to modify the start of our external database URL to work with the versio
 ```
 SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
 SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_test
-RENDER_DATABASE_URL = postgresql+psycopg2://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
+RENDER_DATABASE_URI = postgresql+psycopg2://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
 ```
 
 Next we want to update `app/__init__.py` so that `app.config['SQLALCHEMY_DATABASE_URI']` references the connection string for our new Render database instead of our locally hosted database.
@@ -261,7 +261,7 @@ def create_app(test_config=None):
     app = Flask(__name__)
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("RENDER_DATABASE_URL")
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("RENDER_DATABASE_URI")
 
     db.init_app(app)
     migrate.init_app(app, db)
@@ -284,7 +284,7 @@ This will migrate the empty database in our remote Postgres connection to the la
 
 Our Render database now has the correct schema but it is still not connected to our deployed application.
 
-Our current app sets the `SQLALCHEMY_DATABASE_URI` configuration setting using the environment variable `RENDER_DATABASE_URL` in our `.env` file. Our Flask code accesses this environment variable with the code `os.environ.get("RENDER_DATABASE_URI")`.
+Our current app sets the `SQLALCHEMY_DATABASE_URI` configuration setting using the environment variable `RENDER_DATABASE_URI` in our `.env` file. Our Flask code accesses this environment variable with the code `os.environ.get("RENDER_DATABASE_URI")`.
 
 Instead of giving Render our `.env` file, we need to add our environment variables to Render using the Render dashboard.
 
