@@ -288,6 +288,23 @@ Our current app sets the `SQLALCHEMY_DATABASE_URI` configuration setting using t
 
 Instead of giving Render our `.env` file, we need to add our environment variables to Render using the Render dashboard.
 
+<!-- available callout types: info, success, warning, danger, secondary, star  -->
+### !callout-info
+
+## Updating the SQLALCHEMY_DATABASE_URI Configuration Key
+
+`SQLALCHEMY_DATABASE_URI` is a [SQLAlchemy Configuration Key](https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/) which allows us to customize certain settings in our app.
+
+<br>
+
+The value we assign to `app.config['SQLALCHEMY_DATABASE_URI']` determines which Postgres database our app runs against. When we change this configuration key to reference our `RENDER_DATABASE_URI`, our app shifts to run against and store data in our Render database instead of our locally hosted Postgres database. 
+
+<br>
+
+If we want to go back to running our app against our local Postgres database, we need to revert our changes back to `app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")` so that our code once again references our local Postgres instance.
+
+### !end-callout
+
 ### Find the Internal Database URL in Render
 
 First, let's find the internal connection string that will connect to our Render database to our deployed application. 
