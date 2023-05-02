@@ -282,7 +282,29 @@ Finally, we can apply the generated migrations to our new Render database by run
 (venv) $ flask db upgrade
 ```
 
+After running the command, we should see a message that reads
+```
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+```
+as well as `Running upgrade -> <hash number>` for any migration files that were successfully applied. 
+
 This will migrate the empty database in our remote Postgres connection to the latest schema configuration we have generated from our models. 
+
+### Confirm the Migration
+
+We should now be able to connect to our Render database with `psql` and confirm our `author` and `book` tables were created. Connect to Postgres with:
+
+```
+psql -U postgres
+```
+
+Once in the Postgres interactive terminal we can run `\c RENDER_EXTERNAL_DATABASE_URL` to connect to the database where `RENDER_EXTERNAL_DATABASE_URL` is the external database URL we copied from our Render database's dashboard earlier. We can list the database with `\dt` which should show us `book`, `author`, and `alembic_version`. 
+
+We can display the columns of the `book` table by running `d book` which will show `id`, `title`, `description`, and `author_id`. 
+
+We can display the columns of the `author` table by running `d author` which will show `id` and `name`.  
+
 
 ## Set Environment Variables in Render
 
@@ -306,7 +328,6 @@ The value we assign to `app.config['SQLALCHEMY_DATABASE_URI']` determines which 
 <br>
 
 If we want to go back to running our app against our local Postgres database, we need to revert our changes back to `app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")` so that our code once again references our local Postgres instance.
-
 ### !end-callout
 
 ### Find the Internal Database URL in Render
