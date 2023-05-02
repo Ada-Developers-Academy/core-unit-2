@@ -154,7 +154,7 @@ Render's free tier only supports a single full stack application (front end app,
 
 ### Our New Render App
 
-Render will now begin to build our app. This may take several minutes. If our app successfully deploys, we will see a  `Your service is live 🎉` message appear in the logs section at the bottom of the screen.
+Render will now begin to build our app. This may take several minutes. If our app successfully deploys, we will see a `==> Starting service with 'gunicorn "app:create_app()"'` message. You may also see a  `Your service is live 🎉` message appear in the logs section at the bottom of the screen.
 
 ![Screenshot of the your service is live message in the logs of a successfully deployed Render app](../assets/deployment/deployment_successful-deployment-logs-render.png)
 
@@ -170,11 +170,15 @@ Since we are using GitHub to give Render access to our code, this means Render w
 
 ### Verify in the Dashboard
 
-We can verify our app was created by navigating to our main [Render dashboard](https://dashboard.render.com/).
+We can also verify our app was created by navigating to our main [Render dashboard](https://dashboard.render.com/).
 
-Our new app is now listed! We'll visit this dashboard whenever we need to see or update details of our Render apps. We can access the individual app's dashboard by clicking on the app where it is listed in our dashboard.
+Our new app is now listed! Under the "Status" field it should read `Deploy succeeded`. We'll visit this dashboard whenever we need to see or update details of our Render apps. 
 
 ![Screenshot of the Render dashboard with the new hello-books-api app listed](../assets/deployment/deployment_render-dashboard-new-app.png)
+
+We can access the individual app's dashboard by clicking on the app where it is listed in our dashboard. If we click on our app in our main dashboard, it will bring us to the "Events" section of our app specific dashboard. The Events section will also confirm that our app deployed successfully. We should see a green cloud with a white checkmark in it with a `Deploy live...` message. The `Deploy live...` message will also include the commit hash and commit message of your connected Github repo's latest commit. 
+
+![hello-books-api app dashboard with deploy live message](../assets/deployment/deployment_web-service-events-deploy-live-render.png)
 
 ## Create a Database in Render
 
