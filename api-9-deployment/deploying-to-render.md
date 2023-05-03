@@ -112,7 +112,15 @@ To create our Render app, click the "New" button in the top navigation bar, and 
 
 ![Create New Web Service Button Screenshot](../assets/deployment/deployment_new_web_service_render.png)
 
-Next, we can use the search bar to find our Hello Books API GitHub repository. Click the "Connect" button next to our project repository to link it to our new application. 
+Next, we want to connect our web service to our Hello Books API GitHub repository. Although we linked our Render account to GitHub earlier, we may need to add some additional permissions to allow Render to view our GitHub repositories. To do so, we can click the "Connect Account" button under where it says GitHub on the righthand side of the screen.
+
+![Screenshot of Connect Github Account button to Web Service on Render](../assets/deployment/deployment_connect-account-repo-render.png)
+
+This will take us to a Github configuration page asking us to choose which repositories we want Render to be able to access. Select "All repositories" then click the green "Install" button at the bottom of the page.
+
+![Screenshot of Github repository access configuration page](../assets/deployment/deployment_give-render-access-to-github-repos.png)
+
+Now we should see any repos we have in our Github account displayed in the "Connect a repository" section. We can use the search bar to find our Hello Books API GitHub repository. Click the "Connect" button next to our project repository to link it to our new application. 
 
 Note that we should use _our fork_ of the Hello Books API repo which is listed under our GitHub username. So we should search for `your-github-username/hello-books-api`. We are working with the AdaGold version only for the purposes of this walk-through. 
 

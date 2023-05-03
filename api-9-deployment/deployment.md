@@ -1,6 +1,6 @@
 # Deployment
 
-<!-- available callout types: info, success, warning, danger, secondary, star  -->
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=5e225d1d-c2cd-46f4-8592-aff7013ee6e5&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
 
 <!-- available callout types: info, success, warning, danger, secondary, star  -->
