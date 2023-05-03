@@ -330,6 +330,7 @@ We can display the columns of the `book` table by running `d book` which will sh
 
 We can display the columns of the `author` table by running `d author` which will show `id` and `name`.  
 
+Now that we've confirmed the migration, we want to make sure we commit and push the changes we made to Github. Pushing our changes to Github will trigger our application to re-deploy. 
 
 ## Set Environment Variables in Render
 
@@ -367,6 +368,8 @@ In the "Environment" section:
 5. Click "Save Changes"
 
 ![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The SQLALCHEMY_DATABASE_URI variable is present](../assets/deployment/deployment_set-environment-var-render.png)
+
+Updating the app's environment variables will trigger our app to re-deploy. Re-deployment may take several minutes to complete.
 
 ## Verify
 
@@ -485,7 +488,7 @@ The Render dashboard includes:
 - Access to app dashboards for deployed apps
 - Access to the Render logs
 - Management of environment variables
-- History of "Latest Activity," which will show the timeline of recent deployments
+- "Events" which will show the timeline of recent deployments
 
 ## General Render Debugging Strategies
 
@@ -504,7 +507,7 @@ In those situations, here is a starting point for debugging and determining what
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Check the logs                            | The logs will show error messages that the web server outputs. These messages could share details such as Python `NameError`s, database connection errors, problems with running the Flask app, problems with downloading the right packages, etc. |
 | See if you can recreate it locally        | Attempt to recreate the problem locally, by running `$ flask run` on your own local machine. Error messages may be more detailed on our local machine. Also, concluding that you're **unable to recreate the issue** is valuable in itself!        |
-| Check the status of the Git history       | Confirm that the remote Git history is up-to-date. remote.                                                                                                                        |
+| Check the status of the Git history       | Confirm that the remote Git history is up-to-date.                                                                                                                        |
 | Internet research!                        | Render has a large community of support, and a lot of documentation on deploying Flask apps and using Postgres databases. Be sure to use the Internet and to rubber duck with others.                                                              |
 | Take notes of each debugging attempt      | It can be challenging to remember what you've tried on the Render machine. Write down and record all of the ways you've attempted to fix the problem.                                                                                              |
 | Rubber duck, and post questions on Slack! | Debugging deployment usually depends on context. Rubber duck and connect with folks who are deploying similar projects to you!                                                                                                                     |
