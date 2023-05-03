@@ -265,6 +265,7 @@ def create_app(test_config=None):
     app = Flask(__name__)
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("RENDER_DATABASE_URI")
 
     db.init_app(app)
@@ -291,6 +292,22 @@ as well as `Running upgrade -> <hash number>` for any migration files that were 
 
 This will migrate the empty database in our remote Postgres connection to the latest schema configuration we have generated from our models. 
 
+<!-- available callout types: info, success, warning, danger, secondary, star  -->
+### !callout-info
+
+## Updating the SQLALCHEMY_DATABASE_URI Configuration Key
+
+`SQLALCHEMY_DATABASE_URI` is a [SQLAlchemy Configuration Key](https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/) which allows us to customize certain settings in our app.
+
+<br>
+
+The value we assign to `app.config['SQLALCHEMY_DATABASE_URI']` determines which Postgres database our app runs against. When we change this configuration key to reference our `RENDER_DATABASE_URI`, our app shifts to run against and store data in our Render database instead of our locally hosted Postgres database. 
+
+<br>
+
+If we want to go back to running our app against our local Postgres database, we need to revert our changes back to `app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")` so that our code once again references our local Postgres instance.
+### !end-callout
+
 ### Confirm the Migration
 
 We should now be able to connect to our Render database with `psql` and confirm our `author` and `book` tables were created. Connect to Postgres with:
@@ -314,21 +331,7 @@ Our current app sets the `SQLALCHEMY_DATABASE_URI` configuration setting using t
 
 Instead of giving Render our `.env` file, we need to add our environment variables to Render using the Render dashboard.
 
-<!-- available callout types: info, success, warning, danger, secondary, star  -->
-### !callout-info
 
-## Updating the SQLALCHEMY_DATABASE_URI Configuration Key
-
-`SQLALCHEMY_DATABASE_URI` is a [SQLAlchemy Configuration Key](https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/) which allows us to customize certain settings in our app.
-
-<br>
-
-The value we assign to `app.config['SQLALCHEMY_DATABASE_URI']` determines which Postgres database our app runs against. When we change this configuration key to reference our `RENDER_DATABASE_URI`, our app shifts to run against and store data in our Render database instead of our locally hosted Postgres database. 
-
-<br>
-
-If we want to go back to running our app against our local Postgres database, we need to revert our changes back to `app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")` so that our code once again references our local Postgres instance.
-### !end-callout
 
 ### Find the Internal Database URL in Render
 
