@@ -342,8 +342,6 @@ Our current app sets the `SQLALCHEMY_DATABASE_URI` configuration setting using t
 
 Instead of giving Render our `.env` file, we need to add our environment variables to Render using the Render dashboard.
 
-
-
 ### Find the Internal Database URL in Render
 
 First, let's find the internal connection string that will connect to our Render database to our deployed application. 
@@ -355,7 +353,7 @@ In our database's dashboard on Render, click on the "Connect" button in the uppe
 
 ### Set the Environment Variables in Render
 
-Next, we need to set the `SQLALCHEMY_DATABASE_URI` variable as an environment variable of our web service application. 
+Next, we need to make a `RENDER_DATABASE_URI` environment variable in our web service application. 
 
 Navigate to our web service application's dashboard.
 
@@ -364,12 +362,12 @@ Navigate to our web service application's dashboard.
 In the "Environment" section:
 
 1. Click "Add Environment Variable" in the "Environment Variables" section
-2. Set the key as `SQLALCHEMY_DATABASE_URI`
+2. Set the key as `RENDER_DATABASE_URI`
 3. Set the value of this variable to the internal connection string we copied
 4. Modify the value of the internal connection string so that the beginning reads `postgresql+psycopg2` instead of `postgres`
 5. Click "Save Changes"
 
-![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The SQLALCHEMY_DATABASE_URI variable is present](../assets/deployment/deployment_set-environment-var-render.png)
+![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The RENDER_DATABASE_URI variable is present](../assets/deployment/deployment_set-env-var-render.png)
 
 Updating the app's environment variables will trigger our app to re-deploy. Re-deployment may take several minutes to complete.
 
