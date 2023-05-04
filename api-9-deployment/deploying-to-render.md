@@ -1,5 +1,7 @@
 # Deploying to Render
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=8285322f-7fe1-45a7-8206-aff701709f35&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
 ## Goal
 
 Our goal for this lesson is to:
@@ -112,7 +114,15 @@ To create our Render app, click the "New" button in the top navigation bar, and 
 
 ![Create New Web Service Button Screenshot](../assets/deployment/deployment_new_web_service_render.png)
 
-Next, we can use the search bar to find our Hello Books API GitHub repository. Click the "Connect" button next to our project repository to link it to our new application. 
+Next, we want to connect our web service to our Hello Books API GitHub repository. Although we linked our Render account to GitHub earlier, we may need to add some additional permissions to allow Render to view our GitHub repositories. To do so, we can click the "Connect Account" button under where it says GitHub on the righthand side of the screen.
+
+![Screenshot of Connect Github Account button to Web Service on Render](../assets/deployment/deployment_connect-account-repo-render.png)
+
+This will take us to a Github configuration page asking us to choose which repositories we want Render to be able to access. Select "All repositories" then click the green "Install" button at the bottom of the page.
+
+![Screenshot of Github repository access configuration page](../assets/deployment/deployment_give-render-access-to-github-repos.png)
+
+Now we should see any repos we have in our Github account displayed in the "Connect a repository" section. We can use the search bar to find our Hello Books API GitHub repository. Click the "Connect" button next to our project repository to link it to our new application. 
 
 Note that we should use _our fork_ of the Hello Books API repo which is listed under our GitHub username. So we should search for `your-github-username/hello-books-api`. We are working with the AdaGold version only for the purposes of this walk-through. 
 
@@ -322,6 +332,7 @@ We can display the columns of the `book` table by running `d book` which will sh
 
 We can display the columns of the `author` table by running `d author` which will show `id` and `name`.  
 
+Now that we've confirmed the migration, we want to make sure we commit and push the changes we made to Github. Pushing our changes to Github will trigger our application to re-deploy. 
 
 ## Set Environment Variables in Render
 
@@ -330,8 +341,6 @@ Our Render database now has the correct schema but it is still not connected to 
 Our current app sets the `SQLALCHEMY_DATABASE_URI` configuration setting using the environment variable `RENDER_DATABASE_URI` in our `.env` file. Our Flask code accesses this environment variable with the code `os.environ.get("RENDER_DATABASE_URI")`.
 
 Instead of giving Render our `.env` file, we need to add our environment variables to Render using the Render dashboard.
-
-
 
 ### Find the Internal Database URL in Render
 
@@ -344,7 +353,7 @@ In our database's dashboard on Render, click on the "Connect" button in the uppe
 
 ### Set the Environment Variables in Render
 
-Next, we need to set the `SQLALCHEMY_DATABASE_URI` variable as an environment variable of our web service application. 
+Next, we need to make a `RENDER_DATABASE_URI` environment variable in our web service application. 
 
 Navigate to our web service application's dashboard.
 
@@ -353,12 +362,14 @@ Navigate to our web service application's dashboard.
 In the "Environment" section:
 
 1. Click "Add Environment Variable" in the "Environment Variables" section
-2. Set the key as `SQLALCHEMY_DATABASE_URI`
+2. Set the key as `RENDER_DATABASE_URI`
 3. Set the value of this variable to the internal connection string we copied
 4. Modify the value of the internal connection string so that the beginning reads `postgresql+psycopg2` instead of `postgres`
 5. Click "Save Changes"
 
-![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The SQLALCHEMY_DATABASE_URI variable is present](../assets/deployment/deployment_set-environment-var-render.png)
+![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The RENDER_DATABASE_URI variable is present](../assets/deployment/deployment_set-env-var-render.png)
+
+Updating the app's environment variables will trigger our app to re-deploy. Re-deployment may take several minutes to complete.
 
 ## Verify
 
@@ -477,7 +488,7 @@ The Render dashboard includes:
 - Access to app dashboards for deployed apps
 - Access to the Render logs
 - Management of environment variables
-- History of "Latest Activity," which will show the timeline of recent deployments
+- "Events" which will show the timeline of recent deployments
 
 ## General Render Debugging Strategies
 
@@ -496,7 +507,7 @@ In those situations, here is a starting point for debugging and determining what
 | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Check the logs                            | The logs will show error messages that the web server outputs. These messages could share details such as Python `NameError`s, database connection errors, problems with running the Flask app, problems with downloading the right packages, etc. |
 | See if you can recreate it locally        | Attempt to recreate the problem locally, by running `$ flask run` on your own local machine. Error messages may be more detailed on our local machine. Also, concluding that you're **unable to recreate the issue** is valuable in itself!        |
-| Check the status of the Git history       | Confirm that the remote Git history is up-to-date. remote.                                                                                                                        |
+| Check the status of the Git history       | Confirm that the remote Git history is up-to-date.                                                                                                                        |
 | Internet research!                        | Render has a large community of support, and a lot of documentation on deploying Flask apps and using Postgres databases. Be sure to use the Internet and to rubber duck with others.                                                              |
 | Take notes of each debugging attempt      | It can be challenging to remember what you've tried on the Render machine. Write down and record all of the ways you've attempted to fix the problem.                                                                                              |
 | Rubber duck, and post questions on Slack! | Debugging deployment usually depends on context. Rubber duck and connect with folks who are deploying similar projects to you!                                                                                                                     |

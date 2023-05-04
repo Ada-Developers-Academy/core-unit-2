@@ -1,10 +1,16 @@
 # Deployment
 
+<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=5e225d1d-c2cd-46f4-8592-aff7013ee6e5&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+
+
 <!-- available callout types: info, success, warning, danger, secondary, star  -->
+### !callout-info
 
+## Additional Deployment Video Resource
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=3e9a3bf8-4dcb-4d16-b382-ad20016acbe5&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
-<!-- replace video lesson -->
+Looking for more? Watch [this additional deployment video lesson](https://adaacademy.hosted.panopto.com/Panopto/Pages/Viewer.aspx?id=3e9a3bf8-4dcb-4d16-b382-ad20016acbe5) by former instructor Jared Maddox that provides some alternate ways we might understand the deployment process.
+
+### !end-callout
 
 ## Learning Goals
 
