@@ -253,7 +253,7 @@ SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5
 RENDER_DATABASE_URI = postgres://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
 ```
 
-We need to modify the start of our external database URL to work with the version of SQLAlchemy we are using. Update the beginning of our external database URL from `postgres` to `postgresql+pyscopg2`.
+We need to modify the start of our external database URL to work with the version of SQLAlchemy we are using. Update the beginning of our external database URL from `postgres` to `postgresql+psycopg2`.
 
 ```
 SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
