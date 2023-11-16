@@ -163,7 +163,7 @@ We want to select the credit card number and expiration date for a customer name
 
 ##### !answer
 
-1. SELECT payment_methods.card_number, payment_methods.expr_date
+1. SELECT payments.card_number, payments.expr_date
 1. FROM payments
 1. INNER JOIN customers
 1.   ON customers.id = payments.customer_id
