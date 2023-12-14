@@ -14,7 +14,7 @@ In SQL we can create columns as foreign key fields at table creation, by adding 
 
 | Vocab           | Definition                                                                                                            | Synonyms             | <div style="min-width: 200px;">How to Use in a Sentence</div>                                                                                                                                                                                                                              |
 | --------------- | --------------------------------------------------------------------------------------------------------------------- | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Foreign Key        | A column in a database table that comes from another table (also known as the referenced table) who's value is either a primary key or another unique key in the referenced table.                                                    |      Referencing Key              | "The books table has an author_id column which references the primary key of the authors table."                                                                |
+| Foreign Key        | A column in a database table that comes from another table (also known as the referenced table) whose value is either a primary key or another unique key in the referenced table.                                                    |      Referencing Key              | "The books table has an author_id column which references the primary key of the authors table."                                                                |
 
 
 ## Creating Tables With Foreign Keys
@@ -55,7 +55,7 @@ CREATE TABLE books (
 
 The `books` table has a column named `author_id`. We added the constraint `FOREIGN KEY (author_id) REFERENCES authors(id)` to `author_id` to make it a foreign key. Notice that while for a primary key the constraint follows the column type directly, for a foreign key the constraint comes after a separating comma.
 
-This tells Postgres that every `author_id` value in the `books` table *must* reference an existing `id` value in the `authors` table.  Further, the referenced column (`id`) must also a primary key in the `authors` table.
+This tells Postgres that every `author_id` value in the `books` table *must* reference an existing `id` value in the `authors` table.  Further, the referenced column (`id`) must also be a primary key in the `authors` table.
 
 Given the following authors table.
 
