@@ -57,7 +57,7 @@ There are many kinds of functions we package with classes, but let's focus on in
 
 ## Class Methods
 
-We've worked with instance methods, so we know can write functions that are packaged with a class. But instance methods are called on a specific instance of a class that already _exists_ and we're looking at how to write a function that _creates_ a `Book`. How do we associate a method with a class when that method won't have an instance to be called on?
+We've worked with instance methods, so we know we can write functions that are packaged with a class. But instance methods are called on a specific instance of a class that already _exists_ and we're looking at how to write a function that _creates_ a `Book`. How do we associate a method with a class when that method won't have an instance to be called on?
 
 What we need in this case is a class method! To create a class method we need to do 2 things:
 - use a new function decorator, `@classmethod` 
