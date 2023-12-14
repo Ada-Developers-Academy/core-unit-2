@@ -51,7 +51,7 @@ We may find we’re really happy with how the code is laid out, but if not we ca
 
 ### Plan opportunities for improvement 
 
-Once we've identified code we want to refactor, we should plan our approach to reduce the chance of breaking working code. We want look at:
+Once we've identified code we want to refactor, we should plan our approach to reduce the chance of breaking working code. We want to look at:
 - what is dependent on our changing code to be aware of what other functionality we could affect
 - our test coverage to ensure we have tests around all scenarios that could be affected (writing new tests as needed)
 - what our approach could look like, writing out pseudocode to help us uncover anything we might have missed in our previous steps (such as if there are any new edge cases we need to consider). 
