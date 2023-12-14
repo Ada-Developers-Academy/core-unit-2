@@ -85,7 +85,7 @@ Enforcing single-responsibility for our functions:
 - The code is more reusable: if a function does multiple things, and only one of the effects is needed in another part of the software, we can’t reuse the existing code as-is.
 
 Reducing duplicated code:
-- Less places to make changes if code needs to updated
+- Less places to make changes if code needs to be updated
 - Less code = less places where we could have bugs
 - It’s easier to find the code you are looking for if there is only one function that does that task.
 
