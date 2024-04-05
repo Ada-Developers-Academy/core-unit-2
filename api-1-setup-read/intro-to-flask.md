@@ -43,7 +43,7 @@ We will use Flask to build back-end APIs.
 
 ### Documentation
 
-It will be valuable to take a moment to get familiar with the [Flask documentation](https://flask.palletsprojects.com/en/1.1.x/). In the documentation, we should be able to find:
+It will be valuable to take a moment to get familiar with the [Flask documentation](https://flask.palletsprojects.com/en/3.0.x/). In the documentation, we should be able to find:
 
 - Directions for installation
 - A quickstart guide, which contains details about:
@@ -54,9 +54,9 @@ It will be valuable to take a moment to get familiar with the [Flask documentati
   - Logging
 - A tutorial
 - Information about testing Flask apps
-- The [detailed API reference](https://flask.palletsprojects.com/en/1.1.x/#api-reference), which contains documentation on objects and functions defined by Flask
+- The [detailed API reference](https://flask.palletsprojects.com/en/3.0.x/#api-reference), which contains documentation on objects and functions defined by Flask
 
-_Note: Written in March 2021_
+_Note: Updated in April 2024_
 
 ### !callout-info
 
