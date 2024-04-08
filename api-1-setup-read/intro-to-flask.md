@@ -54,7 +54,7 @@ It will be valuable to take a moment to get familiar with the [Flask documentati
   - Logging
 - A tutorial
 - Information about testing Flask apps
-- The [detailed API reference](https://flask.palletsprojects.com/en/3.0.x/#api-reference), which contains documentation on objects and functions defined by Flask
+- The [detailed API reference](https://flask.palletsprojects.com/en/3.0.x/api/), which contains documentation on objects and functions defined by Flask
 
 ### !callout-info
 
