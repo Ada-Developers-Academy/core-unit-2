@@ -56,8 +56,6 @@ It will be valuable to take a moment to get familiar with the [Flask documentati
 - Information about testing Flask apps
 - The [detailed API reference](https://flask.palletsprojects.com/en/3.0.x/#api-reference), which contains documentation on objects and functions defined by Flask
 
-_Note: Updated in April 2024_
-
 ### !callout-info
 
 ## This Curriculum Prioritizes JSON Responses Over HTML
