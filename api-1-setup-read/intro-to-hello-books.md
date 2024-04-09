@@ -26,7 +26,7 @@ As you work through the Building an API Learn topics and learn to build an API w
 3. When beginning a lesson, look at the corresponding starting branch for that lesson in the Github web interface (see screenshot below).
 4. Code along with the lesson **as much or as little as best supports your learning** on the `main` branch. 
 5. After finishing a lesson, we should commit our changes on the `main` branch with a detailed commit message so that our changes are saved.
-6. Now we're ready for our next lesson. We should switch to the next lesson's branch in the GitHub web interface while continuing to make our changes on the `main` branch. We can repeat these steps for all the lessons related to the Hello Books API.
+6. Now we're ready for our next lesson. We should switch to the next lesson's branch in the GitHub web interface for reference while continuing to make our changes on our local `main` branch. We can repeat these steps for all the lessons related to the Hello Books API.
    
 ![Explanation for how to view branch contents within the GitHub web view. The branch dropdown (displaying `01a-intro-to-flask` by default) is labeled "Use this dropdown to select the branch you'd like to view. After selecting the branch, the contents will be displayed in the GitHub web view." The list of branches is labeled "Available branches." A general info box states "After selecting a branch, click on a file to view it in the GitHub web view."](../assets/building-an-api/hello-books-api-branches-in-github.png)
 
@@ -34,7 +34,7 @@ _Fig. Use the project branches as a reference viewed through the GitHub web view
 
 ### Problems Sets
 
-After completing all the lessons for a single topic, the problems set direct us to implement the new features introduced in that Learn topic in our forked and cloned version of the [Hello Books API](https://github.com/AdaGold/hello-books-api). This additional practice will reinforce the new skills learned, provide an opportunity for debugging practice, and ensure our local flask set-up is working.
+After completing all the lessons for a single topic, the problem sets direct us to implement the new features introduced in that Learn topic in our forked and cloned version of the [Hello Books API](https://github.com/AdaGold/hello-books-api). This additional practice will reinforce the new skills learned, provide an opportunity for debugging practice, and ensure our local flask set-up is working.
 
 For this work, we should practice making small, atomic commits
 
