@@ -1,10 +1,11 @@
 # Introduction to Models and Migrations
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=d1fcd890-3fb6-404d-b28f-ad110031a865&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- FLASK UPDATE -->
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=d1fcd890-3fb6-404d-b28f-ad110031a865&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
-## Goal
+## Goals
 
-Our goal for this lesson is:
+Our goals for this lesson are to:
 
 1. Introduce the vocabulary "model," as it's commonly used in web development, and will be used in Flask
 1. Briefly introduce the steps to setting up a model
@@ -12,10 +13,10 @@ Our goal for this lesson is:
 
 ## Vocabulary and Synonyms
 
-| Vocab              | Definition                                                                                                                                            | Synonyms                                   | How to Use in a Sentence                                                                                                                                  |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Model              | A representation of a single concept relevant to the application. The model defines the state and behavior for that concept.                          | Data model, resource, entity, domain model | "Example models in an e-shopping web app might be `User`, `Product`, `Review`, and `Order`"                                                               |
-| Database Migration | When working with relational databases, a representation of a change in a database's schema. Migrations must be created and then applied to databases | Schema migration, migration                | "We want the `Product` table to add a new integer column, `stock`. We need to generate a migration to represent that change, and then run the migrations" |
+| Vocab | Definition | Synonyms | How to Use in a Sentence |
+| ----- | ---------- | -------- | ------------------------ |
+| Model | A representation of a single concept relevant to the application. The model defines the state and behavior for that concept. | Data model, resource, entity, domain model | "Example models in an e-shopping web app might be `User`, `Product`, `Review`, and `Order`" |
+| Database Migration | When working with relational databases, a representation of a change in a database's schema. Migrations must be created and then applied to databases | Schema migration, migration | "We want the `Product` table to add a new integer column, `stock`. We need to generate a migration to represent that change, and then run the migrations" |
 
 ## Models
 
@@ -71,8 +72,11 @@ This curriculum's recommended file structure creates a `models` folder inside of
 │   ├── models
 │   │   ├── __init__.py
 │   │   └── model.py
+│   ├── routes
+│   │   ├── __init__.py
+│   │   └── routes.py
 │   ├── __init__.py
-│   └── routes.py
+│   └── db.py
 ├── README.md
 └── requirements.txt
 ```
@@ -95,7 +99,7 @@ Generating and applying these instructions in separate steps allows for teams to
 
 We don't need to write the code for storing, retrieving, or updating our models. SQLAlchemy lets us define our models as normal Python classes. Instead of writing full lines of SQL ourselves, we will write Python classes following patterns defined by SQLAlchemy, and SQLAlchemy will do most of the SQL heavy lifting for us!
 
-SQLAlchemy has [already defined methods](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/) for:
+SQLAlchemy has [already defined methods](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/queries/) for:
 
 - Inserting new records into a table
 - Querying records from a table
