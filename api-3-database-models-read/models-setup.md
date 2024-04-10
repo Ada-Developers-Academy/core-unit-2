@@ -1,12 +1,13 @@
 # Models Setup
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=2d8c558c-d8f9-4fd7-9c15-ad11005fdfd5&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- FLASK UPDATE -->
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=2d8c558c-d8f9-4fd7-9c15-ad11005fdfd5&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
 ## Goal
 
 Our goal for this lesson is to provide details for _how_ to setup a model in a Flask app.
 
-This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). You can review the recommended workflow for this an subsequent lessons in the [Intro to Hello Books](../api-1-setup-read/intro-to-hello-books.md) lesson.
+This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-api). You can review the recommended workflow for this and subsequent lessons in the [Intro to Hello Books](../api-1-setup-read/intro-to-hello-books.md) lesson.
 
 ## Branches
 
@@ -26,17 +27,17 @@ This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-ap
 
 ## Removing Hardcoded Data
 
-In a previous lesson we used hardcoded data stored in the variable `BOOKS` to learn how to write routes to _read_ all books, and _read_ one book. This was great for learning, but we were limited to _GET_ routes, as we could not persist any changes to our data given that it was hardcoded.
+In a previous lesson we used hardcoded data stored in the variable `books` to learn how to write routes to _read_ all books, and _read_ one book. This was great for learning, but we were limited to _GET_ routes, as we could not persist any changes to our data given that it was hardcoded.
 
 In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to _read_ our data, but also _create_, _update_, and _delete_ it!
 
-Before we go any further, let's comment or remove our hardcoded `BOOKS` data and our two routes from the `app`.
+Before we go any further, let's comment or remove our hardcoded `books` data and our two routes from the `app`.
 
 <details>
     <summary>Expand to see the code to remove or comment.</summary>
 
 ```python
-# routes.py
+# book.py
 
 # class Book:
 #     def __init__(self, id, title, description):
@@ -45,8 +46,8 @@ Before we go any further, let's comment or remove our hardcoded `BOOKS` data and
 #         self.description = description
 
 # books = [
-#     Book(1, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
-#     Book(2, "Fictional Book Title", "A fantasy novel set in an imaginary world."),
+#     Book(1, "Fictional Book", "A fantasy novel set in an imaginary world."),
+#     Book(2, "Wheel of Time", "A fantasy novel set in an imaginary world."),
 #     Book(3, "Fictional Book Title", "A fantasy novel set in an imaginary world.")
 # ]
 ```
@@ -59,6 +60,8 @@ We should also comment or remove our code for the `GET /books` and `GET /books/<
     <summary>Expand to see the code to remove or comment.</summary>
 
 ```python
+# book_routes.py
+
 #def validate_book(book_id):
 #    try:
 #        book_id = int(book_id)
