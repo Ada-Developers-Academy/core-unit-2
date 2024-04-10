@@ -1,6 +1,7 @@
 # Flask Setup
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=f6e8d4bc-f9d7-4630-94b9-ad10005ccdd8&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- FLASK UPDATE -->
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=f6e8d4bc-f9d7-4630-94b9-ad10005ccdd8&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
 ## Goals
 
@@ -10,8 +11,8 @@ We will:
 
 1. Clone our repo
 1. Manage our dependencies
-1. Create the flask project directory structure
-1. Write code to implement the flask server start-up
+1. Create the Flask project directory structure
+1. Write code to implement the Flask server start-up
 1. Run, stop, and restart a Flask server
 1. Read the server logs
 
@@ -23,7 +24,7 @@ We will:
 
 ## Manage Dependencies
 
-Whenever we work on a Python project, we need to consider how we manage our dependencies, the third party packages used by our project.
+Whenever we work on a Python project, we need to consider how we manage our dependencies which are the third party packages used by our project.
 
 `flask` is a package with many of its own dependencies, which can quickly make a mess of our system-wide Python installation!
 
@@ -44,7 +45,7 @@ Once we `cd` into the project folder, we can create a virtual environment. To ma
 $ python3 -m venv venv
 ```
 
-We can activate and deactivate this virutal environment with these commands:
+We can activate and deactivate this virtual environment with these commands:
 
 ```bash
 ### Activate ###
@@ -67,39 +68,26 @@ These files will list the exact packages and their version numbers to download a
 Here is a sample `requirements.txt` for a Flask project:
 
 ```
-alembic==1.5.4
-attrs==20.3.0
-autopep8==1.5.5
-blinker==1.4
-certifi==2020.12.5
-chardet==4.0.0
-click==7.1.2
-Flask==1.1.2
-Flask-Migrate==2.6.0
-Flask-SQLAlchemy==2.4.4
-gunicorn==20.1.0
-idna==2.10
-iniconfig==1.1.1
-itsdangerous==1.1.0
-Jinja2==2.11.3
-Mako==1.1.4
-MarkupSafe==1.1.1
-packaging==20.9
-pluggy==0.13.1
-psycopg2-binary==2.8.6
-py==1.10.0
-pycodestyle==2.6.0
-pyparsing==2.4.7
-pytest==6.2.3
-python-dateutil==2.8.1
-python-dotenv==0.15.0
-python-editor==1.0.4
-requests==2.25.1
-six==1.15.0
-SQLAlchemy==1.3.23
-toml==0.10.2
-urllib3==1.26.4
-Werkzeug==1.0.1
+alembic==1.13.1
+blinker==1.7.0
+click==8.1.7
+Flask==3.0.2
+Flask-Migrate==4.0.5
+Flask-SQLAlchemy==3.1.1
+greenlet==3.0.3
+iniconfig==2.0.0
+itsdangerous==2.1.2
+Jinja2==3.1.3
+Mako==1.3.2
+MarkupSafe==2.1.5
+packaging==23.2
+pluggy==1.4.0
+psycopg2-binary==2.9.9
+pytest==8.0.0
+python-dotenv==1.0.1
+SQLAlchemy==2.0.25
+typing_extensions==4.9.0
+Werkzeug==3.0.1
 ```
 
 At the beginning of the project, or after any updates to this file, we install all dependencies with:
@@ -128,7 +116,7 @@ Exceptions to this rule can occur when configuration issues arise.
 
 </br>
 
-One such common configuration issue may be needing the change the version of `psycopg2-binary` as described below in the section on common installation failures and debugging.
+One such common configuration issue may be needing to change the version of `psycopg2-binary` as described below in the section on common installation failures and debugging.
 
 ### !end-callout
 
@@ -148,7 +136,7 @@ System configurations vary, and sometimes the requirements installation step may
 
    ### Common Debugging: Need to `$ pip install --upgrade pip`
 
-   A common installation error may be solved by executing `$ pip install --upgrade pip`. Afterwards, attempt `$ pip install -r requirements.txt` again. _(Note: Written March 2021.)_
+   A common installation error may be solved by executing `$ pip install --upgrade pip`. Afterwards, attempt `$ pip install -r requirements.txt` again. 
 
    ### !end-callout
 
@@ -201,14 +189,15 @@ This curriculum will provide a suggested project structure and location:
 │   ├── models
 │   │   └── __init__.py
 │   ├── __init__.py
-│   └── routes.py
+│   └── routes
+│       └── __init__.py
 ├── README.md
 └── requirements.txt
 ```
 
 ### Routes
 
-Inside the `app` folder, there will be a file named `routes.py`. The responsibility of this file is to define the endpoints.
+The `app/routes` directory will be responsible for holding our routes. We should organize our routes so that all the routes corresponding to a particular model will be written in a single file. For example, all the endpoints related to the Book model would be written in a file called `book_routes.py`.
 
 ### Models
 
@@ -220,7 +209,7 @@ Inside each `app` folder, there will be a file named `__init__.py`. This is the 
 
 The start-up logic is responsible for locating and applying any app configuration, and getting the server ready to receive requests.
 
-To get started, we will include the following code in `__init__.py`. This is the starting, boilerplate code to start a Flask application. Follow your curiousity if you would like to learn more about [`create_app`](https://flask.palletsprojects.com/en/2.0.x/patterns/appfactories/)
+To get started, we will include the following code in `__init__.py`. This is the starting, boilerplate code to start a Flask application. Follow your curiosity if you would like to learn more about [`create_app`](https://flask.palletsprojects.com/en/3.0.x/patterns/appfactories/)
 
 ```python
 from flask import Flask
@@ -231,7 +220,7 @@ def create_app(test_config=None):
     return app
 ```
 
-Configurations to the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
+Configurations for the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
 
 ### !callout-danger
 
@@ -321,7 +310,7 @@ COMMAND   PID  USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
 Python  31756  user    3u  IPv4 0x92416cca3d5db1fb      0t0  TCP localhost:commplex-main (LISTEN)
 ```
 
-We can use the number labelled as `PID` to terminate the other running server with the command `kill -9 31756`, where we would replace `31756` with the `PID` value we got from running `lsof`.
+We can use the number labelled as `PID` (Process Identifier) to terminate the other running server with the command `kill -9 31756`, where we would replace `31756` with the `PID` value we got from running `lsof`.
 
 </details>
 
