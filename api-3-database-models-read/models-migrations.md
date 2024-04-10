@@ -1,10 +1,11 @@
 # Introduction to Models and Migrations
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=d1fcd890-3fb6-404d-b28f-ad110031a865&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- FLASK UPDATE -->
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=d1fcd890-3fb6-404d-b28f-ad110031a865&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
-## Goal
+## Goals
 
-Our goal for this lesson is:
+Our goals for this lesson are to:
 
 1. Introduce the vocabulary "model," as it's commonly used in web development, and will be used in Flask
 1. Briefly introduce the steps to setting up a model
@@ -12,10 +13,11 @@ Our goal for this lesson is:
 
 ## Vocabulary and Synonyms
 
-| Vocab              | Definition                                                                                                                                            | Synonyms                                   | How to Use in a Sentence                                                                                                                                  |
-| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Model              | A representation of a single concept relevant to the application. The model defines the state and behavior for that concept.                          | Data model, resource, entity, domain model | "Example models in an e-shopping web app might be `User`, `Product`, `Review`, and `Order`"                                                               |
-| Database Migration | When working with relational databases, a representation of a change in a database's schema. Migrations must be created and then applied to databases | Schema migration, migration                | "We want the `Product` table to add a new integer column, `stock`. We need to generate a migration to represent that change, and then run the migrations" |
+| Vocab | Definition | Synonyms | How to Use in a Sentence |
+| ----- | ---------- | -------- | ------------------------ |
+| Model | A representation of a single concept relevant to the application. The model defines the state and behavior for that concept. | Data model, resource, entity, domain model | "Example models in an e-shopping web app might be `User`, `Product`, `Review`, and `Order`" |
+| Database Backed Model | A type of model that has a direct connection to a datastore. We can change the contents of a database by updating instances of database backed models. | Data Backed Model, Database connected Model | "When we alter an instance of a `Product` model, we need to update its entry in the database. Using database backed models, we can update the model and commit the changes to the database" |
+| Database Migration | When working with relational databases, a representation of a change in a database's schema. Migrations must be created and then applied to databases | Schema migration, migration | "We want the `Product` table to add a new integer column, `stock`. We need to generate a migration to represent that change, and then run the migrations" |
 
 ## Models
 
@@ -31,23 +33,24 @@ If "models" sounds similar to _resource_, _entity_, or _class_, you're onto some
 
 ## Models in Flask
 
-We will define models in our Flask application code. We will use the package `SQLAlchemy` and follow their patterns to define and use models. Models in our Flask code will create a direct connection between the data modeled in our database, and the OOP Python code we can use in our back-end API.
+We will define models in our Flask application code. While a model can generally refer to any of the core abstractions in our business logic, from here onward we will primarily use model to refer to database backed models.
 
+We will use the package `SQLAlchemy` and follow their patterns to define and use models. Models in our Flask code will create a direct connection between the data modeled in our database, and the OOP Python code we can use in our back-end API.
 
-## Models Are a Link Between a Database and Code
+## Database Backed Models Are a Link Between a Database and Code
 
-Our models are usually pieces of data that should be stored in a database. Their data should be persisted. To set up a model, we will need to:
+Our models are usually pieces of data that should persisted. To do that, we store them in a database. To set up a model, we will need to:
 
 1. Set up the database for the project
-1. Configure our app to connect to the database
-1. Define our model in Python code
-1. Ensure that Flask and SQLAlchemy are able to see our model code
-1. Use tools to convert the model into instructions for creating or updating tables
-1. Apply the instructions to our database to create or update the tables
+2. Configure our app to connect to the database
+3. Define our model in Python code
+4. Ensure that Flask and SQLAlchemy are able to see our model code
+5. Use tools to convert the model into instructions for creating or updating tables
+6. Apply the instructions to our database to create or update the tables
 
 ### Creating the Database
 
-Before we work with models in Flask, we should expect to create a database. We should continue to practice our great database skills!
+Before we work with models in Flask, we should expect to create a database. We should continue to practice our ever-growing database skills!
 
 
 ### Connecting the Database and Flask
@@ -63,16 +66,19 @@ We will create a class for each model. The class will define the state and behav
 
 SQLAlchemy and Flask patterns encourage us to define each model as a class in its own file.
 
-This curriculum's recommended file structure creates a `models` folder inside of the `app` folder. Note the location of a hypothetical model, `Model`, in `app/models/model.py`, as well as the typical `__init__.py` file to mark the folder as a package.
+This curriculum's recommended file structure contains a `models` folder inside of the `app` folder–which is where our current `Book` model lives. We will update this file using SQLAlchemy's patterns to create a database backed `Book` model.
 
 ```
 .
 ├── app
 │   ├── models
 │   │   ├── __init__.py
-│   │   └── model.py
+│   │   └── book.py
+│   ├── routes
+│   │   ├── __init__.py
+│   │   └── book_routes.py
 │   ├── __init__.py
-│   └── routes.py
+│   └── db.py
 ├── README.md
 └── requirements.txt
 ```
@@ -95,7 +101,7 @@ Generating and applying these instructions in separate steps allows for teams to
 
 We don't need to write the code for storing, retrieving, or updating our models. SQLAlchemy lets us define our models as normal Python classes. Instead of writing full lines of SQL ourselves, we will write Python classes following patterns defined by SQLAlchemy, and SQLAlchemy will do most of the SQL heavy lifting for us!
 
-SQLAlchemy has [already defined methods](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/) for:
+SQLAlchemy has pre-defined methods for handy operations like:
 
 - Inserting new records into a table
 - Querying records from a table
@@ -103,7 +109,7 @@ SQLAlchemy has [already defined methods](https://flask-sqlalchemy.palletsproject
 - Ordering records from a table
 - Deleting records from a table
 
-And much more!
+And much more! We'll talk about the ones listed above through the Building an API series, but feel free to follow your curiosity.
 
 ### !callout-info
 
