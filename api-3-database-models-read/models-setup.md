@@ -62,20 +62,13 @@ We should also comment or remove our code for the `GET /books` and `GET /books/<
 ```python
 # book_routes.py
 
-#def validate_book(book_id):
-#    try:
-#        book_id = int(book_id)
-#    except:
-#        abort(make_response({"message":f"book {book_id} invalid"}, 400))
-#
-#    for book in books:
-#        if book.id == book_id:
-#            return book
-#
-#    abort(make_response({"message":f"book {book_id} not found"}, 404))
+from flask import Blueprint, abort, make_response
+# from app.models.book import books
 
-# @books_bp.route("", methods=["GET"])
-# def handle_books():
+books_bp = Blueprint("books_bp", __name__, url_prefix="/books")
+
+# @books_bp.get("")
+# def get_all_books():
 #     books_response = []
 #     for book in books:
 #         books_response.append(
@@ -85,17 +78,31 @@ We should also comment or remove our code for the `GET /books` and `GET /books/<
 #                 "description": book.description
 #             }
 #         )
-#     return jsonify(books_response)
+#     return books_response
 
-# @books_bp.route("/<book_id>", methods=["GET"])
-# def handle_book(book_id):
+# @books_bp.get("/<book_id>")
+# def get_one_book(book_id):
 #     book = validate_book(book_id)
-#
+
 #     return {
-#           "id": book.id,
-#           "title": book.title,
-#           "description": book.description,
+#         "id": book.id,
+#         "title": book.title,
+#         "description": book.description,
 #     }
+
+# def validate_book(book_id):
+#     try:
+#         book_id = int(book_id)
+#     except:
+#         response = {"message": f"book {book_id} invalid"}
+#         abort(make_response(response , 400))
+
+#     for book in books:
+#         if book.id == book_id:
+#             return book
+
+#     response = {"message": f"book {book_id} not found"}
+#     abort(make_response(response, 404))
 ```
 
 </details>
