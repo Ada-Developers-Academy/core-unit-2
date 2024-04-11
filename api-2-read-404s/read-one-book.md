@@ -5,9 +5,9 @@
 
 ## Goals
 
-Our goal for this lesson is to learn how define routes that read data.
+Our goal for this lesson is to learn how to define routes that read a specific data record.
 
-In this lesson we will build our Hello Books API to fulfill the following feature:
+In this lesson we will expand our Hello Books API to fulfill the following feature:
 
 1. As a client, I want to send a request to get one existing book, so that I can see the `id`, `title`, and `description` of the book.
 
@@ -33,9 +33,9 @@ Let's consider how to implement this feature:
 
 ### Planning HTTP Requests, Responses, and Logic
 
-Once more, we should think about the typical HTTP verb and endpoint used for requests that retrieve the data for a particular model record.
+Once more, we should think about the typical HTTP verbs and endpoints used in RESTful APIs. This time, we're working with a request that retrieves the data for a particular model record. As usual, there are many ways that we _could_ define such a route, but by following common patterns for RESTful APIs, we can make our API more predictable and easier to use.
 
-For this feature, we should make a `GET` request to the `/books` path, but we need to include the `id` of the record to retrieve as part of the endpoint.
+For this feature, we should therefore make a `GET` request to the `/books` path, and include the `id` of the record to retrieve as part of the endpoint.
 
 | HTTP Method | Endpoint   |Example   |
 | ----------- | ---------- |---------- |
@@ -54,9 +54,9 @@ Now that we have an idea of what our endpoint should look like, we can turn our 
 Our endpoint will need to:
 
 1. Read the `book_id` in the request path
-1. Retrieve the book with the matching `book_id` from the database
-1. Format the book data into the appropriate structure (a single dictionary with `id`, `title`, and `description`)
-1. Send back a response
+2. Retrieve the book with the matching `book_id` from the database
+3. Format the book data into the appropriate structure (a single dictionary with `id`, `title`, and `description`)
+4. Send back a response
 
 ## Getting a Single Book Endpoint: Code
 
