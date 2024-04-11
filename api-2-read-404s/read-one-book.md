@@ -37,9 +37,9 @@ Once more, we should think about the typical HTTP verbs and endpoints used in RE
 
 For this feature, we should therefore make a `GET` request to the `/books` path, and include the `id` of the record to retrieve as part of the endpoint.
 
-| HTTP Method | Endpoint   |Example   |
-| ----------- | ---------- |---------- |
-| `GET`       | `/books/<book_id>` |`/books/1` |
+| HTTP Method | Endpoint   | Example   |
+| ----------- | ---------- | ---------- |
+| `GET`       | `/books/<book_id>` | `/books/1` |
 
 `GET` requests do not include a request body, so no additional planning around the request body is needed.
 
