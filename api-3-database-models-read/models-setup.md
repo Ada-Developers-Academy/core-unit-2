@@ -511,7 +511,7 @@ Select all of the options below which could help us troubleshoot if we have an i
 ##### !explanation
 
 * Run the app and try to make a request to a route - If the database connection can't be found, often the app will not compile so we cannot use this option.
-* Check that the database exists locally using `psql` - We should check if the database exists and create it if it does not.
+* Check that the database exists locally using `psql` - We should check if the database exists and create one if it is not present.
 * Check that the database connection string doesn’t have typos - If we misspell any part of the connection string, we will not be able to connect to the database.
 * Check that app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] is set to False - This setting doesn't affect our ability to reach the database
 * Check that we are setting app.config['SQLALCHEMY_DATABASE_URI'] in `__init__.py` - We need to give this dictionary key the value of our database connection string for Flask to know where the database is.
