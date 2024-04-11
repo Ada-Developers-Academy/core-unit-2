@@ -22,15 +22,9 @@ We will:
 |--|--|
 |`01a-intro-to-flask` |`01b-flask-setup`|
 
-## Manage Dependencies
+## Flask Projects are Python Projects
 
-As we start writing APIs, we should remember that Flask projects are Python projects. Whenever we work on a Python project, we need to consider how we manage our dependencies, which are the third party packages used by our project.  
-
-Just as we have been doing before, we will want to continue using virtual environments, or `venv`s, to manage our projects.
-
-Since `flask` is a package with many of its own dependencies, we will need to use a `venv` to manage our Flask project so we do not make a mess of our system-wide Python installation. 
-
-In reality, no Python project is too small to consider using a virtual environment. But working with a package that brings as many dependencies as does `flask` is reason enough for us to revisit the topic of virtual environments now.
+As we start writing APIs, we should remember that Flask projects are themselves Python projects. Like any other Python project, we need to manage the packages our project depends on—its dependencies. Like other Python projects, we handle this by creating a `venv` in which to install the packages described in the `requirements.txt` file. Let's briefly review the steps we take to perform this setup.
 
 ### Virtual Environment
 
