@@ -61,10 +61,10 @@ Now that we have an idea of what our endpoint should look like, we can turn our 
 
 Our endpoint will need to:
 
-1. Read the `book_id` in the request path
-2. Retrieve the book with the matching `book_id` from the database
-3. Format the book data into the appropriate structure (a single dictionary with `id`, `title`, and `description`)
-4. Send back a response
+1. Read the `book_id` from the request path
+2. Retrieve the book object with the matching `book_id` from the "database" (currently our list of books)
+3. Convert the book object so that it can be sent back through Flask with the appropriate structure (a single dictionary with `id`, `title`, and `description` keys)
+4. Send back the response
 
 ## Getting a Single Book Endpoint: Code
 
