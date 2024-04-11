@@ -505,7 +505,7 @@ Select all of the options below which could help us troubleshoot if we have an i
 
 * Check that the database exists locally using `psql`
 * Check that the database connection string doesn’t have typos
-* Check that we are setting app.config['SQLALCHEMY_DATABASE_URI'] in `__init__.py`
+* Check that we are setting `app.config['SQLALCHEMY_DATABASE_URI']` in `__init__.py`
 
 ##### !end-answer
 ##### !explanation
