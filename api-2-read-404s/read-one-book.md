@@ -51,7 +51,7 @@ Notice that in the endpoint example shown above, we used the syntax `<book_id>` 
 
 `GET` requests do not include a request body, so no additional planning around the request body is needed.
 
-We want to send back a single JSON object (dictionary) with `id`, `title`, and `description`:
+For the response, our feature asks that we send back information about a single book, made up of three pieces of data. We can express this as a single JSON object (roughly equivalent to a Python `dict`) with `id`, `title`, and `description` keys, sent in the response body. To indicate that we are successfully responding to a request for data, the response status should be `200 OK`.
 
 | Response Status | Response Body                                                                                            |
 | --------------- | -------------------------------------------------------------------------------------------------------- |
