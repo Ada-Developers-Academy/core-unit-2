@@ -91,6 +91,7 @@ def handle_book(book_id):
 |`book_id = int(book_id)` | We must convert the `book_id` from the url from a string to an int. |
 | `for book_data in books...`                               | Iterate through the list of book dictionaries, and find the book dictionary with the `id` equal to `book_id`. |
 | `return { "id": book.id, ... }`                            | We can create a dictionary literal for our HTTP response. As always, we must return a response. Flask will default to returning status `200 OK`.                                                                                                                                                                                                                                                                                                                          |
+
 ### !callout-warning
 
 ## Python Doesn't Know What a `book_id` Is
@@ -110,8 +111,6 @@ We should be careful to avoid thinking that Python uses the name of the paramete
 For reasons that are less important to memorize, Flask will automatically convert a dictionary into an HTTP response body. If we don't want to remember this exception, we can call `jsonify()` with the dictionary as an argument to return the result.
 
 ### !end-callout
-
-
 
 <!-- prettier-ignore-start -->
 ### !challenge
