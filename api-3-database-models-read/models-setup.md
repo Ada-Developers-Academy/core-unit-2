@@ -326,6 +326,9 @@ In model definitions, if we don't like the default name that SQLAlchemy picks we
 
 Now that we've defined the `Book` model, we need to make sure our `app` sees it. Let's look at some options for how we can manage our imports to make `Book` visible!
 
+![An image of two people dressed as Spiderman pointing at each other. The person on the left is labeled 'app.py', and the person on the right is labeled 'book.py'](../assets/api-3-database-models-read/spiderman_app_book.png)
+_Fig. app.py and book.py see each other_
+
 A Python file can "see" the files that are directly imported in it, and it has access to the imports of imports. That means for `__init__.py` to see the `Book` class, we either need:
 - `__init__.py` to import the `Book` class directly  
 - another import in `__init__.py` to include `Book` as an import
