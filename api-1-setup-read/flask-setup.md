@@ -24,9 +24,11 @@ We will:
 
 ## Manage Dependencies
 
-Whenever we work on a Python project, we need to consider how we manage our dependencies which are the third party packages used by our project.
+As we start writing APIs, we should remember that Flask projects are Python projects. Whenever we work on a Python project, we need to consider how we manage our dependencies, which are the third party packages used by our project.  
 
-`flask` is a package with many of its own dependencies, which can quickly make a mess of our system-wide Python installation!
+Just as we have been doing before, we will want to continue using virtual environments, or `venv`s, to manage our projects.
+
+Since `flask` is a package with many of its own dependencies, we will need to use a `venv` to manage our Flask project so we do not make a mess of our system-wide Python installation. 
 
 In reality, no Python project is too small to consider using a virtual environment. But working with a package that brings as many dependencies as does `flask` is reason enough for us to revisit the topic of virtual environments now.
 
@@ -61,9 +63,9 @@ $ # should stop seeing (venv)
 
 ### `requirements.txt`
 
-Python projects will conventionally record all of their project dependencies in a file named `requirements.txt`.
+Python projects conventionally record all of their project dependencies in a file named `requirements.txt`.
 
-These files will list the exact packages and their version numbers to download and install into this environment.
+These files list the exact packages and their version numbers to download and install into this environment.
 
 Here is a sample `requirements.txt` for a Flask project:
 
@@ -134,7 +136,7 @@ System configurations vary, and sometimes the requirements installation step may
 
    ### !callout-warning
 
-   ### Common Debugging: Need to `$ pip install --upgrade pip`
+   ### Common Debugging: Upgrade `pip`
 
    A common installation error may be solved by executing `$ pip install --upgrade pip`. Afterwards, attempt `$ pip install -r requirements.txt` again. 
 
@@ -142,7 +144,7 @@ System configurations vary, and sometimes the requirements installation step may
 
    ### !callout-warning
 
-   ### Common Debugging: Need to `$ pip install --upgrade setuptools`
+   ### Common Debugging: Upgrade `setuptools`
 
    A common installation error may be solved by executing `$ pip install --upgrade setuptools`. Afterwards, attempt `$ pip install -r requirements.txt` again.
 
@@ -150,7 +152,7 @@ System configurations vary, and sometimes the requirements installation step may
 
    ### !callout-warning
 
-   ## Common Debugging: Need to `$ xcode-select --install`
+   ## Common Debugging: Install Xcode Command Line Tools
 
    A common installation error may be solved by executing `$ xcode-select --install`. Afterwards, attempt `$ pip install -r requirements.txt` again.
 
@@ -181,7 +183,7 @@ Flask does not enforce one specific file and folder structure. We'll have to go 
 
 ### !end-callout
 
-This curriculum will provide a suggested project structure and location:
+This curriculum provides a suggested project structure and location:
 
 ```
 .
@@ -197,7 +199,7 @@ This curriculum will provide a suggested project structure and location:
 
 ### Routes
 
-The `app/routes` directory will be responsible for holding our routes. We should organize our routes so that all the routes corresponding to a particular model will be written in a single file. For example, all the endpoints related to the Book model would be written in a file called `book_routes.py`.
+The `app/routes` directory will be responsible for holding our routes. We should organize our routes so that all the routes corresponding to a particular model will be written in a single file. For example, all the endpoints related to the `Book` model would be written in a file called `book_routes.py`.
 
 ### Models
 
@@ -214,13 +216,11 @@ To get started, we will include the following code in `__init__.py`. This is the
 ```python
 from flask import Flask
 
-def create_app(test_config=None):
+def create_app():
     app = Flask(__name__)
 
     return app
 ```
-
-Configurations for the app can include things like, "Where's the location of our database?," "How do we load different data models, the objects that represent our data?," or "How can we set up template views, called Blueprints?"
 
 ### !callout-danger
 
@@ -263,7 +263,7 @@ To run a Flask server, we run this command:
 To run a Flask server in Debug mode so that we don't need to restart the server after each change, we run this command:
 
 ```bash
-(venv) FLASK_ENV=development flask run
+(venv) flask run --debug
 ```
 
 ### !callout-info
@@ -299,7 +299,19 @@ To stop a Flask server:
       Sometimes the server gets stuck. What do we do in that case?
    </summary>
 
-If something goes wrong when shutting down the server, or if the Terminal where the server was running is somehow closed without stopping the server, the server may not release the address and port where it was running. If that happens, a new server will not be able to run using that address and port, and will fail to start. This may be reported with an error message resembling `OSError: [Errno 48] Address already in use`.
+If something goes wrong when shutting down the server, or if the Terminal where the server was running is somehow closed without stopping the server, the server may not release the address and port where it was running. If that happens, a new server will not be able to run using that address and port, and will fail to start. This may be reported with an error message resembling: 
+
+```bash
+Address already in use
+Port 5000 is in use by another program. Either identify and stop that program, or start the server with a different port.
+On macOS, try disabling the 'AirPlay Receiver' service from System Preferences -> Sharing.
+```
+
+If we know that we have not started the Flask server then we should check that the AirPlay Receiver is disabled like the Terminal output suggests. If it is enabled, we should disable it so that our computer can use port 5000 for running the Flask server. 
+
+![Screenshot of System Preferences showing the AirPlay Receiver is disabled](../assets/building-an-api/system-preferences-airplay-receiver.png)
+
+_Fig. Screenshot of System Preferences showing the AirPlay Receiver is disabled._
 
 #### One Debugging Strategy
 
@@ -324,9 +336,11 @@ We can use the server logs to debug our server code. After we run `flask run` fr
 
 These are the logs immediately after a `GET` request to `localhost:5000/i-didnt-define-this-endpoint-in-my-server-code`, which produced a `404` response.
 
-![Screenshot of Terminal, which includes Flask sever startup messages, and output for request/response of a 404 error](../assets/building-an-api/flask-setup_server-logs-404.png)
+![Screenshot of Terminal, which includes Flask server startup messages, and output for request/response of a 404 error](../assets/building-an-api/flask-setup_server-logs-404.png)
 
-Note that all `GET` requests at this stage will produce a `404` response because we have not defined any endpoints.
+_Fig. Screenshot of Terminal which includes Flask server startup messages and the output from two web requests._
+
+Note that all `GET` requests at this stage will produce a `404` response because we have not defined any endpoints. If we want to try this out ourselves, we should start our server with `flask run` and then use our browser or Postman to make a GET request to `http://localhost:5000/i-didnt-define-this-endpoint-in-my-server-code`. After sending the request, we can look at our Terminal and see that we get a `404` response. 
 
 ## Dev Workflow
 
