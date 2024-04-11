@@ -41,6 +41,14 @@ For this feature, we should therefore make a `GET` request to the `/books` path,
 | ----------- | ---------- | ---------- |
 | `GET`       | `/books/<book_id>` | `/books/1` |
 
+### !callout-info
+
+## Placeholder Syntax in Documentation Can Vary
+
+Notice that in the endpoint example shown above, we used the syntax `<book_id>` to indicate a placeholder for the actual ID of the book that we want to retrieve. This syntax was chosen intentionally, as we'll see in just a moment when we implement the route. Another common method of seeing placeholders indicated in route documentation is with a colon, like `/books/:book_id`.
+
+### !end-callout
+
 `GET` requests do not include a request body, so no additional planning around the request body is needed.
 
 We want to send back a single JSON object (dictionary) with `id`, `title`, and `description`:
