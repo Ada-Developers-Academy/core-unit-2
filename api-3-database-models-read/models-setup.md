@@ -135,11 +135,11 @@ There are a couple steps to creating the database connection. We will:
 
 ### Set Up the Database and Migrations
 
-To set up our connection with SQLAlchemy, we need to create an instance of SQLAlchemy and give it information on how we want to create our database backed models. We do this by passing the SQLAlchemy constructor a class name that should be used when creating our database backed models.
+To set up our connection with SQLAlchemy, we need to create an instance of SQLAlchemy and give it information on how we want to create our database backed models. We do this by passing the SQLAlchemy constructor a class name to use when generating our model classes.
 
 That might sound like a lot of work, but SQLAlchemy provides a class named `DeclarativeBase` that provides all of the operations our database backed models will need. We will make our own `Base` model class that is a subclass of `DeclarativeBase`. 
 
-While we will not dive further into customizing our `Base` class in this series, creating our own `Base` class means that we could further customize the behavior of our model classes, adding operations that we want available to all models. 
+While we will not dive further into customizing our `Base` class in this series, creating our own `Base` class means that we could further tailor the behavior of our model classes, adding operations that we want available to all models. 
 
 Following the pattern of creating a file for every model, we can create a file for `Base` in our `models` folder:
 
@@ -179,10 +179,10 @@ migrate = Migrate()
 
 Then we can update our `db.py` to contain the same code.
 
-The file above does a couple things:
+The file above does a few things:
 
 1. First we import `SQLAlchemy`, `Migrate`, and our newly created `Base` class
-2. Next, we create an instance of SQLAlchemy that we will call `db` and passes it our `Base` class as the constructor argument. We will use this object when we need to interact with the database to perform operations like creating or updating records.
+2. Next, we create an instance of SQLAlchemy that we will call `db` and pass it our `Base` class as the constructor argument. We will use this object when we need to interact with the database to perform operations like creating or updating records.
 3. Last, we make an instance of Migrate. We will not directly interact with this object much, but this object will be used by the application to update our database tables when we make changes to our model class's attributes. 
 
 At this point, our current project structure likely looks similar to this:
@@ -279,7 +279,7 @@ class Book(db.Model):
 
 ## Be aware of changes to SQLAlchemy when looking at older examples
 
-SQLAlchemy has had changes over the years, so older Flask/SQLAlchemy examples may not act as you expect. `Mapped` types that are not explicitly marked `Optional` are considered non-nullable-they are required attributes when creating a new instance of a model. This differs from the previous nullability default, where columns were considered nullable unless they were marked otherwise.
+SQLAlchemy has changed over the years, so older Flask/SQLAlchemy examples may not act as you expect. `Mapped` types that are not explicitly marked `Optional` are considered non-nullable; they are required attributes when creating a new instance of a model. This differs from the previous nullability default, where columns were considered nullable unless they were marked otherwise.
 
 ### !end-callout
 
@@ -287,7 +287,7 @@ You may notice that our new `Book` class looks quite similar to the class we cre
 
 <details>
 
-<summary>Take a moment to consider what this syntax indicates: <code>class Book(db.Model)</code>:, and then click here.</summary>
+<summary>Take a moment to consider what this syntax indicates: <code>class Book(db.Model):</code>, and then click here.</summary>
 
 The class `Book` inherits from `db.Model` from `SQLAlchemy`. Because we passed our `Base` model class to the SQLAlchemy constructor, when we refer to `db.Model`, under the hood it is using the `Base` class which we created.
 
@@ -343,6 +343,8 @@ We will not be using `Book` in `book_routes.py` just yet, so we will prefer to i
 
 Feel free to follow your curiosity and try out either flow for imports. Different development teams may have differing opinions on how they want to handle imports, so you may see either pattern in the future–the most important thing is to be consistent across a project. 
 
+Our update imports in `__init__.py` should look like this:
+
 ```python
 from flask import Flask
 from .db import db, migrate
@@ -359,7 +361,7 @@ You may notice that we imported the whole `book.py` file into `__init__.py` with
 from .models import book
 ```
 
-The `book.py` file only contains our `Book` class, so we aren't bringing anything extra in by importing the entire file. If the file had other contents and we wanted to only make the `Book` class visible, we could import only the class definition with:
+The `book.py` file only contains our `Book` class, so we aren't bringing anything extra in by importing the entire file. If the file had other contents and we wanted to only make the `Book` class visible, we could import just the class definition with:
 
 ```py
 from .models.book import Book
@@ -367,7 +369,7 @@ from .models.book import Book
 
 ## Database Migrations
 
-Our model is set up! The remaining actions left are to use our Flask tools to generate the migrations that we'll be able to use to update our database.
+Our model is set up! The remaining actions left are to use our Flask tools to generate the migrations, then apply those migrations to update our database.
 
 Our database development workflow will be as follows:
 
@@ -383,6 +385,22 @@ Once we have created our database and configured the connection string, we can d
 (venv) $ flask db init
 ```
 
+Example Output:
+
+```bash
+(venv) $ flask db init
+  Creating directory '/Users/user_name/Documents/hello-books-api/migrations' ...  done
+  Creating directory '/Users/user_name/Documents/hello-books-api/migrations/versions' ...  done
+  Generating /Users/user_name/Documents/hello-books-api/migrations/script.py.mako ...  done
+  Generating /Users/user_name/Documents/hello-books-api/migrations/env.py ...  done
+  Generating /Users/user_name/Documents/curriculum_changes/hello-books-api/migrations/README ...  done
+  Generating /Users/user_name/Documents/curriculum_changes/hello-books-api/migrations/alembic.ini ...  done
+  Please edit configuration/connection/logging settings in
+  '/Users/user_name/Documents/hello-books-api/migrations/alembic.ini' before proceeding.
+```
+
+The final message in the output `"Please edit configuration..."` is just a recommendation. We will not be discussing logging data about our API as part of this series, so we do not need to take any action with the listed file. Once we see this message we are ready to keep moving forward!
+
 ### Generate Migrations After Each Model Change
 
 We can generate database migrations with the following command. This command should be run every time there's a change to a file in the `models` folder.
@@ -391,7 +409,36 @@ We can generate database migrations with the following command. This command sho
 (venv) $ flask db migrate -m "adds Book model"
 ```
 
+Example Successful Output:
+
+```bash
+(venv) $ flask db migrate -m "adds Book model"
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.autogenerate.compare] Detected added table 'book'
+  Generating /Users/user_name/Documents/hello-books-api/migrations/versions/bf0d3269e52e_adds_book_model.py ...  done
+```
+
 Notice that just like when we make `git` commits, here too we can record a message summarizing the changes we have made. When running this command ourselves, we should replace the `"adds Book model"` with a description relevant to our recent changes.
+
+When the migrate command is successful, we should see something similar to the last 2 lines:
+```bash
+INFO  [alembic.autogenerate.compare] Detected added table 'book'
+  Generating /Users/user_name/Documents/hello-books-api/migrations/versions/bf0d3269e52e_adds_book_model.py ...  done
+```
+where an `INFO` line calls out the detected change, followed by a final line describing where the new migration file is being created.
+
+If a change is not seen in our model classes, or some other issue is preventing the migration tool from seeing changes, we will often see an `INFO` message at the end of the output stating  `"No changes in schema detected"`:
+
+Example Error Output:
+
+```bash
+(venv) $ flask db migrate -m "adds Book model"
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.ddl.postgresql] Detected sequence named 'book_id_seq' as owned by integer column 'book(id)', assuming SERIAL and omitting
+INFO  [alembic.env] No changes in schema detected.
+```
 
 A neat side-effect about generating migrations is that we get to appreciate the migration files. The generated migrations are placed in a new folder now, the `migrations` folder!
 
@@ -426,6 +473,19 @@ We need to run this separate command to actually run and apply the generated mig
 ```bash
 (venv) $ flask db upgrade
 ```
+
+Example Successful Output:
+
+```bash
+(venv) $ flask db upgrade
+INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
+INFO  [alembic.runtime.migration] Will assume transactional DDL.
+INFO  [alembic.runtime.migration] Running upgrade  -> bf0d3269e52e, adds Book model
+```
+
+As with creating a migration, we want to look at the last line to see if an upgrade is successful. We know an upgrade succeeded when we get an `INFO` message with `"Running upgrade"` followed by the identifier for the current migration our database is using, then the identifier for the migration we are applying. In the output above, we are applying our very first migration to the database so we only see an identifier on the right side.
+
+If no new migrations are found and applied, we would see just the first two `INFO` lines printed, even though no action took place.
 
 This command should be run after every time we've generated new migrations and want to apply them. At this introductory level, there is no reason for us to generate migrations without immediately applying them so we should always run `flask db migrate` and `flask db upgrade` back-to-back in that order.
 
