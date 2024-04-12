@@ -113,6 +113,19 @@ We should be careful to avoid thinking that Python uses the name of the paramete
 ### !end-callout
 
 
+## An Imperfect Solution
+
+The main logic for how we are retrieving a single book works great! But a careful reading of our code turns up several issues.
+
+First, we observed that Flask will match any string that follows `/books/` to the `book_id` parameter. This means that if we request `/books/1`, `book_id` will be set to `"1"`. But if we request `/books/tacocat`, `book_id` will be set to `"tacocat"`. What will happen when we try to convert `"tacocat"` to an integer? Python will raise a `TypeError`! And Flask isn't going to be able to handle that.
+
+And secondly, our function only returns a value if it finds a book with a matching ID. If the ID doesn't match any book, or the book list itself is empty, the function will implicitly return `None`.
+
+Having one path through a function that returns a value but another path that doesn't may not be a problem for Python, but it should raise our suspicions as developers. When writing functions that return a value in one case, we should be explicit about what they return in all other cases, even if `None` is the desired result.
+
+In this situation, it's even more important that we return a value in all cases, because Flask will not accept `None` as a valid result from our route function. We will need to return some sort of response in all cases.
+
+We'll examine how to address these issues in the next lesson.
 
 <!-- prettier-ignore-start -->
 ### !challenge
