@@ -127,27 +127,80 @@ In this situation, it's even more important that we return a value in all cases,
 
 We'll examine how to address these issues in the next lesson.
 
+## Check for Understanding
+
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: tasklist
-* id: 227efe7d-4177-4a2f-aac8-de188d17f62e
-* title: Getting a Single Book Endpoint
+
+* type: multiple-choice
+* id: 36138367-8bcb-4fc4-9d6a-0f8539ce0b52
+* title: Read One Book Endpoint
+
 ##### !question
 
-Think about the "Getting a Single Book Endpoint."
-
-Check off all the topics that we've briefly touched on so far.
+What RESTful endpoint should we use to get a single book?
 
 ##### !end-question
+
 ##### !options
 
-* Planned the HTTP response, request, and logic for this endpoint
-* Considered route parameters, and how we need the book ID in the route
-* Created a new endpoint that matches on `GET` requests to `"/<book_id>"`
-* Defined this endpoint with the function signature `def book(book_id):`
-* Iterated through `books` to get an instance of `Book` matching `book_id`
-* Returned a dictionary literal as our response
+a| `GET` `/books`
+b| `GET` `/books/<book_id>`
+c| `POST` `/books`
+d| `POST` `/books/<book_id>`
 
 ##### !end-options
+
+##### !answer
+
+b|
+
+##### !end-answer
+
+##### !explanation
+
+`GET` `/books/<book_id>` is the most appropriate RESTful endpoint to use to get a single book. The `<book_id>` is a route parameter that will be used to identify the book to retrieve. `GET` `/books` is commonly used to return all books, not just one. `POST` is used to create new resources, not to read existing ones.
+
+##### !end-explanation
+
 ### !end-challenge
+
+### !challenge
+
+* type: checkbox
+* id: 0997dd14-0673-4c6b-b0d6-6298c8042ef1
+* title: Read One Book Endpoint
+
+##### !question
+
+We used `book_id` as the name of the route parameter in our `get_one_book` function. This is a good name for the parameter because:
+
+##### !end-question
+
+##### !options
+
+a| It is a descriptive name that indicates the purpose of the parameter.
+b| Flask knows that it should convert the value to an integer because of the name.
+c| Flask will reject any request that doesn't include a valid integer for the `book_id` parameter.
+
+##### !end-options
+
+##### !answer
+
+a|
+
+##### !end-answer
+
+##### !explanation
+
+The name serves only as a hint to developers about the purpose of the parameter. Flask will not automatically convert the value to an integer, nor will it reject requests that don't include a valid integer for the `book_id` parameter.
+
+<br />
+
+Regardless of the name we use, remember that the name of the route parameter must match the name of the function parameter that receives the value.
+
+##### !end-explanation
+
+### !end-challenge
+
 <!-- prettier-ignore-end -->
