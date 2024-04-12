@@ -112,13 +112,7 @@ We should be careful to avoid thinking that Python uses the name of the paramete
 
 ### !end-callout
 
-### !callout-info
 
-## Why Didn't We Call `jsonify()` on the Dictionary?
-
-For reasons that are less important to memorize, Flask will automatically convert a dictionary into an HTTP response body. If we don't want to remember this exception, we can call `jsonify()` with the dictionary as an argument to return the result.
-
-### !end-callout
 
 <!-- prettier-ignore-start -->
 ### !challenge
