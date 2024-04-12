@@ -24,7 +24,7 @@ We will:
 
 ## Flask Projects are Python Projects
 
-As we start writing APIs, we should remember that Flask projects are themselves Python projects. Like any other Python project, we need to manage the packages our project depends on—its dependencies. Like other Python projects, we handle this by creating a `venv` in which to install the packages described in the `requirements.txt` file. Let's briefly review the steps we take to perform this setup.
+As we start writing APIs, we should remember that Flask projects are themselves Python projects. Like any other Python project, we need to manage the packages our project depends on—its dependencies. Like other Python projects, we handle this by creating a `venv` in which to install the packages described in the `requirements.txt` file. Let's revist the steps we take to perform this setup.
 
 ### Virtual Environment
 
