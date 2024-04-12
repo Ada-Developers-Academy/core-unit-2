@@ -108,7 +108,7 @@ We named the route parameter `book_id` because we expect it to be an ID of a boo
 
 <br />
 
-We should be careful to avoid thinking that Python uses the name of the parameter to do any kind of validation. As usual, the name provides information to us developers, not to Python.
+We should be careful to avoid thinking that Python uses the name of the parameter to do any kind of validation. The name provides information to us developers, not to Python. Flask does provide a way to specify a [converter](https://flask.palletsprojects.com/en/3.0.x/api/#url-route-registrations) for route parameters that can help with validation, but we won't cover that in this curriculum.
 
 ### !end-callout
 
