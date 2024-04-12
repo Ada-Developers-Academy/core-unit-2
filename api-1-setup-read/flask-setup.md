@@ -216,18 +216,6 @@ def create_app():
     return app
 ```
 
-### !callout-danger
-
-## Changing Configurations is Rare
-
-Developers don't need to fuss with configurations that often. Usually, when setting up a project, we will refer to a previous working project to make sure the new one is configured appropriately.
-
-<br />
-
-We should try to become familiar with the kinds of settings we might want to configure in our app. Overall it's more important to know _where_ configuration _changes_ are made, rather than being able to write fresh configurations from scratch.
-
-### !end-callout
-
 ## Running, Stopping, and Restarting the Server
 
 Building an API means that we're building a web server. A web server needs to be _running_ in order to be accessible to clients. Running a web server makes it available to respond to HTTP requests at a particular _address_ and _port_.
@@ -301,11 +289,10 @@ Port 5000 is in use by another program. Either identify and stop that program, o
 On macOS, try disabling the 'AirPlay Receiver' service from System Preferences -> Sharing.
 ```
 
-If we know that we have not started the Flask server then we should check that the AirPlay Receiver is disabled like the Terminal output suggests. If it is enabled, we should disable it so that our computer can use port 5000 for running the Flask server. 
+If we know that we have not already started another Flask server then we should check that the AirPlay Receiver is disabled like the Terminal output suggests. If it is enabled, we should disable it by unchecking its 'On' checkbox, so that our computer can use port 5000 for running the Flask server.
 
-![Screenshot of System Preferences showing the AirPlay Receiver is disabled](../assets/building-an-api/system-preferences-airplay-receiver.png)
-
-_Fig. Screenshot of System Preferences showing the AirPlay Receiver is disabled._
+![Screenshot of System Preferences showing the AirPlay Receiver is disabled](../assets/building-an-api/system-preferences-airplay-receiver.png)   
+_Fig. Screenshot of System Preferences with the `On` checkbox for AirPlay Receiver unchecked, indicating the AirPlay Receiver is disabled._
 
 #### One Debugging Strategy
 
@@ -330,8 +317,7 @@ We can use the server logs to debug our server code. After we run `flask run` fr
 
 These are the logs immediately after a `GET` request to `localhost:5000/i-didnt-define-this-endpoint-in-my-server-code`, which produced a `404` response.
 
-![Screenshot of Terminal, which includes Flask server startup messages, and output for request/response of a 404 error](../assets/building-an-api/flask-setup_server-logs-404.png)
-
+![Screenshot of Terminal, which includes Flask server startup messages, and output for request/response of a 404 error](../assets/building-an-api/flask-setup_server-logs-404.png)  
 _Fig. Screenshot of Terminal which includes Flask server startup messages and the output from two web requests._
 
 Note that all `GET` requests at this stage will produce a `404` response because we have not defined any endpoints. If we want to try this out ourselves, we should start our server with `flask run` and then use our browser or Postman to make a GET request to `http://localhost:5000/i-didnt-define-this-endpoint-in-my-server-code`. After sending the request, we can look at our Terminal and see that we get a `404` response. 
