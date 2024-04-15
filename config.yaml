@@ -135,7 +135,7 @@ Standards:
         Path: /api-1-setup-read/m1-mac-psycopg2-fix.resource.md 
   -
     Title: 02) Building an API - Read and Errors
-    Description: "Read One Book, Error Handling"
+    Description: "Read One Book Endpoint, Error Handling"
     UID: 58e6e2cb-3060-48f8-abf2-0df2986f07ae
     SuccessCriteria:
       - success criteria
