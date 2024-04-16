@@ -1,10 +1,11 @@
 # Create
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=b0546829-5d82-43d0-be51-adb90189026d&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- FLASK UPDATE -->
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=b0546829-5d82-43d0-be51-adb90189026d&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
 ## Goals
 
-Our goal for this lesson is to implement a route that creates model records.
+Our goal for this lesson is to implement a route that creates a new data record using the `Book` model.
 
 We will add to our Hello Books API to fulfill the following feature:
 
@@ -55,22 +56,23 @@ The request body will consist of a JSON document with all the fields required to
 }
 ```
 
-Finally, the most appropriate successful response status code ids `201 Created`, indicating the resource had been successfully created. The response body could take several forms, ranging from an empty body, up to a JSON document representing the created resource (useful for communicating back the `id` that was assigned), or anything in between.
+Finally, the most appropriate successful response status code ids `201 Created`, indicating the resource had been successfully created. The response body could take several forms, ranging from an empty body, up to a JSON document representing the created resource (useful for communicating back the `id` that was assigned), or anything in between. We will choose to return a JSON document with the same format we used for our hardcoded objects, a dictionary with the keys:
+- id
+- title
+- description
 
-Let's start by returning a status message, and we'll return to the idea of returning a JSON document for some of our other endpoints.
-
-| Response Status | Response Body                                    |
+| Response Status | Example Response Body                            |
 | --------------- | ------------------------------------------------ |
-| `201 Created`   | `Book Fictional Book Title successfully created` |
+| `201 Created`   | `{ "id": 1,`</br>&nbsp;&nbsp;`  "title": "Fictional Book Title",`</br>&nbsp;&nbsp;`  "description": "A fantasy novel set in an imaginary world" }` |
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
 Our endpoint will need to:
 
 1. Read the new book data from the HTTP request
-1. Create a new `Book` model with the new book data stored inside of it
-1. Save the new `Book` into the database
-1. Send back a response
+2. Create a new `Book` model with the new book data stored inside of it
+3. Save the new `Book` into the database
+4. Send back a response
 
 ### Dependencies
 
@@ -82,16 +84,16 @@ To make this feature, we'll work with the following objects, types, and function
 
 #### Working with `request` from Flask
 
-Our code will begin by importing something named `request` from `flask`.
+Our code will begin by importing a module named `request` from `flask`.
 
 ```python
 from flask import request
 ```
 
-Flask, the framework, will provide all sorts of things to us. One of those things is the `request` object. The imported `request` object represents the current HTTP request. For now, we should focus on a few useful patterns for using `request`, but for future reference, we can get more details about the `request` object by referring to:
+Flask, the framework, provides all sorts of tools to us. One of those tools is the `request` object. The imported `request` object represents the current HTTP request. For now, we should focus on a few useful patterns for using `request`, but for future reference, we can get more details about the `request` object by referring to:
 
-- [Flask's definition of the `request` object](https://flask.palletsprojects.com/en/1.1.x/api/#flask.request)
-- [Flask's resource on the Request Context](https://flask.palletsprojects.com/en/1.1.x/reqcontext/), which outlines technical details of how `request` exists, and how to use it
+- [Flask's definition of the `request` object](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request)
+- [Flask's resource on the Request Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/), which outlines technical details of how `request` exists, and how to use it
 
 ## Working with the `Response` Class from Flask
 
@@ -99,10 +101,10 @@ Flask, the framework, will provide all sorts of things to us. One of those thing
 
 Flask also provides a helper method `make_response` that is a little bit more flexible than instantiating a `Response` ourselves, so we'll be using `make_response` instead. But we should be aware that it's still creating a `Response` instance internally.
 
-For more information about the `Response` class we can refer to the following reference documents.
+For more information about the `Response` class and creating responses, we can refer to the following reference documents:
 
-- [Flask's definition of `Response`](https://flask.palletsprojects.com/en/1.1.x/api/#response-objects)
-- [Flask's quickstart guide on creating responses](https://flask.palletsprojects.com/en/1.1.x/quickstart/#about-responses), which notably does _not_ feature the `Response` class
+- [Flask's definition of `Response`](https://flask.palletsprojects.com/en/2.3.x/api/#response-objects)
+- [Flask's quickstart guide on creating responses](https://flask.palletsprojects.com/en/2.3.x/quickstart/#about-responses), which notably does _not_ feature the `Response` class
 
 There are a variety of ways to create `Response` instances, some implicit and some explicit. The previous resource links will provide a good starting point for exploring further!
 
@@ -112,46 +114,59 @@ Let's look at some example code for our create feature.
 
 ### Creating an Endpoint
 
-Let's define the `POST /books` route by adding the following code to our `routes.py` file.
+Let's define the `POST /books` route by adding the following code to our `book_routes.py` file:
 
 ```python
-from app import db
+from flask import Blueprint, make_response, request
 from app.models.book import Book
-from flask import Blueprint, jsonify, make_response, request
+from ..db import db
 
-books_bp = Blueprint("books", __name__, url_prefix="/books")
+books_bp = Blueprint("books_bp", __name__, url_prefix="/books")
 
-@books_bp.route("", methods=["POST"])
-def handle_books():
+@books_bp.post("")
+def create_book():
     request_body = request.get_json()
-    new_book = Book(title=request_body["title"],
-                    description=request_body["description"])
+    title = request_body["title"]
+    description = request_body["description"]
 
+    new_book = Book(title=title, description=description)
     db.session.add(new_book)
     db.session.commit()
 
-    return make_response(f"Book {new_book.title} successfully created", 201)
-
+    response = {
+        "id": new_book.id,
+        "title": new_book.title,
+        "description": new_book.description,
+    }
+    return make_response(response, 201)
 ```
 
 | <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `from app import db`, `from ... import Book`          | We need to import the necessary modules for our `Book` model                                                                                                                                                                                                                                                |
-| `from flask import Blueprint, jsonify, make_response, request` | We need to import our dependencies. Python supports comma-separated importing.                                                                                                                                                                                                                              |
-| `books_bp = Blueprint("books", __name__, ...)`        | Our `Blueprint` instance. We'll use it to group routes that start with `/books`. `"books"` is the debugging name for this `Blueprint`. `__name__` provides information the blueprint uses for certain aspects of routing.                                                                                   |
+| `from ..db import db`, `from ... import Book`         | We need to import the necessary modules to create our `Book` model and access our database                                                                                                                                                                                                                                             |
+| `from flask import Blueprint, make_response, request` | We need to import our Flask dependencies. Python supports comma-separated importing.                                                                                                                                                                                                                              |
+| `books_bp = Blueprint("books", __name__, ...)`        | Our `Blueprint` instance. We'll use it to group routes that start with `/books`. `"books_bp"` is the debugging name for this `Blueprint`. `__name__` provides information the blueprint uses for certain aspects of routing.                                                                                   |
 | `url_prefix="/books"`                                 | A keyword argument. This `url_prefix` indicates that _every_ endpoint using this Blueprint should be treated like it starts with `/books`. We should use this blueprint for all of our RESTful routes that start with `/books`!                                                                             |
-| `@books_bp.route("", methods=["POST"])`               | A decorator that uses the `books_bp` Blueprint to define an endpoint and accepted HTTP method. The following function will execute whenever a matching HTTP request is received.                                                                                                                            |
-| `def handle_books():`                                 | This function will execute whenever a request that matches the decorator is received. The name of this function doesn't affect how requests are routed to this method. Common choices for a function name could include matching the route path, or using any other good, descriptive Python function name. |
+| `@books_bp.post("")`                                  | A decorator that uses the `books_bp` Blueprint to define an endpoint and accepted HTTP method. The following function will execute whenever a matching HTTP request is received.                                                                                                                            |
+| `def create_book():`                                  | This function will execute whenever a request that matches the decorator is received. The name of this function doesn't affect how requests are routed to this method. Common choices for a function name could include matching the route path, or using any other clear, descriptive Python function name. |
 | `request_body = ...`                                  | We create a local variable `request_body`, which will hold the body contents of the HTTP request in a Python data structure (likely dictionaries, lists, and strings)                                                                                                                                       |
 | `... request.get_json()`                              | We use the `request` object to get information about the HTTP request. We want to get the request's JSON body, so we use `request.get_json()`. This method "Pythonifies" the JSON HTTP request body by converting it to a Python dictionary.                                                                |
+| `title = request_body["title"]`                       | We access the `request_body` values to get the data for a new `Book` instance                                                                                                                                                                                  |
 | `new_book = Book( ... )`                              | We create an instance of `Book` using the data in `request_body`. We assign this new instance to the `new_book` variable.                                                                                                                                                                                   |
-| `title=request_body["title"], ...`                    | We use keyword arguments matching our model attributes, and access the `request_body` values to create the `Book` instance                                                                                                                                                                                  |
+| `(title=title, description=description)`              | We use keyword arguments matching our model attributes and use our variables holding data from the `request_body` to create a `Book` instance                                                                                                                                                                                  |
 | `db.session.add(new_book)`                            | `db.session` is the database's way of collecting changes that need to be made. Here, we are saying we want the database to add `new_book`.                                                                                                                                                                  |
 | `db.session.commit()`                                 | Here, we are saying we want the database to save and commit the collected changes.                                                                                                                                                                                                                          |
-| `return`                                              | For each endpoint, we must _return_ the HTTP response                                                                                                                                                                                                                                                       |
+| `return`                                              | For each endpoint, we must _return_ a response                                                                                                                                                                                                                                                       |
 | `make_response(...)`                                  | This function instantiates a `Response` object. A `Response` object is generally what we want to return from Flask endpoint functions.                                                                                                                                                                      |
-| `f"Book {new_book.title} successfully created"`       | The first parameter to `make_response()` is the HTTP response body. Until we have more specific requirements, we will send back a string.                                                                                                                                                                   |
-| `201`                                                 | We can define the status code of the `Response` by passing an integer as the second argument to `make_response()`. When a second argument isn't specified `200` is always the default value.     
+| `response, 201`                                       | The first parameter to `make_response()` is the JSON response. We can define the status code of the `Response` by passing an integer as the second argument to `make_response()`. When a second argument isn't specified `200` is always the default value.     
+
+### !callout-info
+
+## Missing error handling in the create route
+
+Folks may have noticed that our new function can crash if any required keys are missing! If you'd like the practice, feel free to add logic to handle the exceptions that could be raised for now. We will address error handling for creating models later in the Building an API series.
+
+### !end-callout
 
 ### Blueprints
 
@@ -171,7 +186,11 @@ Be sure to specify that this endpoint is `""`. When combined with the `book_bp`'
 
 <summary>Is there a way to declare "/" as valid a route path?</summary>
 
-For a little more flexibility, we _could_ choose to use `"/"` as the route path and include the keyword argument `strict_slashes=False`. This tells the route to treat a URI the same whether or not it ends in `/`. Accepting either variation can make using our API a little easier for our clients.
+For a little more flexibility, we _could_ choose to use `"/"` as the route path and include the keyword argument `strict_slashes=False` in our route decorator:
+```python
+@books_bp.post("", strict_slashes=False)
+```
+ This tells the route to treat a URI the same whether or not it ends in `/`. Accepting either variation can make using our API a little easier for clients.
 
 </details>
 
@@ -191,17 +210,27 @@ Our entire development process throughout this should use Postman heavily, rapid
 
 - Set the method to `POST`
 - Set the request URL to `localhost:5000/books`
-- Configure an HTTP response body to `raw` and `JSON`, and add in the sample request body
+- Configure an HTTP response body to `raw` and `JSON`, and add in the sample request body:
+
+```json
+{
+  "title": "Fictional Book Title",
+  "description": "A fantasy novel set in an imaginary world"
+}
+```
 
 ![Screenshot of using Postman to send a POST request to create a Book](../assets/building-an-api/create-and-read_create-postman.png)
+_Fig. Screenshot of using Postman to send a POST request to create a Book. ([Full size image](../assets/building-an-api/create-and-read_get-books-postman.png))_
 
 Lastly, don't forget to exercise patience! It takes patience to discover how to debug with so many tools, windows, and screens.
 
 ### Manually Testing with `psql`
 
-We could also check that our book was saved in the database using `psql`! To do so, we would start up `psql`, connect to our database, and run an appropriate query to get the records from the `book` table.
+Manually sending a request to our create route with Postman confirms that our route sends back a `Book` record, but does it guarantee that the Book is actually stored in our database? No, it doesn't! 
 
-Let's try it out on our own! We can refer back to the Intro to SQL lessons if we need a reminder about how to write a query like this.
+To be sure that our records are created and exist in the local database, for now we can use `psql`! To do so, we would start up `psql`, connect to our `hello-books-development` database, and run an appropriate query to get the records from the `book` table.
+
+Let's try it out on our own! We can refer back to the Intro to SQL lessons if we need a reminder about how to write a query like this. Later in this series we will look at ways to automate our testing so that we don't need to rely on manually checking each scenario when we make changes.
 
 ### Debugging
 
@@ -209,32 +238,96 @@ Recall that our tools for debugging include:
 
 - Using the response that appears in Postman
 - Using the server logs
+- Using `psql` to check the local database
+
+## Check for Understanding
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: tasklist
+* type: multiple-choice
 * id: 4de3Ri
-* title: Creating a Book Endpoint
+* title: Create
 ##### !question
 
-Think about the "Creating a Book Endpoint."
+Assume that we have a `Note` model that contains only `id` and `message` attributes. 
 
-Check off all the topics that we've briefly touched on so far.
+Which entry below describes a route that follows best practices for creating a Note resource?
 
 ##### !end-question
 ##### !options
 
-* Planned the HTTP response, request, and logic for this endpoint
-* Briefly considered `request`
-* Briefly considered `Blueprint`
-* Briefly considered `Response`
-* Created a new endpoint that catches requests going to `""` (assumed `"/books"`) with the HTTP method `POST`
-* Read the HTTP request body using `request.get_json()`
-* Created a new instance of `Book`
-* Saved the instance of `Book` in the database
-* Returned an instance of `Response` with the status code `201 Created`
-* Tested this request in Postman
+a| ```python
+@notes_bp.post("")
+def create_note():
+    request_body = request.get_json()
+    message = request_body["message"]
+
+    new_note = Note(message=message)
+    db.session.add(new_note)
+    db.session.commit()
+
+    return {
+        "id": new_note.id,
+        "message": new_note.message
+    }
+```
+b| ```python
+@notes_bp.post("")
+def create_note():
+    request_body = request.get_json()
+    message = request_body["message"]
+
+    new_note = Note(message=message)
+    db.session.add(new_note)
+    db.session.commit()
+
+    response = {
+        "id": new_note.id,
+        "message": new_note.message
+    }
+    return make_response(response, 201)
+```
+c| ```python
+@notes_bp.put("")
+def create_note():
+    request_body = request.get_json()
+    message = request_body["message"]
+
+    new_note = Note(message=message)
+    db.session.add(new_note)
+    db.session.commit()
+
+    response = {
+        "id": new_note.id,
+        "message": new_note.message
+    }
+    return make_response(response, 201)
+```
+d| ```python
+@notes_bp.post("")
+def create_note():
+    request_body = request.get_json()
+    message = request_body["message"]
+
+    new_note = Note(message=message)
+
+    response = {
+        "id": new_note.id,
+        "message": new_note.message
+    }
+    return make_response(response, 201)
+```
 
 ##### !end-options
+##### !answer
+
+b|
+
+##### !end-answer
+##### !explanation
+
+This is the only option that uses `POST` for the HTTP verb, ensures that `new_note` is added and committed to the database, and sends back `201 Created` as our response status code along with our new `Note` record.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
