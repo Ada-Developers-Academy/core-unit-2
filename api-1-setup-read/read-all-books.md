@@ -35,13 +35,15 @@ Now that our Hello Books API repository is cleaned up, let's consider how to imp
 
 ### Data
 
+![Getting all the data (https://media.makeameme.org/created/the-data-all.jpg)](../assets/building-an-api/flask-hello-books-all-the-data.png)  
+
 Soon we will create and manipulate data in a SQL database. We will then learn how to create and manipulate this data through a connection with our API built in Flask. Until then, we will hard code data in our app using data structures we have already learned about.
 
 Let's represent our data as a list of Book instances. The Book class should have the attributes `id`, `title`, and `description`.
 
 We need to make a `Book` class, and then instantiate multiple instances.
 
-Let's write this code in `app/models/book.py`. 
+Let's create the a file `app/models/book.py` with the command `touch app/models/book.py` and write our code in it. 
 
 Give it a try, then review our code below.
 
@@ -64,7 +66,7 @@ books = [
 | <div style="min-width:290px;"> Piece of Code </div>   | Notes                                                                                                                                                                                                                                                                                                       |
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 | `class Book ...`   | Book class to represent book data which we will hardcode for now |
-| `books = [...]`   | List of Book instances which is hardcoded data that acts as a "database" for now|
+| `books = [...]`   | List of hardcoded Book instances which acts as our stored data for now |
 
 
 ### Planning HTTP Requests, Responses, and Logic
@@ -79,7 +81,7 @@ Let's think about the typical HTTP verbs and endpoints used in RESTful APIs. We 
 
 The response we want to send back is a list of JSON objects (somewhat like Python dictionaries) with `id`, `title`, and `description`.
 
-To indicate a successful response is being sent from our API, we will send back the status code `200 OK`.
+To indicate a successful response from our API, we will send back the status code `200 OK`.
 
 | Response Status | Response Body                                                                                              |
 | --------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -90,7 +92,7 @@ Now that we have an idea of what our endpoint should look like, we can turn our 
 Our endpoint will need to:
 
 1. Retrieve all of the books data.
-2. Convert the list of Book instances into a list of dictionaries, where each dictionary has `id`, `title`, and `description`. Flask will convert each dictionary into a JSON object.
+2. Convert the list of Book instances into a list of dictionaries, where each dictionary has `id`, `title`, and `description` keys. Flask will convert each dictionary into a JSON object.
 3. Send back a response
 
 ### Dependencies
@@ -130,7 +132,7 @@ books_bp = Blueprint("books_bp", __name__, url_prefix="/books")
 
 Now that we have defined our `books_bp` blueprint, Flask requires us to "register the blueprint" with our `app`.
 
-Let's return to the code in `app/__init__.py`. From our previous lesson "Hello World Routes", we already have `Flask` imported. Now we need to import our `books_bp` blueprint and register it inside our `create_app` function, as shown below.
+Let's return to the code in `app/__init__.py`. Taking a look at our imports, we brought in `Flask` in a previous lesson, and now we need to import our new `books_bp` blueprint. Next, we register `books_bp` inside the `create_app` function, as shown below.
 
 ```python
 # __init__.py
@@ -181,22 +183,24 @@ def get_all_books():
 | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- 
 | `from app.models.book import books`               | An import statement that imports the list `books` from a module called `book` in the `app/models` directory. Recall that Python modules are files with the `.py` extension so the `book` module references the `book.py` file.                                                                                                                             |
 | `@books_bp.get("")`               | A decorator that uses the `books_bp` Blueprint to define an endpoint and the accepted HTTP method. The following function will execute whenever a matching HTTP request is received.                                                                                                                            |
-| `def get_all_books():`                                 | This function will execute whenever a request that matches the decorator is received. The name of this function doesn't affect how requests are routed to this method. Common choices for a function name could include matching the route path, or using any other good, descriptive Python function name. |
+| `def get_all_books():`                                 | This function will execute whenever a request that matches the decorator is received. The name of this function doesn't affect how requests are routed to this method. Common choices for a function name could include matching the route path, or using any other clear, descriptive Python function name. |
 | `books_response = []`                                       | We create an empty list called `books_response` that will eventually hold book dictionaries and be returned to the client that made the request. |
 | `for book in books:`                                | We iterate over each `book` in `books` so we can collect their data and format it into a response                                                                                                                                                          |
-| `books_response.append( ... )`                      | We append book dictionaries to the list                                                                                                                                                                                          |
+| `books_response.append( ... )`                      | We append book dictionaries to the list to build up our response                                                                                                                                                                                         |
 | `{ "id": book["id"], ... }`                            | This is the format of dictionary we want to send back. We'll insert the values based on the `book` we're iterating on.                                                                                                    |
-| `return books_response`                                        | We must return our response. By default, a response with no specified status code returns `200 OK`                                                                                                                                                       |
+| `return books_response`                                        | We must return a response from our route functions. By default, a response with no specified status code returns `200 OK`                                                                                                                                                       |
 
 ## What Kind of Data Should We Return to the Client?
 
 What kind of data should route functions return? A list? A dictionary? It depends.
 
-For the `get_all_books` route, we returned a list of book dictionaries representing book data from each of the books in our "database". There will be times when a client will send a request for data for a single book so we would only need to return a single book dictionary instead of a list of book dictionaries. 
+For the `get_all_books` route, we returned a list of book dictionaries representing book data from each of the books in our "database". In the future we'll see an example of a client sending a request for a single book's data; in that case it would be appropriate to return a single book dictionary instead of a list of book dictionaries. 
 
-It's easy to work with lists and dictionaries because Flask conveniently converts these two data types into JSON responses when they are returned from a route. Generally speaking, the APIs we'll be writing here at Ada will accept requests and returns responses with JSON as the format for the request body and response body, respectively. 
+When building an API, it's considered a best practice to be consistent about what kind of data a user can expect our endpoints to return. This makes it easier for users to know what to expect, and users can often write less code because they don't need to detect and handle multiple formats from the response.
 
-If we return other objects, Flask might not be able to convert the object into a response body with JSON as the format or it might incorrectly make assumptions about the format it should use to send a response body back to the client. Therefore, we should convert an instance of an object into a dictionary which we can return on its own or append to a list of objects that have been converted into dictionaries to return as a response.
+Generally speaking, the APIs we write through this curriculum will accept requests and return responses with JSON as the format for the request body and response body, respectively. Flask conveniently converts list and dictionary data types into JSON responses when they are returned from a route, so we will be focusing on using these data types for our responses.
+
+If we return other objects, Flask may not be able to convert the object into a JSON formatted response body, or it might make incorrect assumptions about which format to use when sending a response body back to the client. Therefore, we should convert an instance of an object into a dictionary which we can return on its own–or append to a list of objects that have been converted into dictionaries to return–as a response.
 
 ### !callout-info
 
@@ -234,6 +238,7 @@ Remember to use all debugging tools:
 
 - Postman
 - VS Code
+- Checking the Flask Server logs in Terminal
 - Peers, classmates, and rubber ducks
 
 ### !end-callout
@@ -245,7 +250,7 @@ Remember to use all debugging tools:
 ### !challenge
 * type: ordering
 * id: 7GgQrh
-* title: Reading All Books
+* title: Read All Books Endpoint
 ##### !question
 
 Arrange the options below so that they reflect what our `get_all_books` route does:
@@ -266,7 +271,7 @@ Arrange the options below so that they reflect what our `get_all_books` route do
 ### !challenge
 * type: multiple-choice
 * id: juUzv5
-* title: Sending Data Back to the Client
+* title: Read All Books Endpoint
   
 ##### !question
 What kind of data can a client expect in the response body when sending a `GET` request to `/books`
