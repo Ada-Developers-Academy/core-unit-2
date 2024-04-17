@@ -180,7 +180,7 @@ With our `Base` model in hand, we can create a new file in the `app` folder `db.
 $ touch app/db.py
 ```
 
-We can read through the contents of that file:
+Let's look over the contents for `db.py` before copying it to our local file:
 
 ```py
 from flask_sqlalchemy import SQLAlchemy
@@ -463,7 +463,21 @@ INFO  [alembic.runtime.migration] Will assume transactional DDL.
 INFO  [alembic.ddl.postgresql] Detected sequence named 'book_id_seq' as owned by integer column 'book(id)', assuming SERIAL and omitting
 INFO  [alembic.env] No changes in schema detected.
 ```
+If no change is detected, we should reflect on whether any recent model changes would require the database to be updated. For instance, if we add a helper method to a model class, only our code is affected, it doesn't change the data stored in the database. In that case, generating a migration isn't necessary, and if we try to do so, no changes will be detected. 
 
+However, if we added a new attribute to our model, that _does_ need to update the database. We need to generate a migration to tell the database to create a new column for the new attribute. If generating a migration in that case detects no changes, we'll need to do more research to determine the issue.
+	
+### !callout-info
+
+## Database Migration Issues 
+
+Migrations can be a bit finicky to keep in sync, especially when multiple people are working on a project. We need to be careful about coordinating who is creating migrations and ensuring they are shared with the team to keep everyone's development database in sync. 
+
+<br/>
+
+We won't have the opportunity to invest much time in troubleshooting migrations during this series, but a common resolution can be to clear out the database and generate a fresh set of migrations. More details on how to do this are described in the "Resolving Schema Conflicts" reading a bit later on.
+
+### !end-callout
 ### Migrations Are Just Python Code
 
 A neat side-effect about generating migrations is that we get to appreciate the migration files themselves. The generated migrations are placed in the `versions` folder of the `migrations` directory that was created with the `flask db init` command!
