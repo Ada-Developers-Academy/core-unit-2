@@ -63,7 +63,7 @@ Finally, the most appropriate successful response status code ids `201 Created`,
 
 | Response Status | Example Response Body                            |
 | --------------- | ------------------------------------------------ |
-| `201 Created`   | `{ "id": 1,`</br>&nbsp;&nbsp;`  "title": "Fictional Book Title",`</br>&nbsp;&nbsp;`  "description": "A fantasy novel set in an imaginary world" }` |
+| `201 Created`   | `{` </br>&nbsp;&nbsp;  `"id": 1,` </br>&nbsp;&nbsp;`  "title": "Fictional Book Title",` </br>&nbsp;&nbsp;`  "description": "A fantasy novel set in an imaginary world"` </br> `}` |
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
@@ -176,28 +176,6 @@ Recall that we we have already registered `book_bp` in in `app/__init__.py` insi
 
 ### !callout-info
 
-## `Blueprint`s and Routes are Sensitive to `/`
-
-Be sure to specify that this endpoint is `""`. When combined with the `book_bp`'s `url_prefix`, `"/books"`, we see this endpoint is a `POST` to `/books`. URIs are sensitive to the use of `/` and Flask will throw an error if we define this route as `"/"` but try to access it as `/books`. A URI ending in `/` is different from a URI that _doesn't_ end in `/`, so we should use `""`.
-
-<br/>
-
-<details>
-
-<summary>Is there a way to declare "/" as valid a route path?</summary>
-
-For a little more flexibility, we _could_ choose to use `"/"` as the route path and include the keyword argument `strict_slashes=False` in our route decorator:
-```python
-@books_bp.post("", strict_slashes=False)
-```
- This tells the route to treat a URI the same whether or not it ends in `/`. Accepting either variation can make using our API a little easier for clients.
-
-</details>
-
-### !end-callout
-
-### !callout-info
-
 ## Many Ways to Make a Response
 
 There are dozens of ways to make an HTTP response in Flask. Look forward to seeing and researching many of them!
@@ -219,8 +197,8 @@ Our entire development process throughout this should use Postman heavily, rapid
 }
 ```
 
-![Screenshot of using Postman to send a POST request to create a Book](../assets/building-an-api/create-and-read_create-postman.png)
-_Fig. Screenshot of using Postman to send a POST request to create a Book. ([Full size image](../assets/building-an-api/create-and-read_get-books-postman.png))_
+![Screenshot of using Postman to send a POST request to create a Book](../assets/api-3-database-models-read/create-postman-output.png)
+_Fig. Screenshot of using Postman to send a POST request to create a Book. ([Full size image](../assets/api-3-database-models-read/create-postman-output.png))_
 
 Lastly, don't forget to exercise patience! It takes patience to discover how to debug with so many tools, windows, and screens.
 
