@@ -225,15 +225,18 @@ To finish configuring the database, we will make 2 changes to `create_app`:
 
 When we need to tell Flask where to find a database, we do this by providing a _connection string_ that identifies where it is, and how to connect to it.
 
-The required format of a connection string can vary depending on the library being used to communicate with the database. The packages we are using (SQLAlchemy and psycopg2) structure their connection strings to look like a URL. Consider the example connection string shown here.
+The required format of a connection string can vary depending on the library being used to communicate with the database. The packages we are using (SQLAlchemy and psycopg2) structure their connection strings to look like a URL. Consider the example connection string shown here:
 
 ```
 postgresql+psycopg2://postgres:postgres@localhost:5432/REPLACE_THIS_LAST_PART_WITH_DB_NAME
 ```
 
-This tells Flask to connect to our database using the `psycopg2` package we installed from our `requirements.txt`. It connects using the `postgres` protocol using the `postgres` user on the local machine (`localhost`) running at port `5432`.
-
-The text `REPLACE_THIS_LAST_PART_WITH_DB_NAME` should be replaced with our database's name, `hello_books_development`.
+| <div style="min-width:250px;"> Piece of Code </div> | Notes|
+| --------------------------------------------------- | ---- |
+| `postgresql+psycopg2` | This tells Flask to connect to our database using the `psycopg2` package we installed from our `requirements.txt`. |
+| `://postgres:postgres` | We connect to the database using the `postgres` protocol and the user `postgres` |
+| `@localhost:5432` | We are connecting to the local machine (`localhost`) running at port `5432` |
+| `REPLACE_THIS_LAST_PART_WITH_DB_NAME` | This text should be replaced with the name of the database we're connecting to. For the hello-books-api project, we will replace it with our development database's name, `hello_books_development`. |
 
 Let's examine the following code, which configures the database to use SQLAlchemy appropriately for our app.
 
