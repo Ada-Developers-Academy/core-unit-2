@@ -214,7 +214,15 @@ Be sure to specify that this endpoint is `""`. When combined with the `book_bp`'
 
 <summary>Is there a way to declare "/" as a valid route path?</summary>
 <br/>
-For a little more flexibility, we _could_ choose to use `"/"` as the route path and include the keyword argument `strict_slashes=False`. This tells the route to treat a URI the same whether or not it ends in `/`. Accepting either variation can make using our API a little easier for our clients.
+
+For a little more flexibility, we _could_ choose to use `"/"` as the route path and include the keyword argument `strict_slashes=False` in our route decorator:
+
+```python
+@books_bp.get("", strict_slashes=False)
+```
+
+<br/>
+ This tells the route to treat a URI the same whether or not it ends in `/`. Accepting either variation can make using our API a little easier for clients.
 
 </details>
 
