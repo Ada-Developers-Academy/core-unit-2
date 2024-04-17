@@ -346,7 +346,7 @@ In model definitions, if we don't like the default name that SQLAlchemy picks we
 
 ### !end-callout
 
-### Making the `Book` Model Visible to `Alembic` in `__init__.py`
+### Ensuring the `Book` Model is Visible to `Alembic` 
 
 Now that we've defined the `Book` model, we need to make sure our `app` sees it. The most explicit way to ensure the `Book` model is visible is to import the module where it's defined in our project's `__init__.py` file.
 
@@ -427,7 +427,7 @@ The final message in the output `"Please edit configuration..."` is just a recom
 
 ### Generate Migrations After Each Model Change
 
-We can generate database migrations with the following command. This command should be run every time there's a change to a file in the `models` folder.
+We can generate database migrations with the following command. This command should be run any time we alter the attributes that our model classes store in the database.
 
 ```bash
 (venv) $ flask db migrate -m "adds Book model"
