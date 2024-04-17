@@ -151,7 +151,7 @@ There are a couple steps to creating the database connection. We will:
 
 To set up our connection with SQLAlchemy, we need to create an instance of `SQLAlchemy` and give it information on how we want to create our database backed models. We do this by passing the SQLAlchemy constructor a class name to use when generating our model classes.
 
-That might sound like a lot of work, but SQLAlchemy provides a class named `DeclarativeBase` which provides all of the operations our database backed models will need. We will make our own `Base` model class that is a subclass of `DeclarativeBase`. 
+That might sound like a lot of work, but SQLAlchemy provides a class named `DeclarativeBase` which provides all of the operations our database backed models will need. We will make our own `Base` model class that will be a subclass of `DeclarativeBase`. 
 
 While we will not dive further into customizing our `Base` class in this series, creating our own `Base` class means that we could further tailor the behavior of our model classes, adding operations that we want available to all models. 
 
