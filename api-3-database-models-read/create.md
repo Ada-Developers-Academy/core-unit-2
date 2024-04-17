@@ -63,7 +63,7 @@ Finally, the most appropriate successful response status code ids `201 Created`,
 
 | Response Status | Example Response Body                            |
 | --------------- | ------------------------------------------------ |
-| `201 Created`   | `{` </br>&nbsp;&nbsp;  `"id": 1,` </br>&nbsp;&nbsp;`  "title": "Fictional Book Title",` </br>&nbsp;&nbsp;`  "description": "A fantasy novel set in an imaginary world"` </br> `}` |
+| `201 Created`   | `{` </br>&nbsp;&nbsp;  `"id": 1,` </br>&nbsp;&nbsp; `"title": "Fictional Book Title",` </br>&nbsp;&nbsp; `"description": "A fantasy novel set in an imaginary world"` </br> `}` |
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
