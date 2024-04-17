@@ -61,9 +61,21 @@ Finally, the most appropriate successful response status code ids `201 Created`,
 - title
 - description
 
-| Response Status | Example Response Body                            |
-| --------------- | ------------------------------------------------ |
-| `201 Created`   | `{` </br>&nbsp;&nbsp;  `"id": 1,` </br>&nbsp;&nbsp; `"title": "Fictional Book Title",` </br>&nbsp;&nbsp; `"description": "A fantasy novel set in an imaginary world"` </br> `}` |
+<table>
+  <tr>
+    <th>Response Status</th>
+    <th>Example Response Body</th>
+  </tr>
+  <tr>
+    <td><code>201 Created</code></td>
+    <td><pre style="margin:0px;"><code>{
+    "id": 1,
+    "title": "Fictional Book Title",
+    "description": "A fantasy novel set in an imaginary world"
+}</code></pre>
+    </td>
+  </tr>
+</table>
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
