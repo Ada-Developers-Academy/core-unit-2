@@ -151,7 +151,7 @@ There are a couple steps to creating the database connection. We will:
 
 To set up our connection with SQLAlchemy, we need to create an instance of `SQLAlchemy` and give it information on how we want to create our database backed models. We do this by passing the SQLAlchemy constructor a class name to use when generating our model classes.
 
-That might sound like a lot of work, but SQLAlchemy provides a class named `DeclarativeBase` which provides all of the operations our database backed models will need. We will make our own `Base` model class that will be a subclass of `DeclarativeBase`. 
+That might sound like a lot of work, but SQLAlchemy provides a class named `DeclarativeBase`, which provides all of the operations our database backed models will need. We will make our own `Base` model class that will be a subclass of `DeclarativeBase`. 
 
 While we will not dive further into customizing our `Base` class in this series, creating our own `Base` class means that we could further tailor the behavior of our model classes, adding operations that we want available to all models. 
 
@@ -174,7 +174,7 @@ Our code here is short, with our only actions being to
 1. import the parent class `DeclarativeBase`, and
 2. create an empty subclass `Base` that we can give to our SQLAlchemy constructor.
 
-With our `Base` model in hand, we can create a new file in the `app` folder `db.py` which will manage creating our database and migration objects:
+With our `Base` model in hand, we can create a new file in the `app` folder `db.py`, which will manage creating our database and migration objects:
 
 ```bash
 $ touch app/db.py
@@ -196,7 +196,7 @@ Then we can update our `db.py` to contain the same code.
 The file above does a few things:
 
 1. First we import `SQLAlchemy`, `Migrate`, and our newly created `Base` class
-2. Next, we create an instance of SQLAlchemy that we will call `db` and pass it our `Base` class as the constructor argument. We will use the `db` object when we need to interact with the database to perform operations like creating or updating records.
+2. Next, we create an instance of SQLAlchemy, which we will call `db`, and pass it our `Base` class as the constructor argument. We will use the `db` object when we need to interact with the database to perform operations like creating or updating records.
 3. Last, we make an instance of Migrate. We will not directly interact with this object much, but this object will be used by the application to update our database tables when we make changes to our model class's attributes. 
 
 At this point, our project structure should look similar to this:
@@ -227,16 +227,19 @@ When we need to tell Flask where to find a database, we do this by providing a _
 
 The required format of a connection string can vary depending on the library being used to communicate with the database. The packages we are using (SQLAlchemy and psycopg2) structure their connection strings to look like a URL. Consider the example connection string shown here:
 
-```
+```text
 postgresql+psycopg2://postgres:postgres@localhost:5432/REPLACE_THIS_LAST_PART_WITH_DB_NAME
 ```
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes|
 | --------------------------------------------------- | ---- |
-| `postgresql+psycopg2` | This tells Flask to connect to our database using the `psycopg2` package we installed from our `requirements.txt`. |
-| `://postgres:postgres` | We connect to the database using the `postgres` protocol and the user `postgres` |
-| `@localhost:5432` | We are connecting to the local machine (`localhost`) running at port `5432` |
-| `REPLACE_THIS_LAST_PART_WITH_DB_NAME` | This text should be replaced with the name of the database we're connecting to. For the hello-books-api project, we will replace it with our development database's name, `hello_books_development`. |
+| `postgresql+psycopg2` | Contains information about the protocols to use for connecting to the database. This tells Flask to connect to our `postgresql` database using the `psycopg2` package we installed from our `requirements.txt`. |
+| `://` | Required URL syntax to separate the protocol part from the user or host part. |
+| `postgres:postgres` | Contains information about the user credentials to use to connect to a resource, here, the database. We connect to the database using the `postgres` user (the part before the `:`), using the password `postgres` (the part after the `:`). We never actually set a database password, but when connecting to a local PostgreSQL service, the supplied password value is ignored anyway and could be omitted. It is included here for completeness. |
+| `@` | Required URL syntax to separate the user part from the host part. |
+| `localhost:5432` | Contains information about the host (the machine "hosting" the database) location. We are connecting to the local machine (`localhost`) running at port `5432` |
+| `/` | Required URL syntax to separate the host part from the path part. |
+| `REPLACE_THIS_LAST_PART_WITH_DB_NAME` | Normally contains path information about the resource being accessed. This text should be replaced with the name of the database we're connecting to. For the hello-books-api project, we will replace it with our development database's name, `hello_books_development`. |
 
 Let's examine the following code, which configures the database to use SQLAlchemy appropriately for our app.
 
@@ -300,7 +303,7 @@ SQLAlchemy has changed over the years, both in syntax and in meaning. The curren
 
 <br />
 
-Recall that SQL permits us to define columns that allow NULL values. In the past, SQLAlchemy would default to allowing NULL values for all columns unless otherwise marked. In the current version, columns using `Mapped` types as above, that are not explicitly marked `Optional`, are considered non-nullable; they are required attributes when creating a new instance of a model.
+Recall that SQL permits us to define columns that allow NULL values. In the past, SQLAlchemy would default to allowing NULL values for all columns unless otherwise marked. In the current version, columns using `Mapped` types that are not explicitly marked `Optional`, as above, are considered non-nullable; they are required attributes when creating a new instance of a model.
 
 <br />
 
@@ -399,7 +402,7 @@ Example Output:
   '/Users/user_name/Documents/hello-books-api/migrations/alembic.ini' before proceeding.
 ```
 
-Although the command `flask db init` sounds like it should initialize our database, in reality, it doesn't look at the database at all! This command creates our project's migrations folder, which Alembic will use to store its generated migration files.
+Although the command `flask db init` sounds like it should initialize our database, in reality, it doesn't look at the database at all! This command creates our project's `migrations` folder, which Alembic will use to store its generated migration files.
 
 The final message in the output `"Please edit configuration..."` is just a recommendation. We will not be discussing logging data about our API as part of this series, so we do not need to take any action with the listed file. Once we see this message we are ready to keep moving forward!
 
@@ -442,7 +445,7 @@ INFO  [alembic.ddl.postgresql] Detected sequence named 'book_id_seq' as owned by
 INFO  [alembic.env] No changes in schema detected.
 ```
 
-If no change is detected, we should reflect on whether any recent model changes would require the database to be updated. For instance, if we add a helper method to a model class, only our code is affected, it doesn't change the data stored in the database. In that case, generating a migration isn't necessary, and if we try to do so, no changes will be detected. 
+If no change is detected, we should reflect on whether any recent model changes would require the database to be updated. For instance, if we add a helper method to a model class, only our code is affected. It doesn't change the data stored in the database. In that case, generating a migration isn't necessary, and if we try to do so, no changes will be detected. 
 
 However, if we added a new attribute to our model, that _does_ need to update the database. We need to generate a migration to tell the database to create a new column for the new attribute. If generating a migration in that case detects no changes, we'll need to do more research to determine the issue.
 	
@@ -572,7 +575,7 @@ Think about which commands are run directly in the database, and which are run f
 
 1. `psql -U postgres` - start the `psql` command line interface with the user postgres
 2. `CREATE DATABASE hello_books_development;` - Create a database named `hello_books_development`
-3. `\q``- Quit the `psql` command line interface
+3. `\q` - Quit the `psql` command line interface
 4. `flask db init` - Initialize the migrations folder for our project
 5. `flask db migrate -m "Migration Description"` - Create a migration file with the description message "Migration Description"
 6. `flask db upgrade` - Apply any new migration files found in the migrations folder
@@ -601,9 +604,9 @@ d| Check that we are setting `app.config['SQLALCHEMY_DATABASE_URI']` in `__init_
 ##### !end-options
 ##### !answer
 
-a| Check that the database exists locally using `psql`
-b| Check that the database connection string doesn’t have typos
-d| Check that we are setting `app.config['SQLALCHEMY_DATABASE_URI']` in `__init__.py`
+a|
+b|
+d|
 
 ##### !end-answer
 ##### !explanation
