@@ -487,7 +487,9 @@ A neat side-effect about generating migrations is that we get to appreciate the 
 └── requirements.txt
 ```
 
-At the introductory level of Flask, it's unlikely that we will touch many of the files in the `migrations` folder.
+In situations where we need more control over the migration process, we may need to review a generated migration file and modify either the `upgrade` or `downgrade` functions. Pregenerated comments in those functions even encourage us to make adjustments! 
+
+We probably won't need to make such modifications at this point, but it's a good habit to at least review the migrations before applying them in order to confirm that the generated result matches our expectations. Skimming through the migration files is also good practice for reading code and making assumptions about what it will do based on the context.
 
 ### Apply Migrations After Each Model Change
 
@@ -611,13 +613,13 @@ d|
 ##### !end-answer
 ##### !explanation
 
-a| Check that the database exists locally using `psql` - We should check if the database exists and create one if it is not present.
+* Check that the database exists locally using `psql` - We should check if the database exists and create one if it is not present.
 
-b| Check that the database connection string doesn’t have typos - If we misspell any part of the connection string, we will not be able to connect to the database.
+* Check that the database connection string doesn’t have typos - If we misspell any part of the connection string, we will not be able to connect to the database.
 
-c| Check that app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] is set to False - This setting doesn't affect our ability to reach the database
+* Check that app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] is set to False - This setting doesn't affect our ability to reach the database
 
-d| Check that we are setting app.config['SQLALCHEMY_DATABASE_URI'] in `__init__.py` - We need to give this dictionary key the value of our database connection string for Flask to know where the database is.
+* Check that we are setting app.config['SQLALCHEMY_DATABASE_URI'] in `__init__.py` - We need to give this dictionary key the value of our database connection string for Flask to know where the database is.
 
 ##### !end-explanation
 ### !end-challenge
