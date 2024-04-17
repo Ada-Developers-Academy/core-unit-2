@@ -323,13 +323,13 @@ The class `Book` inherits from `db.Model` from `SQLAlchemy`. Because we passed o
 | <div style="min-width:250px;"> Piece of Code </div> | Notes|
 | --------------------------------------------------- | ---- |
 | `from sqlalchemy.orm import Mapped, mapped_column` | This file needs access to SQLAlchemy's tools for defining table columns in a model |
-| `from ..db import db` | This file needs access to the SQLAlchemy `db` |
+| `from ..db import db` | This file needs access to the SQLAlchemy `db` object so we import it from the enclosing `app` folder. We use `..` before `db` to signify that we're moving up one folder level to look for this file. |
 | `class Book(...)` | We define a new class, and name it after our model (usually singular). By default, SQLAlchemy will use the lowercase version of this class name as the name of the table it will create. |
 | `db.Model` | Our model inherits from `db.Model`. This type is provided by the Flask SQLAlchemy extension, which we used to create our `db` instance. Through inheritance, it leads back to our `Base` model class, and the SQLAlchemy `DeclarativeBase` class. In some situations, we may need to consult the the SQLAlchemy documentation for more details about `DeclarativeBase`. |
-| `id: Mapped[int] = mapped_column(...)` | Instances of `Book` will have an attribute `id`, which will map to a database column of type int. Notice that this attribute goes outside of any instance method and doesn't reference `self`. This is part of the pattern that models deriving from `db.Model` will follow, even though it's a little different from a typical Python class. |
+| `id: Mapped[int] = mapped_column(...)` | Instances of `Book` will have an attribute `id`, which maps to a database column of type int. Notice that this attribute goes outside of any instance method and doesn't reference `self`. This is part of the pattern that models deriving from `db.Model` follows, even though it's a little different from a typical Python class. |
 | `primary_key=True, autoincrement=True` | Keyword arguments that allow SQLAlchemy to understand how to fill in the values for new `Book` instances. Notice how they resemble SQL constraints that can be applied to a column. |
-| `title: Mapped[str]` | Creates a required `title` attribute, which will map to a string column, `title` |
-| `description: Mapped[str]` | Creates a required `description` attribute, which will map to a string column, `description` |
+| `title: Mapped[str]` | Creates a required `title` attribute, which maps to a string column, `title` |
+| `description: Mapped[str]` | Creates a required `description` attribute, which maps to a string column, `description` |
 
 Congratulations! We've defined our first Flask model!
 
@@ -341,34 +341,12 @@ There are plenty of more options for configuring our model. We can define more c
 
 ### !end-callout
 
-### !callout-secondary
-
-## Specifying the Table Name
-
-In model definitions, if we don't like the default name that SQLAlchemy picks we can specify a different name for the table, using the `__tablename__` property. There is more to research here!
-
-### !end-callout
-
 ### Ensuring the `Book` Model is Visible to `Alembic` 
 
-Now that we've defined the `Book` model, we need to make sure our `app` sees it. The most explicit way to ensure the `Book` model is visible is to import the module where it's defined in our project's `__init__.py` file.
+Now that we've defined the `Book` model, we need to make sure our `app` sees it. The most explicit way to ensure the `Book` model is visible is to import the module in our project's `__init__.py` file.
 
 ![An image of two people dressed as Spiderman pointing at each other. The person on the left is labeled 'Alembic', and the person on the right is labeled 'book.py'](../assets/api-3-database-models-read/spiderman_alembic_book.png)
 _Fig. Alembic and book.py see each other_
-
-A Python file can "see" the files that are directly imported in it, and it has access to the imports of imports. That means for `__init__.py` to see the `Book` class, we either need:
-- `__init__.py` to import the `Book` class directly  
-- another import in `__init__.py` to include `Book` as an import
-
-We know that `__init__.py` imports `book_routes.py` so that `create_app` can register the books blueprint. Thinking about the changes we've made in this lesson, `book_routes.py` used to import a variable from `book.py`, but at this point in time the import is commented out. 
-
-This means that we have two choices for making `Book` visible in `__init__.py`:
-- uncomment and update the import in `book_routes.py` to import the `Book` class 
-- explicitly import `Book` at the top of `__init__.py` 
-
-We will not be using `Book` in `book_routes.py` just yet, so we will prefer to import the `book.py` file at the top of `__init__.py`. 
-
-Feel free to follow your curiosity and try out either flow for imports. Different development teams may have differing opinions on how they want to handle imports, so you may see either pattern in the future–the most important thing is to be consistent across a project. 
 
 Our updated imports in `__init__.py` should look like this:
 
@@ -382,17 +360,12 @@ def create_app():
     ...
 ```
 
-You may notice that we imported the whole `book.py` file into `__init__.py` with 
+After updating our code locally, we may notice that VSCode displays the module name of the imported model with different shading, the same way it shows an unused variable. This is because the imported name isn't being used here in our app initialization. 
 
-```py
-from .models import book
-```
+While we do need to ensure that our models get imported somewhere so that Alembic can be aware of them, once we have code written elsewhere that imports the models, even indirectly, we can leave off the explicit imports here. 
+Different development teams may have differing opinions on how they want to handle imports, so you may see other patterns in the future–what's most important is to be consistent across a project. 
 
-The `book.py` file only contains our `Book` class, so we aren't bringing anything extra in by importing the entire file. If the file had other contents and we wanted to only make the `Book` class visible, we could import just the class definition with:
-
-```py
-from .models.book import Book
-```
+Going forward, we'll continue to use the explicit imports for clarity, but feel free to experiment with leaving them off. 
 
 ## Database Migrations
 
@@ -426,6 +399,8 @@ Example Output:
   '/Users/user_name/Documents/hello-books-api/migrations/alembic.ini' before proceeding.
 ```
 
+Although the command `flask db init` sounds like it should initialize our database, in reality, it doesn't look at the database at all! This command creates our project's migrations folder, which Alembic will use to store its generated migration files.
+
 The final message in the output `"Please edit configuration..."` is just a recommendation. We will not be discussing logging data about our API as part of this series, so we do not need to take any action with the listed file. Once we see this message we are ready to keep moving forward!
 
 ### Generate Migrations After Each Model Change
@@ -453,7 +428,7 @@ When the migrate command is successful, we should see something similar to the l
 INFO  [alembic.autogenerate.compare] Detected added table 'book'
   Generating /Users/user_name/Documents/hello-books-api/migrations/versions/bf0d3269e52e_adds_book_model.py ...  done
 ```
-where an `INFO` line calls out the detected change, followed by a final line describing where the new migration file is being created.
+where an `INFO` line calls out the detected change, followed by a final line describing where the new migration file was created.
 
 If we haven't made any changes to our models that require the database to be modified, or if some other issue is preventing the migration tool from seeing changes, we will often see an `INFO` message at the end of the output stating  `"No changes in schema detected"`:
 
@@ -466,6 +441,7 @@ INFO  [alembic.runtime.migration] Will assume transactional DDL.
 INFO  [alembic.ddl.postgresql] Detected sequence named 'book_id_seq' as owned by integer column 'book(id)', assuming SERIAL and omitting
 INFO  [alembic.env] No changes in schema detected.
 ```
+
 If no change is detected, we should reflect on whether any recent model changes would require the database to be updated. For instance, if we add a helper method to a model class, only our code is affected, it doesn't change the data stored in the database. In that case, generating a migration isn't necessary, and if we try to do so, no changes will be detected. 
 
 However, if we added a new attribute to our model, that _does_ need to update the database. We need to generate a migration to tell the database to create a new column for the new attribute. If generating a migration in that case detects no changes, we'll need to do more research to determine the issue.
@@ -481,10 +457,10 @@ Migrations can be a bit finicky to keep in sync, especially when multiple people
 We won't have the opportunity to invest much time in troubleshooting migrations during this series, but a common resolution can be to clear out the database and generate a fresh set of migrations. More details on how to do this are described in the "Resolving Schema Conflicts" reading a bit later on.
 
 ### !end-callout
+
 ### Migrations Are Just Python Code
 
 A neat side-effect about generating migrations is that we get to appreciate the migration files themselves. The generated migrations are placed in the `versions` folder of the `migrations` directory that was created with the `flask db init` command!
-
 
 ```
 .
@@ -512,7 +488,7 @@ At the introductory level of Flask, it's unlikely that we will touch many of the
 
 ### Apply Migrations After Each Model Change
 
-We need to run this separate command to actually run and apply the generated migrations:
+We need to run this separate command to actually apply the generated migrations to our database:
 
 ```bash
 (venv) $ flask db upgrade
@@ -581,11 +557,27 @@ Arrange the commands below in the correct order to set up a database, create a m
 
 1. `psql -U postgres`
 2. `CREATE DATABASE hello_books_development;`
-3. `flask db init`
-4. `flask db migrate -m "Migration Description"`
-5. `flask db upgrade`
+3. `\q`
+4. `flask db init`
+5. `flask db migrate -m "Migration Description"`
+6. `flask db upgrade`
 
 ##### !end-answer
+##### !hint
+
+Think about which commands are run directly in the database, and which are run from the shell.
+
+##### !end-hint
+##### !explanation
+
+1. `psql -U postgres` - start the `psql` command line interface with the user postgres
+2. `CREATE DATABASE hello_books_development;` - Create a database named `hello_books_development`
+3. `\q``- Quit the `psql` command line interface
+4. `flask db init` - Initialize the migrations folder for our project
+5. `flask db migrate -m "Migration Description"` - Create a migration file with the description message "Migration Description"
+6. `flask db upgrade` - Apply any new migration files found in the migrations folder
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
@@ -596,32 +588,33 @@ Arrange the commands below in the correct order to set up a database, create a m
 * title: Models Setup
 ##### !question
 
-Select all of the options below which could help us troubleshoot if we have an issue connecting to our database
+Select all of the options below which could help us troubleshoot if we have an issue connecting to our database.
 
 ##### !end-question
 ##### !options
 
-* Run the app and try to make a request to a route
-* Check that the database exists locally using `psql`
-* Check that the database connection string doesn’t have typos
-* Check that `app.config['SQLALCHEMY_TRACK_MODIFICATIONS']` is set to False
-* Check that we are setting `app.config['SQLALCHEMY_DATABASE_URI']` in `__init__.py`
+a| Check that the database exists locally using `psql`
+b| Check that the database connection string doesn’t have typos
+c| Check that `app.config['SQLALCHEMY_TRACK_MODIFICATIONS']` is set to False
+d| Check that we are setting `app.config['SQLALCHEMY_DATABASE_URI']` in `__init__.py`
 
 ##### !end-options
 ##### !answer
 
-* Check that the database exists locally using `psql`
-* Check that the database connection string doesn’t have typos
-* Check that we are setting `app.config['SQLALCHEMY_DATABASE_URI']` in `__init__.py`
+a| Check that the database exists locally using `psql`
+b| Check that the database connection string doesn’t have typos
+d| Check that we are setting `app.config['SQLALCHEMY_DATABASE_URI']` in `__init__.py`
 
 ##### !end-answer
 ##### !explanation
 
-* Run the app and try to make a request to a route - If the database connection can't be found, often the app will not compile so we cannot use this option.
-* Check that the database exists locally using `psql` - We should check if the database exists and create one if it is not present.
-* Check that the database connection string doesn’t have typos - If we misspell any part of the connection string, we will not be able to connect to the database.
-* Check that app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] is set to False - This setting doesn't affect our ability to reach the database
-* Check that we are setting app.config['SQLALCHEMY_DATABASE_URI'] in `__init__.py` - We need to give this dictionary key the value of our database connection string for Flask to know where the database is.
+a| Check that the database exists locally using `psql` - We should check if the database exists and create one if it is not present.
+
+b| Check that the database connection string doesn’t have typos - If we misspell any part of the connection string, we will not be able to connect to the database.
+
+c| Check that app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] is set to False - This setting doesn't affect our ability to reach the database
+
+d| Check that we are setting app.config['SQLALCHEMY_DATABASE_URI'] in `__init__.py` - We need to give this dictionary key the value of our database connection string for Flask to know where the database is.
 
 ##### !end-explanation
 ### !end-challenge
