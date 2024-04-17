@@ -20,7 +20,7 @@ This lesson uses the [Hello Books API](https://github.com/AdaGold/hello-books-ap
 
 - The `GET` `/books` route should be defined
 - The `GET` `/books/<book_id>` route should be defined
-- Invalid `book`and non-existing `books` should be handled with a helper function `validate_book`
+- Invalid `book` and non-existing `books` should be handled with a helper function `validate_book`
 
 </details>
 <br>
@@ -32,6 +32,8 @@ In a previous lesson we used hardcoded data stored in the variable `books` to le
 In this lesson, we will learn how to connect our Flask app to a database. This will allow us to not only write routes to _read_ our data, but also _create_, _update_, and _delete_ it!
 
 Before we go any further, let's comment or remove our hardcoded `books` data and our two routes from the `app`.
+
+<br/>
 
 <details>
     <summary>Expand to see the code to remove or comment.</summary>
@@ -55,6 +57,8 @@ Before we go any further, let's comment or remove our hardcoded `books` data and
 </details>
 
 We should also comment or remove our code for the `GET /books` and `GET /books/<book_id>` routes. We will refactor these to use our database in the forthcoming **Read All Books** and **Read One Book** lesson.
+
+<br/>
 
 <details>
     <summary>Expand to see the code to remove or comment.</summary>
@@ -126,6 +130,16 @@ CREATE DATABASE hello_books_development;
 ```
 
 We should get a `CREATE DATABASE` confirmation message from Postgres to indicate the database has been created. We can run `\l` to list the databases, which should also show us our new database. Then we can quit the Postgres terminal with `\q`.
+
+### !callout-info
+
+## Check the `psql` prompt for errors
+
+If a `psql` command isn't responding like we expect, we should check our `psql` prompt to make sure our commands are being interpreted correctly. As a reminder:
+- an `=` between the database name and the `#` in the prompt indicates `psql` is waiting for the start of a new command, but if we see `-`, that means it's continuing from the previous line (likely because we forgot a `;`).
+- SQL query commands will not be run unless they end in a `;`, but admin commands (such as `\l` and `\q`) don't require a terminal `;`.
+
+### !end-callout
 
 ## Connecting the Database and Flask
 
@@ -285,6 +299,8 @@ SQLAlchemy has changed over the years, so older Flask/SQLAlchemy examples may no
 
 You may notice that our new `Book` class looks quite similar to the class we created in the earlier lesson when we created our hardcoded data. Take a moment to consider what this syntax indicates `class Book(db.Model):`
 
+<br/>
+
 <details>
 
 <summary>Take a moment to consider what this syntax indicates: <code>class Book(db.Model):</code>, and then click here.</summary>
@@ -322,12 +338,12 @@ In model definitions, if we don't like the default name that SQLAlchemy picks we
 
 ### !end-callout
 
-### Making the `Book` Model Visible to the `app` in `__init__.py`
+### Making the `Book` Model Visible to `Alembic` in `__init__.py`
 
-Now that we've defined the `Book` model, we need to make sure our `app` sees it. Let's look at some options for how we can manage our imports to make `Book` visible!
+Now that we've defined the `Book` model, we need to make sure our versioning tool, Alembic, can see it. To do that, the `Book` class needs to be visible to the `__init__.py` file. Let's look at some options for how we can manage our imports to make `Book` visible to Alembic!
 
-![An image of two people dressed as Spiderman pointing at each other. The person on the left is labeled 'app.py', and the person on the right is labeled 'book.py'](../assets/api-3-database-models-read/spiderman_app_book.png)
-_Fig. app.py and book.py see each other_
+![An image of two people dressed as Spiderman pointing at each other. The person on the left is labeled 'Alembic', and the person on the right is labeled 'book.py'](../assets/api-3-database-models-read/spiderman_alembic_book.png)
+_Fig. Alembic and book.py see each other_
 
 A Python file can "see" the files that are directly imported in it, and it has access to the imports of imports. That means for `__init__.py` to see the `Book` class, we either need:
 - `__init__.py` to import the `Book` class directly  

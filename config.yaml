@@ -294,7 +294,7 @@ Standards:
         Path: /more-selecting-in-sql/modifying-databases-in-sql.md
   -
     Title: 03) Building an API - Database, Models, Create, and Read 
-    Description: "Introduction to Models and Migrations, Models Setup, Create, Read"
+    Description: "Introduction to Models and Migrations, Models Setup, Create, Read All Books, Resolving Schema Conflicts"
     UID: 2804d58bb38264215b9414a111a759d7
     SuccessCriteria:
       - success criteria
