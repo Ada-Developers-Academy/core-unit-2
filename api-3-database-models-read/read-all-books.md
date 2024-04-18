@@ -1,6 +1,7 @@
 # Read All Books
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=13c1312c-7230-4631-9687-adba0000a65e&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- FLASK UPDATE -->
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=13c1312c-7230-4631-9687-adba0000a65e&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
 ## Goals
 
@@ -8,11 +9,11 @@ Our goal for this lesson are to:
 - Practice defining routes that read model records
 - Access a database record from the back-end layer
 
-We will build our Hello Books API to fulfill these features:
+We will update our Hello Books API to fulfill these features:
 
 1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
 
-We will refactor the endpoint we designed in our previous lesson [01) Building and API - Read All Books Endpoint](../api-1-setup-read/read-all-books.md) to make use of the data in our postgres database.
+We will refactor the endpoint we designed in our previous lesson [01) Building an API - Read All Books Endpoint](../api-1-setup-read/read-all-books.md) to make use of the data in our postgres database.
 
 ## Branches
 
@@ -22,11 +23,9 @@ We will refactor the endpoint we designed in our previous lesson [01) Building a
 
 ## Planning HTTP Requests, Responses, and Logic Review
 
-Let's review the planning work we did in the lesson **Building and API - Part 1: Reading All Books and Endpoint**.
+Let's review the planning work we did for creating the "Read All Books" endpoint in Pat 1 of this series. We want to use the appropriate HTTP verb and endpoint for requests that retrieve all records of a particular resource. 
 
-Let's think about the typical HTTP verb and endpoint used for requests that retrieve all records of a particular resource. 
-
-Recall that for requests that read records, it is RESTful to use a `GET` request to the `/books` path. 
+Recall that for requests that read records, a RESTful API should use a `GET` request to the `/books` path. 
 
 | HTTP Method | Endpoint |
 | ----------- | -------- |
@@ -34,36 +33,81 @@ Recall that for requests that read records, it is RESTful to use a `GET` request
 
 `GET` requests do not include a request body, so no additional planning around the request body is needed.
 
-The response we want to send back is a list of JSON objects (dictionaries) with `id`, `title`, and `description`.
+The response we want to send back is a list of JSON objects (dictionaries) with the keys:
+* `id` 
+* `title`
+* `description`.
 
 The most appropriate successful response status code is `200 OK`.
 
-| Response Status | Response Body                                                                                              |
-| --------------- | ---------------------------------------------------------------------------------------------------------- |
-| `200 OK`        | `[{"id": 1, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}, {"id": 2, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}, {"id": 3, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}]` |
+<table>
+  <tr>
+    <th>Response Status</th>
+    <th>Example Response Body</th>
+  </tr>
+  <tr>
+    <td><code>200 OK</code></td>
+    <td><pre style="margin:0px;"><code>[
+    {
+        "id": 1, 
+        "title": "Fictional Book", 
+        "description": "A fantasy novel set in an imaginary world."
+    }, {
+        "id": 2, 
+        "title": "Wheel of Time", 
+        "description": "A fantasy novel set in an imaginary world."
+    }, {
+        "id": 3, 
+        "title": "Fictional Book Title", 
+        "description": "A fantasy novel set in an imaginary world."
+    }
+]</code></pre>
+    </td>
+  </tr>
+</table>
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
 Our endpoint will need to:
 
 1. Retrieve all of the books data.
-1. Format the list of Book instances into the appropriate JSON data structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
-1. Send back a response
+2. Format the list of Book instances into the appropriate JSON data structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
+3. Send back a response containing our JSON data and HTTP status code
 
-Recall that `jsonify` is a Flask utility function that turns its argument into JSON. We'll use `jsonify` as a way to turn a list of book dictionaries into a `Response` object.
+## Working with `select` from the `SQLAlchemy` object
 
-For additional details about `jsonify`, we can refer to:
+When we want to retrieve records from a database using the `psql` interface, we connect to a specific database and issue a `SELECT` statement. If we wanted to fetch all `Book` entries from our `hello-books-development` database, we might write a SQL statement like:
 
-- [Flask's definition of `jsonify`](https://flask.palletsprojects.com/en/1.1.x/api/#flask.json.jsonify)
+```sql
+SELECT * FROM books;
+```
 
-## Working with `query` from SQLAlchemy's `Model`
+SQLAlchemy provides us a similar pattern. The instance of `SQLAlchemy` that we created in `db.py` and stored in the `db` variable, acts as our connection to the `hello-books-development` database. Our `db` object has a method `select` that we can use to select records from a database: 
 
-Each Model class (a class that inherits from `db.Model`) has a `query` attribute. The object returned by the `query` attribute has the functions we will use to retrieve model data from the database. This is the object that will do the hard work of querying the database!
+```python
+query = db.select(Book)
+```
 
-There are a lot of ways to use the `query` object. For future reference, we can refer to:
+### !callout-info
 
-- [SQLAlchemy's quickstart guide to querying records](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records)
-- [SQLAlchemy's definition of `Model`](https://flask-sqlalchemy.palletsprojects.com/en/2.x/api/#flask_sqlalchemy.Model) (which includes `query`)
+## Foreshadowing: Our queries can get more complex
+
+Just like with SQL's `WHERE` clauses, we are able to add on to a `select` statement to build more complex queries. For now we are using the statement above to select everything in the `books` table, but later in the Building an API series we will see more complex queries!
+
+### !end-callout
+
+Once we have built up a query that selects the desired records, we need to tell SQLAlchemy to execute the statement. SQLALchemy can either return:
+* `scalars`, which are database records converted into our model objects
+* [`Row` objects](https://docs.sqlalchemy.org/en/20/core/connections.html#sqlalchemy.engine.Row), which are a Tuple-like representation of database records 
+
+We want the conveniences of the model class we defined and will continue to build on, so we want SQLAlchemy to immediately give us a `scalar` result. To do this, we use the `db.session` object and call its `scalars` method, passing our `query` as a parameter:
+
+```python
+books = db.session.scalars(query)
+```
+
+There are a lot of ways to issue `SELECT` statements with SQLAlchemy. For future reference, we can refer to:
+* [SQLAlchemy's guide to `SELECT` statements](https://docs.sqlalchemy.org/en/20/orm/queryguide/select.html#writing-select-statements-for-orm-mapped-classes)
 
 ## Getting All Books Endpoint: Code
 
