@@ -82,17 +82,19 @@ When we want to retrieve records from a database using the `psql` interface, we 
 SELECT * FROM books;
 ```
 
-SQLAlchemy provides us a similar pattern. The instance of `SQLAlchemy` that we created in `db.py` and stored in the `db` variable, acts as our connection to the `hello-books-development` database. Our `db` object has a method `select` that we can use to select records from a database: 
+SQLAlchemy provides us a similar pattern. The instance of `SQLAlchemy` that we created in `db.py` and stored in the `db` variable, acts as our connection to the `hello-books-development` database. Our `db` object has a method `select` that we can use to build a query to select records from a database: 
 
 ```python
 query = db.select(Book)
 ```
 
+This method returns a `Select` object, not the models themselves. We need one more piece of code to retrieve the models that our query is selecting.
+
 ### !callout-info
 
 ## Foreshadowing: Our queries can get more complex
 
-Just like with SQL's `WHERE` clauses, we are able to add on to a `select` statement to build more complex queries. For now we are using the statement above to select everything in the `books` table, but later in the Building an API series we will see more complex queries!
+Just like with SQL's `WHERE` clauses, we are able to add on to a `select` statement to build more complex queries. For now we are using the statement above to select everything in the `books` table, but later in the Building an API series we will see more complex use cases!
 
 ### !end-callout
 
@@ -106,66 +108,75 @@ We want the conveniences of the model class we defined and will continue to buil
 books = db.session.scalars(query)
 ```
 
-There are a lot of ways to issue `SELECT` statements with SQLAlchemy. For future reference, we can refer to:
-* [SQLAlchemy's guide to `SELECT` statements](https://docs.sqlalchemy.org/en/20/orm/queryguide/select.html#writing-select-statements-for-orm-mapped-classes)
+There are a lot of ways to issue `SELECT` statements with SQLAlchemy. For more information, we can check out [SQLAlchemy's guide to `SELECT` statements](https://docs.sqlalchemy.org/en/20/orm/queryguide/select.html#writing-select-statements-for-orm-mapped-classes)
 
 ## Getting All Books Endpoint: Code
 
-Let's update our route function in `routes.py` to include support for retrieving our models.
+Let's update our `GET` route function in `book_routes.py` to include support for retrieving our database models.
 
-To access all the books in our database we use the syntax `Book.query.all()`.
+To access all the books in our database we use the syntax in the previous section: `db.select(Book)` and `db.session.scalars(query)`.
 
-Consider how you could refactor the `GET` `/books` route to make use of this *query*.
+Consider how you could refactor the `GET` `/books` route to make use of these statements.
+
+<br/>
 
 <details>
-    <summary>Give it a try, then click here to review our code.</summary>
+    <summary>Give it a try, then click here to see the changed code in `book_routes.py`.</summary>
 
 ```python
-from app import db
+from flask import Blueprint, make_response, request
 from app.models.book import Book
-from flask import Blueprint, jsonify, make_response, request
+from ..db import db
 
-books_bp = Blueprint("books", __name__, url_prefix="/books")
+books_bp = Blueprint("books_bp", __name__, url_prefix="/books")
 
-@books_bp.route("", methods=["GET", "POST"])
-def handle_books():
-    if request.method == "GET":
-        books = Book.query.all()
-        books_response = []
-        for book in books:
-            books_response.append({
+...
+
+@books_bp.get("")
+def get_all_books():
+    query = db.select(Book).order_by(Book.id)
+    books = db.session.scalars(query)
+    # We could also write the line above as:
+    # books = db.session.execute(query).scalars()
+
+    books_response = []
+    for book in books:
+        books_response.append(
+            {
                 "id": book.id,
                 "title": book.title,
                 "description": book.description
-            })
-        return jsonify(books_response)
-    elif request.method == "POST":
-        # ... Indent all of the Create Book functionality into this elif
-        # request_body = request.get_json()
+            }
+        )
+    return books_response
 ```
 
 </details>
 
-| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                                    |
-| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@books_bp.route("", methods=["GET", "POST"])`      | Add `"GET"` into this list of accepted HTTP methods                                                                                                                                                                                                      |
-| `if request.method == "GET":`                       | Separate this functionality from the Create feature by checking the `request`'s HTTP method                                                                                                                                                              |
-| `... = Book.query.all()`                            | This SQLAlchemy syntax tells `Book` to `query` for `all()` books. This method returns a _list_ of instances of `Book`.                                                                                                                                   |
-| `books = ...`                                       | We store the list of `Book` instances in the variable `books`                                                                                                                                                                                            |
-| `for book in books:`                                | We iterate over all books in `books` so we can collect their data and format it into a response                                                                                                                                                          |
-| `books_response.append( ... )`                      | We will use the `books_response` list to hold book dictionaries                                                                                                                                                                                          |
-| `{ "id": book.id, ... }`                            | This is the format of dictionary we want to send back. We'll insert the values based on the `book` we're iterating on                                                                                                                                    |
-| `jsonify(books_response)`                           | `books_response` contains a list of book dictionaries. To turn it into a `Response` object, we pass it into `jsonify()`. This will be our common practice when returning a list of something because the `make_response` function does not handle lists. |
-| `return ...`                                        | We must return our response. By default, a response with no specified status code returns `200 OK`                                                                                                                                                       |
+| <div style="min-width:250px;"> Piece of Code </div> | Notes |
+| --------------------------------------------------- | ----- |
+| `@books_bp.get("")`                                 | Unchanged from our previous hardcoded route. This decorator indicates that the function below it is a `GET` route that is registered with the `Blueprint` object named `books_bp`. |
+| `query = ...`                                       | We store the `Select` object which represents our query for all `Book` instances in the variable `query` |
+| `... = db.select(Book) ...`                         | This syntax tells the `SQLAlchemy` object `db` to select all entries for the model `Book`. This method returns a `Select` object that represents the query we are building. |
+| `....order_by(Book.id)`                             | This is an example of building up a query by adding onto a `Select` object. The code tells SQLAlchemy to order the results of our initial `Select` statement created by `db.select(Book)` based on the `Book`'s `id` attribute. The `order_by` function will return a new `Select` object that is stored in the variable `query` |
+| `books = ...`                                       | We store the list of `Book` instances in the variable `books` |
+| `... = db.session.scalars(query)`                   | This syntax tells the `db.session` object to execute the query we have built up in the `query` variable and return the result as `scalars` (our `Book` model objects). This method returns a list of instances of `Book`. |
+| `for book in books:`                                | We iterate over all books in `books` so we can collect their data and format it into a response |
+| `books_response.append( ... )`                      | We will use the `books_response` list to hold book dictionaries |
+| `{ "id": book.id, ... }`                            | This is the format of dictionary we want to send back. We'll insert the values based on the `book` we're iterating on |
+| `return ...`                                        | We must return our response. By default, a response with no specified status code returns `200 OK` |
 
 ### Manually Testing with Postman
 
 Let's test this request:
 
-- Set the method to `GET`
-- Keep the request URL at `localhost:5000/books`
+1. Check the database in `psql` to ensure that we have records in the `books` table to retrieve
+2. In Postman:
+   1. Set the request method to `GET`
+   2. Keep the request URL at `localhost:5000/books`
 
-![Screenshot of using Postman to send a POST request to create a Book](../assets/building-an-api/create-and-read_get-books-postman.png)
+![Screenshot of using Postman to send a GET request to fetch all Book records](../assets/api-3-database-models-read/read-all-books_get-books-postman.png)
+_Fig. Screenshot of using Postman to send a `GET` request to fetch all `Book` records. ([Full size image](../assets/api-3-database-models-read/read-all-books_get-books-postman.png))_
 
 ### !callout-info
 
@@ -175,59 +186,13 @@ Remember to use all debugging tools:
 
 - Postman
 - Server logs
+- `psql` interface
 - VS Code
 - Peers, classmates, and rubber ducks
 
 ### !end-callout
 
-## Refactor using Seperate Route Functions
-
-Finally, let's refactor to create separate route functions for the **create** and **read** features. While Flask allows us to put the functionality for multiple features into a single function, it can enhance readibility and changeability to separate them out into seperate functions. 
-
-<details>
-    <summary>Consider how to refactor into seperate route function and then expand the review the code.</summary>
-
-```python
-# app/routes.py
-
-from app import db
-from app.models.book import Book
-from flask import Blueprint, jsonify, make_response, request
-
-books_bp = Blueprint("books_bp", __name__, url_prefix="/books")
-
-@books_bp.route("", methods=["POST"])
-def create_book():
-    request_body = request.get_json()
-    new_book = Book(title=request_body["title"],
-                    description=request_body["description"])
-
-    db.session.add(new_book)
-    db.session.commit()
-
-    return make_response(f"Book {new_book.title} successfully created", 201)
-
-@books_bp.route("", methods=["GET"])
-def read_all_books():
-    books_response = []
-    books = Book.query.all()
-    for book in books:
-        books_response.append(
-            {
-                "id": book.id,
-                "title": book.title,
-                "description": book.description
-            }
-        )
-    return jsonify(books_response)
-```
-</details>
-
-We should verify that our `GET` `/books` and `CREATE` `/books` route still work the same as before the refactor using Postman and/or the browser.
-
-Soon, we will create unit tests that we can use for this sort of verification. 
-
-
+## Check for Understanding
 
 <!-- prettier-ignore-start -->
 ### !challenge
