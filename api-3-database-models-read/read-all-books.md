@@ -124,14 +124,6 @@ Consider how you could refactor the `GET` `/books` route to make use of these st
     <summary>Give it a try, then click here to see the changed code in `book_routes.py`.</summary>
 
 ```python
-from flask import Blueprint, make_response, request
-from app.models.book import Book
-from ..db import db
-
-books_bp = Blueprint("books_bp", __name__, url_prefix="/books")
-
-...
-
 @books_bp.get("")
 def get_all_books():
     query = db.select(Book).order_by(Book.id)
@@ -196,32 +188,130 @@ Remember to use all debugging tools:
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: tasklist
+* type: multiple-choice
 * id: 9Lz3nt
-* title: Getting All Books Endpoint
+* title: Read All Books
 ##### !question
 
-Think about the "Getting All Books Endpoint."
+Assume that we have a `Note` model that contains only `id` and `message` attributes.
 
-Check off all the topics that we've briefly touched on so far.
+Which combination of HTTP Verb, endpoint, response body, and response status code is most appropriate for a successful response from a RESTful endpoint that retrieves all `Note records?
 
 ##### !end-question
 ##### !options
 
-* Planned the HTTP response, request, and logic for this endpoint
-* Briefly considered `jsonify`
-* Briefly considered `query`
-* Updated this endpoint to match `GET` requests, too
-* Refactored this endpoint to check `request.method`
-* Got a list of `Book` instances using `Book.query.all()`
-* Iterated through `books`
-* Created a list of Book dictionaries in `books_response`
-* Used `jsonify` with `jsonify(books_response)`
-* Returned this JSON list with the status code `200 OK`
-* Tested this request in Postman
-* Refactored to separate route functions for **create** and **read**
+a| HTTP Verb: `GET`
+<br/>
+   Endpoint: “/notes/get” 
+<br/>
+   Response Body:
+   ```python
+    [{
+        “id”: 1, 
+        “message”: “Hello World”
+    }, {
+        “id”: 2, 
+        “message”: “Welcome, learners!”
+    }] 
+   ```
+   Response Status Code: `200 OK`
+b| HTTP Verb: `POST`
+<br/>
+   Endpoint: `“/notes”`
+<br/>
+   Response Body:
+   ```python
+    [{
+        “id”: 1, 
+        “message”: “Hello World”
+    }, {
+        “id”: 2, 
+        “message”: “Welcome, learners!”
+    }] 
+   ```
+   Response Status Code: `201 CREATED`
+c| HTTP Verb: `GET`
+<br/>
+   Endpoint: `“/notes”`
+<br/>
+   Response Body:
+   ```python
+    [{
+        “id”: 1, 
+        “message”: “Hello World”
+    }, {
+        “id”: 2, 
+        “message”: “Welcome, learners!”
+    }] 
+   ```
+   Response Status Code: `200 OK`
+d| HTTP Verb: `GET`
+<br/>
+   Endpoint: `“/notes”`
+<br/>
+   Response Body:
+   ```python
+    {
+        “id”: 1, 
+        “message”: “Hello World”
+    }
+   ```
+   Response Status Code: `200 OK`
 
 ##### !end-options
+##### !answer
+
+c|
+
+##### !end-answer
+##### !explanation
+
+This is the only answer that uses:
+- the `GET` verb to access a resource, 
+- the resource name as the endpoint `"/notes"`
+- a list of dictionaries as the response, even if there is only 1 result
+- a response status code of `200 OK`
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 448d8bbc-a7df-4dc5-889c-d93b3c4062be
+* title: Read All Books
+##### !question
+
+Assume that we have a `Note` model that contains only `id` and `message` attributes.
+
+What kind of object does the following method return?
+
+```python
+db.select(Note)
+```
+
+##### !end-question
+##### !options
+
+a| `Note` model objects representing all `note` database table rows
+b| A `Select` object representing our current query 
+c| `Row` objects representing all `note` database table rows
+
+##### !end-options
+##### !answer
+
+b|
+
+##### !end-answer
+##### !explanation
+
+The `select` method will return a `Select` object which represents a query. To get model objects that represent our table rows, we need to execute the query with a statement like:
+```
+db.session.scalars(query)
+```
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
