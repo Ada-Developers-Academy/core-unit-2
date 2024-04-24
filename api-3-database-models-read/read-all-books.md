@@ -23,7 +23,7 @@ We will refactor the endpoint we designed in our previous lesson [01) Building a
 
 ## Planning HTTP Requests, Responses, and Logic Review
 
-Let's review the planning work we did for creating the "Read All Books" endpoint in Pat 1 of this series. We want to use the appropriate HTTP verb and endpoint for requests that retrieve all records of a particular resource. 
+Let's review the planning work we did for creating the "Read All Books" endpoint in Part 1 of this series. We want to use the appropriate HTTP verb and endpoint for requests that retrieve all records of a particular resource. 
 
 Recall that for requests that read records, a RESTful API should use a `GET` request to the `/books` path. 
 
@@ -153,7 +153,7 @@ def get_all_books():
 | `....order_by(Book.id)`                             | This is an example of building up a query by adding onto a `Select` object. The code tells SQLAlchemy to order the results of our initial `Select` statement created by `db.select(Book)` based on the `Book`'s `id` attribute. The `order_by` function will return a new `Select` object that is stored in the variable `query` |
 | `books = ...`                                       | We store the list of `Book` instances in the variable `books` |
 | `... = db.session.scalars(query)`                   | This syntax tells the `db.session` object to execute the query we have built up in the `query` variable and return the result as `scalars` (our `Book` model objects). This method returns a list of instances of `Book`. |
-| `for book in books:`                                | We iterate over all books in `books` so we can collect their data and format it into a response |
+| `for book in books:`                                | We iterate over each book in `books` so we can collect their data and format it into a response |
 | `books_response.append( ... )`                      | We will use the `books_response` list to hold book dictionaries |
 | `{ "id": book.id, ... }`                            | This is the format of dictionary we want to send back. We'll insert the values based on the `book` we're iterating on |
 | `return ...`                                        | We must return our response. By default, a response with no specified status code returns `200 OK` |
@@ -195,7 +195,7 @@ Remember to use all debugging tools:
 
 Assume that we have a `Note` model that contains only `id` and `message` attributes.
 
-Which combination of HTTP Verb, endpoint, response body, and response status code is most appropriate for a successful response from a RESTful endpoint that retrieves all `Note records?
+Which combination of HTTP Verb, endpoint, response body, and response status code is most appropriate for a successful response from a RESTful endpoint that retrieves all `Note` records?
 
 ##### !end-question
 ##### !options
