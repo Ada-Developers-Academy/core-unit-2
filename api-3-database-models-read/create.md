@@ -184,7 +184,9 @@ Folks may have noticed that our new function can crash if any keys the code trie
 
 For this project, **Hello Books**, we are using `Blueprints` to create a group of related routes (endpoints).
 
-Recall that we we have already registered `book_bp` in in `app/__init__.py` inside our `create_app`. function.                                                                                                           |
+When we set up our initial book routes (which are currently commented out), we registered them on a Blueprint using the Blueprint route decorator functions. Then we had to remember to register the entire Blueprint with the `app`, so that the `app` would know about the endpoints grouped under the Blueprint.
+
+Since we have already registered `book_bp` in `app/__init__.py` inside our `create_app` function, as we add additional routes to our Blueprint, `app` will be able to see them without needing to go back and updating the `create_app` function again. But if we create any additional Blueprints, then we'll need to be sure to register them with the `app` the same way we did with `book_bp`.
 
 ### !callout-info
 
@@ -209,10 +211,10 @@ Our entire development process throughout this should use Postman heavily, rapid
 }
 ```
 
-![Screenshot of using Postman to send a POST request to create a Book](../assets/api-3-database-models-read/create-postman-output.png)
-_Fig. Screenshot of using Postman to send a POST request to create a Book. ([Full size image](../assets/api-3-database-models-read/create-postman-output.png))_
+![The Postman query interface configured as described in the text. The request was successful, so the response area shows a JSON object for the created Book object.](../assets/api-3-database-models-read/create-postman-output.png)
+_Fig. A successful POST request to create a book, sent using Postman. ([Full size image](../assets/api-3-database-models-read/create-postman-output.png))_
 
-Lastly, don't forget to exercise patience! It takes patience to discover how to debug with so many tools, windows, and screens.
+We have many tools to juggle while building and testing our endpoints, and it can take time to get a feel for how to use them all together in a development workflow. Be patient wwith yourself!
 
 ### Manually Testing with `psql`
 
@@ -224,10 +226,15 @@ Let's try it out on our own! We can refer back to the Intro to SQL lessons if we
 
 ### Debugging
 
-Recall that our tools for debugging include:
+For the theoretical developer writing the code in this lesson, everything worked on the first try. They used Postman to send a request and they got back the appropriate response. But everything working correctly on the first try is much more the exception than the rule.
+
+If we try to exercise a route and it _doesn't_ work, first of all, we shouldn't feel bad about it. Running into issues is common and expected. But the next thing we should do is remember that our routes are code just like any other code, and we can debug them. Because we're working with a database, we may also need to check whether the expected data exists as a result of our endpoints.
+
+We haven't looked at how the VS Code debugger can be used to step through our route code (though this is possible!), but we do already have several other tools that can help us zero in on the cause of a problem:
+
 
 - Using the response that appears in Postman
-- Using the server logs
+- Using the server logs (displayed in the terminal while Flask is running) to check status codes, error details, and `print`ed output
 - Using `psql` to check the local database
 
 ## Check for Understanding
