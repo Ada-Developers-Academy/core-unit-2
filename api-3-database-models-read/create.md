@@ -167,8 +167,8 @@ def create_book():
 | `new_book = Book( ... )`                              | We create an instance of `Book` using the data we read from `request_body`. We assign this new instance to the `new_book` variable.                                                                                                                                                                                   |
 | `title=title, description=description`              | We use keyword arguments matching our model attributes and use our variables holding data from the `request_body` to create a `Book` instance                                                                                                                                                                                  |
 | `db.session.add(new_book)`                            | `db.session` is the database's way of collecting changes that need to be made. Here, we are saying we want the database to add `new_book`.                                                                                                                                                                  |
-| `db.session.commit()`                                 | Here, we are saying we want the database to save and commit the collected changes.                                                                                                                                                                                                                          |
-| `return`                                              | For each endpoint, we must _return_ a response                                                                                                                                                                                                                                                       |
+| `db.session.commit()`                                 | Here, we are saying we want the database to save and commit the collected changes. We've only made one change here (adding the new Book), but a session can track multiple changes on both newly added and existing model records all at once. |
+| `return`                                              | For each endpoint, we must _return_ something Flask can use for a response                                                                                                                                                                                                                                                       |
 | `make_response(...)`                                  | This function instantiates a `Response` object. A `Response` object is generally what we want to return from Flask endpoint functions.                                                                                                                                                                      |
 | `response, 201`                                       | The first parameter to `make_response()` is the JSON response. We can define the status code of the `Response` by passing an integer as the second argument to `make_response()`. When a second argument isn't specified `200` is always the default value.     
 
@@ -176,7 +176,7 @@ def create_book():
 
 ## Missing error handling in the create route
 
-Folks may have noticed that our new function can crash if any required keys are missing! If you'd like the practice, feel free to add logic to handle the exceptions that could be raised for now. We will address error handling for creating models later in the Building an API series.
+Folks may have noticed that our new function can crash if any keys the code tries to access (here, `"title"` and `"description"`) are missing! If you'd like the practice, feel free to add logic to handle the exceptions that could be raised for now. We will address error handling for creating models later in the Building an API series.
 
 ### !end-callout
 
@@ -200,7 +200,7 @@ Our entire development process throughout this should use Postman heavily, rapid
 
 - Set the method to `POST`
 - Set the request URL to `localhost:5000/books`
-- Configure an HTTP response body to `raw` and `JSON`, and add in the sample request body:
+- Select the request `Body` tab, using the `raw` option with `JSON` selected in the list that appears, then add in a sample request body such as:
 
 ```json
 {
