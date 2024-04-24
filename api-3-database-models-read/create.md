@@ -56,7 +56,7 @@ The request body will consist of a JSON document with all the fields required to
 }
 ```
 
-Finally, the most appropriate successful response status code ids `201 Created`, indicating the resource had been successfully created. The response body could take several forms, ranging from an empty body, up to a JSON document representing the created resource (useful for communicating back the `id` that was assigned), or anything in between. We will choose to return a JSON document with the same format we used for our hardcoded objects, a dictionary with the keys:
+Finally, the most appropriate successful response status code is `201 Created`, indicating the resource had been successfully created. The response body could take several forms, ranging from an empty body, up to a JSON document representing the created resource (useful for communicating back the `id` that was assigned), or anything in between. We will choose to return a JSON document with the same format we used for our hardcoded objects, a dictionary with the keys:
 - id
 - title
 - description
@@ -96,7 +96,7 @@ To make this feature, we'll work with the following objects, types, and function
 
 #### Working with `request` from Flask
 
-Our code will begin by importing a module named `request` from `flask`.
+Our code will begin by importing a utility object named `request` from `flask`.
 
 ```python
 from flask import request
@@ -104,8 +104,8 @@ from flask import request
 
 Flask, the framework, provides all sorts of tools to us. One of those tools is the `request` object. The imported `request` object represents the current HTTP request. For now, we should focus on a few useful patterns for using `request`, but for future reference, we can get more details about the `request` object by referring to:
 
-- [Flask's definition of the `request` object](https://flask.palletsprojects.com/en/2.3.x/api/#flask.request)
-- [Flask's resource on the Request Context](https://flask.palletsprojects.com/en/2.3.x/reqcontext/), which outlines technical details of how `request` exists, and how to use it
+- [Flask's definition of the `request` object](https://flask.palletsprojects.com/en/3.0.x/api/#flask.request)
+- [Flask's resource on the Request Context](https://flask.palletsprojects.com/en/3.0.x/reqcontext/), which outlines technical details of how `request` exists, and how to use it
 
 ## Working with the `Response` Class from Flask
 
@@ -115,8 +115,8 @@ Flask also provides a helper method `make_response` that is a little bit more fl
 
 For more information about the `Response` class and creating responses, we can refer to the following reference documents:
 
-- [Flask's definition of `Response`](https://flask.palletsprojects.com/en/2.3.x/api/#response-objects)
-- [Flask's quickstart guide on creating responses](https://flask.palletsprojects.com/en/2.3.x/quickstart/#about-responses), which notably does _not_ feature the `Response` class
+- [Flask's definition of `Response`](https://flask.palletsprojects.com/en/3.0.x/api/#response-objects)
+- [Flask's quickstart guide on creating responses](https://flask.palletsprojects.com/en/3.0.x/quickstart/#about-responses), which notably does _not_ feature the `Response` class
 
 There are a variety of ways to create `Response` instances, some implicit and some explicit. The previous resource links will provide a good starting point for exploring further!
 
@@ -129,7 +129,7 @@ Let's look at some example code for our create feature.
 Let's define the `POST /books` route by adding the following code to our `book_routes.py` file:
 
 ```python
-from flask import Blueprint, make_response, request
+from flask import Blueprint, abort, make_response, request
 from app.models.book import Book
 from ..db import db
 
