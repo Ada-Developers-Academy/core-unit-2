@@ -58,9 +58,21 @@ For the response, our feature asks that we send back information about a single 
 
 Our JSON object is sent in the response body, and we indicate that we are successfully responding to a request for data by using the response status `200 OK`.
 
-| Response Status | Response Body                                                                                            |
-| --------------- | -------------------------------------------------------------------------------------------------------- |
-| `200 OK`        | `{"id": 1, "title": "Fictional Book Title", "description": "A fantasy novel set in an imaginary world"}` |
+<table>
+  <tr>
+    <th>Response Status</th>
+    <th>Example Response Body</th>
+  </tr>
+  <tr>
+    <td><code>200 OK</code></td>
+    <td><pre style="margin:0px;"><code>{
+    "id": 1,
+    "title": "Fictional Book Title",
+    "description": "A fantasy novel set in an imaginary world"
+}</code></pre>
+    </td>
+  </tr>
+</table>
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
