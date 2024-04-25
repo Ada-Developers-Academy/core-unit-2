@@ -210,7 +210,7 @@ Which combination of HTTP Verb, endpoint, response body, and response status cod
 
 a| HTTP Verb: `GET`
 <br/>
-   Endpoint: “/notes/get” 
+   Endpoint: `“/notes/get”`
 <br/>
    Response Body:
    ```python
