@@ -36,7 +36,7 @@ For now, let's focus on how we can use a `Blueprint` in our own code, but for fu
 - [Flask's definition of `Blueprint`](https://flask.palletsprojects.com/en/3.0.x/api/#blueprint-objects)
 - [Flask's tutorial on using `Blueprint`](https://flask.palletsprojects.com/en/3.0.x/tutorial/views/)
 
-### Creating a Blueprint in `hell_world_routes.py`
+### Creating a Blueprint in `hello_world_routes.py`
 
 In `hello_world_routes.py`, type in the following code:
 
