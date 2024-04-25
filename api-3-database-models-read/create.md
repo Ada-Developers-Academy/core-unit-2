@@ -152,7 +152,7 @@ def create_book():
 | `db.session.commit()` | Here, we are saying we want the database to save and commit the collected changes. We've only made one change here (adding the new Book), but a session can track multiple changes on both newly added and existing model records all at once. |
 | `return ..., ...` | For each endpoint, we must _return_ something Flask can use for a response. The comma means that this is returning a `tuple` of two values. |
 | `response` | The first element of the tuple is the dictionary that will become the `JSON` response body. |
-| `201` | The second value in the `tuple`, `201`, is the response code. When a second value isn't specified, `200` is always the default value. |
+| `201` | The second value in the `tuple`, `201`, is the response code. |
 
 ### !callout-info
 
@@ -168,7 +168,7 @@ For this project, **Hello Books**, we are using `Blueprints` to create a group o
 
 When we set up our initial book routes (which are currently commented out), we registered them on a Blueprint using the Blueprint route decorator functions. Then we had to remember to register the entire Blueprint with the `app`, so that the `app` would know about the endpoints grouped under the Blueprint.
 
-Since we have already registered `book_bp` in `app/__init__.py` inside our `create_app` function, as we add additional routes to our Blueprint, `app` will be able to see them without needing to go back and updating the `create_app` function again. But if we create any additional Blueprints, then we'll need to be sure to register them with the `app` the same way we did with `book_bp`.
+Since we have already registered `book_bp` in `app/__init__.py` inside our `create_app` function, as we add additional routes to our Blueprint, `app` will be able to see them without needing to go back to update the `create_app` function again. But if we create any additional Blueprints, then we'll need to be sure to register them with the `app` the same way we did with `book_bp`.
 
 ### Manually Testing with Postman
 
