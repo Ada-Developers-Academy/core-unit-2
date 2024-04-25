@@ -42,12 +42,14 @@ This resource outlines a solution for resolving database schema conflicts.
 
 While less ideal, it is perfectly reasonable to resolve database schema conflicts for our development database by recreating the database and the migrations with the following commands:
 
-```
-$ dropdb hello_books_development
-$ createdb hello_books_development
+```bash
+$ psql -U postgres postgres
+$ drop database hello_books_development;
+$ create database hello_books_development;
+$ \q
 $ rm -rf migrations
 $ flask db init
-$ flask db migrate
+$ flask db migrate -m "Recreate model migrations"
 $ flask db upgrade
 ```
 
@@ -69,9 +71,9 @@ At the time Audrey and Trenisha clone the project to start their work, the proje
 
 ```python
 class Book(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String)
-    description = db.Column(db.String)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    title: Mapped[str]
+    description: Mapped[str]
 ```
 
 They are using Flask-SQLAlchemy as ORM, and Flask-Migrate to track migrations to the database. The database migration history at the time both developers begin working on their features includes a single migration:
@@ -85,10 +87,10 @@ Now Audrey and Trenisha get to work on their features. Audrey needs to add an au
 
 ```python
 class Book(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String)
-    description = db.Column(db.String)
-    author = db.Column(db.String)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    title: Mapped[str]
+    description: Mapped[str]
+    author: Mapped[str]
 ```
 
 Immediately after editing the model, she generates and applies a database migration, to make this change on her development database:
@@ -122,10 +124,10 @@ Meanwhile, Trenisha needs to add an ISBN for all the books, so starting from the
 
 ```python
 class Book(db.Model):
-    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    title = db.Column(db.String)
-    description = db.Column(db.String)
-    isbn = db.Column(db.Integer)
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    title: Mapped[str]
+    description: Mapped[str]
+    isbn: Mapped[int]
 ```
 
 And she also creates a database migration for this change:

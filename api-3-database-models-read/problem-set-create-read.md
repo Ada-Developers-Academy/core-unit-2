@@ -22,5 +22,5 @@ On your machine, keep:
    1. Create a migration to add a table for the `Book` model and then apply it. Confirm that the `book` table has been created as expected.
 
 1. Create or refactor the following RESTful endpoints, with the same functionality presented in this topic:
-   1. As a client, I want to send a request with new valid book data and get a success response, so that I know the API saved the book data
+   1. As a client, I want to send a request with new valid book data and get a success response containing the new book's `id`, `title`, and `description`, so that I know the API saved the book data.
    1. As a client, I want to send a request to get all existing books, so that I can see a list of books, with their `id`, `title`, and `description` of the book.
