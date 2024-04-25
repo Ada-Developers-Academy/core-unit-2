@@ -264,6 +264,14 @@ When we make a `GET` request to `/broken-endpoint-with-broken-server-code`, we w
 
 ![Screenshot of Postman after making a GET request to /broken-endpoint-with-broken-server-code with a 500 Internal Server Error response](../assets/building-an-api/flask-hello-books_hello-error-postman.png)
 
+### !callout-info 
+
+## Troubleshooting
+
+If you test in postman and see a generic error instead of a stack trace, ensure that debug is enabled by starting your application with `flask run --debug` and try again.
+
+### !end-callout
+
 ### Use Your Debugging Strategies
 
 Use a combination of Postman, the browser, server logs, the Internet, and your peers. Fix this endpoint so it no longer sends back a `500` response, and instead sends back a `200` response.
@@ -273,6 +281,8 @@ Flask's error responses show up nicely formatted in the browser.
 ![Screenshot of the browser with Flask error messages](../assets/building-an-api/flask-hello-books_hello-error-browser.png)
 
 We should also confirm that we can see the same error output in our server log.
+
+![Screenshot of the terminal with Flask error messages](../assets/building-an-api/flask-hello-books_hello-error-terminal.png)
 
 ### Fix the Endpoint
 
@@ -297,8 +307,6 @@ You've built and run a pretty substantial web server now, that accepts three dif
 * type: multiple-choice
 * id: c51e0bad-6a27-43d7-acb5-a570c87163d2
 * title: Hello World Routes
-<!-- * points: [1] (optional, the number of points for scoring as a checkpoint) -->
-<!-- * topics: [python, pandas] (Checkpoints only, optional the topics for analyzing points) -->
 
 ##### !question
 
@@ -334,8 +342,6 @@ When an error occurs serverside, a request will recieve a `500 Internal Server E
 * type: multiple-choice
 * id: be152c53-2f78-40e1-8c6c-9b3f8b086c17
 * title: Hello World Routes
-<!-- * points: [1] (optional, the number of points for scoring as a checkpoint) -->
-<!-- * topics: [python, pandas] (Checkpoints only, optional the topics for analyzing points) -->
 
 ##### !question
 
@@ -347,7 +353,7 @@ Which best describes a `Blueprint`?
 
 a| An instance method used to define the type of HTTP method the request will have.
 b| A decorator which transforms the function that follows into an endpoint.
-c| The function will execute whenever a request that matches the decorator is received.
+c| The function that will execute whenever a request that matches the decorator is received.
 d| A decorator responsible for defining the server a Flask application runs on.
 
 ##### !end-options
