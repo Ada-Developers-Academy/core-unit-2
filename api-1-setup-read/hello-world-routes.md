@@ -296,7 +296,7 @@ You've built and run a pretty substantial web server now, that accepts three dif
 
 * type: multiple-choice
 * id: c51e0bad-6a27-43d7-acb5-a570c87163d2
-* title: Flask Hello World
+* title: Hello World Routes
 <!-- * points: [1] (optional, the number of points for scoring as a checkpoint) -->
 <!-- * topics: [python, pandas] (Checkpoints only, optional the topics for analyzing points) -->
 
