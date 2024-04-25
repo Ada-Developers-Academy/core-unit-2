@@ -333,7 +333,7 @@ When an error occurs serverside, a request will recieve a `500 Internal Server E
 
 * type: multiple-choice
 * id: be152c53-2f78-40e1-8c6c-9b3f8b086c17
-* title: Flask Hello World
+* title: Hello World Routes
 <!-- * points: [1] (optional, the number of points for scoring as a checkpoint) -->
 <!-- * topics: [python, pandas] (Checkpoints only, optional the topics for analyzing points) -->
 
