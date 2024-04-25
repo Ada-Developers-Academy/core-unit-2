@@ -346,7 +346,7 @@ Which best describes a `Blueprint`?
 ##### !options
 
 a| An instance method used to define the type of HTTP method the request will have.
-b| A decorator transforms the function that follows into an endpoint.
+b| A decorator which transforms the function that follows into an endpoint.
 c| The function will execute whenever a request that matches the decorator is received.
 d| A decorator responsible for defining the server a Flask application runs on.
 
