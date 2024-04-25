@@ -9,11 +9,11 @@ The goals of this lessons is to create and debug endpoints in Flask.
 We will:
 
 1. Define our first blueprint
-1. Define our first endpoint, `/hello-world`
-1. Witness the response of our first endpoint
-1. Define our second endpoint, `/hello/JSON`
-1. Witness the response of our second endpoint
-1. Debug a third, broken endpoint
+2. Define our first endpoint, `/`
+3. Witness the response of our first endpoint
+4. Define our second endpoint, `/hello/JSON`
+5. Witness the response of our second endpoint
+6. Debug a third, broken endpoint
 
 ## Branches
 
@@ -106,12 +106,12 @@ def endpoint_name():
 | `my_beautiful_response_body = "Hello, World!"`      | We must define a response body to return. Here, we're using a local variable `my_beautiful_response_body` to hold a value                      |
 | `return my_beautiful_response_body`                 | For each endpoint, we must _return_ the HTTP response.                                                                                         |
 
-## Endpoint #1: `/hello-world`
+## Endpoint #1: `/`
 
 Consider an endpoint definition that would:
 
 - Use the Blueprint `hello_world_bp`
-- Match the route `"/hello-world"`
+- Match the route `"/"`
 - Match the HTTP method `.get()`
 - Give a response `200 OK` with the HTTP body `"Hello, World!"`
 
@@ -131,7 +131,7 @@ from flask import Blueprint
 hello_world_bp = Blueprint("hello_world", __name__)
 
 
-@hello_world_bp.get("/hello-world")
+@hello_world_bp.get("/")
 def say_hello_world():
     my_beautiful_response_body = "Hello, World!"
     return my_beautiful_response_body
@@ -139,15 +139,15 @@ def say_hello_world():
 
 ### Manually Testing the Hello World Endpoint
 
-_While the Flask server is running_, we can use Postman to send a `GET` request to `localhost:5000/hello-world`.
+_While the Flask server is running_, we can use Postman to send a `GET` request to `localhost:5000/`.
 
 Hopefully, we see our HTTP response `200 OK` and `"Hello, World!"`!
 
-![Screenshot of Postman after making a GET request to /hello-world with a 200 OK response](../assets/building-an-api/flask-hello-books_hello-world-postman.png)
+![Screenshot of Postman after making a GET request to / with a 200 OK response](../assets/building-an-api/flask-hello-books_hello-world-postman.png)
 
-Instead of using Postman, we can alternatively use our browser to make a `GET` request to `localhost:5000/hello-world`.
+Instead of using Postman, we can alternatively use our browser to make a `GET` request to `localhost:5000/`.
 
-![Screenshot of a browser pointing to localhost:5000/hello-world with the text "Hello, World!"](../assets/building-an-api/flask-hello-books_hello-world-browser.png)
+![Screenshot of a browser pointing to localhost:5000/ with the text "Hello, World!"](../assets/building-an-api/flask-hello-books_hello-world-browser.png)
 
 <!-- available callout types: info, success, warning, danger, secondary, star  -->
 ### !callout-info
@@ -158,7 +158,7 @@ Here are a couple quick troubleshooting techniques to try:
 
 </br>
 
-If you are unable to access the server at `localhost:5000/hello-world`, replace `localhost:5000` with `127.0.0.1` (i.e. `127.0.0.1:5000/hello-world`)
+If you are unable to access the server at `localhost:5000/`, replace `localhost:5000` with `127.0.0.1` (i.e. `127.0.0.1:5000/`)
 
 </br>
 
@@ -180,7 +180,7 @@ Each time we send an HTTP request to our server, we should see a new line appear
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 231-804-583
-127.0.0.1 - - [28/Mar/2021 17:08:19] "GET /hello-world HTTP/1.1" 200 -
+127.0.0.1 - - [28/Mar/2021 17:08:19] "GET / HTTP/1.1" 200 -
 ```
 
 ### !callout-success
