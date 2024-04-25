@@ -113,7 +113,7 @@ Consider an endpoint definition that would:
 - Use the Blueprint `hello_world_bp`
 - Match the route `"/"`
 - Match the HTTP method `.get()`
-- Give a response `200 OK` with the HTTP body `"Hello, World!"`
+- Send an HTTP response `200 OK` with a response body `"Hello, World!"`
 
 ### !callout-info
 
