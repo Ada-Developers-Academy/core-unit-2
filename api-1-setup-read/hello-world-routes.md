@@ -1,6 +1,6 @@
 # Hello World Routes
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=71e66603-d98d-4cdd-aedc-ae6a01251b47&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=71e66603-d98d-4cdd-aedc-ae6a01251b47&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
 ## Goals
 
@@ -9,11 +9,11 @@ The goals of this lessons is to create and debug endpoints in Flask.
 We will:
 
 1. Define our first blueprint
-1. Define our first endpoint, `/hello-world`
-1. Witness the response of our first endpoint
-1. Define our second endpoint, `/hello/JSON`
-1. Witness the response of our second endpoint
-1. Debug a third, broken endpoint
+2. Define our first endpoint, `/`
+3. Witness the response of our first endpoint
+4. Define our second endpoint, `/hello/JSON`
+5. Witness the response of our second endpoint
+6. Debug a third, broken endpoint
 
 ## Branches
 
@@ -33,12 +33,12 @@ from flask import Blueprint
 
 For now, let's focus on how we can use a `Blueprint` in our own code, but for future reference, we should consider:
 
-- [Flask's definition of `Blueprint`](https://flask.palletsprojects.com/en/1.1.x/api/#flask.Blueprint)
-- [Flask's tutorial on using `Blueprint`](https://flask.palletsprojects.com/en/1.1.x/tutorial/views/)
+- [Flask's definition of `Blueprint`](https://flask.palletsprojects.com/en/3.0.x/api/#blueprint-objects)
+- [Flask's tutorial on using `Blueprint`](https://flask.palletsprojects.com/en/3.0.x/tutorial/views/)
 
-### Creating a Blueprint in `routes.py`
+### Creating a Blueprint in `hello_world_routes.py`
 
-In `routes.py`, type in the following code:
+In `hello_world_routes.py`, type in the following code:
 
 ```python
 from flask import Blueprint
@@ -61,12 +61,13 @@ _Where_ we register the `Blueprint` depends on the project. For the Hello Books 
 
 ```python
 from flask import Flask
+from .routes.hello_world_routes import hello_world_bp
 
 
-def create_app(test_config=None):
+def create_app():
     app = Flask(__name__)
 
-    from .routes import hello_world_bp
+    # Register Blueprints here
     app.register_blueprint(hello_world_bp)
 
     return app
@@ -74,7 +75,7 @@ def create_app(test_config=None):
 
 | <div style="min-width:240px;"> Piece of Code </div> | Notes                                                                                                  |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| `from .routes import hello_world_bp`                | We are importing `hello_world_bp` into this module so we may use it in the next line.                  |
+| `from .routes.hello_world_routes import hello_world_bp`                | We are importing `hello_world_bp` into this module so we may use it inside `create_app`.                  |
 | `app.register_blueprint(hello_world_bp)`            | We use `app`'s pre-defined function `register_blueprint()` to register the `hello_world_bp` Blueprint. |
 
 If we needed to create and register more `Blueprint`s, we could follow this pattern and duplicate this code until we needed a better solution.
@@ -91,7 +92,7 @@ Recall that the responsibility of an endpoint is to:
 Consider this explanation of syntax for a generic endpoint. An example of a specific endpoint is located later in the lesson.
 
 ```python
-@blueprint_name.route("/endpoint/path/here", methods=["GET"])
+@blueprint_name.get("/endpoint/path/here")
 def endpoint_name():
     my_beautiful_response_body = "Hello, World!"
     return my_beautiful_response_body
@@ -99,20 +100,20 @@ def endpoint_name():
 
 | <div style="min-width:290px;"> Piece of Code </div> | Notes                                                                                                                                                                                                                                       |
 | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| `@blueprint_name.route(...)`                        | This decorator transforms the function that follows into an endpoint. We use the `.route()` instance method from our Blueprint instance.                                                                                                    |
-| `"/endpoint/path/here", methods=["GET"]`                             |  Together these arguments define what type of request will be routed to this function. The first argument defines the path (or URL) of the request and the second argument defines a list of HTTP methods (or verbs) the request could have.                                                                                     |
+| `@blueprint_name.get(...)`                        | This decorator transforms the function that follows into an endpoint. We use the `.get()` instance method from our Blueprint instance to define what the type of HTTP method (or verb) the request will have.                                                                                                  |
+| `"/endpoint/path/here"`                             |  This argument defines the path (or URL) of the request.                                        |
 | `def endpoint_name():`                              | This function will execute whenever a request that matches the decorator is received. The function can be named whatever feels most appropriate. |
 | `my_beautiful_response_body = "Hello, World!"`      | We must define a response body to return. Here, we're using a local variable `my_beautiful_response_body` to hold a value                      |
 | `return my_beautiful_response_body`                 | For each endpoint, we must _return_ the HTTP response.                                                                                         |
 
-## Endpoint #1: `/hello-world`
+## Endpoint #1: `/`
 
 Consider an endpoint definition that would:
 
 - Use the Blueprint `hello_world_bp`
-- Match the route `"/hello-world"`
-- Match the HTTP method `["GET"]`
-- Give a response `200 OK` with the HTTP body `"Hello, World!"`
+- Match the route `"/"`
+- Match the HTTP method `.get()`
+- Send an HTTP response `200 OK` with a response body `"Hello, World!"`
 
 ### !callout-info
 
@@ -130,7 +131,7 @@ from flask import Blueprint
 hello_world_bp = Blueprint("hello_world", __name__)
 
 
-@hello_world_bp.route("/hello-world", methods=["GET"])
+@hello_world_bp.get("/")
 def say_hello_world():
     my_beautiful_response_body = "Hello, World!"
     return my_beautiful_response_body
@@ -138,15 +139,15 @@ def say_hello_world():
 
 ### Manually Testing the Hello World Endpoint
 
-_While the Flask server is running_, we can use Postman to send a `GET` request to `localhost:5000/hello-world`.
+_While the Flask server is running_, we can use Postman to send a `GET` request to `localhost:5000/`.
 
 Hopefully, we see our HTTP response `200 OK` and `"Hello, World!"`!
 
-![Screenshot of Postman after making a GET request to /hello-world with a 200 OK response](../assets/building-an-api/flask-hello-books_hello-world-postman.png)
+![Screenshot of Postman after making a GET request to / with a 200 OK response](../assets/building-an-api/flask-hello-books_hello-world-postman.png)
 
-Instead of using Postman, we can alternatively use our browser to make a `GET` request to `localhost:5000/hello-world`.
+Instead of using Postman, we can alternatively use our browser to make a `GET` request to `localhost:5000/`.
 
-![Screenshot of a browser pointing to localhost:5000/hello-world with the text "Hello, World!"](../assets/building-an-api/flask-hello-books_hello-world-browser.png)
+![Screenshot of a browser pointing to localhost:5000/ with the text "Hello, World!"](../assets/building-an-api/flask-hello-books_hello-world-browser.png)
 
 <!-- available callout types: info, success, warning, danger, secondary, star  -->
 ### !callout-info
@@ -157,7 +158,7 @@ Here are a couple quick troubleshooting techniques to try:
 
 </br>
 
-If you are unable to access the server at `localhost:5000/hello-world`, replace `localhost:5000` with `127.0.0.1` (i.e. `127.0.0.1:5000/hello-world`)
+If you are unable to access the server at `localhost:5000/`, replace `localhost:5000` with `127.0.0.1` (i.e. `127.0.0.1:5000/`)
 
 </br>
 
@@ -179,7 +180,7 @@ Each time we send an HTTP request to our server, we should see a new line appear
  * Restarting with stat
  * Debugger is active!
  * Debugger PIN: 231-804-583
-127.0.0.1 - - [28/Mar/2021 17:08:19] "GET /hello-world HTTP/1.1" 200 -
+127.0.0.1 - - [28/Mar/2021 17:08:19] "GET / HTTP/1.1" 200 -
 ```
 
 ### !callout-success
@@ -196,7 +197,7 @@ Consider the code for a _second_ endpoint that would:
 
 - Use the Blueprint `hello_world_bp`
 - Match the route `"/hello/JSON"`
-- Match the HTTP method `["GET"]`
+- Match the HTTP method `.get()`
 - Give a response `200 OK`
 - The HTTP response body should be the following JSON-like dictionary. Fill in the response body with your own details.
 
@@ -211,7 +212,7 @@ Consider the code for a _second_ endpoint that would:
 Your code could look similar to this:
 
 ```python
-@hello_world_bp.route("/hello/JSON", methods=["GET"])
+@hello_world_bp.get("/hello/JSON")
 def say_hello_json():
     return {
         "name": "Ada Lovelace",
@@ -244,10 +245,10 @@ Congratulations on defining your _second_ endpoint! 🎉
 
 ## Endpoint #3: Debugging a Broken Endpoint
 
-Let's place this third endpoint into `routes.py`. It is intentionally broken.
+Let's place this third endpoint into `hello_world_routes.py`. It is intentionally broken.
 
 ```python
-@hello_world_bp.route("/broken-endpoint-with-broken-server-code")
+@hello_world_bp.get("/broken-endpoint-with-broken-server-code")
 def broken_endpoint():
     response_body = {
         "name": "Ada Lovelace",
@@ -263,6 +264,14 @@ When we make a `GET` request to `/broken-endpoint-with-broken-server-code`, we w
 
 ![Screenshot of Postman after making a GET request to /broken-endpoint-with-broken-server-code with a 500 Internal Server Error response](../assets/building-an-api/flask-hello-books_hello-error-postman.png)
 
+### !callout-info 
+
+## Troubleshooting
+
+If you test in postman and see a generic error instead of a stack trace, ensure that debug is enabled by starting your application with `flask run --debug` and try again.
+
+### !end-callout
+
 ### Use Your Debugging Strategies
 
 Use a combination of Postman, the browser, server logs, the Internet, and your peers. Fix this endpoint so it no longer sends back a `500` response, and instead sends back a `200` response.
@@ -272,6 +281,8 @@ Flask's error responses show up nicely formatted in the browser.
 ![Screenshot of the browser with Flask error messages](../assets/building-an-api/flask-hello-books_hello-error-browser.png)
 
 We should also confirm that we can see the same error output in our server log.
+
+![Screenshot of the terminal with Flask error messages](../assets/building-an-api/flask-hello-books_hello-error-terminal.png)
 
 ### Fix the Endpoint
 
@@ -292,18 +303,72 @@ You've built and run a pretty substantial web server now, that accepts three dif
 <!-- Question Takeaway -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: paragraph
-* id: irDB8Z
-* title: Flask Hello World
+
+* type: multiple-choice
+* id: c51e0bad-6a27-43d7-acb5-a570c87163d2
+* title: Hello World Routes
+
 ##### !question
 
-What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+Which reponse code will appear there is an `Internal Server Error`?
 
 ##### !end-question
-##### !placeholder
 
-My biggest takeaway from this lesson is...
+##### !options
 
-##### !end-placeholder
+a| 200
+b| 403
+c| 500
+d| 400
+
+##### !end-options
+
+##### !answer
+
+c|
+
+##### !end-answer
+
+##### !explanation
+
+When an error occurs serverside, a request will recieve a `500 Internal Server Error` response.
+
+##### !end-explanation
+
+### !end-challenge
+
+### !challenge
+
+* type: multiple-choice
+* id: be152c53-2f78-40e1-8c6c-9b3f8b086c17
+* title: Hello World Routes
+
+##### !question
+
+Which best describes a `Blueprint`?
+
+##### !end-question
+
+##### !options
+
+a| An instance method used to define the type of HTTP method the request will have.
+b| A decorator which transforms the function that follows into an endpoint.
+c| The function that will execute whenever a request that matches the decorator is received.
+d| A decorator responsible for defining the server a Flask application runs on.
+
+##### !end-options
+
+##### !answer
+
+b|
+
+##### !end-answer
+
+##### !explanation
+
+The `Blueprint` decorator is placed directly above a function to transorm it into a route.
+
+##### !end-explanation
+
 ### !end-challenge
 <!-- prettier-ignore-end -->
