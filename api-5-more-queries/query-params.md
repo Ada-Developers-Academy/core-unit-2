@@ -103,6 +103,14 @@ From this example, we can observe:
 | `:`                | `%3A`              |
 | `!`                | `%21`              |
 
+### !callout-info
+
+## URL Encoding Uses ASCII Values
+
+While the encoding characters used may seem arbitrary, each is actually the value of the particular character according to the [ASCII](https://en.wikipedia.org/wiki/ASCII) standard, written in the _hexadecimal_ numbering system. The `%` sign in a URL is used to indicate that the following two characters are a hexadecimal number. Because of this special meaning, if we ever needed to include an actual `%` sign in a URL, we would encode it as `%25`, using its own ASCII value!
+
+### !end-callout
+
 If we are using a program like Postman or a web browser to send requests, they will do their best to encode our URLs for us. If we are writing code to contact an endpoint, we may need to encode parts of the URL ourselves, using functionality built into Python.
 
 We will try to avoid characters that require encoding in our URLs and query parameters. However, this knowledge may be helpful when constructing URLs with query strings for testing!
