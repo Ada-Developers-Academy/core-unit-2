@@ -89,7 +89,7 @@ It would be nice if we could use any arbitrary text as a query param, like this:
 https://my-beautiful.site/search?name=Hand-crafted exclusive: finest tote bag!
 ```
 
-However, some characters, like spaces, colons `:`, or commas `,`, aren't valid in URLs. Other characters, like question marks `?`, equal signs `=`, or ampersands `&`, can be used in URLs, but have special meanings. If we want to use any of these characters as data in our URL, we need to encode them using a process called _URL encoding_, which replaces the invalid characters with valid character combinations.
+According to the Internet standard for URLs ([RFC 1738](https://datatracker.ietf.org/doc/html/rfc1738)), some characters, including spaces, colons `:`, or commas `,`, aren't valid in URLs. Other characters, like question marks `?`, equal signs `=`, or ampersands `&`, have special meanings when used in a URL. If we want to use any of these characters as data in our URL, we need to encode them using a process called _URL encoding_, which replaces the invalid characters with valid character combinations.
 
 ```
 https://my-beautiful.site/search?name=Hand-crafted%20exclusive%3A%20finest%20tote%20bag%21
