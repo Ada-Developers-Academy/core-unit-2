@@ -83,7 +83,7 @@ Some frameworks might provide built-in support for certain query params, as long
 
 ### An Aside: URL Encoding and Query Strings
 
-It would be nice if valid query strings and valid query params could always be straightforward strings.
+It would be nice if we could use any arbitrary text as a query param, like this:
 
 ```
 https://my-beautiful.site/search?name=Hand-crafted exclusive: finest tote bag!
