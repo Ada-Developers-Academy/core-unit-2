@@ -157,7 +157,7 @@ query_param_value = request.args.get("query_param_key")
 
 ## Pro-tip: Check `request` Spelling
 
-The popular package `requests`, used for making HTTP requests, is not the same as the `request` that represents the HTTP request. If we are working on a web API project that also calls external APIs by using the `requests` package, we should be especially careful of whether we have written `request` or `requests`!
+The popular package `requests`, used for making HTTP requests, is not the same as the `request` that represents the HTTP request. If we are working on a web API project that also calls external APIs by using the `requests` package, we should be especially careful of whether we have written `request` or `requests`. It's very easy to accept the wrong one from an autosuggest!
 
 ### !end-callout
 
