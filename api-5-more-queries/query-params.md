@@ -115,22 +115,27 @@ If we are using a program like Postman or a web browser to send requests, they w
 
 We will try to avoid characters that require encoding in our URLs and query parameters. However, this knowledge may be helpful when constructing URLs with query strings for testing!
 
-### Typical Use Cases
+### Query Params in RESTful APIs
 
-Query params provide extra information to an HTTP request.
+HTTP request bodies, route parameters, and query params are all responsible for supplying the data needed for a request, and can all accomplish similar things. The exact difference in usage will always depend on our project, context, and needs.
 
-HTTP request bodies, route parameters, and query params are all responsible for adding data to a request, and can accomplish similar things. The exact difference in usage will always depend on your project, context, and needs.
+Since we are learning to build RESTful APIs, some decisions around which HTTP features to use for certain kinds of data are more common than others. Typically:
 
-In the style of web API we are building, typically:
-
-- HTTP request bodies contain data that should be uploaded to the server
+- HTTP request bodies contain data that should be uploaded to the server to create or update a record
 - Route parameters contain data that identifies a particular record
-- Query params contain data that select customized behaviors
+- Query params contain data that customize the behaviors of a route
 
-Common uses for query params include:
+Earlier, we noted some possible uses for query params:
 
-- Sorting and filtering search results
-- Limiting the amount of data that comes back
+- paginating results
+- limiting the amount of data that comes back
+- sorting results
+
+Another common use for query params is to:
+
+- filter results based on certain criteria
+
+Let's take a look at how we can use query params in our Flask app to filter the endpoint results.
 
 ## Reading Query Params From a Request
 
