@@ -1,6 +1,9 @@
 # Query Params
 
+<!-- FLASK UPDATE -->
+<!--
 <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=e2005f3f-6788-4a6a-9e14-ae6901827faa&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+-->
 
 ## Goals
 
