@@ -35,9 +35,17 @@ Our goals for this lesson are to:
 </details>
 <br>
 
-## Contextualizing Query Strings
+## Query Params in URLs
 
-A query string is a part of an HTTP request URL that contains query params. Recall that query params are key-value pairs which extend an HTTP request. For example:
+Let's take a moment to recall what we know about the parts of a URL that we call _query parameters_, usually shortened to _query params_. We first encountered query params in our exploration of URLs used in the HTTP request-response cycle. We looked at some small examples of how query params could be used to tweak the behavior of an endpoint, such as by:
+
+- paginating (splitting into pages of particular sizes) results
+- limiting the amount of data that comes back
+- sorting results
+
+It's up to the developer to decide how to use query params in their project, but it can make it easier for clients to interact with the API if we restrict our use of query params to cases like these.
+
+One or more query params can be added to the end of a URL in a _query string_. For example:
 
 ```
 https://my-beautiful.site/search?category=novels
