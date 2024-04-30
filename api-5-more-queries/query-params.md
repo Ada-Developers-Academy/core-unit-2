@@ -69,6 +69,18 @@ https://my-beautiful.site/search?category=novels&page_size=30&page=3
 | `page_size`     | `50`              |
 | `page`          | `3`               |
 
+### !callout-info
+
+## The Supported Query Params and Their Behavior Is Up to Us
+
+The query params given in these URLs are just examples. It would be up to us to decide which query params we choose to support in our API, and what behavior they should trigger. We could choose to support different query params, or none at all, depending on our project needs. Imagine for yourself what the params shown in the examples above could do in a real project.
+
+<br />
+
+Some frameworks might provide built-in support for certain query params, as long as we follow certain conventions expected by that framework. For example, some frameworks might automatically support query params for sorting results if we follow a particular naming convention. Flask does not provide this kind of built-in support, so we will need to write the code to handle query params ourselves.
+
+### !end-callout
+
 ### An Aside: URL Encoding and Query Strings
 
 It would be nice if valid query strings and valid query params could always be straightforward strings.
