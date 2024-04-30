@@ -142,7 +142,7 @@ Let's take a look at how we can use query params in our Flask app to filter the 
 Within Flask, the object that represents the current request, `request`, also provides access to the query params through the `request.args` property. The object it returns is a dictionary-like object (an object that acts very much like a Python `dict`, but which is actually a different type) that we can use to look up the value of a query param by its key. For example:
 
 ```python
-query_param_value = request.args.get(query_param_key)
+query_param_value = request.args.get("query_param_key")
 ```
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                  |
