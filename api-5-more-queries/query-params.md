@@ -51,7 +51,7 @@ One or more query params can be added to the end of a URL in a _query string_. F
 https://my-beautiful.site/search?category=novels
 ```
 
-Everything after the `?` in this string defines a _query string_. In this case, the query string is `category=novels`. The key and value of a query param is separated by `=`.
+Everything after the `?` in this URL is the _query string_. In this case, the query string is `category=novels`. The key and value of a query param are separated by `=`.
 
 | Query Param Key | Query Param Value |
 | --------------- | ----------------- |
