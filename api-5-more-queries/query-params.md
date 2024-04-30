@@ -145,11 +145,13 @@ Within Flask, the object that represents the current request, `request`, also pr
 query_param_value = request.args.get("query_param_key")
 ```
 
-| <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                  |
-| --------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| `query_param_value =`                               | A local variable in which we store the looked up value of a query param for later use  |
-| `request.args.get(...)`                             | Inside of a route, we can access the value of a query param using this method          |
-| `query_param_key`                                   | We should put in the query param key here, either as a variable or as a string literal |
+<!-- prettier-ignore-start -->
+| <div style="min-width:250px;"> Piece of Code </div> | Notes |
+| - | - |
+| `query_param_value =` | A local variable in which we store the looked up value of a query param for later use. |
+| `request.args.get(...)` | Inside of a route, we access the query params collection as `request.args`. This dictionary-like object has a `get` method, just like a regular `dict`. The `get` method retrieves the value of a key if the key is present, otherwise returning a default value. If an explicit default is not supplied, `None` is assumed. |
+| `"query_param_key"` | The name of the query param to lookup. Query param keys and values are strings (even when they look numeric), so the key name should be a string, or a variable or expression producing a string name. |
+<!-- prettier-ignore-end -->
 
 ### !callout-warning
 
