@@ -60,14 +60,14 @@ Everything after the `?` in this URL is the _query string_. In this case, the qu
 We can have multiple query param pairs. We separate them by ampersands `&`, like this:
 
 ```
-https://my-beautiful.site/search?category=novels&minimum_pages=800&maximum_pages=8000
+https://my-beautiful.site/search?category=novels&page_size=30&page=3
 ```
 
 | Query Param Key | Query Param Value |
 | --------------- | ----------------- |
 | `category`      | `novels`          |
-| `minimum_pages` | `800`             |
-| `maximum_pages` | `8000`            |
+| `page_size`     | `50`              |
+| `page`          | `3`               |
 
 ### An Aside: URL Encoding and Query Strings
 
