@@ -281,9 +281,9 @@ Select all of the options below which are valid reasons for refactoring and usin
 ##### !end-question
 ##### !options
 
-a| Having a function with the single responsibility of checking if a book's `id` is valid then retrieving the record.
+a| Having a function with the single responsibility of checking if an `id` is valid then retrieving the `Book` record.
 b| Moving data validation and fetching out of the function `get_one_book`, so that `get_one_book` is focused on the unique work for the route.
-c| Knowing we will create further routes which will need to look up a book record by id. 
+c| Knowing we will create further routes which will need to look up a `Book` record by `id`. 
 
 ##### !end-options
 ##### !answer
