@@ -332,16 +332,16 @@ It turns out, `LIKE`, `like()`, and even the `contains()` method we didn't look 
 
 ### Manually Testing in Postman
 
-We can use the Browser and/or Postman to manually test our database.
+We can use the Browser and/or Postman to manually test our endpoint.
 
 We can compare our original feature which gets all books, to filtering by title.
 
 ```
 GET localhost:5000/books
-GET localhost:5000/books?title=Apples
+GET localhost:5000/books?title=apple
 ```
 
-Our actual results will vary, depending on the contents of our databases. For example, if we haven't created any `Book`s with the title "Apple," then the second test will always return an empty list!
+Our actual results will vary, depending on the contents of our databases. The first request will return all the books in our database. For the second, if we haven't created any `Book`s with "apple" in the title, then it will return an empty list! But if we add the books mentioned earlier, we should get back at least two books: `10,000 Apples` and `An Apple a Day`.
 
 We should practice trying to predict the results of a test before running it to check our understanding. But we must take into account what records exist in our database, since this will affect our tests and results.
 
