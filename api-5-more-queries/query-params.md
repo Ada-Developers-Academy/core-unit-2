@@ -281,6 +281,56 @@ def get_all_books():
 
 We check for `title` in the query params. If it's not present, the `get()` call will return `None`, a falsy value. We check whether `title_param` is truthy to decide which branch of the conditional to take. Truthy indicates we got a value for the `title` query param, so we should filter by it. Falsy indicates we did not get a value, so we should get all books as before.
 
+How can we build a query that filters by partial title? From our endpoint that retrieves a single book, we've seen that we can use the `where()` method to restrict the results of a query to a matching value. What if we take a similar approach here?
+
+```python
+    if title_param:
+        query = db.select(Book).where(Book.title == title_param).order_by(Book.id)
+```
+
+But if we try to send a request looking for `apple` in the title, `GET` `/books?title=apple`, we won't get any results. This is because the `==` operator is looking for an exact match, and none of our titles are exactly `apple`. We need to keep looking for a way to match a partial title.
+
+If we know what we're trying to do, but not how, we can try searching for the answer. We can try searching for something like `SQLAlchemy filter by partial string` and see what we find. Among the results, we might learn that we can use the [`like()`](https://docs.sqlalchemy.org/en/20/core/sqlelement.html#sqlalchemy.sql.expression.ColumnElement.like) method to filter by a partial string. We might also encounter results describing the [`contains()`](https://docs.sqlalchemy.org/en/20/core/sqlelement.html#sqlalchemy.sql.expression.ColumnElement.contains) method, which works similarly. We'll stick with `like()`, because it resembles a standard operator in SQL called [`LIKE`](https://www.postgresql.org/docs/current/functions-matching.html#FUNCTIONS-LIKE), which is commonly used for this purpose.
+
+SQLAlchemy assumes that developers using it have some familiarity with SQL, so it provides methods that are similar to SQL operators. The more we practice SQL in general, the better we'll be able to ask questions about how to use SQLAlchemy.
+
+IN SQL, the query we're trying to write would resemble:
+
+```sql
+SELECT * FROM book WHERE title LIKE '%apple%' ORDER BY id;
+```
+
+In the pattern given to the `LIKE` operator, `%` is a wildcard character that matches any number of characters. So the pattern `%apple%` will match any title that contains `apple` anywhere in the title.
+
+We can build an equivalent query using SqlAlchemy with the following code:
+
+```python
+    if title_param:
+        query = db.select(Book).where(Book.title.like(f"%{title_param}%")).order_by(Book.id)
+```
+
+We can almost read this code as a plain English sentence! We want to select the books, where the title of the book is like the title parameter, and we want to order the results by the book's ID. Breaking it down, the code that builds our query has the following parts.
+
+<!-- prettier-ignore-start -->
+| <div style="min-width:250px;"> Piece of Code </div> | Notes |
+| - | - |
+| `db.select(Book)` | Start by creating a `Select` object on the `book` table (where `Book` instances live) with no further restrictions. If we ran this object, we would get back all books in whatever order the table happened to store them. |
+| `.where(...)` | Calls the `.where()` method on the previous `Select` object (the one returned by `db.select()`), returning a new `Select` object with the conditions in the `where` applied. If we ran this object, we would get back all books matching the conditions in whatever order the table happened to store them. |
+| `Book.title.like(...)` | Specifies that we are using the `title` column of the `Book` model in the condition. Specifically, we want to look for records whose `title` is `like()` the supplied pattern. |
+| `f"%{title_param}%"` | Use an f-string to specify the pattern, placing the supplied `title_param` between `%%` so that anything is allowed before the `title_param`, and anything is allowed after it. The result is we look for the `title_param` anywhere in the title of each book. |
+| `.order_by(Book.id)` | Calls the `order_by()` method on the previous `Select` object (now the one returned by `where()`), returning a new `Select` object with the ordering criteria applied. If we ran this object, we would get back all books matching the `.where()` conditions, ordered by their `id`. |
+<!-- prettier-ignore-end -->
+
+Running this code (or the previous SQL query) gives us... Nothing?
+
+It turns out, `LIKE`, `like()`, and even the `contains()` method we didn't look at, are case-sensitive. If we're looking for `apple`, but the title is `Apple`, we won't get a match. Fortunately, PostgreSQL provides the `ILIKE` operator, which is case-insensitive. We can use this operator in SQLAlchemy by calling the [`ilike()`](https://docs.sqlalchemy.org/en/20/core/sqlelement.html#sqlalchemy.sql.expression.ColumnElement.ilike) method instead of `like()`.
+
+```python
+    if title_param:
+        query = db.select(Book).where(Book.title.ilike(f"%{title_param}%")).order_by(Book.id)
+```
+
+
 ```python
 @books_bp.route("", methods=["GET"])
 def read_all_books():
