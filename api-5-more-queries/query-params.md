@@ -495,24 +495,17 @@ As before, our actual results will vary depending on the data in our database. I
 - `GET localhost:5000/books?description=apple` should return `It's Not Easy Being an Orange` and `An Apple a Day`
 - `GET localhost:5000/books?title=apple&description=apple` should return only `An Apple a Day`
 
+## More to Explore with Query Params and Filtering
 
-### !callout-info
+There's way more to explore in filtering than we can go into here. For example, we could filter by multiple titles, or by multiple descriptions, or by various combinations of titles and descriptions. If we had the data to support it, we could filter by a range of years, or by a range of prices. We could filter by a combination of all of these things! Later in the Building an API series, we'll look at how we might generalize some of our filtering code to handle arbitrary columns on various models.
 
-### More to Explore with Querying
+Beyond filtering, we could sort the results by the number of pages, or by the author's name. We could paginate the results, or limit the number of results that come back. If we can imagine some query param behavior, we can try to build it!
 
-There's way more to explore in filtering than is covered in this curriculum.
-<br>
-<br>
-More generally speaking, [there's more to explore with querying](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records)! Follow your curiousity.
-<br>
-<br>
-Here's one more query method to consider. This is the syntax for limiting the number of `Book` records:
+Building our desired filtering behaviors is a matter of understanding the data we have, and the data we want to get back. We can use the SQLAlchemy documentation to find the methods we need to build the queries we want. In addition to the already mentioned documentation on [Using SELECT Statements](https://docs.sqlalchemy.org/en/20/tutorial/data_select.html), we can also look at the library documentation for [SELECT and Related Constructs](https://docs.sqlalchemy.org/en/20/core/selectable.html) as well as for [Column Elements and Expressions](https://docs.sqlalchemy.org/en/20/core/sqlelement.html).
 
-```python
-Book.query.limit(100).all()
-```
+The SELECT documentation can point us towards other methods that have close SQL equivalents, such as `limit()`, `offset()`, `distinct()`, `group_by()`, `having()`, and more. The column methods documentation can give us ideas for how to add more complex conditions to our queries. Continuing to practice our SQL directly will also help us to understand how to build more complex queries in SQLAlchemy.
 
-### !end-callout
+In fact, when building a complex query for an endpoint, it can often be easiest to interactively build a raw SQL query in a database tool, and then translate that query into SQLAlchemy code. So keep building, and follow your curiosity!
 
 <!-- prettier-ignore-start -->
 ### !challenge
