@@ -507,6 +507,8 @@ The SELECT documentation can point us towards other methods that have close SQL 
 
 In fact, when building a complex query for an endpoint, it can often be easiest to interactively build a raw SQL query in a database tool, and then translate that query into SQLAlchemy code. So keep building, and follow your curiosity!
 
+## Check for Understanding
+
 <!-- prettier-ignore-start -->
 ### !challenge
 
