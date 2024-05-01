@@ -247,6 +247,22 @@ def get_all_books():
 
 This endpoint is already registered to run when the server receives a `GET` request to the `/books` endpoint. Recall that the `/books` part comes from the blueprint, so our route path is set to `""`.
 
+The only part of the code related to specifying which books to retrieve is the first line
+
+```python
+    query = db.select(Book).order_by(Book.id)
+```
+
+which builds a query to get all books ordered by their ID, storing the query (not yet the result of the query) in the `query` variable.
+
+The second line
+
+```python
+    books = db.session.scalars(query)
+```
+
+executes `query` and stores the results in the `books` variable. The rest of the code formats the results into a list of dictionaries and returns them. So if we add logic to build a different query based on whether the `title` query param is present, the rest of the code should work as before.
+
 ```python
 @books_bp.route("", methods=["GET"])
 def read_all_books():
