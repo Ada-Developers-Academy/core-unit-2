@@ -161,11 +161,7 @@ The popular package `requests`, used for making HTTP requests, is not the same a
 
 ### !end-callout
 
-## Using Query Params
-
-The way we choose to use query params will depend on our project needs.
-
-## Finding Books by Title: Preparation
+## Finding Books by Title
 
 Consider this feature:
 
