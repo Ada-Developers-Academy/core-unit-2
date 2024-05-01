@@ -167,28 +167,47 @@ Consider this feature:
 
 > As a client, I want to send a request to get a list of books, restricted to those with a match in the title, so that I can find a book by a partial title.
 
-### Planning HTTP Requests, Responses, and Logic
+### Planning HTTP Requests, Responses
 
-We want to get a list of book results, so the base of our endpoint will look like our usual endpoint to get all records of a particular type. We will use the `GET` verb sent to the `/books` endpoint. But now we'd also like to provide an additional parameter `title` that we can use to filter the results. Since filtering is a customization of the default _get all_ behavior, we can decide to express that as a query param.
+Our result should be a list of books, so we'll start with our usual endpoint to get all records of a particular type. We will use the `GET` verb sent to the `/books` endpoint. But now we'd also like to provide an additional parameter `title` that we can use to filter the results. Since filtering is a customization of the default _get all_ behavior, a query param is a suitable way to pass the title filtering data.
 
-| HTTP Method | Example Endpoint      |
-| ----------- | --------------------- |
-| `GET`       | `/books?title=Apples` |
+| HTTP Method | Example Endpoint     |
+| ----------- | -------------------- |
+| `GET`       | `/books?title=apple` |
 
-As usual, we don't need a request body for `GET` requests.
+As usual, we don't supply a request body for `GET` requests, since HTTP `GET` requests are not expected to send them.
 
-This assumes that there is a `book` table with at least the following rows. (The contents of `id`, and `description` are irrelevant for this feature).
+Lets assume that our `book` table has at least the following data. (The contents of `id`, and `description` are irrelevant for this feature).
 
-| `title`   |
-| --------- |
-| `Apples`  |
-| `Oranges` |
+| `title`                         |
+| ------------------------------- |
+| `10,000 Apples`                 |
+| `It's Not Easy Being an Orange` |
+| `An Apple a Day`                |
 
-In response to the request we've discussed, we want the endpoint to return success for the status code, and a list of the books with a matching title. We can use `200 OK` for the response status code, and a JSON response body representing a list of books.
+In response to our request, the endpoint should return success for the status code, with a list of the books that contained our `title` parameter. With a `title` value of `apple`, we would get back `10,000 Apples` and `An Apple a Day`, but not `It's Not Easy Being an Orange`. A read request that completes successfully uses `200 OK` for the response status code, and we'll return a JSON response body representing the list of books.
 
-| Response Status | Response Body                                            |
-| --------------- | -------------------------------------------------------- |
-| `200 OK`        | `[{"id": ..., "title": "Apples", "description": "..."}]` |
+<table>
+  <tr>
+    <th>Response Status</th>
+    <th>Example Response Body</th>
+  </tr>
+  <tr>
+    <td><code>200 OK</code></td>
+    <td><pre style="margin:0px;"><code>[
+    {
+        "id": ..., 
+        "title": "10,000 Apples", 
+        "description": ...
+    }, {
+        "id": ...,
+        "title": "An Apple a Day", 
+        "description": ...
+    }
+]</code></pre>
+    </td>
+  </tr>
+</table>
 
 Now that we have planned out these changes to our endpoint behavior, we can turn our attention to how to implement them.
 
