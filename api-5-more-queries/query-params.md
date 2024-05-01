@@ -263,6 +263,24 @@ The second line
 
 executes `query` and stores the results in the `books` variable. The rest of the code formats the results into a list of dictionaries and returns them. So if we add logic to build a different query based on whether the `title` query param is present, the rest of the code should work as before.
 
+The first thing we need to check is whether the `title` query param is present. We can do this by using the `request.args.get()` method to look up the value of the `title` key in the `request.args` object. If the `title` query param is present, we will use it to filter the results of our query. If it is not present, we will get all books as before.
+
+Adding this check into our code looks like this.
+
+```python
+@books_bp.get("")
+def get_all_books():
+    title_param = request.args.get("title")
+    if title_param:
+        query = ... # code that builds a query to filter by title
+    else:
+        query = db.select(Book).order_by(Book.id)
+
+    # remaining code as before
+```
+
+We check for `title` in the query params. If it's not present, the `get()` call will return `None`, a falsy value. We check whether `title_param` is truthy to decide which branch of the conditional to take. Truthy indicates we got a value for the `title` query param, so we should filter by it. Falsy indicates we did not get a value, so we should get all books as before.
+
 ```python
 @books_bp.route("", methods=["GET"])
 def read_all_books():
