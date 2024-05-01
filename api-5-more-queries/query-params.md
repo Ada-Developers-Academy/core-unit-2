@@ -509,32 +509,6 @@ In fact, when building a complex query for an endpoint, it can often be easiest 
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: tasklist
-* id: 14ef34fa
-* title: Query Params
-##### !question
-
-Think about Query Params and Filtering Books by Title.
-
-Check off all the topics that we've briefly touched on so far.
-
-##### !end-question
-##### !options
-
-* Reviewed query strings and query params
-* Planned the HTTP request for filtering by title
-* Refactored our code to check for a query param 
-* Used `request.args.get("title")` to get the query param
-* Used `Book.query.filter_by(title=title_query)` to filter by the query param
-* Tested our refactored route
-* Considered other query methods
-
-##### !end-options
-### !end-challenge
-<!-- prettier-ignore-end -->
-
-<!-- prettier-ignore-start -->
-### !challenge
 
 * type: ordering
 * id: 785e009a-e375-43af-8417-92954e75414f
