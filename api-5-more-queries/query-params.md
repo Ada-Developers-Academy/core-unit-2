@@ -165,7 +165,7 @@ The popular package `requests`, used for making HTTP requests, is not the same a
 
 Consider this feature:
 
-> As a client, I want to send a request trying to get a list of books with a matching title, so I know which books have a matching title.
+> As a client, I want to send a request to get a list of books, restricted to those with a match in the title, so that I can find a book by a partial title.
 
 ### Planning HTTP Requests, Responses, and Logic
 
