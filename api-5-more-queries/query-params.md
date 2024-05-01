@@ -345,6 +345,157 @@ Our actual results will vary, depending on the contents of our databases. The fi
 
 We should practice trying to predict the results of a test before running it to check our understanding. But we must take into account what records exist in our database, since this will affect our tests and results.
 
+## Extending Our Filters: Filter by Description
+
+Consider this feature:
+
+> As a client, I want to send a request to get a list of books, restricted to those with a match in the description, so that I can find a book by a partial description. I should be able to combine the effects of filtering by the title and description in order to filter results by multiple properties at once.
+
+### Planning HTTP Requests, Responses
+
+We can extend our existing `/books` endpoint to filter by description in a similar way to how we filtered by title. We'll add a `description` query param to the endpoint, and use it to filter the results by the description of the book.
+
+| HTTP Method | Example Endpoint            |
+| ----------- | --------------------------- |
+| `GET`       | `/books?description=orange` |
+
+As before, this request takes no request body.
+
+Let's add some descriptions to our previous sample books.
+
+<!-- prettier-ignore-start -->
+| `title`  | `description` |
+| - | - |
+| `10,000 Apples` | `When all you need is an orange... Now isn't that ironic? Don't you think?` |
+| `It's Not Easy Being an Orange` | `Limes and apples aren't the only ones with problems, you know!` |
+| `An Apple a Day` | `When Shay fell for a doctor, would a love of apples spell disaster for their happiness?` |
+<!-- prettier-ignore-end -->
+
+In response to our request, the endpoint should return success for the status code, with a list of the books that matches the filters. With a `description` value of `apple`, we'd get back the books `It's Not Easy Being an Orange` and `An Apple a Day`, but not `10,000 Apples`. If we also filter the `title` with a value of `apple`, we should get back only `An Apple a Day`. We'll still return `200 OK` for a successful response status code, and the JSON response body will be provided by the list of books.
+
+Refer to the title filtering example to review the response body structure.
+
+### Logic
+
+It's tempting to follow a pattern similar to the title filtering, but as the number of filters we want to check increases, our code would become more and more complex. Right now, or logic is structured like this:
+
+1. If we have a `title` query param, filter by title
+2. Otherwise, get all books
+
+If we add a `description` query param, we would need to add another conditional branch to check for the `description` query param. But because we want to filter by both title and description, we would need to consider all possible combinations of the presence of the `title` and `description` query params. This would lead to four branches in our conditional.
+
+1. If we have a `title` query param and a `description` query param, filter by both
+2. If we have a `title` query param but not a `description` query param, filter by title
+3. If we have a `description` query param but not a `title` query param, filter by description
+4. If we have neither a `title` query param nor a `description` query param, get all books
+
+If we had another filter (maybe the year published) we would need to consider eight branches, because there are 8 possible ways to turn on or off 3 filters. Add an author filter and we're up to sixteen branches. Our code is growing exponentially! This is not a sustainable way to write code!
+
+What would be great is if there were a way to build up a query in parts, adding conditions as we need them, and then executing the query at the end. This way, we could build a query that filters by title, then add a condition to filter by description, and then execute the query to get the results. Then our logical steps would look like this:
+
+1. Start with a query to get all books
+2. If we have a `title` query param, add a condition to filter by title
+3. If we have a `description` query param, add a condition to filter by description
+4. Execute the query to get the results
+
+If both the `title` and `description` query params are present, we would filter by both. If only one is present, we would filter by that one. If neither is present, we would get all books. This is a much more manageable way to structure our code, and SqlAlchemy provides a way to do this!
+
+### Code
+
+Here's the conditional code that we wrote for the title filtering:
+
+```python
+    title_param = request.args.get("title")
+    if title_param:
+        query = db.select(Book).where(Book.title.ilike(f"%{title_param}%")).order_by(Book.id)
+    else:
+        query = db.select(Book).order_by(Book.id)
+```
+
+Let's reorganize this code to follow the new structure we've outlined.
+
+```python
+    query = db.select(Book)
+
+    title_param = request.args.get("title")
+    if title_param:
+        query = query.where(Book.title.ilike(f"%{title_param}%"))
+
+    query = query.order_by(Book.id)
+```
+
+<!-- prettier-ignore-start -->
+| <div style="min-width:250px;"> Piece of Code </div> | Notes |
+| - | - |
+| `query = db.select(Book)` | Start by creating a `Select` object on the `book` table. |
+| `if title_param:` | Only run the block code if a title filter was supplied. |
+| `query = query.where(...)` | Calls the `.where()` method on the previous `Select` object (the one returned by `db.select()`), returning a new `Select` object with the conditions in the `where` applied. Update the `query` variable to refer to this new, restricted query. If the title filter was not supplied, this code would not run, and `query` would still refer to the unrestricted `Select` object from `db.select(Book)`. |
+| `query = query.order_by(Book.id)` | Whichever query the `query` variable refers to (the unrestricted `Book` query, or the updated query that includes the title filter), update it to order the results by the book IDs. |
+<!-- prettier-ignore-end -->
+
+Basically, we pealed off the shared part at the start of both queries, added a condition to filter by title if the `title` query param is present, and then ordered the results by the book's ID. This code is equivalent to the previous code, but it's structured in a way that will make it easier to add more filters in the future.
+
+Let's add the description filter in a similar way. Try adding it yourself before clicking below to reveal one approach.
+
+<br />
+
+<details>
+   <summary>Click to reveal the code after adding filtering by description</summary>
+
+```python
+    query = db.select(Book)
+
+    title_param = request.args.get("title")
+    if title_param:
+        query = query.where(Book.title.ilike(f"%{title_param}%"))
+
+    description_param = request.args.get("description")
+    if description_param:
+        query = query.where(Book.description.ilike(f"%{description_param}%"))
+
+    query = query.order_by(Book.id)
+```
+
+There's one slight difference between this code and the version in GitHub. Here, we explicitly updated the query stored in the `query` variable with the order clause. In the version in GitHub, the `order_by()` method is called on the `query` object on the same line that executes the query.
+
+Compare
+
+```python
+    query = query.order_by(Book.id)
+    books = db.session.scalars(query)
+```
+
+with
+
+```python
+    books = db.session.scalars(query.order_by(Book.id))
+```
+
+Both approaches are equivalent, so we can use either depending on how much emphasis we want to place of the ordering clause. The GitHub version also includes comments capturing the intermediate approaches we tried earlier when filtering by title.
+
+</details>
+
+### Manually Testing in Postman
+
+Let's test out our endpoint either using the Browser or Postman.
+
+We can compare our original feature which gets all books, to filtering by combinations of title and description.
+
+```
+GET localhost:5000/books
+GET localhost:5000/books?title=apple
+GET localhost:5000/books?description=apple
+GET localhost:5000/books?title=apple&description=apple
+```
+
+As before, our actual results will vary depending on the data in our database. If we have the sample books we've been using, we should get back the following results:
+
+- `GET localhost:5000/books` should return all books
+- `GET localhost:5000/books?title=apple` should return `10,000 Apples` and `An Apple a Day`
+- `GET localhost:5000/books?description=apple` should return `It's Not Easy Being an Orange` and `An Apple a Day`
+- `GET localhost:5000/books?title=apple&description=apple` should return only `An Apple a Day`
+
+
 ### !callout-info
 
 ### More to Explore with Querying
