@@ -532,3 +532,137 @@ Check off all the topics that we've briefly touched on so far.
 ##### !end-options
 ### !end-challenge
 <!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+
+* type: ordering
+* id: 785e009a-e375-43af-8417-92954e75414f
+* title: Query Params
+
+##### !question
+
+Place the following responsibilities in order so that they correspond to the following list of the sources of data in a request.
+- Request body
+- Route parameters
+- Query parameters
+
+##### !end-question
+
+##### !answer
+
+1. Contains data that should be uploaded to the server to create or update a record
+1. Contains data that identifies a particular record
+1. Contains data that customizes the behaviors of a route
+
+##### !end-answer
+
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+
+* type: multiple-choice
+* id: 7cab0a7c-d54a-4a1f-885d-6d77bc3294fe
+* title: Query Params
+
+##### !question
+
+Which of the following URLs follows RESTful conventions for filtering books by title?
+
+##### !end-question
+
+##### !options
+
+a| https://bookworm.adadev.org/?resource=book&title=analytical%20engine
+b| https://bookworm.adadev.org/books&title?analytical%20engine
+c| https://bookworm.adadev.org/titles?analytical%20engine
+d| https://bookworm.adadev.org/books?title=analytical%20engine
+e| https://bookworm.adadev.org/books?analytical%20engine=title
+
+##### !end-options
+
+##### !answer
+
+d|
+
+##### !end-answer
+
+##### !explanation
+
+- The name of the resource collection is `books`, so the path of this URL should start with `/books` rather than listing the resource type as a query param.
+- This URL makes mistakes in the separation characters. `&` is used to separate multiple query params in the query string. `?` separates the path from the query string. `=` separates the key from the value.
+- Although we are filtering by title, the resource collection should be `books`, not `titles`.
+- This example follows RESTful conventions for filtering books by title. The path is `/books`, and the query string contains a `title` query param.
+- The query param in this URL is backwards, reversing the key and the value.
+
+<br />
+
+All these examples use the text `analytical%20engine` as the filter. Recall that `%20` is the URL encoded value for a space character, so we are looking for a title containing the words `analytical engine`. It was in her notes about the Analytical Engine that Ada Lovelace described how this machine could function as a programmable computer, even describing what is widely considered to be the first computer program. 
+
+##### !end-explanation
+
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+
+* type: checkbox
+* id: 993dd96f-0493-4471-bca5-9f638eaf4bb8
+* title: Query Params
+
+##### !question
+
+Why is it important to update the value to which `query` refers in the following snippet?
+```python
+    query = db.select(Book)
+
+    title_param = request.args.get("title")
+    if title_param:
+        # Why do we update the value of `query` here?
+        query = query.where(Book.title.ilike(f"%{title_param}%"))
+
+    books = db.session.scalars(query.order_by(Book.id))
+```
+
+##### !end-question
+
+##### !options
+
+a| This would allow us to add more conditions to the query later, without losing the previous conditions.
+b| `where()` returns a new `Select` object with the conditions in the `where()` applied. It does not modify the original `Select` object.
+c| Calling `where()` without an assignment is a syntax error.
+d| If we didn't, `books` would end up with _all_ books, not just the filtered ones.
+
+##### !end-options
+
+##### !answer
+
+a|
+b|
+d|
+
+##### !end-answer
+
+##### !hint
+
+- How did we support filtering both by `title` and `description`?
+- If `where()` doesn't modify the original `Select` object, how can we use the updated `Select` later on?
+- For other Python functions that return values, does calling them without an assignment cause an error?
+- If we call `query.where()` without updating `query`, what would `query` refer to when we try to use it later?
+
+##### !end-hint
+
+##### !explanation
+
+- By updating `query` here, if we later add more conditions to the query, the later use will include the effects of the earlier conditions. If we didn't update `query`, the later use would ignore the earlier conditions.
+- It's true that `where()` returns a new `Select` object, so we would either need to use that value immediately (such as by calling another query method on it, or passing it directly to `db.session.scalars()`), or store it in a variable for later use.
+- There is no syntax error here. Python allows us to ignore return values. However, this would probably result in a logical error!
+- Failing to update `query` means that `query` would refer to the original `Select` object, which would not have the conditions applied by the `where()` method. This would result in `books` always containing all books, not just the filtered ones.
+
+##### !end-explanation
+
+### !end-challenge
+<!-- prettier-ignore-end -->
