@@ -215,19 +215,14 @@ Now that we have planned out these changes to our endpoint behavior, we can turn
 
 Our endpoint will need to:
 
-1. Check if the HTTP method is `GET`
-1. Check if we have a query param for `title`
-1. If we have a `title` query param, retrieve all of the books from the database that match, otherwise retrieve all books as usual
-1. Format the books data into the appropriate structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
-1. Send back a response
+1. Run when receiving a `GET` request to the `/books` endpoint
+2. Check whether we have a `title` query param
+3. If we have a `title` query param, retrieve all of the books that match from the database, otherwise retrieve all books as usual
+4. Format the books data into the appropriate structure (list of dictionaries, where each dictionary has `id`, `title`, and `description`)
+5. Send back a response
 
-## Finding Books by Title: Code
+This plan covers both the case where we should filter by title and the case where we should not. Compared to our existing code, we're adding an additional step to check for the query param and filter the results accordingly, but otherwise, everything should be the same.
 
-This endpoint uses the same path as our existing `/books` route that lists books. Recall that the `"/books"` part comes from the blueprint, so our route path is set to `""`.
-
-We can use the method [`filter_by`](https://flask-sqlalchemy.palletsprojects.com/en/2.x/queries/#querying-records) in order to filter our search query.
-
-Consider this example that filters `Book`s by title.
 
 ```python
 Book.query.filter_by(title="Fictional Book Title")
