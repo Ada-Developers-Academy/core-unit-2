@@ -225,6 +225,28 @@ This plan covers both the case where we should filter by title and the case wher
 
 ### Code
 
+Before we start making changes, let's review the code for our `/books` endpoint.
+
+```python
+@books_bp.get("")
+def get_all_books():
+    query = db.select(Book).order_by(Book.id)
+    books = db.session.scalars(query)
+
+    books_response = []
+    for book in books:
+        books_response.append(
+            {
+                "id": book.id,
+                "title": book.title,
+                "description": book.description
+            }
+        )
+    return books_response
+```
+
+This endpoint is already registered to run when the server receives a `GET` request to the `/books` endpoint. Recall that the `/books` part comes from the blueprint, so our route path is set to `""`.
+
 ```python
 @books_bp.route("", methods=["GET"])
 def read_all_books():
