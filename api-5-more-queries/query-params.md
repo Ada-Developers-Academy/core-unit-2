@@ -330,44 +330,6 @@ It turns out, `LIKE`, `like()`, and even the `contains()` method we didn't look 
         query = db.select(Book).where(Book.title.ilike(f"%{title_param}%")).order_by(Book.id)
 ```
 
-
-```python
-@books_bp.route("", methods=["GET"])
-def read_all_books():
-
-    # this code replaces the previous query all code
-    title_query = request.args.get("title")
-    if title_query:
-        books = Book.query.filter_by(title=title_query)
-    else:
-        books = Book.query.all()
-    # end of the new code
-
-    books_response = []
-    for book in books:
-        books_response.append({
-            "id": book.id,
-            "title": book.title,
-            "description": book.description
-        })
-
-    return jsonify(books_response)
-```
-
-| <div style="min-width:270px;"> Piece of Code </div> | Notes                                                                                                                                                           |
-| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `title_query = ...`                                 | Store the result of looking for the `title` query param in the variable `title_query`                                                                           |
-| `... = request.args.get("title")`                   | Try to get a query param called `title` from the `request`. This returns the value of the query param if it was set, or `None` if the query param is not found. |
-| `if title_query:`                                   | Decide which conditional branch to take by checking whether we got a query param with which to filter                                                           |
-| `books = ...`                                       | Store the results of our query in the `books` variable.                                                                                                         |
-| `... = Book.query.filter_by( ... )`                 | If we got a query param, we will make a `filter_by` call to filter the results.                                                                                 |
-| `title=title_query`                                 | Filter the book query results to those whose titles match the query param                                                                                       |
-| `... = Book.query.all()`                            | If we didn't get a query param, get all the books as before.                                                                                                    |
-
-The remainder of the code is the same as it was previously.
-
-To summarize, we looked up whether the `title` query param was provided. We used that to decide which query we should run, and we stored the result in `books`. Then we converted `books` into JSON as before and returned the result.
-
 ### Manually Testing in Postman
 
 We can use the Browser and/or Postman to manually test our database.
