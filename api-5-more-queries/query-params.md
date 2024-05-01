@@ -209,6 +209,8 @@ In response to our request, the endpoint should return success for the status co
   </tr>
 </table>
 
+### Logic
+
 Now that we have planned out these changes to our endpoint behavior, we can turn our attention to how to implement them.
 
 Our endpoint will need to:
