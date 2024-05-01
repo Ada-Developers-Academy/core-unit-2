@@ -223,12 +223,7 @@ Our endpoint will need to:
 
 This plan covers both the case where we should filter by title and the case where we should not. Compared to our existing code, we're adding an additional step to check for the query param and filter the results accordingly, but otherwise, everything should be the same.
 
-
-```python
-Book.query.filter_by(title="Fictional Book Title")
-```
-
-Let's modify our endpoint code to filter the results when a title query param is supplied.
+### Code
 
 ```python
 @books_bp.route("", methods=["GET"])
