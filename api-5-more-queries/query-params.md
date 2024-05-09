@@ -637,10 +637,10 @@ d|
 
 ##### !explanation
 
-- By updating `query` here, if we later add more conditions to the query, the later use will include the effects of the earlier conditions. If we didn't update `query`, the later use would ignore the earlier conditions.
-- It's true that `where()` returns a new `Select` object, so we would either need to use that value immediately (such as by calling another query method on it, or passing it directly to `db.session.scalars()`), or store it in a variable for later use.
-- There is no syntax error here. Python allows us to ignore return values. However, this would probably result in a logical error!
-- Failing to update `query` means that `query` would refer to the original `Select` object, which would not have the conditions applied by the `where()` method. This would result in `books` always containing all books, not just the filtered ones.
+1. By updating `query` here, if we later add more conditions to the query, the later use will include the effects of the earlier conditions. If we didn't update `query`, the later use would ignore the earlier conditions.
+2. It's true that `where()` returns a new `Select` object, so we would either need to use that value immediately (such as by calling another query method on it, or passing it directly to `db.session.scalars()`), or store it in a variable for later use.
+3. There is no syntax error here. Python allows us to ignore return values. However, this would probably result in a logical error!
+4. Failing to update `query` means that `query` would refer to the original `Select` object, which would not have the conditions applied by the `where()` method. This would result in `books` always containing all books, not just the filtered ones.
 
 ##### !end-explanation
 
