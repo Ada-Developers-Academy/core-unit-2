@@ -567,6 +567,12 @@ d|
 
 ##### !end-answer
 
+##### !hint
+
+All these examples use the text `analytical%20engine` as the filter. Recall that `%20` is the URL encoded value for a space character, so we are looking for a title containing the words `analytical engine`. It was in her notes about the Analytical Engine that Ada Lovelace described how this machine could function as a programmable computer, even describing what is widely considered to be the first computer program. 
+
+##### !end-hint
+
 ##### !explanation
 
 1. The name of the resource collection is `books`, so the path of this URL should start with `/books` rather than listing the resource type as a query param.
@@ -574,10 +580,6 @@ d|
 3. Although we are filtering by title, the resource collection should be `books`, not `titles`.
 4. This example follows RESTful conventions for filtering books by title. The path is `/books`, and the query string contains a `title` query param.
 5. The query param in this URL is backwards, reversing the key and the value.
-
-<br />
-
-All these examples use the text `analytical%20engine` as the filter. Recall that `%20` is the URL encoded value for a space character, so we are looking for a title containing the words `analytical engine`. It was in her notes about the Analytical Engine that Ada Lovelace described how this machine could function as a programmable computer, even describing what is widely considered to be the first computer program. 
 
 ##### !end-explanation
 
