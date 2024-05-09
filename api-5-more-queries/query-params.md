@@ -135,7 +135,7 @@ Another common use for query params is to:
 
 - filter results based on certain criteria
 
-Let's take a look at how we can use query params in our Flask app to filter the endpoint results.
+Let's take a look at how we can use query params in our Flask app to filter an endpoint's results.
 
 ## Reading Query Params From a Request
 
@@ -279,7 +279,9 @@ def get_all_books():
     # remaining code as before
 ```
 
-We check for `title` in the query params. If it's not present, the `get()` call will return `None`, a falsy value. We check whether `title_param` is truthy to decide which branch of the conditional to take. Truthy indicates we got a value for the `title` query param, so we should filter by it. Falsy indicates we did not get a value, so we should get all books as before.
+In the code above our changes:
+1. check for `title` in the query params. If it's not present, the `get()` call will return `None`, a falsy value. 
+2. check whether `title_param` is truthy to decide which branch of the conditional to take. Truthy indicates we got a value for the `title` query param, so we should filter by it. Falsy indicates we did not get a value, so we should get all books as before.
 
 How can we build a query that filters by partial title? From our endpoint that retrieves a single book, we've seen that we can use the `where()` method to restrict the results of a query to a matching value. What if we take a similar approach here?
 
@@ -294,7 +296,7 @@ If we know what we're trying to do, but not how, we can try searching for the an
 
 SQLAlchemy assumes that developers using it have some familiarity with SQL, so it provides methods that are similar to SQL operators. The more we practice SQL in general, the better we'll be able to ask questions about how to use SQLAlchemy.
 
-IN SQL, the query we're trying to write would resemble:
+In SQL, the query we're trying to write would resemble:
 
 ```sql
 SELECT * FROM book WHERE title LIKE '%apple%' ORDER BY id;
@@ -377,7 +379,7 @@ Refer to the title filtering example to review the response body structure.
 
 ### Logic
 
-It's tempting to follow a pattern similar to the title filtering, but as the number of filters we want to check increases, our code would become more and more complex. Right now, or logic is structured like this:
+It's tempting to follow a pattern similar to the title filtering, but as the number of filters we want to check increases, our code would become more and more complex. Right now, our logic is structured like this:
 
 1. If we have a `title` query param, filter by title
 2. Otherwise, get all books
@@ -428,12 +430,12 @@ Let's reorganize this code to follow the new structure we've outlined.
 | <div style="min-width:250px;"> Piece of Code </div> | Notes |
 | - | - |
 | `query = db.select(Book)` | Start by creating a `Select` object on the `book` table. |
-| `if title_param:` | Only run the block code if a title filter was supplied. |
+| `if title_param:` | Only run the block of code if a title filter was supplied. |
 | `query = query.where(...)` | Calls the `.where()` method on the previous `Select` object (the one returned by `db.select()`), returning a new `Select` object with the conditions in the `where` applied. Update the `query` variable to refer to this new, restricted query. If the title filter was not supplied, this code would not run, and `query` would still refer to the unrestricted `Select` object from `db.select(Book)`. |
 | `query = query.order_by(Book.id)` | Whichever query the `query` variable refers to (the unrestricted `Book` query, or the updated query that includes the title filter), update it to order the results by the book IDs. |
 <!-- prettier-ignore-end -->
 
-Basically, we pealed off the shared part at the start of both queries, added a condition to filter by title if the `title` query param is present, and then ordered the results by the book's ID. This code is equivalent to the previous code, but it's structured in a way that will make it easier to add more filters in the future.
+Basically, we peeled off the shared part at the start of both queries, added a condition to filter by title if the `title` query param is present, and then ordered the results by the book's ID. This code is equivalent to the previous code, but it's structured in a way that will make it easier to add more filters in the future.
 
 Let's add the description filter in a similar way. Try adding it yourself before clicking below to reveal one approach.
 
@@ -567,11 +569,11 @@ d|
 
 ##### !explanation
 
-- The name of the resource collection is `books`, so the path of this URL should start with `/books` rather than listing the resource type as a query param.
-- This URL makes mistakes in the separation characters. `&` is used to separate multiple query params in the query string. `?` separates the path from the query string. `=` separates the key from the value.
-- Although we are filtering by title, the resource collection should be `books`, not `titles`.
-- This example follows RESTful conventions for filtering books by title. The path is `/books`, and the query string contains a `title` query param.
-- The query param in this URL is backwards, reversing the key and the value.
+1. The name of the resource collection is `books`, so the path of this URL should start with `/books` rather than listing the resource type as a query param.
+2. This URL makes mistakes in the separation characters. `&` is used to separate multiple query params in the query string. `?` separates the path from the query string. `=` separates the key from the value.
+3. Although we are filtering by title, the resource collection should be `books`, not `titles`.
+4. This example follows RESTful conventions for filtering books by title. The path is `/books`, and the query string contains a `title` query param.
+5. The query param in this URL is backwards, reversing the key and the value.
 
 <br />
 
