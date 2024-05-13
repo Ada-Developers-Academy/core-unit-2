@@ -89,13 +89,13 @@ Our query could look like:
 query = db.select(Book).where(Book.id == book_id)
 ```
 
-The `query` variable above is a `Select` object, and we still need to execute the query to get back a `Book` model. When we wanted to read all books in the `get_all_books` function, we used the `db.session` object and called its `scalars` method to get a list of models. In this case, we only want to retrieve a single book record using it's unique identifier `id`. `db.session` has another method we can use, `scalar`, which will only return one result rather than a list. 
+The `query` variable above receives a `Select` object representing the query for the data we are going to retrieve. We still need to execute the query to get back an actual `Book` model. When we wanted to read all books in the `get_all_books` function, we used the `db.session` object and called its `scalars` method to get a list of models. In this case, we expect the result to be only a single book record—if any—specified by its unique identifier `id`. `db.session` has another method we can use, `scalar`, which will only return one result rather than a list. 
 
 ```python
 book = db.session.scalar(query)
 ```
 
-Consider how you could refactor the `GET` `/books/<book_id>` route to make use of these pieces of syntax.
+Consider how we could refactor the `GET` `/books/<book_id>` route to make use of these pieces of syntax.
 
 <br/>
 
@@ -123,7 +123,7 @@ def get_one_book(book_id):
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes |
 | --------------------------------------------------- | ----- |
-| `@books_bp.get("/<book_id>")`                       | Unchanged from our previous hardcoded route. This decorator indicates that the function below it is a `GET` route that is registered with the `Blueprint` object named `books_bp`. |
+| `@books_bp.get(...)`                       | Unchanged from our previous hardcoded route. This decorator indicates that the function below it is a `GET` route that is registered with the `Blueprint` object named `books_bp`. |
 | `"/<book_id>"`                                      | Unchanged from our previous hardcoded route. This is the `Blueprint` syntax to indicate a route parameter named `<book_id>`. The `<book_id>` placeholder shows that we are looking for a variable value which we can use in the function as the variable `book_id`. |
 | `def get_one_book(book_id):`                        | Unchanged from our previous hardcoded route. This function must have a parameter, `book_id`. This parameter name must match the route parameter in the decorator. It will receive the part of the request path that lines up with the placeholder in the route. |
 | `query = ...`                                       | We store the `Select` object which represents our query for a single `Book` instance in the variable `query` |
@@ -132,11 +132,11 @@ def get_one_book(book_id):
 | `book = ...`                                       | We store the single `Book` model in the variable `book` |
 | `... = db.session.scalar(query)`                   | This syntax tells the `db.session` object to execute the query we have built up in the `query` variable and return the first result found as a `scalar` (our `Book` model object). This method returns a single instance of `Book`. |
 | `return`                                           | As always, we must return a response. Flask will default to returning status `200 OK`. |
-| `{ "id": book.id, ... }`                           | We can create a dictionary literal for our HTTP response. |
+| `{ "id": book.id, ... }`                           | A dictionary literal that Flask will convert to JSON for our HTTP response body. |
 
 ## Error Handling
 
-Recall the `validate_book` helper function that handles an invalid `book_id` or a non-existing book by returning a `400` or `404` response. 
+Recall the `validate_book` helper function, which handles an invalid `book_id` or a non-existing book by returning a `400` or `404` response. 
 
 <br/>
 
@@ -169,9 +169,9 @@ query = db.select(Book).where(Book.id == book_id)
 book = db.session.scalar(query)
 ```
 
-For our error handling, we need to know: what happens when there is no matching book? What is returned when you execute a query that isn't selecting any records?
+For our error handling, we need to know what happens when there is no matching book. What is returned when we execute a query that finds no matching records?
 
-It turns out that when we execute a query which selects no book records `db.session.scalar(query)` returns `None`! This is handy since we can look at if the result of executing our query is truthy or falsy, and act accordingly.
+It turns out that when we execute a query which selects no book records `db.session.scalar(query)` returns `None`! This is handy since we can look at whether the result of executing our query is truthy or falsy, and act accordingly.
 
 <br/>
 
@@ -213,7 +213,7 @@ def validate_book(book_id):
 As with our previous routes, we should practice using all the tools at our disposal to test our endpoints and investigate issues should they arise.
 
 - Postman
-- Flask Server logs
+- Flask Server logs (shown in the terminal)
 - `psql` interface
 - VS Code
 - Peers, classmates, and rubber ducks
@@ -281,9 +281,9 @@ Select all of the options below which are valid reasons for refactoring and usin
 ##### !end-question
 ##### !options
 
-a| Having a function with the single responsibility of checking if an `id` is valid then retrieving the `Book` record.
-b| Moving data validation and fetching out of the function `get_one_book`, so that `get_one_book` is focused on the unique work for the route.
-c| Knowing we will create further routes which will need to look up a `Book` record by `id`. 
+a| Separating out the single responsibility of retrieving valid `Book` records allows us to encapsulate the validation logic, which could be complex, in a function with a self-documenting name.
+b| Moving data validation and fetching out of the function `get_one_book`allows `get_one_book` to focus on the unique work for the route.
+c| We know that we will create further routes which will need to look up a `Book` record by `id`. 
 
 ##### !end-options
 ##### !answer
@@ -295,7 +295,7 @@ c|
 ##### !end-answer
 ##### !explanation
 
-Each of these is a valid reason for separating out our code into helper functions! This change helps our functions to better align with the 'single responsibility principle' and helps to reduce repeated code across a project, making a project easier to maintain over time.
+Each of these is a valid reason for separating out our code into helper functions! This change helps our functions to better align with the Single Responsibility Principle and helps to reduce repeated code across a project, making a project easier to maintain over time.
 
 ##### !end-explanation
 ### !end-challenge
