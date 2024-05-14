@@ -7,7 +7,7 @@
 
 Our goals for this lesson are to:
 - Practice defining routes that read model records
-- Access a database record from the back-end layer
+- Access a particular database record from the back-end layer
 
 We will build our Hello Books API to fulfill the following feature:
 
@@ -88,6 +88,10 @@ Our query could look like:
 ```python
 query = db.select(Book).where(Book.id == book_id)
 ```
+
+Let's take a deeper look at our `where` method's parameter `Book.id == book_id`. In plain SQL we might have expressions in a WHERE clause such as `id = 3` or `title = Fictional Book`. SQLAlchemy allows us to compose SQL expressions like this by using the standard Python operators in conjunction with SQLAlchemy's `Column` class. For boolean expressions, most Python operators such as ==, !=, <, >= etc. generate new SQL Expression objects, rather than plain boolean True/False values. 
+
+Re-reading our expression `Book.id == book_id`, we now know that this statement does not evaluate to a True/False value. `Book.id == book_id` is generating a SQL Expression object that can be applied when we execute `query`, where `Book.id` is a SQLAlchemy `Column` object representing the `id` column of our `Book` model.
 
 The `query` variable above receives a `Select` object representing the query for the data we are going to retrieve. We still need to execute the query to get back an actual `Book` model. When we wanted to read all books in the `get_all_books` function, we used the `db.session` object and called its `scalars` method to get a list of models. In this case, we expect the result to be only a single book record—if any—specified by its unique identifier `id`. `db.session` has another method we can use, `scalar`, which will only return one result rather than a list. 
 
@@ -205,6 +209,8 @@ def validate_book(book_id):
 
     return book
 ```
+
+Even though `scalar` can return `None`, we don't need to worry about that case in our route function because it is already handled! `validate_book` takes care of that scenario by sending back a 404 response with `abort`, which prevents the rest of the route code from running.
 
 </details>
 
