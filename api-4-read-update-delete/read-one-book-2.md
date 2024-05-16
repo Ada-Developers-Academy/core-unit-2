@@ -89,7 +89,7 @@ Our query could look like:
 query = db.select(Book).where(Book.id == book_id)
 ```
 
-Let's take a deeper look at our `where` method's parameter `Book.id == book_id`. In plain SQL we might have expressions in a WHERE clause such as `id = 3` or `title = Fictional Book`. SQLAlchemy allows us to compose SQL expressions like this by using the standard Python operators in conjunction with SQLAlchemy's `Column` class. For boolean expressions, most Python operators such as ==, !=, <, >= etc. generate new SQL Expression objects, rather than plain boolean True/False values. 
+Let's take a deeper look at our `where` method's parameter `Book.id == book_id`. In plain SQL we might have expressions in a WHERE clause such as `id = 3` or `title = 'Fictional Book'`. SQLAlchemy allows us to compose SQL expressions like this by using the standard Python operators in conjunction with SQLAlchemy's `Column` class. For boolean expressions involving `Column`s, most Python operators such as ==, !=, <, >= etc. generate new SQL Expression objects through the use of dunder methods, rather than plain boolean True/False values. 
 
 Re-reading our expression `Book.id == book_id`, we now know that this statement does not evaluate to a True/False value. `Book.id == book_id` is generating a SQL Expression object that can be applied when we execute `query`, where `Book.id` is a SQLAlchemy `Column` object representing the `id` column of our `Book` model.
 
