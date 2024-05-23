@@ -372,7 +372,7 @@ Standards:
       -
         Type: Lesson
         UID: 2cfe7232-9dd4-4efe-8d33-9a4539ec3c63
-        Path: /api-5-more-queries/activity-solar-refactor.md
+        Path: /api-5-more-queries/activity-solar-query-params.md
   -
     Title: 06) Building an API - Testing
     Description: "Environments and Env Vars, dotenv and the Test DB, Fixtures, Test Setup, GET /books, GET /books/<book_id>, POST /books"
