@@ -18,6 +18,7 @@ Check off the endpoint modifications you completed and tested.
 
 * Filter by `description`
 * Filter by custom attribute
+* Both filters can be used separately or combined
 
 ##### !end-options
 
