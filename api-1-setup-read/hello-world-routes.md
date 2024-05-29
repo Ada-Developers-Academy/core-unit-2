@@ -30,7 +30,7 @@ For now, let's focus on how we can use a `Blueprint` in our own code, but for fu
 - [Flask's definition of `Blueprint`](https://flask.palletsprojects.com/en/3.0.x/api/#blueprint-objects)
 - [Flask's tutorial on using `Blueprint`](https://flask.palletsprojects.com/en/3.0.x/tutorial/views/)
 
-### Creating a Our First Route File 
+### Creating Our First Route File 
 
 In the `routes` directory, we will create our first route file in the Hello Books API project. We can use the following command from the root of our project directory:
 
