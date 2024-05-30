@@ -23,11 +23,15 @@ We will:
 
 ## Defining Endpoints with Blueprint
 
-Our code will import and use something named `Blueprint` from `flask`. In `routes.py`, let's add this import line.
+### Creating Our First Route File 
 
-```python
-from flask import Blueprint
+Before we can define any endpoints, we need a file for our route functions. In the `routes` directory, we will create our first route file in the Hello Books API project. We can use the following command from the root of our project directory:
+
 ```
+$ touch app/routes/hello_world_routes.py
+```
+
+### Blueprints in Flask
 
 `Blueprint` is a Flask class that provides a pattern for grouping related routes (endpoints). Flask will often refer to these routes using the word "view" due to Flask having the potential of sending HTML views. However, we will be sending back JSON.
 
@@ -82,7 +86,7 @@ If we needed to create and register more `Blueprint`s, we could follow this patt
 
 ### Defining an Endpoint
 
-Now that we have registered a Blueprint, which will help us organize our routes, we can create an endpoint in `app/routes.py`.
+Now that we have registered a Blueprint, which will help us organize our routes, we can create an endpoint in `app/routes/hello_world_routes.py`.
 
 Recall that the responsibility of an endpoint is to:
 
@@ -133,8 +137,7 @@ hello_world_bp = Blueprint("hello_world", __name__)
 
 @hello_world_bp.get("/")
 def say_hello_world():
-    my_beautiful_response_body = "Hello, World!"
-    return my_beautiful_response_body
+    return "Hello, World!"
 ```
 
 ### Manually Testing the Hello World Endpoint
@@ -310,7 +313,7 @@ You've built and run a pretty substantial web server now, that accepts three dif
 
 ##### !question
 
-Which reponse code will appear there is an `Internal Server Error`?
+Which response code will appear there is an `Internal Server Error`?
 
 ##### !end-question
 
@@ -331,7 +334,7 @@ c|
 
 ##### !explanation
 
-When an error occurs serverside, a request will recieve a `500 Internal Server Error` response.
+When an error occurs server-side, a request will receive a `500 Internal Server Error` response.
 
 ##### !end-explanation
 
@@ -366,7 +369,7 @@ b|
 
 ##### !explanation
 
-The `Blueprint` decorator is placed directly above a function to transorm it into a route.
+The `Blueprint` decorator is placed directly above a function to transform it into a route.
 
 ##### !end-explanation
 
