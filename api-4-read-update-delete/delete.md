@@ -37,9 +37,9 @@ This assumes that there is a `book` table with at least the following row:
 
 When the record is successfully updated, we should return an appropriate response. In this case, we'll use the same response as we did in the `update_book` endpoint: we will send back an empty body with the status code `204 No Content`. Some APIs return the the record that was just deleted as the response body, but for our example, we'd like to avoid combining record access and deletion in this endpoint. 
 
-| Response Status |
-| --------------- |
-| `204 No Content` |
+| <div style="min-width:200px;"> Response Status </div> | Response Body |
+| --------------- | --------------|
+| `204 No Content` | Our successful response to a `DELETE` request will not have a response body |
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
@@ -82,19 +82,19 @@ After writing this code, we can use Postman to test our delete functionality.
 First, let's make a `GET` request to `/books/1` to confirm that a book with ID 1 exists.
 
 ![Screenshot of Postman featuring a request of GET to /books/1 and a response of 200 with book data](../assets/api-4-read-update-delete/api-4_delete_get-one-book.png)
-_Fig. GET request to /books/1 and a response of 200 with book data ([Full size image](../assets/api-4-read-update-delete/api-4_delete_get-one-book.png))_
+_Fig. `GET` request to `/books/1` and a response of `200` with book data ([Full size image](../assets/api-4-read-update-delete/api-4_delete_get-one-book.png))_
 
 Then, let's make our `DELETE` request to `/books/1` and check the response.
 
 ![Screenshot of Postman featuring a request of DELETE to /books/1 and a response of 200 with a success message](../assets/api-4-read-update-delete/api-4_delete_delete-request.png)
-_Fig. DELETE request to /books/1 and a response of 204 No Content ([Full size image](../assets/api-4-read-update-delete/api-4_delete_delete-request.png))_
+_Fig. `DELETE` request to `/books/1` and a response of `204 No Content` ([Full size image](../assets/api-4-read-update-delete/api-4_delete_delete-request.png))_
 
 Afterwards, let's even make a `GET` request to `/books`. We see that there are no more books that exist! Our book was successfully deleted.
 
 ![Screenshot of Postman featuring a request of GET to /books and a response of 200 with an empty array](../assets/api-4-read-update-delete/api-4_delete_get-books-empty.png)
-_Fig. GET request to /books and a response of 200 OK with an empty list ([Full size image](../assets/api-4-read-update-delete/api-4_delete_get-books-empty.png))_
+_Fig. `GET` request to `/books` and a response of `200 OK` with an empty list ([Full size image](../assets/api-4-read-update-delete/api-4_delete_get-books-empty.png))_
 
-We should also verify that the error handling from the `validate_error` helper function behaves as expected for invalid `book_id`s and non-existing `book`s.
+We should also verify that the error handling from the `validate_book` helper function behaves as expected for invalid `book_id`s and non-existing `book`s.
 
 ### Manually Testing with `psql`
 
@@ -121,7 +121,7 @@ Which of the options below represents a route which follows best practices for d
 a| ```python
 @notes_bp.delete("/<note_id>")
 def delete_note(note_id):
-    note = validate_book(note_id)
+    note = validate_note(note_id)
     db.session.delete(note)
     db.session.commit()
 
@@ -133,7 +133,7 @@ def delete_note(note_id):
 b| ```python
 @notes_bp.put("/<note_id>")
 def delete_note(note_id):
-    note = validate_book(note_id)
+    note = validate_note(note_id)
     db.session.delete(note)
     db.session.commit()
 
@@ -142,7 +142,7 @@ def delete_note(note_id):
 c| ```python
 @notes_bp.delete("/<note_id>")
 def delete_note(note_id):
-    note = validate_book(note_id)
+    note = validate_note(note_id)
     db.session.delete(note)
     db.session.commit()
 
@@ -151,7 +151,7 @@ def delete_note(note_id):
 d| ```python
 @notes_bp.delete("/<note_id>")
 def delete_note(note_id):
-    note = validate_book(note_id)
+    note = validate_note(note_id)
     db.session.delete(note)
     db.session.commit()
 
@@ -161,7 +161,7 @@ def delete_note(note_id):
 e| ```python
 @notes_bp.delete("/<note_id>")
 def delete_note(note_id):
-    note = validate_book(note_id)
+    note = validate_note(note_id)
     db.session.delete(note)
 
     return Response(status=204, mimetype="application/json")
