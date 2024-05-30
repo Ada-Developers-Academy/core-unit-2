@@ -21,7 +21,7 @@ We will:
 |--|--|
 |`01b-flask-setup` |`01c-hello-world`|
 
-## Blueprints in Flask
+## Defining Endpoints with Blueprint
 
 ### Creating Our First Route File 
 
@@ -31,7 +31,7 @@ Before we can define any endpoints, we need a file for our route functions. In t
 $ touch app/routes/hello_world_routes.py
 ```
 
-### Defining Endpoints with Blueprint
+### Blueprints in Flask
 
 `Blueprint` is a Flask class that provides a pattern for grouping related routes (endpoints). Flask will often refer to these routes using the word "view" due to Flask having the potential of sending HTML views. However, we will be sending back JSON.
 
