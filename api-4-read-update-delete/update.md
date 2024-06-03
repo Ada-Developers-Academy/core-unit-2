@@ -47,7 +47,7 @@ When the record is successfully updated, we should return the appropriate status
 
 | Response Status | Response Body                  |
 | --------------- | ------------------------------ |
-| `204 NO CONTENT`        ||
+| <div style="min-width:200px;"> Response Status </div> | Our successful response to a `PUT` request will not have a response body |
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
