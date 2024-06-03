@@ -147,7 +147,7 @@ Check off all the topics that we've briefly touched on so far.
 
 ##### !question
 
-Which status code should be used if response is returned with an empty response body?
+Which status code should be used if a response is returned with an empty response body?
 
 ##### !end-question
 
