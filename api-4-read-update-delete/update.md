@@ -1,6 +1,6 @@
 # Update
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=9594d398-a406-4a5a-9a9a-ae6901622f0f&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=9594d398-a406-4a5a-9a9a-ae6901622f0f&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
 ## Goals
 Our goals for this lesson are to:
@@ -42,52 +42,50 @@ This assumes that there is a `book` table with at least the following row:
 | ---- | ---------------------- | ------------------------------------------- |
 | `1`  | `Fictional Book Title` | `A fantasy novel set in an imaginary world` |
 
-When the record is successfully updated, we should return the appropriate status code, which is `200 OK`. As with other endpoints, we may choose our response body from a variety of possibilities, but for simplicity, we will return a brief status message.
+When the record is successfully updated, we should return the appropriate status code, which is `204 NO CONTENT`. The `204` is a successful status response code that is used when a request has succeeded and there is no response body. The full response for this route will be `204` status code accompanied by an empty response body.
 
 | Response Status | Response Body                  |
 | --------------- | ------------------------------ |
-| `200 OK`        | `Book #1 successfully updated` |
+| `204 NO CONTENT`        ||
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
 Our endpoint will need to:
 
 1. Read the `book_id` in the request path
-1. Retrieve the `Book` instance with the matching `book_id` from the database
-1. Read the new, updated book data from the HTTP request
-1. Update the instance of `Book` with the new data
-1. Save the updated `Book` in the database
-1. Send back a response
+2. Retrieve the `Book` instance with the matching `book_id` from the database
+3. Read the new, updated book data from the HTTP request
+4. Update the instance of `Book` with the new data
+5. Save the updated `Book` in the database
+6. Send back a response
 
 ## Updating a Book Endpoint: Code
 
 This endpoint uses the same path as our existing route for reading a `Book` record, `"/<book_id>"`. We could refactor and expand on this same function. However, just as we did with `create` and `read` for the `/books` route, we'll create a seperate route function fo the update functionality. 
 
 ```python
-@books_bp.route("/<book_id>", methods=["PUT"])
+@books_bp.put("/<book_id>")
 def update_book(book_id):
     book = validate_book(book_id)
-
     request_body = request.get_json()
 
     book.title = request_body["title"]
     book.description = request_body["description"]
-
     db.session.commit()
 
-    return make_response(f"Book #{book.id} successfully updated")
+    return Response(status=204, mimetype="application/json")
 ```
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes                                                                                                                                      |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
-| `methods=["PUT"]`                            | This route's matching methods now need to handle `PUT` requests                                                              |
+| `@books_bp.put`                            | This route's matching methods now need to handle `PUT` requests                                                              |
 | `book = validate_book(book_id)`                    | The update feature can also use the `validate_book` helper method for error handling                                                                     |
 | `... = request.get_json()`                          | This endpoint relies on reading the HTTP request body. We'll use `request.get_json()` to parse the JSON body into a Python dictionary. |
 | `request_body`                                         | A local variable to hold the body of the HTTP request.                                                                                                 |
 | `book.title = form_data["title"]`                   | We'll use our OOP skills to update `book`'s `title` attribute                                                                              |
 | `book.description = ...`                            | We'll use our OOP skills to update `book`'s `description` attribute                                                                        |
 | `db.session.commit()`                               | Every time a SQLAlchemy model has been updated, and we want to commit the change to the database, we'll execute `db.session.commit()`.     |
-| `return make_response( ... )`                            | This is one of many ways we can return our appropriate HTTP response. Since we didn't supply a status code, Flask will default to `200 OK`.                                                                      |
+| `return Response(status=204, mimetype="application/json")`                            | This is one of many ways we can return our appropriate HTTP response. We use the `Response` class to create a response to send back with a status code of `204` and a data type of `application/json`.
 
 ### Manually Testing with Postman
 
@@ -138,5 +136,40 @@ Check off all the topics that we've briefly touched on so far.
 * Verified invalid `book_id`s and non-existing `book`s are handled
 
 ##### !end-options
+### !end-challenge
+
+### !challenge
+
+* type: multiple-choice
+* id: be152c53-2f78-40e1-8c6c-9b3f8q086c17
+* title: Hello World Routes
+
+##### !question
+
+Which status code should be used if response is returned with an empty response body?
+
+##### !end-question
+
+##### !options
+
+a| 201
+b| 203
+c| 200
+d| 204
+
+##### !end-options
+
+##### !answer
+
+d|
+
+##### !end-answer
+
+##### !explanation
+
+`204 NO CONTENT` is used when we want to send a response with that has an empty response body.
+
+##### !end-explanation
+
 ### !end-challenge
 <!-- prettier-ignore-end -->
