@@ -58,11 +58,16 @@ Our endpoint will need to:
 3. Read the new, updated book data from the HTTP request
 4. Update the instance of `Book` with the new data
 5. Save the updated `Book` in the database
-6. Send back a response
+6. Send back a created response
 
 ## Updating a Book Endpoint: Code
 
-This endpoint uses the same path as our existing route for reading a `Book` record, `"/<book_id>"`. We could refactor and expand on this same function. However, just as we did with `create` and `read` for the `/books` route, we'll create a seperate route function fo the update functionality. 
+This endpoint uses the same path as our existing route for reading a `Book` record, `"/<book_id>"`. We could refactor and expand on this same function. However, just as we did with `create` and `read` for the `/books` route, we'll create a seperate route function fo the update functionality. In this route we will also need to create a response.
+
+## Creating a Response Object
+
+Unlike returing a tuple or using `make_response`, we will directly instantiate a Response object. This is necessary because we need the level of control the `Response` constructor offers us. While constructing the Response we will need to set the mimetype. Without doing so Flask would default to an HTML response and would introduce different response types between the endpoints of our API
+
 
 ```python
 @books_bp.put("/<book_id>")
@@ -86,8 +91,9 @@ def update_book(book_id):
 | `book.title = form_data["title"]`                   | We'll use our OOP skills to update `book`'s `title` attribute                                                                              |
 | `book.description = ...`                            | We'll use our OOP skills to update `book`'s `description` attribute                                                                        |
 | `db.session.commit()`                               | Every time a SQLAlchemy model has been updated, and we want to commit the change to the database, we'll execute `db.session.commit()`.     |
-| `return Response(status=204, mimetype="application/json")`                            | This is one of many ways we can return our appropriate HTTP response. We use the `Response` class to create a response to send back with a status code of `204` and a data type of `application/json`.
-
+| `return Response(...)` | By using the `Response` constructor, we can manually create a `Response` object when we need detailed control over the contents and attributes of the endpoint's response. |
+| `(status=204, ...)` | The `Response` constructor allows us to use the keyword argument `status` to set a status code of `204` for our endpoint's response. |
+| `(..., mimetype="application/json")` | Since we construct our own response object we need to set the `mimetype` for our response to `"application/json"`. This is so that the response type does not default to `HTML` and ensure our API has a consistent response type across our endpoints. |
 ### Manually Testing with Postman
 
 We can use Postman to check our update functionality.
