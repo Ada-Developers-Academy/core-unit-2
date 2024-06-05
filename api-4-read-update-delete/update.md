@@ -64,7 +64,7 @@ Our endpoint will need to:
 
 This endpoint uses the same path as our existing route for reading a `Book` record, `"/<book_id>"`. We could refactor and expand on this same function. However, just as we did with `create` and `read` for the `/books` route, we'll create a seperate route function fo the update functionality. In this route we will also need to create a response.
 
-## Creating a Response Object
+### Creating a Response Object
 
 Unlike returing a tuple or using `make_response`, we will directly instantiate a Response object. This is necessary because we need the level of control the `Response` constructor offers us. While constructing the Response we will need to set the mimetype. Without doing so Flask would default to an HTML response and would introduce different response types between the endpoints of our API
 
