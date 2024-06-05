@@ -93,7 +93,7 @@ def update_book(book_id):
 | `db.session.commit()`                               | Every time a SQLAlchemy model has been updated, and we want to commit the change to the database, we'll execute `db.session.commit()`.     |
 | `return Response(...)` | By using the `Response` constructor, we can manually create a `Response` object when we need detailed control over the contents and attributes of the endpoint's response. |
 | `(status=204, ...)` | The `Response` constructor allows us to use the keyword argument `status` to set a status code of `204` for our endpoint's response. |
-| `(..., mimetype="application/json")` | Since we construct our own response object we need to set the `mimetype` for our response to `"application/json"`. This is so that the response type does not default to `HTML` and ensure our API has a consistent response type across our endpoints. |
+| `(..., mimetype="application/json")` | Since we construct our own response object we need to set the `mimetype` for our response to `"application/json"`. This is so that the response type does not default to `HTML` and ensures our API has a consistent response type across our endpoints. |
 ### Manually Testing with Postman
 
 We can use Postman to check our update functionality.
