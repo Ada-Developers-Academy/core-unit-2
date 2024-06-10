@@ -66,7 +66,7 @@ This endpoint uses the same path as our existing route for reading a `Book` reco
 
 ## Creating a Response Object
 
-Unlike returing a tuple or using `make_response`, we will directly instantiate a Response object. This is necessary because we need the level of control the `Response` constructor offers us. While constructing the Response we will need to set the mimetype. Without doing so Flask would default to an HTML response and would introduce different response types between the endpoints of our API
+Unlike returning a tuple or using `make_response`, we will directly instantiate a Response object. This is necessary because we need the level of control the `Response` constructor offers us. While constructing the Response we will need to set the mimetype. Without doing so Flask would default to an HTML response and would introduce different response types between the endpoints of our API
 
 
 ```python
