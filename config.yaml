@@ -391,7 +391,7 @@ Standards:
       -
         Type: Lesson
         UID: f153ea3be2591354fccbc62912327060
-        Path: /api-6-testing/dot-env-and-the-test-db.md
+        Path: /api-6-testing/setting-configs-and-creating-the-test-db.md
       -
         Type: Lesson
         UID: 8dfac72f68845ac31b3527aeba524c01
