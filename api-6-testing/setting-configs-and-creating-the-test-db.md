@@ -17,7 +17,7 @@ We will complete the following steps:
 3. Create environment variables in our `.env` file:
    - URL for a development database
    - URL for a test database
-4. Create a test database with the matching name
+4. Create a test database whose name matches the one provided in our `.env` file 
 5. Refactor our `create_app` method to:
    1. Check for a configuration dictionary
    2. Read the correct database location from `.env`
