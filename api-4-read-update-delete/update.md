@@ -45,9 +45,9 @@ This assumes that there is a `book` table with at least the following row:
 
 When the record is successfully updated, we should return the appropriate status code, which is `204 NO CONTENT`. The `204` is a successful status response code that is used when a request has succeeded and there is no response body. The full response for this route will be `204` status code accompanied by an empty response body.
 
-| Response Status | Response Body                  |
+| <div style="min-width:200px;"> Response Status </div> | Response Body |
 | --------------- | ------------------------------ |
-| <div style="min-width:200px;"> Response Status </div> | Our successful response to a `PUT` request will not have a response body |
+| `204 NO CONTENT` | Our successful response to a `PUT` request will not have a response body |
 
 Now that we have an idea of what our endpoint should look like, we can turn our attention to how to implement it.
 
