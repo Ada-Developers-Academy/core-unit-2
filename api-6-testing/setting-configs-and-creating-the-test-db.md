@@ -79,7 +79,7 @@ In the case that we already have contents in our `.gitignore` file, we can confi
 
 ## Populate the Environment Variables
 
-`.env` files are made of lines of the form:
+`.env` files typically use the following format:
 
 ```bash
 VARIABLE_NAME=variable value
@@ -87,13 +87,13 @@ VARIABLE_NAME=variable value
 
 | <div style="min-width:175px;"> Piece of Code </div> | Notes |
 | --------------------------------------------------- | ----- |
-| `VARIABLE_NAME`                                     | Name of the environment variable to set. Replace `VARIABLE_NAME` with a good name for our environment variable. It's conventional to name environment variables with CAPITAL_CASING, just like constant variables. |
+| `VARIABLE_NAME`                                     | Name of the environment variable to set. Replace `VARIABLE_NAME` with a descriptive name for our environment variable. It's conventional to name environment variables with CAPITAL_CASING, just like constant variables. |
 | `=`                                                 | The environment variable name is separated from its value with `=`. We usually _don't_ surround it with spaces. |
 | `variable value`                                    | The value for our environment variable. Surrounding quotes are optional in general, but may be required if we need our value to begin with spaces, since spaces immediately following the `=` are ignored. |
 
-Beyond those guidelines, we are free to choose the best variable names and values for our project.
+Beyond those guidelines, we are free to choose variable names and values that are best suited for our project.
 
-For our Hello Books API, we want to designate a path to a development database and a testing database with the variables named `SQLALCHEMY_DATABASE_URI` and `SQLALCHEMY_TEST_DATABASE_URI`.
+For our Hello Books API, we want to designate separate paths to a development database and a testing database with the variables named `SQLALCHEMY_DATABASE_URI` and `SQLALCHEMY_TEST_DATABASE_URI`.
 
 ```
 SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
