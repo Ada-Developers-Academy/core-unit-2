@@ -49,13 +49,11 @@ These actions will allow us to set up testing for our API, which in turn will he
 
 ## Create Our `.env` File
 
-It is a common practice to name our environment files `.env` and place them in the root directory. Later in this series we will be using a tool that requires this exact set up, so we should create the `.env` file in our project root either in our code editor, or by running
+It is a common practice to name our environment files `.env` and place them in the root directory. Later in this series we will be using a tool that requires this exact set up, so we should create the `.env` file in our project root either in our code editor, or by running the following command in the project root directory:
 
 ```bash
 $ touch .env
 ```
-
-in the project root directory.
 
 ## Make Git Ignore Our `.env` File
 
