@@ -35,13 +35,13 @@ Create a `tests` folder, and the following files:
 
 - `tests/__init__.py`
 - `tests/conftest.py`
-- `tests/test_routes.py`
+- `tests/test_book_routes.py`
 
 We can do so with the following commands:
 
 ```
 (venv) $ mkdir tests
-(venv) $ touch tests/__init__.py tests/conftest.py tests/test_routes.py
+(venv) $ touch tests/__init__.py tests/conftest.py tests/test_book_routes.py
 ```
 
 Let's take a look at what these files will do:
@@ -50,7 +50,7 @@ Let's take a look at what these files will do:
 | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
 | `__init__.py`                            | Establishes our `tests` package, so it can be properly connected with the rest of the app folders and files. We will leave it empty, as we typically do. |
 | `conftest.py`                            | A standard pytest file that holds test configurations and common test helper functions. Essentially, this file is run before any other test files. This allows fixtures registered here to be available to any other test file.                                                  |
-| `test_routes.py`                         | This file will hold the tests for the code in our `app/routes.py` file.                                                                       |
+| `test_book_routes.py`                         | This file will hold the tests for the code in our `app/routes/book_routes.py` file.                                                                       |
 
 ## `conftest.py`
 
