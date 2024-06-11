@@ -85,6 +85,7 @@ Or we can run them through the VS Code test panel.
 We should see this already-implemented route pass!
 
 ![Screenshot of pytest test result: 1 test passed](../assets/api-6-testing/api-6-testing_passing-get-books.png)
+_Fig. After running pytest we can see that 1 test was found and succeeded._
 
 Notice that we did _not_ need to run the Flask server to run the tests!
 
@@ -105,6 +106,7 @@ def get_all_books():
 Let's confirm that our test now fails:
 
 ![Screenshot of pytest test result: test_get_one_book fails because of AssertionError, which checks if 418 is equal to 200](../assets/api-6-testing/api-6-testing_broken-get-books.png)
+_Fig. After running pytest we can see that 1 test was found and failed with an unexpected status code._
 
 The test fails! We can read through these test failures and see that our test _expected_ a status code of `200`, but _actually_ got status `418`.
 
