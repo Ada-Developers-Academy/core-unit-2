@@ -110,7 +110,7 @@ def client(app):
 | `from app.db import db` | We should import `db` in order to set up our test configuration for running the tests |
 |`from flask.signals import request_finished`|We use the `@request_finished` decorator to create a new database session after a request as described below. | 
 | `from dotenv import load_dotenv` | We'll use `load_dotenv` to manually load the contents of our `.env` into our environment variables. |
-| `import os` | As we did in the root __init__.py we'll use os to read our environment variables. |
+| `import os` | As we did in the root `__init__.py` file, we'll use `os` to read our environment variables. |
 | `load_dotenv()` | Before we can use our environment variables, we need to invoke the `load_dotenv` function that we imported. |
 | `@pytest.fixture` | We'll create and use a pytest fixture named `app`, which will be used in our `client` fixture (defined later) |
 | `test_config = {...}` | We're creating a dictionary holding the configuration for our testing environment to pass to `create_app`. |
