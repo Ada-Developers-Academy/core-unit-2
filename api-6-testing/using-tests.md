@@ -1,6 +1,7 @@
 # GET /books Test
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=7971fa94-cbbf-46ee-9f48-ad1d015959e0&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- FLASK UPDATE -->
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=7971fa94-cbbf-46ee-9f48-ad1d015959e0&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
 ## Goals
 
@@ -27,10 +28,10 @@ SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5
 ```
 
 * A `tests` directory that contains:
-    *  `__init__.py`
+    * `__init__.py`
     * `conftest.py`
         * This file is populated.
-    * `test_routes.py`
+    * `test_book_routes.py`
 
 </details>
 <br>
@@ -43,11 +44,11 @@ Let's get to reading some test code! Let's reframe the three sections of a test 
 | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Arrange | Arrange all required conditions for the test. If we need test data in the test database, we should save it here.                                                                                                                                                |
 | Act     | We need to send an HTTP request to our Flask API, so we should determine the HTTP method, path, request body, and any query params here.                                                                                                                        |
-| Assert  | At a minimum, we should confirm the expected HTTP response status code, and the shape of the HTTP response body. We could also check the details of the response body, or look for changes in the database if our request should have made updates to our data. |
+| Assert  | At a minimum, we should confirm the expected HTTP response status code, and the shape of the HTTP response body (if one exists). We could also check the details of the response body, or look for changes in the database if our request should have made updates to our data. |
 
 ### Syntax
 
-Let's read through this test we can use in our `tests/test_routes.py`.
+Let's read through this test we can use in our `tests/test_book_routes.py`.
 
 ```python
 def test_get_all_books_with_no_records(client):
@@ -69,7 +70,7 @@ def test_get_all_books_with_no_records(client):
 | `assert response.status_code == 200`                | Every `response` object will have a `status_code`. We can read that status code and check it against the expected status code.                                                          |
 | `assert response_body == []`                        | We can check all of the parts of the response body that we need to verify. We can check its contents, size, values, etc!                                                                |
 
-Add this test to `tests/test_routes.py`, and let's run it!
+Add this test to `tests/test_book_routes.py`, and let's run it!
 
 ## Running Tests
 
@@ -93,11 +94,11 @@ We haven't seen a failing test yet, because we are writing tests for already bui
 
 Let's verify that we can trust our tests to fail, by making them fail temporarily.
 
-Let's go to our `app/routes.py` file and temporarily break our `/books` endpoint. One way we can break this route is to return a response with a status code `418` before doing anything else in the function.
+Let's go to our `app/routes/book_routes.py` file and temporarily break our `/books` endpoint. One way we can break this route is to return a response with a status code `418` before doing anything else in the function.
 
 ```python
-@books_bp.route("", methods=["GET", "POST"])
-def handle_books():
+@books_bp.get("")
+def get_all_books():
     return make_response("I'm a teapot!", 418)
 ```
 
@@ -117,23 +118,40 @@ Revert the changes that made the test fail, and return Hello Books back to a wor
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: tasklist
+* type: checkbox
 * id: bbc37084-f5de-4805-bd0a-17c78f009c74
-* title: Read All Books Test
+* title: `GET` `/books` Test
 ##### !question
 
-Think about the test for `GET` `/books`
-
-Check off all the topics that we've touched on so far.
+Select all of the actions below which we would take in the `Assert` step of a test.  
 
 ##### !end-question
 ##### !options
 
-* Considered how to use the Arrange / Act / Assert paradigm
-* Examined the syntax for `test_get_all_books_with_no_records`
-* Ran the test using `pytest`
-* Verified broken tests can fail
+a| Send an HTTP request to our Flask API
+b| Confirm the HTTP response status code
+c| Save test data in the test database
+d| Check the details of the response body
 
 ##### !end-options
+##### !answer
+
+b|
+d|
+
+##### !end-answer
+##### !hint
+
+What actions do we take in each of the arrange, act, and assert steps of a test for an API route?
+
+##### !end-hint
+##### !explanation
+
+* Send an HTTP request to our Flask API - This would be our Act step, taking the action to call our API
+* Confirm the HTTP response status code - Confirming the response status code is part of our Assert step since we are checking if the results of our action step are as expected. 
+* Save test data in the test database - Setting up data for tests is part of the Arrange step of a test
+* Check the details of the response body - Checking the details of the response body is part of our Assert step since we are checking if the results of our action step are as expected.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
