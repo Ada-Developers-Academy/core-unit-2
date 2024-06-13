@@ -1,6 +1,7 @@
 # GET /book/<book_id> Test
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=6259a9f1-a9fd-450a-a070-ae89011c1e10&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- FLASK UPDATE -->
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=6259a9f1-a9fd-450a-a070-ae89011c1e10&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
 ## Goals
 
@@ -16,7 +17,7 @@ Our goals for this lesson are to:
 
 ## Tests That Need Test Data
 
-Let's consider a second test in `tests/test_routes.py`.
+Let's consider a second test in `tests/test_book_routes.py`.
 
 When we make a `GET` request to `/books/1`, we expect a response of `200`, with a JSON response body.
 
@@ -69,29 +70,48 @@ def test_get_one_book(client):
     response = client.get("/books/1")
 ```
 
-Our test made a `GET` request to `/books/1`. A `GET` to `/books/1` matches the `/books/<book_id>` route with the `GET` method. This is mapped to our `handle_book()` function.
+Our test made a `GET` request to `/books/1`. A `GET` to `/books/1` matches the `/books/<book_id>` route with the `GET` method. This is mapped to our `get_one_book()` function.
 
-- Let's revisit our `handle_book()` function:
+- Let's revisit our `get_one_book()` function:
 
 ```python
-@books_bp.route("/<book_id>", methods=["GET", "PUT", "DELETE"])
-def handle_book(book_id):
-    book = Book.query.get(book_id)
-    if book == None:
-        return Response("", status=404)
-    # ... rest of our route
+@books_bp.get("/<book_id>")
+def get_one_book(book_id):
+    book = validate_book(book_id)
+
+    return {
+        "id": book.id,
+        "title": book.title,
+        "description": book.description,
+    }
+
+def validate_book(book_id):
+    try:
+        book_id = int(book_id)
+    except:
+        response = {"message": f"book {book_id} invalid"}
+        abort(make_response(response , 400))
+
+    query = db.select(Book).where(Book.id == book_id)
+    book = db.session.scalar(query)
+
+    if not book:
+        response = {"message": f"book {book_id} not found"}
+        abort(make_response(response, 404))
+
+    return book
 ```
 
-Our `handle_book()` function returns a `404` response if `book` is `None`.
+Our `get_one_book()` function will call `validate_book()`, which returns a `404` response if `book` is `None`.
 
 - Let's consider why `book` might have a value of `None`.
   1.  What is the line of code that most recently affected `book`?
-  1.  `book` is assigned a value in the line before, `book = Book.query.get(book_id)`.
-  1.  `Book.query.get(book_id)` must have returned `None`.
+  1.  `book` is assigned a value in the line before, `book = db.session.scalar(query)`.
+  1.  `db.session.scalar(query)` must have returned `None`.
 
-Why would `Book.query.get(book_id)` return `None`? What could cause it to behave that way?
+Why would `db.session.scalar(query)` return `None`? What could cause it to behave that way?
 
-- What do we know about how `Book.query.get(book_id)` works?
+- What do we know about how `db.session.scalar(query)` works?
   1.  The responsibility of this method is to return an instance of `Book` that has the primary key of `book_id`.
   1.  This method returns `None` when no `Book` with that id was found!
 
@@ -113,7 +133,7 @@ Using our ability to debug tests with breakpoints though VS Code, it _is_ possib
 
 But for the time being, we need only apply the knowledge that `db.create_all()` recreates the test database tables in an empty state at the start of each test.
 
-This means that when we try to get the `Book` with a primary key of `1`, no `Book` is found. `Book.query.get(book_id)` returns `None`, resulting in the `404 Not Found` response status code and the failure of our test!
+This means that when we try to get the `Book` with a primary key of `1`, no `Book` is found. `db.session.scalar(query)` returns `None`, resulting in the `404 Not Found` response status code and the failure of our test!
 
 </details>
 
@@ -127,17 +147,18 @@ Or by using fixtures instead, we get data reusability and we explicitly list the
 
 Let's review some of the characteristics of fixtures, and consider how we can use them to add test data:
 
-| <div style="min-width:100px;">Question</div> | Answer                                                                                                                                                                                                                   |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| What are fixtures?                           | Each pytest fixture we define describes something we want to happen before a test. We could define a fixture that creates test data.                                                                                     |
-| Where do fixtures go?                        | Fixtures can be defined in any file (such as `tests/test_routes.py`), but we will define most of our fixtures inside of `tests/conftest.py`. This automatically allows them to be used in multiple test files if needed. |
-| Who uses them?                               | Each test states which fixtures they want to use. Each test can use multiple fixtures!                                                                                                                                   |
+| <div style="min-width:100px;">Question</div> | Answer |
+| -------------------------------------------- | ------ |
+| What are fixtures? | Each pytest fixture we define describes something we want to happen before a test. We could define a fixture that creates test data. |
+| Where do fixtures go? | Fixtures can be defined in any file (such as `tests/test_book_routes.py`), but we will define most of our fixtures inside of `tests/conftest.py`. This automatically allows them to be used in multiple test files if needed. |
+| Who uses them? | Each test states which fixtures they want to use. Each test can use multiple fixtures! |
 
 ### Example Fixture: Creating Two Books
 
 A lot of our tests need at least one book defined in our database. Inside `tests/conftest.py`, we can make a fixture that saves two books to the database:
 
 ```python
+# ... 
 from app.models.book import Book
 # ...
 
@@ -199,7 +220,7 @@ E         Use -v to get the full diff
 
 The output shows that the data coming back from our API looks reasonable, but that the value we are comparing to in our test has empty strings for each dictionary value.
 
-We can conclude that we need to update our test itself, finally! Let's fill in the expected test dictionary values back in `tests/test_routes.py`. It should be consistent with whatever data we put in our fixture.
+We can conclude that we need to update our test itself, finally! Let's fill in the expected test dictionary values back in `tests/test_book_routes.py`. It should be consistent with whatever data we put in our fixture.
 
 ```python
 def test_get_one_book(client, two_saved_books):
@@ -226,25 +247,45 @@ Success! We passed this test. Congratulations! 🎉
 
 ![Screenshot of pytest test result: 2 tests in tests/test_routes.py passed](../assets/api-6-testing/api-6-testing_passing-get-books-1.png)
 
+## Check for Understanding
+
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: tasklist
+* type: checkbox
 * id: 72e74eca-43e2-47f2-b013-41eb3a7cbac2
-* title: Get One Book Test
+* title: GET /book/<book_id> Test
 ##### !question
 
-Think about the test for `GET` `/books/<book_id>`
-
-Check off all the topics that we've touched on so far.
+What benefits do we get from writing fixtures in `conftest.py`? Select all of the options below which apply.
 
 ##### !end-question
 ##### !options
 
-* Examined the `test_get_one_book` syntax
-* Observed `test_get_one_book` fail
-* Added to the test database with a fixture
-* Used the `two_saved_book` fixture in `test_get_one_book`
+a| Fixtures can store data in the test database before a test runs.
+b| Fixtures can be reused by many different tests.
+c| Fixtures can automate the act and assert steps of our tests.
+d| Fixtures can clear test data from the test database after tests run to ensure our tests start from an expected state.
 
 ##### !end-options
+##### !answer
+
+a|
+b|
+d|
+
+##### !end-answer
+##### !hint
+
+What actions have we seen taken with fixtures in the lesson?
+How do tests use a fixture?
+
+##### !end-hint
+##### !explanation
+
+Fixtures are great for reusable data set up. They can store data in the test database before a test runs and, if we choose, they can handle "tear down" by removing the test data in the test database to ensure each test run starts from a clean, expected state. 
+
+While we could likely force a fixture to handle some assertions or take an action, they aren't automating anything about our test's act or assert steps by default. Using them in that way would create potentially confusing and harder to maintain code.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
