@@ -85,6 +85,8 @@ def get_one_book(book_id):
         "description": book.description,
     }
 
+# ...
+
 def validate_book(book_id):
     try:
         book_id = int(book_id)
