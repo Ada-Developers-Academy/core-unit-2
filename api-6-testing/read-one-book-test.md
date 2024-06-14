@@ -42,7 +42,8 @@ However, this test isn't complete yet...
 
 If we run this test right now, we actually get a 404!
 
-![Screenshot of pytest test result: test_get_one_book fails because of AssertionError, which checks if 404 is equal to 200](../assets/api-6-testing/api-6-testing_404-get-books-1.png)
+![Screenshot of pytest test result: test_get_one_book fails because of AssertionError, which checks if 404 is equal to 200](../assets/api-6-testing/api-6-testing_404-get-books-1.png)  
+_Fig. Test output reporting a failure due to receiving a 404 not found result. ([Full size image](../assets/api-6-testing/api-6-testing_404-get-books-1.png))_
 
 Why would we get a `404` response?
 
@@ -218,7 +219,8 @@ E         {'description': 'watr 4evr'} != {'description': ''}
 E         Use -v to get the full diff
 ```
 
-![Screenshot of pytest test result: test_get_one_book failed because of AssertionError between two book dictionaries](../assets/api-6-testing/api-6-testing_failing-fixture-comparison.png)
+![Screenshot of pytest test result: test_get_one_book failed because of AssertionError between two book dictionaries](../assets/api-6-testing/api-6-testing_failing-fixture-comparison.png)  
+_Fig. Test output reporting a failure due to mismatched expected values. ([Full size image](../assets/api-6-testing/api-6-testing_failing-fixture-comparison.png))_
 
 The output shows that the data coming back from our API looks reasonable, but that the value we are comparing to in our test has empty strings for each dictionary value.
 
@@ -259,7 +261,7 @@ _Fig. Test output reporting success. ([Full size image](../assets/api-6-testing/
 * title: GET /book/<book_id> Test
 ##### !question
 
-What benefits do we get from writing fixtures in `conftest.py`? Select all of the options below which apply.
+What benefits do we get from writing test fixtures? Select all of the options below which apply.
 
 ##### !end-question
 ##### !options
@@ -290,6 +292,40 @@ Fixtures are great for reusable data set up. They can store data in the test dat
 <br />
 
 While we could likely force a fixture to handle some assertions or take an action, they aren't automating anything about our test's act or assert steps by default. Using them in that way would create potentially confusing and harder to maintain code.
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: multiple-choice
+* id: 32181d44-ed4d-4584-b300-c52d9ee540ce
+* title: GET /book/<book_id> Test
+##### !question
+
+True or False: Placing test fixtures in `conftest.py` automatically allows them to be used in multiple test files. Please select one option below.
+
+##### !end-question
+##### !options
+
+a| True
+b| False
+
+##### !end-options
+##### !answer
+
+a|
+
+##### !end-answer
+##### !hint
+
+What happens when we define a fixture in a test file vs. in `conftest.py`?
+
+##### !end-hint
+##### !explanation
+
+True: Fixtures aren't required to be written in `conftest.py`, but placing our fixtures there allows the fixtures to be used from any test file. `conftest.py` is read automatically when `pytest` runs our tests, so every test file has access to the fixtures declared there.
 
 ##### !end-explanation
 ### !end-challenge
