@@ -249,7 +249,7 @@ Success! We passed this test. Congratulations! 🎉
 
 ### !end-callout
 
-![Screenshot of pytest test result: 2 tests in tests/test_routes.py passed](../assets/api-6-testing/api-6-testing_passing-get-books-1.png)  
+![Screenshot of pytest test result: 2 tests in tests/test_book_routes.py passed](../assets/api-6-testing/api-6-testing_passing-get-books-1.png)  
 _Fig. Test output reporting success. ([Full size image](../assets/api-6-testing/api-6-testing_passing-get-books-1.png))_
 
 ## Check for Understanding
