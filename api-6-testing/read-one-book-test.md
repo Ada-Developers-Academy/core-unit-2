@@ -114,7 +114,7 @@ Our `get_one_book()` function will call `validate_book()`, which returns a `404`
 Why would `db.session.scalar(query)` return `None`? What could cause it to behave that way?
 
 - What do we know about how `db.session.scalar(query)` works?
-  1.  The responsibility of this method is to return an instance of `Book` that has the primary key of `book_id`.
+  1.  This method will run our `query`, which in this case looks for a `Book` whose `id` matches `book_id`. The found result is returned as a model instance, a `Book`.
   1.  This method returns `None` when no `Book` with that id was found!
 
 Our debugging questions can continue along this line of thought:
@@ -135,7 +135,7 @@ Using our ability to debug tests with breakpoints though VS Code, it _is_ possib
 
 But for the time being, we need only apply the knowledge that `db.create_all()` recreates the test database tables in an empty state at the start of each test.
 
-This means that when we try to get the `Book` with a primary key of `1`, no `Book` is found. `db.session.scalar(query)` returns `None`, resulting in the `404 Not Found` response status code and the failure of our test!
+This means that when we try to get the `Book` with an `id` of `1`, no `Book` is found. `db.session.scalar(query)` returns `None`, resulting in the `404 Not Found` response status code and the failure of our test!
 
 </details>
 
@@ -247,7 +247,8 @@ Success! We passed this test. Congratulations! 🎉
 
 ### !end-callout
 
-![Screenshot of pytest test result: 2 tests in tests/test_routes.py passed](../assets/api-6-testing/api-6-testing_passing-get-books-1.png)
+![Screenshot of pytest test result: 2 tests in tests/test_routes.py passed](../assets/api-6-testing/api-6-testing_passing-get-books-1.png)  
+_Fig. Test output reporting success. ([Full size image](../assets/api-6-testing/api-6-testing_passing-get-books-1.png))_
 
 ## Check for Understanding
 
@@ -285,6 +286,8 @@ How do tests use a fixture?
 ##### !explanation
 
 Fixtures are great for reusable data set up. They can store data in the test database before a test runs and, if we choose, they can handle "tear down" by removing the test data in the test database to ensure each test run starts from a clean, expected state. 
+
+<br />
 
 While we could likely force a fixture to handle some assertions or take an action, they aren't automating anything about our test's act or assert steps by default. Using them in that way would create potentially confusing and harder to maintain code.
 
