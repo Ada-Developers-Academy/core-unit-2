@@ -433,12 +433,12 @@ Standards:
         Path: /api-7-refactoring/what-is-refactoring.md
       -
         Type: Lesson
-        UID: 66f19557-3680-4552-bb9b-440ea22d0c21
-        Path: /api-7-refactoring/extracting-helper-functions-to-dict.md
-      -
-        Type: Lesson
         UID: 66f19557-3680-4552-bb9b-440ea22d0c22
         Path: /api-7-refactoring/extracting-helper-functions-from-dict.md
+      -
+        Type: Lesson
+        UID: 66f19557-3680-4552-bb9b-440ea22d0c21
+        Path: /api-7-refactoring/extracting-helper-functions-to-dict.md
       -
         Type: Lesson
         UID: 66f19557-3680-4552-bb9b-440ea22d0c23
