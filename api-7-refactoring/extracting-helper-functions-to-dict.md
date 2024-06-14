@@ -1,4 +1,4 @@
-# Extracting Helper Functions Pt. 1
+# Extracting Helper Functions Pt. 2
 
 ## Goals
 Our goal for this lesson is to refactor the code in the `routes.py` file that converts a `Book` model into a `Dictionary` to a reusable helper function named `to_dict` in the `Book` model's class.

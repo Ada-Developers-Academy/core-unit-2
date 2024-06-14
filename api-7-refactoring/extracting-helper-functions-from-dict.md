@@ -1,4 +1,4 @@
-# Extracting Helper Functions Pt. 2
+# Extracting Helper Functions Pt. 1
 
 ## Goals
 Our goals for this lesson are to: 
