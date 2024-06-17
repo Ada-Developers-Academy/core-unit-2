@@ -38,10 +38,10 @@ def test_create_one_book(client):
 | <div style="min-width:250px;"> Piece of Code </div> | Notes|
 |--|--|
 |`def test_create_one_book(client):` | Continuing our best pytest practices, this test should start with the name `test_`, and it should describe the nature of this test.|
-|`client.post("/books", json=...`|Sends an `POST` request to `/books` with the JSON request body passed in as the `json` keyword argument| 
-| `response_body = response.get_json()`| Get the JSON response body with `response.get_json()`|
-|`assert response.status_code == 201`|Check for the expected status code|
-|`assert response_body == {...}}`| Check for the expected key/value pairs in the response body|
+|`client.post("/books", json=...`|Sends a `POST` request to `/books`, with the `dict` to be used as the JSON request body passed in using the `json` keyword argument| 
+| `response_body = response.get_json()`| Gets the JSON response body as a Python value. Since the create logic returns a `dict`, we should anticipate `response_body` to receive a `dict` result here.|
+|`assert response.status_code == 201`|Checks for the expected status code|
+|`assert response_body == {...}}`| Checks for the expected key/value pairs in the response body|
 
 As always, we should run `pytest` and ensure that the `POST` test passes and no other tests have been affected by our changes.
 
@@ -82,7 +82,7 @@ What does the client fixture do for us? When do we need fixtures which create da
 
 1. False: The `client` fixture does not create any `Book` records
 2. False: The `client` fixture allows us to make requests to our API, so we must include it as a dependency.
-3. True: We only need a fixture which creates a `Book` record before the test runs if the test depends on there being data in the database.
+3. True: We only need a fixture that creates a `Book` record before the test runs if the test depends on there being data in the database.
 4. False: We only need to use the `client` fixture for tests where we need the ability to make requests against our API's routes.
 
 ##### !end-explanation
