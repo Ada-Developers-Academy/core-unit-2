@@ -65,7 +65,7 @@ Which of the statements below is true about why the test above, `test_create_one
 a| The `client` fixture also creates data used by the test `test_create_one_book`.
 b| `test_create_one_book` doesn't need the `client` fixture.
 c| `test_create_one_book` doesn't need to retrieve a pre-existing record, so it does not need a fixture that saves Book records.
-d| The `client` fixture needs to used for every test using the `pytest` framework.
+d| The `client` fixture needs to be used for every test using the `pytest` framework.
 
 ##### !end-options
 ##### !answer
