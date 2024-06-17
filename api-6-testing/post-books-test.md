@@ -4,7 +4,7 @@
 
 Our goals for this lesson are to:
 - Use fixtures to create test data
-- Write tests that use test data
+- Write tests for routes that create data
 
 ## Branches
 
@@ -37,7 +37,7 @@ def test_create_one_book(client):
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes|
 |--|--|
-|`def test_create_one_book(client):` | Continuing our best pytest practices, this test should start with the name `test_`, and it should describe the nature of this test.|
+|`def test_create_one_book(`&ZeroWidthSpace;`client):` | Continuing our best `pytest` practices, this test should start with the name `test_`, and it should describe the nature of this test.|
 |`client.post("/books", json=...`|Sends a `POST` request to `/books`, with the `dict` to be used as the JSON request body passed in using the `json` keyword argument| 
 | `response_body = response.get_json()`| Gets the JSON response body as a Python value. Since the create logic returns a `dict`, we should anticipate `response_body` to receive a `dict` result here.|
 |`assert response.status_code == 201`|Checks for the expected status code|
