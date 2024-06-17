@@ -2,9 +2,8 @@
 
 ## Goals
 
-Our goals for this lesson are to:
-- Use fixtures to create test data
-- Write tests for routes that create data
+Our goal for this lesson is to:
+- Write a test for a route that creates and stores data
 
 ## Branches
 
