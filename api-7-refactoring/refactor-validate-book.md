@@ -1,21 +1,10 @@
-# Refactoring `validate_book`
+# Refactoring for Future Features
 
 ## Goals
 
-Our goal is to refactor the function `validate_book` into a more flexible function `validate_model`, which can be used for any model class.
-
-We will do this by:
-- Passing `validate_book` a new parameter `cls`
-- Using `cls` in place of `Book`
-- Updating naming and return values in the function to reflect that it is no longer specific to the `Book` class
-
-### !callout-info
-
-## Why is the parameter `cls` used here? 
-
-In the previous lesson, we needed to pass `cls` as the first parameter to a class method for the compiler to recognize it as a class method. `cls` is a common variable name when working with references to a class itself. In our case, we will be passing a reference to a model class into our `validate_model` function. Though we could choose to call the parameter something else (like `class_name` or `class_type`) we're going to stick with the convention of calling it `cls`.
-
-### !end-callout
+Our goals are to:
+- Refactor our blueprint name to follow common usage patterns.
+- Refactor the function `validate_book` into a more flexible function `validate_model`, which can be used for any model class.
 
 ## Branches
 
@@ -46,23 +35,44 @@ The `Book` class should have the following functions:
 - `from_dict`
 
 Our test folder should have 2 files: 
-- `test_routes.py`
-- `test_models.py`
+- `test_book_routes.py`
+- `test_book_model.py`
 
 </details>
 </br>
 
-## Refactoring for the Future
+## Why should we make these changes?
 
-Planning ahead for work to come is another great reason we refactor. For this lesson's refactor, we're going to be peeking into the future of `Hello Books` a bit. Right now our project has a single model `Book`, with the attributes `title` and `description`, but what other data is helpful when tracking books? If we're building this to share with other folks, we know that we're likely to add other models that represent authors or genres as we build out the functionality.
+Planning ahead for work to come is another great reason we refactor. Right now our project has a single model `Book`, with the attributes `title` and `description`, but what other data is helpful when tracking books? If we're building this to share with other folks, we know that we're likely to add other models that represent authors or genres as we build out the functionality.
+
+Before we start building out new features, we want to take stock of our project and see where we can more closely follow conventions or better follow D.R.Y. principles. We save time by getting our code into a more maintainable state now, over making changes later when we have more files that would need to be touched for the same updates.
+
+## Refactoring the Blueprint name
+
+
+
+## Refactoring `validate_book`
 
 Taking a look over `routes.py`, we can see that all of the routes that read or alter a model by `id` use the `validate_book` function. This makes sense, we're reusing code to fetch a single `Book` from the database, so that's all good right? Here's where we want to think about our upcoming models. 
 
-The addition of any new model and its associated routes will require a validation function very similar to `validate_book`. For example an added `Author` model needs a `validate_author` function for routes that read, update or delete an `Author` by `id`.  
+Because we currently lack a function flexible enough to work for any model, adding any new model and its associated routes will require a validation function very similar to `validate_book`. For example an added `Author` model needs a `validate_author` function for routes that read, update or delete an `Author` by `id`.  
 
-Because we currently lack a function flexible enough to work for any model, we need a custom validate function for every model we add. In a very small project, this may not be cumbersome, but as a project grows it can become a pain point, especially if there is ever a need to update the pattern for fetching a model.
+In a very small project, this may not be cumbersome, but as a project grows it can become a pain point, especially if there is ever a need to update the pattern for fetching a model. To combat replicating similar code through our project, we're going to refactor `validate_book` into a more flexible function `validate_model`.
 
-## Planning the Refactor
+We will do this by:
+- Passing `validate_book` a new parameter `cls`
+- Using `cls` in place of `Book`
+- Updating naming and return values in the function to reflect that it is no longer specific to the `Book` class
+
+### !callout-info
+
+## Why is the parameter `cls` used here? 
+
+In the previous lesson, we needed to pass `cls` as the first parameter to a class method for the compiler to recognize it as a class method. `cls` is a common variable name when working with references to a class itself. In our case, we will be passing a reference to a model class into our `validate_model` function. Though we could choose to call the parameter something else (like `class_name` or `class_type`) we're going to stick with the convention of calling it `cls`.
+
+### !end-callout
+
+### Planning the Refactor
 
 Check out the current `validate_book` code below if you'd like a reminder before we get into our planning steps.
 <details>
@@ -86,7 +96,7 @@ def validate_book(book_id):
 </details>
 </br>
 
-### Identify Dependencies
+#### Identify Dependencies
 
 As always, our first stop is our dependencies check. If we search the project for the phrase "`validate_book`", we should see 4 results: 
 - The validate_book function definition
@@ -96,7 +106,7 @@ As always, our first stop is our dependencies check. If we search the project fo
 
 We can see our dependencies are the functions `read_one_book`, `update_book`, and `delete_book`, so let's see what our tests look like for those functions.
 
-### Check for Tests
+#### Check for Tests
 
 We previously wrote tests for `read_one_book`, so we can feel good about that function's coverage, but we don't have any tests for the functions `update_book` or `delete_book`. Furthermore, we don't have tests for `validate_book` to confirm its behavior as we make modifications. Let's pause and think through nominal and edge cases for the functions `update_book`, `delete_book`, and `validate_book`. We want to list out what test cases are missing that would give us security while we refactor.
 
@@ -262,11 +272,11 @@ def test_validate_book_invalid_id(two_saved_books):
 </details>
 </br>
 
-## Executing the Refactor
+### Executing the Refactor
 
 With all of our new and old tests passing, we can start the next step - writing failing tests!
 
-### The Cycle: Update Tests to Fail, Write Code to Make Them Pass
+#### The Cycle: Update Tests to Fail, Write Code to Make Them Pass
 
 In our previous refactors we created brand new functions and were able to write out our test cases ahead of our implementation code. In this case, we're making several implementation changes to an existing function and renaming it. There are many ways we could approach testing at this point, but we want to take a path that lets us get feedback as we make changes to our existing function rather than when we think we're done. Our recommendation is to start a cycle of making a small change to the `validate_book` tests so that they fail, then updating the code until the tests pass again, until all our changes are complete and all our tests are passing.
 
@@ -277,7 +287,7 @@ Let's review our inputs and outputs for `validate_model` so we can start our imp
 - Return a 404 error if `model_id` is an integer but no model with that `id` exists
 - Return a 400 error if `model_id` is not an integer
 
-### Incremental Changes: Function Signature
+#### Incremental Changes: Function Signature
 
 When we change many things at once, it becomes more difficult to know which change caused an issue when an error arises. We'll avoid that by focusing on one alteration at a time. 
 
@@ -327,7 +337,7 @@ book = cls.query.get(book_id)
 
 Running our test suite again, we should still see everything passing.
 
-### Incremental Changes: Error Messages
+#### Incremental Changes: Error Messages
 
 Now that we're using the `cls` parameter for the query, we want ensure that our `abort` messages will make sense no matter what model class is passed into `cls`. Right now those messages are hard coded to start with "book", but what we'd like to do is to get a user-friendly name from the `cls` parameter to use instead. We can do this by calling `__name__` on a class reference, for example:
 
@@ -371,7 +381,7 @@ Taking this line-by-line, we can see that we have an `AssertionError` around the
 
 We could change our `validate_book` code to lowercase the result of `cls.__name__` so our tests pass again, but in this case we're going to choose to update our tests and keep the new capitalization; either choice is valid for `hello_books`. In the industry, and generally when working with other people, we would consult with folks who are invested in the project before changing user-facing messages. Once we've gone through and updated the expected messages for our failing tests, we should see everything passing again.
 
-### Final Touches: Update Function and Variable Names
+#### Final Touches: Update Function and Variable Names
 
 We're nearing the end of our refactor! All the practical changes have been made for `validate_book` to use a class reference in place of hard coding `Book`, but the purpose of our function no longer matches the naming. Furthermore, our variable names and the `book_id` parameter don't accurately reflect what they hold. 
 
