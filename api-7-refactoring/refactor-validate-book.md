@@ -73,7 +73,7 @@ Dependencies:
 
 #### Check for Tests
 
-We previously wrote tests for the routes `create_book`, `get_all_books`, and `get_one_book`, so we can feel good about those functions' test coverage. We are missing tests for the routes `update_book` or `delete_book` though, so let's pause and think through nominal and edge cases for `update_book` `delete_book`. We want to list out what test cases are missing that would give us security while we refactor.
+We previously wrote tests for the routes `create_book`, `get_all_books`, and `get_one_book`, so we can feel good about their test coverage. We are missing tests for the routes `update_book` and `delete_book` though, so let's pause and think through nominal and edge cases for `update_book` `delete_book`. We want to list out what test cases are missing that would give us security while we refactor.
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -95,6 +95,8 @@ The test cases I identified are...
 - Updating a book successfully when there are extra keys in the request
 - Failing to update a book whose record `id` is not in the database
 - Failing to update a record when the record `id` is invalid (non-integer)
+
+<br>
 
 `delete_book` Test Cases
 - Deleting a book successfully
@@ -247,7 +249,7 @@ We feel that it's important to get used to seeing and working with imports renam
 
 Once we have updated the import line in `__init__.py` to use `as`, our changes to rename `books_bp` to `bp` are complete! We should be able to run the test suite and see all tests passing.
 
-![Happy seal with the text Green Checkmark Not Red X](../assets/api-7-refactoring/future-refactors_green-checkmark.jpg)
+![Happy seal with the text Green Checkmark Not Red X](../assets/api-7-refactoring/future-refactors_green-checkmark.jpg)  
 *Fig. Happy Seal is excited to see our tests pass*
 
 ## Refactoring `validate_book`
@@ -276,7 +278,7 @@ In a previous lesson, we needed to pass `cls` as the first parameter to a class 
 
 Check out the current `validate_book` code below if you'd like a reminder before we get into our planning steps.
 <details>
-   <summary>Current <code>validate_book</code> code</summary>
+   <summary>Current <code>validate_book</code> code in <code>book_routes.py</code></summary>
 
 ```python
 def validate_book(book_id):
@@ -379,7 +381,7 @@ def test_validate_book_invalid_id(two_saved_books):
 
 ### Executing the Refactor
 
-![Racoon rubbing hands with the text Time to Execute My Master Plan!](../assets/api-7-refactoring/future-refactors_green-checkmark.jpg)
+![Racoon rubbing hands with the text Time to Execute My Master Plan!](../assets/api-7-refactoring/future-refactors_execute_master_plan.jpeg)  
 *Fig. Rowdy Raccoon is ready for refactors*
 
 With all of our new and old tests passing, we can start the next step - writing failing tests!
@@ -416,7 +418,7 @@ def test_validate_book(two_saved_books):
     assert result_book.description == "watr 4evr"
 ```
 
-We should immediately see the `validate_book` tests failing and can move over to `routes.py` and make the corresponding change to `validate_book`. We'll add `cls` as the first parameter to `validate_book` and our function signature should look like:
+We should immediately see the `validate_book` tests failing and can move over to `book_routes.py` and make the corresponding change to `validate_book`. We'll add `cls` as the first parameter to `validate_book` and our function signature should look like:
 
 ```python
 def validate_book(cls, book_id):
@@ -532,7 +534,7 @@ def test_validate_model_invalid_id(two_saved_books):
 </details>
 </br>
 
-Once we update the `import` at the top of the file that brings `validate_model` into `test_book_routes.py`, we'll likely get a test discovery error since `validate_model` doesn't exist yet. We'll address that issue first by changing the function name in `routes.py` from `validate_book` over to `validate_model`. 
+Once we update the `import` at the top of the file that brings `validate_model` into `test_book_routes.py`, we'll likely get a test discovery error since `validate_model` doesn't exist yet. We'll address that issue first by changing the function name in `book_routes.py` from `validate_book` over to `validate_model`. 
 
 ```python
 def validate_model(cls, book_id):
@@ -629,7 +631,7 @@ Once we add this import, our changes are done! We should be able to run our full
 * title: Refactoring for Future Features
 ##### !question
 
-Select all of the options below that are valid reasons to move `validate_model` out of `book_routes.py` and place it in a new file `route_utilities.py`
+Select all of the options below that are valid reasons to move `validate_model` out of `book_routes.py` and place it in a new file `route_utilities.py`.
 
 ##### !end-question
 ##### !options
@@ -637,7 +639,7 @@ Select all of the options below that are valid reasons to move `validate_model` 
 a| `validate_model` isn't tied to a specific route or set of routes, so we don't want to package it with route functions.
 b| We want `book_routes.py` to only be responsible for `Book` route functions so that our file has a single purpose.
 c| `book_routes.py` is getting long and we want to keep our files shorter.
-d| When we add route files in the future, they shouldn't need to know about each other to use utilities likes.
+d| When we add route files in the future, they shouldn't need to know about each other to use utilities like `validate_model`.
 
 ##### !end-options
 ##### !answer
