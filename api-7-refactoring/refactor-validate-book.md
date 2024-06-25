@@ -49,75 +49,40 @@ Before we start building out new features, we want to take stock of our project 
 
 ## Refactoring the Blueprint name
 
+A significant reason that we have coding conventions are that they make our code easier for other folks to understand and use. We chose the name `books_bp` for our blueprint in `book_routes.py`, and while this isn't a bad name–it is clear about its purpose–it doesn't follow the naming conventions we would see in most Flask projects. 
 
-
-## Refactoring `validate_book`
-
-Taking a look over `routes.py`, we can see that all of the routes that read or alter a model by `id` use the `validate_book` function. This makes sense, we're reusing code to fetch a single `Book` from the database, so that's all good right? Here's where we want to think about our upcoming models. 
-
-Because we currently lack a function flexible enough to work for any model, adding any new model and its associated routes will require a validation function very similar to `validate_book`. For example an added `Author` model needs a `validate_author` function for routes that read, update or delete an `Author` by `id`.  
-
-In a very small project, this may not be cumbersome, but as a project grows it can become a pain point, especially if there is ever a need to update the pattern for fetching a model. To combat replicating similar code through our project, we're going to refactor `validate_book` into a more flexible function `validate_model`.
-
-We will do this by:
-- Passing `validate_book` a new parameter `cls`
-- Using `cls` in place of `Book`
-- Updating naming and return values in the function to reflect that it is no longer specific to the `Book` class
-
-### !callout-info
-
-## Why is the parameter `cls` used here? 
-
-In the previous lesson, we needed to pass `cls` as the first parameter to a class method for the compiler to recognize it as a class method. `cls` is a common variable name when working with references to a class itself. In our case, we will be passing a reference to a model class into our `validate_model` function. Though we could choose to call the parameter something else (like `class_name` or `class_type`) we're going to stick with the convention of calling it `cls`.
-
-### !end-callout
+Typically a blueprint is called `bp`, rather than having a qualifying prefix in the name like `books_`. By breaking conventions, and thus the expectations readers are likely to have when looking at our project, there's an extra bit of thinking readers need to do when ramping up on the code. We can alleviate this cognitive load some by updating our blueprint name!
 
 ### Planning the Refactor
 
-Check out the current `validate_book` code below if you'd like a reminder before we get into our planning steps.
+Our first task in this lesson is to follow the refactor process to rename `books_bp` to `bp` and handle any complications that may come with our changes. We won't be changing many lines of code, but we'll still benefit from following the steps we've established for planning, then executing, our refactor.
+
+#### Check Dependencies
+
+Our first stop is to find out, who is actually using `books_bp`? Take a moment to search the project, then compare your findings to ours in the drop-down below.
+
 <details>
-   <summary>Current <code>validate_book</code> code</summary>
+   <summary>Expand to the the dependencies we found.</summary>
 
-```python
-def validate_book(book_id):
-    try:
-        book_id = int(book_id)
-    except:
-        abort(make_response({"message":f"book {book_id} invalid"}, 400))
-
-    book = Book.query.get(book_id)
-
-    if not book:
-        abort(make_response({"message":f"book {book_id} not found"}, 404))
-
-    return book
-```
+Dependencies:
+- All route functions in `book_routes.py`
+- `create_app()` in `__init__.py`
 
 </details>
 </br>
 
-#### Identify Dependencies
-
-As always, our first stop is our dependencies check. If we search the project for the phrase "`validate_book`", we should see 4 results: 
-- The validate_book function definition
-- usage in `read_one_book` 
-- usage in `update_book`
-- usage in `delete_book`
-
-We can see our dependencies are the functions `read_one_book`, `update_book`, and `delete_book`, so let's see what our tests look like for those functions.
-
 #### Check for Tests
 
-We previously wrote tests for `read_one_book`, so we can feel good about that function's coverage, but we don't have any tests for the functions `update_book` or `delete_book`. Furthermore, we don't have tests for `validate_book` to confirm its behavior as we make modifications. Let's pause and think through nominal and edge cases for the functions `update_book`, `delete_book`, and `validate_book`. We want to list out what test cases are missing that would give us security while we refactor.
+We previously wrote tests for the routes `create_book`, `get_all_books`, and `get_one_book`, so we can feel good about those functions' test coverage. We are missing tests for the routes `update_book` or `delete_book` though, so let's pause and think through nominal and edge cases for `update_book` `delete_book`. We want to list out what test cases are missing that would give us security while we refactor.
 
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: paragraph
-* id: 43d9c16j
+* id: 43d9c16k
 * title: Identify Missing Test Cases
 * 
 ##### !question
-Take a few minutes to look over the functions `update_book`, `delete_book`, and `validate_book`, and the existing tests in `test_routes.py`. Make a list of missing nominal and edge cases for each function that would help confirm their behavior. Enter those missing scenarios below and when you're done, check out the explanation to see what test cases we identified. 
+Take a few minutes to look over the functions `update_book` and `delete_book`, as well as the existing tests in `test_book_routes.py`. Make a list of missing nominal and edge cases for each function that would help confirm the functions' behavior. Enter those missing scenarios below, and when you're done, check out the explanation to see what test cases we identified. 
 ##### !end-question
 
 ##### !placeholder
@@ -135,27 +100,17 @@ The test cases I identified are...
 - Deleting a book successfully
 - Failing to delete a book whose record `id` is not in the database
 - Failing to delete a record when the record `id` is invalid (non-integer)
-
-`validate_book` Test Cases
-- validating a book successfully
-- Failing to validate a book whose record `id` is not in the database
-- Failing to validate a record when the record `id` is invalid (non-integer)
 ##### !end-explanation
 
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
-Now that we've outlined what test cases we're missing, we'll go to `test_routes.py` and add new tests for the functions `update_book`, `delete_book`, and `validate_book`. Give writing the tests a try, then check out the tests we included below.
+Now that we've outlined what test cases we're missing, we'll go to `test_book_routes.py` and add new tests for the functions `update_book` and `delete_book`. Give writing the tests a try, then check out the tests we included below.
 
 <details>
-   <summary>New test cases for <code>update_book</code>, <code>delete_book</code>, and <code>validate_book</code></summary>
+   <summary>New test cases for <code>update_book</code> and <code>delete_book</code></summary>
 
 ```python
-from werkzeug.exceptions import HTTPException
-from app.routes import validate_book
-import pytest
-...
-
 def test_update_book(client, two_saved_books):
     # Arrange
     test_data = {
@@ -244,6 +199,150 @@ def test_delete_book_invalid_id(client, two_saved_books):
     # Assert
     assert response.status_code == 400
     assert response_body == {"message": "book cat invalid"}
+```
+
+</details>
+</br>
+
+### Executing the Refactor
+
+At this point we should have passing tests for each of our routes and can start our incremental change cycle!
+
+We will begin our changes in `book_routes.py` by updating the name `books_bp` to `bp` where it is declared and at each place it is referenced in the decorators above each route function. Once we've renamed the variable to `bp` where it is declared, we should expect to see issues running our tests until we finish our blueprint renaming refactors. 
+
+We're done in `book_routes.py` once all `books_bp` references are updated to `bp`. Before we jump into the changes we want to make in `__init__.py`, let's talk about potential issues that could arise in the future with this renaming, and how we'll structure our code to avoid them.
+
+#### Importing symbols with conflicting names
+
+For our routes to be accessible, we need to import our blueprints in `__init__.py` and register the blueprints inside of the `create_app` function. In the future we will add new route files with their own blueprints, so if the convention is to name all blueprints `bp`, how do we handle importing multiple symbols with the same name in `__init__.py`?
+
+It turns out that the Python import system is pretty flexible. Though there are more possibilities, we are going to touch on 2 approaches to handle imports with conflicting names, then choose one of them to move forward with through the rest of the project. Feel free to follow your curiosity about further importing patterns!
+
+Our first option to deal with a naming collision is to import just the module name at the top of the file, then use `<module_name>.<symbol_name>` to access a specific symbol from the module. In our `hello-books` project we want to import the module `book_routes` and access the symbol `bp`, so that could look like:
+
+```python
+from .routes import book_routes
+...
+
+def create_app(config=None):
+    ...
+
+    # Register Blueprints here
+    app.register_blueprint(book_routes.bp)
+```
+
+The second option we're exploring allows us to rename an imported symbol so that we can refer to it however we'd like inside of `__init__.py`. When we import a symbol using its default name, our import often looks like `from <module_name> import <symbol>`. There is a keywords `as` that we can use in our import statements to say that we want to import a symbol `as` some other name. In fact we could import `bp` as `books_bp` if that made sense for our project:
+
+```python
+from .routes.book_routes import bp as books_bp
+
+def create_app(config=None):
+    ...
+
+    # Register Blueprints here
+    app.register_blueprint(books_bp)
+```
+
+We feel that it's important to get used to seeing and working with imports renamed with `as`, so this is the importing strategy that we'll move forward with through the project. Just keep in mind that it is not the only valid or correct way to handle our imports! 
+
+Once we have updated the import line in `__init__.py` to use `as`, our changes to rename `books_bp` to `bp` are complete! We should be able to run the test suite and see all tests passing.
+
+![Happy seal with the text Green Checkmark Not Red X](../assets/api-7-refactoring/future-refactors_green-checkmark.jpg)
+*Fig. Happy Seal is excited to see our tests pass*
+
+## Refactoring `validate_book`
+
+Taking a look over `book_routes.py`, we can see that all of the routes which read or alter a model by `id` use the `validate_book` function. This makes sense, we're reusing code to fetch a single `Book` from the database, so that's all good right? Here's where we want to think about our upcoming models. 
+
+The `validate_book` function only works for our `Book` model–it isn't flexible enough to work for any model. If we keep up this pattern, every new model and its associated routes will require a validation function very similar to `validate_book`. For example, an new `Author` model would need a `validate_author` function for routes that read, update or delete an `Author` by `id`.
+
+In a very small project this may not be cumbersome. But as a project and our number of models grows, it can become a pain point to maintain many versions of functions that perform the same general task. To combat replicating similar code through our project, we're going to refactor `validate_book` into a more flexible function `validate_model`.
+
+We will do this by:
+- Passing `validate_book` a new parameter `cls`
+- Using `cls` in place of `Book`
+- Updating naming and return values in the function to reflect that it is no longer specific to the `Book` class
+
+### !callout-info
+
+## Why is the parameter `cls` used here? 
+
+In a previous lesson, we needed to pass `cls` as the first parameter to a class method for the compiler to recognize it as a class method. `cls` is a common variable name when working with references to a class itself. In our case, we will be passing a reference to a model class into our `validate_model` function. Though we could choose to call the parameter something else (like `class_name` or `class_type`) we're going to stick with the convention of calling it `cls`.
+
+### !end-callout
+
+### Planning the Refactor
+
+Check out the current `validate_book` code below if you'd like a reminder before we get into our planning steps.
+<details>
+   <summary>Current <code>validate_book</code> code</summary>
+
+```python
+def validate_book(book_id):
+    try:
+        book_id = int(book_id)
+    except:
+        abort(make_response({"message":f"book {book_id} invalid"}, 400))
+
+    book = Book.query.get(book_id)
+
+    if not book:
+        abort(make_response({"message":f"book {book_id} not found"}, 404))
+
+    return book
+```
+
+</details>
+</br>
+
+#### Identify Dependencies
+
+Let's find our `validate_book` dependencies! If we search the project for the phrase "`validate_book`", we should see 4 results: 
+- The validate_book function definition
+- usage in `read_one_book` 
+- usage in `update_book`
+- usage in `delete_book`
+
+We can see our dependencies are the functions `read_one_book`, `update_book`, and `delete_book`, so let's remind ourselves of what the tests look like for those functions.
+
+#### Check for Tests
+
+From our previous work, we have unit tests for each of the route functions. However, we do not have tests for `validate_book` to confirm its behavior as we make modifications. Let's pause again and think through nominal and edge cases, this time for `validate_book`. 
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: paragraph
+* id: 43d9c16j
+* title: Identify Missing Test Cases
+* 
+##### !question
+Take a few minutes to look over the function `validate_book` and the existing tests in `test_book_routes.py`. Make a list of missing nominal and edge cases for `validate_book` that would help confirm its behavior. Enter those missing scenarios below and when you're done, check out the explanation to see what test cases we identified. 
+##### !end-question
+
+##### !placeholder
+The test cases I identified are...
+##### !end-placeholder
+
+##### !explanation
+`validate_book` Test Cases
+- validating a book successfully
+- Failing to validate a book whose record `id` is not in the database
+- Failing to validate a record when the record `id` is invalid (non-integer)
+##### !end-explanation
+
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+We determined what test cases we're missing, so we can move back to `test_book_routes.py` and write the new tests for `validate_book`. Give writing the tests a try, then check out the tests we included below.
+
+<details>
+   <summary>New test cases for <code>update_book</code>, <code>delete_book</code>, and <code>validate_book</code></summary>
+
+```python
+from werkzeug.exceptions import HTTPException
+from app.routes import validate_book
+import pytest
+...
 
 def test_validate_book(two_saved_books):
     # Act
@@ -421,7 +520,7 @@ def test_validate_model_invalid_id(two_saved_books):
 </details>
 </br>
 
-Once we update the `import` at the top of the file that brings `validate_model` into `test_routes.py`, we'll likely get a test discovery error since `validate_model` doesn't exist yet. We'll address that issue first by changing the function name in `routes.py` from `validate_book` over to `validate_model`. 
+Once we update the `import` at the top of the file that brings `validate_model` into `test_book_routes.py`, we'll likely get a test discovery error since `validate_model` doesn't exist yet. We'll address that issue first by changing the function name in `routes.py` from `validate_book` over to `validate_model`. 
 
 ```python
 def validate_model(cls, book_id):
