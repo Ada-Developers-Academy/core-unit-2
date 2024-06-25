@@ -252,7 +252,7 @@ Once we have updated the import line in `__init__.py` to use `as`, our changes t
 
 ## Refactoring `validate_book`
 
-Taking a look over `book_routes.py`, we can see that all of the routes which read or alter a model by `id` use the `validate_book` function. This makes sense, we're reusing code to fetch a single `Book` from the database, so that's all good right? Here's where we want to think about our upcoming models. 
+Next up, we're going to examine how we can improve `validate_book`. Looking over `book_routes.py`, we can see that all of the routes which read or alter a model by `id` use the `validate_book` function. This makes sense, we're reusing code to fetch a single `Book` from the database, so that's all good right? Here's where we want to think about our upcoming work and new models. 
 
 The `validate_book` function only works for our `Book` model–it isn't flexible enough to work for any model. If we keep up this pattern, every new model and its associated routes will require a validation function very similar to `validate_book`. For example, an new `Author` model would need a `validate_author` function for routes that read, update or delete an `Author` by `id`.
 
@@ -262,6 +262,7 @@ We will do this by:
 - Passing `validate_book` a new parameter `cls`
 - Using `cls` in place of `Book`
 - Updating naming and return values in the function to reflect that it is no longer specific to the `Book` class
+- Moving `validate_model` to a new file `route_utilities.py` 
 
 ### !callout-info
 
@@ -282,12 +283,15 @@ def validate_book(book_id):
     try:
         book_id = int(book_id)
     except:
-        abort(make_response({"message":f"book {book_id} invalid"}, 400))
+        response = {"message": f"book {book_id} invalid"}
+        abort(make_response(response , 400))
 
-    book = Book.query.get(book_id)
+    query = db.select(Book).where(Book.id == book_id)
+    book = db.session.scalar(query)
 
     if not book:
-        abort(make_response({"message":f"book {book_id} not found"}, 404))
+        response = {"message": f"book {book_id} not found"}
+        abort(make_response(response, 404))
 
     return book
 ```
@@ -333,7 +337,9 @@ The test cases I identified are...
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
-We determined what test cases we're missing, so we can move back to `test_book_routes.py` and write the new tests for `validate_book`. Give writing the tests a try, then check out the tests we included below.
+We know what test cases we want to write now, but rather than moving back to `test_book_routes.py`, we're going to create a new test file `test_route_utilities.py`. This new file will hold tests for `validate_model` and any future helper functions we write that assist us with our routes, but aren't tied to a specific set of routes. 
+
+Try out writing the `validate_book` tests, then check out the tests we included below.
 
 <details>
    <summary>New test cases for <code>update_book</code>, <code>delete_book</code>, and <code>validate_book</code></summary>
@@ -373,11 +379,14 @@ def test_validate_book_invalid_id(two_saved_books):
 
 ### Executing the Refactor
 
+![Racoon rubbing hands with the text Time to Execute My Master Plan!](../assets/api-7-refactoring/future-refactors_green-checkmark.jpg)
+*Fig. Rowdy Raccoon is ready for refactors*
+
 With all of our new and old tests passing, we can start the next step - writing failing tests!
 
 #### The Cycle: Update Tests to Fail, Write Code to Make Them Pass
 
-In our previous refactors we created brand new functions and were able to write out our test cases ahead of our implementation code. In this case, we're making several implementation changes to an existing function and renaming it. There are many ways we could approach testing at this point, but we want to take a path that lets us get feedback as we make changes to our existing function rather than when we think we're done. Our recommendation is to start a cycle of making a small change to the `validate_book` tests so that they fail, then updating the code until the tests pass again, until all our changes are complete and all our tests are passing.
+In our previous lessons' refactors we created brand new functions and were able to write out our test cases ahead of our implementation code. In this case, we're making several implementation changes to an existing function and renaming it. There are many ways we could approach testing at this point, but we want to take a path that lets us get feedback as we make changes to our existing function rather than when we think we're done. Our recommendation is to start a cycle of making a small change to the `validate_book` tests so that they fail, then updating the code until the tests pass again, until all our changes are complete and all our tests are passing.
 
 Let's review our inputs and outputs for `validate_model` so we can start our improvements. Our function `validate_model` will:
 - Have a parameter `cls`, a reference to a model class (like `Book`)
@@ -407,7 +416,7 @@ def test_validate_book(two_saved_books):
     assert result_book.description == "watr 4evr"
 ```
 
-We should immediately see the `validate_book` tests failing and can move over to `routes.py` and make a corresponding change to `validate_book`. We'll add `cls` as the first parameter to `validate_book` and our function signature should look like:
+We should immediately see the `validate_book` tests failing and can move over to `routes.py` and make the corresponding change to `validate_book`. We'll add `cls` as the first parameter to `validate_book` and our function signature should look like:
 
 ```python
 def validate_book(cls, book_id):
@@ -416,22 +425,22 @@ def validate_book(cls, book_id):
 As soon as we do this, `book = Book.query.get(book_id)`'s tests will pass and the tests for our dependent routes will start to fail – No worries, this is expected! We'll get the dependent route tests back to passing by looking for where `validate_book` is invoked, and adding `Book` as our first argument: `validate_book(Book, book_id)`. Check out the updated code for `read_one_book` below as an example.
 
 ```python
-@books_bp.route("/<book_id>", methods=["GET"])
-def read_one_book(book_id):
+@bp.get("/<book_id>")
+def get_one_book(book_id):
     book = validate_book(Book, book_id)
     return book.to_dict()
 ```
 
-Our tests should all be passing again at this point 🎉. Now let's make use of that `cls` parameter! In `validate_book` we have the line:
+Our tests should all be passing again at this point 🎉. Now let's make use of that new `cls` parameter! In `validate_book` we have the line:
 
 ```python
-book = Book.query.get(book_id)
+query = db.select(Book).where(Book.id == book_id)
 ```
 
 We want to replace the use of `Book` here with our `cls` parameter:
 
 ```python
-book = cls.query.get(book_id)
+query = db.select(cls).where(cls.id == model_id)
 ```
 
 Running our test suite again, we should still see everything passing.
@@ -445,7 +454,7 @@ Now that we're using the `cls` parameter for the query, we want ensure that our 
 print(Book.__name__)
 ```
 
-If we take a look across our test suite, we have test cases that cover expected error messages for our dependent routes. Similar to our most recent change, we want our behavior to be exactly the same before and after, so let's try using `cls.__name__` in our `abort` messages. Give it a try then check out our updated code below:
+If we take a look across our test suite, we have test cases that cover expected error messages for our dependent routes. Similar to our most recent change, we want our behavior to be exactly the same before and after, so let's try using `cls.__name__` in our `abort` messages. Give it a try, then check out our updated code below:
 
 <details>
    <summary>Updated abort messages for <code>validate_book</code> function example</summary>
@@ -455,12 +464,15 @@ def validate_book(cls, book_id):
     try:
         book_id = int(book_id)
     except:
-        abort(make_response({"message":f"{cls.__name__} {book_id} invalid"}, 400))
+        response = {"message": f"{cls.__name__} {model_id} invalid"}
+        abort(make_response(response , 400))
 
-    book = Book.query.get(book_id)
+    query = db.select(cls).where(cls.id == book_id)
+    book = db.session.scalar(query)
 
     if not book:
-        abort(make_response({"message":f"{cls.__name__} {book_id} not found"}, 404))
+        response = {"message": f"{cls.__name__} {model_id} not found"}
+        abort(make_response(response, 404))
 
     return book
 ```
@@ -480,11 +492,11 @@ Taking this line-by-line, we can see that we have an `AssertionError` around the
 
 We could change our `validate_book` code to lowercase the result of `cls.__name__` so our tests pass again, but in this case we're going to choose to update our tests and keep the new capitalization; either choice is valid for `hello_books`. In the industry, and generally when working with other people, we would consult with folks who are invested in the project before changing user-facing messages. Once we've gone through and updated the expected messages for our failing tests, we should see everything passing again.
 
-#### Final Touches: Update Function and Variable Names
+#### Incremental Changes: Update Function and Variable Names
 
 We're nearing the end of our refactor! All the practical changes have been made for `validate_book` to use a class reference in place of hard coding `Book`, but the purpose of our function no longer matches the naming. Furthermore, our variable names and the `book_id` parameter don't accurately reflect what they hold. 
 
-Let's do one more cycle of tests followed by code changes to make our code easier to read and understand. We'll start out by updating our `validate_book` tests to fail by changing both the test names and our invocation of the function to use the new name `validate_model`. Try out making those updates, then check out our updated tests below when you're ready.
+Let's do another cycle of tests followed by code changes to make our code easier to read and understand. We'll start out by updating our `validate_book` tests to fail by changing both the test names and our invocation of the function to use the new name `validate_model`. Try out making those updates, then check out our updated tests below when ready.
 
 <details>
    <summary>Updated <code>validate_model</code> tests example</summary>
@@ -527,44 +539,126 @@ def validate_model(cls, book_id):
     ...
 ```
 
-Once that's done, we can view our tests again, and see that the tests for our dependent functions are failing again. We'll go through and update `read_one_book`, `update_book`, and `delete_book` to use the new function name `validate_model`, and we should see everything passing again.
+Once that's done, we can run our tests again, and see that the tests for our dependent functions are failing again. We'll go through and update `read_one_book`, `update_book`, and `delete_book` to use the new function name `validate_model`, and we should see everything passing again.
 
-For our finishing touches, we'll rename our parameter `book_id` and variable names to use `model` in place of `book`. When we've completed our work, our whole test suite should remain passing, and our refactor is complete! 
+To get our variable names back in alignment with what they represent, we'll rename our parameter `book_id` and variable names to use `model` in place of `book`. When we've completed our work, our whole test suite should remain passing! 
 
 ```python
 def validate_model(cls, model_id):
     try:
         model_id = int(model_id)
     except:
-        abort(make_response({"message":f"{cls.__name__} {model_id} invalid"}, 400))
+        response = {"message": f"{cls.__name__} {model_id} invalid"}
+        abort(make_response(response , 400))
 
-    model = cls.query.get(model_id)
-
+    query = db.select(cls).where(cls.id == model_id)
+    model = db.session.scalar(query)
+    
     if not model:
-        abort(make_response({"message":f"{cls.__name__} {model_id} not found"}, 404))
-
+        response = {"message": f"{cls.__name__} {model_id} not found"}
+        abort(make_response(response, 404))
+    
     return model
 ```
 
-We now have a function flexible enough to use with any model class we add to our project in the future, and we did it in a way that let us isolate changes and confirm behavior each step of the way!
+We now have a function flexible enough to use with any model class we add to our project in the future, and we refactored in a way that let us isolate changes and confirm behavior each step of the way! 
+
+#### Final touches: Moving `validate_model`
+
+Our finishing touch is to move `validate_model` out of `book_routes.py` and into a new file inside of the `routes` folder named `route_utilities.py`. By moving `validate_model` out of `book_routes.py` we ensure that future route files don't need to know about each other to import and use the `validate_model` function. 
+
+Let's jump into our last cycle of making our tests fail, then updating our code to make them pass!
+
+First we'll update `test_route_utilities.py` to change where we're importing `validate_model` from. We know we'll be creating a file named `route_utilities.py` inside of `routes`, so our import should look like:
+
+```python
+from app.routes.route_utilities import validate_model
+```
+
+Once we update our import, we should see a test discovery error because `route_utilities.py` doesn't exist yet. Let's fix those errors by creating our new file with: 
+
+```python
+touch app/routes/route_utilities.py
+``` 
+
+Then we can copy & paste `validate_model` into `route_utilities.py` and delete it from `book_routes.py`. For `validate_model` to work, `route_utilities.py` will also need to bring in imports for the database and flask utilities it references. Try making these changes, then take a look at our completed `route_utilities.py` file below.
+
+<details>
+   <summary>Finished code in <code>route_utilities.py</code></summary>
+
+```python
+from flask import abort, make_response
+from ..db import db
+
+def validate_model(cls, model_id):
+    try:
+        model_id = int(model_id)
+    except:
+        response = {"message": f"{cls.__name__} {model_id} invalid"}
+        abort(make_response(response , 400))
+
+    query = db.select(cls).where(cls.id == model_id)
+    model = db.session.scalar(query)
+    
+    if not model:
+        response = {"message": f"{cls.__name__} {model_id} not found"}
+        abort(make_response(response, 404))
+    
+    return model
+```
+
+</details>
+</br>
+
+At this point we should still have an issue running our tests. In theory our tests in `test_route_utilities.py` should be passing, but since we've removed `validate_model` from `book_routes.py`, our dependent routes can't find the function and all of their tests should be failing. 
+
+Our last change is to add a new import to `book_routes.py` to bring in `validate_model` from its new location:
+
+```python
+from .route_utilities import validate_model
+```
+
+Once we add this import, our changes are done! We should be able to run our full test suite and see everything in `test_book_routes.py` and `test_route_utilities.py` passing 🎉. 
 
 ## Check for Understanding
 
-<!-- Question Takeaway -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: paragraph
+* type: checkbox
 * id: 43d9c16g
-* title: Refactoring
+* title: Refactoring for Future Features
 ##### !question
 
-What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+Select all of the options below that are valid reasons to move `validate_model` out of `book_routes.py` and place it in a new file `route_utilities.py`
 
 ##### !end-question
-##### !placeholder
+##### !options
 
-My biggest takeaway from this lesson is...
+a| `validate_model` isn't tied to a specific route or set of routes, so we don't want to package it with route functions.
+b| We want `book_routes.py` to only be responsible for `Book` route functions so that our file has a single purpose.
+c| `book_routes.py` is getting long and we want to keep our files shorter.
+d| When we add route files in the future, they shouldn't need to know about each other to use utilities likes.
 
-##### !end-placeholder
+##### !end-options
+##### !answer
+
+a|
+b|
+d|
+
+##### !end-answer
+##### !hint
+
+Can the Single Responsibility Principle apply to files as well as functions? Is a long file necessarily a bad thing?
+
+##### !end-hint
+##### !explanation
+
+1. Correct
+2. Correct
+3. It is okay if a file is getting long if we are following best practices like reducing repetition and only keeping highly related code co-located. 
+4. Correct
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
