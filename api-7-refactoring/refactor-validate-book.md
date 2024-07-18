@@ -43,19 +43,19 @@ Our test folder should have 2 files:
 
 ## Why should we make these changes?
 
-Planning ahead for work to come is another great reason we refactor. Right now our project has a single model `Book`, with the attributes `title` and `description`, but what other data is helpful when tracking books? If we're building this to share with other folks, we know that we're likely to add other models that represent authors or genres as we build out the functionality.
+Planning ahead for work to come is another great reason we refactor. Here, we have the opportunity to make our code more flexible for future code changes. Right now our project has a single model `Book`, with the attributes `title` and `description`, but what other data is helpful when tracking books? If we're building this to share with other folks, we know that we're likely to add other models that represent authors or genres as we build out the functionality.
 
 Before we start building out new features, we want to take stock of our project and see where we can more closely follow conventions or better follow D.R.Y. principles. We save time by getting our code into a more maintainable state now, over making changes later when we have more files that would need to be touched for the same updates.
 
 ## Refactoring the Blueprint name
 
-A significant reason that we have coding conventions are that they make our code easier for other folks to understand and use. We chose the name `books_bp` for our blueprint in `book_routes.py`, and while this isn't a bad name–it is clear about its purpose–it doesn't follow the naming conventions we would see in most Flask projects. 
+A significant reason that we have coding conventions is that they make our code easier for other folks to understand and use. We chose the name `books_bp` for our blueprint in `book_routes.py`, and while this isn't a bad name–it is clear about its purpose–it doesn't follow the naming conventions we would see in most Flask projects. 
 
 Typically a blueprint is called `bp`, rather than having a qualifying prefix in the name like `books_`. By breaking conventions, and thus the expectations readers are likely to have when looking at our project, there's an extra bit of thinking readers need to do when ramping up on the code. We can alleviate this cognitive load some by updating our blueprint name!
 
 ### Planning the Refactor
 
-Our first task in this lesson is to follow the refactor process to rename `books_bp` to `bp` and handle any complications that may come with our changes. We won't be changing many lines of code, but we'll still benefit from following the steps we've established for planning, then executing, our refactor.
+Our first task in this lesson is to follow the refactor process to rename `books_bp` to `bp` and handle any complications that may come with our changes. We won't be changing many lines of code, but we'll still benefit from following the steps we've established for planning and executing our refactor.
 
 #### Check Dependencies
 
@@ -73,7 +73,7 @@ Dependencies:
 
 #### Check for Tests
 
-We previously wrote tests for the routes `create_book`, `get_all_books`, and `get_one_book`, so we can feel good about their test coverage. We are missing tests for the routes `update_book` and `delete_book` though, so let's pause and think through nominal and edge cases for `update_book` `delete_book`. We want to list out what test cases are missing that would give us security while we refactor.
+We previously wrote tests for the routes `create_book`, `get_all_books`, and `get_one_book`, so we can feel good about their test coverage. We are missing tests for the routes `update_book` and `delete_book` though, so let's pause and think through nominal and edge cases for `update_book` `delete_book`. We want to list out what test cases are missing that we'll need to write so that we can catch any potential regressions that might get introduced during the refactoring process.
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -304,7 +304,7 @@ def validate_book(book_id):
 #### Identify Dependencies
 
 Let's find our `validate_book` dependencies! If we search the project for the phrase "`validate_book`", we should see 4 results: 
-- The validate_book function definition
+- The `validate_book` function definition
 - usage in `read_one_book` 
 - usage in `update_book`
 - usage in `delete_book`
@@ -331,7 +331,7 @@ The test cases I identified are...
 
 ##### !explanation
 `validate_book` Test Cases
-- validating a book successfully
+- Validating a book successfully
 - Failing to validate a book whose record `id` is not in the database
 - Failing to validate a record when the record `id` is invalid (non-integer)
 ##### !end-explanation
@@ -339,7 +339,7 @@ The test cases I identified are...
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
-We know what test cases we want to write now, but rather than moving back to `test_book_routes.py`, we're going to create a new test file `test_route_utilities.py`. This new file will hold tests for `validate_model` and any future helper functions we write that assist us with our routes, but aren't tied to a specific set of routes. 
+We know what test cases we want to write now, but rather than moving back to `test_book_routes.py`, we're going to create a new test file `test_route_utilities.py` since we'll be writing `validate_model` in the new `route_utilities.py` file. This new file will hold tests for `validate_model` and any future helper functions we write that assist us with our routes, but aren't tied to a specific set of routes. 
 
 Try out writing the `validate_book` tests, then check out the tests we included below.
 
@@ -388,7 +388,7 @@ With all of our new and old tests passing, we can start the next step - writing 
 
 #### The Cycle: Update Tests to Fail, Write Code to Make Them Pass
 
-In our previous lessons' refactors we created brand new functions and were able to write out our test cases ahead of our implementation code. In this case, we're making several implementation changes to an existing function and renaming it. There are many ways we could approach testing at this point, but we want to take a path that lets us get feedback as we make changes to our existing function rather than when we think we're done. Our recommendation is to start a cycle of making a small change to the `validate_book` tests so that they fail, then updating the code until the tests pass again, until all our changes are complete and all our tests are passing.
+In our previous lessons' refactors we created brand new functions and were able to write out our test cases ahead of our implementation code. In this case, we're making several implementation changes to an existing function and renaming it. There are many ways we could approach testing at this point. We want to take a path that provides us with feedback as we make changes to our existing function. Taking this approach enables us to write code that meets our specified requirements, rather than writing code until we _think_ we’re done. Our recommendation is to start a cycle of making a small change to the `validate_book` tests so that they fail, then updating the code until the tests pass again, until all our changes are complete and all our tests are passing.
 
 Let's review our inputs and outputs for `validate_model` so we can start our improvements. Our function `validate_model` will:
 - Have a parameter `cls`, a reference to a model class (like `Book`)
