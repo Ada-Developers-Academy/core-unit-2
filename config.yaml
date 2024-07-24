@@ -443,6 +443,10 @@ Standards:
         Type: Lesson
         UID: 66f19557-3680-4552-bb9b-440ea22d0c23
         Path: /api-7-refactoring/refactor-validate-book.md
+      -
+        Type: Lesson
+        UID: b068cf87-ed81-4ff2-85e2-9c9e811a16ec
+        Path: /api-7-refactoring/problem-set-refactoring.md
   -
     Title: 08) Building an API - One-to-Many Relationships
     Description: "One-to-Many: Authors, Nested Routes"
