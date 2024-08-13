@@ -30,13 +30,17 @@ This lesson asks us to do more independent research than the previous **Building
 
 - A `hello_books_development` database
 - A `book` table defined
-- A `Book` model defined
-- Endpoints defined for these RESTful routes:
+- A `Book` model defined that contains the instance method `to_dict` and class method `from_dict`
+
+Endpoints defined for these RESTful routes:
 - `GET` to `/books`
 - `POST` to `/books`
 - `GET` to `/books/<book_id>`
 - `PUT` to `/books/<book_id>`
 - `DELETE` to `/books/<book_id>`
+
+`route_utilities.py` should contain:
+- The function `validate_model()` that can retrieve a model of any type
 
 The `Book` model and table should have the following columns:
 
