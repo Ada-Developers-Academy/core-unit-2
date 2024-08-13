@@ -102,7 +102,7 @@ Refer back to [03) Building an API - Read All Books](../api-3-database-models-re
 
 
 <details>
-  <summary>Give this a try on your own, then expand to see our updated <code>__init__.py>/code> and <code>author_routes.py</code>.</summary>
+  <summary>Give this a try on your own, then expand to see our updated <code>__init__.py</code> and <code>author_routes.py</code>.</summary>
 
 ```python
 #app/__init__.py
