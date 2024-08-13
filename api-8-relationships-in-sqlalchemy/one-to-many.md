@@ -271,7 +271,6 @@ class Book(db.Model):
 ## Fixing type errors in VSCode
 
 Our new code will compile and run, but sometimes our tools can get a little confused about syntax and underline something that really doesn't need to change. In this case, we may see `Pylance` in VSCode add underlines after we've created the relationship between our models. If we would like to remove those warning underlines, we can add the following code to the models:
-
 ```py
 # in app/models/book.py
 from typing import TYPE_CHECKING
@@ -284,11 +283,13 @@ if TYPE_CHECKING:
   from .book import Book
 ```
 
+<br>
+
 If you'd like to know more about `Pylance` or type checking in Python, feel free to follow your curiosity!
 
 ### !end-callout
 
-Now we have our `author_id` in the `Book` model, but what is the new `books` attribute in `Author`? And what purpose does `back_populates` serve? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/14/orm/basic_relationships.html#one-to-many) or your favorite search engine to find an answer.
+Now we have our `author_id` in the `Book` model, but what is the new `books` attribute in `Author`? And what purpose does `back_populates` serve? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#one-to-man) or your favorite search engine to find an answer.
 
 ### Don't Forget to Generate Migrations
 
