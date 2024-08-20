@@ -22,11 +22,15 @@ We will use the provided branches as a reference, primarily through the GitHub w
 As you work through the Building an API Learn topics and learn to build an API with Flask, you will find a workflow that works for you. Here are our workflow recommendations:
 
 1. Fork and clone [Hello Books API](https://github.com/AdaGold/hello-books-api).
-2. Since the default branch is `01a-intro-to-flask`, create a branch called `main` so that we will have our own branch to work on.
+2. The default branch after forking is `01a-intro-to-flask`. We want to update our fork by creating a branch named `main` where we'll write our code, and setting `main` to the default branch for our fork.
+   1. `git checkout -b main` will create a branch called `main` and switch to that new branch.
+   2. `git push -u` will push the branch we are on (our new branch `main`) to our remote fork and ensure the relationship between the remote branch and our local branch is created.
+   3. Follow [Github's documentation](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-branches-in-your-repository/changing-the-default-branch#changing-the-default-branch) to change the default branch from `01a-intro-to-flask` to our new development branch `main` in the settings of our forked repo.
+   * If stuck on these steps, reach out in #study-hall on Slack and someone will help out!
 3. When beginning a lesson, look at the corresponding starting branch for that lesson in the Github web interface (see screenshot below).
 4. Code along with the lesson **as much or as little as best supports your learning** on the `main` branch. 
-5. After finishing a lesson, we should commit our changes on the `main` branch with a detailed commit message so that our changes are saved.
-6. Now we're ready for our next lesson. We should switch to the next lesson's branch in the GitHub web interface for reference while continuing to make our changes on our local `main` branch. We can repeat these steps for all the lessons related to the Hello Books API.
+5. After finishing a lesson, we should commit our changes on the `main` branch with a detailed commit message so that our changes are saved. Once a commit is created, we should push the new commit to our remote repo so that our changes are reflected there as well.
+6. Now we're ready for our next lesson! We should switch to the next lesson's branch in the GitHub web interface for reference while continuing to make our changes on our local `main` branch. We can repeat these steps for all the lessons related to the Hello Books API.
    
 ![Explanation for how to view branch contents within the GitHub web view. The branch dropdown (displaying `01a-intro-to-flask` by default) is labeled "Use this dropdown to select the branch you'd like to view. After selecting the branch, the contents will be displayed in the GitHub web view." The list of branches is labeled "Available branches." A general info box states "After selecting a branch, click on a file to view it in the GitHub web view."](../assets/building-an-api/hello-books-api-branches-in-github.png)
 
@@ -40,4 +44,4 @@ For this work, we should practice making small, atomic commits
 
 ## Class Activities
 
-The Building an API lessons have a companion pair project / class activity [Solar System API](https://github.com/AdaGold/solar-system-api) for additional skills practice.
+The Building an API lessons have a companion pair project, [Solar System API](https://github.com/AdaGold/solar-system-api), that we will work on during class activities for additional skills practice.

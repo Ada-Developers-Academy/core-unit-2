@@ -2,9 +2,8 @@
 
 ## Goals
 
-Our goals for this lesson are to:
-- Use fixtures to create test data
-- Write tests that use test data
+Our goal for this lesson is to:
+- Write a test for a route that creates and stores data
 
 ## Branches
 
@@ -15,7 +14,7 @@ Our goals for this lesson are to:
 
 # Syntax
 
-Let's read through this test we can use in our tests/test_routes.py.
+We'll wrap up our foray into API unit testing with a test for our POST route `create_book()`. Since we are testing out creating and storing a record, rather than accessing an existing record, the test doesn't need any fixtures which create data. However, like our previous tests, the `create_book()` test will require the client fixture to make our request. Let's read through this test we can use in our file `tests/test_book_routes.py`.
 
 ```python
 def test_create_one_book(client):
@@ -28,76 +27,63 @@ def test_create_one_book(client):
 
     # Assert
     assert response.status_code == 201
-    assert response_body == "Book New Book successfully created"
+    assert response_body == {
+        "id": 1,
+        "title": "New Book",
+        "description": "The Best!"
+    }
 ```
 
 | <div style="min-width:250px;"> Piece of Code </div> | Notes|
 |--|--|
-|`def test_create_one_book(client):` | Continuing our best pytest practices, this test should start with the name `test_`, and it should describe the nature of this test.|
-|`client.post("/books", json=...`|Sends an `POST` request to `/books` with the JSON request body passed in as the `json` keyword argument| 
-| `response_body = response.get_json()`| Get the JSON response body with `response.get_json()`|
-|`assert response.status_code == 201`|Check for the expected status code|
-|`assert response_body == "Book New Book successfully created"`|Check for the expected response body|
+|`def test_create_one_book(`&ZeroWidthSpace;`client):` | Continuing our best `pytest` practices, this test should start with the name `test_`, and it should describe the nature of this test.|
+|`client.post("/books", json=...`|Sends a `POST` request to `/books`, with the `dict` to be used as the JSON request body passed in using the `json` keyword argument| 
+| `response_body = response.get_json()`| Gets the JSON response body as a Python value. Since the create logic returns a `dict`, we should anticipate `response_body` to receive a `dict` result here.|
+|`assert response.status_code == 201`|Checks for the expected status code|
+|`assert response_body == {...}}`| Checks for the expected key/value pairs in the response body|
 
-## Run and Debug Test
+As always, we should run `pytest` and ensure that the `POST` test passes and no other tests have been affected by our changes.
 
-When we run are test using `pytest` we will see a failure:
+![Screenshot of pytest test result: 3 tests in tests/test_book_routes.py passed](../assets/api-6-testing/api-6-testing_post_test_success.png)  
+_Fig. Test output reporting 3 tests in `tests/test_book_routes.py` passed. ([Full size image](../assets/api-6-testing/api-6-testing_post_test_success.png))_
 
-![POST /books test failure](../assets/post_test_failure.png)
-
-Reading the test failure output indicates tat `response.get_json()` returns `None` whereas we expect it to return `"Book New Book successfully created"`.
-
-To investigate this error we may start by looking at the [`get_json` documentation](https://flask.palletsprojects.com/en/2.0.x/api/?highlight=get_json#flask.Response.get_json) and will note this piece:
-
-```
-"If the mimetype does not indicate JSON (application/json, see is_json), this returns `None`."
-```
-
-Further investigation might lead us to the [`get_data` method](https://flask.palletsprojects.com/en/2.0.x/api/?highlight=get_json#flask.Response.get_data) and we will find that if we use `response_body = response.get_data(as_text=True)` our test will pass.
-
-Alternatively, we can `jsonify` the response body in our `POST` `/books` route:
-
-```python
-return make_response(jsonify(f"Book {new_book.title} successfully created"), 201)
-```
-
-Note that `POST` test passes with this change:
-
-![POST /books test success](../assets/post_test_success.png)
-
-<!-- available callout types: info, success, warning, danger, secondary, star  -->
-### !callout-info
-
-## <code>jsonify</code>
-
-We will prefer the `jsonify` solution because it adds consistency to our routes. We consistently return `JSON` in our response bodies, and thus can consistently use the method `get_json` in our tests. 
-
-### !end-callout
-
-We should also make this change to `jsonify` our response body in the `PUT` `/books/<book_id>` and `DELETE` `/books/<book_id>` routes. This adds predictability to our RESTful routes. 
-
-We may also consider refactoring these routes to return a dictionary consistent with the responses typically expected for this RESTful routes. We will save this work for a later lesson.
+## Check for Understanding
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: tasklist
+* type: multiple-choice
 * id: d27c63d0-8dd3-4c09-ab95-e23e9d128aea
-* title: Create One Book Test
+* title: POST /books Test
 ##### !question
 
-Think about the test for `POST` `/books`
-
-Check off all the topics that we've touched on so far.
+Which of the statements below is true about why the test above, `test_create_one_book`, only needs the `client` fixture dependency? Select one option below.
 
 ##### !end-question
 ##### !options
 
-* Examined the `test_create_one_book` syntax
-* Considered using `get_data(as_text=True)`
-* Refactored our `POST` `\books`route to use `jsonify`
-* Refactored our `PUT` `\books` route to use `jsonify`
-* Refactored our `DELETE` `\books` route to use `jsonify`
+a| The `client` fixture also creates data used by the test `test_create_one_book`.
+b| `test_create_one_book` doesn't need the `client` fixture.
+c| `test_create_one_book` doesn't need to retrieve a pre-existing record, so it does not need a fixture that saves Book records.
+d| The `client` fixture needs to be used for every test using the `pytest` framework.
 
 ##### !end-options
+##### !answer
+
+c|
+
+##### !end-answer
+##### !hint
+
+What does the client fixture do for us? When do we need fixtures which create data and why?
+
+##### !end-hint
+##### !explanation
+
+1. False: The `client` fixture does not create any `Book` records
+2. False: The `client` fixture allows us to make requests to our API, so we must include it as a dependency.
+3. True: We only need a fixture that creates a `Book` record before the test runs if the test depends on there being data in the database.
+4. False: We only need to use the `client` fixture for tests where we need the ability to make requests against our API's routes.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
