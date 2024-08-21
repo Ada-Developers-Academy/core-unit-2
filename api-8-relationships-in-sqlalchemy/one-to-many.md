@@ -66,7 +66,7 @@ It would also benefit us in the future if we implement `to_dict` and `from_dict`
   <summary>Give this a try on your own, then expand to see our solution.</summary>
 
 ``` python
-#app/models/author.py
+# app/models/author.py
 from sqlalchemy.orm import Mapped, mapped_column
 from ..db import db
 
@@ -105,7 +105,7 @@ Refer back to [03) Building an API - Read All Books](../api-3-database-models-re
   <summary>Give this a try on your own, then expand to see our updated <code>__init__.py</code> and <code>author_routes.py</code>.</summary>
 
 ```python
-#app/__init__.py
+# app/__init__.py
 from flask import Flask
 from .db import db, migrate
 from .models import book, author
@@ -182,7 +182,7 @@ We should be writing new tests as we're creating new models and route functions.
 
 <br/>
 
-Try out writing tests on your own, then check out the test suite we put together in GitHub on the branch for this lesson, `08a-author-model`.
+Try out writing tests on your own, then check out the test suite we put together in the GitHub branch for this lesson, `08a-author-model`.
 
 ### !end-callout
 
@@ -196,7 +196,7 @@ _Fig. ERD describing a one-to-many relationship between authors and books_
 
 We can see that a `book` is connected to the `author` table by the author's `id` as a foreign key. This foreign key is defined as `author_id` in the `book` table. While we could call it whatever we wish, naming it `author_id` follows a standard convention for naming foreign keys.
 
-How do we define this foreign key in our Flask models? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#one-to-man), try it out, then check out our solution below. There are several ways we _could_ implement a one-to-many relationship in our models. Follow your curiosity if you are interested in some of the other possible approaches.
+How do we define this foreign key in our Flask models? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#one-to-man), try it out, then check out our solution below. There are several ways we _could_ implement a one-to-many relationship in our models. We'll prefer to use annotated declarative mappings. Follow your curiosity if you are interested in investigating some of the other possible approaches.
 
 <br>
 
@@ -339,6 +339,12 @@ d|
 
 What is the difference between `author` and `author_id` in the `Book` class?
 What is the difference between a `ForeignKey` and a `relationship` in SQLAlchemy?
+
+##### !end-hint
+
+##### !hint
+
+SqlAlchemy `relationship` entries provide convenient access to related objects, but aren't themselves required to establish the actual model relationship.
 
 ##### !end-hint
 ##### !explanation
