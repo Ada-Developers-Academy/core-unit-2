@@ -96,10 +96,9 @@ The last thing we'll do is create the following endpoints for our `Author` model
 - `GET ` to `/authors`
 - `POST` to `/authors`
 
-Refer back to [03) Building an API - Read All Books](../api-3-database-models-read/read-all-books.md) for how to define the `GET` endpoint and the `POST` endpoint.
+Refer back to [03) Building an API - Read All Books](../api-3-database-models-read/read-all-books.md) for how to define the `GET` endpoint and the `POST` endpoint. When writing the `GET` `/authors` endpoint, we should also consider what filtering options we could support with query params!
 
 </br>
-
 
 <details>
   <summary>Give this a try on your own, then expand to see our updated <code>__init__.py</code> and <code>author_routes.py</code>.</summary>
@@ -167,6 +166,7 @@ def get_all_authors():
         query = query.where(Author.name.ilike(f"%{name_param}%"))
 
     authors = db.session.scalars(query.order_by(Author.id))
+    # Use list comprehension syntax to create the list `authors_response`
     authors_response = [author.to_dict() for author in authors]
 
     return authors_response
@@ -190,11 +190,21 @@ Try out writing tests on your own, then check out the test suite we put together
 
 Let's visualize the relationship between `book`s and `author`s. Just like we did when we built relationships in SQL, we will use an **entity relationship diagram** to visualize the relationship between `book`s and `author`s.
 
-![An entity relationship diagram describing a one-to-many relationship between authors and books](../assets/one-to-many-relationships-in-flask_erd.png)  
+![An entity relationship diagram describing a one-to-many relationship between authors and books](../assets/api-8-one-many/one-to-many-relationships-in-flask_erd.png)  
 
 _Fig. ERD describing a one-to-many relationship between authors and books_
 
 We can see that a `book` is connected to the `author` table by the author's `id` as a foreign key. This foreign key is defined as `author_id` in the `book` table. While we could call it whatever we wish, naming it `author_id` follows a standard convention for naming foreign keys.
+
+### !callout-info
+
+## Defining Relationships as Optional or Required
+
+Just like with regular model properties, when we create relationships between models, we need to carefully consider what makes sense to be optional vs required data. For this project, we're going to make the `Author` relationship optional on the `Book` model, primarily to simplify managing our existing `Book` data that has no author. We are choosing to conceptualize `NULL` author data as representing a book with an unknown author. 
+
+If we wanted an `Author` relationship to be required for the `Book` model, we could take a different tactic, such as representing an unknown author by using an "Unknown" author record. 
+
+### !end-callout
 
 How do we define this foreign key in our Flask models? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#one-to-man), try it out, then check out our solution below. There are several ways we _could_ implement a one-to-many relationship in our models. Follow your curiosity if you are interested in some of the other possible approaches.
 
