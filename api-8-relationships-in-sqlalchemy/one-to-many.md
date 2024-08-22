@@ -321,6 +321,8 @@ If all else fails, it is okay to delete the migrations directory and the databas
 
 ### !end-callout
 
+## Check for Understanding
+
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: checkbox
