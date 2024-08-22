@@ -196,18 +196,6 @@ _Fig. ERD describing a one-to-many relationship between authors and books_
 
 We can see that a `book` is connected to the `author` table by the author's `id` as a foreign key. This foreign key is defined as `author_id` in the `book` table. While we could call it whatever we wish, naming it `author_id` follows a standard convention for naming foreign keys.
 
-### !callout-info
-
-## Defining Relationships as Optional or Required
-
-Just like with regular model properties, when we create relationships between models, we need to carefully consider what makes sense to be optional vs required data. For this project, we're going to make the `Author` relationship optional on the `Book` model, primarily to simplify managing our existing `Book` data that has no author. We are choosing to conceptualize `NULL` author data as representing a book with an unknown author. 
-
-<br>
-
-If we wanted an `Author` relationship to be required for the `Book` model, we could take a different tactic, such as representing an unknown author by using an "Unknown" author record. In that case, the `Optional[]` portion would be omitted from the mapping declaration. For example, while `Mapped[Optional[int]]` declares a nullable integer column, `Mapped[int]` declares an integer column that disallows `NULL` values, just as Mapped[str] declares a required string column.
-
-### !end-callout
-
 How do we define this foreign key in our Flask models? Refer to the [SQLAlchemy documentation](https://docs.sqlalchemy.org/en/20/orm/basic_relationships.html#one-to-man), try it out, then check out our solution below. There are several ways we _could_ implement a one-to-many relationship in our models. Follow your curiosity if you are interested in some of the other possible approaches.
 
 <br>
@@ -277,6 +265,18 @@ class Book(db.Model):
 ```
 </details>
 </br>
+
+### !callout-info
+
+## Defining Relationships as Optional or Required
+
+Just like with regular model properties, when we create relationships between models, we need to carefully consider what makes sense to be optional vs required data. For this project, we're going to make the `Author` relationship optional on the `Book` model, primarily to simplify managing our existing `Book` data that has no author. We are choosing to conceptualize `NULL` author data as representing a book with an unknown author. 
+
+<br>
+
+If we wanted an `Author` relationship to be required for the `Book` model, we could take a different tactic, such as representing an unknown author by using an "Unknown" author record. In that case, the `Optional[]` portion would be omitted from the mapping declaration. For example, while `Mapped[Optional[int]]` declares a nullable integer column, `Mapped[int]` declares an integer column that disallows `NULL` values, just as `Mapped[str]` declares a required string column.
+
+### !end-callout
 
 ### !callout-info
 
