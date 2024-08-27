@@ -263,12 +263,8 @@ class Book(db.Model):
 
         return new_book
 ```
-</details>
-</br>
 
-### !callout-info
-
-## Defining Relationships as Optional or Required
+### Defining Relationships as Optional or Required
 
 Just like with regular model properties, when we create relationships between models, we need to carefully consider what makes sense to be optional vs required data. For this project, we're going to make the `Author` relationship optional on the `Book` model, primarily to simplify managing our existing `Book` data that has no author. We are choosing to conceptualize `NULL` author data as representing a book with an unknown author. 
 
@@ -276,7 +272,8 @@ Just like with regular model properties, when we create relationships between mo
 
 If we wanted an `Author` relationship to be required for the `Book` model, we could take a different tactic, such as representing an unknown author by using an "Unknown" author record. In that case, the `Optional[]` portion would be omitted from the mapping declaration. For example, while `Mapped[Optional[int]]` declares a nullable integer column, `Mapped[int]` declares an integer column that disallows `NULL` values, just as `Mapped[str]` declares a required string column.
 
-### !end-callout
+</details>
+</br>
 
 ### !callout-info
 
