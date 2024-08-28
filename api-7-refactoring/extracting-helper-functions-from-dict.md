@@ -161,9 +161,10 @@ What we need in this case is a class method! To create a class method we need to
 As an example, if we wanted to write a class method named `create_from_list` that takes in a list as input, its function signature might look like:
 
 ```python
-@classmethod
-def create_from_list(cls, list_data):
-   ...
+class MyClass:
+    @classmethod
+    def create_from_list(cls, list_data):
+       ...
 ``` 
 
 ### What is `cls`?
