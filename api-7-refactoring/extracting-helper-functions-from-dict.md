@@ -204,8 +204,10 @@ class Point:
 
 So far we've set the stage - we know what we want to refactor, why we're doing it, and we have some new tools for writing the code. Let's get into it! 
 
+<br>
+
 <details>
-   <summary>Expand for a reminder of the current `create_book` route implementation. </summary>
+   <summary>Expand for a reminder of the current <code>create_book</code> route implementation. </summary>
 
 ```python
 @books_bp.route("", methods=["POST"])
