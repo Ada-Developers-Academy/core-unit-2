@@ -156,7 +156,7 @@ We've worked with instance methods, so we know we can write functions that are p
 
 What we need in this case is a class method! To create a class method we need to do 2 things:
 - use a new function decorator, `@classmethod` 
-- pass `cls` as the first parameter to our function
+- accept `cls` as the first parameter to our function
 
 As an example, if we wanted to write a class method named `create_from_list` that takes in a list as input, its function signature might look like:
 
