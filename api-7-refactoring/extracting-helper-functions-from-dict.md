@@ -210,16 +210,22 @@ So far we've set the stage - we know what we want to refactor, why we're doing i
    <summary>Expand for a reminder of the current <code>create_book</code> route implementation. </summary>
 
 ```python
-@books_bp.route("", methods=["POST"])
+@books_bp.post("")
 def create_book():
     request_body = request.get_json()
-    new_book = Book(title=request_body["title"],
-                    description=request_body["description"])
+    title = request_body["title"]
+    description = request_body["description"]
 
+    new_book = Book(title=title, description=description)
     db.session.add(new_book)
     db.session.commit()
 
-    return make_response(jsonify(f"Book {new_book.title} successfully created"), 201)
+    response = {
+        "id": new_book.id,
+        "title": new_book.title,
+        "description": new_book.description,
+    }
+    return response, 201
 ```
 
 </details>
