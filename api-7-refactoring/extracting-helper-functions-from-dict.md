@@ -169,9 +169,25 @@ class Point:
 
 ### What is `cls`?
 
-The `cls` parameter is a reference to the class, and it operates similarly to `self` for instance methods. When we write an instance function, we pass `self` as the first parameter to reference a particular instance and access its attributes and methods that aren't shared with any other instances.
+The `cls` parameter is a reference to the class definition itself, and it operates similarly to `self` for instance methods.
 
-When we pass `cls` as a parameter it acts as a reference to the class itself, granting us the ability to use other class methods and the ability to see and modify class variables - pieces of data held by the class itself and shared by all instances of the class. Since `cls` is a reference to the class, inside a class method we can use `cls` in place of the name of the class. Take a look at the code below; both of the functions will have the same effect of creating a new `Point` instance.
+When we write an instance function, we accept `self` as the first parameter so that when the function is executing, it has a way to access the attributes of a particular instance, and can call other methods on that instance.
+
+When we accept `cls` as a parameter, it acts as a reference to the class itself, granting us the ability to use other class methods, and to see and modify class variables—pieces of data held by the class itself and shared by all instances of the class.
+
+### !callout-info
+
+## `cls` is a convention, not a keyword
+
+Just as with `self` for instance methods, `cls` is a convention, not a keyword. We could use any name we like for the parameter, but `cls` is a common choice. It's short for "class" and makes it clear that the parameter is a reference to the class itself.
+
+<br>
+
+If we forget to include `cls` as the first parameter to a `@classmethod`, Python will still attempt to pass the class as the first parameter, whatever we've named it. This usually results in a `TypeError` reporting a mismatch in the number of supplied positional arguments, since Python is attempting to pass in one more argument than the function is expecting (the class), just as with instance methods that forget to include a parameter for `self` (the instance).
+
+### !end-callout
+
+ Since `cls` is a reference to the class, inside a class method we can use `cls` in place of the name of the class. Take a look at the code below; both of the functions will have the same effect of creating a new `Point` instance.
 
 ```python
 class Point:
