@@ -142,13 +142,11 @@ Though we identified the logic that builds a dictionary from a `Book` model as a
 
 If we were doing this in a real project, we would probably do all of this more or less together, avoiding the issue of having an arbitrary checkpoint (the end of a lesson). But since we need to start *somewhere*, we'll start with the case that won't force us to compromise our tests: the dictionary-to-model logic.
 
-## Why refactor what isn't repeated?
+## The Code That Knew Too Much
 
-We know that we have code in the `routes.py` file that creates an instance of a `Book` model from a dictionary, and we plan to refactor it to the `Book` class, but _why_ do we want to do that?
+While code repetition usually provides a pretty clear reason for why we would perform a refactor, there are many other reasons we might want to refactor our code! A common reason is improving our code organization. We often want functions that operate directly on a particular class to be bundled with that class's code. This makes it easier to find and navigate logic related to that class. By moving the logic within the class itself, we also reduce the amount of code that "knows" about the implementation details of the class.
 
-So far we've refactored to reduce repeated code, but there are so many other reasons we might want to refactor! A common reason is improving our code organization. We often want functions that operate directly on a particular class to be bundled with that class's code. We save time by having those functions ship with the class and be easy to find and navigate. 
-
-There are many kinds of functions we package with classes, but let's focus on initializers for a moment. All classes have some kind of initializer, whether it's the default that the language provides or one we write ourselves. **Convenience Initializers** are functions other than the default initializer that let us perform some extra logic or set up defaults to create an instance of a class. Tying it back to `Hello Books`, if we know that we'll frequently have a dictionary and want to create a `Book` from its contents, we might want a convenience initializer bundled with the `Book` class to handle the task.
+There are many kinds of functions we package with classes, but let's focus on initializers for a moment. All classes have some kind of initializer, whether it's the default initializer the language provides, or one we write ourselves. **Convenience Initializers** are functions other than the default initializer that let us perform some extra logic or set up defaults to create an instance of a class. Tying it back to `Hello Books`, if we know that we'll frequently have a dictionary and want to create a `Book` from its contents, we might want a convenience initializer bundled with the `Book` class to handle the task.
 
 ## Class Methods
 
