@@ -144,13 +144,15 @@ If we were doing this in a real project, we would probably do all of this more o
 
 ## The Code That Knew Too Much
 
-While code repetition usually provides a pretty clear reason for why we would perform a refactor, there are many other reasons we might want to refactor our code! A common reason is improving our code organization. We often want functions that operate directly on a particular class to be bundled with that class's code. This makes it easier to find and navigate logic related to that class. By moving the logic within the class itself, we also reduce the amount of code that "knows" about the implementation details of the class.
+While code repetition usually provides a pretty clear reason for why we would perform a refactor, there are many other reasons we might want to refactor our code!
+
+A common reason is improving our code organization. We often want functions that operate directly on a particular class to be bundled with that class's code. This makes it easier to find and navigate logic related to that class. By moving the logic within the class itself, we also reduce the amount of code that "knows" about the implementation details of the class.
 
 There are many kinds of functions we package with classes, but let's focus on initializers for a moment. All classes have some kind of initializer, whether it's the default initializer the language provides, or one we write ourselves. **Convenience Initializers** are functions other than the default initializer that let us perform some extra logic or set up defaults to create an instance of a class. Tying it back to `Hello Books`, if we know that we'll frequently have a dictionary and want to create a `Book` from its contents, we might want a convenience initializer bundled with the `Book` class to handle the task.
 
 ## Class Methods
 
-We've worked with instance methods, so we know we can write functions that are packaged with a class. But instance methods are called on a specific instance of a class that already _exists_ and we're looking at how to write a function that _creates_ a `Book`. How do we associate a method with a class when that method won't have an instance to be called on?
+We've worked with instance methods, so we know we can write functions that are packaged with a class. But instance methods are called on a specific instance of a class that _already exists_ and we're looking at how to write a function that _creates_ a `Book`. How do we associate a method with a class when that method won't have an instance to be called on?
 
 What we need in this case is a class method! To create a class method we need to do 2 things:
 - use a new function decorator, `@classmethod` 
