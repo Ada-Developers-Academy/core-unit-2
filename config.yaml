@@ -464,7 +464,7 @@ Standards:
         Path: /api-8-relationships-in-sqlalchemy/nested-routes-in-flask.md
       -
         Type: Lesson
-        UID: 66f19557-3680-4552-bb9b-440ea22d0c25
+        UID: 66f19557-3680-4552-bb9b-440ea859d0c2
         Path: /api-8-relationships-in-sqlalchemy/drying-our-routes.md
   -
     Title: 09) Building an API - Deployment

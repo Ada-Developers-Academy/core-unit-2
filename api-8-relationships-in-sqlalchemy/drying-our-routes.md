@@ -7,8 +7,8 @@ Our goals for this lesson are to:
 * Separate common model actions from route-specific business logic
 
 We will follow our refactoring best practices to:
-* Move code that creates and returns a JSON representation of a model to a new function named `create_model` in route_utilities.py
-* Move code that queries, filters, and returns a JSON representation of model records to a new function named `get_models_with_filters` in route_utilities.py
+* Move code that creates and returns a JSON representation of a model to a new function named `create_model` in `route_utilities.py`
+* Move code that queries, filters, and returns a JSON representation of model records to a new function named `get_models_with_filters` in `route_utilities.py`
 
 ## Branches
 
@@ -178,7 +178,7 @@ So far we have been using `get` on the `request.args` dictionary to check for sp
 
 We have identified the code that we want to refactor, starting with our `create_author` and `create_book` routes. Our goal is to create a new function `create_model` in our `route_utilities.py` file which handles all of the repeated steps and that we can call from our existing routes. 
 
-To have the information that the function needs to create a new model the `create_model` function will have to take in 2 parameters:
+To have the information that the function needs to create a new model, the `create_model` function will have to take in 2 parameters:
 * `cls`, representing the class name of the model we want to create
 * `model_data`, a dictionary containing the names of attributes and their values for the model we want to create 
 
@@ -188,7 +188,7 @@ Now we can take a moment to prepare ourselves for the refactor by continuing our
 
 If we search the project, we should only see tests that use the create routes-nothing is independently making a call to the `create_author` or `create_book` functions. Without dependent functions calling the `create_author` and `create_book` functions, we don't need to worry about writing tests for existing functions at this moment. 
 
-When we worked on the `validate_model` refactor, we had an existing function `validate_book` that we wrote tests for and then incrementally updated. We don't have a pre-existing function in this case, so if we're following TDD, this is the time to think about the inputs and outputs of our new `create_model` function should be and how we want to test them. 
+When we worked on the `validate_model` refactor, we had an existing function `validate_book` that we wrote tests for and then incrementally updated. We don't have a pre-existing function in this case, so if we're following TDD, this is the time to think about what the inputs and outputs of our new `create_model` function should be, and how we want to test them. 
 
 <details>
    <summary>Take a moment to brainstorm, then write, nominal and edge cases for the <code>create_model</code> function we've described in <code>test_route_utilities.py</code>. Expand this section when done to see the limited tests we created.</summary>
@@ -260,7 +260,9 @@ def test_create_model_author(client):
 
 We have some failing tests for our `create_model` function that doesn't exist yet, so we're ready to begin the refactor work to make our tests pass! Our first step will be to write our more generic function `create_model` and get our tests passing, then we will update the existing routes to use our new function.
 
-Set a timebox to try out moving all the similar steps from `create_author` and `create_book` into a new function `create_model` in `route_utilities.py`. Then, use the arguments we defined for the function to replace specific uses of a class name with `cls` and update any class-specific variable names to be more generic, to better reflect that those variables could hold any new model instance.
+Set a timebox to try out moving all the similar steps from `create_author` and `create_book` into a new function `create_model` in `route_utilities.py`. Then, use the arguments we defined for the function to:
+- replace specific uses of a class name with `cls`
+- update any class-specific variable names to be more generic, to better reflect that those variables could hold any new model instance
 
 <details>
    <summary>When done, expand this section to see how we built the <code>create_model</code> function.</summary>
@@ -284,7 +286,7 @@ def create_model(cls, model_data):
 </details>
 </br>
 
-At this point all of our tests including our new ones in `test_route_utilities.py` should be passing! Now, we can start incrementally updating the `create_book` route. When that work is complete and all of the `create_book` tests are passing again, only then should we start making changes to the `create_author` function. The order in which we update these functions isn't important, we could choose to update `create_author` first, but it's vital to only update one function at a time so that we know where issues are coming from if they arise.
+At this point all of our tests including our new ones in `test_route_utilities.py` should be passing! Now, we can start incrementally updating the `create_book` route. Our `create_book` tests are expected to fail until the changes are finished. When that work is complete and all of the `create_book` tests are passing again, only then should we start making changes to the `create_author` function. The order in which we update these functions isn't important, we could choose to update `create_author` first, but it's vital to only update one function at a time so that we know where issues are coming from if they arise.
 
 <details>
    <summary>Try out changing the <code>create_author</code> and <code>create_book</code> routes to import and use the <code>create_model</code> helper function, then expand this section to see how we finished up the refactor!</summary>
@@ -317,24 +319,29 @@ def create_book():
 </details>
 </br>
 
-As long as our test suite passes...
+Once our test suite is passing again, we're done with our `create_model` refactors! 
 ![Squirrel on a bench, raising its arms with the text "It's done!"](../assets/api-8-one-many/squirrel_its_done.jpg)
 
 ## Filtering Models Refactors
 
+
+
 ### Working with `hasattr` and `getattr`
 
+### Identifying Dependencies & Testing
+
+### Performing the refactor
 
 ## Check for Understanding
 
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: checkbox
-* id: 3199d93c-25f6-4e29-819b-99fbe4b0b1e6
+* id: 3199d93c-25f6-4e29-819b-99fbe4b0b1e8
 * title: D.R.Ying Our Routes
 ##### !question
 
-
+Temp
 
 ##### !end-question
 ##### !options
@@ -348,17 +355,17 @@ e|
 ##### !end-options
 ##### !answer
 
-
+c| 
 
 ##### !end-answer
 ##### !hint
 
-
+Temp
 
 ##### !end-hint
 ##### !explanation
 
-
+Temp
 
 ##### !end-explanation
 ### !end-challenge
