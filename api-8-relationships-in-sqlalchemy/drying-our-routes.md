@@ -430,7 +430,7 @@ print(Cat.age) # Prints the value 12
 print(getattr(Cat, "age")) # Prints the value 12
 ```
 
-If we know the name of an attribute in advance, we don't gain much from this syntax, but it becomes extremely useful if we're iterating over a collection and don't know the contents ahead of time. Think about the places in our `get_all` `Book` and `Author` routes where we use `Class_Name.attribute_name` statements like `Book.title` or `Author.name` when building queries. In our generic function `get_models_with_filters`, if we have a `cls` parameter to represent the model class, then we can use `getattr` to replace each of these statements of the form `Class_Name.attribute_name` with something like: `getattr(Class_Name, attribute_name)`
+If we know the name of an attribute in advance, we don't gain much from this syntax, but it becomes extremely useful if we're iterating over a collection and don't know the contents ahead of time. Think about the places in our `get_all` `Book` and `Author` routes where we use `Class_Name.attribute_name` statements like `Book.title` or `Author.name` when building queries. In our generic function `get_models_with_filters`, if we have a `cls` parameter to represent the model class, then we can use `getattr` to replace each of these statements of the form `Class_Name.attribute_name` with something like: `getattr(cls, attribute_name)`
 
 ### Performing the refactor
 
