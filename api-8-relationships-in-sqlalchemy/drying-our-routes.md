@@ -119,17 +119,17 @@ def create_book():
     return new_book.to_dict(), 201
 ```
 
-If we look across these two functions, the significant differences are:
-* The function names: `create_author` and `create_book`
-* The name of the new model variable: `new_author` and `new_book`
+If we look across these functions, the significant differences are:
+* The function names: `create_author`, `create_book_with_author` and `create_book`
+* The name of the new model variables: `new_author` and `new_book`
 * The name of the class which calls `from_dict`: `Author` and `Book`
 * The `create_book_with_author` route adds an `author_id` to the dictionary passed to `Book.from_dict`
 
 All of our other actions are the same:
 1. We store the request body in a variable named `request_body`
 2. We try to create a model, and if it raises an exception we share the same error
-3. We add and commit the new model
-4. We call `to_dict` on the new model and return the dictionary of data and a 201 status code
+3. We add and commit the new model to the database
+4. We call `to_dict` on the new model and return the dictionary of model data and a 201 status code
 
 We are repeating a lot of the same steps in these functions! This should signal to us that we could refactor most of the work to a single shared function. We'll address refactoring these three functions shortly, but let's continue to examine our route files for further routes we could D.R.Y. up.
 
@@ -196,7 +196,7 @@ So far we have been using `get` on the `request.args` dictionary to check for sp
 
 ## Model Creation Refactor
 
-We have identified the code that we want to refactor, starting with our `create_author` and `create_book` routes. Our goal is to create a new function `create_model` in our `route_utilities.py` file which handles all of the repeated steps and that we can call from our existing routes. 
+We have identified the code that we want to refactor, starting with our `create_author`, `create_book_with_author`, and `create_book` routes. Our goal is to create a new function `create_model` in our `route_utilities.py` file which handles all of the repeated steps and that we can call from our existing routes. 
 
 To have the information that the function needs to create a new model, the `create_model` function will have to take in 2 parameters:
 * `cls`, representing the class name of the model we want to create
@@ -206,12 +206,12 @@ Now we can take a moment to prepare ourselves for the refactor by continuing our
 
 ### Identifying Dependencies & Testing
 
-If we search the project, we should only see tests that use the create routes-nothing is independently making a call to the `create_author`, `create_book_with_author` or `create_book` functions. Without dependent functions calling these functions, we don't need to worry about writing tests for existing functions at this moment. 
+If we search the project, we should only see tests that use the create routes-nothing is independently making a call to the `create_author`, `create_book_with_author` or `create_book` functions. Without dependent functions calling these routes, we don't need to worry about writing tests for existing functions at this moment. 
 
 When we worked on the `validate_model` refactor, we had an existing function `validate_book` that we wrote tests for and then incrementally updated. We don't have a pre-existing function in this case, so if we're following TDD, this is the time to think about what the inputs and outputs of our new `create_model` function should be, and how we want to test them. 
 
 <details>
-   <summary>Take a moment to brainstorm, then write, nominal and edge cases for the <code>create_model</code> function we've described in <code>test_route_utilities.py</code>. Expand this section when done to see the limited tests we created.</summary>
+   <summary>Take a moment to brainstorm then write nominal and edge cases for the <code>create_model</code> function we've described in <code>test_route_utilities.py</code>. Expand this section when done to see the limited tests we created.</summary>
 
 ```py
 # test_route_utilities.py
@@ -306,7 +306,9 @@ def create_model(cls, model_data):
 </details>
 </br>
 
-At this point all of our tests including our new ones in `test_route_utilities.py` should be passing! Now, we can start incrementally updating the `create_book` route. Our `create_book` tests are expected to fail until the changes are finished. When that work is complete and all of the `create_book` tests are passing again, only then should we start making changes to the `create_author` or `create_book_with_author` function. The order in which we update these functions isn't important, we could choose to update `create_author` or `create_book_with_author` first, but it's vital to only update one function at a time so that we know where issues are coming from if they arise.
+At this point all of our tests including our new ones in `test_route_utilities.py` should be passing! 
+
+Now, we can start incrementally updating the `create_book` route. Our `create_book` tests are expected to fail until the changes are finished. When that work is complete and all of the `create_book` tests are passing again, only then should we start making changes to the `create_author` or `create_book_with_author` function. The order in which we update these functions isn't important, we could choose to update `create_author` or `create_book_with_author` first, but it's vital to only update one function at a time so that we know where issues are coming from if they arise.
 
 <details>
    <summary>Try out changing the <code>create_author</code>, <code>create_book_with_author</code> and <code>create_book</code> routes to import and use the <code>create_model</code> helper function, then expand this section to see how we finished up the refactor!</summary>
@@ -352,7 +354,7 @@ Once our test suite is passing again, we're done with our `create_model` refacto
 
 ## Filtering Models Refactor
 
-For this refactor, our end goal is to create a more generic filtering function `get_models_with_filters` in our `route_utilities.py` file. Our function will need the following parameters to filter our desired models: 
+For this refactor, our end goal is to create a more generic filtering function `get_models_with_filters` in our `route_utilities.py` file. Our new function will need the following parameters to filter our desired models: 
 - a class reference of the type of model we want to filter
 - an _optional_ dictionary of filter names and values
 
@@ -360,7 +362,7 @@ For this refactor, our end goal is to create a more generic filtering function `
 
 Just like in our `create_model` refactor above, when looking for dependencies, we should only see tests that use the `get_all` routes. This means we don't have existing functions that we need to write tests for, but we do need to invest some time thinking about our nominal and edge cases for our proposed function and writing a failing test suite to follow our TDD process.
 
-For this refactor, we have only written one nominal test as an example in the `hello-books` repo, we leave it up to you to brainstorm what other cases are useful and write tests for them. Feel free to pitch test ideas with others in a study group, over slack, or however best works for you!
+For this refactor, we have only written one nominal test as an example in the `hello-books` repo, we leave it up to you to brainstorm what other cases are useful and write tests for them. Feel free to pitch test ideas with others in a study group, over Slack, or however best works for you!
 
 <details>
    <summary>When you're done writing nominal and edge cases for the <code>get_models_with_filters</code> function, expand this section the nominal test we created.</summary>
@@ -390,7 +392,7 @@ def test_get_models_with_filters_one_matching_book(two_saved_books):
 
 Before we jump into the refactor, there are some tools that we want to get familiar with which will help us on our way.
 
-Earlier in the lesson, we brought up the idea of filtering the records for a particular model by iterating over the keys of the dictionary returned by `request.get_json()` and applying only the filters it contains which are valid for the model. To do that, we need a way to check if our model has an attribute _before_ we add on to our query statement. Handily, python has some methods we can use for this purpose!
+Earlier in the lesson, we brought up the idea of filtering the records for a particular model by iterating over the keys of the dictionary returned by `request.get_json()` and applying only the filters it contains which are valid for the model. To do that, we need a way to check if our model has an attribute _before_ we add on to our query statement. Handily, python has some built-in methods we can use for this purpose!
 
 We will be using a pair of functions, [`hasattr`](https://docs.python.org/3/library/functions.html#hasattr) and [`getattr`](https://docs.python.org/3/library/functions.html#getattr), to handle checking for the presence of an attribute on a model, then retrieving the attribute so that we can use it in a query statement. A short introduction to these functions is below, but you may need to do some extra research to complete this refactor.
 
@@ -436,7 +438,7 @@ If we know the name of an attribute in advance, we don't gain much from this syn
 
 Our test suite for `get_models_with_filters` should be failing, and we have tools for working with unknown attributes, so we're ready to write some code to make those tests pass!
 
-Our goal is to have our route functions retrieve the request body, then pass it on to `get_models_with_filters` along with the name of the model class to filter. Our route function should then only have to return whatever our new helper function `get_models_with_filters` returns. 
+Our goal is to have our route functions retrieve the request body, then pass it on to `get_models_with_filters` along with the name of the model class to filter. Our route functions should only have to return whatever our new helper function `get_models_with_filters` returns. 
 
 This means that our new function has to perform the following steps:
 1. Create an initial `query` variable using a select statement and our `cls` parameter
@@ -475,7 +477,7 @@ If you feel called to or want the practice, feel free to try providing the user 
 </details>
 </br>
 
-Once our test suite for `get_models_with_filters` is passing, all tests should be passing until we begin refactoring our routes. As with the `create_model` refactor, we want to update our route files one at a time and see all our tests passing again before we move on to update the next route.
+Once our test suite for `get_models_with_filters` is passing, all tests should be passing until we begin refactoring our routes. As with the `create_model` refactor, we want to update our route functions one at a time and see all our tests passing again before we move on to update the next route.
 
 <details>
    <summary>Give updating the <code>get_all_books</code> and <code></code> routes to import and use the <code>get_models_with_filters</code> helper function, then expand this section to see how we finished up the refactor!</summary>
@@ -521,7 +523,7 @@ What other refactors can you find, and how would you address them to make our ro
 * title: D.R.Ying Our Routes
 ##### !question
 
-What options below are benefits or drawbacks of first checking for the presence of an attribute with `hasattr` then only using `getattr` to update our query when `hasattr` returns `True`? 
+What options below are benefits or drawbacks of first checking for the presence of an attribute with `hasattr` then using `getattr` to update our query only when `hasattr` returns `True`? 
 
 Select all options that are true.
 
@@ -544,6 +546,10 @@ d|
 ##### !hint
 
 What information do we send back to the user? 
+
+##### !end-hint
+##### !hint
+
 What happens when a filter is applied vs when a filter is ignored?
 
 ##### !end-hint
@@ -565,7 +571,7 @@ d| True
 * title: D.R.Ying Our Routes
 ##### !question
 
-What benefits do we get from refactoring repeated or similar model creation and filtering code out of our route files?
+What benefits do we get from refactoring repeated or similar model creation and model filtering code out of our route files?
 
 Select all options that are true.
 
