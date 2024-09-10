@@ -466,7 +466,11 @@ def get_models_with_filters(cls, filters=None):
     return models_response
 ```
 
-The error handling for this function isn't very robust, it is a small but imperfect example of the kinds of abstractions we can use to D.R.Y. up our code. If you feel called to or want the practice, feel free to try breaking it and see what you could add to make it stronger!
+There are some things worth noting about this approach:
+- Our code ensures we don't raise an error if an attribute doesn't exist, but we don't have a mechanism to let users know which, if any, filters were applied, or which filters were invalid. 
+- The error handling for this function isn't very robust, it is a small but imperfect example of the kinds of abstractions we can use to D.R.Y. up our code. 
+
+If you feel called to or want the practice, feel free to try providing the user more information, or try breaking the function and see what you could add to make it stronger!
 
 </details>
 </br>
@@ -504,7 +508,9 @@ def get_all_books():
 
 ## Further Improvements
 
-These are the last helper function refactors we'll work through in Learn, but that doesn't mean that there aren't many ways that we could still improve our existing code. One area for improvement that we noticed is how `Book`'s PUT route can raise the same errors as `create_model`-how might we add error handling there? What other refactors can you find, and how would you address them to make our routes more resilient? 
+These are the last helper function refactors we'll work through in Learn, but that doesn't mean that there are no more improvements left to find. One area for improvement that we noticed is how `Book`'s PUT route can raise the same errors as `create_model`-how might we add error handling there? 
+
+What other refactors can you find, and how would you address them to make our routes more resilient? 
 
 ## Check for Understanding
 
@@ -515,31 +521,85 @@ These are the last helper function refactors we'll work through in Learn, but th
 * title: D.R.Ying Our Routes
 ##### !question
 
-Temp
+What options below are benefits or drawbacks of first checking for the presence of an attribute with `hasattr` then only using `getattr` to update our query when `hasattr` returns `True`? 
+
+Select all options that are true.
 
 ##### !end-question
 ##### !options
 
-a| 
-b| 
-c| 
-d| 
-e| 
+a| The user knows exactly which of the filters they sent were applied.
+b| We do not raise an `AttributeError` when we encounter an invalid filter.
+c| The user is not informed when they send an invalid filter value.
+d| The user does not know which of the filters they sent were applied.
 
 ##### !end-options
 ##### !answer
 
-c| 
+b|
+c|
+d| 
 
 ##### !end-answer
 ##### !hint
 
-Temp
+What information do we send back to the user? 
+What happens when a filter is applied vs when a filter is ignored?
 
 ##### !end-hint
 ##### !explanation
 
-Temp
+a| False: we do not send back anything in the response that lest the user know which filters were applied
+b| True
+c| True
+d| True
+
+##### !end-explanation
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: checkbox
+* id: 3199d93c-25f6-5c29-819b-99fbh4b3b1e8
+* title: D.R.Ying Our Routes
+##### !question
+
+What benefits do we get from refactoring repeated or similar model creation and filtering code out of our route files?
+
+Select all options that are true.
+
+##### !end-question
+##### !options
+
+a| Our route files are as short as possible 
+b| If we have to update the syntax for filtering models, we only need to update `route_utilities.py`
+c| Business logic that is unique to each model and route is easier to read and find in the route files
+d| If we have to update how a `Book` is created, we only need to update `route_utilities.py`
+
+##### !end-options
+##### !answer
+
+b|
+c|
+
+##### !end-answer
+##### !hint
+
+Are our route files as condensed as they could be? Is that always helpful?
+
+##### !end-hint
+##### !hint
+
+Where does the function that constructs a `Book` from a dictionary live?
+
+##### !end-hint
+##### !explanation
+
+a| False: we could likely combine some statements to make our files even shorter, but shortness is not the goal; clear, easy to maintain code is the goal.
+b| True
+c| True
+d| False: If attributes on the `Book` model change, then we would need to make changes to the `to_dict` method of the `Book` class.
 
 ##### !end-explanation
 ### !end-challenge
