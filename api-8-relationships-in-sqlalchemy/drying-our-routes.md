@@ -60,7 +60,7 @@ We've done this before in pt. 7 of the Building an API series, so let's practice
 
 ### Comparing `create` functions
 
-Let's start from the top and analyze our `create_author` route in `author_routes.py` and our `create_book` route in `book_routes.py`.
+Let's start from the top and analyze our `create_author` and `create_book_with_author` routes in `author_routes.py` and our `create_book` route in `book_routes.py`.
 
 ```py
 # author_routes.py
@@ -79,6 +79,25 @@ def create_author():
     db.session.commit()
 
     return make_response(new_author.to_dict(), 201)
+
+@bp.post("/<author_id>/books")
+def create_book_with_author(author_id):
+    author = validate_model(Author, author_id)
+    
+    request_body = request.get_json()
+    request_body["author_id"] = author.id
+
+    try:
+        new_book = Book.from_dict(request_body)
+
+    except KeyError as error:
+        response = {"message": f"Invalid request: missing {error.args[0]}"}
+        abort(make_response(response, 400))
+        
+    db.session.add(new_book)
+    db.session.commit()
+
+    return make_response(new_book.to_dict(), 201) 
 ```
 
 ```py
@@ -104,6 +123,7 @@ If we look across these two functions, the significant differences are:
 * The function names: `create_author` and `create_book`
 * The name of the new model variable: `new_author` and `new_book`
 * The name of the class which calls `from_dict`: `Author` and `Book`
+* The `create_book_with_author` route adds an `author_id` to the dictionary passed to `Book.from_dict`
 
 All of our other actions are the same:
 1. We store the request body in a variable named `request_body`
@@ -111,7 +131,7 @@ All of our other actions are the same:
 3. We add and commit the new model
 4. We call `to_dict` on the new model and return the dictionary of data and a 201 status code
 
-We are repeating a lot of the same steps in these two functions! This should signal to us that we could refactor most of the work to a single shared function. We'll address refactoring `create_author` and `create_book` shortly, but let's continue to examine our route files for further routes we could D.R.Y. up.
+We are repeating a lot of the same steps in these functions! This should signal to us that we could refactor most of the work to a single shared function. We'll address refactoring these three functions shortly, but let's continue to examine our route files for further routes we could D.R.Y. up.
 
 ### Comparing `get_all` functions
 
@@ -174,7 +194,7 @@ This refactor is going to take a little more work than the `create` refactor eve
 
 So far we have been using `get` on the `request.args` dictionary to check for specific filters, but what if we iterated over the keys of the dictionary and applied whatever filters were valid for the model? We will look at this option to address filtering arbitrary models further in the lesson.
 
-## Model Creation Refactors
+## Model Creation Refactor
 
 We have identified the code that we want to refactor, starting with our `create_author` and `create_book` routes. Our goal is to create a new function `create_model` in our `route_utilities.py` file which handles all of the repeated steps and that we can call from our existing routes. 
 
@@ -186,7 +206,7 @@ Now we can take a moment to prepare ourselves for the refactor by continuing our
 
 ### Identifying Dependencies & Testing
 
-If we search the project, we should only see tests that use the create routes-nothing is independently making a call to the `create_author` or `create_book` functions. Without dependent functions calling the `create_author` and `create_book` functions, we don't need to worry about writing tests for existing functions at this moment. 
+If we search the project, we should only see tests that use the create routes-nothing is independently making a call to the `create_author`, `create_book_with_author` or `create_book` functions. Without dependent functions calling these functions, we don't need to worry about writing tests for existing functions at this moment. 
 
 When we worked on the `validate_model` refactor, we had an existing function `validate_book` that we wrote tests for and then incrementally updated. We don't have a pre-existing function in this case, so if we're following TDD, this is the time to think about what the inputs and outputs of our new `create_model` function should be, and how we want to test them. 
 
@@ -260,7 +280,7 @@ def test_create_model_author(client):
 
 We have some failing tests for our `create_model` function that doesn't exist yet, so we're ready to begin the refactor work to make our tests pass! Our first step will be to write our more generic function `create_model` and get our tests passing, then we will update the existing routes to use our new function.
 
-Set a timebox to try out moving all the similar steps from `create_author` and `create_book` into a new function `create_model` in `route_utilities.py`. Then, use the arguments we defined for the function to:
+Set a timebox to try out moving all the similar steps from `create_author`, `create_book_with_author` and `create_book` into a new function `create_model` in `route_utilities.py`. Then, use the arguments we defined for the function to:
 - replace specific uses of a class name with `cls`
 - update any class-specific variable names to be more generic, to better reflect that those variables could hold any new model instance
 
@@ -286,10 +306,10 @@ def create_model(cls, model_data):
 </details>
 </br>
 
-At this point all of our tests including our new ones in `test_route_utilities.py` should be passing! Now, we can start incrementally updating the `create_book` route. Our `create_book` tests are expected to fail until the changes are finished. When that work is complete and all of the `create_book` tests are passing again, only then should we start making changes to the `create_author` function. The order in which we update these functions isn't important, we could choose to update `create_author` first, but it's vital to only update one function at a time so that we know where issues are coming from if they arise.
+At this point all of our tests including our new ones in `test_route_utilities.py` should be passing! Now, we can start incrementally updating the `create_book` route. Our `create_book` tests are expected to fail until the changes are finished. When that work is complete and all of the `create_book` tests are passing again, only then should we start making changes to the `create_author` or `create_book_with_author` function. The order in which we update these functions isn't important, we could choose to update `create_author` or `create_book_with_author` first, but it's vital to only update one function at a time so that we know where issues are coming from if they arise.
 
 <details>
-   <summary>Try out changing the <code>create_author</code> and <code>create_book</code> routes to import and use the <code>create_model</code> helper function, then expand this section to see how we finished up the refactor!</summary>
+   <summary>Try out changing the <code>create_author</code>, <code>create_book_with_author</code> and <code>create_book</code> routes to import and use the <code>create_model</code> helper function, then expand this section to see how we finished up the refactor!</summary>
 
 ```py
 # author_routes.py
@@ -302,6 +322,14 @@ from .route_utilities import create_model, validate_model
 def create_author():
     request_body = request.get_json()
     return create_model(Author, request_body)
+
+@bp.post("/<author_id>/books")
+def create_book_with_author(author_id):
+    author = validate_model(Author, author_id)
+    
+    request_body = request.get_json()
+    request_body["author_id"] = author.id
+    return create_model(Book, request_body)
 ```
 
 ```py
@@ -322,15 +350,161 @@ def create_book():
 Once our test suite is passing again, we're done with our `create_model` refactors! 
 ![Squirrel on a bench, raising its arms with the text "It's done!"](../assets/api-8-one-many/squirrel_its_done.jpg)
 
-## Filtering Models Refactors
+## Filtering Models Refactor
 
-
-
-### Working with `hasattr` and `getattr`
+For this refactor, our end goal is to create a more generic filtering function `get_models_with_filters` in our `route_utilities.py` file. Our function will need the following parameters to filter our desired models: 
+- a class reference of the type of model we want to filter
+- an _optional_ dictionary of filter names and values
 
 ### Identifying Dependencies & Testing
 
+Just like in our `create_model` refactor above, when looking for dependencies, we should only see tests that use the `get_all` routes. This means we don't have existing functions that we need to write tests for, but we do need to invest some time thinking about our nominal and edge cases for our proposed function and writing a failing test suite to follow our TDD process.
+
+For this refactor, we have only written one nominal test as an example in the `hello-books` repo, we leave it up to you to brainstorm what other cases are useful and write tests for them. Feel free to pitch test ideas with others in a study group, over slack, or however best works for you!
+
+<details>
+   <summary>When you're done writing nominal and edge cases for the <code>get_models_with_filters</code> function, expand this section the nominal test we created.</summary>
+
+```py
+# test_route_utilities.py
+from app.routes.route_utilities import validate_model, create_model, get_models_with_filters
+
+#...
+
+def test_get_models_with_filters_one_matching_book(two_saved_books):
+    # Act
+    result = get_models_with_filters(Book, {"title": "ocean"})
+
+    # Assert
+    assert result == [{
+        "id": 1,
+        "title": "Ocean Book",
+        "description": "watr 4evr"
+    }]
+```
+
+</details>
+</br>
+
+### Working with `hasattr` and `getattr`
+
+Before we jump into the refactor, there are some tools that we want to get familiar with which will help us on our way.
+
+Earlier in the lesson, we brought up the idea of filtering the records for a particular model by iterating over the keys of the dictionary returned by `request.get_json()` and applying only the filters it contains which are valid for the model. To do that, we need a way to check if our model has an attribute _before_ we add on to our query statement. Handily, python has some methods we can use for this purpose!
+
+We will be using a pair of functions, [`hasattr`](https://docs.python.org/3/library/functions.html#hasattr) and [`getattr`](https://docs.python.org/3/library/functions.html#getattr), to handle checking for the presence of an attribute on a model, then retrieving the attribute so that we can use it in a query statement. A short introduction to these functions is below, but you may need to do some extra research to complete this refactor.
+
+#### More about `hasattr(object, name)`
+
+`hasattr(object, name)` will return `True` or `False` depending on if the `object` argument contains an attribute with the same name as the string argument `name`. This means that if we have a collection of attribute names as strings, we can iterate over the data structure, using `hasattr` to check if an object contains a particular attribute before we take any other actions. 
+
+For example, if we wanted to write a function that can check if a class contains all the attributes in a particular list we might write something like:
+
+```py
+class Cat:
+    name = "Meoward"
+    age = 12
+    fur_length = "short"
+
+attribute_list = ["name", "fur_length", "meow_volume"]
+
+def has_all_attributes(cls, attributes):
+    for attribute in attributes:
+        if not hasattr(cls, attribute):
+            return False
+
+    return True
+
+# The statement below will print `False` since `Cat`
+# does not contain the attribute `meow_volume`
+print(has_all_attributes(Cat, attribute_list)) 
+```
+
+#### More about `getattr(object, name)`
+
+Once we know that an attribute exists on an object, the `getattr(object, name)` function can retrieve a reference to that attribute for us. If we try to use `getattr` on an attribute that doesn't exist an `AttributeError` will be raised. 
+
+Using our `Cat` class above as an example again, the statement `Cat.age` is equivalent to calling `getattr(Cat, "age")`. 
+```py
+print(Cat.age) # Prints the value 12
+print(getattr(Cat, "age")) # Prints the value 12
+```
+
+If we know the name of an attribute in advance, we don't gain much from this syntax, but it becomes extremely useful if we're iterating over a collection and don't know the contents ahead of time. Think about the places in our `get_all` `Book` and `Author` routes where we use `Class_Name.attribute_name` statements like `Book.title` or `Author.name` when building queries. In our generic function `get_models_with_filters`, if we have a `cls` parameter to represent the model class, then we can use `getattr` to replace each of these statements of the form `Class_Name.attribute_name` with something like: `getattr(Class_Name, attribute_name)`
+
 ### Performing the refactor
+
+Our test suite for `get_models_with_filters` should be failing, and we have tools for working with unknown attributes, so we're ready to write some code to make those tests pass!
+
+Our goal is to have our route functions retrieve the request body, then pass it on to `get_models_with_filters` along with the name of the model class to filter. Our route function should then only have to return whatever our new helper function `get_models_with_filters` returns. 
+
+This means that our new function has to perform the following steps:
+1. Create an initial `query` variable using a select statement and our `cls` parameter
+2. If the optional filters dictionary is not empty, iterate over the keys and values
+3. For each key-value pair in the filters dictionary:
+   1. Use `hasattr` to see if the key is an attribute on the model
+   2. If `hasattr` returns `True`, update the `query` variable by creating a `where` statement using `getattr` and the value of the current filter
+4. Use `db.session.scalars` to retrieve the models
+5. Create a list of dictionaries representing the models by calling `to_dict` on each
+6. Return the list of models
+
+<details>
+   <summary>Try out filling in the <code>get_models_with_filters</code> function, then expand this section to see how we implemented it.</summary>
+
+```py
+# route_utilities.py
+def get_models_with_filters(cls, filters=None):
+    query = db.select(cls)
+    
+    if filters:
+        for attribute, value in filters.items():
+            if hasattr(cls, attribute):
+                query = query.where(getattr(cls, attribute).ilike(f"%{value}%"))
+
+    models = db.session.scalars(query.order_by(cls.id))
+    models_response = [model.to_dict() for model in models]
+    return models_response
+```
+
+The error handling for this function isn't very robust, it is a small but imperfect example of the kinds of abstractions we can use to D.R.Y. up our code. If you feel called to or want the practice, feel free to try breaking it and see what you could add to make it stronger!
+
+</details>
+</br>
+
+Once our test suite for `get_models_with_filters` is passing, all tests should be passing until we begin refactoring our routes. As with the `create_model` refactor, we want to update our route files one at a time and see all our tests passing again before we move on to update the next route.
+
+<details>
+   <summary>Give updating the <code>get_all_books</code> and <code></code> routes to import and use the <code>get_models_with_filters</code> helper function, then expand this section to see how we finished up the refactor!</summary>
+
+```py
+# author_routes.py
+
+# ...
+from .route_utilities import create_model, validate_model, get_models_with_filters
+# ...
+
+@bp.get("")
+def get_all_authors():
+    return get_models_with_filters(Author, request.args)
+```
+
+```py
+# book_routes.py
+
+# ...
+from .route_utilities import create_model, validate_model, get_models_with_filters
+# ...
+
+@bp.get("")
+def get_all_books():
+    return get_models_with_filters(Book, request.args)
+```
+</details>
+</br>
+
+## Further Improvements
+
+These are the last helper function refactors we'll work through in Learn, but that doesn't mean that there aren't many ways that we could still improve our existing code. One area for improvement that we noticed is how `Book`'s PUT route can raise the same errors as `create_model`-how might we add error handling there? What other refactors can you find, and how would you address them to make our routes more resilient? 
 
 ## Check for Understanding
 
