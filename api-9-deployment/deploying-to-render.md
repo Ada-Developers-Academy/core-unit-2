@@ -1,6 +1,7 @@
 # Deploying to Render
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=8285322f-7fe1-45a7-8206-aff701709f35&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- FLASK UPDATE -->
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=8285322f-7fe1-45a7-8206-aff701709f35&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
 ## Goal
 
@@ -27,7 +28,7 @@ Then, we will cover these topics on continuous deployment to Render:
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`08b-nested-routes` <br> Any branch after connecting the database will work |`09a-deploying-to-render`|
+|`08c-route-utilities-refactors` <br> Any branch after connecting the database will work |`09a-deploying-to-render`|
 
 ### Intro to Render
 
@@ -264,25 +265,32 @@ RENDER_DATABASE_URI = postgresql+psycopg2://YOUR_DATABASE_USERNAME:CONNECTION-ST
 Next we want to update `app/__init__.py` so that `app.config['SQLALCHEMY_DATABASE_URI']` references the connection string for our new Render database instead of our locally hosted database.
 
 ```py
+# app/__init__.py
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from .db import db, migrate
+from .models import book, author
+from .routes.book_routes import bp as books_bp
+from .routes.author_routes import bp as authors_bp
+import os
 
-db = SQLAlchemy()
-migrate = Migrate()
-
-def create_app(test_config=None):
+def create_app(config=None):
     app = Flask(__name__)
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("RENDER_DATABASE_URI")
 
+    if config:
+        # Merge `config` into the app's configuration
+        # to override the app's default settings for testing
+        app.config.update(config)
+
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from .routes import books_bp
+    # Register Blueprints here
     app.register_blueprint(books_bp)
+    app.register_blueprint(authors_bp)
 
     return app
 ```
@@ -307,7 +315,7 @@ This will migrate the empty database in our remote Postgres connection to the la
 
 ## Updating the SQLALCHEMY_DATABASE_URI Configuration Key
 
-`SQLALCHEMY_DATABASE_URI` is a [SQLAlchemy Configuration Key](https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/) which allows us to customize certain settings in our app.
+`SQLALCHEMY_DATABASE_URI` is a [SQLAlchemy Configuration Key](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/config/) which allows us to customize certain settings in our app.
 
 <br>
 
