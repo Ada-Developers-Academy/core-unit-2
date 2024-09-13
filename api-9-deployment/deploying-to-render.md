@@ -149,6 +149,19 @@ Update the "Start Command" field to `$ gunicorn "app:create_app()"`.
 
 ![Screenshot of changing app start command to gunicorn "app:create_app()"](../assets/deployment/deployment_change-start-command-render.png)
 
+### !callout-info
+
+## Running `gunicorn` locally
+
+If you would like to run your app with `gunicorn` locally from Terminal, this is possible! To do so, we need to provide the required variables (like the  
+`SQLALCHEMY_DATABASE_URI`) as command line arguments, for example :
+
+```sh
+$ SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres@localhost:5432/hello_books_development gunicorn "app:create_app()"
+```
+
+### !end-callout
+
 Finally, scroll down to the bottom of the page and click the "Create Web Service" button.
 
 ![Screenshot of Creating Web Service in Render](../assets/deployment/deployment_create-web-service-render.png)
