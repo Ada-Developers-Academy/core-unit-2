@@ -466,6 +466,10 @@ Standards:
         Type: Lesson
         UID: 66f19557-3680-4552-bb9b-440ea859d0c2
         Path: /api-8-relationships-in-sqlalchemy/drying-our-routes.md
+      -
+        Type: Lesson
+        UID: d93cf7bd-3239-4a58-b9d4-d6c5cc6d581f
+        Path: /api-8-relationships-in-sqlalchemy/problem-set-one-to-many.md
   -
     Title: 09) Building an API - Deployment
     Description: "Deployment, Deploying to Render, Problem Set: Deployment, Activity: Deploying to Render"
