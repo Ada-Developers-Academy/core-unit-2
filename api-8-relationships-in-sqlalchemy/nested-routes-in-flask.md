@@ -181,22 +181,13 @@ How do we access the `books` from the `author` record and add them to our respon
     <summary>Complete <code>GET</code> <code>/authors/&lt;author_id&gt;/books</code> endpoint example</summary>
 
 ``` python
-@authors_bp.route("/<author_id>/books", methods=["GET"])
+# app/routes/author_routes.py
 
-def read_books(author_id):
-
+@bp.get("/<author_id>/books")
+def get_books_by_author(author_id):
     author = validate_model(Author, author_id)
-
-    books_response = []
-    for book in author.books:
-        books_response.append(
-            {
-            "id": book.id,
-            "title": book.title,
-            "description": book.description
-            }
-        )
-    return jsonify(books_response)
+    response = [book.to_dict() for book in author.books]
+    return response
 ```
 </details>
 
