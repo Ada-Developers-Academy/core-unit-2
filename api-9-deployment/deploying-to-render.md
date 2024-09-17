@@ -1,6 +1,7 @@
 # Deploying to Render
 
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=8285322f-7fe1-45a7-8206-aff701709f35&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
+<!-- FLASK UPDATE -->
+<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=8285322f-7fe1-45a7-8206-aff701709f35&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
 
 ## Goal
 
@@ -27,7 +28,7 @@ Then, we will cover these topics on continuous deployment to Render:
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`08b-nested-routes` <br> Any branch after connecting the database will work |`09a-deploying-to-render`|
+|`08c-route-utilities-refactors` <br><br> Any branch after connecting the database will work |`09a-deploying-to-render`|
 
 ### Intro to Render
 
@@ -264,25 +265,32 @@ RENDER_DATABASE_URI = postgresql+psycopg2://YOUR_DATABASE_USERNAME:CONNECTION-ST
 Next we want to update `app/__init__.py` so that `app.config['SQLALCHEMY_DATABASE_URI']` references the connection string for our new Render database instead of our locally hosted database.
 
 ```py
+# app/__init__.py
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
+from .db import db, migrate
+from .models import book, author
+from .routes.book_routes import bp as books_bp
+from .routes.author_routes import bp as authors_bp
+import os
 
-db = SQLAlchemy()
-migrate = Migrate()
-
-def create_app(test_config=None):
+def create_app(config=None):
     app = Flask(__name__)
 
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("RENDER_DATABASE_URI")
 
+    if config:
+        # Merge `config` into the app's configuration
+        # to override the app's default settings for testing
+        app.config.update(config)
+
     db.init_app(app)
     migrate.init_app(app, db)
 
-    from .routes import books_bp
+    # Register Blueprints here
     app.register_blueprint(books_bp)
+    app.register_blueprint(authors_bp)
 
     return app
 ```
@@ -307,7 +315,7 @@ This will migrate the empty database in our remote Postgres connection to the la
 
 ## Updating the SQLALCHEMY_DATABASE_URI Configuration Key
 
-`SQLALCHEMY_DATABASE_URI` is a [SQLAlchemy Configuration Key](https://flask-sqlalchemy.palletsprojects.com/en/2.x/config/) which allows us to customize certain settings in our app.
+`SQLALCHEMY_DATABASE_URI` is a [SQLAlchemy Configuration Key](https://flask-sqlalchemy.palletsprojects.com/en/3.1.x/config/) which allows us to customize certain settings in our app.
 
 <br>
 
@@ -328,9 +336,9 @@ psql -U postgres
 
 Once in the Postgres interactive terminal we can run `\c RENDER_EXTERNAL_DATABASE_URL` to connect to the database where `RENDER_EXTERNAL_DATABASE_URL` is the external database URL we copied from our Render database's dashboard earlier. We can list the database with `\dt` which should show us `book`, `author`, and `alembic_version`. 
 
-We can display the columns of the `book` table by running `d book` which will show `id`, `title`, `description`, and `author_id`. 
+We can display the columns of the `book` table by running `\d book` which will show `id`, `title`, `description`, and `author_id`. 
 
-We can display the columns of the `author` table by running `d author` which will show `id` and `name`.  
+We can display the columns of the `author` table by running `\d author` which will show `id` and `name`.  
 
 Now that we've confirmed the migration, we want to make sure we commit and push the changes we made to Github. Pushing our changes to Github will trigger our application to re-deploy. 
 
@@ -511,6 +519,21 @@ In those situations, here is a starting point for debugging and determining what
 | Internet research!                        | Render has a large community of support, and a lot of documentation on deploying Flask apps and using Postgres databases. Be sure to use the Internet and to rubber duck with others.                                                              |
 | Take notes of each debugging attempt      | It can be challenging to remember what you've tried on the Render machine. Write down and record all of the ways you've attempted to fix the problem.                                                                                              |
 | Rubber duck, and post questions on Slack! | Debugging deployment usually depends on context. Rubber duck and connect with folks who are deploying similar projects to you!                                                                                                                     |
+### Running `gunicorn` locally
+
+Running your app locally with `gunicorn` can be a great way to help troubleshoot whether the commands and values we've supplied in the Render configuration are working. 
+
+To do so, we need to set the required environment variables, such as the `SQLALCHEMY_DATABASE_URI`. Any of the values we've been setting in the `.env` file are being loaded by the `dotenv` library to look as though they are environment variables. Nothing is loading the values in the `.env` when `gunicorn` is hosting our flask app, so we need to set them ourselves. 
+
+Environment variables can be set for the duration of a single command by listing them as name-value pairs before the actual command to run. To invoke gunicorn locally, we might use the command:   
+
+```sh
+$ SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres@localhost:5432/hello_books_development gunicorn "app:create_app()"
+```
+
+The command above will: 
+1. set a temporary environment variable named `SQLALCHEMY_DATABASE_URI` to the value `postgresql+psycopg2://postgres@localhost:5432/hello_books_development`. This environment variable will not exist in the environment after the command that follows completes.
+2. invoke `gunicorn` with the command line argument `"app:create_app()"` to tell `gunicorn` how we want to start up our application.
 
 
 <!-- Question 2 -->
