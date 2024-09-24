@@ -78,7 +78,8 @@ Give this a try on your own, then check out our solution below.
 <details>
     <summary>Click here for one way to implement the Genre model.</summary>
 
-``` python
+```py
+# app/models/genre.py
 from sqlalchemy.orm import Mapped, mapped_column
 from ..db import db
 
@@ -106,7 +107,7 @@ Great! We've got a new model. Sounds like it's time for another migration! We ca
 
 ## Genre Blueprint
 
-We should create a Blueprint that groups the endpoints for our `Genre` model. Refer back to [Hello World Routes](../api-1-setup-read/hello-world-routes.md) on how to define a blueprint and register it in `create_app`.
+We should create a Blueprint that groups the endpoints for our `Genre` model, which means we need a new file for our `Genre` routes `app/routes/genre_routes.py`. Refer back to [Hello World Routes](../api-1-setup-read/hello-world-routes.md) on how to define a blueprint and register it in `create_app`.
 
 We also need to import the `Genre` model in our `__init__.py` file.
 
@@ -114,32 +115,32 @@ We also need to import the `Genre` model in our `__init__.py` file.
 <details>
   <summary>Give it a try and then view the blueprint code by clicking here.</summary>
 
+```py
+# app/routes/genre_routes.py
+from flask import Blueprint
 
-  ``` python
-  # app/routes.py
 
-  ...
-  genres_bp = Blueprint("genres", __name__, url_prefix="/genres")
-  ```
+bp = Blueprint("genres_bp", __name__, url_prefix="/genres")
+```
 
-  ``` python
-  # app/__init__.py
+```py
+# app/__init__.py
 
-  ...
-  from app.models.genre import Genre
+...
+from .models import book, author, genre
+from .routes.genre_routes import bp as genres_bp
 
-  ...
-  # Register Blueprints here
-  from .routes import books_bp, authors_bp, genres_bp
-  app.register_blueprint(books_bp)
-  app.register_blueprint(authors_bp)
-  app.register_blueprint(genres_bp)
+...
+# Register Blueprints here
+app.register_blueprint(books_bp)
+app.register_blueprint(authors_bp)
+app.register_blueprint(genres_bp)
 
-  ```
+```
 </details>
 
 ## Genre Routes
-Finally we will create the following endpoints for our `Genre` model:
+Finally we will create the following endpoints for our `Genre` model in `genre_routes.py`:
 - `GET ` to `/genres`
 - `POST` to `/genres`
 
@@ -150,34 +151,30 @@ Refer back to [03) Building an API - Read All Books](../api-3-database-models-re
 <details>
   <summary>Give it a try and then view one implementation of these routes here.</summary>
 
-```python
-@genres_bp.route("", methods=["POST"])
+```py
+# app/routes/genre_routes.py
+from flask import Blueprint, request
+from app.models.genre import Genre
+from .route_utilities import create_model, get_models_with_filters
+
+bp = Blueprint("genres_bp", __name__, url_prefix="/genres")
+
+@bp.post("")
 def create_genre():
     request_body = request.get_json()
-    new_genre = Genre(name=request_body["name"],)
+    return create_model(Genre, request_body)
 
-    db.session.add(new_genre)
-    db.session.commit()
-
-    return make_response(jsonify(f"Genre {new_genre.name} successfully created"), 201)
-
-@genres_bp.route("", methods=["GET"])
-def read_all_genres():
-    
-    genres = Genre.query.all()
-
-    genres_response = []
-    for genre in genres:
-        genres_response.append(
-            {
-                "name": genre.name
-            }
-        )
-    return jsonify(genres_response)
+@bp.get("")
+def get_all_genres():
+    return get_models_with_filters(Genre, request.args)
 ```
 </details>
 
-## Manual Testing in Postman
+## Testing
+
+Writing unit tests for the Genre model is left as an exercise for readers. 
+
+### Manual Testing in Postman
 
 Now that we have a `Genre` model and routes, we can test our changes using Postman.
 
@@ -185,14 +182,16 @@ Create a new genre with `POST` to `/genres` and a response body such as `{"name"
 
 Verify that the genre has been added to the database with a `GET` to `/genres`.
 
+## Check for Understanding
+
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: tasklist
+* type: checkbox
 * id: cf50ab1e-478e-42af-8b8d-6f877e093cf7
-* title: Genre
+* title: Many-to-Many: Genres
 ##### !question
 
-Check off all the features you wrote and tested.
+What are the benefits of implementing `to_dict` and `from_dict` functions in the `Genre` model?
 
 ##### !end-question
 ##### !options
