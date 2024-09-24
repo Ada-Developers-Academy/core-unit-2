@@ -40,7 +40,7 @@ The `Book` model and table should have the following columns:
 - `id`
 - `title`
 - `description`
-- `author_id` (model only)
+- `author_id` (foreign key)
 - `author` (model only)
 
 The `Author` model and table should have the following columns:
