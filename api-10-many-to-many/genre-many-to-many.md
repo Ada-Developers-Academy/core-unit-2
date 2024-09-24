@@ -2,7 +2,7 @@
 
 ## Goals
 
-Our goal for this lesson is to create a `Genre` model and routes in order to create a many-to-many relationship between `Genre`s and `Book`s.
+Our goal for this lesson is to create a `Genre` model and routes in preparation to create a many-to-many relationship between `Genre`s and `Book`s.
 
 This lesson should be used as a reference for creating the `Genre` model and routes. It does not provide a detailed description of the code.
 
@@ -27,30 +27,37 @@ This lesson covers:
 
 - A `hello_books_development` database
 - A `book` table defined
-- A `Book` model defined
+- A `Book` model defined that contains the instance method `to_dict` and class method `from_dict`
 - An `author` table defined
-- A `Author` model defined
-- Endpoints defined for these RESTful routes:
+- A `Author` model defined that contains the instance method `to_dict` and class method `from_dict`
+
+Endpoints defined for these RESTful routes:
 - `GET` to `/books`
 - `POST` to `/books`
 - `GET` to `/books/<book_id>`
 - `PUT` to `/books/<book_id>`
 - `DELETE` to `/books/<book_id>`
 - `POST` to `/authors`
+- `GET` to `/authors`
+- `POST` to `/authors/<author_id>/books`
 - `GET` to `authors/<author_id>/books`
 
 The `Book` model and table should have the following columns:
-
 - `id`
 - `title`
 - `description`
+- `author_id` (foreign key)
 - `author` (model only)
 
 The `Author` model and table should have the following columns:
-
 - `id`
 - `name`
 - `books` (model only)
+
+`route_utilities.py` should contain:
+- The function `validate_model()` that can retrieve a model of any type
+- The function `create_model()` which will call the `from_dict` method on any class passed as the parameter to create a model of any type.
+- The function `get_models_with_filters()` that can apply filters from a dictionary parameter to retrieve models of any type. 
 
 </details>
 
