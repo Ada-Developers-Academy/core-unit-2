@@ -63,32 +63,46 @@ The `Author` model and table should have the following columns:
 
 ## Genre Model
 
-`Book`s and `genre`s have a many-to-many relationship. A book can belong to many genres, and a genre can have many books.
+`Book`s and `Genre`s have a many-to-many relationship. A book can belong to many genres, and a genre can have many books.
 
-To establish this relationship in our `hello-books-api` with SQLAlchemy, first we need to define a model for `Genre` in a new file `genre.py` inside the `models` folder. A genre should have the following attributes:
+To establish this relationship in our `hello-books-api` with SQLAlchemy, we first need to define a model for `Genre` in a new file `genre.py` inside the `models` folder. A genre should have the following attributes:
 * `id`, integer, primary key
 * `name`, string
+
+If we want to use the same utility functions that the `Book` and `Author` routes take advantage of, we should write `to_dict` and `from_dict` methods for `Genre` as well.
 
 Give this a try on your own, then check out our solution below.
 
 <br />
 
 <details>
-  <summary>Click here for one way to implement the Genre model.</summary>
+    <summary>Click here for one way to implement the Genre model.</summary>
 
-  ``` python
-  # app/models/genre.py
-  from app import db
+``` python
+from sqlalchemy.orm import Mapped, mapped_column
+from ..db import db
 
-  class Genre(db.Model):
-      id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-      name = db.Column(db.String)
-  ```
+class Genre(db.Model):
+    id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
+    name: Mapped[str]
+
+    def to_dict(self):
+        genre_as_dict = {}
+        genre_as_dict["id"] = self.id
+        genre_as_dict["name"] = self.name
+
+        return genre_as_dict
+
+    @classmethod
+    def from_dict(cls, genre_data):
+        new_genre = cls(name=genre_data["name"])
+        return new_genre
+```
 </details>
 
 ### Don't Forget to Generate Migrations
 
-Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [03)Building an API - Models Setup](../api-3-database-models-read/models-setup.md) to review the terminal commands for migration.
+Great! We've got a new model. Sounds like it's time for another migration! We can refer back to [03) Building an API - Models Setup](../api-3-database-models-read/models-setup.md) to review the terminal commands for migration.
 
 ## Genre Blueprint
 
