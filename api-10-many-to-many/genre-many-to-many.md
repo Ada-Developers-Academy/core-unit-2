@@ -69,7 +69,7 @@ To establish this relationship in our `hello-books-api` with SQLAlchemy, we firs
 * `id`, integer, primary key
 * `name`, string
 
-If we want to use the same utility functions that the `Book` and `Author` routes take advantage of, we should write `to_dict` and `from_dict` methods for `Genre` as well.
+If we want to use the same helper functions from `route_utilities.py` that the `Book` and `Author` routes take advantage of, we should write `to_dict` and `from_dict` methods for `Genre` as well.
 
 Give this a try on your own, then check out our solution below.
 
