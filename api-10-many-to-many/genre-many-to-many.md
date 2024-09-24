@@ -191,19 +191,51 @@ Verify that the genre has been added to the database with a `GET` to `/genres`.
 * title: Many-to-Many: Genres
 ##### !question
 
-What are the benefits of implementing `to_dict` and `from_dict` functions in the `Genre` model?
+Which of the following options are benefits of implementing `to_dict` and `from_dict` functions in the `Genre` model? 
+
+Select all options below which apply.
 
 ##### !end-question
 ##### !options
 
-* Create `Genre` model
-* Create `genres_bp`
-* Register genres_bp in `__init__.py`
-* Import `Genre` in `__init__.py`
-* Create `GET` `\genres` route
-* Create `POST` `\genres` route
+a| `Genre` routes can use the `create_model` and `get_models_with_filters` functions from `route_utilities.py`.
+b| We can re-use the route functions for `Book` and `Author` models
+c| Code related to creating Genre models and transforming model data into a dictionary is packaged with the model class.
+d| By moving model-specific code out of `genre_routes.py`, the file contents are shorter.
+e| By moving model-specific code out of `genre_routes.py` the `Genre` route functions only contain business logic specific to each route's requirements.
 
 ##### !end-options
+##### !answer
+
+a|
+c|
+e| 
+
+##### !end-answer
+##### !hint
+
+What have we learned about encapsulation and packaging related code together?
+
+##### !end-hint
+##### !hint
+
+What code is able to be reused by `Genre`'s routes?
+
+##### !end-hint
+##### !hint
+
+Is shorter code necessarily better code?
+
+##### !end-hint
+##### !explanation
+
+a| We can D.R.Y. our `Genre` routes by reusing our helper functions in `route_utilities.py`
+b| We cannot reuse the `Book` and `Author` route functions, their business logic is too specific to the kinds of data they operate on.
+c| We make it easier to find and understand code that works with specific models by packaging those functions as part of the model class.
+d| A file being shorter is not a metric of quality all on it's own. If something is very short but very hard to understand, it is often less valuable than something which is a bit longer but easier to maintain.
+e| Our route functions being very focused and single purpose is valuable for reducing the number of places where we could have bugs and making our code easier to understand.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
 
