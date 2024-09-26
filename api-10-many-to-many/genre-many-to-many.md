@@ -40,7 +40,7 @@ Endpoints defined for these RESTful routes:
 - `POST` to `/authors`
 - `GET` to `/authors`
 - `POST` to `/authors/<author_id>/books`
-- `GET` to `authors/<author_id>/books`
+- `GET` to `/authors/<author_id>/books`
 
 The `Book` model and table should have the following columns:
 - `id`
@@ -229,11 +229,15 @@ Is shorter code necessarily better code?
 ##### !end-hint
 ##### !explanation
 
-a| We can D.R.Y. our `Genre` routes by reusing our helper functions in `route_utilities.py`
-b| We cannot reuse the `Book` and `Author` route functions, their business logic is too specific to the kinds of data they operate on.
-c| We make it easier to find and understand code that works with specific models by packaging those functions as part of the model class.
-d| A file being shorter is not a metric of quality all on it's own. If something is very short but very hard to understand, it is often less valuable than something which is a bit longer but easier to maintain.
-e| Our route functions being very focused and single purpose is valuable for reducing the number of places where we could have bugs and making our code easier to understand.
+1. We can D.R.Y. our `Genre` routes by reusing our helper functions in `route_utilities.py`.
+
+2. We cannot reuse the `Book` and `Author` route functions, their business logic is too specific to the kinds of data they operate on.
+
+3. We make it easier to find and understand code that works with specific models by packaging those functions as part of the model class.
+
+4. A file being shorter is not a metric of quality all on it's own. If something is very short but very hard to understand, it is often less valuable than something which is a bit longer but easier to maintain.
+
+5. Our route functions being very focused and single purpose is valuable for reducing the number of places where we could have bugs and making our code easier to understand.
 
 ##### !end-explanation
 ### !end-challenge
