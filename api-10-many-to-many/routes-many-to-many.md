@@ -9,7 +9,7 @@ Our goals for this lesson are to:
 This lesson covers:
 
 - Creating a `POST` `/genres/<genre_id>/books` RESTful route to create a book of a specific genre.
-- Update a `Book` instance method to display `genres` in response body
+- Updating a `Book` instance method to display `genres` in response body
 - Creating a `GET` `/genres/<genre_id>/books` RESTful route to read all books of a specific genre.
 
 | Starting Branch | Ending Branch|
@@ -83,7 +83,7 @@ Now that we have established our models to create a many-to-many relationships b
 Our route function will need to 
 - Query the `Genre` table to get the `genre` with `genre_id`
 - Create a new book instance with data from the request_body and the `genre`
-- Commit our new book from the database
+- Commit our new book to the database
 
 If we want to re-use our `Book`'s `from_dict` class method with the `create_model()` helper function in `route_utilities.py`, we would also need to update `Book`'s `from_dict` function to account for an optional `genre` being passed. 
 
@@ -139,7 +139,7 @@ Let's refactor our `GET` `/books/<book_id>` route. Currently this route returns 
 - `"description"`, 
 - `"author"`, if a value for `author` exists. 
 
-Now that we've established a relationship between `Book`s and `Genre`s, let's add the key `genres` to the JSON in our response body. To do this, let's modify the instance method `to_dict` on the `Book` class which returns the json we are looking for. 
+Now that we've established a relationship between `Book`s and `Genre`s, let's add the key `genres` to the JSON in our response body. To do this, let's modify the instance method `to_dict` on the `Book` class which returns the JSON we are looking for. 
 
 <br/>
 
@@ -171,7 +171,7 @@ def to_dict(self):
 
 Finally, let's create a route to get all books by a specific genre.
 
-Our route function we will need to 
+Our route function will need to: 
 - Query the `Genre` table to get the `genre` with `genre_id`
 - Iterate through the `book`s associated with that `genre` 
 - Return a response as a list of dictionaries with information for each `book` in the specified `genre`.
@@ -222,8 +222,8 @@ View all `book`s of a specific `genre` with a `GET` request to `/genres/<genre_i
 We have routes to create a new `Book` record with a specific `Genre`, but we don’t have a route that supports updating an _existing_ `book` to add a `Genre`.
 
 Which of the options below: 
-- follows Python and Flask best practices 
-- follows patterns we’ve established in the `hello-books-api` project
+- follows Python and Flask best practices? 
+- follows patterns we’ve established in the `hello-books-api` project?
 - enables us to update an existing Book record with a Genre? 
 
 Select one option.
