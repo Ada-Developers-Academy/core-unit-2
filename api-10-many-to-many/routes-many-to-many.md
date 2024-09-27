@@ -268,7 +268,7 @@ c|
 
 3. By creating a `Book` instance method to handle changing the values of a book's attributes, our new route in `genre_routes.py` doesn't need to know about or handle setting specific attributes on a `Book` instance. All the new route needs to know is that the `Book` class exists, and has an `update_book` method we can call and pass a dictionary of values to handle the attribute changes.
 
-4. We could absolutely make our changes to the book instance directly in the nested route function. However, through the `hello-books-api` project we have been following a pattern of moving code that operates directly on a model's attributes into methods of the model classes. This keeps code that requires knowledge of the specific attributes of a model packaged with the model itself, and keeps our route files (particularly `author_routes.py` and `genre_routes.py`) from requiring their functions to be tied to specific details of other models.
+4. We could absolutely make our changes to the book instance directly in the nested route function. However, through the `hello-books-api` project we have been following a pattern of moving code that operates directly on a model's attributes into methods of the model classes. This keeps code that requires knowledge of the specific attributes of a model packaged with the model itself, and keeps our route files (particularly `author_routes.py` and `genre_routes.py`) from requiring their functions to be tied to the specific attributes of other models.
 
 ##### !end-explanation
 ### !end-challenge
