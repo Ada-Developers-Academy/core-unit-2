@@ -196,7 +196,7 @@ def get_books_by_genre(genre_id):
 
 ## Testing
 
-Writing a unit test suite for the new Genre routes and updates to Book's `from_dict` and `to_dict` methods is left as an exercise for readers.
+Updating the unit test suite for the new `Genre` routes and changes to `Book`'s `from_dict` and `to_dict` methods is left as an exercise for readers.
 
 ### Manual Testing in Postman
 
@@ -214,20 +214,62 @@ View all `book`s of a specific `genre` with a `GET` request to `/genres/<genre_i
 
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: tasklist
+* type: multiple-choice
 * id: c717888a-5e1a-4891-8d14-a79353f45163
 * title: Many-to-Many: Nested Routes
 ##### !question
 
-Check off all the features you've written and tested.
+We have routes to create a new `Book` record with a specific `Genre`, but we don’t have a route that supports updating an _existing_ `book` to add a `Genre`.
+
+Which of the options below: 
+- follows Python and Flask best practices 
+- follows patterns we’ve established in the `hello-books-api` project
+- enables us to update an existing Book record with a Genre? 
+
+Select one option.
 
 ##### !end-question
 ##### !options
 
-* Create `POST` `/genres/<genre_id/books` route.
-* Add `Book` instance method `to_dict`
-* Create `GET` `/genres/<genre_id/books` route.
+a| Update the existing `PUT` `Book` route `/books/<book_id>` by adding behavior to: 
+* Check if there is a `genre_id` in the request body JSON. 
+* If there is a `genre_id`, confirm if the genre exists and if it does, add it to the list of `genres` held by the `book` instance. 
+* Commit any changes to the database.
+
+b| Create an `update_book` instance method in the `Book` class that takes in a dictionary and updates the book’s attributes for valid keys. 
+
+Create a `PUT` nested route at the path `/books/<book_id>/genres/<genre_id>`. This route:
+* Confirms if the genre and book passed in the path exists. 
+* If they both exist, the genre with `genre_id` is added to the list of `genres` held by the `book` instance. 
+
+c| Create an `update_book` instance method in the Book class that takes in a dictionary and updates the book’s attributes for valid keys. 
+
+Create a `PUT` nested route  at the path `/genres/<genre_id>/books/<book_id>`. This route: 
+* Confirms if the genre and book passed in the path exists. 
+* If they both exist, the genre with `genre_id` is added to the list of `genres` held by the `book` instance. 
+* Commits any changes to the database.
+
+d| Create a `PUT` nested route at the path `/genres/<genre_id>/books/<book_id>`. This route: 
+* Confirms if the genre and book passed in the path exists. 
+* If they both exist, the genre with `genre_id` is added to the list of `genres` held by the `book` instance. 
+* Commits any changes to the database.
 
 ##### !end-options
+##### !answer
+
+c|
+
+##### !end-answer
+##### !explanation
+
+1. We could update the existing `Book` `PUT` route, but adding a check to see if a Genre exists requires us to import the `Genre` class. This forces the `book_routes.py` file to require more knowledge about other models to operate. The fact that we're trying to access a specific `Genre` resource is also obfuscated by being a value in the request body rather than being stated as part of the URL we're accessing.
+
+2. Creating a `Book` instance function to handle reading valid keys to update attributes is a solid idea to keep code that alters a book's contents all in one place. However, creating the function described requires importing `Genre` into `book_routes.py` and the actions for the new route do not include committing our book record changes after updating a book's `genre` list.
+
+3. By creating a `Book` instance method to handle changing the values of a book's attributes, our new route in `genre_routes.py` doesn't need to know about or handle setting specific attributes on a `Book` instance. All the new route needs to know is that the `Book` class exists, and has an `update_book` method we can call and pass a dictionary of values to handle the attribute changes.
+
+4. We could absolutely make our changes to the book instance directly in the nested route function. However, through the `hello-books-api` project we have been following a pattern of moving code that operates directly on a model's attributes into methods of the model classes. This keeps code that requires knowledge of the specific attributes of a model packaged with the model itself, and keeps our route files (particularly `author_routes.py` and `genre_routes.py`) from requiring their functions to be tied to specific details of other models.
+
+##### !end-explanation
 ### !end-challenge
 <!-- prettier-ignore-end -->
