@@ -111,7 +111,7 @@ In model definitions, if we don't like the default name that SQLAlchemy picks we
 
 ### !end-callout
 
-In order to easily see the `genres` associate with a particular book, or the `books` associated with a specific genre, we can add a relationship attribute to the `Book` and `Genre` models: 
+In order to easily see the `genres` associated with a particular book, or the `books` associated with a specific genre, we can add a relationship attribute to the `Book` and `Genre` models: 
 ```py
 # app/models/book.py
 genres: Mapped[list["Genre"]] = relationship(secondary="book_genre", back_populates="books") 
