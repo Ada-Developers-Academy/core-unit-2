@@ -24,7 +24,7 @@ Fulfill the following requirements, with the same functionality presented in thi
    4. Use SQLAlchemy relationship declarations to establish _optional_ attributes on the `Book` and `Genre` models to easily access the associated values from either side of the many-to-many relationship.
    5. Create a migration to add the `book_genre` join table and then apply it. Confirm that the `book_genre` table has been created as expected.
    6. Update the `Book` model's `from_dict` function to use value of the `genres` key from the `book_data` parameter if it exists, otherwise initialize the `genres` attribute as an empty list.
-   7. Update the `Book` model's `to_dict` function to include the names of any associated genres, only if such a value exists.
+   7. Update the `Book` model's `to_dict` function to include the names of any associated genres, only if such values exist.
 
 2. Create or refactor the following RESTful endpoints, with the same functionality presented in this topic:
    1. As a client, I want to send a request with new valid genre data and get a success response containing the new genre's `id` and `name`, so that I know the API saved the genre data.
