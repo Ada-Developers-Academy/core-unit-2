@@ -26,7 +26,7 @@ Fulfill the following requirements, with the same functionality presented in thi
    6. Update the `Book` model's `from_dict` function to use value of the `genres` key from the `book_data` parameter if it exists, otherwise initialize the `genres` attribute as an empty list.
    7. Update the `Book` model's `to_dict` function to include the names of any associated genres, only if such values exist.
 
-2. Create or refactor the following RESTful endpoints, with the same functionality presented in this topic:
+2. Create or refactor the following RESTful endpoints, with the same functionality presented in this Learn tile:
    1. As a client, I want to send a request with new valid genre data. The success response should contain the new genre's `id` and `name` as a sign the API saved the genre data.
    2. As a client, I want to send a request to get all existing genres. The response should list the genres with their `id` and `name`.
    3. As a client, I want to send a request with new valid book data and have it associated with a specific genre identified in the endpoint. The success response should contain the new book's `id`, `title`, `description`, and the genre's `name` as a sign the API saved the book data.
