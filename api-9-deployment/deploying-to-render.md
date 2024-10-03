@@ -60,7 +60,7 @@ As a new user, our dashboard should display a quick start guide.
 
 Once we have added applications, our dashboard will change to show a list of all our deployed applications. 
 
-![Screenshot of the Render Dashboard with three apps listed in it](../assets/deployment/render-dashboard-successfully-deployed-services.png)
+![Screenshot of the Render Dashboard with two apps listed in it](../assets/deployment/render-dashboard-successfully-deployed-services.png)
 
 ## Connect Render Account to GitHub
 
@@ -118,7 +118,7 @@ To create our Render app, click the "New" button in the top navigation bar, and 
 ![Create New Web Service Button Screenshot](../assets/deployment/render-new-menu.png)
 _([Full size image](../assets/deployment/render-new-menu.png))_
 
-Next, we want to connect our web service to our Hello Books API GitHub repository. Although we linked our Render account to GitHub earlier, we may need to add some additional permissions to allow Render to view our GitHub repositories. To do so, we can click the "GitHub" button under the "Connect Git Provider message".
+Next, we want to connect our web service to our Hello Books API GitHub repository. Although we linked our Render account to GitHub earlier, we may need to add some additional permissions to allow Render to view our GitHub repositories. To do so, we can click the "GitHub" button under the "Connect Git Provider" message.
 
 ![Screenshot of Connect Github Account button to Web Service on Render](../assets/deployment/render-first-webservice-connect-github.png)
 _([Full size image](../assets/deployment/render-first-webservice-connect-github.png))_
@@ -128,7 +128,7 @@ This will take us to a Github configuration page asking us to choose which repos
 ![Screenshot of Github repository access configuration page](../assets/deployment/github-install-render.png)
 _([Full size image](../assets/deployment/github-install-render.png))_
 
-Now we should see any repos we have in our Github account displayed in the "Connect a repository" section. We can use the search bar to find our Hello Books API GitHub repository. Click the "Connect" button next to our project repository to link it to our new application. 
+Now we should see any repos we have in our Github account displayed in the "Source Code" section. We can use the search bar to find our Hello Books API GitHub repository. Once we find and select our repo in the list, click the "Connect" button below the repo list to link our project repository to our new application. 
 
 Note that we should use _our fork_ of the Hello Books API repo which is listed under our GitHub username. So we should search for `your-github-username/hello-books-api`. We are working with the AdaGold version only for the purposes of this walk-through. 
 
@@ -142,7 +142,7 @@ Replace `your-app-name` with the desired name of the app.
 ![Screenshot of web service deployment page after adding the app name](../assets/deployment/render-set-webservice-name.png)
 _([Full size image](../assets/deployment/render-set-webservice-name.png))_
 
-Note that the app name must be unique across all Render apps, not just our own apps. As a result, the name `hello-books-api` is already taken, as it was used in this walk-through! We will need to come up with our own name that has a unique touch. Render will tack on random characters to create a unique name if we try to choose a name that has already been taken.
+Note that the app name must be unique across all Render apps, not just our own apps. As a result, the name `hello-books-api` is already taken, as it was used in this walk-through! We will need to come up with our own name that has a unique touch. If we try to choose a name that has already been taken, Render will tack on random characters to create a unique name.
 
 Next, we should confirm that the "Language" field is set to "Python 3". When deploying a web service to Render, it will try to be helpful and set the "Language" field for you, but it doesn't always select the correct option. You can click the current value of "Language" to see a drop down of the languages supported by Render and choose a new value if necessary.
 
@@ -161,7 +161,7 @@ In the "Instance Type" section, Render will have a paid option selected by defau
 ![Screenshot of the Instance Type section with the Free tier selected"](../assets/deployment/render-choose-instance-type.png)
 _([Full size image](../assets/deployment/render-choose-instance-type.png))_
 
-Finally, scroll down to the bottom of the page and click the "Create Web Service" button.
+Finally, scroll down to the bottom of the page and click the "Deploy Web Service" button.
 
 ![Screenshot of Create Web Service Button in Render](../assets/deployment/render-deploy-webservice-button.png)
 _([Full size image](../assets/deployment/render-deploy-webservice-button.png))_
@@ -250,71 +250,41 @@ We now have our database, but it is empty. Just as we did with the [Postgres dat
 
 To perform the migration, click on the database where it is listed in the Render dashboard to open the database's info and settings. Then click the "Connect" button in the upper right hand corner and select "External Connection". Copy the "External Database URL." 
 
-![Screenshot of Connect window with External Database URL copied](../assets/deployment/deployment_external-database-url-render.png)
+![Screenshot of Connect window with External Database URL copied](../assets/deployment/render-copy-external-db-connection.png)
+_([Full size image](../assets/deployment/render-copy-external-db-connection.png))_
 
 Your external database URL will look something like the following:
 
 ```
 postgres://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
 ```
+
 Render generated `YOUR_DATABASE_USERNAME` and `YOUR_DATABASE` when we first set up our database. We can find what they are by checking our database's "Info" page and scrolling down to the "Connections" subsection. 
 
-![Screenshot of the Connections section on the Info page for our Render Postgres Database](../assets/deployment/deployment_render-db-connections-section.png)
+![Screenshot of the Connections section on the Info page for our Render Postgres Database](../assets/deployment/render-database-info-connections.png)
+_([Full size image](../assets/deployment/render-database-info-connections.png))_
 
-In our case `YOUR_DATABASE_USERNAME` is `hello_books_api_db_h25f_user` (listed as the "Username" on our database's dashboard) and `YOUR_DATABASE` is `hello_books_api_db_h25f` (listed as the "Database" on our database's dashboard).
+In our case `YOUR_DATABASE_USERNAME` is `hello_books_api_db_jx8j_user` (listed as the "Username" on our database's dashboard) and `YOUR_DATABASE` is `hello_books_api_db_jx8j` (listed as the "Database" on our database's dashboard).
 
 `CONNECTION-STRING` will be a long series of random characters. 
 
-Navigate to the `.env` file in our project's root directory in VS Code. Create a new environment variable `RENDER_DATABASE_URI` to hold our external database URL. 
+Navigate to the `.env` file in our project's root directory in VS Code. Comment out the existing `SQLALCHEMY_DATABASE_URI` and create a new `SQLALCHEMY_DATABASE_URI` variable that will hold our external database URL. 
 
 ```
-SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
+# SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
 SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_test
-RENDER_DATABASE_URI = postgres://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
+SQLALCHEMY_DATABASE_URI=postgres://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
 ```
 
 We need to modify the start of our external database URL to work with the version of SQLAlchemy we are using. Update the beginning of our external database URL from `postgres` to `postgresql+psycopg2`.
 
 ```
-SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
+# SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_development
 SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5432/hello_books_test
-RENDER_DATABASE_URI = postgresql+psycopg2://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
+SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
 ```
 
-Next we want to update `app/__init__.py` so that `app.config['SQLALCHEMY_DATABASE_URI']` references the connection string for our new Render database instead of our locally hosted database.
-
-```py
-# app/__init__.py
-from flask import Flask
-from .db import db, migrate
-from .models import book, author
-from .routes.book_routes import bp as books_bp
-from .routes.author_routes import bp as authors_bp
-import os
-
-def create_app(config=None):
-    app = Flask(__name__)
-
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    #app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")
-    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("RENDER_DATABASE_URI")
-
-    if config:
-        # Merge `config` into the app's configuration
-        # to override the app's default settings for testing
-        app.config.update(config)
-
-    db.init_app(app)
-    migrate.init_app(app, db)
-
-    # Register Blueprints here
-    app.register_blueprint(books_bp)
-    app.register_blueprint(authors_bp)
-
-    return app
-```
-
-Finally, we can apply the generated migrations to our new Render database by running the following in our terminal.
+With our `SQLALCHEMY_DATABASE_URI` variable value updated to point to our external database in Render, we can apply the generated migrations to our new Render database by running the following in our terminal.
 
 ```
 (venv) $ flask db upgrade
@@ -325,7 +295,7 @@ After running the command, we should see a message that reads
 INFO  [alembic.runtime.migration] Context impl PostgresqlImpl.
 INFO  [alembic.runtime.migration] Will assume transactional DDL.
 ```
-as well as `Running upgrade -> <hash number>` for any migration files that were successfully applied. 
+as well as `Running upgrade -> <hash number>` for each migration file that was successfully applied. 
 
 This will migrate the empty database in our remote Postgres connection to the latest schema configuration we have generated from our models. 
 
@@ -337,11 +307,11 @@ This will migrate the empty database in our remote Postgres connection to the la
 
 <br>
 
-The value we assign to `app.config['SQLALCHEMY_DATABASE_URI']` determines which Postgres database our app runs against. When we change this configuration key to reference our `RENDER_DATABASE_URI`, our app shifts to run against and store data in our Render database instead of our locally hosted Postgres database. 
+The value we assign to `app.config['SQLALCHEMY_DATABASE_URI']` determines which Postgres database our app runs against. When we change our `.env` so this configuration key references our remote database URL, our app shifts to run against and store data in our Render database instead of our locally hosted Postgres database. 
 
 <br>
 
-If we want to go back to running our app against our local Postgres database, we need to revert our changes back to `app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("SQLALCHEMY_DATABASE_URI")` so that our code once again references our local Postgres instance.
+If we want to go back to running our app against our local Postgres database, we need to revert the changes in our `.env` file so that our code once again references our local Postgres instance.
 ### !end-callout
 
 ### Confirm the Migration
@@ -358,13 +328,13 @@ We can display the columns of the `book` table by running `\d book` which will s
 
 We can display the columns of the `author` table by running `\d author` which will show `id` and `name`.  
 
-Now that we've confirmed the migration, we want to make sure we commit and push the changes we made to Github. Pushing our changes to Github will trigger our application to re-deploy. 
+Now that we've confirmed the migration was successful, we can go back to Render and set up the environment variables that our web service requires!
 
 ## Set Environment Variables in Render
 
 Our Render database now has the correct schema but it is still not connected to our deployed application.
 
-Our current app sets the `SQLALCHEMY_DATABASE_URI` configuration setting using the environment variable `RENDER_DATABASE_URI` in our `.env` file. Our Flask code accesses this environment variable with the code `os.environ.get("RENDER_DATABASE_URI")`.
+Our current app sets the `SQLALCHEMY_DATABASE_URI` configuration setting using the environment variable `SQLALCHEMY_DATABASE_URI` in our `.env` file. Our Flask code accesses this environment variable with the code `os.environ.get("SQLALCHEMY_DATABASE_URI")`.
 
 Instead of giving Render our `.env` file, we need to add our environment variables to Render using the Render dashboard.
 
@@ -374,30 +344,39 @@ First, let's find the internal connection string that will connect to our Render
 
 In our database's dashboard on Render, click on the "Connect" button in the upper right corner and copy the value of the "_Internal_ Database URL."
 
-![Screenshot of the Connections section on the Info page for our Render Postgres Database](../assets/deployment/deployment_database-internal-connection-string-render.png)
-
+![Screenshot of the Connections section on the Info page for our Render Postgres Database](../assets/deployment/render-copy-internal-db-connection.png)
+_([Full size image](../assets/deployment/render-copy-internal-db-connection.png))_
 
 ### Set the Environment Variables in Render
 
-Next, we need to make a `RENDER_DATABASE_URI` environment variable in our web service application. 
+Next, we need to make a `SQLALCHEMY_DATABASE_URI` environment variable in our web service application. 
 
 Navigate to our web service application's dashboard.
 
-![Screenshot of hello-books-api dashboard](../assets/deployment/deployment_web-service-app-dashboard-render.png)
+![Screenshot of hello-books-api dashboard](../assets/deployment/render-webservice-settings-environment.png)
+_([Full size image](../assets/deployment/render-webservice-settings-environment.png))_
 
 In the "Environment" section:
 
 1. Click "Add Environment Variable" in the "Environment Variables" section
-2. Set the key as `RENDER_DATABASE_URI`
+2. Set the key as `SQLALCHEMY_DATABASE_URI`
 3. Set the value of this variable to the internal connection string we copied
 4. Modify the value of the internal connection string so that the beginning reads `postgresql+psycopg2` instead of `postgres`
 5. Click "Save Changes"
 
-![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The RENDER_DATABASE_URI variable is present](../assets/deployment/deployment_set-env-var-render.png)
+![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The SQLALCHEMY_DATABASE_URI variable is present](../assets/deployment/webservice-environment-add-db-internal-uri.png)
+_([Full size image](../assets/deployment/webservice-environment-add-db-internal-uri.png))_
 
-Updating the app's environment variables will trigger our app to re-deploy. Re-deployment may take several minutes to complete. If we navigate to our webservice's info page and watch the logs, we should see a `"Your service is live 🎉"` message when the deployment is complete. 
+Updating the app's environment variables will trigger our app to re-deploy. Re-deployment may take several minutes to complete. 
 
-We can also check if our app was deployed successfully by navigating to our main [Render dashboard](https://dashboard.render.com/). Under the "Status" field it should read `Deployed`. 
+To find out when our app is deployed we can check: 
+- our webservice's info page at the "Logs" tab, where we should see a `"Your service is live 🎉"` message when the deployment is complete. 
+- our app's dashboard, where we should see an event containing a green circle with a check mark that says "Deploy live...". The `Deploy live...` message will also include the commit hash and commit message of your connected Github repo's latest commit.
+- our main [Render dashboard](https://dashboard.render.com/). Under the "Status" field for our API, it should read `Deployed`.
+
+![Screenshot of the Render Dashboard with a database and a webservice successfully deployed](../assets/deployment/render-dashboard-successfully-deployed-services.png)
+_Render Dashboard with the webservice and database successfully deployed ([Full size image](../assets/deployment/render-dashboard-successfully-deployed-services.png))_
+
 
 ## Verify
 
@@ -407,9 +386,10 @@ Our Flask project is on a Render machine, running, and connected to an initializ
 
 We can use the browser to make `GET` requests to any endpoint defined in our project, now using our deployed Render URL instead of `localhost`.
 
-We can find our URL on our deployed application's dashboard, listed just under the name of our web service application. Render URLs will take the form `https://your-app-name.onrender.com` Our demonstration has the URL `https://hello-books-api.onrender.com`.
+We can find our URL on our deployed application's dashboard, listed just under the name of our web service application. Render URLs will take the form `https://your-app-name.onrender.com` Our demonstration has the URL `https://hello-books-api-1.onrender.com`.
 
-![Screenshot of Render URL for deployed hello-books-api application with copy to clipboard message](../assets/deployment/deployment_deployed-web-service-url-render.png)
+![Screenshot of Render URL for deployed hello-books-api application with copy to clipboard message](../assets/deployment/render-copy-deployed-webservice-url.png)
+_([Full size image](../assets/deployment/render-copy-deployed-webservice-url.png))_
 
 ### !callout-warning
 
@@ -428,7 +408,8 @@ Our Flask API isn't _intended_ to be used through a web browser. It's meant to b
 
 Instead of `localhost:5000/books`, we can visit `https://your-app-name.onrender.com/books`, where `your-app-name` is the name of our Render app.
 
-![Screenshot of the browser open to the deployed API, showing a response of an empty JSON array](../assets/deployment/deployment_deployed-books.png)
+![Screenshot of the browser open to the deployed API, showing a response of an empty JSON array](../assets/deployment/browser-hitting-books-endpoint-no-results.png)
+_([Full size image](../assets/deployment/browser-hitting-books-endpoint-no-results.png))_
 
 ### !callout-info
 
@@ -463,33 +444,8 @@ We can access the server logs of our Render app from our app's Render dashboard 
 
 It reports the HTTP requests, responses, and errors that our Render app encounters.
 
-![Screenshot of the Render logs, showing examples of different HTTP requests and responses](../assets/deployment/deployment_render-logs.png)
-
-
-<!-- Question 1 -->
-<!-- prettier-ignore-start -->
-### !challenge
-* type: tasklist
-* id: bDUwQW
-* title: Deploying to Render
-##### !question
-
-Consider the steps for doing the initial deploy to Render.
-
-Check off all the topics that we've briefly touched on so far.
-
-##### !end-question
-##### !options
-
-* Create a Render account and connect our Render account to our GitHub account
-* Create a Render web service app
-* Create a Postgres database in Render
-* Initialize the Render database by performing a database migration
-* Set the environment variable for our Render database in Render
-
-##### !end-options
-### !end-challenge
-<!-- prettier-ignore-end -->
+![Screenshot of the Render logs, showing examples of different HTTP requests and responses](../assets/deployment/render-webservice-dash-show-requests-in-logs.png)
+_([Full size image](../assets/deployment/render-webservice-dash-show-requests-in-logs.png))_
 
 ## Updating the Render Remote Workflow
 
@@ -555,8 +511,8 @@ The command above will:
 1. set a temporary environment variable named `SQLALCHEMY_DATABASE_URI` to the value `postgresql+psycopg2://postgres@localhost:5432/hello_books_development`. This environment variable will not exist in the environment after the command that follows completes.
 2. invoke `gunicorn` with the command line argument `"app:create_app()"` to tell `gunicorn` how we want to start up our application.
 
+## Check for Understanding
 
-<!-- Question 2 -->
 <!-- prettier-ignore-start -->
 ### !challenge
 * type: checkbox
