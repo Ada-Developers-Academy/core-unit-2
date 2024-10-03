@@ -34,7 +34,7 @@ Then, we will cover these topics on continuous deployment to Render:
 
 [Render](https://render.com/) is one Platform as a Service (PaaS). We can use Render services to deploy our Flask API. After we successfully deploy, our API will be available to the whole Internet!
 
-![Screenshot of Render.com's splash page](../assets/deployment/deployment_render-splash.png)
+![Screenshot of Render.com's splash page](../assets/deployment/render-splashpage.png)
 
 We are choosing Render as a deployment platform because:
 
@@ -56,11 +56,11 @@ Render will send a verification message to the email you use to register. The em
 
 As a new user, our dashboard should display a quick start guide. 
 
-![Screenshot of the Render New User Dashboard](../assets/deployment/deployment_render-new-user-dash.png)
+![Screenshot of the Render New User Dashboard](../assets/deployment/render-dashboard-no-projects.png)
 
 Once we have added applications, our dashboard will change to show a list of all our deployed applications. 
 
-![Screenshot of the Render Dashboard with three apps listed in it](../assets/deployment/deployment_dashboard-with-apps-render.png)
+![Screenshot of the Render Dashboard with three apps listed in it](../assets/deployment/render-dashboard-successfully-deployed-services.png)
 
 ## Connect Render Account to GitHub
 
@@ -68,15 +68,15 @@ Connecting our Render account with our GitHub account allows us to link our proj
 
 To connect our Render and GitHub accounts, we can click on our user profile in the upper righthand corner of Render, then select "Account Settings". 
 
-![Screenshot of User Dropdown Menu](../assets/deployment/deployment_account-settings-render.png)
+![Screenshot of User Dropdown Menu](../assets/deployment/render-user-dropdown-settings.png)
 
 Under the Profile section of the Account Settings page, click the "Connect GitHub" button and sign in to GitHub as prompted. 
 
-![Screenshot of Profile Section](../assets/deployment/deployment_profile-connect-github-render.png)
+![Screenshot of Profile Section](../assets/deployment/render-account-security-github-not-connected.png)
 
 When we have successfully linked our GitHub account to Render, the "Connect GitHub" button will be replaced with our GitHub username and an option to disconnect our GitHub account.
 
-![Screenshot of Successful GitHub Connection](../assets/deployment/deployment_profile-with-connected-github-render.png)
+![Screenshot of Successful GitHub Connection](../assets/deployment/render-account-security-github-connected.png)
 
 
 ## Configure Our Flask App for Render
