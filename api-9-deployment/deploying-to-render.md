@@ -227,11 +227,13 @@ _([Full size image](../assets/deployment/render-set-instance-type-and-create-but
 
 Render will bring us to our new database's "Info" section. The "Status" field will show that it is "Creating" the database. Creating the database may take several minutes. 
 
-![Screenshot of hello-books-api database being created](../assets/deployment/deployment_database-status-creating-render.png)
+![Screenshot of hello-books-api database being created](../assets/deployment/render-database-info-creating-db.png)
+_([Full size image](../assets/deployment/render-database-info-creating-db.png))_
 
 Once the database is successfully created, the "Status" field will change to "Available." 
 
-![Screenshot of hello-books-api database with status available](../assets/deployment/deployment_database-with-available-status-render.png)
+![Screenshot of hello-books-api database with status available](../assets/deployment/render-database-info-db-available.png)
+_([Full size image](../assets/deployment/render-database-info-db-available.png))_
 
 ### Verify in the Dashboard
 
@@ -239,7 +241,8 @@ We can verify that our Postgres database was successfully created by visiting th
 
 Our new database should now be listed above our application.
 
-![Screenshot of the Render dashboard showing the new hello-books-api-db database](../assets/deployment/deployment_dashboard-with-db-and-web-service-render.png)
+![Screenshot of the Render dashboard showing the new hello-books-api-db database](../assets/deployment/render-dashboard-db-exists-api-failed-deploy.png)
+_([Full size image](../assets/deployment/render-dashboard-db-exists-api-failed-deploy.png))_
 
 ### Setup and Initialize the Render Database
 
