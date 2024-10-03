@@ -176,11 +176,12 @@ Render's free tier only supports a single full stack application (front end app,
 
 ### Our New Render App
 
-Render will now begin to build our app. This may take several minutes. If our app successfully deploys, we will see a `==> Starting service with 'gunicorn "app:create_app()"'` message. You may also see a  `Your service is live 🎉` message appear in the logs section at the bottom of the screen.
+At this point, our app will try to build, but won't successfully deploy because we are missing required environment variables like `SQLALCHEMY_DATABASE_URI`. If everything is going as expected, we will see a `==> Running 'gunicorn "app:create_app()"'` message, followed by a red error `"Error: Either 'SQLALCHEMY_DATABASE_URI' or 'SQLALCHEMY_BINDS' must be set."`
 
-![Screenshot of the your service is live message in the logs of a successfully deployed Render app](../assets/deployment/deployment_successful-deployment-logs-render.png)
+![Screenshot of the error message in the logs of a deploying Render app](../assets/deployment/render-deploy-messages-failed-env-vars-not-set.png)
+_([Full size image](../assets/deployment/render-deploy-messages-failed-env-vars-not-set.png))_
 
-Our Render app is not connected to a Postgres database yet, so we cannot make HTTP requests with our routes successfully at this stage.
+Our Render app is not connected to a Postgres database yet. Until that step is completed, we cannot finish deploying our app to make HTTP requests with our routes successfully.
 
 ### !callout-info
 
@@ -194,31 +195,35 @@ Since we are using GitHub to give Render access to our code, this means Render w
 
 We can also verify our app was created by navigating to our main [Render dashboard](https://dashboard.render.com/).
 
-Our new app is now listed! Under the "Status" field it should read `Deploy succeeded`. We'll visit this dashboard whenever we need to see or update details of our Render apps. 
+Our new app is now listed! Under the "Status" field it should read `Failed deploy`. We'll visit this dashboard whenever we need to see or update details of our Render apps. 
 
-![Screenshot of the Render dashboard with the new hello-books-api app listed](../assets/deployment/deployment_render-dashboard-new-app.png)
+![Screenshot of the Render dashboard with the new hello-books-api app listed](../assets/deployment/render-dashboard-showing-failed-deploy.png)
+_([Full size image](../assets/deployment/render-dashboard-showing-failed-deploy.png))_
 
-We can access the individual app's dashboard by clicking on the app where it is listed in our dashboard. If we click on our app in our main dashboard, it will bring us to the "Events" section of our app specific dashboard. The Events section will also confirm that our app deployed successfully. We should see a green cloud with a white checkmark in it with a `Deploy live...` message. The `Deploy live...` message will also include the commit hash and commit message of your connected Github repo's latest commit. 
+We can access the individual app's dashboard by clicking on the app in our list of services. If we click on our app in our main dashboard, it will bring us to the "Events" section of our app-specific dashboard. The Events section will also confirm that our app failed to deploy. We should see a red circle with an `X` in it with a `Deploy failed...` message. The `Deploy failed...` message will also include the commit hash and commit message of your connected Github repo's latest commit. 
 
-![hello-books-api app dashboard with deploy live message](../assets/deployment/deployment_web-service-events-deploy-live-render.png)
+![hello-books-api app dashboard with deploy failed message](../assets/deployment/render-events-log-showing-deploy-failed.png)
+_([Full size image](../assets/deployment/render-events-log-showing-deploy-failed.png))_
 
 ## Create a Database in Render
 
-Now that we've created our Render app for the first time, we need to tell the app we're interested in adding a Postgres database to our deployed Render app.
+Now that we've created our hello-books-api Render app for the first time, we need to set up a Postgres database that can be connected to our Render app.
 
 To create a new Postgres database, click the "New" button in the top navigation bar, then choose "PostgreSQL". 
 
-![Screenshot of selecting new PostgreSQL service](../assets/deployment/deployment_new-postgres-db-render.png)
+![Screenshot of selecting new PostgreSQL service](../assets/deployment/render-new-menu-postgresql.png)
+_([Full size image](../assets/deployment/render-new-menu-postgresql.png))_
 
 Just as with our web service, we need to give our database a name. Enter `your-database-name` into the "Name" field. 
 
 Replace `your-database-name` with the desired name of the Postgres database. 
 
-![Screenshot of new PostgreSQL database with name hello-books-api-db](../assets/deployment/deployment_set-postgres-db-name-render.png)
+![Screenshot of new PostgreSQL database with name hello-books-api-db](../assets/deployment/render-set-new-db-name.png)
 
-Finally, scroll down to the bottom of the current page and click _Create Database_. 
+Finally, scroll down to the bottom of the current page. Like we did with our webservice, we need to ensure that we select the "Free" tier under the "Instance Type" section, then click _Create Database_. 
 
-![Screenshot of Create Database button on Render](../assets/deployment/deployment_create-database-render.png)
+![Screenshot of Create Database button on Render](../assets/deployment/render-set-instance-type-and-create-button.png)
+_([Full size image](../assets/deployment/render-set-instance-type-and-create-button.png))_
 
 Render will bring us to our new database's "Info" section. The "Status" field will show that it is "Creating" the database. Creating the database may take several minutes. 
 
@@ -321,7 +326,6 @@ as well as `Running upgrade -> <hash number>` for any migration files that were 
 
 This will migrate the empty database in our remote Postgres connection to the latest schema configuration we have generated from our models. 
 
-<!-- available callout types: info, success, warning, danger, secondary, star  -->
 ### !callout-info
 
 ## Updating the SQLALCHEMY_DATABASE_URI Configuration Key
@@ -388,7 +392,9 @@ In the "Environment" section:
 
 ![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The RENDER_DATABASE_URI variable is present](../assets/deployment/deployment_set-env-var-render.png)
 
-Updating the app's environment variables will trigger our app to re-deploy. Re-deployment may take several minutes to complete.
+Updating the app's environment variables will trigger our app to re-deploy. Re-deployment may take several minutes to complete. If we navigate to our webservice's info page and watch the logs, we should see a `"Your service is live 🎉"` message when the deployment is complete. 
+
+We can also check if our app was deployed successfully by navigating to our main [Render dashboard](https://dashboard.render.com/). Under the "Status" field it should read `Deployed`. 
 
 ## Verify
 
