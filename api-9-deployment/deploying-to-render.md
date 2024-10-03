@@ -149,12 +149,14 @@ Next, we should confirm that the "Language" field is set to "Python 3". When dep
 We also want to change the "Branch" field to choose which branch we want to pull our code from to create our deployed application. Most of the time we will select `main`, but in the case of the Hello Books API repo, we don't have a `main` branch. Instead we want to choose the branch that includes all the code and latest changes we want to be a part of our deployed app. For us, that should be `08b-nested-routes` or any later branch. 
 
 ![Screenshot of Render after selecting the language and choosing the branch 08b-nested-routes](../assets/deployment/render-set-language-and-branch.png)
+_([Full size image](../assets/deployment/render-set-language-and-branch.png))_
 
 Next, we need to alter the "Start Command" field which defaults to the value `$ gunicorn app: app`. This field defines where in our code the `gunicorn` package should look to find what it needs to start our Flask web server. 
 
 Update the "Start Command" field to `$ gunicorn "app:create_app()"`.
 
 ![Screenshot of changing app start command to gunicorn "app:create_app()"](../assets/deployment/render-update-start-command.png)
+_([Full size image](../assets/deployment/render-update-start-command.png))_
 
 In the "Instance Type" section, Render will have a paid option selected by default. We want to ensure that the "Free" tier is selected before proceeding.
 
@@ -219,6 +221,7 @@ Just as with our web service, we need to give our database a name. Enter `your-d
 Replace `your-database-name` with the desired name of the Postgres database. 
 
 ![Screenshot of new PostgreSQL database with name hello-books-api-db](../assets/deployment/render-set-new-db-name.png)
+_([Full size image](../assets/deployment/render-set-new-db-name.png))_
 
 Finally, scroll down to the bottom of the current page. Like we did with our webservice, we need to ensure that we select the "Free" tier under the "Instance Type" section, then click _Create Database_. 
 
@@ -364,8 +367,8 @@ In the "Environment" section:
 4. Modify the value of the internal connection string so that the beginning reads `postgresql+psycopg2` instead of `postgres`
 5. Click "Save Changes"
 
-![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The SQLALCHEMY_DATABASE_URI variable is present](../assets/deployment/webservice-environment-add-db-internal-uri.png)
-_([Full size image](../assets/deployment/webservice-environment-add-db-internal-uri.png))_
+![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The SQLALCHEMY_DATABASE_URI variable is present](../assets/deployment/render-webservice-environment-add-db-internal-uri.png)
+_([Full size image](../assets/deployment/render-webservice-environment-add-db-internal-uri.png))_
 
 Updating the app's environment variables will trigger our app to re-deploy. Re-deployment may take several minutes to complete. 
 
