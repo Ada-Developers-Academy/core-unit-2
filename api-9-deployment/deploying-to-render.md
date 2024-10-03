@@ -73,10 +73,12 @@ To connect our Render and GitHub accounts, we can click on our user profile in t
 Under the Profile section of the Account Settings page, click the "Connect GitHub" button and sign in to GitHub as prompted. 
 
 ![Screenshot of Profile Section](../assets/deployment/render-account-security-github-not-connected.png)
+_([Full size image](../assets/deployment/render-account-security-github-not-connected.png))_
 
 When we have successfully linked our GitHub account to Render, the "Connect GitHub" button will be replaced with our GitHub username and an option to disconnect our GitHub account.
 
 ![Screenshot of Successful GitHub Connection](../assets/deployment/render-account-security-github-connected.png)
+_([Full size image](../assets/deployment/render-account-security-github-connected.png))_
 
 
 ## Configure Our Flask App for Render
@@ -113,48 +115,57 @@ For each project we deploy, we will need to create and manage a Render app. Our 
 
 To create our Render app, click the "New" button in the top navigation bar, and then choose "Web Service". 
 
-![Create New Web Service Button Screenshot](../assets/deployment/deployment_new_web_service_render.png)
+![Create New Web Service Button Screenshot](../assets/deployment/render-new-menu.png)
+_([Full size image](../assets/deployment/render-new-menu.png))_
 
-Next, we want to connect our web service to our Hello Books API GitHub repository. Although we linked our Render account to GitHub earlier, we may need to add some additional permissions to allow Render to view our GitHub repositories. To do so, we can click the "Connect Account" button under where it says GitHub on the righthand side of the screen.
+Next, we want to connect our web service to our Hello Books API GitHub repository. Although we linked our Render account to GitHub earlier, we may need to add some additional permissions to allow Render to view our GitHub repositories. To do so, we can click the "GitHub" button under the "Connect Git Provider message".
 
-![Screenshot of Connect Github Account button to Web Service on Render](../assets/deployment/deployment_connect-account-repo-render.png)
+![Screenshot of Connect Github Account button to Web Service on Render](../assets/deployment/render-first-webservice-connect-github.png)
+_([Full size image](../assets/deployment/render-first-webservice-connect-github.png))_
 
 This will take us to a Github configuration page asking us to choose which repositories we want Render to be able to access. Select "All repositories" then click the green "Install" button at the bottom of the page.
 
-![Screenshot of Github repository access configuration page](../assets/deployment/deployment_give-render-access-to-github-repos.png)
+![Screenshot of Github repository access configuration page](../assets/deployment/github-install-render.png)
+_([Full size image](../assets/deployment/github-install-render.png))_
 
 Now we should see any repos we have in our Github account displayed in the "Connect a repository" section. We can use the search bar to find our Hello Books API GitHub repository. Click the "Connect" button next to our project repository to link it to our new application. 
 
 Note that we should use _our fork_ of the Hello Books API repo which is listed under our GitHub username. So we should search for `your-github-username/hello-books-api`. We are working with the AdaGold version only for the purposes of this walk-through. 
 
-![Screenshot of selecting the AdaGold/hello-books-api Repo](../assets/deployment/deployment_connect-app-to-repo-render.png)
+![Screenshot of selecting the AdaGold/hello-books-api Repo](../assets/deployment/render-search-for-hello-books-repo.png)
+_([Full size image](../assets/deployment/render-search-for-hello-books-repo.png))_
 
-Enter `your-app-name` into the "Name" field to create an app with the name `your-app-name`. 
+When we land on the next set up page, enter `your-app-name` into the "Name" field to create an app with the name `your-app-name`. 
 
 Replace `your-app-name` with the desired name of the app.
 
-![Screenshot of web service deployment page after adding the app name](../assets/deployment/deployment_name-web-service-render.png)
+![Screenshot of web service deployment page after adding the app name](../assets/deployment/render-set-webservice-name.png)
+_([Full size image](../assets/deployment/render-set-webservice-name.png))_
 
-Note that the app name must be unique across all Render apps, not just our own apps. As a result, the name `hello-books-api` is already taken, as it was used in this walk-through! We will need to come up with our own name that has a unique touch.
+Note that the app name must be unique across all Render apps, not just our own apps. As a result, the name `hello-books-api` is already taken, as it was used in this walk-through! We will need to come up with our own name that has a unique touch. Render will tack on random characters to create a unique name if we try to choose a name that has already been taken.
 
-<!-- Add comment about Render tacking on random characters for non-unique names-->
+Next, we should confirm that the "Language" field is set to "Python 3". When deploying a web service to Render, it will try to be helpful and set the "Language" field for you, but it doesn't always select the correct option. You can click the current value of "Language" to see a drop down of the languages supported by Render and choose a new value if necessary.
 
-Next, change the "Branch" field to set which branch we want to pull our code from for our deployed applicaton. Most of the time we will choose `main`, but in the case of the Hello Books API repo, we don't have a `main` branch. Instead we want to choose the branch that includes all the code and latest changes we want to be a part of our deployed app. For us, that should be `08b-nested-routes` or any later branch. 
+We also want to change the "Branch" field to choose which branch we want to pull our code from to create our deployed application. Most of the time we will select `main`, but in the case of the Hello Books API repo, we don't have a `main` branch. Instead we want to choose the branch that includes all the code and latest changes we want to be a part of our deployed app. For us, that should be `08b-nested-routes` or any later branch. 
 
-![Screenshot of Render after adding choosing branch 08b-nested-routes](../assets/deployment/deployment_select-branch-08b-render.png)
+![Screenshot of Render after selecting the language and choosing the branch 08b-nested-routes](../assets/deployment/render-set-language-and-branch.png)
 
 Next, we need to alter the "Start Command" field which defaults to the value `$ gunicorn app: app`. This field defines where in our code the `gunicorn` package should look to find what it needs to start our Flask web server. 
 
 Update the "Start Command" field to `$ gunicorn "app:create_app()"`.
 
-![Screenshot of changing app start command to gunicorn "app:create_app()"](../assets/deployment/deployment_change-start-command-render.png)
+![Screenshot of changing app start command to gunicorn "app:create_app()"](../assets/deployment/render-update-start-command.png)
+
+In the "Instance Type" section, Render will have a paid option selected by default. We want to ensure that the "Free" tier is selected before proceeding.
+
+![Screenshot of the Instance Type section with the Free tier selected"](../assets/deployment/render-choose-instance-type.png)
+_([Full size image](../assets/deployment/render-choose-instance-type.png))_
 
 Finally, scroll down to the bottom of the page and click the "Create Web Service" button.
 
-![Screenshot of Creating Web Service in Render](../assets/deployment/deployment_create-web-service-render.png)
+![Screenshot of Create Web Service Button in Render](../assets/deployment/render-deploy-webservice-button.png)
+_([Full size image](../assets/deployment/render-deploy-webservice-button.png))_
 
-
-<!-- available callout types: info, success, warning, danger, secondary, star  -->
 ### !callout-warning
 
 ## Render Free App Limits
