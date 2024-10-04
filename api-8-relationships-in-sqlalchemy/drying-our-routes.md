@@ -210,6 +210,7 @@ If we search the project, we should only see tests that use the create routes-no
 
 When we worked on the `validate_model` refactor, we had an existing function `validate_book` that we wrote tests for and then incrementally updated. We don't have a pre-existing function in this case, so if we're following TDD, this is the time to think about what the inputs and outputs of our new `create_model` function should be, and how we want to test them. 
 
+<br>
 <details>
    <summary>Take a moment to brainstorm then write nominal and edge cases for the <code>create_model</code> function we've described in <code>test_route_utilities.py</code>. Expand this section when done to see the limited tests we created.</summary>
 
@@ -284,6 +285,7 @@ Set a timebox to try out moving all the similar steps from `create_author`, `cre
 - replace specific uses of a class name with `cls`
 - update any class-specific variable names to be more generic, to better reflect that those variables could hold any new model instance
 
+<br>
 <details>
    <summary>When done, expand this section to see how we built the <code>create_model</code> function.</summary>
 
@@ -310,6 +312,7 @@ At this point all of our tests including our new ones in `test_route_utilities.p
 
 Now, we can start incrementally updating the `create_book` route. Our `create_book` tests are expected to fail until the changes are finished. When that work is complete and all of the `create_book` tests are passing again, only then should we start making changes to the `create_author` or `create_book_with_author` function. The order in which we update these functions isn't important, we could choose to update `create_author` or `create_book_with_author` first, but it's vital to only update one function at a time so that we know where issues are coming from if they arise.
 
+</br>
 <details>
    <summary>Try out changing the <code>create_author</code>, <code>create_book_with_author</code> and <code>create_book</code> routes to import and use the <code>create_model</code> helper function, then expand this section to see how we finished up the refactor!</summary>
 
@@ -364,6 +367,7 @@ Just like in our `create_model` refactor above, when looking for dependencies, w
 
 For this refactor, we have only written one nominal test as an example in the `hello-books` repo, we leave it up to you to brainstorm what other cases are useful and write tests for them. Feel free to pitch test ideas with others in a study group, over Slack, or however best works for you!
 
+<br>
 <details>
    <summary>When you're done writing nominal and edge cases for the <code>get_models_with_filters</code> function, expand this section the nominal test we created.</summary>
 
@@ -450,6 +454,7 @@ This means that our new function has to perform the following steps:
 5. Create a list of dictionaries representing the models by calling `to_dict` on each
 6. Return the list of models
 
+<br>
 <details>
    <summary>Try out filling in the <code>get_models_with_filters</code> function, then expand this section to see how we implemented it.</summary>
 
@@ -479,6 +484,7 @@ If you feel called to or want the practice, feel free to try providing the user 
 
 Once our test suite for `get_models_with_filters` is passing, all tests should be passing until we begin refactoring our routes. As with the `create_model` refactor, we want to update our route functions one at a time and see all our tests passing again before we move on to update the next route.
 
+<br>
 <details>
    <summary>Give updating the <code>get_all_books</code> and <code></code> routes to import and use the <code>get_models_with_filters</code> helper function, then expand this section to see how we finished up the refactor!</summary>
 
