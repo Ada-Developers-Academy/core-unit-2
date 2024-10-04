@@ -449,7 +449,7 @@ Standards:
         Path: /api-7-refactoring/problem-set-refactoring.md
   -
     Title: 08) Building an API - One-to-Many Relationships
-    Description: "One-to-Many: Authors, Nested Routes"
+    Description: "One-to-Many: Authors, Nested Routes, D.R.Y.ing our routes"
     UID: 11960148-2005-4ce6-b12d-c9f788667407
     SuccessCriteria:
       - success criteria
@@ -462,6 +462,10 @@ Standards:
         Type: Lesson
         UID: 66f19557-3680-4552-bb9b-440ea22d0c20
         Path: /api-8-relationships-in-sqlalchemy/nested-routes-in-flask.md
+      -
+        Type: Lesson
+        UID: 66f19557-3680-4552-bb9b-440ea859d0c2
+        Path: /api-8-relationships-in-sqlalchemy/drying-our-routes.md
       -
         Type: Lesson
         UID: d93cf7bd-3239-4a58-b9d4-d6c5cc6d581f
