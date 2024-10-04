@@ -1,4 +1,4 @@
-# D.R.Ying Our Routes
+# D.R.Y.ing Our Routes
 
 ## Goals
 
@@ -555,10 +555,10 @@ What happens when a filter is applied vs when a filter is ignored?
 ##### !end-hint
 ##### !explanation
 
-a| False: we do not send back anything in the response that lest the user know which filters were applied
-b| True
-c| True
-d| True
+1. False: we do not send back anything in the response that lest the user know which filters were applied
+2. True
+3. True
+4. True
 
 ##### !end-explanation
 ### !end-challenge
@@ -602,10 +602,10 @@ Where does the function that constructs a `Book` from a dictionary live?
 ##### !end-hint
 ##### !explanation
 
-a| False: we could likely combine some statements to make our files even shorter, but shortness is not the goal; clear, easy to maintain code is the goal.
-b| True
-c| True
-d| False: If attributes on the `Book` model change, then we would need to make changes to the `to_dict` method of the `Book` class.
+1. False: we could likely combine some statements to make our files even shorter, but shortness is not the goal; clear, easy to maintain code is the goal.
+2. True
+3. True
+4. False: If attributes on the `Book` model change, then we would need to make changes to the `to_dict` method of the `Book` class.
 
 ##### !end-explanation
 ### !end-challenge
