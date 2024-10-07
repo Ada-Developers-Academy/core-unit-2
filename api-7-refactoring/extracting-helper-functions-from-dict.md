@@ -551,9 +551,13 @@ At this point, we should see all our tests passing!
 
 ### Replace the Code in `book_routes.py`
 
-Now that we're replacing the original code in `book_routes.py`, the first thing we want to do is remove the code in `create_book` we intend to replace and see those tests fail. Once we see the tests failing, replace the line with a call to `Book`'s new class method. If we run our tests one last time, we should see green tests all the way! 
+Let's use our new `from_dict` function in the `create_book` route.
+
+First, let's remove the code in `create_book` we intend to replace and see those tests fail. Once we see the tests failing, we can put in the line that calls `Book`'s new class method. If we run our tests one last time, we should see green tests all the way! 
 
 Try out replacing the code yourself, then take a look at our updated `create_book` below. 
+
+<br>
 
 <details>
    <summary>Updated <code>create_book</code> function example</summary>
@@ -571,7 +575,6 @@ def create_book():
 ```
 
 </details>
-</br>
 
 ## Check for Understanding
 
