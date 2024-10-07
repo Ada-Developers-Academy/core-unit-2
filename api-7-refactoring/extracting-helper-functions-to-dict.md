@@ -184,11 +184,9 @@ Our first stop for this new function is to write some failing tests in `test_boo
 <br>
 
 <details>
-   <summary>Complete <code>test_models.py</code> example</summary>
+   <summary>New tests for <code>to_dict</code> in <code>test_book_model.py</code></summary>
 
 ```python
-from app.models.book import Book
-
 def test_to_dict_no_missing_data():
     # Arrange
     test_data = Book(id = 1,
