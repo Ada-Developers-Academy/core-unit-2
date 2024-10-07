@@ -443,7 +443,9 @@ We'll start the implementation as we often do, by...
 
 ### Writing Failing Tests!
 
-Our first stop for this new function is to write some failing tests in `test_models.py`. Let's pause and come up with a list of cases that would be helpful to confirm `from_dict`'s behavior. After you're done, take a look at our new test cases below.
+When we're following Test Driven Development (TDD), our first step is to write tests for `from_dict` that will fail until we write our new function. We'll create a new file `test_book_model.py` and add tests to cover nominal and edge cases for the `from_dict` function. The `test_book_model.py` file will be placed in the same directory as `test_book_routes.py`.
+
+Let's pause to think through what cases we might test for the `from_dict` function and what data we need to arrange and check those cases. When you're ready, check out our `test_book_model.py` code below.
 
 <details>
    <summary>New tests for <code>from_dict</code> in <code>test_models.py</code></summary>
