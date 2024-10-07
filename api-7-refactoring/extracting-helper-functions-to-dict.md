@@ -63,32 +63,18 @@ So let's move forward with refactoring the repeated code into a single helper fu
 
 ### Identifying Dependencies
 
-We identified the code we want to refactor, but do we have the safety net we need to refactor confidently? To know that, we need to first identify our dependencies, then ensure we have strong test coverage around those scenarios.
+We've flagged the code we want to refactor, next we need to identify our dependencies. 
 
-To identify dependencies, we want to look at the code base and ask "Where is the code I'm refactoring being called?" We should keep track of all the locations we find. If we're refactoring code inside a class, we also want to ask "Does any other code extend or inherit this class?"
+Looking through the `Hello Books` project, there are three routes that produce a dictionary representation of a `Book` model:
+- `create_book`
+- `get_all_books`
+- `get_one_book`
 
-<!-- prettier-ignore-start -->
-### !challenge
-* type: paragraph
-* id: 43d9c16i
-* title: Identify Dependencies
-* 
-##### !question
-Take a few minutes to look over `hello_book`'s routes and model files, and make a list of the dependencies you notice. When you're done, check out the explanation to see what dependencies we found. 
-##### !end-question
+Unlike  the situation with `from_dict`, where we found model instances in a fixture, and needed to understand whether or not to update it, here, we don't have any test code that makes a dictionary from a `Book` model. There are dictionary representations of books in some of the tests, but they are there specifically to check the output of the routes. They were not built from an existing `Book` model instance.
 
-##### !placeholder
-The dependencies I found are...
-##### !end-placeholder
+As a result, we can move on to the next step of our refactor knowing that we only need to double check the test coverage for those three routes that will be affected by our changes.
 
-##### !explanation
-We searched the project for locations where we transform a `Book` model into a dictionary and found that our two read functions, `read_all_books` and `read_one_book`, are the only dependencies. 
-##### !end-explanation
-
-### !end-challenge
-<!-- prettier-ignore-end -->
-
-### Check for Tests
+### Checking for Tests
 
 We know our dependencies, so at this point we need to move over to our test files. Our goal is to ensure we have tests covering nominal and edge cases for each dependency we found.
 
