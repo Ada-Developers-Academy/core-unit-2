@@ -3,15 +3,7 @@
 ## Goals
 Our goal for this lesson is to refactor the code in the `book_routes.py` file that converts a `Book` model into a `Dictionary` to a reusable helper function named `to_dict` in the `Book` model's class.
 
-To do this we will:
-- Plan our refactor by 
-  - identifying what code we will refactor  
-  - identifying dependencies on the code being refactored
-  - ensuring we have strong test coverage
-- Execute our refactor by 
-  - writing new, reusable, helper functions
-  - replacing the existing code with our new functions
-  - frequently running our tests as we work to ensure our code's behavior remains the same
+To do this we will follow the same steps of planning then executing a refactor as outlined in the previous lesson. 
 
 ## Branches
 
