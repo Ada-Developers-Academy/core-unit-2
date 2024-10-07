@@ -165,6 +165,8 @@ def test_get_one_book_invalid_id(client, two_saved_books):
     assert response_body == {"message": "Book cat invalid"}
 ```
 
+Additional tests can (and should) be included to test the various combinations of query parameters that could be passed to `get_all_books`. We'll leave those as an exercise for you to consider adding! Since we're focused on refactoring the code that builds a dictionary representation of a `Book` model, we'll move forward with the tests we've added here.
+
 </details>
 </br>
 
