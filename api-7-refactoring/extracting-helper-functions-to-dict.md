@@ -32,13 +32,14 @@ The `Book` model and table should have the following columns:
 - `title`
 - `description`
 
-Our test suite should have 3 tests: 
-- `test_get_all_books_with_no_records`
-- `test_get_one_book`
-- `test_create_one_book`
+The `Book` class should have the following functions:
+- `from_dict`
+
+Our test folder should have 2 files: 
+- `test_routes.py`
+- `test_models.py`
 
 </details>
-</br>
 
 ## Planning the Refactor
 ### Identifying Code to Refactor
