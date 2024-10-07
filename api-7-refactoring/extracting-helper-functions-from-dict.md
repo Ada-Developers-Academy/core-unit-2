@@ -433,10 +433,11 @@ We now have tests that validate the route behavior for several nominal and edge 
 ## Executing the Refactor
 
 As it stands we know:
-- our existing tests are pretty solid
-- we're writing a function named `from_dict` 
-- `from_dict` will take in a dictionary and return a new `Book` instance
-- `from_dict` will be a class method that we invoke from the `Book` class (Ex. `Book.from_dict(<some_dictionary>)`)
+- Our existing tests are pretty solid.
+- We're writing a function to initialize a `Book` model from a dictionary.
+  - Since it creates the instance "from a dict", let's call the method `from_dict`.
+- `from_dict` will take in a dictionary and return a new `Book` instance.
+- `from_dict` will be a class method that we invoke from the `Book` class (for example, `Book.from_dict(<some_dictionary>)`).
 
 We'll start the implementation as we often do, by... 
 
