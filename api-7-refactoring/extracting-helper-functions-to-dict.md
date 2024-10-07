@@ -78,9 +78,11 @@ As a result, we can move on to the next step of our refactor knowing that we onl
 
 We know our dependencies, so at this point we need to move over to our test files. Our goal is to ensure we have tests covering nominal and edge cases for each dependency we found.
 
-If we navigate to `test_routes.py`, we'll find that we have one test for each of the dependent functions, `test_get_all_books_with_no_records` and `test_get_one_book`. These are important to have, but we are missing several scenarios that would confirm each function's behavior.
+In `test_book_routes.py`, we have one test each for `get_all_books` and `get_one_book`. These are important to have, but we are missing several scenarios that would confirm each function's behavior. Also, while we already added tests covering `create_book` in the previous lesson, we should still consider whether our test cases cover enough scenarios to confirm the behavior of the code we're preparing to refactor.
 
-Take a moment to brainstorm what other nominal or edge cases are needed to know our route works as expected under a variety of inputs. It may help to look at the route functions and the `validate_book` function to see what paths our code takes depending on the input.  
+Take a moment to brainstorm what other nominal or edge cases are needed to know whether each route works as expected under a variety of inputs. It may help to look at the implementation of the route functions and the `validate_book` function to see what paths our code takes depending on the input.
+
+<br>
 
 <details>
    <summary>When you're done brainstorming, expand this section to review our cases and new test code. </summary>
