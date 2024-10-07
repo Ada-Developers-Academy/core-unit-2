@@ -525,9 +525,10 @@ Our next step is to write out our pseudocode. We'll leave that as an exercise fo
 For Python to recognize our new function as a class method, we'll need to use the new syntax discussed above, the `@classmethod` decorator and the conventional `cls` parameter:
 
 ```python  
-@classmethod
-def from_dict(cls, book_data):
-   pass
+    # indented under the Book class definition
+    @classmethod
+    def from_dict(cls, book_data):
+       pass
 ```
 
 Our tests in `test_book_model.py` for `from_dict` should still be failing at this point. If they are, we can start changing any pseudocode we've planned into Python code. Try out writing the function, then take a look at our implementation below.
@@ -538,11 +539,12 @@ Our tests in `test_book_model.py` for `from_dict` should still be failing at thi
    <summary>Complete <code>from_dict</code> function example</summary>
 
 ```python
-@classmethod
-def from_dict(cls, book_data):
-    new_book = Book(title=book_data["title"],
-                    description=book_data["description"])
-    return new_book
+    # indented under the Book class definition
+    @classmethod
+    def from_dict(cls, book_data):
+        new_book = Book(title=book_data["title"],
+                        description=book_data["description"])
+        return new_book
 ```
 
 </details>
