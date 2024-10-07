@@ -70,7 +70,7 @@ Looking through the `Hello Books` project, there are three routes that produce a
 - `get_all_books`
 - `get_one_book`
 
-Unlike  the situation with `from_dict`, where we found model instances in a fixture, and needed to understand whether or not to update it, here, we don't have any test code that makes a dictionary from a `Book` model. There are dictionary representations of books in some of the tests, but they are there specifically to check the output of the routes. They were not built from an existing `Book` model instance.
+Unlike the situation with `from_dict`, where we found model instances in a fixture, and needed to understand whether or not to update it, here, we don't have any test code that makes a dictionary from a `Book` model. There are dictionary representations of books in some of the tests, but they are there specifically to check the output of the routes. They were not built from an existing `Book` model instance.
 
 As a result, we can move on to the next step of our refactor knowing that we only need to double check the test coverage for those three routes that will be affected by our changes.
 
