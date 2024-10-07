@@ -246,9 +246,8 @@ def test_to_dict_missing_description():
 ```
 
 </details>
-</br>
 
-At this point, when we run our test suite we should see all of the tests in `test_routes.py` passing, and all of the tests in `test_models.py` failing. Now we can start our cycle of making small changes and testing until we complete our refactor!
+At this point, when we run our test suite we should see all of the tests in `test_book_routes.py` passing, and the new tests in `test_book_model.py` failing. Now we can start our cycle of making small changes and testing until we complete our refactor!
 
 ### Write the `to_dict` function
 
