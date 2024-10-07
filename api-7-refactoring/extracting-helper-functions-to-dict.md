@@ -36,8 +36,8 @@ The `Book` class should have the following functions:
 - `from_dict`
 
 Our test folder should have 2 files: 
-- `test_routes.py`
-- `test_models.py`
+- `test_book_routes.py`
+- `test_book_model.py`
 
 </details>
 
