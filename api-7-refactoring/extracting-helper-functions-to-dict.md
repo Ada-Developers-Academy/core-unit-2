@@ -291,56 +291,91 @@ When we run our tests now, we should see all tests passing–but we still have c
 
 ### Replace Repeated Code
 
-Let's USE. THAT. NEW. FUNCTION!!! We'll update our existing functions `read_all_books` and `read_one_book` one at a time, continuing our path of making a small change and testing before moving on. Focusing on one function at a time will help us by reducing the surface area where issues could arise while we make our changes.
+Let's USE. THAT. NEW. FUNCTION!!!
 
-Starting with `read_all_books`, we first want to remove the existing code that creates a dictionary. Tying it back to TDD, now that we've made this change, we want try to run our tests and make sure our `read_all_books` route tests are now failing.  
+We'll update our existing functions `get_all_books`, `get_one_book`, and `create_book` one at a time, continuing our path of making a small change and testing before moving on. Focusing on one function at a time will help us by reducing the surface area where issues could arise while we make our changes.
+
+Starting with `get_all_books`, we first want to remove the existing code that creates a dictionary. Tying it back to TDD, now that we've made this change, we want try to run our tests and make sure our `get_all_books` route tests are now failing.  
 
 Next we'll add a call to `to_dict` in place of the old code and run the test suite again. We should see all tests are passing once more.
 
-Try out replacing the code yourself, then take a look at our updated `read_all_books` below. 
+Try out replacing the code yourself, then take a look at our updated `get_all_books` below. 
+
+<br>
 
 <details>
-   <summary>Updated <code>read_all_books</code> function example</summary>
+   <summary>Updated <code>get_all_books</code> function example</summary>
 
 ```python
-@books_bp.route("", methods=["GET"])
-def read_all_books():
-    
-    title_query = request.args.get("title")
-    if title_query:
-        books = Book.query.filter_by(title=title_query)
-    else:
-        books = Book.query.all()
+@books_bp.get("")
+def get_all_books():
+    # query filtering logic omitted for brevity
+
+    books = ...  # database retrieval code omitted for brevity
 
     books_response = []
     for book in books:
         books_response.append(book.to_dict())
-    return jsonify(books_response)
+    return books_response
 ```
 
-</details>
-</br>
+The change we made here was to replace the dictionary creation code with a call to `to_dict` on the `book` instance.
 
-Once we've completed changes for `read_all_books`, we'll follow the same steps for `read_one_book`:
+</details>
+
+Once we've completed changes for `get_all_books`, we'll follow the same steps for `get_one_book`:
 1. Delete the old dictionary creation code
 2. Run unit tests and see them fail
 3. Add a call to `to_dict` in place of the old code
 4. Run the full test suite and see all tests pass
 
-Try out making the updates for `read_one_book`, then check out our updated `read_one_book` function below.
+Try out making the updates for `get_one_book`, then check out our updated `get_one_book` function below.
+
+<br>
 
 <details>
-   <summary>Updated <code>read_one_book</code> function</summary>
+   <summary>Updated <code>get_one_book</code> function</summary>
 
 ```python
-@books_bp.route("/<book_id>", methods=["GET"])
-def read_one_book(book_id):
+@books_bp.get("/<book_id>")
+def get_one_book(book_id):
     book = validate_book(book_id)
+
     return book.to_dict()
 ```
 
+The change we made here was to replace the dictionary creation code with a call to `to_dict` on the `book` instance.
+
 </details>
-</br>
+
+And one final time, we can make the same changes to `create_book`. Remember to "break" your test before switching to the new code, then run the full test suite to confirm all tests are passing. Make the changes yourself, then check out our updated `create_book` function below.
+
+<br>
+
+<details>
+   <summary>Updated <code>create_book</code> function</summary>
+
+```python
+@books_bp.post("")
+def create_book():
+    request_body = request.get_json()
+
+    try:
+        new_book = Book.from_dict(request_body)
+
+    except KeyError as error:
+        response = {"message": f"Invalid request: missing {error.args[0]}"}
+        abort(make_response(response, 400))
+
+    db.session.add(new_book)
+    db.session.commit()
+
+    return new_book.to_dict(), 201
+```
+
+The change we made here was to replace the dictionary creation code with a call to `to_dict` on the `new_book` instance. We no longer need the `response` dictionary, which was mostly there for clarity in the previous implementation.
+
+</details>
 
 ## Check for Understanding
 
