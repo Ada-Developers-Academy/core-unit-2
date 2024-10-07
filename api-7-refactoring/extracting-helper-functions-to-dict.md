@@ -379,21 +379,74 @@ The change we made here was to replace the dictionary creation code with a call 
 
 ## Check for Understanding
 
-<!-- Question Takeaway -->
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: paragraph
-* id: 43d9c16h
-* title: Refactoring
+
+* type: multiple-choice
+* id: 98c3a7c5-e155-41b8-b864-48f750287505
+* title: Extracting Helper Functions Pt. 2
+
 ##### !question
 
-What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+What is the primary goal of the refactor described in this lesson?
 
 ##### !end-question
-##### !placeholder
 
-My biggest takeaway from this lesson is...
+##### !options
 
-##### !end-placeholder
+a| To improve the performance of the Book model
+b| To convert a Book model into a dictionary using a reusable helper function
+c| To add more attributes to the Book model
+d| To remove the Book model from the project
+
+##### !end-options
+
+##### !answer
+
+b|
+
+##### !end-answer
+
 ### !end-challenge
 <!-- prettier-ignore-end -->
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- prettier-ignore-start -->
+### !challenge
+
+* type: multiple-choice
+* id: 1dcdb383-6e15-459f-9153-c5e740bd39c6
+* title: Extracting Helper Functions Pt. 2
+
+##### !question
+
+What should be done after refactoring the code to use the new `to_dict` function?
+
+##### !end-question
+
+##### !options
+
+a| Remove all tests related to the Book model
+b| Add new attributes to the Book model
+c| Run the test suite to ensure all tests pass
+d| Delete the Book model
+
+##### !end-options
+
+##### !answer
+
+c|
+
+##### !end-answer
+
+##### !explanation
+
+One of the benefits of having a robust test suite is that it can give us confidence that our changes haven't broken anything. After making changes to our code, we should always run our tests to ensure everything is still working as expected.
+
+##### !end-explanation
+
+### !end-challenge
+<!-- prettier-ignore-end -->
+<!-- ======================= END CHALLENGE ======================= -->
