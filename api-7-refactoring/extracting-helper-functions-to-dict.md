@@ -173,9 +173,9 @@ At this point, we have a solid test suite for our routes that will be affected b
 
 ## Executing the Refactor
 
-We know that we want to move our code that creates a dictionary from a `Book` model from the `read_all_books` and `read_one_book` functions, but where does that code belong? Since creating a dictionary from a `Book` requires specific knowledge about the `Book` class, it makes a lot of sense to add the function directly to the `Book` class. 
+We know that we want to move our code that creates a dictionary from a `Book` model from the `get_all_books` and `get_one_book` functions, but where does that code belong? Since creating a dictionary from a `Book` requires specific knowledge about the `Book` class, it makes a lot of sense to add the function directly to the `Book` class. 
 
-Planning our function further, we know that we need a book as input, and we want our function's output to be a dictionary with a key for each of the input `Book`'s attributes. Because we need an instance of a `Book` to take this action, we probably want this to be an instance function of our `Book` class.
+Planning our function further, we know that we need a book as input, and we want our function's output to be a dictionary with a key for each of the input `Book`'s attributes. Because we need an instance of a `Book` to take this action, we probably want this to be an instance function of our `Book` class. And since the function will be responsible for converting a `Book` instance to a dictionary, we'll name it `to_dict`.
 
 ### Write failing tests for `to_dict`
 
