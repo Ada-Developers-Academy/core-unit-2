@@ -563,15 +563,26 @@ Try out replacing the code yourself, then take a look at our updated `create_boo
    <summary>Updated <code>create_book</code> function example</summary>
 
 ```python
-@books_bp.route("", methods=["POST"])
+@books_bp.post("")
 def create_book():
     request_body = request.get_json()
-    new_book = Book.from_dict(request_body)
+
+    try:
+        new_book = Book.from_dict(request_body)
+
+    except KeyError as error:
+        response = {"message": f"Invalid request: missing {error.args[0]}"}
+        abort(make_response(response, 400))
 
     db.session.add(new_book)
     db.session.commit()
 
-    return make_response(jsonify(f"Book {new_book.title} successfully created"), 201)
+    response = {
+        "id": new_book.id,
+        "title": new_book.title,
+        "description": new_book.description,
+    }
+    return response, 201
 ```
 
 </details>
