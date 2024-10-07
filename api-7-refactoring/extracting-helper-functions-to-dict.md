@@ -9,7 +9,9 @@ To do this we will follow the same steps of planning then executing a refactor a
 
 | Starting Branch | Ending Branch|
 |--|--|
-|`06e-post-books-test` |`07a-to-dict-refactor`|
+|`07a-from-dict-refactor` |`07b-to-dict-refactor`|
+
+<br>
 
 <details>
    <summary>Expand to see the features <code>Hello Books API</code> should have before this lesson</summary>
