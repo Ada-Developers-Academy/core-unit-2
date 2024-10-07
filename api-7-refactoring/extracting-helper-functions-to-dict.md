@@ -88,10 +88,13 @@ Take a moment to brainstorm what other nominal or edge cases are needed to know 
    <summary>When you're done brainstorming, expand this section to review our cases and new test code. </summary>
 
 We want to add tests that check:
-- When we have records, `read_all_books` returns a list containing a dictionary representing each `Book`
-- When we have records and a `title` query in the request arguments, `read_all_books` returns a list containing only the `Book`s which match the query
-- When we call `read_one_book` with a numeric ID that doesn't have a record, we get the expected error message
-- When we call `read_one_book` with a non-numeric ID, we get the expected error message
+- When we have records, `get_all_books` returns a list containing a dictionary representing each `Book`
+- When we have records and a `title` query in the request arguments, `get_all_books` returns a list containing only the `Book`s which match the query
+  - There are similar considerations depending on whether we have a `description` query, or both a `title` and `description` query, but we'll leave those as tests for you to consider adding!
+- When we call `get_one_book` with a numeric ID that doesn't have a record, we get the expected error message
+- When we call `get_one_book` with a non-numeric ID, we get the expected error message
+
+Our tests for `create_book` already have tests for both successful creation (which return a dictionary representation of the created book) and for error cases when the request is missing a required field.
 
 ```python
 # When we have records, `read_all_books` returns a list containing a dictionary representing each `Book`
