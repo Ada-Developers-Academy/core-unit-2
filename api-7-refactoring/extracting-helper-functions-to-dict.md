@@ -249,44 +249,45 @@ def test_to_dict_missing_description():
 
 At this point, when we run our test suite we should see all of the tests in `test_book_routes.py` passing, and the new tests in `test_book_model.py` failing. Now we can start our cycle of making small changes and testing until we complete our refactor!
 
-### Write the `to_dict` function
+### Writing the `to_dict` function
 
 We know the expected input and output of `to_dict` and where we want to write it, so let's start out with some pseudocode. A set of steps could look like:
 
-```python
-  # Create an empty dictionary
-  # for each attribute in Book 
-  #   create a key with the attribute's name
-  #   set it to the value of the attribute
-  # return the dictionary
-```
+- Create an empty dictionary
+- for each attribute in Book 
+  - create a key with the attribute's name
+  - set it to the value of the attribute
+- return the dictionary
 
 Next, we can add our function definition to `book.py`, then re-run our test suite to confirm our model tests are still failing.
 
 ```python
-def to_dict(self):
-    pass
+    # indented under the Book class definition
+    def to_dict(self):
+        pass
 ```
 
-If everything looks good, we can convert our pseudocode to python code. Try out writing the function yourself, then take a look at our implementation below.
+If everything looks good, we can convert our pseudocode to Python code. Try out writing the function yourself, then take a look at our implementation below.
+
+<br>
 
 <details>
    <summary>Complete <code>to_dict</code> function example</summary>
 
 ```python
-def to_dict(self):
-    book_as_dict = {}
-    book_as_dict["id"] = self.id
-    book_as_dict["title"] = self.title
-    book_as_dict["description"] = self.description
+    # indented under the Book class definition
+    def to_dict(self):
+        book_as_dict = {}
+        book_as_dict["id"] = self.id
+        book_as_dict["title"] = self.title
+        book_as_dict["description"] = self.description
 
-    return book_as_dict
+        return book_as_dict
 ```
 
 </details>
-</br>
 
-When we run our tests now, we should see all tests passing – but we still have changes to make! 
+When we run our tests now, we should see all tests passing–but we still have changes to make! 
 
 ### Replace Repeated Code
 
