@@ -177,11 +177,11 @@ We know that we want to move our code that creates a dictionary from a `Book` mo
 
 Planning our function further, we know that we need a book as input, and we want our function's output to be a dictionary with a key for each of the input `Book`'s attributes. Because we need an instance of a `Book` to take this action, we probably want this to be an instance function of our `Book` class. And since the function will be responsible for converting a `Book` instance to a dictionary, we'll name it `to_dict`.
 
-### Write failing tests for `to_dict`
+### Writing failing tests for `to_dict`
 
-If we're following Test Driven Development (TDD), our next step is to write tests for `to_dict` that will fail until we write our new function. We'll create a new file `test_models.py` and add tests to cover nominal and edge cases for the `to_dict` function.
+Our first stop for this new function is to write some failing tests in `test_book_model.py`. Let's pause and come up with a list of cases that would be helpful to confirm `to_dict`'s behavior. After you're done, take a look at our new test cases below.
 
-Let's pause to think through what cases we might test for the `to_dict` function and what data we need to arrange and check those cases. When you're ready, check out our `test_models.py` code below.
+<br>
 
 <details>
    <summary>Complete <code>test_models.py</code> example</summary>
