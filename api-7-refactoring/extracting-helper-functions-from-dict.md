@@ -589,21 +589,81 @@ def create_book():
 
 ## Check for Understanding
 
-<!-- Question Takeaway -->
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
 <!-- prettier-ignore-start -->
 ### !challenge
-* type: paragraph
-* id: 43d9c16f
-* title: Refactoring
+
+* type: multiple-choice
+* id: ae1f9426-8959-421d-b04f-8de6d806887c
+* title: Extracting Helper Functions Pt. 1
+
 ##### !question
 
-What was your biggest takeaway from this lesson? Feel free to answer in 1-2 sentences, draw a picture and describe it, or write a poem, an analogy, or a story.
+Which of the following is NOT a reason to refactor code?
 
 ##### !end-question
-##### !placeholder
 
-My biggest takeaway from this lesson is...
+##### !options
 
-##### !end-placeholder
+a| The code is difficult to understand
+b| The code is difficult to test
+c| The code is repetitive
+d| The code is highly optimized
+e| The code "knows" too much
+
+##### !end-options
+
+##### !answer
+
+d|
+
+##### !end-answer
+
+##### !explanation
+
+Usually, we wouldn't refactor code that is already highly optimized. Optimization is a trade-off between readability and performance, and we wouldn't want to sacrifice performance for readability unless we had a good reason to do so. If the highly optimized code were mixed in with other code in a function, we might refactor it into it's own function, but this would usually be done when the code was being optimized.
+
+##### !end-explanation
+
 ### !end-challenge
 <!-- prettier-ignore-end -->
+<!-- ======================= END CHALLENGE ======================= -->
+
+<!-- >>>>>>>>>>>>>>>>>>>>>> BEGIN CHALLENGE >>>>>>>>>>>>>>>>>>>>>> -->
+<!-- prettier-ignore-start -->
+### !challenge
+
+* type: multiple-choice
+* id: 65e4789c-ebf6-4fa7-b4e9-4d41af5f5814
+* title: Extracting Helper Functions Pt. 1
+
+##### !question
+
+What is the purpose of a class method in Python?
+
+##### !end-question
+
+##### !options
+
+a| To create an instance method that operates on a specific instance of a class
+b| To create a function that is not associated with any class
+c| To create a method that operates on the class itself and not on instances of the class
+d| To create a method that can only be called from outside the class
+
+##### !end-options
+
+##### !answer
+
+c|
+
+##### !end-answer
+
+##### !explanation
+
+Class methods are associated with a particular class, but not with any specific instance of that class. They operate on the class itself. One thing they're often used for is to provide additional ways to create instances of the class beyond the default initializer, but they can also be used for other purposes.
+
+##### !end-explanation
+
+### !end-challenge
+<!-- prettier-ignore-end -->
+<!-- ======================= END CHALLENGE ======================= -->
