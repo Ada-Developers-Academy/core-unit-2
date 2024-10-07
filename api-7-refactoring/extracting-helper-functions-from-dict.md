@@ -230,11 +230,41 @@ def create_book():
 
 </details>
 
-### Identify Dependencies
+### Identifying Dependencies
 
-We've flagged the code we want to refactor, next we need to identify our dependencies. 
+We identified the code we want to refactor, but do we have the safety net we need to refactor confidently? To know that, we need to first identify our dependencies, then ensure we have strong test coverage around those scenarios.
 
-If we look through the `Hello Books` project, there are several places across `conftest.py` and `test_models.py` where a `Book` model is created. However, in those cases, we're choosing to pass the default constructor specific values for testing. Our changes shouldn't affect these uses of `Book`. 
+To identify dependencies, we should look at the code base and ask "Where is the code I'm refactoring being called?" We should keep track of all the locations we find. If we're refactoring code inside a class, we also want to ask "Does any other code extend or inherit this class?"
+
+
+<!-- prettier-ignore-start -->
+### !challenge
+* type: paragraph
+* id: d418f12b
+* title: Extracting Helper Functions Pt. 1
+* 
+##### !question
+Take a few minutes to look over `hello_book`'s routes and model files, and make a list of the dependencies you notice that are related to creating a new `Book` instance. When you're done, check out the explanation to see what dependencies we found. 
+##### !end-question
+
+##### !placeholder
+The dependencies I found are...
+##### !end-placeholder
+
+##### !explanation
+We searched the project for locations where we create a `Book` model. Doing a case-sensitive search for `Book(`, or right-clicking on the `Book` class name and selecting "Find Usages" in VS Code, can be useful ways of locating candidate dependencies quickly, though they may not catch every use of the class.
+
+<br>
+
+We found code that was building a `Book` instance in the `create_book` route, as well as in the `two_saved_books` fixture in `conftest.py`.
+##### !end-explanation
+
+### !end-challenge
+<!-- prettier-ignore-end -->
+
+We're planning to refactor code that creates a `Book` model, so we can begin by looking for places that call the `Book` constructor.
+
+If we look through the `Hello Books` project, one place we find code that creates `Book` instances is `conftest.py`. However, here we're choosing to pass the default constructor specific values for testing. We should avoid changing these uses of `Book`. 
 
 The only other place we create a `Book` is in the `create_book` route. There we're getting the values from a dictionary. Since `create_book` is the only function that will be affected by our changes, we've completed identifying our dependencies and can move forward by examining our test suite.
 
