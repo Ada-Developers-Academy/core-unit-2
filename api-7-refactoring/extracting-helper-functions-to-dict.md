@@ -42,40 +42,24 @@ Our test folder should have 2 files:
 </details>
 
 ## Planning the Refactor
+
+Let's turn our attention back to the other refactoring candidate we identified in the previous section: building a dictionary representation of a `Book` model.
+
 ### Identifying Code to Refactor
-Our first step in refactoring is taking a critical look at our code. If we review the routes file, we may see a pattern in our read functions and what they return. What do you see in common between the `read_all_books` and `read_one_book` functions below?
+
+In the previous lesson, we observed that there are multiple places in our current routes that need to build a dictionary representation of the `Book` models with which they interact. For example, our `create_book` and `get_one_book` both have some variation of the following code in common:
 
 ```python
-@books_bp.route("", methods=["GET"])
-def read_all_books():
-    title_query = request.args.get("title")
-    if title_query:
-        books = Book.query.filter_by(title=title_query)
-    else:
-        books = Book.query.all()
-
-    books_response = []
-    for book in books:
-        books_response.append(
-            {
-                "id": book.id,
-                "title": book.title,
-                "description": book.description
-            }
-        )
-    return jsonify(books_response)
-
-@books_bp.route("/<book_id>", methods=["GET"])
-def read_one_book(book_id):
-    book = validate_book(book_id)
-    return {
-            "id": book.id,
-            "title": book.title,
-            "description": book.description
-        }
+response = {
+    "id": book.id,
+    "title": book.title,
+    "description": book.description
+}
 ```
 
-The responses are a little different, but in both cases we need to convert a `Book` model to a dictionary to create our response. We can see this code repeated in both functions, so let's move forward with refactoring the repeated code into a single helper function both functions can use!
+This repeated code is what we're looking to replace by refactoring it into a helper function. Since the operation is specific to the `Book` model, it makes sense to add this function to the `Book` class. And because the function will be responsible for converting a `Book` instance to a dictionary, we'll name it `to_dict`.
+
+So let's move forward with refactoring the repeated code into a single helper function that can be used anywhere we need to build a dictionary representation of a `Book` model!
 
 ### Identifying Dependencies
 
