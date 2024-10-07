@@ -168,7 +168,6 @@ def test_get_one_book_invalid_id(client, two_saved_books):
 Additional tests can (and should) be included to test the various combinations of query parameters that could be passed to `get_all_books`. We'll leave those as an exercise for you to consider adding! Since we're focused on refactoring the code that builds a dictionary representation of a `Book` model, we'll move forward with the tests we've added here.
 
 </details>
-</br>
 
 At this point, we have a solid test suite for our routes that will be affected by our changes! All of our tests, existing and new, should be passing. We can feel good about making updates with the knowledge that we can run our tests frequently and they will help us catch any issues that arise.
 
