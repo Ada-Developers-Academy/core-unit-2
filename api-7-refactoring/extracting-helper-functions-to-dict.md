@@ -19,12 +19,13 @@ To do this we will follow the same steps of planning then executing a refactor a
 - A `hello_books_development` database
 - A `book` table defined
 - A `Book` model defined
-- Endpoints defined for these RESTful routes:
-  - `GET` to `/books`
-  - `POST` to `/books`
-  - `GET` to `/books/<book_id>`
-  - `PUT` to `/books/<book_id>`
-  - `DELETE` to `/books/<book_id>`
+  
+Endpoints defined for these RESTful routes:
+- `GET` to `/books`
+- `POST` to `/books`
+- `GET` to `/books/<book_id>`
+- `PUT` to `/books/<book_id>`
+- `DELETE` to `/books/<book_id>`
 
 The `Book` model and table should have the following columns:
 - `id`
