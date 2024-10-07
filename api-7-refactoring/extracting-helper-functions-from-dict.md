@@ -204,32 +204,6 @@ class Point:
 
 So far we've set the stage - we know what we want to refactor, why we're doing it, and we have some new tools for writing the code. Let's get into it! 
 
-<br>
-
-<details>
-   <summary>Expand for a reminder of the current <code>create_book</code> route implementation. </summary>
-
-```python
-@books_bp.post("")
-def create_book():
-    request_body = request.get_json()
-    title = request_body["title"]
-    description = request_body["description"]
-
-    new_book = Book(title=title, description=description)
-    db.session.add(new_book)
-    db.session.commit()
-
-    response = {
-        "id": new_book.id,
-        "title": new_book.title,
-        "description": new_book.description,
-    }
-    return response, 201
-```
-
-</details>
-
 ### Identifying Dependencies
 
 We identified the code we want to refactor, but do we have the safety net we need to refactor confidently? To know that, we need to first identify our dependencies, then ensure we have strong test coverage around those scenarios.
@@ -267,6 +241,32 @@ We're planning to refactor code that creates a `Book` model, so we can begin by 
 If we look through the `Hello Books` project, one place we find code that creates `Book` instances is `conftest.py`. However, here we're choosing to pass the default constructor specific values for testing. We should avoid changing these uses of `Book`. 
 
 The only other place we create a `Book` is in the `create_book` route. There we're getting the values from a dictionary. Since `create_book` is the only function that will be affected by our changes, we've completed identifying our dependencies and can move forward by examining our test suite.
+
+<br>
+
+<details>
+   <summary>Expand for a reminder of the current <code>create_book</code> route implementation. </summary>
+
+```python
+@books_bp.post("")
+def create_book():
+    request_body = request.get_json()
+    title = request_body["title"]
+    description = request_body["description"]
+
+    new_book = Book(title=title, description=description)
+    db.session.add(new_book)
+    db.session.commit()
+
+    response = {
+        "id": new_book.id,
+        "title": new_book.title,
+        "description": new_book.description,
+    }
+    return response, 201
+```
+
+</details>
 
 ### Check for Tests
 
