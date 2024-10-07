@@ -508,9 +508,15 @@ def test_from_dict_with_extra_keys():
 ```
 
 </details>
-</br>
 
-If we run our test suite and see only these new tests are failing, we can start implementing!
+Notice some of the decisions we made in our tests:
+- We're testing that `from_dict` returns a `Book` instance with the correct attributes when given a dictionary with the correct keys.
+- We're testing that `from_dict` raises a `KeyError` when given a dictionary with missing keys.
+- We're testing that `from_dict` ignores extra keys in the dictionary.
+
+These aren't the only behaviors we could have decided on, but they'll meet our initial needs of making sure we have the data we need to create a `Book`. How we communicated that keys are missing was up to us, but since Python raises a `KeyError` when we try to access a key that doesn't exist in a dictionary, we decided to raise a `KeyError` in our tests as well. This will also work well with the existing error logic in the `create_book` route. It would also have been a valid to make a different decision about how to handle extra keys. Ignoring them is a common choice, but we could also have restricted the endpoint to only allow valid keys
+
+After running our test suite, we should see all the new tests failing, but everything else passing. We have achieved the Red phase of Red-Green-Refactor! Next stop, Green!
 
 ### Write the `from_dict` function
 
