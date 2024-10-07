@@ -447,13 +447,14 @@ When we're following Test Driven Development (TDD), our first step is to write t
 
 Let's pause to think through what cases we might test for the `from_dict` function and what data we need to arrange and check those cases. When you're ready, check out our `test_book_model.py` code below.
 
+<br>
+
 <details>
-   <summary>New tests for <code>from_dict</code> in <code>test_models.py</code></summary>
+   <summary>Tests for <code>from_dict</code> in <code>test_book_model.py</code></summary>
 
 ```python
 from app.models.book import Book
 import pytest
-...
 
 def test_from_dict_returns_book():
     # Arrange
@@ -497,7 +498,7 @@ def test_from_dict_with_extra_keys():
         "description": "The Best!",
         "another": "last value"
     }
-    
+
     # Act
     new_book = Book.from_dict(book_data)
 
