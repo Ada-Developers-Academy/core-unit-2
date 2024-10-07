@@ -522,7 +522,7 @@ After running our test suite, we should see all the new tests failing, but every
 
 Our next step is to write out our pseudocode. We'll leave that as an exercise for you to try out and move on to writing our function definition. 
 
-For Python to recognize our new function as a class method, we'll need to use the new syntax discussed above, the `@classmethod` decorator and `cls` parameter:
+For Python to recognize our new function as a class method, we'll need to use the new syntax discussed above, the `@classmethod` decorator and the conventional `cls` parameter:
 
 ```python  
 @classmethod
@@ -530,7 +530,9 @@ def from_dict(cls, book_data):
    pass
 ```
 
-Our tests in `test_models.py` for `from_dict` should still be failing at this point. If they are, we can start changing our pseudocode into Python code. Try out writing the function, then take a look at our implementation below.
+Our tests in `test_book_model.py` for `from_dict` should still be failing at this point. If they are, we can start changing any pseudocode we've planned into Python code. Try out writing the function, then take a look at our implementation below.
+
+<br>
 
 <details>
    <summary>Complete <code>from_dict</code> function example</summary>
@@ -544,7 +546,6 @@ def from_dict(cls, book_data):
 ```
 
 </details>
-</br>
 
 At this point, we should see all our tests passing!
 
