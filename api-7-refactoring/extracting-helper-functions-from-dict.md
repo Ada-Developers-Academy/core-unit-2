@@ -270,7 +270,7 @@ def create_book():
 
 ### Check for Tests
 
-Let's take a look in `test_routes.py` and see what our test cases look like for `create_book`.
+Let's take a look in `test_book_routes.py` and see what our test cases look like for `create_book`.
 
 ```python
 def test_create_one_book(client):
@@ -283,10 +283,16 @@ def test_create_one_book(client):
 
     # Assert
     assert response.status_code == 201
-    assert response_body == "Book New Book successfully created"
+    assert response_body == {
+        "id": 1,
+        "title": "New Book",
+        "description": "The Best!"
+    }
 ```
 
 We have a solid nominal case, but we're missing tests for edge cases. Take some time to think about what edge cases would be useful, and try writing the tests. When you're done, check out the cases we added below.
+
+<br>
 
 <details>
    <summary>New test cases for <code>create_book</code></summary>
@@ -311,7 +317,7 @@ def test_create_one_book_no_description(client):
     with pytest.raises(KeyError, match = 'description'):
         response = client.post("/books", json=test_data)
 
-def test_create_one_book_with_extra_keys(client, two_saved_books):
+def test_create_one_book_with_extra_keys(client):
     # Arrange
     test_data = {
         "extra": "some stuff",
@@ -326,13 +332,103 @@ def test_create_one_book_with_extra_keys(client, two_saved_books):
 
     # Assert
     assert response.status_code == 201
-    assert response_body == "Book New Book successfully created"
+    assert response_body == {
+        "id": 1,
+        "title": "New Book",
+        "description": "The Best!"
+    }
 ```
 
 </details>
-</br>
 
-If we run our tests, everything should still be green and we can start on the implementation!
+We added three additional tests to cover edge cases for `create_book`. The first two look for cases where the request body is missing either the `title` or `description` keys. The third test checks for extra keys in the request body. The first two cases should fail to create a `Book`, while the third case should still create a `Book` successfully, ignoring the extra keys.
+
+But what's going on with how we are checking for failure? Let's use Postman to send a request to create a book with no title and see what happens.
+
+![View of Postman after sending a request to the create book endpoint, showing a 500 Internal Server Error result](../assets/api-7-refactoring/api-7-refactoring_extracting-helper-functions-from-dict_create-with-no-title.png)  
+*Fig. Sending a request to create a book with no title results in a 500 Internal Server Error response. ([Full size image](../assets/api-7-refactoring/api-7-refactoring_extracting-helper-functions-from-dict_create-with-no-title.png))*
+
+Notice that the title of the error output is `KeyError: 'title'`. Flask has caught the `KeyError` resulting from trying to access a key that doesn't exist in the dictionary, and has returned a 500 Internal Server Error response. But if we run the tests as shown above (which are expecting a `KeyError` to occur), they succeed.
+
+We should be writing our route tests so that they confirm the behavior we want a caller to see, but here, we had to write our tests to watch for a `KeyError` because the Flask test client "leaks" that internal error to us! In order to write tests that confirm the behavior we want, we need to change how we handle the error in the route.
+
+Remember that we don't usually respond a 500 Internal Server Error response when the client sends a request with missing data. Instead, we send back a 400 Bad Request response, indicating that the client has sent a request that the server can't process.
+
+Rather than letting the `KeyError` propagate up to Flask, we should catch it and return a 400 Bad Request response with a message that tells the client what went wrong. Try to make that change in the `create_book` route, then take a look at our updated implementation below.
+
+<br>
+
+<details>
+   <summary>Expand to see our changes to the <code>create_book</code> route implementation that will turn a <code>KeyError</code> into a Bad Request response.</summary>
+
+```python
+@books_bp.post("")
+def create_book():
+    request_body = request.get_json()
+
+    try:
+        title = request_body["title"]
+        description = request_body["description"]
+
+        new_book = Book(title=title, description=description)
+
+    except KeyError as error:
+        response = {"message": f"Invalid request: missing {error.args[0]}"}
+        abort(make_response(response, 400))
+
+    db.session.add(new_book)
+    db.session.commit()
+
+    response = {
+        "id": new_book.id,
+        "title": new_book.title,
+        "description": new_book.description,
+    }
+    return response, 201
+```
+</details>
+
+Now our code handles the `KeyError` when reading from `request_body` by generating a response that tells the client what went wrong, and sets the response status code to 400 Bad Request.
+
+Running our tests, we'll see the two tests that were expecting a `KeyError` to fail, since we're now returning a 400 Bad Request response. The other tests should still pass.
+
+Let's fix the failing tests by updating the expected response status codes and messages. Try updating the tests yourself, then take a look at our updated tests below.
+
+<br>
+
+<details>
+   <summary>Updated test cases for <code>create_book</code> that check for a 400 Bad Response</summary>
+
+```python
+def test_create_one_book_no_title(client):
+    # Arrange
+    test_data = {"description": "The Best!"}
+
+    # Act
+    response = client.post("/books", json=test_data)
+    response_body = response.get_json()
+
+    # Assert
+    assert response.status_code == 400
+    assert response_body == {'message': 'Invalid request: missing title'}
+
+def test_create_one_book_no_description(client):
+    # Arrange
+    test_data = {"title": "New Book"}
+
+    # Act
+    response = client.post("/books", json=test_data)
+    response_body = response.get_json()
+
+    # Assert
+    assert response.status_code == 400
+    assert response_body == {'message': 'Invalid request: missing description'}
+```
+</details>
+
+Our route is now responding with a 400 Bad Request response when the client sends a request with missing data, and our tests are confirming that behavior.
+
+We now have tests that validate the route behavior for several nominal and edge cases. We're ready to start refactoring!
 
 ## Executing the Refactor
 
@@ -442,9 +538,9 @@ def from_dict(cls, book_data):
 
 At this point, we should see all our tests passing!
 
-### Replace the Code in `routes.py`
+### Replace the Code in `book_routes.py`
 
-Now that we're replacing the original code in `routes.py`, the first thing we want to do is remove the code in `create_book` we intend to replace and see those tests fail. Once we see the tests failing, replace the line with a call to `Book`'s new class method. If we run our tests one last time, we should see green tests all the way! 
+Now that we're replacing the original code in `book_routes.py`, the first thing we want to do is remove the code in `create_book` we intend to replace and see those tests fail. Once we see the tests failing, replace the line with a call to `Book`'s new class method. If we run our tests one last time, we should see green tests all the way! 
 
 Try out replacing the code yourself, then take a look at our updated `create_book` below. 
 
