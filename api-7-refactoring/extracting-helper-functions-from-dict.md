@@ -120,15 +120,91 @@ The first function is `create_book`. This function creates a new `Book` instance
 2. extracting values for the `title` and `description` keys from the dictionary
 3. passing those values by name to the `Book` constructor
 
+<br>
+
+<details>
+   <summary>Expand to see the current <code>create_book</code> route implementation. </summary>
+
+```python
+@books_bp.post("")
+def create_book():
+    request_body = request.get_json()
+    title = request_body["title"]
+    description = request_body["description"]
+
+    new_book = Book(title=title, description=description)
+    db.session.add(new_book)
+    db.session.commit()
+
+    response = {
+        "id": new_book.id,
+        "title": new_book.title,
+        "description": new_book.description,
+    }
+    return response, 201
+```
+</details>
+
 After storing the new `Book` instance in the database, the function returns a response consisting of a dictionary with string keys, whose values are filled with data from the saved `Book` instance. 
 
 At this point, we might not see much to refactor, so let's keep looking.
 
 The next function is `get_all_books`. This function retrieves all the `Book` instances from the database, applying a number of optional filters, then creates a list of dictionaries, each representing a `Book` instance. The function returns the list of dictionaries as the response body.
 
+<br>
+
+<details>
+   <summary>Expand to see the current <code>get_all_books</code> route implementation. </summary>
+
+```python
+@books_bp.get("")
+def get_all_books():
+    query = db.select(Book)
+
+    title_param = request.args.get("title")
+    if title_param:
+        query = query.where(Book.title.ilike(f"%{title_param}%"))
+
+    description_param = request.args.get("description")
+    if description_param:
+        query = query.where(Book.description.ilike(f"%{description_param}%"))
+
+    books = db.session.scalars(query.order_by(Book.id))
+
+    books_response = []
+    for book in books:
+        books_response.append(
+            {
+                "id": book.id,
+                "title": book.title,
+                "description": book.description
+            }
+        )
+    return books_response
+```
+</details>
+
 This code is definitely more complicated than the `create_book` function. Maybe there's some way we can simplify all that filtering code? It would be great if it could be reused for any other model types that we add to the project! For the moment, let's put a pin in that idea, since there's another possible refactor in this function that we can tackle a little more directly.
 
 `get_all_books` needs to return a collection of `Book` models as a list of dictionaries. Each `Book` model is used to build a dictionary in the response. We can see that the code to build a dictionary from a `Book` model is repeated in the `create_book` function. Taking a quick glance at the next function, `get_one_book`, we can see that it also builds a dictionary from a `Book` model.
+
+<br>
+
+<details>
+   <summary>Expand to see the current <code>get_one_book</code> route implementation. </summary>
+
+```python
+@books_bp.get("/<book_id>")
+def get_one_book(book_id):
+    book = validate_book(book_id)
+
+    return {
+        "id": book.id,
+        "title": book.title,
+        "description": book.description,
+    }
+```
+</details>
 
 Our routes currently have code in three different places that builds a dictionary from a `Book` model. This repetition makes it a great candidate for refactoring! It's also potentially a good candidate for refactoring because it's code that "knows" too much. Why does the route logic need to know how to build a dictionary from a `Book` model? Why does the route logic need to know the names of all the fields in the `Book` model, and all the key names in the dictionary? If the `Book` model knew how to build a dictionary from itself, the route logic wouldn't need to know any of that! All the route would need to know is how to ask a `Book` instance to build a dictionary from itself.
 
