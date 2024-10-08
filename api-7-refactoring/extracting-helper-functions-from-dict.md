@@ -58,7 +58,7 @@ Our test suite should have 3 tests:
 
 ### Identifying Code to Refactor
 
-Our first step in refactoring is taking a critical look at our code to identify what we want to refactor. It's possible that we might notice things we'd like to refactor as we work on other parts of our codebase. As we continue to gain coding experience, we'll have more experience to draw from and will more easily be able to identify areas that could be improved.
+Our first step in refactoring is taking a critical look at our code to identify what we want to refactor. It's possible that we might notice things we'd like to refactor as we work on other parts of our codebase. As we continue our coding journey, we'll have more experience to draw from and will more easily be able to identify areas that could be improved.
 
 To help us organize our thoughts, we might look through our code:
 - Function by function, in the order they happen to appear in a file
@@ -85,7 +85,7 @@ When we see repeated code, we should ask ourselves if there's a way to write the
 
 ### Code That "Knows" Too Much
 
-Code that "knows" too much is code that has to be changed whenever another part of the codebase changes. This is a problem because it makes our code brittle. If we change one part of the codebase, we have to change another part of the codebase, and we can introduce bugs if we forget to make the change in both places.
+Code that "knows" too much is code that has to be changed in response to another part of the codebase changing. This is a problem because it makes our code brittle. If we change one part of the codebase, we have to remember to change another part of the codebase, and we can introduce bugs if we forget to make the change in both places.
 
 When we see code that "knows" too much, we should ask ourselves if there's a way to make the code more flexible. Most commonly, we'll extract the code that "knows" too much into a function and pass in the information it needs as arguments.
 
@@ -514,7 +514,7 @@ Notice some of the decisions we made in our tests:
 - We're testing that `from_dict` raises a `KeyError` when given a dictionary with missing keys.
 - We're testing that `from_dict` ignores extra keys in the dictionary.
 
-These aren't the only behaviors we could have decided on, but they'll meet our initial needs of making sure we have the data we need to create a `Book`. How we communicated that keys are missing was up to us, but since Python raises a `KeyError` when we try to access a key that doesn't exist in a dictionary, we decided to raise a `KeyError` in our tests as well. This will also work well with the existing error logic in the `create_book` route. It would also have been a valid to make a different decision about how to handle extra keys. Ignoring them is a common choice, but we could also have restricted the endpoint to only allow valid keys
+These aren't the only behaviors we could have decided on, but they'll meet our initial needs of making sure we have the data we need to create a `Book`. How we communicated that keys are missing was up to us, but since Python raises a `KeyError` when we try to access a key that doesn't exist in a dictionary, we decided to raise a `KeyError` in our tests as well. This will also work well with the existing error logic in the `create_book` route. It would also have been valid to make a different decision about how to handle extra keys. Ignoring them is a common choice, but we could also have restricted the endpoint to only allow valid keys
 
 After running our test suite, we should see all the new tests failing, but everything else passing. We have achieved the Red phase of Red-Green-Refactor! Next stop, Green!
 

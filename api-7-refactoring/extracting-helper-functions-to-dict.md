@@ -177,7 +177,7 @@ We know that we want to move our code that creates a dictionary from a `Book` mo
 
 Planning our function further, we know that we need a book as input, and we want our function's output to be a dictionary with a key for each of the input `Book`'s attributes. Because we need an instance of a `Book` to take this action, we probably want this to be an instance function of our `Book` class. And since the function will be responsible for converting a `Book` instance to a dictionary, we'll name it `to_dict`.
 
-### Writing failing tests for `to_dict`
+### Writing Failing Tests for `to_dict`
 
 Our first stop for this new function is to write some failing tests in `test_book_model.py`. Let's pause and come up with a list of cases that would be helpful to confirm `to_dict`'s behavior. After you're done, take a look at our new test cases below.
 
@@ -249,7 +249,7 @@ def test_to_dict_missing_description():
 
 At this point, when we run our test suite we should see all of the tests in `test_book_routes.py` passing, and the new tests in `test_book_model.py` failing. Now we can start our cycle of making small changes and testing until we complete our refactor!
 
-### Writing the `to_dict` function
+### Writing the `to_dict` Function
 
 We know the expected input and output of `to_dict` and where we want to write it, so let's start out with some pseudocode. A set of steps could look like:
 
