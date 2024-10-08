@@ -518,7 +518,7 @@ These aren't the only behaviors we could have decided on, but they'll meet our i
 
 After running our test suite, we should see all the new tests failing, but everything else passing. We have achieved the Red phase of Red-Green-Refactor! Next stop, Green!
 
-### Write the `from_dict` function
+### Write the `from_dict` Function
 
 Our next step is to write out our pseudocode. We'll leave that as an exercise for you to try out and move on to writing our function definition. 
 
