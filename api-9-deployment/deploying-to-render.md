@@ -60,7 +60,7 @@ As a new user, our dashboard should display a quick start guide.
 
 Once we have added applications, our dashboard will change to show a list of all our deployed applications. 
 
-![Screenshot of the Render Dashboard with two apps listed in it](../assets/deployment/render-dashboard-successfully-deployed-services.png)
+![Screenshot of the Render Dashboard with several apps listed in it](../assets/deployment/render-dashboard-successfully-deployed-services.png)
 
 ## Connect Render Account to GitHub
 
@@ -151,7 +151,7 @@ We also want to change the "Branch" field to choose which branch we want to pull
 ![Screenshot of Render after selecting the language and choosing the branch 08b-nested-routes](../assets/deployment/render-set-language-and-branch.png)
 _([Full size image](../assets/deployment/render-set-language-and-branch.png))_
 
-Next, we need to alter the "Start Command" field which defaults to the value `$ gunicorn app: app`. This field defines where in our code the `gunicorn` package should look to find what it needs to start our Flask web server. 
+Next, we need to alter the "Start Command" field which defaults to the value `$ gunicorn app:app`. This field defines where in our code the `gunicorn` package should look to find what it needs to start our Flask web server. 
 
 Update the "Start Command" field to `$ gunicorn "app:create_app()"`.
 
@@ -195,7 +195,7 @@ Since we are using GitHub to give Render access to our code, this means Render w
 
 ### Verify in the Dashboard
 
-We can also verify our app was created by navigating to our main [Render dashboard](https://dashboard.render.com/).
+We can verify our app was created by navigating to our main [Render dashboard](https://dashboard.render.com/).
 
 Our new app is now listed! Under the "Status" field it should read `Failed deploy`. We'll visit this dashboard whenever we need to see or update details of our Render apps. 
 
@@ -242,7 +242,7 @@ _([Full size image](../assets/deployment/render-database-info-db-available.png))
 
 We can verify that our Postgres database was successfully created by visiting the [Render dashboard](https://dashboard.render.com/).
 
-Our new database should now be listed above our application.
+Our new database should now be listed, along with our application.
 
 ![Screenshot of the Render dashboard showing the new hello-books-api-db database](../assets/deployment/render-dashboard-db-exists-api-failed-deploy.png)
 _([Full size image](../assets/deployment/render-dashboard-db-exists-api-failed-deploy.png))_
@@ -259,7 +259,7 @@ _([Full size image](../assets/deployment/render-copy-external-db-connection.png)
 Your external database URL will look something like the following:
 
 ```
-postgres://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
+postgres://YOUR_DATABASE_USERNAME:YOUR_DATABASE_PASSWORD@DB_HOSTNAME.oregon-postgres.render.com/YOUR_DATABASE
 ```
 
 Render generated `YOUR_DATABASE_USERNAME` and `YOUR_DATABASE` when we first set up our database. We can find what they are by checking our database's "Info" page and scrolling down to the "Connections" subsection. 
@@ -269,7 +269,7 @@ _([Full size image](../assets/deployment/render-database-info-connections.png))_
 
 In our case `YOUR_DATABASE_USERNAME` is `hello_books_api_db_jx8j_user` (listed as the "Username" on our database's dashboard) and `YOUR_DATABASE` is `hello_books_api_db_jx8j` (listed as the "Database" on our database's dashboard).
 
-`CONNECTION-STRING` will be a long series of random characters. 
+`YOUR_DATABASE_PASSWORD` and `DB_HOSTNAME` correspond to the Password and Hostname fields, and will each be a long series of random characters. 
 
 Navigate to the `.env` file in our project's root directory in VS Code. Comment out the existing `SQLALCHEMY_DATABASE_URI` and create a new `SQLALCHEMY_DATABASE_URI` variable that will hold our external database URL. 
 
@@ -314,7 +314,7 @@ The value we assign to `app.config['SQLALCHEMY_DATABASE_URI']` determines which 
 
 <br>
 
-If we want to go back to running our app against our local Postgres database, we need to revert the changes in our `.env` file so that our code once again references our local Postgres instance.
+If we want to go back to running our app against our local Postgres database, we need to undo the changes in our `.env` file so that our code once again references our local Postgres instance.
 ### !end-callout
 
 ### Confirm the Migration
@@ -354,7 +354,7 @@ _([Full size image](../assets/deployment/render-copy-internal-db-connection.png)
 
 Next, we need to make a `SQLALCHEMY_DATABASE_URI` environment variable in our web service application. 
 
-Navigate to our web service application's dashboard.
+Navigate to our web service application's dashboard, and click Environment in the left panel.
 
 ![Screenshot of hello-books-api dashboard](../assets/deployment/render-webservice-settings-environment.png)
 _([Full size image](../assets/deployment/render-webservice-settings-environment.png))_
@@ -365,7 +365,7 @@ In the "Environment" section:
 2. Set the key as `SQLALCHEMY_DATABASE_URI`
 3. Set the value of this variable to the internal connection string we copied
 4. Modify the value of the internal connection string so that the beginning reads `postgresql+psycopg2` instead of `postgres`
-5. Click "Save Changes"
+5. Click "Save, rebuild, and deploy"
 
 ![Screenshot of the Render dashboard at the Settings tab, showing the detail of revealed Config vars. The SQLALCHEMY_DATABASE_URI variable is present](../assets/deployment/render-webservice-environment-add-db-internal-uri.png)
 _([Full size image](../assets/deployment/render-webservice-environment-add-db-internal-uri.png))_
@@ -409,7 +409,7 @@ Our Flask API isn't _intended_ to be used through a web browser. It's meant to b
 
 ### !end-callout
 
-Instead of `localhost:5000/books`, we can visit `https://your-app-name.onrender.com/books`, where `your-app-name` is the name of our Render app.
+Instead of `localhost:5000/books`, we can visit `https://your-app-name.onrender.com/books`, where `your-app-name` is the name of your deployed Render app.
 
 ![Screenshot of the browser open to the deployed API, showing a response of an empty JSON array](../assets/deployment/browser-hitting-books-endpoint-no-results.png)
 _([Full size image](../assets/deployment/browser-hitting-books-endpoint-no-results.png))_
