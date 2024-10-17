@@ -48,7 +48,7 @@ We are choosing Render as a deployment platform because:
 
 ## Create a Render Account
 
-Create an account on [Render](https://dashboard.render.com/register?next=%2Fregisterundefined).
+Create an account on [Render](https://dashboard.render.com/register?next=%2Fregister).
 
 Render will send a verification message to the email you use to register. The email will include a link that brings you to your dashboard.
 
@@ -89,7 +89,7 @@ Although Render will do a lot of the work of hosting, running, and maintaining o
 
 We will use a Python package named [gunicorn](https://pypi.org/project/gunicorn/) to launch our Flask API on Render.
 
-`gunicorn` is capable of running Flask apps so that they can handle multiple simultaneous requests, which is very important for production web applications.
+`gunicorn` is capable of running Flask apps so that they can handle multiple simultaneous requests, which is very important for production web applications. Web frameworks often come with a small, built-in development server (in this case, our `flask run` command), but we shouldn't use that when deploying our app to be used publicly.
 
 We should confirm that the package `gunicorn` is in the project's `requirements.txt` file.
 
@@ -389,7 +389,7 @@ Our Flask project is on a Render machine, running, and connected to an initializ
 
 We can use the browser to make `GET` requests to any endpoint defined in our project, now using our deployed Render URL instead of `localhost`.
 
-We can find our URL on our deployed application's dashboard, listed just under the name of our web service application. Render URLs will take the form `https://your-app-name.onrender.com` Our demonstration has the URL `https://hello-books-api-1.onrender.com`.
+We can find our URL on our deployed application's dashboard, listed just under the name of our web service application. Render URLs will take the form `https://your-app-name.onrender.com` Our demonstration has the URL `https://hello-books-api-1.onrender.com`. We suspend or remove deployed projects when not in use, so we should expect to see an error if we try navigating to the demonstration URL.
 
 ![Screenshot of Render URL for deployed hello-books-api application with copy to clipboard message](../assets/deployment/render-copy-deployed-webservice-url.png)
 _([Full size image](../assets/deployment/render-copy-deployed-webservice-url.png))_
@@ -523,7 +523,7 @@ The command above will:
 * title: Deploying to Render
 ##### !question
 
-Check all of the options that are recommended debugging steps.
+Check all of the options that are recommended debugging steps when troubleshooting our deployed application.
 
 ##### !end-question
 ##### !options
