@@ -168,6 +168,8 @@ Finally, scroll down to the bottom of the page and click the "Deploy Web Service
 ![Screenshot of Create Web Service Button in Render](../assets/deployment/render-deploy-webservice-button.png)
 _([Full size image](../assets/deployment/render-deploy-webservice-button.png))_
 
+If a prompt for payment information appears after clicking the Deploy Web Service button, we can dismiss the popup and then double check that the `Instance Type` selection is set to `Free`. By default, one of the paid tiers is selected, and we'll be prompted for payment information unless we change the setting.
+
 ### !callout-warning
 
 ## Render Free App Limits
@@ -175,8 +177,6 @@ _([Full size image](../assets/deployment/render-deploy-webservice-button.png))_
 Render's free tier only supports a single full stack application (front end app, backend app, and Postgres database). If we want to deploy a second app, we will need to suspend or delete any other apps we have deployed. 
 
 ### !end-callout
-
-If a prompt for payment information appears after clicking the Deploy Web Service button, we can dismiss the popup and then double check that the `Instance Type` selection is set to `Free`. By default, one of the paid tiers is selected, and we'll be prompted for payment information unless we change the setting.
 
 ### Our New Render App
 
