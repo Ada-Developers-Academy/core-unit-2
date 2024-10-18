@@ -146,7 +146,7 @@ Note that the app name must be unique across all Render apps, not just our own a
 
 Next, we should confirm that the "Language" field is set to "Python 3". When deploying a web service to Render, it will try to be helpful and set the "Language" field for you, but it doesn't always select the correct option. You can click the current value of "Language" to see a drop down of the languages supported by Render and choose a new value if necessary.
 
-We also want to change the "Branch" field to choose which branch we want to pull our code from to create our deployed application. Most of the time we will select `main`, but in the case of the Hello Books API repo, we don't have a `main` branch. Instead we want to choose the branch that includes all the code and latest changes we want to be a part of our deployed app. For us, that should be `08b-nested-routes` or any later branch. 
+We also want to change the "Branch" field to choose which branch we want to pull our code from to create our deployed application. Most of the time we will select `main`, and this should be the branch we pick for our individual repos. The example Hello Books API repo doesn't have a `main` branch, we have named branches per-lesson. In this example deployment, we will choose a branch that includes all the code and latest changes we want to be a part of our deployed app. For the purposes of our example, we'll use `09a-deploying-to-render`. 
 
 ![Screenshot of Render after selecting the language and choosing the branch 08b-nested-routes](../assets/deployment/render-set-language-and-branch.png)
 _([Full size image](../assets/deployment/render-set-language-and-branch.png))_
