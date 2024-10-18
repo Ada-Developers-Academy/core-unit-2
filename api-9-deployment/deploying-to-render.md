@@ -176,6 +176,8 @@ Render's free tier only supports a single full stack application (front end app,
 
 ### !end-callout
 
+If a prompt for payment information appears after clicking the Deploy Web Service button, we can dismiss the popup and then double check that the `Instance Type` selection is set to `Free`. By default, one of the paid tiers is selected, and we'll be prompted for payment information unless we change the setting.
+
 ### Our New Render App
 
 At this point, our app will try to build, but won't successfully deploy because we are missing required environment variables like `SQLALCHEMY_DATABASE_URI`. If everything is going as expected, we will see a `==> Running 'gunicorn "app:create_app()"'` message, followed by a red error `"Error: Either 'SQLALCHEMY_DATABASE_URI' or 'SQLALCHEMY_BINDS' must be set."`
@@ -227,6 +229,8 @@ Finally, scroll down to the bottom of the current page. Like we did with our web
 
 ![Screenshot of Create Database button on Render](../assets/deployment/render-set-instance-type-and-create-button.png)
 _([Full size image](../assets/deployment/render-set-instance-type-and-create-button.png))_
+
+The free database tier is time limited, and Render will remove your database, along with any data, after a set period of time unless the plan is upgraded to a paid tier. This is fine for our purposes now when we're gaining deployment experience, but we should keep this mind if we want to deploy any projects that we would like to have run for a longer time. We can always create a new database when the original is removed, but we would need to plan ahead in order to migrate any data from the original database that we would like to preserve.
 
 Render will bring us to our new database's "Info" section. The "Status" field will show that it is "Creating" the database. Creating the database may take several minutes. 
 
