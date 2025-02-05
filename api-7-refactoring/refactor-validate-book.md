@@ -73,7 +73,7 @@ Dependencies:
 
 #### Check for Tests
 
-We previously wrote tests for the routes `create_book`, `get_all_books`, and `get_one_book`, so we can feel good about their test coverage. We are missing tests for the routes `update_book` and `delete_book` though, so let's pause and think through nominal and edge cases for `update_book` `delete_book`. We want to list out what test cases are missing that we'll need to write so that we can catch any potential regressions that might get introduced during the refactoring process.
+We previously wrote tests for the routes `create_book`, `get_all_books`, and `get_one_book`, so we can feel good about their test coverage. We are missing tests for the routes `update_book` and `delete_book` though, so let's pause and think through nominal and edge cases for `update_book` and `delete_book`. We want to list out what test cases are missing that we'll need to write so that we can catch any potential regressions that might get introduced during the refactoring process.
 
 <!-- prettier-ignore-start -->
 ### !challenge
@@ -122,11 +122,10 @@ def test_update_book(client, two_saved_books):
 
     # Act
     response = client.put("/books/1", json=test_data)
-    response_body = response.get_json()
 
     # Assert
-    assert response.status_code == 200
-    assert response_body == "Book #1 successfully updated"
+    assert response.status_code == 204
+    assert response.content_length is None
 
 def test_update_book_with_extra_keys(client, two_saved_books):
     # Arrange
@@ -139,11 +138,10 @@ def test_update_book_with_extra_keys(client, two_saved_books):
 
     # Act
     response = client.put("/books/1", json=test_data)
-    response_body = response.get_json()
 
     # Assert
-    assert response.status_code == 200
-    assert response_body == "Book #1 successfully updated"
+    assert response.status_code == 204
+    assert response.content_length is None
 
 def test_update_book_missing_record(client, two_saved_books):
     # Arrange
@@ -158,7 +156,7 @@ def test_update_book_missing_record(client, two_saved_books):
 
     # Assert
     assert response.status_code == 404
-    assert response_body == {"message": "book 3 not found"}
+    assert response_body == {"message": "Book 3 not found"}
 
 def test_update_book_invalid_id(client, two_saved_books):
     # Arrange
@@ -173,7 +171,7 @@ def test_update_book_invalid_id(client, two_saved_books):
 
     # Assert
     assert response.status_code == 400
-    assert response_body == {"message": "book cat invalid"}
+    assert response_body == {"message": "Book cat invalid"}
 
 def test_delete_book(client, two_saved_books):
     # Act
@@ -181,8 +179,8 @@ def test_delete_book(client, two_saved_books):
     response_body = response.get_json()
 
     # Assert
-    assert response.status_code == 200
-    assert response_body == "Book #1 successfully deleted"
+    assert response.status_code == 204
+    assert response.content_length is None
 
 def test_delete_book_missing_record(client, two_saved_books):
     # Act
@@ -191,7 +189,7 @@ def test_delete_book_missing_record(client, two_saved_books):
 
     # Assert
     assert response.status_code == 404
-    assert response_body == {"message": "book 3 not found"}
+    assert response_body == {"message": "Book 3 not found"}
 
 def test_delete_book_invalid_id(client, two_saved_books):
     # Act
@@ -200,7 +198,7 @@ def test_delete_book_invalid_id(client, two_saved_books):
 
     # Assert
     assert response.status_code == 400
-    assert response_body == {"message": "book cat invalid"}
+    assert response_body == {"message": "Book cat invalid"}
 ```
 
 </details>
