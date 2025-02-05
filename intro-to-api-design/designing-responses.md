@@ -82,6 +82,7 @@ Here is a list of the most common HTTP status codes.
 | ----------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | `200`       | `OK`                                               | The request has succeeded. Implies that the fetched resource is in the response body.                           |
 | `201`       | `Created`                                          | The request has succeeded and a new resource has been created as a result                                       |
+| `204`       | `No Content`                                          | The request has succeeded and there is no additional content to send in the response body.                                       |
 | `301`       | `Moved Permanently`                                | The URL of the requested resource has been changed permanently                                                  |
 | `400`       | `Bad Request`                                      | The server could not understand the request due to invalid syntax.                                              |
 | `404`       | `Not Found`                                        | The server can not find the requested resource, whether the URL is invalid, or that the resource doesn't exist. |
@@ -205,9 +206,17 @@ Or, of course, Eryn could choose to not send back any data besides a status code
 
 ## Response Bodies Are Optional
 
-RESTful APIs send back self-descriptive responses. Sometimes, an HTTP status code and message is all you need!
+RESTful APIs send back self-descriptive responses. Sometimes, an HTTP status code and message is all you need! For example, we can expect to commonly see web APIs send back responses without response bodies for successful `PUT` and `DELETE` requests.
 
 ### !end-callout
+
+### Example: `DELETE` `/students/67` 
+
+What should the web API return when a client sends a request to delete a student resource that exists? Imagine a client sending this request: 
+
+- `DELETE` `/students/67`
+
+Eryn could send back a response body with a message that confirms the resource was deleted in conjunction with the [status code `204`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204) that indicates the action was successful. However, typically, we do not need to send a response body because the status code `204` is sufficient for conveying that the server successfully fulfilled the request.
 
 ## Example Outcomes
 
@@ -221,10 +230,10 @@ We can combine meaningful HTTP statuses and intentional response bodies to creat
 | What is the response for _unsuccessfully_ creating a new resource?             | _Invalid_ resource data, such as missing a required attribute     | `400 Bad Request`          | JSON with details about the missing attribute |
 | What is the response for reading the details of a resource?                    | -                                                                 | `200 OK`          | JSON with the resource                        |
 | What is the response for reading the details of a resource that doesn't exist? | -                                                                 | `404 Not Found`   | -                                             |
-| What is the response for updating a resource successfully?                     | Valid resource data                                               | `200 OK`          | -                                             |
+| What is the response for updating a resource successfully?                     | Valid resource data                                               | `204 No Content`          | -                                             |
 | What is the response for updating a resource _unsuccessfully_?                 | _Invalid_ resource data, such as violating a data type constraint | `400 Bad Request` | JSON with details about the error             |
 | What is the response for updating a resource that doesn't exist?               | Valid resource data                                               | `404 Not Found`   | -                                             |
-| What is the response for deleting a resource successfully?                     | -                                                                 | `200 OK`          | -                                             |
+| What is the response for deleting a resource successfully?                     | -                                                                 | `204 No Content`          | -                                             |
 | What is the response for deleting a resource that doesn't exist?               | Valid resource data                                               | `404 Not Found`   | -                                             |
 
 ## Examples: Slack Web API
