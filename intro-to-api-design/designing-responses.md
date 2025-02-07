@@ -206,7 +206,7 @@ Or, of course, Eryn could choose to not send back any data besides a status code
 
 ## Response Bodies Are Optional
 
-RESTful APIs send back self-descriptive responses. Sometimes, an HTTP status code and message is all you need! For example, we can expect to commonly see web APIs send back responses without response bodies for successful `PUT` and `DELETE` requests.
+RESTful APIs send back self-descriptive responses. And sometimes, an HTTP status code is all the description you need! For example, we can expect to commonly see web APIs send back responses without response bodies for successful `PUT` and `DELETE` requests.
 
 ### !end-callout
 
@@ -216,7 +216,7 @@ What should the web API return when a client sends a request to delete a student
 
 - `DELETE` `/students/67`
 
-Eryn could send back a response body with a message that confirms the resource was deleted in conjunction with the [status code `204`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204) that indicates the action was successful. However, typically, we do not need to send a response body because the status code `204` is sufficient for conveying that the server successfully fulfilled the request.
+Eryn _could_ send back a response body with a message that confirms the resource was deleted in conjunction with a [status code `200`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200), which indicates the action was successful. However, since a status message such as `"Successfully deleted student 67"` doesn't tell us any more than the `200` (indicating success) itself, we may choose to not include the message. And if we have no message, leaving our response body empty, we can use the [status code `204`](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/204), which explicitly communicates that the lack of response body was intentional. Status code `204` alone is sufficient for conveying that the server successfully fulfilled the request.
 
 ## Example Outcomes
 
@@ -230,13 +230,26 @@ We can combine meaningful HTTP statuses and intentional response bodies to creat
 | What is the response for _unsuccessfully_ creating a new resource?             | _Invalid_ resource data, such as missing a required attribute     | `400 Bad Request`          | JSON with details about the missing attribute |
 | What is the response for reading the details of a resource?                    | -                                                                 | `200 OK`          | JSON with the resource                        |
 | What is the response for reading the details of a resource that doesn't exist? | -                                                                 | `404 Not Found`   | -                                             |
-| What is the response for updating a resource successfully?                     | Valid resource data                                               | `204 No Content`          | -                                             |
-| What is the response for updating a resource _unsuccessfully_?                 | _Invalid_ resource data, such as violating a data type constraint | `400 Bad Request` | JSON with details about the error             |
+| What is the response for replacing an entire resource successfully?                     | Valid resource data                                               | `204 No Content`          | -                                             |
+| What is the response for replacing an entire resource _unsuccessfully_?                 | _Invalid_ resource data, such as violating a data type constraint | `400 Bad Request` | JSON with details about the error             |
+| What is the response for modifying _some part_ of a resource successfully?                     | Valid resource data                                               | `200 OK`          | JSON with the updated resource                                             |
+| What is the response for modifying _some part_ of a resource _unsuccessfully_?                 | _Invalid_ resource data, such as violating a data type constraint | `400 Bad Request` | JSON with details about the error             |
 | What is the response for updating a resource that doesn't exist?               | Valid resource data                                               | `404 Not Found`   | -                                             |
 | What is the response for deleting a resource successfully?                     | -                                                                 | `204 No Content`          | -                                             |
 | What is the response for deleting a resource that doesn't exist?               | Valid resource data                                               | `404 Not Found`   | -                                             |
 
-## Examples: Slack Web API
+### !callout-info
+
+## Not All APIs Follow RESTful Conventions!
+
+Recall from the previous lesson, "Designing Endpoints", that a central feature of RESTful APIs is that the technical way that a client interacts with the API should be predictable. We talked through many examples of how different requests and responses should look which conform to REST conventions. However, keep in mind that there are API designers that choose to create APIs that do not follow these conventions.
+
+### !end-callout
+
+<details>
+   <summary>Expand to see an example of an API that does not follow the RESTful conventions we outlined in this lesson</summary>
+
+## Slack Web API
 
 Let's consider what the [Slack Web API](https://api.slack.com/web) responds with. Slack describes their web API like so:
 
@@ -318,6 +331,7 @@ An example situation for an unsuccessful response is when the message isn't foun
   "ok": false
 }
 ```
+</details>
 
 ## Check for Understanding
 
