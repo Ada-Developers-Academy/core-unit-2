@@ -233,11 +233,12 @@ CREATE TABLE example_table_name (
 | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | `CREATE TABLE`                                | SQL command to create a table                                                                                                       |
 | `example_table_name`                          | **Replace this** with the name of the new table                                                                                     |
-| `( ... );`                                    | The inside of the `()` will contain details about the table. **This statement ends in a semicolon**.                                |
+| `( ... )`                                    | The inside of the `()` will contain details about the table                                |
 | `column_name`                                 | **Replace this** with the name of a new column                                                                                      |
 | `data_type`                                   | **Replace this** with the data type of the new column                                                                               |
 | `constraint_name`                             | **Replace this** with any constraints                                                                                               |
 | `,`                                           | In `CREATE TABLE`, column definitions are comma-separated. We can define multiple columns in this command by comma-separating them. |
+| `;`                                           | Terminates the SQL query |
 
 To create a table with columns and a primary key, we can add `PRIMARY KEY` next to the column definition.
 

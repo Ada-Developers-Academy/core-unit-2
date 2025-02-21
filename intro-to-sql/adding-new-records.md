@@ -42,8 +42,9 @@ VALUES (value1, value2, value3, ...);
 | `( ... )`                        | Contains a list of the column names in the table. _This list is optional, but highly recommended._                                  |
 | `column1, column2, column3, ...` | **Replace this** with a list of the column names in the table. Column names should be comma-separated.                              |
 | `VALUES`                         | A SQL keyword that indicates the values to insert into a new record                                                                 |
-| `( ... );`                       | Contains a list of the values to insert into a new record                                                                           |
-| `value1, value2, value3, ...`;   | **Replace this** with the values for the new record. The order of values **must** exactly match the order of columns listed before. |
+| `( ... )`                       | Contains a list of the values to insert into a new record                                                                           |
+| `value1, value2, value3, ...`   | **Replace this** with the values for the new record. The order of values **must** exactly match the order of columns listed before. |
+| `;`                             | Terminates the SQL query |
 
 The order of values listed **must** exactly match the order of columns listed. In this example, `value1` is the value for `column1` because they're both listed first, and `value3` is the value for `column3` because they're both listed third.
 
