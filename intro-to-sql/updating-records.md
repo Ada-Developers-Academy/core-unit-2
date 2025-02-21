@@ -63,7 +63,8 @@ WHERE condition;
 | `SET`                                     | Keyword that begins a set-clause, where we determine what gets updated and how          |
 | `column1 = value1, column2 = value2, ...` | **Replace this** with a comma-separated list of column names `=` to their new values    |
 | `WHERE`                                   | Keyword that begins a where-clause, where we determine what gets updated                |
-| `condition;`                              | **Replace this** with a condition that must be true in order for a record to be updated |
+| `condition`                              | **Replace this** with a condition that must be true in order for a record to be updated |
+| `;`                                      | Terminates the SQL query |
 
 _The `WHERE` clause is optional_. Without a `WHERE` clause, all records within the table will be updated.
 
@@ -382,7 +383,7 @@ CREATE TABLE hotel_guests (
     guest_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     guest_name VARCHAR(200),
     is_checked_in BOOLEAN
-)
+);
 ```
 
 ##### !end-question

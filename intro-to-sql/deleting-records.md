@@ -61,7 +61,8 @@ WHERE condition;
 | `DELETE FROM`                                       | Keywords that begin an deletion statement                                                   |
 | `table_name`                                        | **Replace this** with the name of the correct table                                         |
 | `WHERE`                                             | Keyword that begins a where-clause, where we determine what gets deleted                    |
-| `condition;`                                        | **Replace this** with a condition that must be **true** in order for a record to be deleted |
+| `condition`                                        | **Replace this** with a condition that must be **true** in order for a record to be deleted |
+| `;`                                                | Terminates the SQL query |
 
 _The `WHERE` clause is optional_. Without a `WHERE` clause, all records within the table will be removed!.
 
@@ -227,7 +228,7 @@ Read through these example SQL statements. For each example, read the code and a
 1. Which record(s) will be removed?
 
 ```sql
-DELETE FROM authors
+DELETE FROM authors;
 ```
 
 <details style="max-width: 700px; margin: auto;">
@@ -264,7 +265,7 @@ WHERE id > 44;
 
 ```sql
 DELETE FROM drivers
-WHERE license_expires = '2020'
+WHERE license_expires = '2020';
 ```
 
 <details style="max-width: 700px; margin: auto;">
@@ -309,7 +310,7 @@ CREATE TABLE hotel_guests (
     guest_id INT PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
     guest_name VARCHAR(200),
     is_checked_in BOOLEAN
-)
+);
 ```
 
 ##### !end-question

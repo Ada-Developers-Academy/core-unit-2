@@ -47,7 +47,8 @@ SELECT column1, column2, column3, ... FROM table_name;
 | `SELECT`                                            | A SQL keyword to indicate retrieving records                                                                             |
 | `column1, column2, column3, ...`                    | **Replace this** with a comma-separated list of columns to retrieve, or another expression (such as `*` described below) |
 | `FROM`                                              | A SQL keyword to indicate that these records are from some set of tables                                                 |
-| `table_name;`                                       | **Replace this** with the name of the table being searched. Don't forget the ending semicolon.                           |
+| `table_name`                                       | **Replace this** with the name of the table being searched                           |
+| `;`                              | Terminates the SQL query |
 
 ### The `*` Character
 
