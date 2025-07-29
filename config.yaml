@@ -158,7 +158,7 @@ Standards:
         Path: /api-2-read-404s/activity-solar-read-404s.md
   -
     Title: Data In Tables
-    Description: "Data in Tables, Intro to Relational Databases, Activity: Data in Tables"
+    Description: "Data in Tables, Intro to Relational Databases"
     UID: f7c302282a7e78968f846372a19f50ef
     SuccessCriteria:
       - success criteria
@@ -167,10 +167,6 @@ Standards:
         Type: Instructor
         UID: 50c412213820ae1e7ffd5a432f8a2fb7
         Path: /data-in-tables/data-in-tables.instructor.md
-      -
-        Type: Instructor
-        UID: 62c24181bff87815cf3039e30c8c32b2
-        Path: /data-in-tables/instructor-activity-data-in-tables.md
       -
         Type: Instructor
         UID: paZju7
@@ -183,10 +179,6 @@ Standards:
         Type: Lesson
         UID: bf845a0d8d9b36277b4a65ad5a323ec6
         Path: /intro-to-sql/intro-to-relational-databases.md
-      -
-        Type: Lesson
-        UID: a5d0460ebba87354036cecef3e810940
-        Path: /data-in-tables/activity-data-in-tables.md
   -
     Title: Intro To SQL
     Description: "SQL Setup, Adding New Records, Retrieving Records, Updating Records, Deleting Records, Problem Set: Intro to SQL, Activity: Intro to SQL"
