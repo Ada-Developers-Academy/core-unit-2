@@ -1,4 +1,4 @@
-# Problem Set: Intermediate SQL
+# Problem Set: Relationships in SQL
 
 ## Answer the following Questions
 
@@ -17,7 +17,7 @@ MC:  Question on 1-1 Relationship with ERD Diagram
 
 * type: multiple-choice
 * id: 6dd59fbf-a760-45cf-ac67-84f28e732c10
-* title: Intermediate SQL
+* title: Relationships in SQL
 * points: 1
 * topics: sql, erd
 
@@ -62,7 +62,7 @@ What does this mean?
 
 * type: multiple-choice
 * id: 25047b64-ddf1-46ca-840e-ebb3aaea30b9
-* title: Intermediate SQL
+* title: Relationships in SQL
 * points: 1
 * topics: sql, erd
 
@@ -108,7 +108,7 @@ What does this mean?
 
 * type: multiple-choice
 * id: 009d4a6f-ad48-4bd1-aeec-4c207f79e93c
-* title: Intermediate SQL
+* title: Relationships in SQL
 * points: 1
 * topics: sql, erd
 
@@ -151,7 +151,7 @@ What purpose does the table in the middle serve?
 
 * type: ordering
 * id: 63869fc6-1c28-4ac3-bb95-4c123732359d
-* title: Reordering SQL Select
+* title: Relationships in SQL
 * points: 1
 * topics: sql, sql-select, sql-join
 
@@ -185,7 +185,7 @@ We want to select the credit card number and expiration date for a customer name
 * type: code-snippet
 * language: sql
 * id: 3a3158ed-032e-4d53-b27e-c0351003c67a
-* title: Intermediate SQL
+* title: Relationships in SQL
 * data_path: /relationships-in-sql/sql/problem-set.sql
 * points: 1
 * topics: sql, sql-select, sql-join
@@ -242,7 +242,7 @@ SQL Question on Select with Join and where
 * type: code-snippet
 * language: sql
 * id: 9f961b35-f00b-4718-bb7c-32dadd803236
-* title: Intermediate SQL
+* title: Relationships in SQL
 * data_path: /relationships-in-sql/sql/problem-set.sql
 * points: 1
 * topics: sql, sql-select, sql-join
@@ -297,7 +297,7 @@ If we look the `products` table has a foreign key, `vendor_id`.  Could you use t
 * type: code-snippet
 * language: sql
 * id: c4d98bad-cfa8-4dfc-ab52-45d38da44488
-* title: Intermediate SQL
+* title: Relationships in SQL
 * data_path: /relationships-in-sql/sql/problem-set.sql
 * points: 1
 * topics: sql, sql-select, sql-join
