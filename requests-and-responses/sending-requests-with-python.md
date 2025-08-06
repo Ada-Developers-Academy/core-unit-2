@@ -13,9 +13,9 @@ Our goal for this lesson is to:
 
 Ebony is extremely interested in history. She takes notes on all of the landmarks in the world.
 
-Ebony wants to find the [latitude](https://en.wikipedia.org/wiki/Latitude) and [longitude](https://en.wikipedia.org/wiki/Longitude) of all [seven wonders of the "New7Wonders of the World" list](https://en.wikipedia.org/wiki/New7Wonders_of_the_World).
+Ebony wants to find the [latitude](https://en.wikipedia.org/wiki/Latitude) and [longitude](https://en.wikipedia.org/wiki/Longitude) of all the sites that are part of the ["New 7 Wonders of the World"](https://en.wikipedia.org/wiki/New7Wonders_of_the_World) list.
 
-She has an API key to the LocationIQ Forward Geocoding API. To get the latitudes and longitudes of the seven wonders, she could use Postman to make seven different HTTP requests, and then read through each HTTP response.
+She has an API key to the LocationIQ Forward Geocoding API. To get the latitudes and longitudes of the New 7 Wonders, she could use Postman to make seven different HTTP requests, and then read through each HTTP response.
 
 However, making seven manual HTTP requests in Postman takes plenty of effort. Imagine when Ebony wants to research hundreds of landmarks!
 
@@ -52,10 +52,12 @@ When we take a minute to look through the [`requests` package documentation](htt
 
 ... and so many more explanations and examples about how to use the package!
 
-We can install `requests` with this command:
+Recall that when we work on Python projects, even small ones like Ebony's New 7 Wonders, we should first create a virtual environment and then activate it before installing packages. 
+
+In an activated virtual environment, we can install `requests` with this command:
 
 ```bash
-$ python3 -m pip install requests
+$ (venv) pip install requests
 ```
 
 ## Designing Our HTTP Request
