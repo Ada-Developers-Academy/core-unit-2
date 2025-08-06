@@ -224,7 +224,7 @@ Standards:
         Path: /intro-to-sql/activity-intro-to-sql.md
   -
     Title: Relationships in SQL
-    Description: "Database Relationships, Establishing Relationships, Problem Set: Intermediate SQL"
+    Description: "Database Relationships, Establishing Relationships, Problem Set: Relationships in SQL"
     UID: 11a8027f-bd04-4c47-b4d3-36209af1068d
     SuccessCriteria:
       - success criteria
@@ -244,7 +244,7 @@ Standards:
       -
         Type: Lesson
         UID: cbd53d1c-3374-4a55-804b-85defb26bd4b
-        Path: /relationships-in-sql/problem-set-intermediate-sql.md
+        Path: /relationships-in-sql/problem-set-relationships-in-sql.md
   -
     Title: (Optional) More Selecting In SQL
     Description: "Compound Conditions, Ordering, Limit, Problem Set: More Selecting in SQL"
