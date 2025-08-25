@@ -176,7 +176,6 @@ def test_update_book_invalid_id(client, two_saved_books):
 def test_delete_book(client, two_saved_books):
     # Act
     response = client.delete("/books/1")
-    response_body = response.get_json()
 
     # Assert
     assert response.status_code == 204
