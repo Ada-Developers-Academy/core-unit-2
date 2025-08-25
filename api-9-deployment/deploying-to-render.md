@@ -291,6 +291,16 @@ SQLALCHEMY_TEST_DATABASE_URI=postgresql+psycopg2://postgres:postgres@localhost:5
 SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://YOUR_DATABASE_USERNAME:CONNECTION-STRING.oregon-postgres.render.com/YOUR_DATABASE
 ```
 
+### !callout-warning
+
+## VS Code Caches <code>.env</code> By Default
+
+By default, VS Code will cache `.env` files. If we change our database string in the `.env` file, VS Code will not pick up changes to the database string until we restart VS Code. 
+- This means that if we update our `.env` and try to generate or apply migrations from the Terminal within VS Code, VS Code will run the command against the old `.env` database string until we restart VS Code.  
+- To avoid this, either use the independent Mac Terminal application or restart VS code after changing the database strings. 
+
+### !end-callout
+
 With our `SQLALCHEMY_DATABASE_URI` variable value updated to point to our external database in Render, we can apply the generated migrations to our new Render database by running the following in our terminal.
 
 ```
