@@ -295,8 +295,9 @@ SQLALCHEMY_DATABASE_URI=postgresql+psycopg2://YOUR_DATABASE_USERNAME:CONNECTION-
 
 ## VS Code Caches <code>.env</code> By Default
 
-By default, VS Code will cache `.env` files. If we change our database string in the `.env` file, VS Code will not pick up changes to the database string until we restart VS Code. 
-- This means that if we update our `.env` and try to generate or apply migrations from the Terminal within VS Code, VS Code will run the command against the old `.env` database string until we restart VS Code.  
+If we change the database string in the `.env` file, VS Code will not pick up changes to the database string until we restart VS Code. 
+
+This means that if we update our `.env` and try to generate or apply migrations from the Terminal within VS Code, VS Code will run the command against the old database string until we restart VS Code.  
 - To avoid this, either use the independent Mac Terminal application or restart VS code after changing the database strings. 
 
 ### !end-callout
