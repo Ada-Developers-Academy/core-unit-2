@@ -133,6 +133,10 @@ Standards:
         Type: Resource
         UID: 2b5c17c9-4e58-4182-acb5-09d5260faefc
         Path: /api-1-setup-read/m1-mac-psycopg2-fix.resource.md 
+      -
+        Type: Resource
+        UID: 9b752162-0ca5-4863-8b53-d9b90727fb7c
+        Path: /api-1-setup-read/debug-flask-app-supplement.md
   -
     Title: 02) Building an API - Read and Errors
     Description: "Read One Book Endpoint, Error Handling"
