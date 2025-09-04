@@ -301,13 +301,9 @@ class Book(db.Model):
 
 SQLAlchemy has changed over the years, both in syntax and in meaning. The current syntax borrows from Python's type hinting system to make the column declarations more concise, as well as to make it easier for tools to check our code for errors. Additionally, some behaviors that used to be the default must now be set explicitly.
 
-<br />
-
 Recall that SQL permits us to define columns that allow NULL values. In the past, SQLAlchemy would default to allowing NULL values for all columns unless otherwise marked. In the current version, columns using `Mapped` types that are not explicitly marked `Optional`, as above, are considered non-nullable; they are required attributes when creating a new instance of a model.
 
-<br />
-
-As an example, to mark a text column as nullable, we would need to add `Optional` to the type hint, written as `Mapped[Optional[str]]`.
+As an example, to mark a text column as nullable, we would need to add `Optional` to the type hint, written as `Mapped[Optional[str]]` or use ["union type"](https://docs.python.org/3/library/stdtypes.html#union-type) syntax such as `Mapped[str | None]`. Throughout this curriculum we will prefer the `Optional` syntax. 
 
 ### !end-callout
 
