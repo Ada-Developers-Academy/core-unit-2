@@ -277,7 +277,13 @@ If we wanted an `Author` relationship to be required for the `Book` model, we co
 
 ## Fixing type errors in VSCode
 
-Our new code will compile and run, but sometimes our tools can get a little confused about syntax and underline something that really doesn't need to change. In this case, we may see `Pylance` in VSCode add underlines after we've created the relationship between our models. If we would like to remove those warning underlines, we can add the following code to the models:
+Our new code will compile and run, but sometimes our tools can get a little confused about syntax and underline something that really doesn't need to change. In this case, we may see `Pylance` in VSCode add underlines or strikethroughs after we've created the relationship between our models. 
+
+<br>
+
+### Remove warnings when referencing models
+
+If we would like to remove the warning underlines on the model names, we can add the following code to the model files:
 ```py
 # in app/models/book.py
 from typing import TYPE_CHECKING
@@ -291,6 +297,16 @@ if TYPE_CHECKING:
 ```
 
 <br>
+
+### Remove warnings for `Optional`
+
+To remove the warnings raised for `Optional`, we can:
+1. Open "Settings" in VS Code from the cog Icon in the lower left corner of the window.
+2. Search settings for "Deprecate Typing Aliases"
+3. Uncheck the box "Python > Analysis > Type Evaluation: Deprecate Typing Aliases"
+
+![VS Code Settings open with the option "Python > Analysis > Type Evaluation: Deprecate Typing Aliases" showing and unchecked](../assets/api-8-one-many/pylance_disable_optional_warnings.png)
+*Fig. VS Code Settings open with the option "Python > Analysis > Type Evaluation: Deprecate Typing Aliases" showing and unchecked ([Full Size Image](../assets/api-8-one-many/pylance_disable_optional_warnings.png))*
 
 If you'd like to know more about `Pylance` or type checking in Python, feel free to follow your curiosity!
 
