@@ -83,10 +83,10 @@ At this point VS Code should start running the application in debug mode in a te
 _Fig. VS Code with the debug UI at the top of the window and the Flask application running in a terminal. ([Full size image](assets/debug_flask_without_tests/run_app_3_flask_app_running_in_debug_with_breakpoint.png))_
 
 From here we can set breakpoints in our route functions, then use Postman to send requests to trigger the endpoints we want to debug!
+- A great way to think about where to place a breakpoint is to consider where we might like to place a `print()` statement, then place a breakpoint there instead.
 
-A great way to think about where to place a breakpoint is to consider where we might like to place a `print()` statement, then place a breakpoint there instead.
-
-We must also remember that it's not enough to just start the debugger, even after setting breakpoints. In order for the debugger to be able to stop at a breakpoint, we need to trigger the code with the breakpoint to actually run. When Flask is started under the debugger, all it does is wait for incoming requests, the same as when we run `flask` from the terminal. This is why we need to use Postman to send a request. The incoming request will cause the related endpoint function to run, allowing any breakpoints we set in that endpoint (or other code called from that endpoint) to be triggered.
+We must also remember that it's not enough to just start the debugger, even after setting breakpoints. In order for the debugger to be able to stop at a breakpoint, we need to trigger the code with the breakpoint to actually run. When Flask is started under the debugger, all it does is wait for incoming requests, the same as when we run `flask` from the terminal. 
+- This is why we need to use Postman to send a request. The incoming request will cause the related endpoint function to run, allowing any breakpoints we set in that endpoint (or other code called from that endpoint) to be triggered.
 
 ## Summary
 
