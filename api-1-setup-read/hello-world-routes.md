@@ -163,7 +163,11 @@ Let's take a look at:
 
 ## Debugging a Flask Application
 
-We recommend debugging Flask from tests once we get to test set up materials, since there is a little extra set up involved to debug a Flask application on its own. If you get stuck in the meantime, we can debug a Flask application using [this doc for reference](debug-flask-app-supplement.md).
+As with other code we have written, we can use the VS Code debugger to help us troubleshoot code in our Flask applications. Once we reach the material on writing tests for Flask, we'll see that the process of debugging Flask through tests is identical to how we've used tests for debugging in our previous work, requiring no additional setup.
+
+In the meantime, if we encounter problems that we're having trouble resolving using alternative debugging techniques or the strategies below, we can use the following guide for a brief introduction on using the debugger with Flask applications directly.
+
+- [Debugging a Flask Application](debug-flask-app-supplement.md)
 
 ### !end-callout
 
