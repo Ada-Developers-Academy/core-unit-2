@@ -152,24 +152,32 @@ Instead of using Postman, we can alternatively use our browser to make a `GET` r
 
 ![Screenshot of a browser pointing to localhost:5000/ with the text "Hello, World!"](../assets/building-an-api/flask-hello-books_hello-world-browser.png)
 
+## Troubleshooting & Debugging
+
+Let's take a look at:
+- how to handle a common connection issue 
+- how we can get more information to help us when issues arise
+
 <!-- available callout types: info, success, warning, danger, secondary, star  -->
 ### !callout-info
 
-## Troubleshooting
+## Debugging a Flask Application
 
-Here are a couple quick troubleshooting techniques to try:
+As with other code we have written, we can use the VS Code debugger to help us troubleshoot code in our Flask applications. Once we reach the material on writing tests for Flask, we'll see that the process of debugging Flask through tests is identical to how we've used tests for debugging in our previous work, requiring no additional setup.
 
-</br>
+In the meantime, if we encounter problems that we're having trouble resolving using alternative debugging techniques or the strategies below, we can use the following guide for a brief introduction on using the debugger with Flask applications directly.
 
-If you are unable to access the server at `localhost:5000/`, replace `localhost:5000` with `127.0.0.1` (i.e. `127.0.0.1:5000/`)
-
-</br>
-
-If you receive the error “Access to localhost was denied”, go to **System Preferences** -> **Sharing**, and uncheck “AirPlay Receiver”.
+- [Debugging a Flask Application](debug-flask-app-supplement.md)
 
 ### !end-callout
 
-## Check the Server Logs
+### Troubleshooting Reaching the Local Server
+
+Here are a couple quick troubleshooting techniques to try if you are having trouble reaching your local server:
+- If you are unable to access the server at `localhost:5000/`, replace `localhost:5000` with `127.0.0.1` (i.e. `127.0.0.1:5000/`)
+- If you receive the error “Access to localhost was denied”, go to **System Preferences** -> **Sharing**, and uncheck “AirPlay Receiver”.
+
+### Check the Server Logs
 
 We can use the server logs to debug our server code. After we run `flask run` from the terminal to start the server, any error messages that our server needs to communicate will be printed in that terminal window.
 
