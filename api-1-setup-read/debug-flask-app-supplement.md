@@ -90,7 +90,7 @@ We must also remember that it's not enough to just start the debugger, even afte
 
 ## Summary
 
-While we will often prefer to debug our Flask applications by using our tests to exercise our code, there are additional concerns around writing Flask tests that mean we're not yet ready to tackle writing Flask tests. In the meantime, if we run into problems with our Flask application that we're finding challenging to investigate with non-debugger approaches (such as visually inspecting our code, reviewing the logs, or rubber ducking), it's possible to set up VS Code to be able to debug our Flask application.
+While we will often prefer to debug our Flask applications by using our tests to exercise our code, there are additional concerns around writing Flask tests that mean we're not yet ready to tackle this just yet. In the meantime, if we run into problems with our Flask application that we're finding challenging to investigate with non-debugger approaches (such as visually inspecting our code, reviewing the logs, or rubber ducking), it's possible to set up VS Code to be able to debug our Flask application.
 
 To debug our Flask application with VS Code, we
 1. Create a Launch Configuration to tell VS Code how to start our Flask application.
