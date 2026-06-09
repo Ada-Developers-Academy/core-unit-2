@@ -40,7 +40,7 @@ def test_create_one_book(client):
 |`client.post("/books", json=...`|Sends a `POST` request to `/books`, with the `dict` to be used as the JSON request body passed in using the `json` keyword argument| 
 | `response_body = response.get_json()`| Gets the JSON response body as a Python value. Since the create logic returns a `dict`, we should anticipate `response_body` to receive a `dict` result here.|
 |`assert response.status_code == 201`|Checks for the expected status code|
-|`assert response_body == {...}}`| Checks for the expected key/value pairs in the response body|
+|`assert response_body == {...}`| Checks for the expected key/value pairs in the response body|
 
 As always, we should run `pytest` and ensure that the `POST` test passes and no other tests have been affected by our changes.
 
