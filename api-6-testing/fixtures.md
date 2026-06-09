@@ -59,7 +59,7 @@ def test_len_of_empty_list(empty_list):
 | `@pytest.fixture`                                   | Applies the fixture decorator to the `empty_list` function. `pytest` will be able to use `empty_list` as a fixture in subsequent tests.                                                  |
 | `def empty_list(): ...`                             | Declares the `empty_list` function, which returns an empty list.                                                                                                                         |
 | `def test_len_of_empty_list( ... ): ...`            | Declares a test function that `pytest` will be able to detect. It begins with `test_`.                                                                                                   |
-| `empty_test`                                        | This parameter matches the name of the `empty_list` fixture. When `pytest` runs this test it will first run the `empty_list` fixture and use the result as the value for this parameter. |
+| `empty_list`                                        | This parameter matches the name of the `empty_list` fixture. When `pytest` runs this test it will first run the `empty_list` fixture and use the result as the value for this parameter. |
 
 Because we're in the Hello Books API project, we know that the `pytest` command is available. Let's make sure our virtual environment is active. Then, let's run this test file with `pytest test_fixtures.py`.
 
