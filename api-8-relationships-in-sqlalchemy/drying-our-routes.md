@@ -235,12 +235,12 @@ def test_create_model_book(client):
     result = create_model(Book, test_data)
 
     # Assert
-    assert result.status_code == 201
-    assert result.get_json() == {
+    assert result[0] == {
         "id": 1,
         "title": "New Book",
         "description": "The Best!"
     }
+    assert result[1] == 201
 
 def test_create_model_book_missing_data(client):
     # Arrange
@@ -267,11 +267,11 @@ def test_create_model_author(client):
     result = create_model(Author, test_data)
 
     # Assert
-    assert result.status_code == 201
-    assert result.get_json() == {
+    assert result[0] == {
         "id": 1,
         "name": "New Author"
     }
+    assert result[1] == 201
 ```
 
 </details>
