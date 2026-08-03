@@ -103,7 +103,7 @@ PostgreSQL, also known as **Postgres** (and often seen as `psql`), is a free and
 This curriculum will use PostgreSQL for the following reasons:
 
 - Free and open-source
-- Built-in compatibility with Heroku, a popular platform used often for free Flask app deployment (Flask is a Python package used to build web applications)
+- Compatibility with a number of platforms where we can share our projects, many of which also natively support Flask.
 - It is easy to install on macOS
 
 ### !callout-secondary
