@@ -1,8 +1,5 @@
 # Test Setup
 
-<!-- FLASK UPDATE -->
-<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=c47ab167-1113-4ff7-b688-ae880120780f&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
-
 ## Goals
 
 Our goals for this lesson are to:

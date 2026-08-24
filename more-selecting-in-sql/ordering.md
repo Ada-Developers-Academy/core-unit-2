@@ -2,11 +2,9 @@
 
 <!--
 
-Note:  The beind the curtain is maybe something we don't keep, on the other hand having something in the lessons about the order Postgres evaluates SQL is maybe something that should be added.
+Note:  The behind the curtain is maybe something we don't keep, on the other hand having something in the lessons about the order Postgres evaluates SQL is maybe something that should be added.
 
 -->
-
-<iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=917e7bb8-f59f-4fba-b228-ad1000ea2a72&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe>
 
 ## Goals
 

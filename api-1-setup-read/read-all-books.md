@@ -1,8 +1,5 @@
 # Read All Books Endpoint
 
-<!-- FLASK UPDATE -->
-<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=a2eab4ad-e56b-4d32-8f1b-ae690173abc5&autoplay=false&offerviewer=true&showtitle=true&showbrand=true&captions=true&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
-
 ## Goals
 
 Our goal for this lesson is to learn how to define a route that reads all the data for a model.
