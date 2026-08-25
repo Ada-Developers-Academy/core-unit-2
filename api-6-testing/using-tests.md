@@ -1,8 +1,5 @@
 # GET /books Test
 
-<!-- FLASK UPDATE -->
-<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?pid=7971fa94-cbbf-46ee-9f48-ad1d015959e0&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
-
 ## Goals
 
 Our goals for this lesson are to:

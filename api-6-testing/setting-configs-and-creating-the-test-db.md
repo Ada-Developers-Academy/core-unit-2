@@ -1,8 +1,5 @@
 # Setting Configurations & Creating the Test Database
 
-<!-- FLASK UPDATE -->
-<!-- <iframe src="https://adaacademy.hosted.panopto.com/Panopto/Pages/Embed.aspx?id=57fb6d03-b718-4f99-9d37-ad1d0158d396&autoplay=false&offerviewer=true&showtitle=true&showbrand=false&start=0&interactivity=all" height="405" width="720" style="border: 1px solid #464646;" allowfullscreen allow="autoplay"></iframe> -->
-
 ## Goals
 
 Our goals for this lesson are to:
